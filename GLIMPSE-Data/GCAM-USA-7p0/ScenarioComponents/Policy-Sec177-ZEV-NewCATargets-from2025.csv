@@ -1,0 +1,541 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Market Share
+#Type: LDV-EV (4W)
+#Subset: trn_pass_road_LDV_4W : Car : BEV : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : BEV : million pass-km;trn_pass_road_LDV_4W : Mini Car : BEV : million pass-km;
+#Superset: trn_pass_road_LDV_4W : Car : BEV : million pass-km;trn_pass_road_LDV_4W : Car : FCEV : million pass-km;trn_pass_road_LDV_4W : Car : Hybrid Liquids : million pass-km;trn_pass_road_LDV_4W : Car : Liquids : million pass-km;trn_pass_road_LDV_4W : Car : NG : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : BEV : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : FCEV : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : Hybrid Liquids : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : Liquids : million pass-km;trn_pass_road_LDV_4W : Large Car and Truck : NG : million pass-km;trn_pass_road_LDV_4W : Mini Car : BEV : million pass-km;trn_pass_road_LDV_4W : Mini Car : FCEV : million pass-km;trn_pass_road_LDV_4W : Mini Car : Hybrid Liquids : million pass-km;trn_pass_road_LDV_4W : Mini Car : Liquids : million pass-km;trn_pass_road_LDV_4W : Mini Car : NG : million pass-km;
+#Applied to: New Purchases
+#Treatment: Across Selected Regions
+#Constraint: Lower
+#Policy name: LDV-EV-4W_New_Reg70
+#Market name: LDV-EV-4W_New_Reg_Mkt70
+#Regions: CA,CO,CT,DE,MA,MD,ME,MN,NJ,NY,OR,PA,RI,VT,WA
+#Table data:2025  ,  0.280
+#Table data:2030  ,  0.680
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdActivate
+
+region,policy,market,type,year,constrained
+CA,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+CA,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+CO,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+CO,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+CT,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+CT,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+DE,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+DE,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+MA,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+MA,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+MD,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+MD,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+ME,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+ME,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+MN,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+MN,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+NJ,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+NJ,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+NY,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+NY,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+OR,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+OR,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+PA,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+PA,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+RI,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+RI,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+VT,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+VT,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+WA,LDV-EV-4W_New_Reg70-2025,LDV-EV-4W_New_Reg_Mkt70-2025,RES,2025,1
+WA,LDV-EV-4W_New_Reg70-2030,LDV-EV-4W_New_Reg_Mkt70-2030,RES,2030,1
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdAdjCoef
+
+region,sector,subsector,tech,year,policy,adjcoef-year,adjcoef
+CA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CA,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CO,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CO,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+CT,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+CT,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+DE,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+DE,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MA,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MD,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MD,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+ME,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+ME,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+MN,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+MN,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NJ,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NJ,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+NY,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+NY,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+OR,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+OR,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+PA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+PA,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+RI,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+RI,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+VT,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+VT,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Mini Car,FCEV,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Mini Car,Liquids,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Mini Car,NG,2025,LDV-EV-4W_New_Reg70-2025,2025,0.28
+WA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Large Car and Truck,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Mini Car,FCEV,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Mini Car,Liquids,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+WA,trn_pass_road_LDV_4W,Mini Car,NG,2030,LDV-EV-4W_New_Reg70-2030,2030,0.68
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStd2ndOut
+
+region,sector,subsector,tech,year,policy,output-ratio,pMultiplier
+CA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+CA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+CO,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+CO,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+CT,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+CT,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+DE,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+DE,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+MA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+MA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+MD,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+MD,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+ME,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+ME,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+MN,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+MN,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+NJ,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+NJ,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+NY,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+NY,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+OR,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+OR,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+PA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+PA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+RI,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+RI,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+VT,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+VT,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9
+WA,trn_pass_road_LDV_4W,Car,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.677215189873418E-10,1.0e9
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,LDV-EV-4W_New_Reg70-2025,6.355421686746989E-10,1.0e9
+WA,trn_pass_road_LDV_4W,Car,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.677215189873418E-10,1.0e9
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,LDV-EV-4W_New_Reg70-2030,6.355421686746989E-10,1.0e9

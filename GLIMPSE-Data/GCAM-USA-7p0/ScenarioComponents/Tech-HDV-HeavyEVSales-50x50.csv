@@ -1,0 +1,2535 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Market Share
+#Type: HDV-EV
+#Subset: trn_freight_road : Heavy truck : BEV : million ton-km;
+#Superset: trn_freight_road : Heavy truck : BEV : million ton-km;trn_freight_road : Heavy truck : FCEV : million ton-km;trn_freight_road : Heavy truck : Hybrid Liquids : million ton-km;trn_freight_road : Heavy truck : Liquids : million ton-km;trn_freight_road : Heavy truck : NG : million ton-km;
+#Applied to: New Purchases
+#Treatment: Across Selected Regions
+#Constraint: Lower
+#Policy name: HDV-EV_New_Reg8
+#Market name: HDV-EV_New_Reg_Mkt8
+#Regions: AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY,USA
+#Table data:2025 , 0.0833
+#Table data:2030 , 0.167
+#Table data:2035 , 0.250
+#Table data:2040 , 0.333
+#Table data:2045 , 0.417
+#Table data:2050 , 0.500
+#Table data:2055 , .5
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdActivate
+
+region,policy,market,type,year,constrained
+AK,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+AK,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+AK,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+AK,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+AK,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+AK,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+AK,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+AL,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+AL,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+AL,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+AL,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+AL,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+AL,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+AL,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+AR,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+AR,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+AR,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+AR,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+AR,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+AR,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+AR,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+AZ,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+AZ,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+AZ,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+AZ,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+AZ,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+AZ,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+AZ,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+CA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+CA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+CA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+CA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+CA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+CA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+CA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+CO,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+CO,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+CO,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+CO,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+CO,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+CO,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+CO,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+CT,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+CT,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+CT,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+CT,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+CT,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+CT,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+CT,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+DC,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+DC,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+DC,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+DC,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+DC,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+DC,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+DC,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+DE,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+DE,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+DE,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+DE,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+DE,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+DE,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+DE,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+FL,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+FL,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+FL,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+FL,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+FL,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+FL,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+FL,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+GA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+GA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+GA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+GA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+GA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+GA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+GA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+HI,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+HI,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+HI,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+HI,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+HI,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+HI,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+HI,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+IA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+IA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+IA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+IA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+IA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+IA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+IA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+ID,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+ID,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+ID,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+ID,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+ID,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+ID,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+ID,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+IL,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+IL,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+IL,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+IL,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+IL,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+IL,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+IL,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+IN,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+IN,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+IN,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+IN,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+IN,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+IN,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+IN,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+KS,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+KS,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+KS,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+KS,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+KS,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+KS,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+KS,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+KY,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+KY,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+KY,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+KY,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+KY,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+KY,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+KY,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+LA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+LA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+LA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+LA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+LA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+LA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+LA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MD,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MD,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MD,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MD,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MD,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MD,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MD,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+ME,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+ME,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+ME,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+ME,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+ME,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+ME,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+ME,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MI,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MI,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MI,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MI,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MI,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MI,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MI,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MN,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MN,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MN,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MN,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MN,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MN,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MN,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MO,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MO,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MO,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MO,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MO,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MO,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MO,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MS,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MS,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MS,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MS,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MS,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MS,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MS,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+MT,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+MT,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+MT,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+MT,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+MT,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+MT,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+MT,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NC,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NC,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NC,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NC,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NC,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NC,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NC,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+ND,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+ND,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+ND,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+ND,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+ND,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+ND,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+ND,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NE,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NE,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NE,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NE,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NE,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NE,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NE,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NH,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NH,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NH,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NH,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NH,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NH,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NH,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NJ,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NJ,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NJ,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NJ,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NJ,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NJ,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NJ,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NM,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NM,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NM,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NM,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NM,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NM,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NM,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NV,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NV,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NV,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NV,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NV,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NV,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NV,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+NY,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+NY,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+NY,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+NY,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+NY,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+NY,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+NY,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+OH,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+OH,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+OH,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+OH,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+OH,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+OH,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+OH,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+OK,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+OK,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+OK,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+OK,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+OK,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+OK,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+OK,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+OR,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+OR,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+OR,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+OR,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+OR,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+OR,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+OR,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+PA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+PA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+PA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+PA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+PA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+PA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+PA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+RI,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+RI,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+RI,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+RI,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+RI,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+RI,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+RI,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+SC,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+SC,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+SC,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+SC,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+SC,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+SC,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+SC,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+SD,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+SD,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+SD,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+SD,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+SD,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+SD,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+SD,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+TN,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+TN,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+TN,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+TN,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+TN,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+TN,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+TN,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+TX,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+TX,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+TX,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+TX,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+TX,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+TX,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+TX,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+UT,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+UT,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+UT,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+UT,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+UT,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+UT,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+UT,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+VA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+VA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+VA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+VA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+VA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+VA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+VA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+VT,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+VT,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+VT,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+VT,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+VT,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+VT,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+VT,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+WA,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+WA,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+WA,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+WA,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+WA,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+WA,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+WA,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+WI,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+WI,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+WI,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+WI,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+WI,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+WI,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+WI,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+WV,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+WV,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+WV,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+WV,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+WV,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+WV,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+WV,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+WY,HDV-EV_New_Reg8-2025,HDV-EV_New_Reg_Mkt8-2025,RES,2025,1
+WY,HDV-EV_New_Reg8-2030,HDV-EV_New_Reg_Mkt8-2030,RES,2030,1
+WY,HDV-EV_New_Reg8-2035,HDV-EV_New_Reg_Mkt8-2035,RES,2035,1
+WY,HDV-EV_New_Reg8-2040,HDV-EV_New_Reg_Mkt8-2040,RES,2040,1
+WY,HDV-EV_New_Reg8-2045,HDV-EV_New_Reg_Mkt8-2045,RES,2045,1
+WY,HDV-EV_New_Reg8-2050,HDV-EV_New_Reg_Mkt8-2050,RES,2050,1
+WY,HDV-EV_New_Reg8-2055,HDV-EV_New_Reg_Mkt8-2055,RES,2055,1
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdAdjCoef
+
+region,sector,subsector,tech,year,policy,adjcoef-year,adjcoef
+AK,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AK,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AK,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AK,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AK,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AK,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AK,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AK,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AK,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AK,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AK,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AK,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AK,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AK,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AK,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AK,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AK,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AK,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AK,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AK,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AK,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AK,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AK,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AK,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AK,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AK,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AK,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AK,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AK,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AL,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AL,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AL,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AL,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AL,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AL,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AL,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AL,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AL,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AL,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AL,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AL,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AL,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AL,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AL,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AL,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AL,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AL,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AL,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AL,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AL,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AL,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AR,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AR,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AR,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AR,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AR,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AR,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AR,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AR,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AR,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AR,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AR,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AR,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AR,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AR,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AR,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AR,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AR,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AR,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AR,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AR,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AR,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AR,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AR,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AR,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AR,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AR,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AR,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AR,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AR,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AZ,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AZ,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AZ,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AZ,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+AZ,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AZ,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AZ,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AZ,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+AZ,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AZ,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AZ,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AZ,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+AZ,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AZ,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AZ,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AZ,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+AZ,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AZ,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AZ,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AZ,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+AZ,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AZ,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AZ,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AZ,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+AZ,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AZ,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AZ,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AZ,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+AZ,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CO,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CO,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CO,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CO,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CO,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CO,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CO,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CO,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CO,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CO,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CO,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CO,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CO,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CO,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CO,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CO,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CO,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CO,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CO,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CO,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CO,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CO,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CO,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CO,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CO,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CO,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CO,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CO,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CT,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CT,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CT,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+CT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CT,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CT,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CT,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+CT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CT,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CT,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CT,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+CT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CT,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CT,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CT,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+CT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CT,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CT,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CT,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+CT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CT,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CT,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CT,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+CT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CT,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CT,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+CT,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DC,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DC,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DC,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DC,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DC,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DC,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DC,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DC,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DC,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DC,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DC,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DC,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DC,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DC,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DC,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DC,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DC,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DC,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DC,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DC,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DC,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DE,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DE,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DE,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DE,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+DE,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DE,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DE,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DE,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+DE,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DE,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DE,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DE,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+DE,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DE,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DE,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DE,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+DE,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DE,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DE,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DE,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+DE,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DE,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DE,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DE,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+DE,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DE,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DE,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DE,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+DE,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+FL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+FL,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+FL,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+FL,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+FL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+FL,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+FL,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+FL,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+FL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+FL,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+FL,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+FL,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+FL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+FL,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+FL,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+FL,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+FL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+FL,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+FL,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+FL,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+FL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+FL,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+FL,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+FL,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+FL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+FL,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+FL,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+FL,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+FL,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+GA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+GA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+GA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+GA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+GA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+GA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+GA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+GA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+GA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+GA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+GA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+GA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+GA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+GA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+GA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+GA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+GA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+GA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+GA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+GA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+GA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+GA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+GA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+GA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+GA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+GA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+GA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+GA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+GA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+HI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+HI,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+HI,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+HI,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+HI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+HI,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+HI,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+HI,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+HI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+HI,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+HI,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+HI,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+HI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+HI,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+HI,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+HI,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+HI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+HI,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+HI,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+HI,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+HI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+HI,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+HI,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+HI,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+HI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+HI,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+HI,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+HI,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ID,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ID,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ID,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ID,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ID,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ID,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ID,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ID,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ID,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ID,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ID,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ID,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ID,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ID,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ID,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ID,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ID,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ID,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ID,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ID,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ID,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ID,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ID,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ID,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ID,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ID,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ID,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ID,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ID,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IL,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IL,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IL,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IL,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IL,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IL,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IL,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IL,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IL,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IL,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IL,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IL,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IL,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IL,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IL,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IL,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IL,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IL,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IL,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IL,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IL,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IL,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IN,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IN,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IN,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+IN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IN,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IN,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IN,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+IN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IN,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IN,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IN,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+IN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IN,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IN,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IN,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+IN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IN,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IN,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IN,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+IN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IN,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IN,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IN,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+IN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IN,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IN,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IN,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+IN,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KS,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KS,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KS,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KS,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KS,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KS,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KS,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KS,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KS,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KS,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KS,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KS,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KS,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KS,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KS,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KS,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KS,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KS,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KS,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KS,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KS,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KS,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KS,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KS,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KS,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KS,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KS,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KS,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KS,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KY,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KY,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KY,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+KY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KY,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KY,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KY,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+KY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KY,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KY,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KY,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+KY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KY,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KY,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KY,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+KY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KY,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KY,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KY,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+KY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KY,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KY,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KY,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+KY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KY,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KY,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KY,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+KY,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+LA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+LA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+LA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+LA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+LA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+LA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+LA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+LA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+LA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+LA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+LA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+LA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+LA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+LA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+LA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+LA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+LA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+LA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+LA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+LA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+LA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+LA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+LA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+LA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+LA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+LA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+LA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+LA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+LA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MD,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MD,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MD,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MD,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MD,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MD,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MD,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MD,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MD,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MD,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MD,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MD,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MD,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MD,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MD,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MD,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MD,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MD,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MD,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MD,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MD,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MD,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MD,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MD,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MD,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MD,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MD,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MD,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ME,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ME,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ME,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ME,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ME,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ME,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ME,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ME,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ME,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ME,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ME,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ME,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ME,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ME,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ME,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ME,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ME,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ME,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ME,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ME,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ME,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ME,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ME,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ME,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ME,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ME,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ME,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ME,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MI,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MI,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MI,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MI,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MI,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MI,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MI,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MI,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MI,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MI,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MI,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MI,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MI,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MI,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MI,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MI,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MI,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MI,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MI,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MI,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MI,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MI,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MN,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MN,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MN,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MN,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MN,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MN,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MN,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MN,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MN,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MN,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MN,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MN,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MN,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MN,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MN,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MN,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MN,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MN,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MN,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MN,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MN,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MN,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MO,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MO,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MO,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MO,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MO,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MO,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MO,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MO,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MO,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MO,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MO,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MO,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MO,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MO,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MO,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MO,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MO,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MO,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MO,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MO,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MO,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MO,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MO,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MO,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MO,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MO,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MO,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MO,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MO,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MS,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MS,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MS,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MS,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MS,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MS,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MS,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MS,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MS,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MS,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MS,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MS,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MS,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MS,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MS,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MS,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MS,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MS,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MS,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MS,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MS,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MS,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MS,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MS,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MS,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MS,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MS,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MS,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MS,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MT,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MT,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MT,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+MT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MT,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MT,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MT,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+MT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MT,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MT,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MT,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+MT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MT,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MT,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MT,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+MT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MT,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MT,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MT,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+MT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MT,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MT,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MT,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+MT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MT,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MT,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MT,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+MT,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NC,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NC,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NC,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NC,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NC,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NC,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NC,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NC,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NC,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NC,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NC,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NC,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NC,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NC,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NC,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NC,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NC,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NC,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NC,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NC,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NC,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ND,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ND,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ND,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ND,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+ND,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ND,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ND,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ND,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+ND,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ND,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ND,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ND,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+ND,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ND,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ND,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ND,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+ND,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ND,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ND,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ND,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+ND,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ND,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ND,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ND,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+ND,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ND,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ND,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ND,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+ND,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NE,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NE,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NE,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NE,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NE,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NE,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NE,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NE,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NE,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NE,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NE,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NE,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NE,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NE,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NE,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NE,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NE,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NE,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NE,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NE,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NE,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NE,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NE,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NE,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NE,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NE,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NE,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NE,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NE,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NH,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NH,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NH,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NH,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NH,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NH,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NH,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NH,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NH,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NH,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NH,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NH,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NH,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NH,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NH,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NH,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NH,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NH,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NH,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NH,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NH,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NH,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NH,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NH,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NH,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NH,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NH,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NH,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NH,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NJ,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NJ,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NJ,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NJ,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NJ,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NJ,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NJ,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NJ,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NJ,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NJ,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NJ,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NJ,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NJ,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NJ,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NJ,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NJ,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NJ,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NJ,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NJ,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NJ,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NJ,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NJ,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NJ,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NJ,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NJ,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NJ,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NJ,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NJ,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NJ,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NM,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NM,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NM,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NM,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NM,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NM,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NM,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NM,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NM,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NM,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NM,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NM,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NM,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NM,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NM,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NM,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NM,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NM,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NM,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NM,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NM,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NM,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NM,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NM,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NM,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NM,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NM,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NM,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NM,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NV,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NV,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NV,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NV,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NV,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NV,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NV,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NV,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NV,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NV,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NV,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NV,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NV,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NV,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NV,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NV,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NV,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NV,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NV,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NV,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NV,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NV,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NV,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NV,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NV,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NV,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NV,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NV,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NV,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NY,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NY,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NY,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+NY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NY,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NY,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NY,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+NY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NY,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NY,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NY,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+NY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NY,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NY,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NY,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+NY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NY,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NY,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NY,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+NY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NY,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NY,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NY,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+NY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NY,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NY,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NY,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+NY,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OH,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OH,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OH,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OH,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OH,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OH,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OH,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OH,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OH,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OH,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OH,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OH,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OH,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OH,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OH,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OH,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OH,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OH,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OH,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OH,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OH,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OH,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OH,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OH,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OH,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OH,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OH,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OH,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OH,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OK,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OK,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OK,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OK,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OK,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OK,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OK,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OK,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OK,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OK,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OK,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OK,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OK,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OK,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OK,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OK,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OK,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OK,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OK,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OK,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OK,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OK,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OK,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OK,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OK,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OK,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OK,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OK,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OK,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OR,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OR,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OR,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OR,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+OR,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OR,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OR,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OR,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+OR,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OR,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OR,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OR,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+OR,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OR,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OR,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OR,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+OR,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OR,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OR,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OR,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+OR,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OR,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OR,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OR,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+OR,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OR,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OR,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+OR,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+PA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+PA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+PA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+PA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+PA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+PA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+PA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+PA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+PA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+PA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+PA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+PA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+PA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+PA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+PA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+PA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+PA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+PA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+PA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+PA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+PA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+PA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+PA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+PA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+PA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+PA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+PA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+PA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+RI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+RI,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+RI,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+RI,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+RI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+RI,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+RI,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+RI,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+RI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+RI,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+RI,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+RI,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+RI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+RI,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+RI,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+RI,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+RI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+RI,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+RI,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+RI,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+RI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+RI,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+RI,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+RI,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+RI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+RI,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+RI,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+RI,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SC,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SC,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SC,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SC,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SC,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SC,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SC,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SC,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SC,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SC,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SC,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SC,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SC,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SC,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SC,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SC,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SC,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SC,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SC,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SC,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SC,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SC,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SD,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SD,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SD,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SD,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+SD,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SD,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SD,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SD,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+SD,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SD,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SD,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SD,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+SD,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SD,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SD,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SD,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+SD,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SD,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SD,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SD,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+SD,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SD,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SD,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SD,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+SD,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SD,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SD,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SD,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+SD,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TN,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TN,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TN,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TN,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TN,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TN,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TN,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TN,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TN,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TN,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TN,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TN,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TN,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TN,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TN,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TN,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TN,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TN,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TN,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TN,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TN,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TN,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TX,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TX,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TX,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TX,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+TX,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TX,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TX,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TX,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+TX,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TX,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TX,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TX,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+TX,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TX,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TX,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TX,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+TX,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TX,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TX,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TX,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+TX,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TX,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TX,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TX,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+TX,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TX,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TX,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TX,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+TX,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+UT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+UT,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+UT,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+UT,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+UT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+UT,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+UT,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+UT,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+UT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+UT,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+UT,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+UT,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+UT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+UT,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+UT,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+UT,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+UT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+UT,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+UT,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+UT,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+UT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+UT,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+UT,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+UT,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+UT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+UT,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+UT,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+UT,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+UT,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VT,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VT,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VT,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+VT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VT,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VT,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VT,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+VT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VT,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VT,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VT,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+VT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VT,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VT,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VT,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+VT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VT,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VT,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VT,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+VT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VT,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VT,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VT,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+VT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VT,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VT,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+VT,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WA,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WA,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WA,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WA,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WA,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WA,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WA,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WA,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WA,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WA,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WA,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WA,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WA,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WA,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WA,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WA,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WA,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WA,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WA,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WA,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WA,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WI,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WI,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WI,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WI,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WI,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WI,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WI,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WI,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WI,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WI,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WI,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WI,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WI,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WI,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WI,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WI,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WI,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WI,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WI,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WI,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WI,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WI,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WV,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WV,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WV,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WV,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WV,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WV,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WV,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WV,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WV,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WV,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WV,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WV,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WV,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WV,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WV,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WV,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WV,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WV,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WV,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WV,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WV,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WV,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WV,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WV,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WV,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WV,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WV,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WV,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WV,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WY,trn_freight_road,Heavy truck,FCEV,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WY,trn_freight_road,Heavy truck,Liquids,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WY,trn_freight_road,Heavy truck,NG,2025,HDV-EV_New_Reg8-2025,2025,0.0833
+WY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WY,trn_freight_road,Heavy truck,FCEV,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WY,trn_freight_road,Heavy truck,Liquids,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WY,trn_freight_road,Heavy truck,NG,2030,HDV-EV_New_Reg8-2030,2030,0.167
+WY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WY,trn_freight_road,Heavy truck,FCEV,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WY,trn_freight_road,Heavy truck,Liquids,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WY,trn_freight_road,Heavy truck,NG,2035,HDV-EV_New_Reg8-2035,2035,0.25
+WY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WY,trn_freight_road,Heavy truck,FCEV,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WY,trn_freight_road,Heavy truck,Liquids,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WY,trn_freight_road,Heavy truck,NG,2040,HDV-EV_New_Reg8-2040,2040,0.333
+WY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WY,trn_freight_road,Heavy truck,FCEV,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WY,trn_freight_road,Heavy truck,Liquids,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WY,trn_freight_road,Heavy truck,NG,2045,HDV-EV_New_Reg8-2045,2045,0.417
+WY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WY,trn_freight_road,Heavy truck,FCEV,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WY,trn_freight_road,Heavy truck,Liquids,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WY,trn_freight_road,Heavy truck,NG,2050,HDV-EV_New_Reg8-2050,2050,0.5
+WY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WY,trn_freight_road,Heavy truck,FCEV,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WY,trn_freight_road,Heavy truck,Hybrid Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WY,trn_freight_road,Heavy truck,Liquids,2055,HDV-EV_New_Reg8-2055,2055,0.5
+WY,trn_freight_road,Heavy truck,NG,2055,HDV-EV_New_Reg8-2055,2055,0.5
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStd2ndOut
+
+region,sector,subsector,tech,year,policy,output-ratio,pMultiplier
+AK,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+AK,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+AL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+AR,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+AZ,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+CA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+CO,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+CT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+DC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+DE,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+FL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+GA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+HI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+IA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+ID,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+IL,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+IN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+KS,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+KY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+LA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MD,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+ME,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MO,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MS,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+MT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+ND,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NE,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NH,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NJ,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NM,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NV,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+NY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+OH,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+OK,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+OR,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+PA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+RI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+SC,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+SD,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+TN,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+TX,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+UT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+VA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+VT,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+WA,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+WI,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+WV,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2025,HDV-EV_New_Reg8-2025,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2030,HDV-EV_New_Reg8-2030,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2035,HDV-EV_New_Reg8-2035,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2040,HDV-EV_New_Reg8-2040,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2045,HDV-EV_New_Reg8-2045,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2050,HDV-EV_New_Reg8-2050,,3.168168168168168E-10,1.0e9
+WY,trn_freight_road,Heavy truck,BEV,2055,HDV-EV_New_Reg8-2055,,3.168168168168168E-10,1.0e9

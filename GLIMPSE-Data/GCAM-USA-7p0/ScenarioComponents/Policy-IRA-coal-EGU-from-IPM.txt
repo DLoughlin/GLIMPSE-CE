@@ -1,0 +1,2 @@
+@type=xmllist
+..\..\..\Contrib\Policies\IRA\IPM-results\Policy-IRA-CoalOutput-fromIPM.xml

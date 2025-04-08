@@ -1,0 +1,39 @@
+North America:USA,Canada,Mexico,Central America and Caribbean,AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY
+South America:Argentina,Brazil,Colombia,South America_Northern,South America_Southern 
+Africa:Africa_Northern,Africa_Southern,Africa_Eastern,Africa_Western,South Africa
+EU:EU-15,EU-12
+Europe:EU-15,EU-12,Europe_Eastern,European Free Trade Association,Europe_Non_EGU
+Asia:Japan,Central Asia,Russia,China,Middle East,Indonesia,Pakistan,South Asia,Southeast Asia,Taiwan,South Korea,India
+East Asia:Japan,China,Taiwan,South Korea
+Southeast Asia:Indonesia,Southeast Asia
+South Asia:Pakistan,India,South Asia
+West Asia:Middle East
+US-New England:CT,MA,ME,NH,RI,VT
+US-Middle Atlantic:NY,PA,NJ
+US-South Atlantic:DE,MD,VA,WV,NC,SC,GA,FL,DC
+US-East North Central:MI,OH,IN,IL,WI
+US-West North Central:ND,SD,NE,KS,MN,IA,MO
+US-East South Central:KY,TN,AL,MS
+US-West South Central:OK,AR,TX,LA
+US-Mountain:MT,WY,ID,NV,UT,CO,AZ,NM
+US-Pacific:WA,OR,CA,HI,AK
+US-Pacific(contig):WA,OR,CA
+US-CENSARA:NE,KS,OK,TX,IA,MO,AR,LA
+US-LADCO:IL,IN,MI,MN,OH,WI
+US-MANE-VU:CT,DE,DC,ME,MD,MA,NH,NJ,NY,PA,RI,VT,VA
+US-MARAMA:DE,DC,NJ,NC,VA,WV
+US-NESCAUM:CT,ME,MA,NH,NJ,NY,RI,VT
+US-SESARM:AL,FL,GA,KY,MS,NC,SC,TN,VA,WV
+US-WRAP:AK,AZ,CA,CO,HI,ID,MT,NV,NM,ND,OR,SD,UT,WA,WY
+US-EPA-R1:CT,ME,MA,NH,RI,VT
+US-EPA-R2:NJ,NY
+US-EPA-R3:DE,DC,MD,PA,VA,WV
+US-EPA-R4:AL,FL,GA,KY,MS,NC,SC,TN
+US-EPA-R5:IL,IN,MI,MN,OH,WI
+US-EPA-R6:AR,LA,NM,OK,TX
+US-EPA-R7:IA,KS,MO,NE
+US-EPA-R8:CO,MT,ND,SD,UT,WY
+US-EPA-R9:AX,CA,HI,NV
+US-EPA-R10:AK,ID,OR,WA
+HDV-MDV-MOU:CA,CO,CT,DC,HI,MA,MD,ME,NC,NJ,NY,OR,PA,RI,VT,WA
+

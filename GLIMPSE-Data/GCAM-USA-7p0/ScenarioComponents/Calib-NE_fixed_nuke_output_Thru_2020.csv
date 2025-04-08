@@ -1,0 +1,107 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Tech Bound
+#Sector: base load generation
+#Technologies: base load generation : nuclear=>nuc_base_Gen II : Gen_II_LWR (cooling pond) : EJ;base load generation : nuclear=>nuc_base_Gen II : Gen_II_LWR (once through) : EJ;base load generation : nuclear=>nuc_base_Gen II : Gen_II_LWR (recirculating) : EJ;base load generation : nuclear=>nuc_base_Gen II : Gen_II_LWR (seawater) : EJ;
+#Constraint: Upper
+#Treatment: Across Selected
+#Policy name: Up_Base_load_generation_Tech_Reg1
+#Market name: Up_Base_load_generation_Tech_Reg_Mkt1
+#Regions: CT,MA,ME,NH,RI,VT
+#Table data:2015       ,       0.119570
+#Table data:2020       ,       0.118
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdTechUpBoundP1-Nest
+
+region,sector,nested-subsector,subsector,tech,year,policy-name
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2010,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2020,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2010,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2020,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2010,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2020,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+CT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+MA,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+ME,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+NH,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+RI,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2010,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,Up_Base_load_generation_Tech_Reg1
+VT,base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2020,Up_Base_load_generation_Tech_Reg1
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdTechUpBoundP2
+
+region,policy-name,market,type,constraint-yr,constraint-val
+CT,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+CT,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118
+MA,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+MA,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118
+ME,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+ME,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118
+NH,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+NH,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118
+RI,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+RI,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118
+VT,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2015,0.119570
+VT,Up_Base_load_generation_Tech_Reg1,Up_Base_load_generation_Tech_Reg_Mkt1,tax,2020,0.118

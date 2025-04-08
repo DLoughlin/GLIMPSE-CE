@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="AK">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Alaska grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AL">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AR">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AZ">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>California grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CO">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CT">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="DC">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="DE">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="FL">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Florida grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="GA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="HI">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Hawaii grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ID">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IL">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IN">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="KS">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="KY">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="LA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MD">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ME">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MI">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MN">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MO">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MS">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MT">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NC">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ND">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NE">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NH">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NJ">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NM">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NV">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NY">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New York grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OH">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OK">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OR">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="PA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="RI">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="SC">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="SD">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="TN">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="TX">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Texas grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="UT">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VT">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WA">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WI">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WV">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WY">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Alaska grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Alaska grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="California grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>California grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Central East grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central East grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Central Northeast grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Central Northwest grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Central Southwest grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Central Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Florida grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Florida grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Hawaii grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Hawaii grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Mid-Atlantic grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Mid-Atlantic grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="New England grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New England grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="New York grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>New York grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Northwest grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Northwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Southeast grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southeast grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Southwest grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Southwest grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="Texas grid">
+         <policy-portfolio-standard name="ELEC_RPS">
+            <market>Texas grid</market>
+            <policyType>RES</policyType>
+            <constraint fillout="1" year="2020">0</constraint>
+         </policy-portfolio-standard>
+      </region>
+   </world>
+</scenario>

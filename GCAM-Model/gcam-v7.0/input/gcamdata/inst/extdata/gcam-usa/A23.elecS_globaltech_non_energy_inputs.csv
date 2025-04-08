@@ -1,0 +1,30 @@
+# File: A23.elecS_globaltech_non_energy_inputs.csv
+# Title: Non-Energy Inputs for Technologies Specific to the Multiple Load Segments Electricity Sector
+# Units: capital costs - 1975 $/kW; fixed-om costs - 1975 $/kW; variable OM costs - 1975 $/MWh
+# Comments: Non-energy inputs for new technologies that are not included in the energy system global technology database.  Shareweights are read in separately.
+# Source: battery assumptions compiled from several sources (Lazard, 2016) (Schmidt et al., 2017) (Rastler, 2010) (Chen et al., 2009)
+# Column types: cccininininn 
+# ----------
+supplysector,subsector,technology,period,capital.cost,lifetime,steepness,half.life,fixed.om,variable.om,fcr,capacity.factor
+peak generation,grid_storage,battery,1975,,-1,-1,-1,0.399958096,0,0.13,0.16
+peak generation,grid_storage,battery,1990,,-1,-1,-1,0.399958096,0,0.13,0.16
+peak generation,grid_storage,battery,2005,,-1,-1,-1,0.399958096,0,0.13,0.16
+peak generation,grid_storage,battery,2010,,-1,-1,-1,0.399958096,0,0.13,0.16
+peak generation,grid_storage,battery,2015,,15,0.1,30,0.399958096,0,0.13,0.16
+peak generation,grid_storage,battery,2020,,15,0.1,30,0.363766838,0,0.13,0.16
+peak generation,grid_storage,battery,2025,,15,0.1,30,0.335762732,0,0.13,0.16
+peak generation,grid_storage,battery,2030,,15,0.1,30,0.314093689,0,0.13,0.16
+peak generation,grid_storage,battery,2035,,15,0.1,30,0.297326596,0,0.13,0.16
+peak generation,grid_storage,battery,2040,,15,0.1,30,0.28435254,0,0.13,0.16
+peak generation,grid_storage,battery,2045,,15,0.1,30,0.274313462,0,0.13,0.16
+peak generation,grid_storage,battery,2050,,15,0.1,30,0.266545415,0,0.13,0.16
+peak generation,grid_storage,battery,2055,,15,0.1,30,0.260534649,0,0.13,0.16
+peak generation,grid_storage,battery,2060,,15,0.1,30,0.255883632,0,0.13,0.16
+peak generation,grid_storage,battery,2065,,15,0.1,30,0.252284764,0,0.13,0.16
+peak generation,grid_storage,battery,2070,,15,0.1,30,0.249500029,0,0.13,0.16
+peak generation,grid_storage,battery,2075,,15,0.1,30,0.247345253,0,0.13,0.16
+peak generation,grid_storage,battery,2080,,15,0.1,30,0.245677929,0,0.13,0.16
+peak generation,grid_storage,battery,2085,,15,0.1,30,0.244387786,0,0.13,0.16
+peak generation,grid_storage,battery,2090,,15,0.1,30,0.243389497,0,0.13,0.16
+peak generation,grid_storage,battery,2095,,15,0.1,30,0.242617041,0,0.13,0.16
+peak generation,grid_storage,battery,2100,,15,0.1,30,0.242019329,0,0.13,0.16

@@ -1,0 +1,52 @@
+scenario,created,run,version,#warn,#err,unsolved,completed?,solution(sec),total(sec),components
+AllEV-global,21.09.01,21.09.01,code base version 5.4 revision gcam-v5.4,0,19,5; 6;,true,4051.26,4458.03,air_pollutants.txt; verbose_solver_log.txt; LDV-EV-4W_All_global_Ea_75x50.csv;
+CESEV40x50,21.09.06,21.09.06,code base version 5.4 revision gcam-v5.4,0,0,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-40x50.csv; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+CESEV50x50,21.09.06,21.09.07,code base version 5.4 revision gcam-v5.4,0,2500,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-50x50.csv; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+CESEV60x50,21.09.06,21.09.09,code base version 5.4 revision gcam-v5.4,0,3,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-60x50.csv; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+CESEV70x50,21.09.06,21.09.07,code base version 5.4 revision gcam-v5.4,0,0,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-70x50.csv; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+CESEV80x50,21.09.06,21.09.06,code base version 5.4 revision gcam-v5.4,0,0,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-80x50.csv; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+CESForEVs,21.09.06,21.09.09,code base version 5.4 revision gcam-v5.4,0,3,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt; CES_100x50_AllStock_Acr.csv;
+EV100x30sales,21.09.04,21.09.08,code base version 5.4 revision gcam-v5.4,0,12,4;,true,3139.01,3585.01,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt; LDV-EV-4W_Sales_USA_Ea-100x30.csv;
+EV100x35sales,21.09.04,21.09.08,code base version 5.4 revision gcam-v5.4,0,3,,true,3524.56,4042.35,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_Sales_USA_Ea-100x35.csv; relaxed_solver.txt;
+EV100x40sales,21.09.04,21.09.08,code base version 5.4 revision gcam-v5.4,0,3,,true,2856.9,3504.44,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt; LDV-EV-4W_Sales_USA_Ea-100x40.csv;
+EV100x45sales,21.09.04,21.09.08,code base version 5.4 revision gcam-v5.4,0,3,,true,2573.49,2992.38,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt; LDV-EV-4W_Sales_USA_Ea-100x45.csv;
+EV100x50sales,21.09.04,21.09.08,code base version 5.4 revision gcam-v5.4,0,0,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt; LDV-EV-4W_Sales_USA_Ea-100x50.csv;
+EV40x50,21.09.04,21.09.05,code base version 5.4 revision gcam-v5.4,0,11,5;,true,5402.84,5831.65,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-40x50.csv; relaxed_solver.txt;
+EV50x50,21.09.04,21.09.06,code base version 5.4 revision gcam-v5.4,0,22,5; 6;,true,11230.7,11687.7,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-50x50.csv; relaxed_solver.txt;
+EV60x50,21.09.04,21.09.09,code base version 5.4 revision gcam-v5.4,0,3,,true,2940.93,3438.84,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-60x50.csv; relaxed_solver.txt;
+EV70x50,21.09.04,21.09.06,code base version 5.4 revision gcam-v5.4,0,12,7;,true,10720,11176.7,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-70x50.csv; relaxed_solver.txt;
+EV80x50,21.09.04,21.09.05,code base version 5.4 revision gcam-v5.4,0,3,,true,3341.86,3827.12,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-80x50.csv; relaxed_solver.txt;
+EV90x50,21.09.04,21.09.04,code base version 5.4 revision gcam-v5.4,0,0,,false,,,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; LDV-EV-4W_All_USA_Ea-90x50.csv; relaxed_solver.txt;
+LDV-All-Acr-CT,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1767.48,2179.76,LDV-EV-4W_All_CT.csv;
+LDV-All-Acr-CTDE,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1688.51,2119.46,LDV-EV-4W_All_CTDE.csv;
+LDV-All-Ea-CT,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1792.11,2198.7,LDV-EV-4W_All_CT_Ea.csv;
+LDV-All-Ea-CTDE,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1619.99,2108.72,LDV-EV-4W_All_CTDE_Ea.csv;
+LDV-EV-All-AK,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1651.23,2029.84,LDV-EV-4W_All_AK.csv;
+LDV-EV-All-AKAL,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1639.56,2072.7,LDV-EV-4W_All_AKAL.csv;
+LDV-EV-All-AKAL_Ea,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1798.16,2227.33,LDV-EV-4W_All_AKAL_Ea.csv;
+LDV-EV-All-AK_Ea,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1658.68,2042.4,LDV-EV-4W_All_AK_Ea.csv;
+LDV-EV-New-AK,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1677.88,2070.8,LDV-EV-4W_New_AK.csv;
+LDV-EV-New-AKAL,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1691.13,2134.01,LDV-EV-4W_New_AKAL.csv;
+LDV-EV-New-AKAL_Ea,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1943.22,2362.91,LDV-EV-4W_New_AKAL_Ea.csv;
+LDV-EV-New-AK_Ea,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1777.29,2159.73,LDV-EV-4W_New_AK_Ea.csv;
+LDV-New-Acr-CT,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1972.21,2409.13,LDV-EV-4W_New_CT.csv;
+LDV-New-Acr-CTDE,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,1667.87,2033.55,LDV-EV-4W_New_CTDE.csv;
+LDV-New-Acr-CT_v2,21.08.18,21.08.18,code base version 5.4 revision gcam-v5.4,0,3,,true,1605.01,1986.24,LDV-EV-4W_New_CT_v2.csv;
+LDV-New-Ea-CT,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,3,,true,2205.01,2619.47,LDV-EV-4W_New_CT_Ea.csv;
+LDV-New-Ea-CTDE,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,11,5;,true,1922.3,2419.37,LDV-EV-4W_New_CTDE_Ea.csv;
+NewEV-global,21.09.01,21.09.01,code base version 5.4 revision gcam-v5.4,0,40,5; 6;,true,3566.5,3984.27,air_pollutants.txt; LDV-EV-4W_New_global_Ea_75x50.csv; verbose_solver_log.txt;
+NEXTTEST,21.08.16,21.08.16,code base version 5.4 revision gcam-v5.4,0,3,,true,1907.58,2424.41,
+Ref,21.08.17,21.08.17,code base version 5.4 revision gcam-v5.4,0,25,5;,true,1631.2,2059.74,
+Ref-wAP,21.08.18,21.09.01,code base version 5.4 revision gcam-v5.4,0,45,5; 9; 10; 11;,true,4120.65,4532.21,air_pollutants.txt;
+RefForEVs,21.09.04,21.09.09,code base version 5.4 revision gcam-v5.4,0,3,,true,1846.39,2287.46,air_pollutants.txt; GREET_upstream_pollutants.txt; RGGI-hold.txt; verbose_solver_log.txt; relaxed_solver.txt;
+TEST,21.08.23,21.09.01,code base version 5.4 revision gcam-v5.4,0,3,,false,,,
+Test2,21.08.18,21.08.18,code base version 5.4 revision gcam-v5.4,0,3,,true,1583.73,1966.19,TEST-LDV-EV-4W_All_AK.csv; TEST-LDV-EV-4W_All_AL_Ea.csv; TEST-LDV-EV-4W_All_CACO.csv; TEST-LDV-EV-4W_All_CTDC_Ea.csv; TEST-LDV-EV-4W_New_AR.csv; TEST-LDV-EV-4W_New_AZ_Ea.csv; TEST-LDV-EV-4W_New_DE.csv; TEST-LDV-EV-4W_New_DEFL.csv; TEST-LDV-EV-4W_New_GAHI_Ea.csv; TEST-LED_All_IA_Ea.csv; TEST-LED_All_ID.csv; TEST-LED_All_KSKY.csv; TEST-LED_All_LAMA_Ea.csv; TEST-LED_New_IL.csv; TEST-LED_New_IN_Ea.csv; TEST-LED_New_MDME.csv; TEST-LED_New_MIMN_Ea.csv;
+Test2b,21.08.19,21.08.19,code base version 5.4 revision gcam-v5.4,0,3,,true,1692.15,2082.6,TEST2-LDV-EV-CarConly_New_DEFL-acr.csv;
+TEST3,21.08.18,21.08.18,code base version 5.4 revision gcam-v5.4,0,3,,true,1556.29,8443.52,
+Test3b,21.08.19,21.08.19,code base version 5.4 revision gcam-v5.4,0,3,,true,1680.72,2100.01,LDV-EV-CarOnly_New_AKAL-acr.csv;
+TEST4,21.08.19,21.08.19,code base version 5.4 revision gcam-v5.4,0,3,,true,1484.8,1857.47,
+TEST5,21.08.19,21.08.19,code base version 5.4 revision gcam-v5.4,0,3,,true,2065.39,8216.79,
+TEST6,21.08.19,21.08.19,code base version 5.4 revision gcam-v5.4,0,3,,true,2103.02,2496.06,
+Test7,21.08.20,21.08.20,code base version 5.4 revision gcam-v5.4,0,3,,true,1441.09,1837.49,LED_New_all-states_Ea.csv;
+Test8,21.08.20,21.08.20,code base version 5.4 revision gcam-v5.4,0,3,,true,1487.44,1883.61,LED_Stock_all-states_Ea.csv;
+Test9,21.08.20,21.08.20,code base version 5.4 revision gcam-v5.4,0,3,,true,2140.16,2541.62,LDV-EV-4W_New_all-states_Ea.csv;

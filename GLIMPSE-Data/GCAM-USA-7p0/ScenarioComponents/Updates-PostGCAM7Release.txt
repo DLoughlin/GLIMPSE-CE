@@ -1,0 +1,9 @@
+@type=xmllist
+..\..\..\Contrib\Calibration\bioenergy_constraint\bio_ceiling_constraint_state.xml
+..\..\..\Contrib\Calibration\bioenergy_constraint\bio_ceiling_constraint_ROW.xml
+..\..\..\Contrib\Calibration\bioenergy_constraint\bio_ceiling_mkt_global.xml
+
+..\..\..\Contrib\TechUpdates\grid-storage\nestedsubsector-sw-usa-battery.xml
+..\..\..\Contrib\TechUpdates\grid-storage\subsect-sw-usa-battery.xml
+..\..\..\Contrib\TechUpdates\grid-storage\tech-sw-usa-battery.xml
+..\..\..\Contrib\Miscl\solver\cal_broyden_config-epa-7p0.xml

@@ -1,0 +1,99 @@
+############ Scenario Component Meta-Data ############
+#Scenario component type: Tech Avail
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Heavy truck  :  Hybrid Liquids  :  million ton-km
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Heavy truck  :  Liquids  :  million ton-km
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Heavy truck  :  NG  :  million ton-km
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Medium truck  :  Hybrid Liquids  :  million ton-km
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Medium truck  :  Liquids  :  million ton-km
+#Bound:Never>false,Range>true,First>1975,Last>2045,Tech>trn_freight_road  :  Medium truck  :  NG  :  million ton-km
+#Regions: CA,CO,CT,DC,HI,MA,MD,ME,NC,OR,PA,RI,VT,WA
+######################################################
+INPUT_TABLE
+Variable ID
+GLIMPSETechAvailBnd
+
+region,sector,subsector,tech,init-year,final-year
+CA,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+CO,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+CT,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+DC,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+HI,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+MA,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+MD,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+ME,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+NC,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+OR,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+PA,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+RI,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+VT,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+WA,trn_freight_road,Heavy truck,Hybrid Liquids,1975,2045
+CA,trn_freight_road,Heavy truck,Liquids,1975,2045
+CO,trn_freight_road,Heavy truck,Liquids,1975,2045
+CT,trn_freight_road,Heavy truck,Liquids,1975,2045
+DC,trn_freight_road,Heavy truck,Liquids,1975,2045
+HI,trn_freight_road,Heavy truck,Liquids,1975,2045
+MA,trn_freight_road,Heavy truck,Liquids,1975,2045
+MD,trn_freight_road,Heavy truck,Liquids,1975,2045
+ME,trn_freight_road,Heavy truck,Liquids,1975,2045
+NC,trn_freight_road,Heavy truck,Liquids,1975,2045
+OR,trn_freight_road,Heavy truck,Liquids,1975,2045
+PA,trn_freight_road,Heavy truck,Liquids,1975,2045
+RI,trn_freight_road,Heavy truck,Liquids,1975,2045
+VT,trn_freight_road,Heavy truck,Liquids,1975,2045
+WA,trn_freight_road,Heavy truck,Liquids,1975,2045
+CA,trn_freight_road,Heavy truck,NG,1975,2045
+CO,trn_freight_road,Heavy truck,NG,1975,2045
+CT,trn_freight_road,Heavy truck,NG,1975,2045
+DC,trn_freight_road,Heavy truck,NG,1975,2045
+HI,trn_freight_road,Heavy truck,NG,1975,2045
+MA,trn_freight_road,Heavy truck,NG,1975,2045
+MD,trn_freight_road,Heavy truck,NG,1975,2045
+ME,trn_freight_road,Heavy truck,NG,1975,2045
+NC,trn_freight_road,Heavy truck,NG,1975,2045
+OR,trn_freight_road,Heavy truck,NG,1975,2045
+PA,trn_freight_road,Heavy truck,NG,1975,2045
+RI,trn_freight_road,Heavy truck,NG,1975,2045
+VT,trn_freight_road,Heavy truck,NG,1975,2045
+WA,trn_freight_road,Heavy truck,NG,1975,2045
+CA,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+CO,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+CT,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+DC,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+HI,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+MA,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+MD,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+ME,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+NC,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+OR,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+PA,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+RI,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+VT,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+WA,trn_freight_road,Medium truck,Hybrid Liquids,1975,2045
+CA,trn_freight_road,Medium truck,Liquids,1975,2045
+CO,trn_freight_road,Medium truck,Liquids,1975,2045
+CT,trn_freight_road,Medium truck,Liquids,1975,2045
+DC,trn_freight_road,Medium truck,Liquids,1975,2045
+HI,trn_freight_road,Medium truck,Liquids,1975,2045
+MA,trn_freight_road,Medium truck,Liquids,1975,2045
+MD,trn_freight_road,Medium truck,Liquids,1975,2045
+ME,trn_freight_road,Medium truck,Liquids,1975,2045
+NC,trn_freight_road,Medium truck,Liquids,1975,2045
+OR,trn_freight_road,Medium truck,Liquids,1975,2045
+PA,trn_freight_road,Medium truck,Liquids,1975,2045
+RI,trn_freight_road,Medium truck,Liquids,1975,2045
+VT,trn_freight_road,Medium truck,Liquids,1975,2045
+WA,trn_freight_road,Medium truck,Liquids,1975,2045
+CA,trn_freight_road,Medium truck,NG,1975,2045
+CO,trn_freight_road,Medium truck,NG,1975,2045
+CT,trn_freight_road,Medium truck,NG,1975,2045
+DC,trn_freight_road,Medium truck,NG,1975,2045
+HI,trn_freight_road,Medium truck,NG,1975,2045
+MA,trn_freight_road,Medium truck,NG,1975,2045
+MD,trn_freight_road,Medium truck,NG,1975,2045
+ME,trn_freight_road,Medium truck,NG,1975,2045
+NC,trn_freight_road,Medium truck,NG,1975,2045
+OR,trn_freight_road,Medium truck,NG,1975,2045
+PA,trn_freight_road,Medium truck,NG,1975,2045
+RI,trn_freight_road,Medium truck,NG,1975,2045
+VT,trn_freight_road,Medium truck,NG,1975,2045
+WA,trn_freight_road,Medium truck,NG,1975,2045

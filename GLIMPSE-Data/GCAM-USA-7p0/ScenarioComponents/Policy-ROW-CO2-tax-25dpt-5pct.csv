@@ -1,0 +1,62 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Pollutant Tax/Cap
+#Measure: Emission Tax (1990$/t)
+#Pollutant: CO2 (MT C)
+#Sector: All
+#Policy name: Tax_All_CO2_Reg1703946951236
+#Market name: Tax_All_CO2_Reg_Mkt1703946951236
+#Regions: Canada,Central America and Caribbean,Mexico,Brazil,South America_Northern,South America_Southern,Argentina,Colombia,EU-15,EU-12,European Free Trade Association,Europe_Eastern,Europe_Non_EU,Africa_Eastern,Africa_Northern,Africa_Southern,Africa_Western,South Africa,Middle East,Central Asia,Russia,Pakistan,India,South Asia,China,Taiwan,South Korea,Japan,Southeast Asia,Indonesia,Australia_NZ
+#Table data:2025 , 25.0
+#Table data:2030 , 31.9
+#Table data:2035 , 40.7
+#Table data:2040 , 52.0
+#Table data:2045 , 66.3
+#Table data:2050 , 84.7
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEEmissionTax
+
+region,pollutant,market,year,tax
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2025,25.0
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2030,31.9
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2035,40.7
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2040,52.0
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2045,66.3
+Canada,CO2,Tax_All_CO2_Reg_Mkt1703946951236,2050,84.7
+
+INPUT_TABLE
+Variable ID
+GLIMPSEEmissionMarket
+
+region,pollutant,market
+Central America and Caribbean,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Mexico,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Brazil,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+South America_Northern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+South America_Southern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Argentina,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Colombia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+EU-15,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+EU-12,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+European Free Trade Association,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Europe_Eastern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Europe_Non_EU,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Africa_Eastern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Africa_Northern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Africa_Southern,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Africa_Western,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+South Africa,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Middle East,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Central Asia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Russia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Pakistan,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+India,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+South Asia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+China,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Taiwan,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+South Korea,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Japan,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Southeast Asia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Indonesia,CO2,Tax_All_CO2_Reg_Mkt1703946951236
+Australia_NZ,CO2,Tax_All_CO2_Reg_Mkt1703946951236

@@ -1,0 +1,8 @@
+# we do not want to track every file, but we want to be sure the 
+# directory itself is tracked, so that it is created.
+
+# for now ignore everything except .gitignore itself.
+
+*
+*/
+!.gitignore

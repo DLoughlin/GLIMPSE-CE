@@ -1,0 +1,209 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Sector Share
+#Sector: trn_freight_road
+#Technologies: trn_freight_road : Light truck : Hybrid Liquids;trn_freight_road : Light truck : Liquids;trn_freight_road : Light truck : NG;
+#Parameter: Shareweight
+#Regions: CA,CO,CT,DE,MA,MD,ME,MN,NJ,NY,OR,PA,RI,VT,WA
+#Table data:2035 , 0.00
+#Table data:2040 , 0.00
+#Table data:2045 , 0.00
+#Table data:2050 , 0.00
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSETranTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+CA,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+CA,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+CA,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+CA,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+CO,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+CO,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+CO,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+CO,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+CT,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+CT,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+CT,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+CT,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+DE,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+DE,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+DE,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+DE,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+MA,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+MA,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+MA,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+MA,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+MD,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+MD,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+MD,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+MD,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+ME,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+ME,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+ME,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+ME,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+MN,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+MN,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+MN,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+MN,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+NJ,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+NJ,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+NJ,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+NJ,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+NY,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+NY,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+NY,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+NY,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+OR,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+OR,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+OR,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+OR,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+PA,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+PA,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+PA,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+PA,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+RI,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+RI,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+RI,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+RI,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+VT,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+VT,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+VT,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+VT,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+WA,trn_freight_road,Light truck,Hybrid Liquids,2035,0.00
+WA,trn_freight_road,Light truck,Hybrid Liquids,2040,0.00
+WA,trn_freight_road,Light truck,Hybrid Liquids,2045,0.00
+WA,trn_freight_road,Light truck,Hybrid Liquids,2050,0.00
+
+INPUT_TABLE
+Variable ID
+GLIMPSETranTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+CA,trn_freight_road,Light truck,Liquids,2035,0.00
+CA,trn_freight_road,Light truck,Liquids,2040,0.00
+CA,trn_freight_road,Light truck,Liquids,2045,0.00
+CA,trn_freight_road,Light truck,Liquids,2050,0.00
+CO,trn_freight_road,Light truck,Liquids,2035,0.00
+CO,trn_freight_road,Light truck,Liquids,2040,0.00
+CO,trn_freight_road,Light truck,Liquids,2045,0.00
+CO,trn_freight_road,Light truck,Liquids,2050,0.00
+CT,trn_freight_road,Light truck,Liquids,2035,0.00
+CT,trn_freight_road,Light truck,Liquids,2040,0.00
+CT,trn_freight_road,Light truck,Liquids,2045,0.00
+CT,trn_freight_road,Light truck,Liquids,2050,0.00
+DE,trn_freight_road,Light truck,Liquids,2035,0.00
+DE,trn_freight_road,Light truck,Liquids,2040,0.00
+DE,trn_freight_road,Light truck,Liquids,2045,0.00
+DE,trn_freight_road,Light truck,Liquids,2050,0.00
+MA,trn_freight_road,Light truck,Liquids,2035,0.00
+MA,trn_freight_road,Light truck,Liquids,2040,0.00
+MA,trn_freight_road,Light truck,Liquids,2045,0.00
+MA,trn_freight_road,Light truck,Liquids,2050,0.00
+MD,trn_freight_road,Light truck,Liquids,2035,0.00
+MD,trn_freight_road,Light truck,Liquids,2040,0.00
+MD,trn_freight_road,Light truck,Liquids,2045,0.00
+MD,trn_freight_road,Light truck,Liquids,2050,0.00
+ME,trn_freight_road,Light truck,Liquids,2035,0.00
+ME,trn_freight_road,Light truck,Liquids,2040,0.00
+ME,trn_freight_road,Light truck,Liquids,2045,0.00
+ME,trn_freight_road,Light truck,Liquids,2050,0.00
+MN,trn_freight_road,Light truck,Liquids,2035,0.00
+MN,trn_freight_road,Light truck,Liquids,2040,0.00
+MN,trn_freight_road,Light truck,Liquids,2045,0.00
+MN,trn_freight_road,Light truck,Liquids,2050,0.00
+NJ,trn_freight_road,Light truck,Liquids,2035,0.00
+NJ,trn_freight_road,Light truck,Liquids,2040,0.00
+NJ,trn_freight_road,Light truck,Liquids,2045,0.00
+NJ,trn_freight_road,Light truck,Liquids,2050,0.00
+NY,trn_freight_road,Light truck,Liquids,2035,0.00
+NY,trn_freight_road,Light truck,Liquids,2040,0.00
+NY,trn_freight_road,Light truck,Liquids,2045,0.00
+NY,trn_freight_road,Light truck,Liquids,2050,0.00
+OR,trn_freight_road,Light truck,Liquids,2035,0.00
+OR,trn_freight_road,Light truck,Liquids,2040,0.00
+OR,trn_freight_road,Light truck,Liquids,2045,0.00
+OR,trn_freight_road,Light truck,Liquids,2050,0.00
+PA,trn_freight_road,Light truck,Liquids,2035,0.00
+PA,trn_freight_road,Light truck,Liquids,2040,0.00
+PA,trn_freight_road,Light truck,Liquids,2045,0.00
+PA,trn_freight_road,Light truck,Liquids,2050,0.00
+RI,trn_freight_road,Light truck,Liquids,2035,0.00
+RI,trn_freight_road,Light truck,Liquids,2040,0.00
+RI,trn_freight_road,Light truck,Liquids,2045,0.00
+RI,trn_freight_road,Light truck,Liquids,2050,0.00
+VT,trn_freight_road,Light truck,Liquids,2035,0.00
+VT,trn_freight_road,Light truck,Liquids,2040,0.00
+VT,trn_freight_road,Light truck,Liquids,2045,0.00
+VT,trn_freight_road,Light truck,Liquids,2050,0.00
+WA,trn_freight_road,Light truck,Liquids,2035,0.00
+WA,trn_freight_road,Light truck,Liquids,2040,0.00
+WA,trn_freight_road,Light truck,Liquids,2045,0.00
+WA,trn_freight_road,Light truck,Liquids,2050,0.00
+
+INPUT_TABLE
+Variable ID
+GLIMPSETranTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+CA,trn_freight_road,Light truck,NG,2035,0.00
+CA,trn_freight_road,Light truck,NG,2040,0.00
+CA,trn_freight_road,Light truck,NG,2045,0.00
+CA,trn_freight_road,Light truck,NG,2050,0.00
+CO,trn_freight_road,Light truck,NG,2035,0.00
+CO,trn_freight_road,Light truck,NG,2040,0.00
+CO,trn_freight_road,Light truck,NG,2045,0.00
+CO,trn_freight_road,Light truck,NG,2050,0.00
+CT,trn_freight_road,Light truck,NG,2035,0.00
+CT,trn_freight_road,Light truck,NG,2040,0.00
+CT,trn_freight_road,Light truck,NG,2045,0.00
+CT,trn_freight_road,Light truck,NG,2050,0.00
+DE,trn_freight_road,Light truck,NG,2035,0.00
+DE,trn_freight_road,Light truck,NG,2040,0.00
+DE,trn_freight_road,Light truck,NG,2045,0.00
+DE,trn_freight_road,Light truck,NG,2050,0.00
+MA,trn_freight_road,Light truck,NG,2035,0.00
+MA,trn_freight_road,Light truck,NG,2040,0.00
+MA,trn_freight_road,Light truck,NG,2045,0.00
+MA,trn_freight_road,Light truck,NG,2050,0.00
+MD,trn_freight_road,Light truck,NG,2035,0.00
+MD,trn_freight_road,Light truck,NG,2040,0.00
+MD,trn_freight_road,Light truck,NG,2045,0.00
+MD,trn_freight_road,Light truck,NG,2050,0.00
+ME,trn_freight_road,Light truck,NG,2035,0.00
+ME,trn_freight_road,Light truck,NG,2040,0.00
+ME,trn_freight_road,Light truck,NG,2045,0.00
+ME,trn_freight_road,Light truck,NG,2050,0.00
+MN,trn_freight_road,Light truck,NG,2035,0.00
+MN,trn_freight_road,Light truck,NG,2040,0.00
+MN,trn_freight_road,Light truck,NG,2045,0.00
+MN,trn_freight_road,Light truck,NG,2050,0.00
+NJ,trn_freight_road,Light truck,NG,2035,0.00
+NJ,trn_freight_road,Light truck,NG,2040,0.00
+NJ,trn_freight_road,Light truck,NG,2045,0.00
+NJ,trn_freight_road,Light truck,NG,2050,0.00
+NY,trn_freight_road,Light truck,NG,2035,0.00
+NY,trn_freight_road,Light truck,NG,2040,0.00
+NY,trn_freight_road,Light truck,NG,2045,0.00
+NY,trn_freight_road,Light truck,NG,2050,0.00
+OR,trn_freight_road,Light truck,NG,2035,0.00
+OR,trn_freight_road,Light truck,NG,2040,0.00
+OR,trn_freight_road,Light truck,NG,2045,0.00
+OR,trn_freight_road,Light truck,NG,2050,0.00
+PA,trn_freight_road,Light truck,NG,2035,0.00
+PA,trn_freight_road,Light truck,NG,2040,0.00
+PA,trn_freight_road,Light truck,NG,2045,0.00
+PA,trn_freight_road,Light truck,NG,2050,0.00
+RI,trn_freight_road,Light truck,NG,2035,0.00
+RI,trn_freight_road,Light truck,NG,2040,0.00
+RI,trn_freight_road,Light truck,NG,2045,0.00
+RI,trn_freight_road,Light truck,NG,2050,0.00
+VT,trn_freight_road,Light truck,NG,2035,0.00
+VT,trn_freight_road,Light truck,NG,2040,0.00
+VT,trn_freight_road,Light truck,NG,2045,0.00
+VT,trn_freight_road,Light truck,NG,2050,0.00
+WA,trn_freight_road,Light truck,NG,2035,0.00
+WA,trn_freight_road,Light truck,NG,2040,0.00
+WA,trn_freight_road,Light truck,NG,2045,0.00
+WA,trn_freight_road,Light truck,NG,2050,0.00
+

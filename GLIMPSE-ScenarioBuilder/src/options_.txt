@@ -1,0 +1,67 @@
+#Modify these for your particular configuration. The values you choose are inserted into filenames below when the options file is read
+glimpseDir = l:\PRIV\APB_Loughlin\GLIMPSE
+gCamHomeDir = #glimpseDir#\ORD-GCAM-USA_4p3
+gCamGuiDir = #glimpseDir#\GCAM-GUI
+optionsFilename = #glimpseDir#\options_ORD-GCAM-USA-4p3.txt
+
+#EnhancedModelInterface name and location (may need to update version)
+gCamPPExecutable = modelInterface_1_15_20.jar
+#gCamPPExecutable = enhancedModelInterface-Old.jar
+gCamPPExecutableDir = #gCamGuiDir#\EnhancedModelInterface
+
+#Are you using GCAM-USA? If so, indicate "true". This enables state-level items in tree
+isGcamUSA = true
+
+#Provides system with additional info on GCAM setup, including what database to use for output
+gCamDataDir = #gCamHomeDir#\Main_User_Workspace\input\gcam-data-system\xml
+gCamOutputDatabase = #gCamHomeDir#\Main_User_Workspace\output\database_basexdb
+xmlLibrary = #gCamHomeDir#\Main_User_Workspace\input
+
+#These options provide the commands for some operating system functions. Change for MACs or Linux
+executeCmdShort = cmd /C
+executeCmd = cmd /C start /w 
+copyCmd = cmd /C copy
+delCmd = cmd /C del /F /Q
+moveCmd = cmd /C move /Y
+
+#GCAM executable name and location
+gCamExecutable = run-gcam-config.bat
+gCamExecutableDir = #gCamHomeDir#\Main_User_Workspace\exe
+
+#Locations where GLIMPSE (GCAM-GUI) data are stored
+scenarioComponentsDir = #gCamGuiDir#\data\GCAM-USA\ScenarioComponents
+scenarioXmlDir = #gCamGuiDir#\data\GCAM-USA\xml
+gCamGUILogDir = #gCamGuiDir#\data\GCAM-USA\log
+gCamGUIBatDir = #gCamGuiDir#\data\GCAM-USA\bat
+resourceDir = #gCamGuiDir#\resources 
+trashDir = #gCamGuiDir#\data\GCAM-USA\trash
+
+#Template configuration file. This file is modified to create a scenario-specific configuration file
+configurationTemplate = #gCamGuiDir#\\templates\\configuration_GCAM-USA_4p3_template.xml
+
+#Template for a generic Renewable Electricity Standard (RES)
+resPolicyTemplate = #gCamGuiDir#\\templates\\RES_policy_template.xml
+
+#list of technologies to include in the tech bound scenario component dialog
+tchBndListFile = #gCamGuiDir#\\templates\\tech_bnd_list_usa.txt
+
+#files include specifications used in generating csv and xml files
+csvColumnFile = #gCamGuiDir#\\templates\\glimpseCSVColumns.txt
+xmlHeaderFile = #gCamGuiDir#\\templates\\glimpseXMLHeaders.txt
+
+#file with conversion factors to convert to 1990 $ years
+monetaryConversionsFile = #gCamGuiDir#\\resources\\monetary_conversions.csv
+
+#Editors that are automatically invoked when you double click on a txt or xml file
+textEditor = notepad.exe
+xmlEditor = notepad.exe
+
+#These values are inserted into the scenario-specific configuration file when it created. Comment with # to use default
+stopPeriod = 11
+solver = #gCamHomeDir#\Main_User_Workspace\input\solution\cal_broyden_config_mod_062217.xml
+
+gCamOutputToSave = #gCamHomeDir#\\Main_User_Workspace\\exe\\logs\\main_log.txt;#gCamHomeDir#\\Main_User_Workspace\\exe\\logs\\calibration_log.txt
+
+preferredFontSize = 14
+
+useIcons = true

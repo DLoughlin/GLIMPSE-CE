@@ -1,0 +1,3 @@
+@type=xmllist
+..\input\gcamdata\xml\dac_ssp2.xml
+..\input\gcamdata\xml\dac_USA_ssp2.xml

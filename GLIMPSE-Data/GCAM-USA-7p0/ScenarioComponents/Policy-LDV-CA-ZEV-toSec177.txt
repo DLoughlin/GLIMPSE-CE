@@ -1,0 +1,5 @@
+@type=xmllist
+..\..\..\Contrib\Policies\Sec177-CA-ZEV\Policy-Sec177-ZEV-LDCarTruck-NewCATargets-from2025.xml
+..\..\..\Contrib\Policies\Sec177-CA-ZEV\Policy-Sec177-ZEV-LDCarTruck-NewCATargets-from2025-NoConv2030_v2.xml
+..\..\..\Contrib\Policies\Sec177-CA-ZEV\Policy-Sec177-ZEV-LDFreight-NewCATargets-from2025.xml
+..\..\..\Contrib\Policies\Sec177-CA-ZEV\Policy-Sec177-ZEV-LDFreight-NoConv-NewCATargets-from2025.xml

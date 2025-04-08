@@ -1,0 +1,2 @@
+@type=xmllist
+..\..\..\Contrib\Calibration\coal-retirement-2020\Calib_CoalEGU_2020_state_v2.xml

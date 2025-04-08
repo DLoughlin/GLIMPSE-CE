@@ -1,0 +1,2 @@
+@type=xmllist
+..\input\policy\carbon_tax_25_5.xml

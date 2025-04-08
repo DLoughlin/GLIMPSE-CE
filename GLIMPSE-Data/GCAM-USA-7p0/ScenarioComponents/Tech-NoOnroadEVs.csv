@@ -1,0 +1,1281 @@
+############ Scenario Component Meta-Data ############
+#Scenario component type: Tech Avail
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Heavy truck  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Heavy truck  :  FCEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Medium truck  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Medium truck  :  FCEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Light truck  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight_road  :  Light truck  :  FCEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road  :  Bus  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road  :  Bus  :  FCEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV  :  2W and 3W  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV  :  2W and 3W  :  LA-BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Car  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Car  :  FCEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Large Car and Truck  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Large Car and Truck  :  FCEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Mini Car  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Mini Car  :  FCEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_aviation_intl  :  International Aviation  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight  :  Domestic Ship  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight  :  Domestic Ship  :  FCEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight  :  Freight Rail  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_freight  :  Freight Rail  :  FCEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_pass  :  Domestic Aviation  :  BEV  :  million pass-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_shipping_intl  :  International Ship  :  BEV  :  million ton-km
+#Bound:Never>true,Range>false,First>1975,Last>2015,Tech>trn_shipping_intl  :  International Ship  :  FCEV  :  million ton-km
+#Regions: AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY,USA
+######################################################
+INPUT_TABLE
+Variable ID
+GLIMPSETechAvailBnd
+
+region,sector,subsector,tech,init-year,final-year
+AK,trn_freight_road,Heavy truck,BEV,3000,3005
+AL,trn_freight_road,Heavy truck,BEV,3000,3005
+AR,trn_freight_road,Heavy truck,BEV,3000,3005
+AZ,trn_freight_road,Heavy truck,BEV,3000,3005
+CA,trn_freight_road,Heavy truck,BEV,3000,3005
+CO,trn_freight_road,Heavy truck,BEV,3000,3005
+CT,trn_freight_road,Heavy truck,BEV,3000,3005
+DC,trn_freight_road,Heavy truck,BEV,3000,3005
+DE,trn_freight_road,Heavy truck,BEV,3000,3005
+FL,trn_freight_road,Heavy truck,BEV,3000,3005
+GA,trn_freight_road,Heavy truck,BEV,3000,3005
+HI,trn_freight_road,Heavy truck,BEV,3000,3005
+IA,trn_freight_road,Heavy truck,BEV,3000,3005
+ID,trn_freight_road,Heavy truck,BEV,3000,3005
+IL,trn_freight_road,Heavy truck,BEV,3000,3005
+IN,trn_freight_road,Heavy truck,BEV,3000,3005
+KS,trn_freight_road,Heavy truck,BEV,3000,3005
+KY,trn_freight_road,Heavy truck,BEV,3000,3005
+LA,trn_freight_road,Heavy truck,BEV,3000,3005
+MA,trn_freight_road,Heavy truck,BEV,3000,3005
+MD,trn_freight_road,Heavy truck,BEV,3000,3005
+ME,trn_freight_road,Heavy truck,BEV,3000,3005
+MI,trn_freight_road,Heavy truck,BEV,3000,3005
+MN,trn_freight_road,Heavy truck,BEV,3000,3005
+MO,trn_freight_road,Heavy truck,BEV,3000,3005
+MS,trn_freight_road,Heavy truck,BEV,3000,3005
+MT,trn_freight_road,Heavy truck,BEV,3000,3005
+NC,trn_freight_road,Heavy truck,BEV,3000,3005
+ND,trn_freight_road,Heavy truck,BEV,3000,3005
+NE,trn_freight_road,Heavy truck,BEV,3000,3005
+NH,trn_freight_road,Heavy truck,BEV,3000,3005
+NJ,trn_freight_road,Heavy truck,BEV,3000,3005
+NM,trn_freight_road,Heavy truck,BEV,3000,3005
+NV,trn_freight_road,Heavy truck,BEV,3000,3005
+NY,trn_freight_road,Heavy truck,BEV,3000,3005
+OH,trn_freight_road,Heavy truck,BEV,3000,3005
+OK,trn_freight_road,Heavy truck,BEV,3000,3005
+OR,trn_freight_road,Heavy truck,BEV,3000,3005
+PA,trn_freight_road,Heavy truck,BEV,3000,3005
+RI,trn_freight_road,Heavy truck,BEV,3000,3005
+SC,trn_freight_road,Heavy truck,BEV,3000,3005
+SD,trn_freight_road,Heavy truck,BEV,3000,3005
+TN,trn_freight_road,Heavy truck,BEV,3000,3005
+TX,trn_freight_road,Heavy truck,BEV,3000,3005
+UT,trn_freight_road,Heavy truck,BEV,3000,3005
+VA,trn_freight_road,Heavy truck,BEV,3000,3005
+VT,trn_freight_road,Heavy truck,BEV,3000,3005
+WA,trn_freight_road,Heavy truck,BEV,3000,3005
+WI,trn_freight_road,Heavy truck,BEV,3000,3005
+WV,trn_freight_road,Heavy truck,BEV,3000,3005
+WY,trn_freight_road,Heavy truck,BEV,3000,3005
+USA,trn_freight_road,Heavy truck,BEV,3000,3005
+AK,trn_freight_road,Heavy truck,FCEV,3000,3005
+AL,trn_freight_road,Heavy truck,FCEV,3000,3005
+AR,trn_freight_road,Heavy truck,FCEV,3000,3005
+AZ,trn_freight_road,Heavy truck,FCEV,3000,3005
+CA,trn_freight_road,Heavy truck,FCEV,3000,3005
+CO,trn_freight_road,Heavy truck,FCEV,3000,3005
+CT,trn_freight_road,Heavy truck,FCEV,3000,3005
+DC,trn_freight_road,Heavy truck,FCEV,3000,3005
+DE,trn_freight_road,Heavy truck,FCEV,3000,3005
+FL,trn_freight_road,Heavy truck,FCEV,3000,3005
+GA,trn_freight_road,Heavy truck,FCEV,3000,3005
+HI,trn_freight_road,Heavy truck,FCEV,3000,3005
+IA,trn_freight_road,Heavy truck,FCEV,3000,3005
+ID,trn_freight_road,Heavy truck,FCEV,3000,3005
+IL,trn_freight_road,Heavy truck,FCEV,3000,3005
+IN,trn_freight_road,Heavy truck,FCEV,3000,3005
+KS,trn_freight_road,Heavy truck,FCEV,3000,3005
+KY,trn_freight_road,Heavy truck,FCEV,3000,3005
+LA,trn_freight_road,Heavy truck,FCEV,3000,3005
+MA,trn_freight_road,Heavy truck,FCEV,3000,3005
+MD,trn_freight_road,Heavy truck,FCEV,3000,3005
+ME,trn_freight_road,Heavy truck,FCEV,3000,3005
+MI,trn_freight_road,Heavy truck,FCEV,3000,3005
+MN,trn_freight_road,Heavy truck,FCEV,3000,3005
+MO,trn_freight_road,Heavy truck,FCEV,3000,3005
+MS,trn_freight_road,Heavy truck,FCEV,3000,3005
+MT,trn_freight_road,Heavy truck,FCEV,3000,3005
+NC,trn_freight_road,Heavy truck,FCEV,3000,3005
+ND,trn_freight_road,Heavy truck,FCEV,3000,3005
+NE,trn_freight_road,Heavy truck,FCEV,3000,3005
+NH,trn_freight_road,Heavy truck,FCEV,3000,3005
+NJ,trn_freight_road,Heavy truck,FCEV,3000,3005
+NM,trn_freight_road,Heavy truck,FCEV,3000,3005
+NV,trn_freight_road,Heavy truck,FCEV,3000,3005
+NY,trn_freight_road,Heavy truck,FCEV,3000,3005
+OH,trn_freight_road,Heavy truck,FCEV,3000,3005
+OK,trn_freight_road,Heavy truck,FCEV,3000,3005
+OR,trn_freight_road,Heavy truck,FCEV,3000,3005
+PA,trn_freight_road,Heavy truck,FCEV,3000,3005
+RI,trn_freight_road,Heavy truck,FCEV,3000,3005
+SC,trn_freight_road,Heavy truck,FCEV,3000,3005
+SD,trn_freight_road,Heavy truck,FCEV,3000,3005
+TN,trn_freight_road,Heavy truck,FCEV,3000,3005
+TX,trn_freight_road,Heavy truck,FCEV,3000,3005
+UT,trn_freight_road,Heavy truck,FCEV,3000,3005
+VA,trn_freight_road,Heavy truck,FCEV,3000,3005
+VT,trn_freight_road,Heavy truck,FCEV,3000,3005
+WA,trn_freight_road,Heavy truck,FCEV,3000,3005
+WI,trn_freight_road,Heavy truck,FCEV,3000,3005
+WV,trn_freight_road,Heavy truck,FCEV,3000,3005
+WY,trn_freight_road,Heavy truck,FCEV,3000,3005
+USA,trn_freight_road,Heavy truck,FCEV,3000,3005
+AK,trn_freight_road,Medium truck,BEV,3000,3005
+AL,trn_freight_road,Medium truck,BEV,3000,3005
+AR,trn_freight_road,Medium truck,BEV,3000,3005
+AZ,trn_freight_road,Medium truck,BEV,3000,3005
+CA,trn_freight_road,Medium truck,BEV,3000,3005
+CO,trn_freight_road,Medium truck,BEV,3000,3005
+CT,trn_freight_road,Medium truck,BEV,3000,3005
+DC,trn_freight_road,Medium truck,BEV,3000,3005
+DE,trn_freight_road,Medium truck,BEV,3000,3005
+FL,trn_freight_road,Medium truck,BEV,3000,3005
+GA,trn_freight_road,Medium truck,BEV,3000,3005
+HI,trn_freight_road,Medium truck,BEV,3000,3005
+IA,trn_freight_road,Medium truck,BEV,3000,3005
+ID,trn_freight_road,Medium truck,BEV,3000,3005
+IL,trn_freight_road,Medium truck,BEV,3000,3005
+IN,trn_freight_road,Medium truck,BEV,3000,3005
+KS,trn_freight_road,Medium truck,BEV,3000,3005
+KY,trn_freight_road,Medium truck,BEV,3000,3005
+LA,trn_freight_road,Medium truck,BEV,3000,3005
+MA,trn_freight_road,Medium truck,BEV,3000,3005
+MD,trn_freight_road,Medium truck,BEV,3000,3005
+ME,trn_freight_road,Medium truck,BEV,3000,3005
+MI,trn_freight_road,Medium truck,BEV,3000,3005
+MN,trn_freight_road,Medium truck,BEV,3000,3005
+MO,trn_freight_road,Medium truck,BEV,3000,3005
+MS,trn_freight_road,Medium truck,BEV,3000,3005
+MT,trn_freight_road,Medium truck,BEV,3000,3005
+NC,trn_freight_road,Medium truck,BEV,3000,3005
+ND,trn_freight_road,Medium truck,BEV,3000,3005
+NE,trn_freight_road,Medium truck,BEV,3000,3005
+NH,trn_freight_road,Medium truck,BEV,3000,3005
+NJ,trn_freight_road,Medium truck,BEV,3000,3005
+NM,trn_freight_road,Medium truck,BEV,3000,3005
+NV,trn_freight_road,Medium truck,BEV,3000,3005
+NY,trn_freight_road,Medium truck,BEV,3000,3005
+OH,trn_freight_road,Medium truck,BEV,3000,3005
+OK,trn_freight_road,Medium truck,BEV,3000,3005
+OR,trn_freight_road,Medium truck,BEV,3000,3005
+PA,trn_freight_road,Medium truck,BEV,3000,3005
+RI,trn_freight_road,Medium truck,BEV,3000,3005
+SC,trn_freight_road,Medium truck,BEV,3000,3005
+SD,trn_freight_road,Medium truck,BEV,3000,3005
+TN,trn_freight_road,Medium truck,BEV,3000,3005
+TX,trn_freight_road,Medium truck,BEV,3000,3005
+UT,trn_freight_road,Medium truck,BEV,3000,3005
+VA,trn_freight_road,Medium truck,BEV,3000,3005
+VT,trn_freight_road,Medium truck,BEV,3000,3005
+WA,trn_freight_road,Medium truck,BEV,3000,3005
+WI,trn_freight_road,Medium truck,BEV,3000,3005
+WV,trn_freight_road,Medium truck,BEV,3000,3005
+WY,trn_freight_road,Medium truck,BEV,3000,3005
+USA,trn_freight_road,Medium truck,BEV,3000,3005
+AK,trn_freight_road,Medium truck,FCEV,3000,3005
+AL,trn_freight_road,Medium truck,FCEV,3000,3005
+AR,trn_freight_road,Medium truck,FCEV,3000,3005
+AZ,trn_freight_road,Medium truck,FCEV,3000,3005
+CA,trn_freight_road,Medium truck,FCEV,3000,3005
+CO,trn_freight_road,Medium truck,FCEV,3000,3005
+CT,trn_freight_road,Medium truck,FCEV,3000,3005
+DC,trn_freight_road,Medium truck,FCEV,3000,3005
+DE,trn_freight_road,Medium truck,FCEV,3000,3005
+FL,trn_freight_road,Medium truck,FCEV,3000,3005
+GA,trn_freight_road,Medium truck,FCEV,3000,3005
+HI,trn_freight_road,Medium truck,FCEV,3000,3005
+IA,trn_freight_road,Medium truck,FCEV,3000,3005
+ID,trn_freight_road,Medium truck,FCEV,3000,3005
+IL,trn_freight_road,Medium truck,FCEV,3000,3005
+IN,trn_freight_road,Medium truck,FCEV,3000,3005
+KS,trn_freight_road,Medium truck,FCEV,3000,3005
+KY,trn_freight_road,Medium truck,FCEV,3000,3005
+LA,trn_freight_road,Medium truck,FCEV,3000,3005
+MA,trn_freight_road,Medium truck,FCEV,3000,3005
+MD,trn_freight_road,Medium truck,FCEV,3000,3005
+ME,trn_freight_road,Medium truck,FCEV,3000,3005
+MI,trn_freight_road,Medium truck,FCEV,3000,3005
+MN,trn_freight_road,Medium truck,FCEV,3000,3005
+MO,trn_freight_road,Medium truck,FCEV,3000,3005
+MS,trn_freight_road,Medium truck,FCEV,3000,3005
+MT,trn_freight_road,Medium truck,FCEV,3000,3005
+NC,trn_freight_road,Medium truck,FCEV,3000,3005
+ND,trn_freight_road,Medium truck,FCEV,3000,3005
+NE,trn_freight_road,Medium truck,FCEV,3000,3005
+NH,trn_freight_road,Medium truck,FCEV,3000,3005
+NJ,trn_freight_road,Medium truck,FCEV,3000,3005
+NM,trn_freight_road,Medium truck,FCEV,3000,3005
+NV,trn_freight_road,Medium truck,FCEV,3000,3005
+NY,trn_freight_road,Medium truck,FCEV,3000,3005
+OH,trn_freight_road,Medium truck,FCEV,3000,3005
+OK,trn_freight_road,Medium truck,FCEV,3000,3005
+OR,trn_freight_road,Medium truck,FCEV,3000,3005
+PA,trn_freight_road,Medium truck,FCEV,3000,3005
+RI,trn_freight_road,Medium truck,FCEV,3000,3005
+SC,trn_freight_road,Medium truck,FCEV,3000,3005
+SD,trn_freight_road,Medium truck,FCEV,3000,3005
+TN,trn_freight_road,Medium truck,FCEV,3000,3005
+TX,trn_freight_road,Medium truck,FCEV,3000,3005
+UT,trn_freight_road,Medium truck,FCEV,3000,3005
+VA,trn_freight_road,Medium truck,FCEV,3000,3005
+VT,trn_freight_road,Medium truck,FCEV,3000,3005
+WA,trn_freight_road,Medium truck,FCEV,3000,3005
+WI,trn_freight_road,Medium truck,FCEV,3000,3005
+WV,trn_freight_road,Medium truck,FCEV,3000,3005
+WY,trn_freight_road,Medium truck,FCEV,3000,3005
+USA,trn_freight_road,Medium truck,FCEV,3000,3005
+AK,trn_freight_road,Light truck,BEV,3000,3005
+AL,trn_freight_road,Light truck,BEV,3000,3005
+AR,trn_freight_road,Light truck,BEV,3000,3005
+AZ,trn_freight_road,Light truck,BEV,3000,3005
+CA,trn_freight_road,Light truck,BEV,3000,3005
+CO,trn_freight_road,Light truck,BEV,3000,3005
+CT,trn_freight_road,Light truck,BEV,3000,3005
+DC,trn_freight_road,Light truck,BEV,3000,3005
+DE,trn_freight_road,Light truck,BEV,3000,3005
+FL,trn_freight_road,Light truck,BEV,3000,3005
+GA,trn_freight_road,Light truck,BEV,3000,3005
+HI,trn_freight_road,Light truck,BEV,3000,3005
+IA,trn_freight_road,Light truck,BEV,3000,3005
+ID,trn_freight_road,Light truck,BEV,3000,3005
+IL,trn_freight_road,Light truck,BEV,3000,3005
+IN,trn_freight_road,Light truck,BEV,3000,3005
+KS,trn_freight_road,Light truck,BEV,3000,3005
+KY,trn_freight_road,Light truck,BEV,3000,3005
+LA,trn_freight_road,Light truck,BEV,3000,3005
+MA,trn_freight_road,Light truck,BEV,3000,3005
+MD,trn_freight_road,Light truck,BEV,3000,3005
+ME,trn_freight_road,Light truck,BEV,3000,3005
+MI,trn_freight_road,Light truck,BEV,3000,3005
+MN,trn_freight_road,Light truck,BEV,3000,3005
+MO,trn_freight_road,Light truck,BEV,3000,3005
+MS,trn_freight_road,Light truck,BEV,3000,3005
+MT,trn_freight_road,Light truck,BEV,3000,3005
+NC,trn_freight_road,Light truck,BEV,3000,3005
+ND,trn_freight_road,Light truck,BEV,3000,3005
+NE,trn_freight_road,Light truck,BEV,3000,3005
+NH,trn_freight_road,Light truck,BEV,3000,3005
+NJ,trn_freight_road,Light truck,BEV,3000,3005
+NM,trn_freight_road,Light truck,BEV,3000,3005
+NV,trn_freight_road,Light truck,BEV,3000,3005
+NY,trn_freight_road,Light truck,BEV,3000,3005
+OH,trn_freight_road,Light truck,BEV,3000,3005
+OK,trn_freight_road,Light truck,BEV,3000,3005
+OR,trn_freight_road,Light truck,BEV,3000,3005
+PA,trn_freight_road,Light truck,BEV,3000,3005
+RI,trn_freight_road,Light truck,BEV,3000,3005
+SC,trn_freight_road,Light truck,BEV,3000,3005
+SD,trn_freight_road,Light truck,BEV,3000,3005
+TN,trn_freight_road,Light truck,BEV,3000,3005
+TX,trn_freight_road,Light truck,BEV,3000,3005
+UT,trn_freight_road,Light truck,BEV,3000,3005
+VA,trn_freight_road,Light truck,BEV,3000,3005
+VT,trn_freight_road,Light truck,BEV,3000,3005
+WA,trn_freight_road,Light truck,BEV,3000,3005
+WI,trn_freight_road,Light truck,BEV,3000,3005
+WV,trn_freight_road,Light truck,BEV,3000,3005
+WY,trn_freight_road,Light truck,BEV,3000,3005
+USA,trn_freight_road,Light truck,BEV,3000,3005
+AK,trn_freight_road,Light truck,FCEV,3000,3005
+AL,trn_freight_road,Light truck,FCEV,3000,3005
+AR,trn_freight_road,Light truck,FCEV,3000,3005
+AZ,trn_freight_road,Light truck,FCEV,3000,3005
+CA,trn_freight_road,Light truck,FCEV,3000,3005
+CO,trn_freight_road,Light truck,FCEV,3000,3005
+CT,trn_freight_road,Light truck,FCEV,3000,3005
+DC,trn_freight_road,Light truck,FCEV,3000,3005
+DE,trn_freight_road,Light truck,FCEV,3000,3005
+FL,trn_freight_road,Light truck,FCEV,3000,3005
+GA,trn_freight_road,Light truck,FCEV,3000,3005
+HI,trn_freight_road,Light truck,FCEV,3000,3005
+IA,trn_freight_road,Light truck,FCEV,3000,3005
+ID,trn_freight_road,Light truck,FCEV,3000,3005
+IL,trn_freight_road,Light truck,FCEV,3000,3005
+IN,trn_freight_road,Light truck,FCEV,3000,3005
+KS,trn_freight_road,Light truck,FCEV,3000,3005
+KY,trn_freight_road,Light truck,FCEV,3000,3005
+LA,trn_freight_road,Light truck,FCEV,3000,3005
+MA,trn_freight_road,Light truck,FCEV,3000,3005
+MD,trn_freight_road,Light truck,FCEV,3000,3005
+ME,trn_freight_road,Light truck,FCEV,3000,3005
+MI,trn_freight_road,Light truck,FCEV,3000,3005
+MN,trn_freight_road,Light truck,FCEV,3000,3005
+MO,trn_freight_road,Light truck,FCEV,3000,3005
+MS,trn_freight_road,Light truck,FCEV,3000,3005
+MT,trn_freight_road,Light truck,FCEV,3000,3005
+NC,trn_freight_road,Light truck,FCEV,3000,3005
+ND,trn_freight_road,Light truck,FCEV,3000,3005
+NE,trn_freight_road,Light truck,FCEV,3000,3005
+NH,trn_freight_road,Light truck,FCEV,3000,3005
+NJ,trn_freight_road,Light truck,FCEV,3000,3005
+NM,trn_freight_road,Light truck,FCEV,3000,3005
+NV,trn_freight_road,Light truck,FCEV,3000,3005
+NY,trn_freight_road,Light truck,FCEV,3000,3005
+OH,trn_freight_road,Light truck,FCEV,3000,3005
+OK,trn_freight_road,Light truck,FCEV,3000,3005
+OR,trn_freight_road,Light truck,FCEV,3000,3005
+PA,trn_freight_road,Light truck,FCEV,3000,3005
+RI,trn_freight_road,Light truck,FCEV,3000,3005
+SC,trn_freight_road,Light truck,FCEV,3000,3005
+SD,trn_freight_road,Light truck,FCEV,3000,3005
+TN,trn_freight_road,Light truck,FCEV,3000,3005
+TX,trn_freight_road,Light truck,FCEV,3000,3005
+UT,trn_freight_road,Light truck,FCEV,3000,3005
+VA,trn_freight_road,Light truck,FCEV,3000,3005
+VT,trn_freight_road,Light truck,FCEV,3000,3005
+WA,trn_freight_road,Light truck,FCEV,3000,3005
+WI,trn_freight_road,Light truck,FCEV,3000,3005
+WV,trn_freight_road,Light truck,FCEV,3000,3005
+WY,trn_freight_road,Light truck,FCEV,3000,3005
+USA,trn_freight_road,Light truck,FCEV,3000,3005
+AK,trn_pass_road,Bus,BEV,3000,3005
+AL,trn_pass_road,Bus,BEV,3000,3005
+AR,trn_pass_road,Bus,BEV,3000,3005
+AZ,trn_pass_road,Bus,BEV,3000,3005
+CA,trn_pass_road,Bus,BEV,3000,3005
+CO,trn_pass_road,Bus,BEV,3000,3005
+CT,trn_pass_road,Bus,BEV,3000,3005
+DC,trn_pass_road,Bus,BEV,3000,3005
+DE,trn_pass_road,Bus,BEV,3000,3005
+FL,trn_pass_road,Bus,BEV,3000,3005
+GA,trn_pass_road,Bus,BEV,3000,3005
+HI,trn_pass_road,Bus,BEV,3000,3005
+IA,trn_pass_road,Bus,BEV,3000,3005
+ID,trn_pass_road,Bus,BEV,3000,3005
+IL,trn_pass_road,Bus,BEV,3000,3005
+IN,trn_pass_road,Bus,BEV,3000,3005
+KS,trn_pass_road,Bus,BEV,3000,3005
+KY,trn_pass_road,Bus,BEV,3000,3005
+LA,trn_pass_road,Bus,BEV,3000,3005
+MA,trn_pass_road,Bus,BEV,3000,3005
+MD,trn_pass_road,Bus,BEV,3000,3005
+ME,trn_pass_road,Bus,BEV,3000,3005
+MI,trn_pass_road,Bus,BEV,3000,3005
+MN,trn_pass_road,Bus,BEV,3000,3005
+MO,trn_pass_road,Bus,BEV,3000,3005
+MS,trn_pass_road,Bus,BEV,3000,3005
+MT,trn_pass_road,Bus,BEV,3000,3005
+NC,trn_pass_road,Bus,BEV,3000,3005
+ND,trn_pass_road,Bus,BEV,3000,3005
+NE,trn_pass_road,Bus,BEV,3000,3005
+NH,trn_pass_road,Bus,BEV,3000,3005
+NJ,trn_pass_road,Bus,BEV,3000,3005
+NM,trn_pass_road,Bus,BEV,3000,3005
+NV,trn_pass_road,Bus,BEV,3000,3005
+NY,trn_pass_road,Bus,BEV,3000,3005
+OH,trn_pass_road,Bus,BEV,3000,3005
+OK,trn_pass_road,Bus,BEV,3000,3005
+OR,trn_pass_road,Bus,BEV,3000,3005
+PA,trn_pass_road,Bus,BEV,3000,3005
+RI,trn_pass_road,Bus,BEV,3000,3005
+SC,trn_pass_road,Bus,BEV,3000,3005
+SD,trn_pass_road,Bus,BEV,3000,3005
+TN,trn_pass_road,Bus,BEV,3000,3005
+TX,trn_pass_road,Bus,BEV,3000,3005
+UT,trn_pass_road,Bus,BEV,3000,3005
+VA,trn_pass_road,Bus,BEV,3000,3005
+VT,trn_pass_road,Bus,BEV,3000,3005
+WA,trn_pass_road,Bus,BEV,3000,3005
+WI,trn_pass_road,Bus,BEV,3000,3005
+WV,trn_pass_road,Bus,BEV,3000,3005
+WY,trn_pass_road,Bus,BEV,3000,3005
+USA,trn_pass_road,Bus,BEV,3000,3005
+AK,trn_pass_road,Bus,FCEV,3000,3005
+AL,trn_pass_road,Bus,FCEV,3000,3005
+AR,trn_pass_road,Bus,FCEV,3000,3005
+AZ,trn_pass_road,Bus,FCEV,3000,3005
+CA,trn_pass_road,Bus,FCEV,3000,3005
+CO,trn_pass_road,Bus,FCEV,3000,3005
+CT,trn_pass_road,Bus,FCEV,3000,3005
+DC,trn_pass_road,Bus,FCEV,3000,3005
+DE,trn_pass_road,Bus,FCEV,3000,3005
+FL,trn_pass_road,Bus,FCEV,3000,3005
+GA,trn_pass_road,Bus,FCEV,3000,3005
+HI,trn_pass_road,Bus,FCEV,3000,3005
+IA,trn_pass_road,Bus,FCEV,3000,3005
+ID,trn_pass_road,Bus,FCEV,3000,3005
+IL,trn_pass_road,Bus,FCEV,3000,3005
+IN,trn_pass_road,Bus,FCEV,3000,3005
+KS,trn_pass_road,Bus,FCEV,3000,3005
+KY,trn_pass_road,Bus,FCEV,3000,3005
+LA,trn_pass_road,Bus,FCEV,3000,3005
+MA,trn_pass_road,Bus,FCEV,3000,3005
+MD,trn_pass_road,Bus,FCEV,3000,3005
+ME,trn_pass_road,Bus,FCEV,3000,3005
+MI,trn_pass_road,Bus,FCEV,3000,3005
+MN,trn_pass_road,Bus,FCEV,3000,3005
+MO,trn_pass_road,Bus,FCEV,3000,3005
+MS,trn_pass_road,Bus,FCEV,3000,3005
+MT,trn_pass_road,Bus,FCEV,3000,3005
+NC,trn_pass_road,Bus,FCEV,3000,3005
+ND,trn_pass_road,Bus,FCEV,3000,3005
+NE,trn_pass_road,Bus,FCEV,3000,3005
+NH,trn_pass_road,Bus,FCEV,3000,3005
+NJ,trn_pass_road,Bus,FCEV,3000,3005
+NM,trn_pass_road,Bus,FCEV,3000,3005
+NV,trn_pass_road,Bus,FCEV,3000,3005
+NY,trn_pass_road,Bus,FCEV,3000,3005
+OH,trn_pass_road,Bus,FCEV,3000,3005
+OK,trn_pass_road,Bus,FCEV,3000,3005
+OR,trn_pass_road,Bus,FCEV,3000,3005
+PA,trn_pass_road,Bus,FCEV,3000,3005
+RI,trn_pass_road,Bus,FCEV,3000,3005
+SC,trn_pass_road,Bus,FCEV,3000,3005
+SD,trn_pass_road,Bus,FCEV,3000,3005
+TN,trn_pass_road,Bus,FCEV,3000,3005
+TX,trn_pass_road,Bus,FCEV,3000,3005
+UT,trn_pass_road,Bus,FCEV,3000,3005
+VA,trn_pass_road,Bus,FCEV,3000,3005
+VT,trn_pass_road,Bus,FCEV,3000,3005
+WA,trn_pass_road,Bus,FCEV,3000,3005
+WI,trn_pass_road,Bus,FCEV,3000,3005
+WV,trn_pass_road,Bus,FCEV,3000,3005
+WY,trn_pass_road,Bus,FCEV,3000,3005
+USA,trn_pass_road,Bus,FCEV,3000,3005
+AK,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+AL,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+AR,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+AZ,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+CA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+CO,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+CT,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+DC,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+DE,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+FL,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+GA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+HI,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+IA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+ID,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+IL,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+IN,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+KS,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+KY,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+LA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MD,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+ME,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MI,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MN,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MO,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MS,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+MT,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NC,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+ND,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NE,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NH,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NJ,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NM,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NV,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+NY,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+OH,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+OK,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+OR,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+PA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+RI,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+SC,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+SD,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+TN,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+TX,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+UT,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+VA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+VT,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+WA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+WI,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+WV,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+WY,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+USA,trn_pass_road_LDV,2W and 3W,BEV,3000,3005
+AK,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+AL,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+AR,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+AZ,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+CA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+CO,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+CT,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+DC,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+DE,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+FL,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+GA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+HI,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+IA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+ID,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+IL,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+IN,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+KS,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+KY,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+LA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MD,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+ME,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MI,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MN,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MO,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MS,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+MT,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NC,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+ND,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NE,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NH,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NJ,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NM,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NV,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+NY,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+OH,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+OK,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+OR,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+PA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+RI,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+SC,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+SD,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+TN,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+TX,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+UT,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+VA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+VT,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+WA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+WI,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+WV,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+WY,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+USA,trn_pass_road_LDV,2W and 3W,LA-BEV,3000,3005
+AK,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+AL,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+AR,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+CA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+CO,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+CT,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+DC,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+DE,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+FL,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+GA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+HI,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+IA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+ID,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+IL,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+IN,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+KS,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+KY,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+LA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MD,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+ME,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MI,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MN,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MO,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MS,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+MT,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NC,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+ND,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NE,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NH,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NM,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NV,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+NY,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+OH,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+OK,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+OR,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+PA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+RI,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+SC,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+SD,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+TN,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+TX,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+UT,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+VA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+VT,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+WA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+WI,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+WV,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+WY,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+USA,trn_pass_road_LDV_4W,Car,BEV,3000,3005
+AK,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+AL,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+AR,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+CA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+CO,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+CT,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+DC,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+DE,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+FL,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+GA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+HI,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+IA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+ID,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+IL,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+IN,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+KS,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+KY,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+LA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MD,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+ME,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MI,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MN,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MO,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MS,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+MT,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NC,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+ND,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NE,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NH,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NM,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NV,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+NY,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+OH,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+OK,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+OR,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+PA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+RI,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+SC,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+SD,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+TN,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+TX,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+UT,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+VA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+VT,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+WA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+WI,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+WV,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+WY,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+USA,trn_pass_road_LDV_4W,Car,FCEV,3000,3005
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+USA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,3000,3005
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+USA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,3000,3005
+AK,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+AL,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+AR,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+CA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+CO,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+CT,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+DC,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+DE,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+FL,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+GA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+HI,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+IA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+ID,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+IL,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+IN,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+KS,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+KY,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+LA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MD,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+ME,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MI,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MN,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MO,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MS,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+MT,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NC,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+ND,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NE,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NH,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NM,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NV,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+NY,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+OH,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+OK,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+OR,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+PA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+RI,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+SC,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+SD,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+TN,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+TX,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+UT,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+VA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+VT,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+WA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+WI,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+WV,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+WY,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+USA,trn_pass_road_LDV_4W,Mini Car,BEV,3000,3005
+AK,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+AL,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+AR,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+AZ,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+CA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+CO,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+CT,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+DC,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+DE,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+FL,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+GA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+HI,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+IA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+ID,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+IL,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+IN,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+KS,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+KY,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+LA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MD,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+ME,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MI,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MN,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MO,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MS,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+MT,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NC,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+ND,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NE,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NH,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NJ,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NM,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NV,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+NY,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+OH,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+OK,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+OR,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+PA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+RI,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+SC,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+SD,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+TN,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+TX,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+UT,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+VA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+VT,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+WA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+WI,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+WV,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+WY,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+USA,trn_pass_road_LDV_4W,Mini Car,FCEV,3000,3005
+AK,trn_aviation_intl,International Aviation,BEV,3000,3005
+AL,trn_aviation_intl,International Aviation,BEV,3000,3005
+AR,trn_aviation_intl,International Aviation,BEV,3000,3005
+AZ,trn_aviation_intl,International Aviation,BEV,3000,3005
+CA,trn_aviation_intl,International Aviation,BEV,3000,3005
+CO,trn_aviation_intl,International Aviation,BEV,3000,3005
+CT,trn_aviation_intl,International Aviation,BEV,3000,3005
+DC,trn_aviation_intl,International Aviation,BEV,3000,3005
+DE,trn_aviation_intl,International Aviation,BEV,3000,3005
+FL,trn_aviation_intl,International Aviation,BEV,3000,3005
+GA,trn_aviation_intl,International Aviation,BEV,3000,3005
+HI,trn_aviation_intl,International Aviation,BEV,3000,3005
+IA,trn_aviation_intl,International Aviation,BEV,3000,3005
+ID,trn_aviation_intl,International Aviation,BEV,3000,3005
+IL,trn_aviation_intl,International Aviation,BEV,3000,3005
+IN,trn_aviation_intl,International Aviation,BEV,3000,3005
+KS,trn_aviation_intl,International Aviation,BEV,3000,3005
+KY,trn_aviation_intl,International Aviation,BEV,3000,3005
+LA,trn_aviation_intl,International Aviation,BEV,3000,3005
+MA,trn_aviation_intl,International Aviation,BEV,3000,3005
+MD,trn_aviation_intl,International Aviation,BEV,3000,3005
+ME,trn_aviation_intl,International Aviation,BEV,3000,3005
+MI,trn_aviation_intl,International Aviation,BEV,3000,3005
+MN,trn_aviation_intl,International Aviation,BEV,3000,3005
+MO,trn_aviation_intl,International Aviation,BEV,3000,3005
+MS,trn_aviation_intl,International Aviation,BEV,3000,3005
+MT,trn_aviation_intl,International Aviation,BEV,3000,3005
+NC,trn_aviation_intl,International Aviation,BEV,3000,3005
+ND,trn_aviation_intl,International Aviation,BEV,3000,3005
+NE,trn_aviation_intl,International Aviation,BEV,3000,3005
+NH,trn_aviation_intl,International Aviation,BEV,3000,3005
+NJ,trn_aviation_intl,International Aviation,BEV,3000,3005
+NM,trn_aviation_intl,International Aviation,BEV,3000,3005
+NV,trn_aviation_intl,International Aviation,BEV,3000,3005
+NY,trn_aviation_intl,International Aviation,BEV,3000,3005
+OH,trn_aviation_intl,International Aviation,BEV,3000,3005
+OK,trn_aviation_intl,International Aviation,BEV,3000,3005
+OR,trn_aviation_intl,International Aviation,BEV,3000,3005
+PA,trn_aviation_intl,International Aviation,BEV,3000,3005
+RI,trn_aviation_intl,International Aviation,BEV,3000,3005
+SC,trn_aviation_intl,International Aviation,BEV,3000,3005
+SD,trn_aviation_intl,International Aviation,BEV,3000,3005
+TN,trn_aviation_intl,International Aviation,BEV,3000,3005
+TX,trn_aviation_intl,International Aviation,BEV,3000,3005
+UT,trn_aviation_intl,International Aviation,BEV,3000,3005
+VA,trn_aviation_intl,International Aviation,BEV,3000,3005
+VT,trn_aviation_intl,International Aviation,BEV,3000,3005
+WA,trn_aviation_intl,International Aviation,BEV,3000,3005
+WI,trn_aviation_intl,International Aviation,BEV,3000,3005
+WV,trn_aviation_intl,International Aviation,BEV,3000,3005
+WY,trn_aviation_intl,International Aviation,BEV,3000,3005
+USA,trn_aviation_intl,International Aviation,BEV,3000,3005
+AK,trn_freight,Domestic Ship,BEV,3000,3005
+AL,trn_freight,Domestic Ship,BEV,3000,3005
+AR,trn_freight,Domestic Ship,BEV,3000,3005
+AZ,trn_freight,Domestic Ship,BEV,3000,3005
+CA,trn_freight,Domestic Ship,BEV,3000,3005
+CO,trn_freight,Domestic Ship,BEV,3000,3005
+CT,trn_freight,Domestic Ship,BEV,3000,3005
+DC,trn_freight,Domestic Ship,BEV,3000,3005
+DE,trn_freight,Domestic Ship,BEV,3000,3005
+FL,trn_freight,Domestic Ship,BEV,3000,3005
+GA,trn_freight,Domestic Ship,BEV,3000,3005
+HI,trn_freight,Domestic Ship,BEV,3000,3005
+IA,trn_freight,Domestic Ship,BEV,3000,3005
+ID,trn_freight,Domestic Ship,BEV,3000,3005
+IL,trn_freight,Domestic Ship,BEV,3000,3005
+IN,trn_freight,Domestic Ship,BEV,3000,3005
+KS,trn_freight,Domestic Ship,BEV,3000,3005
+KY,trn_freight,Domestic Ship,BEV,3000,3005
+LA,trn_freight,Domestic Ship,BEV,3000,3005
+MA,trn_freight,Domestic Ship,BEV,3000,3005
+MD,trn_freight,Domestic Ship,BEV,3000,3005
+ME,trn_freight,Domestic Ship,BEV,3000,3005
+MI,trn_freight,Domestic Ship,BEV,3000,3005
+MN,trn_freight,Domestic Ship,BEV,3000,3005
+MO,trn_freight,Domestic Ship,BEV,3000,3005
+MS,trn_freight,Domestic Ship,BEV,3000,3005
+MT,trn_freight,Domestic Ship,BEV,3000,3005
+NC,trn_freight,Domestic Ship,BEV,3000,3005
+ND,trn_freight,Domestic Ship,BEV,3000,3005
+NE,trn_freight,Domestic Ship,BEV,3000,3005
+NH,trn_freight,Domestic Ship,BEV,3000,3005
+NJ,trn_freight,Domestic Ship,BEV,3000,3005
+NM,trn_freight,Domestic Ship,BEV,3000,3005
+NV,trn_freight,Domestic Ship,BEV,3000,3005
+NY,trn_freight,Domestic Ship,BEV,3000,3005
+OH,trn_freight,Domestic Ship,BEV,3000,3005
+OK,trn_freight,Domestic Ship,BEV,3000,3005
+OR,trn_freight,Domestic Ship,BEV,3000,3005
+PA,trn_freight,Domestic Ship,BEV,3000,3005
+RI,trn_freight,Domestic Ship,BEV,3000,3005
+SC,trn_freight,Domestic Ship,BEV,3000,3005
+SD,trn_freight,Domestic Ship,BEV,3000,3005
+TN,trn_freight,Domestic Ship,BEV,3000,3005
+TX,trn_freight,Domestic Ship,BEV,3000,3005
+UT,trn_freight,Domestic Ship,BEV,3000,3005
+VA,trn_freight,Domestic Ship,BEV,3000,3005
+VT,trn_freight,Domestic Ship,BEV,3000,3005
+WA,trn_freight,Domestic Ship,BEV,3000,3005
+WI,trn_freight,Domestic Ship,BEV,3000,3005
+WV,trn_freight,Domestic Ship,BEV,3000,3005
+WY,trn_freight,Domestic Ship,BEV,3000,3005
+USA,trn_freight,Domestic Ship,BEV,3000,3005
+AK,trn_freight,Domestic Ship,FCEV,3000,3005
+AL,trn_freight,Domestic Ship,FCEV,3000,3005
+AR,trn_freight,Domestic Ship,FCEV,3000,3005
+AZ,trn_freight,Domestic Ship,FCEV,3000,3005
+CA,trn_freight,Domestic Ship,FCEV,3000,3005
+CO,trn_freight,Domestic Ship,FCEV,3000,3005
+CT,trn_freight,Domestic Ship,FCEV,3000,3005
+DC,trn_freight,Domestic Ship,FCEV,3000,3005
+DE,trn_freight,Domestic Ship,FCEV,3000,3005
+FL,trn_freight,Domestic Ship,FCEV,3000,3005
+GA,trn_freight,Domestic Ship,FCEV,3000,3005
+HI,trn_freight,Domestic Ship,FCEV,3000,3005
+IA,trn_freight,Domestic Ship,FCEV,3000,3005
+ID,trn_freight,Domestic Ship,FCEV,3000,3005
+IL,trn_freight,Domestic Ship,FCEV,3000,3005
+IN,trn_freight,Domestic Ship,FCEV,3000,3005
+KS,trn_freight,Domestic Ship,FCEV,3000,3005
+KY,trn_freight,Domestic Ship,FCEV,3000,3005
+LA,trn_freight,Domestic Ship,FCEV,3000,3005
+MA,trn_freight,Domestic Ship,FCEV,3000,3005
+MD,trn_freight,Domestic Ship,FCEV,3000,3005
+ME,trn_freight,Domestic Ship,FCEV,3000,3005
+MI,trn_freight,Domestic Ship,FCEV,3000,3005
+MN,trn_freight,Domestic Ship,FCEV,3000,3005
+MO,trn_freight,Domestic Ship,FCEV,3000,3005
+MS,trn_freight,Domestic Ship,FCEV,3000,3005
+MT,trn_freight,Domestic Ship,FCEV,3000,3005
+NC,trn_freight,Domestic Ship,FCEV,3000,3005
+ND,trn_freight,Domestic Ship,FCEV,3000,3005
+NE,trn_freight,Domestic Ship,FCEV,3000,3005
+NH,trn_freight,Domestic Ship,FCEV,3000,3005
+NJ,trn_freight,Domestic Ship,FCEV,3000,3005
+NM,trn_freight,Domestic Ship,FCEV,3000,3005
+NV,trn_freight,Domestic Ship,FCEV,3000,3005
+NY,trn_freight,Domestic Ship,FCEV,3000,3005
+OH,trn_freight,Domestic Ship,FCEV,3000,3005
+OK,trn_freight,Domestic Ship,FCEV,3000,3005
+OR,trn_freight,Domestic Ship,FCEV,3000,3005
+PA,trn_freight,Domestic Ship,FCEV,3000,3005
+RI,trn_freight,Domestic Ship,FCEV,3000,3005
+SC,trn_freight,Domestic Ship,FCEV,3000,3005
+SD,trn_freight,Domestic Ship,FCEV,3000,3005
+TN,trn_freight,Domestic Ship,FCEV,3000,3005
+TX,trn_freight,Domestic Ship,FCEV,3000,3005
+UT,trn_freight,Domestic Ship,FCEV,3000,3005
+VA,trn_freight,Domestic Ship,FCEV,3000,3005
+VT,trn_freight,Domestic Ship,FCEV,3000,3005
+WA,trn_freight,Domestic Ship,FCEV,3000,3005
+WI,trn_freight,Domestic Ship,FCEV,3000,3005
+WV,trn_freight,Domestic Ship,FCEV,3000,3005
+WY,trn_freight,Domestic Ship,FCEV,3000,3005
+USA,trn_freight,Domestic Ship,FCEV,3000,3005
+AK,trn_freight,Freight Rail,BEV,3000,3005
+AL,trn_freight,Freight Rail,BEV,3000,3005
+AR,trn_freight,Freight Rail,BEV,3000,3005
+AZ,trn_freight,Freight Rail,BEV,3000,3005
+CA,trn_freight,Freight Rail,BEV,3000,3005
+CO,trn_freight,Freight Rail,BEV,3000,3005
+CT,trn_freight,Freight Rail,BEV,3000,3005
+DC,trn_freight,Freight Rail,BEV,3000,3005
+DE,trn_freight,Freight Rail,BEV,3000,3005
+FL,trn_freight,Freight Rail,BEV,3000,3005
+GA,trn_freight,Freight Rail,BEV,3000,3005
+HI,trn_freight,Freight Rail,BEV,3000,3005
+IA,trn_freight,Freight Rail,BEV,3000,3005
+ID,trn_freight,Freight Rail,BEV,3000,3005
+IL,trn_freight,Freight Rail,BEV,3000,3005
+IN,trn_freight,Freight Rail,BEV,3000,3005
+KS,trn_freight,Freight Rail,BEV,3000,3005
+KY,trn_freight,Freight Rail,BEV,3000,3005
+LA,trn_freight,Freight Rail,BEV,3000,3005
+MA,trn_freight,Freight Rail,BEV,3000,3005
+MD,trn_freight,Freight Rail,BEV,3000,3005
+ME,trn_freight,Freight Rail,BEV,3000,3005
+MI,trn_freight,Freight Rail,BEV,3000,3005
+MN,trn_freight,Freight Rail,BEV,3000,3005
+MO,trn_freight,Freight Rail,BEV,3000,3005
+MS,trn_freight,Freight Rail,BEV,3000,3005
+MT,trn_freight,Freight Rail,BEV,3000,3005
+NC,trn_freight,Freight Rail,BEV,3000,3005
+ND,trn_freight,Freight Rail,BEV,3000,3005
+NE,trn_freight,Freight Rail,BEV,3000,3005
+NH,trn_freight,Freight Rail,BEV,3000,3005
+NJ,trn_freight,Freight Rail,BEV,3000,3005
+NM,trn_freight,Freight Rail,BEV,3000,3005
+NV,trn_freight,Freight Rail,BEV,3000,3005
+NY,trn_freight,Freight Rail,BEV,3000,3005
+OH,trn_freight,Freight Rail,BEV,3000,3005
+OK,trn_freight,Freight Rail,BEV,3000,3005
+OR,trn_freight,Freight Rail,BEV,3000,3005
+PA,trn_freight,Freight Rail,BEV,3000,3005
+RI,trn_freight,Freight Rail,BEV,3000,3005
+SC,trn_freight,Freight Rail,BEV,3000,3005
+SD,trn_freight,Freight Rail,BEV,3000,3005
+TN,trn_freight,Freight Rail,BEV,3000,3005
+TX,trn_freight,Freight Rail,BEV,3000,3005
+UT,trn_freight,Freight Rail,BEV,3000,3005
+VA,trn_freight,Freight Rail,BEV,3000,3005
+VT,trn_freight,Freight Rail,BEV,3000,3005
+WA,trn_freight,Freight Rail,BEV,3000,3005
+WI,trn_freight,Freight Rail,BEV,3000,3005
+WV,trn_freight,Freight Rail,BEV,3000,3005
+WY,trn_freight,Freight Rail,BEV,3000,3005
+USA,trn_freight,Freight Rail,BEV,3000,3005
+AK,trn_freight,Freight Rail,FCEV,3000,3005
+AL,trn_freight,Freight Rail,FCEV,3000,3005
+AR,trn_freight,Freight Rail,FCEV,3000,3005
+AZ,trn_freight,Freight Rail,FCEV,3000,3005
+CA,trn_freight,Freight Rail,FCEV,3000,3005
+CO,trn_freight,Freight Rail,FCEV,3000,3005
+CT,trn_freight,Freight Rail,FCEV,3000,3005
+DC,trn_freight,Freight Rail,FCEV,3000,3005
+DE,trn_freight,Freight Rail,FCEV,3000,3005
+FL,trn_freight,Freight Rail,FCEV,3000,3005
+GA,trn_freight,Freight Rail,FCEV,3000,3005
+HI,trn_freight,Freight Rail,FCEV,3000,3005
+IA,trn_freight,Freight Rail,FCEV,3000,3005
+ID,trn_freight,Freight Rail,FCEV,3000,3005
+IL,trn_freight,Freight Rail,FCEV,3000,3005
+IN,trn_freight,Freight Rail,FCEV,3000,3005
+KS,trn_freight,Freight Rail,FCEV,3000,3005
+KY,trn_freight,Freight Rail,FCEV,3000,3005
+LA,trn_freight,Freight Rail,FCEV,3000,3005
+MA,trn_freight,Freight Rail,FCEV,3000,3005
+MD,trn_freight,Freight Rail,FCEV,3000,3005
+ME,trn_freight,Freight Rail,FCEV,3000,3005
+MI,trn_freight,Freight Rail,FCEV,3000,3005
+MN,trn_freight,Freight Rail,FCEV,3000,3005
+MO,trn_freight,Freight Rail,FCEV,3000,3005
+MS,trn_freight,Freight Rail,FCEV,3000,3005
+MT,trn_freight,Freight Rail,FCEV,3000,3005
+NC,trn_freight,Freight Rail,FCEV,3000,3005
+ND,trn_freight,Freight Rail,FCEV,3000,3005
+NE,trn_freight,Freight Rail,FCEV,3000,3005
+NH,trn_freight,Freight Rail,FCEV,3000,3005
+NJ,trn_freight,Freight Rail,FCEV,3000,3005
+NM,trn_freight,Freight Rail,FCEV,3000,3005
+NV,trn_freight,Freight Rail,FCEV,3000,3005
+NY,trn_freight,Freight Rail,FCEV,3000,3005
+OH,trn_freight,Freight Rail,FCEV,3000,3005
+OK,trn_freight,Freight Rail,FCEV,3000,3005
+OR,trn_freight,Freight Rail,FCEV,3000,3005
+PA,trn_freight,Freight Rail,FCEV,3000,3005
+RI,trn_freight,Freight Rail,FCEV,3000,3005
+SC,trn_freight,Freight Rail,FCEV,3000,3005
+SD,trn_freight,Freight Rail,FCEV,3000,3005
+TN,trn_freight,Freight Rail,FCEV,3000,3005
+TX,trn_freight,Freight Rail,FCEV,3000,3005
+UT,trn_freight,Freight Rail,FCEV,3000,3005
+VA,trn_freight,Freight Rail,FCEV,3000,3005
+VT,trn_freight,Freight Rail,FCEV,3000,3005
+WA,trn_freight,Freight Rail,FCEV,3000,3005
+WI,trn_freight,Freight Rail,FCEV,3000,3005
+WV,trn_freight,Freight Rail,FCEV,3000,3005
+WY,trn_freight,Freight Rail,FCEV,3000,3005
+USA,trn_freight,Freight Rail,FCEV,3000,3005
+AK,trn_pass,Domestic Aviation,BEV,3000,3005
+AL,trn_pass,Domestic Aviation,BEV,3000,3005
+AR,trn_pass,Domestic Aviation,BEV,3000,3005
+AZ,trn_pass,Domestic Aviation,BEV,3000,3005
+CA,trn_pass,Domestic Aviation,BEV,3000,3005
+CO,trn_pass,Domestic Aviation,BEV,3000,3005
+CT,trn_pass,Domestic Aviation,BEV,3000,3005
+DC,trn_pass,Domestic Aviation,BEV,3000,3005
+DE,trn_pass,Domestic Aviation,BEV,3000,3005
+FL,trn_pass,Domestic Aviation,BEV,3000,3005
+GA,trn_pass,Domestic Aviation,BEV,3000,3005
+HI,trn_pass,Domestic Aviation,BEV,3000,3005
+IA,trn_pass,Domestic Aviation,BEV,3000,3005
+ID,trn_pass,Domestic Aviation,BEV,3000,3005
+IL,trn_pass,Domestic Aviation,BEV,3000,3005
+IN,trn_pass,Domestic Aviation,BEV,3000,3005
+KS,trn_pass,Domestic Aviation,BEV,3000,3005
+KY,trn_pass,Domestic Aviation,BEV,3000,3005
+LA,trn_pass,Domestic Aviation,BEV,3000,3005
+MA,trn_pass,Domestic Aviation,BEV,3000,3005
+MD,trn_pass,Domestic Aviation,BEV,3000,3005
+ME,trn_pass,Domestic Aviation,BEV,3000,3005
+MI,trn_pass,Domestic Aviation,BEV,3000,3005
+MN,trn_pass,Domestic Aviation,BEV,3000,3005
+MO,trn_pass,Domestic Aviation,BEV,3000,3005
+MS,trn_pass,Domestic Aviation,BEV,3000,3005
+MT,trn_pass,Domestic Aviation,BEV,3000,3005
+NC,trn_pass,Domestic Aviation,BEV,3000,3005
+ND,trn_pass,Domestic Aviation,BEV,3000,3005
+NE,trn_pass,Domestic Aviation,BEV,3000,3005
+NH,trn_pass,Domestic Aviation,BEV,3000,3005
+NJ,trn_pass,Domestic Aviation,BEV,3000,3005
+NM,trn_pass,Domestic Aviation,BEV,3000,3005
+NV,trn_pass,Domestic Aviation,BEV,3000,3005
+NY,trn_pass,Domestic Aviation,BEV,3000,3005
+OH,trn_pass,Domestic Aviation,BEV,3000,3005
+OK,trn_pass,Domestic Aviation,BEV,3000,3005
+OR,trn_pass,Domestic Aviation,BEV,3000,3005
+PA,trn_pass,Domestic Aviation,BEV,3000,3005
+RI,trn_pass,Domestic Aviation,BEV,3000,3005
+SC,trn_pass,Domestic Aviation,BEV,3000,3005
+SD,trn_pass,Domestic Aviation,BEV,3000,3005
+TN,trn_pass,Domestic Aviation,BEV,3000,3005
+TX,trn_pass,Domestic Aviation,BEV,3000,3005
+UT,trn_pass,Domestic Aviation,BEV,3000,3005
+VA,trn_pass,Domestic Aviation,BEV,3000,3005
+VT,trn_pass,Domestic Aviation,BEV,3000,3005
+WA,trn_pass,Domestic Aviation,BEV,3000,3005
+WI,trn_pass,Domestic Aviation,BEV,3000,3005
+WV,trn_pass,Domestic Aviation,BEV,3000,3005
+WY,trn_pass,Domestic Aviation,BEV,3000,3005
+USA,trn_pass,Domestic Aviation,BEV,3000,3005
+AK,trn_shipping_intl,International Ship,BEV,3000,3005
+AL,trn_shipping_intl,International Ship,BEV,3000,3005
+AR,trn_shipping_intl,International Ship,BEV,3000,3005
+AZ,trn_shipping_intl,International Ship,BEV,3000,3005
+CA,trn_shipping_intl,International Ship,BEV,3000,3005
+CO,trn_shipping_intl,International Ship,BEV,3000,3005
+CT,trn_shipping_intl,International Ship,BEV,3000,3005
+DC,trn_shipping_intl,International Ship,BEV,3000,3005
+DE,trn_shipping_intl,International Ship,BEV,3000,3005
+FL,trn_shipping_intl,International Ship,BEV,3000,3005
+GA,trn_shipping_intl,International Ship,BEV,3000,3005
+HI,trn_shipping_intl,International Ship,BEV,3000,3005
+IA,trn_shipping_intl,International Ship,BEV,3000,3005
+ID,trn_shipping_intl,International Ship,BEV,3000,3005
+IL,trn_shipping_intl,International Ship,BEV,3000,3005
+IN,trn_shipping_intl,International Ship,BEV,3000,3005
+KS,trn_shipping_intl,International Ship,BEV,3000,3005
+KY,trn_shipping_intl,International Ship,BEV,3000,3005
+LA,trn_shipping_intl,International Ship,BEV,3000,3005
+MA,trn_shipping_intl,International Ship,BEV,3000,3005
+MD,trn_shipping_intl,International Ship,BEV,3000,3005
+ME,trn_shipping_intl,International Ship,BEV,3000,3005
+MI,trn_shipping_intl,International Ship,BEV,3000,3005
+MN,trn_shipping_intl,International Ship,BEV,3000,3005
+MO,trn_shipping_intl,International Ship,BEV,3000,3005
+MS,trn_shipping_intl,International Ship,BEV,3000,3005
+MT,trn_shipping_intl,International Ship,BEV,3000,3005
+NC,trn_shipping_intl,International Ship,BEV,3000,3005
+ND,trn_shipping_intl,International Ship,BEV,3000,3005
+NE,trn_shipping_intl,International Ship,BEV,3000,3005
+NH,trn_shipping_intl,International Ship,BEV,3000,3005
+NJ,trn_shipping_intl,International Ship,BEV,3000,3005
+NM,trn_shipping_intl,International Ship,BEV,3000,3005
+NV,trn_shipping_intl,International Ship,BEV,3000,3005
+NY,trn_shipping_intl,International Ship,BEV,3000,3005
+OH,trn_shipping_intl,International Ship,BEV,3000,3005
+OK,trn_shipping_intl,International Ship,BEV,3000,3005
+OR,trn_shipping_intl,International Ship,BEV,3000,3005
+PA,trn_shipping_intl,International Ship,BEV,3000,3005
+RI,trn_shipping_intl,International Ship,BEV,3000,3005
+SC,trn_shipping_intl,International Ship,BEV,3000,3005
+SD,trn_shipping_intl,International Ship,BEV,3000,3005
+TN,trn_shipping_intl,International Ship,BEV,3000,3005
+TX,trn_shipping_intl,International Ship,BEV,3000,3005
+UT,trn_shipping_intl,International Ship,BEV,3000,3005
+VA,trn_shipping_intl,International Ship,BEV,3000,3005
+VT,trn_shipping_intl,International Ship,BEV,3000,3005
+WA,trn_shipping_intl,International Ship,BEV,3000,3005
+WI,trn_shipping_intl,International Ship,BEV,3000,3005
+WV,trn_shipping_intl,International Ship,BEV,3000,3005
+WY,trn_shipping_intl,International Ship,BEV,3000,3005
+USA,trn_shipping_intl,International Ship,BEV,3000,3005
+AK,trn_shipping_intl,International Ship,FCEV,3000,3005
+AL,trn_shipping_intl,International Ship,FCEV,3000,3005
+AR,trn_shipping_intl,International Ship,FCEV,3000,3005
+AZ,trn_shipping_intl,International Ship,FCEV,3000,3005
+CA,trn_shipping_intl,International Ship,FCEV,3000,3005
+CO,trn_shipping_intl,International Ship,FCEV,3000,3005
+CT,trn_shipping_intl,International Ship,FCEV,3000,3005
+DC,trn_shipping_intl,International Ship,FCEV,3000,3005
+DE,trn_shipping_intl,International Ship,FCEV,3000,3005
+FL,trn_shipping_intl,International Ship,FCEV,3000,3005
+GA,trn_shipping_intl,International Ship,FCEV,3000,3005
+HI,trn_shipping_intl,International Ship,FCEV,3000,3005
+IA,trn_shipping_intl,International Ship,FCEV,3000,3005
+ID,trn_shipping_intl,International Ship,FCEV,3000,3005
+IL,trn_shipping_intl,International Ship,FCEV,3000,3005
+IN,trn_shipping_intl,International Ship,FCEV,3000,3005
+KS,trn_shipping_intl,International Ship,FCEV,3000,3005
+KY,trn_shipping_intl,International Ship,FCEV,3000,3005
+LA,trn_shipping_intl,International Ship,FCEV,3000,3005
+MA,trn_shipping_intl,International Ship,FCEV,3000,3005
+MD,trn_shipping_intl,International Ship,FCEV,3000,3005
+ME,trn_shipping_intl,International Ship,FCEV,3000,3005
+MI,trn_shipping_intl,International Ship,FCEV,3000,3005
+MN,trn_shipping_intl,International Ship,FCEV,3000,3005
+MO,trn_shipping_intl,International Ship,FCEV,3000,3005
+MS,trn_shipping_intl,International Ship,FCEV,3000,3005
+MT,trn_shipping_intl,International Ship,FCEV,3000,3005
+NC,trn_shipping_intl,International Ship,FCEV,3000,3005
+ND,trn_shipping_intl,International Ship,FCEV,3000,3005
+NE,trn_shipping_intl,International Ship,FCEV,3000,3005
+NH,trn_shipping_intl,International Ship,FCEV,3000,3005
+NJ,trn_shipping_intl,International Ship,FCEV,3000,3005
+NM,trn_shipping_intl,International Ship,FCEV,3000,3005
+NV,trn_shipping_intl,International Ship,FCEV,3000,3005
+NY,trn_shipping_intl,International Ship,FCEV,3000,3005
+OH,trn_shipping_intl,International Ship,FCEV,3000,3005
+OK,trn_shipping_intl,International Ship,FCEV,3000,3005
+OR,trn_shipping_intl,International Ship,FCEV,3000,3005
+PA,trn_shipping_intl,International Ship,FCEV,3000,3005
+RI,trn_shipping_intl,International Ship,FCEV,3000,3005
+SC,trn_shipping_intl,International Ship,FCEV,3000,3005
+SD,trn_shipping_intl,International Ship,FCEV,3000,3005
+TN,trn_shipping_intl,International Ship,FCEV,3000,3005
+TX,trn_shipping_intl,International Ship,FCEV,3000,3005
+UT,trn_shipping_intl,International Ship,FCEV,3000,3005
+VA,trn_shipping_intl,International Ship,FCEV,3000,3005
+VT,trn_shipping_intl,International Ship,FCEV,3000,3005
+WA,trn_shipping_intl,International Ship,FCEV,3000,3005
+WI,trn_shipping_intl,International Ship,FCEV,3000,3005
+WV,trn_shipping_intl,International Ship,FCEV,3000,3005
+WY,trn_shipping_intl,International Ship,FCEV,3000,3005
+USA,trn_shipping_intl,International Ship,FCEV,3000,3005

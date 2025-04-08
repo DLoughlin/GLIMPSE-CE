@@ -1,0 +1,10 @@
+# File: A_bio_subsector.csv
+# Title: Bioenergy subsector information
+# Description: Subsector information for bio trade 
+# Source: NA
+# Unit: NA
+# Column types: ccnnnn
+# ----------
+supplysector,subsector,1975,2020,2050,2100
+total biomass,domestic biomass,1,1,1,1
+total biomass,imported biomass,0.1,0.1,1,1

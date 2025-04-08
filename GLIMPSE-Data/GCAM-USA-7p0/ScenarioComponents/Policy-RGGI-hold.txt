@@ -1,0 +1,5 @@
+@type=xmllist
+..\..\..\Contrib\Policies\RGGI\gcam5p4_co2_elec.xml
+..\..\..\Contrib\Policies\RGGI\gcam5p4_co2_elec2.xml
+..\..\..\Contrib\Policies\RGGI\RGGIwVANJ_Thru2020.xml
+..\..\..\Contrib\Policies\RGGI\RGGIwVANJ_2025-30-hold.xml

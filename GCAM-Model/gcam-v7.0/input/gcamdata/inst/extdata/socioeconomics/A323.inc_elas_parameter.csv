@@ -1,0 +1,38 @@
+# File: A323.inc_elas_parameter.csv
+# Title: IRONSTL demand income elasticity as a function of  per capita steel=a*exp(b/per-capita gdp)*((1-m)^(T-base year))
+# Units: pcgdp_90thousUSD: Thousand 1990$; inc_elas:unitless (% change in service demand / % change in income
+# Column types: cnnn
+# ----------
+region,a,b,m
+Africa_Eastern,300,-2179,0.0088
+Africa_Northern,616,-4105,0.0088
+Africa_Southern,616,-3000,0.0088
+Africa_Western,100,-1500,0.0088
+Argentina,616,-11867,0.0088
+Australia_NZ,299,-6848,0.0088
+Brazil,616,-11585,0.0088
+Canada,574,-6848,0.0088
+Central America and Caribbean,616,-8636,0.0088
+Central Asia,616,-5638,0.0088
+China,1160,-2360,0.0030
+Colombia,616,-11311,0.0088
+EU-12,616,-4389,0.0088
+EU-15,428,-6848,0.0088
+Europe_Eastern,616,-3338,0.0088
+Europe_Non_EU,616,-3581,0.0088
+European Free Trade Association,375,-6848,0.0088
+India,616,-3106,0.0088
+Indonesia,616,-6632,0.0088
+Japan,668,-6848,0.0088
+Mexico,616,-7115,0.0088
+Middle East,350,-3000,0.0088
+Pakistan,350,-2268,0.0088
+Russia,616,-3895,0.0088
+South Africa,616,-9998,0.0088
+South America_Northern,616,-12495,0.0088
+South America_Southern,616,-9624,0.0088
+South Asia,500,-2525,0.0088
+South Korea,1627,-8222,0.0030
+Southeast Asia,616,-3652,0.0088
+Taiwan,1592,-6848,0.0088
+USA,373,-6848,0.0088

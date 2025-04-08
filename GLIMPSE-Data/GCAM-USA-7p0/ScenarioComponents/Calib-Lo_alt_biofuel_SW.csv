@@ -1,0 +1,2499 @@
+########## Scenario Component Metadata ##########
+#Scenario component type: Sector Share
+#Sector: biomass liquids
+#Technologies: biomass liquids : biomass liquids : cellulosic ethanol;biomass liquids : biomass liquids : cellulosic ethanol CCS level 1;biomass liquids : biomass liquids : cellulosic ethanol CCS level 2;biomass liquids : biomass liquids : FT biofuels;biomass liquids : biomass liquids : FT biofuels CCS level 1;biomass liquids : biomass liquids : FT biofuels CCS level 2;
+#Parameter: Shareweight
+#Regions: AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY,USA
+#Table data:2020 , 0.0100
+#Table data:2025 , 0.0157
+#Table data:2030 , 0.0214
+#Table data:2035 , 0.0271
+#Table data:2040 , 0.0329
+#Table data:2045 , 0.0386
+#Table data:2050 , 0.0443
+#Table data:2055 , 0.0500
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+AK,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+AL,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+AR,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+AZ,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+CA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+CO,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+CT,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+DC,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+DE,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+FL,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+GA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+HI,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+IA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+ID,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+IL,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+IN,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+KS,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+KY,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+LA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MD,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+ME,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MI,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MN,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MO,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MS,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+MT,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NC,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+ND,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NE,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NH,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NJ,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NM,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NV,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+NY,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+OH,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+OK,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+OR,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+PA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+RI,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+SC,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+SD,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+TN,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+TX,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+UT,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+VA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+VT,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+WA,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+WI,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+WV,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2020,0.0100
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2025,0.0157
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2030,0.0214
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2035,0.0271
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2040,0.0329
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2045,0.0386
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2050,0.0443
+WY,biomass liquids,biomass liquids,cellulosic ethanol,2055,0.0500
+
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2020,0.0100
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2025,0.0157
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2030,0.0214
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2035,0.0271
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2040,0.0329
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2045,0.0386
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2050,0.0443
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 1,2055,0.0500
+
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+AK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+AL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+AR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+AZ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+CA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+CO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+CT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+DC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+DE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+FL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+GA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+HI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+IA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+ID,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+IL,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+IN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+KS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+KY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+LA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+ME,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MO,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MS,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+MT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+ND,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NE,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NJ,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NM,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+NY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+OH,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+OK,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+OR,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+PA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+RI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+SC,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+SD,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+TN,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+TX,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+UT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+VA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+VT,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+WA,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+WI,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+WV,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2020,0.0100
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2025,0.0157
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2030,0.0214
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2035,0.0271
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2040,0.0329
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2045,0.0386
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2050,0.0443
+WY,biomass liquids,biomass liquids,cellulosic ethanol CCS level 2,2055,0.0500
+
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+AK,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+AK,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+AK,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+AK,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+AK,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+AK,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+AK,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+AL,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+AL,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+AL,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+AL,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+AL,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+AL,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+AL,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+AL,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+AR,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+AR,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+AR,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+AR,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+AR,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+AR,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+AR,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+AR,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+AZ,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+AZ,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+AZ,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+AZ,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+AZ,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+AZ,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+AZ,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+AZ,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+CA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+CA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+CA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+CA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+CA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+CA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+CA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+CA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+CO,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+CO,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+CO,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+CO,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+CO,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+CO,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+CO,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+CO,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+CT,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+CT,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+CT,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+CT,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+CT,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+CT,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+CT,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+CT,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+DC,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+DC,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+DC,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+DC,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+DC,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+DC,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+DC,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+DC,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+DE,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+DE,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+DE,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+DE,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+DE,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+DE,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+DE,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+DE,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+FL,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+FL,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+FL,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+FL,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+FL,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+FL,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+FL,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+FL,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+GA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+GA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+GA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+GA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+GA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+GA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+GA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+GA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+HI,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+HI,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+HI,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+HI,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+HI,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+HI,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+HI,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+HI,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+IA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+IA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+IA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+IA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+IA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+IA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+IA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+IA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+ID,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+ID,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+ID,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+ID,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+ID,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+ID,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+ID,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+ID,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+IL,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+IL,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+IL,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+IL,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+IL,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+IL,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+IL,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+IL,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+IN,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+IN,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+IN,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+IN,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+IN,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+IN,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+IN,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+IN,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+KS,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+KS,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+KS,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+KS,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+KS,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+KS,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+KS,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+KS,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+KY,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+KY,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+KY,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+KY,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+KY,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+KY,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+KY,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+KY,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+LA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+LA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+LA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+LA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+LA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+LA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+LA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+LA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MD,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MD,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MD,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MD,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MD,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MD,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MD,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MD,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+ME,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+ME,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+ME,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+ME,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+ME,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+ME,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+ME,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+ME,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MI,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MI,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MI,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MI,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MI,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MI,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MI,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MI,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MN,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MN,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MN,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MN,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MN,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MN,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MN,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MN,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MO,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MO,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MO,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MO,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MO,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MO,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MO,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MO,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MS,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MS,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MS,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MS,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MS,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MS,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MS,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MS,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+MT,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+MT,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+MT,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+MT,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+MT,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+MT,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+MT,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+MT,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NC,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NC,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NC,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NC,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NC,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NC,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NC,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NC,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+ND,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+ND,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+ND,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+ND,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+ND,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+ND,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+ND,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+ND,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NE,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NE,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NE,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NE,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NE,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NE,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NE,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NE,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NH,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NH,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NH,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NH,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NH,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NH,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NH,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NH,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NJ,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NJ,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NJ,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NJ,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NJ,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NJ,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NJ,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NJ,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NM,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NM,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NM,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NM,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NM,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NM,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NM,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NM,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NV,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NV,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NV,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NV,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NV,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NV,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NV,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NV,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+NY,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+NY,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+NY,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+NY,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+NY,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+NY,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+NY,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+NY,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+OH,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+OH,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+OH,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+OH,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+OH,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+OH,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+OH,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+OH,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+OK,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+OK,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+OK,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+OK,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+OK,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+OK,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+OK,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+OK,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+OR,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+OR,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+OR,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+OR,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+OR,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+OR,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+OR,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+OR,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+PA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+PA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+PA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+PA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+PA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+PA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+PA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+PA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+RI,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+RI,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+RI,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+RI,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+RI,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+RI,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+RI,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+RI,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+SC,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+SC,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+SC,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+SC,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+SC,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+SC,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+SC,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+SC,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+SD,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+SD,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+SD,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+SD,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+SD,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+SD,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+SD,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+SD,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+TN,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+TN,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+TN,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+TN,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+TN,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+TN,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+TN,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+TN,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+TX,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+TX,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+TX,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+TX,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+TX,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+TX,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+TX,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+TX,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+UT,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+UT,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+UT,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+UT,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+UT,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+UT,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+UT,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+UT,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+VA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+VA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+VA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+VA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+VA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+VA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+VA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+VA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+VT,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+VT,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+VT,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+VT,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+VT,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+VT,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+VT,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+VT,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+WA,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+WA,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+WA,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+WA,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+WA,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+WA,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+WA,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+WA,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+WI,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+WI,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+WI,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+WI,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+WI,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+WI,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+WI,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+WI,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+WV,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+WV,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+WV,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+WV,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+WV,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+WV,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+WV,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+WV,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+WY,biomass liquids,biomass liquids,FT biofuels,2020,0.0100
+WY,biomass liquids,biomass liquids,FT biofuels,2025,0.0157
+WY,biomass liquids,biomass liquids,FT biofuels,2030,0.0214
+WY,biomass liquids,biomass liquids,FT biofuels,2035,0.0271
+WY,biomass liquids,biomass liquids,FT biofuels,2040,0.0329
+WY,biomass liquids,biomass liquids,FT biofuels,2045,0.0386
+WY,biomass liquids,biomass liquids,FT biofuels,2050,0.0443
+WY,biomass liquids,biomass liquids,FT biofuels,2055,0.0500
+
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2020,0.0100
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2025,0.0157
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2030,0.0214
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2035,0.0271
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2040,0.0329
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2045,0.0386
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2050,0.0443
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 1,2055,0.0500
+
+INPUT_TABLE
+Variable ID
+GLIMPSEStubTechShrwt
+
+region,sector,subsector1=>subsector2,technology,year,data
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+AK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+AL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+AR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+AZ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+CA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+CO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+CT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+DC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+DE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+FL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+GA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+HI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+IA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+ID,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+IL,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+IN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+KS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+KY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+LA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+ME,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MO,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MS,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+MT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+ND,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NE,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NJ,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NM,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+NY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+OH,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+OK,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+OR,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+PA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+RI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+SC,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+SD,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+TN,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+TX,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+UT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+VA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+VT,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+WA,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+WI,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+WV,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2020,0.0100
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2025,0.0157
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2030,0.0214
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2035,0.0271
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2040,0.0329
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2045,0.0386
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2050,0.0443
+WY,biomass liquids,biomass liquids,FT biofuels CCS level 2,2055,0.0500
+

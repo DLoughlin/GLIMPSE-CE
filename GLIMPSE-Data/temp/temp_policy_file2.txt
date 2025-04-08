@@ -1,0 +1,12 @@
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStdAdjCoef-Nest
+
+region,sector,nested-subsector,tech,year,policy,adjcoef-year,adjcoef
+
+INPUT_TABLE
+Variable ID
+GLIMPSEPFStd2ndOut-Nest
+
+region,sector,nested-subsector,subsector,tech,year,policy,output-ratio,pMultiplier

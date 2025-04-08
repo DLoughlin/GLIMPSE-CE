@@ -1,0 +1,261 @@
+############ Scenario Component Meta-Data ############
+#Scenario component type: Tech Avail
+#Bound:Never>false,Range>true,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Car  :  FCEV  :  million pass-km
+#Bound:Never>false,Range>true,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Large Car and Truck  :  FCEV  :  million pass-km
+#Bound:Never>false,Range>true,First>1975,Last>2015,Tech>trn_pass_road_LDV_4W  :  Mini Car  :  FCEV  :  million pass-km
+#Regions: AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY,USA,Canada,Central America and Caribbean,Mexico,Brazil,South America_Northern,South America_Southern,Argentina,Colombia,EU-15,EU-12,European Free Trade Association,Europe_Eastern,Europe_Non_EU,Africa_Eastern,Africa_Northern,Africa_Southern,Africa_Western,South Africa,Middle East,Central Asia,Russia,Pakistan,India,South Asia,China,Taiwan,South Korea,Japan,Southeast Asia,Indonesia,Australia_NZ
+######################################################
+INPUT_TABLE
+Variable ID
+GLIMPSETechAvailBnd
+
+region,sector,subsector,tech,init-year,final-year
+AK,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+AL,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+AR,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+AZ,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+CA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+CO,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+CT,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+DC,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+DE,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+FL,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+GA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+HI,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+IA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+ID,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+IL,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+IN,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+KS,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+KY,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+LA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MD,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+ME,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MI,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MN,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MO,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MS,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+MT,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NC,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+ND,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NE,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NH,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NJ,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NM,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NV,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+NY,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+OH,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+OK,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+OR,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+PA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+RI,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+SC,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+SD,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+TN,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+TX,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+UT,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+VA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+VT,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+WA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+WI,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+WV,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+WY,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+USA,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Canada,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Central America and Caribbean,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Mexico,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Brazil,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+South America_Northern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+South America_Southern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Argentina,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Colombia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+EU-15,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+EU-12,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+European Free Trade Association,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Europe_Eastern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Europe_Non_EU,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Africa_Eastern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Africa_Northern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Africa_Southern,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Africa_Western,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+South Africa,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Middle East,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Central Asia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Russia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Pakistan,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+India,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+South Asia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+China,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Taiwan,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+South Korea,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Japan,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Southeast Asia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Indonesia,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+Australia_NZ,trn_pass_road_LDV_4W,Car,FCEV,1975,2015
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+USA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Canada,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Central America and Caribbean,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Mexico,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Brazil,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+South America_Northern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+South America_Southern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Argentina,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Colombia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+EU-15,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+EU-12,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+European Free Trade Association,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Europe_Eastern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Europe_Non_EU,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Africa_Eastern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Africa_Northern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Africa_Southern,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Africa_Western,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+South Africa,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Middle East,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Central Asia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Russia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Pakistan,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+India,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+South Asia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+China,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Taiwan,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+South Korea,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Japan,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Southeast Asia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Indonesia,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+Australia_NZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,1975,2015
+AK,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+AL,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+AR,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+AZ,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+CA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+CO,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+CT,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+DC,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+DE,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+FL,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+GA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+HI,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+IA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+ID,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+IL,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+IN,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+KS,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+KY,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+LA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MD,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+ME,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MI,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MN,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MO,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MS,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+MT,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NC,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+ND,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NE,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NH,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NJ,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NM,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NV,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+NY,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+OH,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+OK,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+OR,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+PA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+RI,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+SC,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+SD,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+TN,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+TX,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+UT,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+VA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+VT,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+WA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+WI,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+WV,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+WY,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+USA,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Canada,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Central America and Caribbean,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Mexico,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Brazil,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+South America_Northern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+South America_Southern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Argentina,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Colombia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+EU-15,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+EU-12,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+European Free Trade Association,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Europe_Eastern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Europe_Non_EU,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Africa_Eastern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Africa_Northern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Africa_Southern,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Africa_Western,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+South Africa,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Middle East,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Central Asia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Russia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Pakistan,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+India,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+South Asia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+China,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Taiwan,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+South Korea,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Japan,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Southeast Asia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Indonesia,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015
+Australia_NZ,trn_pass_road_LDV_4W,Mini Car,FCEV,1975,2015

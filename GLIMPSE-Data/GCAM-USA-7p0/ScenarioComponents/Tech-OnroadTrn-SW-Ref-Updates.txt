@@ -1,0 +1,7 @@
+@type=xmllist
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\HDV_BEV_NewSW-1x2050.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\HDV_FCEV_NewSW-1x2055.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\HDV_Hyb_NewSW-1x2035.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\LDV_BEV_NewSW-1x2035.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\LDV_FCEV_NewSW-1x2050.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\LDV_Hyb_NewSW-1x2025.xml

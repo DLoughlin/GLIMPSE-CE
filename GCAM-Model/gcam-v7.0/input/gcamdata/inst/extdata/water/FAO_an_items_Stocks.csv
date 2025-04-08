@@ -1,0 +1,30 @@
+# File: FAO_an_items_Stocks.csv
+# Title: FAO and MH2010 animal product item names
+# Units: NA
+# Description: FAO (QCL dataset) animal stock and milk animal mapping
+# Date of last update: 2022-03-15 (XZ)
+# Column types: ciccc 
+# ----------
+item,item_code,GCAM_commodity,Animal,dairy.to.total
+"Milk, whole fresh cow",882,Dairy,Dairy cattle,Cattle
+"Milk, whole fresh sheep",982,Dairy,Dairy cattle,Sheep
+"Milk, whole fresh goat",1020,Dairy,Dairy cattle,Goats
+"Milk, whole fresh camel",1130,Dairy,Dairy cattle,Camels
+"Milk, whole fresh buffalo",951,Dairy,Dairy cattle,Buffaloes
+Cattle,866,Beef,Beef cattle,
+Buffaloes,946,Beef,Beef cattle,
+Sheep,976,SheepGoat,Sheep,
+Goats,1016,SheepGoat,Goat,
+Pigs,1034,Pork,Pig,
+Horses,1096,OtherMeat_Fish,Horse,
+Asses,1107,OtherMeat_Fish,Horse,
+Mules,1110,OtherMeat_Fish,Horse,
+Chickens,1057,Poultry,Broiler chicken,
+Turkeys,1079,Poultry,Broiler chicken,
+Rabbits and hares,1140,OtherMeat_Fish,,
+Beehives,1181,,,
+Camels,1126,OtherMeat_Fish,Horse,
+Ducks,1068,Poultry,Broiler chicken,
+Geese and guinea fowls,1072,Poultry,Broiler chicken,
+"Camelids, other",1157,OtherMeat_Fish,,
+"Rodents, other",1150,OtherMeat_Fish,,

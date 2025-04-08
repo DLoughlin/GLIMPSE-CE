@@ -1,0 +1,38 @@
+# File: usa_seawater_states_basins.csv
+# Title: USA states and basins which have direct access to seawater
+# Units: N/A
+# Comments: This table lists the various states or basins which have direct seawater access to help filter desalination and seawater cooling technologies
+# Column types: cc
+# ----------
+region,seawater_region
+USA,PacArctic
+USA,UsaCstSE
+USA,MissppRS
+USA,UsaPacNW
+USA,California
+USA,UsaCstE
+USA,UsaCstNE
+USA,TexasCst
+USA,AK
+USA,WA
+USA,OR
+USA,CA
+USA,TX
+USA,LA
+USA,MS
+USA,AL
+USA,FL
+USA,GA
+USA,SC
+USA,NC
+USA,VA
+USA,DE
+USA,MD
+USA,NJ
+USA,NY
+USA,CT
+USA,RI
+USA,MA
+USA,NH
+USA,ME
+USA,HI

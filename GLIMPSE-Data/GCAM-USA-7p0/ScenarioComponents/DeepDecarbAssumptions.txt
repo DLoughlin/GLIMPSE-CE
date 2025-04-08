@@ -1,0 +1,11 @@
+@type=xmllist
+..\..\..\Contrib\DeepDecarb\Elasticities\PriceElasticity_intl_aviation_USAp0.xml
+..\..\..\Contrib\DeepDecarb\Elasticities\IndustrialEnergyUse.PriceElasticity_ind_USAp0.xml
+..\..\..\Contrib\DeepDecarb\TrnShareweightUpdates-Decarb\Delete-TrnTechSWs-Rules-SCurve.xml
+..\..\..\Contrib\DeepDecarb\TrnShareweightUpdates-Decarb\Delete-TrnTechSWs-Rules-Linear.xml
+..\..\..\Contrib\DeepDecarb\TrnShareweightUpdates-Decarb\trn-tech-SWs-setTo1-from2020.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\Calib-ALMTrn-ElecRail-SW-Ref-eliminate.xml
+..\..\..\Contrib\DeepDecarb\TrnShareweightUpdates-Decarb\DeepDecarb-transport_shareweight_rules_yearAt1.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\Calib-NoOnroadCNGLDV.xml
+..\..\..\Contrib\TechUpdates\transportation\ShareweightUpdates\Calib-NoOnroadCNGFreight.xml
+..\..\..\Contrib\DeepDecarb\CO2Tax-ROW\Policy-ROW-CTax-25dpt5pct.xml

@@ -1,0 +1,9 @@
+# File: A_fuelprefElasticity_ssp1.csv
+# Title: Fuel preference elasticities for SSP1 meat demand
+# Unit: NA
+# Description: Fuel preference elasticities for SSP1 meat demand
+# Source: GCAM assumptions
+# Column types: cccn
+# ----------
+supplysector,subsector0,subsector,fuelprefElasticity
+FoodDemand_NonStaples,Protein,Animal,-0.75

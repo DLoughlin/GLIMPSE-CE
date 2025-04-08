@@ -1,0 +1,4 @@
+@type=xmllist
+..\..\..\Contrib\Policies\RPS\RPS_Central_2020Only.xml
+..\..\..\Contrib\Policies\RPS\RPS_East_01122021_updatedNE_2020Only.xml
+..\..\..\Contrib\Policies\RPS\RPS_West_2020Only.xml

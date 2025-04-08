@@ -1,0 +1,21 @@
+@type=xmllist
+..\..\..\Contrib\Policies\IRA\13101-13102 - PTC-ITC\itc_IRA_2050.xml
+..\..\..\Contrib\Policies\IRA\13101-13102 - PTC-ITC\ptc_IRA_2050.xml
+..\input\gcamdata\xml\dac_ssp2.xml
+..\input\gcamdata\xml\dac_USA_ssp2.xml
+..\..\..\Contrib\Policies\IRA\13104 - 45Q\45Q_GCAMUSAv6\45Q_mid_GCAMUSA_MB.xml
+..\..\..\Contrib\Policies\IRA\13104 - 45Q\carbon_tax_GCAM_USA_0p01.xml
+..\..\..\Contrib\Policies\IRA\13301-13304 - Energy Property Credit and Energy Efficient Home Credit (45L)\building_eff_improvement_IRA_13304.xml
+..\..\..\Contrib\Policies\IRA\50122 - High-efficiency electric home rebate\GlobalTechCost_bld_gcamusa_elec_subsidy.xml
+..\..\..\Contrib\Policies\IRA\13303 - Energy efficient commercial buildings deduction\GlobalTechCost_bld_gcamusa_comm_credit.xml
+..\..\..\Contrib\Policies\IRA\13204 - H2 subsidy\H2_IRA_subsidy_mid.xml
+..\..\..\Contrib\Policies\IRA\13401 - 30D EV tax credit\GCAM-USA input files\IRA_30D_EV_tax-credits_medium_state.xml
+..\..\..\Contrib\Policies\IRA\13401 - 30D EV tax credit\GCAM-USA input files\IRA_45W_truck_tax-credits_state.xml
+..\..\..\Contrib\Policies\IRA\13403 - 45W commercial EV credits\GCAM-USA input files\IRA_45W_truck_tax-credits_state.xml
+..\..\..\Contrib\Policies\IRA\13404 - alt refueling property credit\GCAM-USA input files\IRA_alt_refuel_prop-credit_EV_charging_state.xml
+..\..\..\Contrib\Policies\IRA\13201-13203 - biofuel subsidies\IRA_biofuels_GCAM.xml
+..\..\..\Contrib\Policies\IRA\60113 - Methane Emissions Reduction Program (fee)\US_resource_CH4_MAC_med.xml
+..\..\..\Contrib\Policies\IRA\60113 - Methane Emissions Reduction Program (fee)\US_resource_CH4_tax.xml
+..\..\..\Contrib\Policies\IRA\21001 - Agriculture methane\US_livestock_CH4_MAC.xml
+..\..\..\Contrib\Policies\IRA\21001 - Agriculture methane\US_livestock_CH4_tax.xml
+..\..\..\Contrib\Policies\IRA\13302 - Residential clean energy credit\rooftopPV_building_ITC_13302.xml

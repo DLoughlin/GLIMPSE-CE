@@ -1,0 +1,57 @@
+# File: A44.satiation_flsp.csv
+# Title: Assumed satiation levels of floorspace
+# Units: m2 per capita
+# Column types: ci
+# ----------
+state,comm
+AK,27
+AL,27
+AR,27
+AZ,27
+CA,27
+CO,27
+CT,27
+DC,27
+DE,27
+FL,27
+GA,27
+HI,27
+IA,27
+ID,27
+IL,27
+IN,27
+KS,27
+KY,27
+LA,27
+MA,27
+MD,27
+ME,27
+MI,27
+MN,27
+MO,27
+MS,27
+MT,27
+NC,27
+ND,27
+NE,27
+NH,27
+NJ,27
+NM,27
+NV,27
+NY,27
+OH,27
+OK,27
+OR,27
+PA,27
+RI,27
+SC,27
+SD,27
+TN,27
+TX,27
+UT,27
+VA,27
+VT,27
+WA,27
+WI,27
+WV,27
+WY,27
