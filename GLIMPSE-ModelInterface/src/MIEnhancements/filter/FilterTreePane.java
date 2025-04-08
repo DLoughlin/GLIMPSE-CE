@@ -186,7 +186,7 @@ public class FilterTreePane {
 			
 			//Dan: testing some font options to avoid scaling problems; setup below works on EPA VM
 			//tree.setFont(tree.getFont().deriveFont(14F));
-			tree.setRowHeight(tree.getFont().getSize()+5);
+			tree.setRowHeight(tree.getFont().getSize()+13);
 
 			TreeNode root = (TreeNode) tree.getModel().getRoot();
 			TreePath tPath = new TreePath(root);

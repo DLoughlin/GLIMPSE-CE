@@ -203,6 +203,7 @@ public class InterfaceMain implements ActionListener {
 		
 		//we want this to always be in root of run environment
 		propertiesFile = new File("model_interface.properties");
+		System.out.println("Getting model properties from "+propertiesFile.getAbsolutePath());
 		
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 			public void uncaughtException(Thread t, Throwable e) {
@@ -363,6 +364,7 @@ public class InterfaceMain implements ActionListener {
 			if(loc.exists() && loc.isDirectory()) {
 				System.out.println("Found absolute map path at "+loc.getAbsolutePath());
 				shapeFileLocationPrefix=loc.getAbsolutePath();
+				enableMapping=true;
 			}else {
 				System.out.println("Could not find any maps, disabling mapping option");
 				enableMapping = false;
