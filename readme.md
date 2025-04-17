@@ -21,6 +21,7 @@ Several additional notes for consideration:
 * When naming folders, scenarios, and scenario components, please use alpha-numerical characters, as well as "_" or "-". Spaces or special characters such as ">", "\", "%", or "$" may cause problems when the GLIMPSE software parses the text.
 * Windows limits file paths to 256 characters. Because GLIMPSE and GCAM involve many nested folders, some users have experienced problems when installing GLIMPSE to a folder that has a long path. We recommend installing in a location such as C:\Projects\GLIMPSE or C:\Users\USERNAME\local_folder to avoid this problem.     
 * As indicated in the Users' Guide, please do not install GLIMPSE to a location that is continuously backed up, such as OneDrive, as this may lead to model execution and synchronization issues.
+* The Contrib folder includes files that exceed GitHub size limits if it is unzipped. Unzip this folder after downloading to have access to its contents.  
 
 ## For more information and to keep up with GLIMPSE developments
 
