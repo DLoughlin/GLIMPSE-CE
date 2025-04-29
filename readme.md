@@ -4,6 +4,8 @@
 
 GLIMPSE (GCAM Long-term Interactive Multi-Pollutant Scenario Evaluator; https://epa.gov/glimpse) is a graphical user interface for GCAM (Global Change Analysis Model; https://github.com/JGCRI/gcam-core), and open-source human-Earth systems model. GCAM is not itself an EPA product. GCAM development is organized by the Joint Global Change Research Institute (JGCRI; https://www.pnnl.gov/jgcri).  
 
+Please note: EPA's GLIMPSE is a separate project from PNNL's GLIMPSE, which is a tool for visualizing power grids and not related to GCAM or integrated assessment modeling. 
+
 ## Requirements
 
 We recommend installation on computers with 20 GB of RAM or more and with more than 100 GB of free hard disk space. GLIMPSE consists of two major components: the GLIMPSE-ScenarioBuilder and the GLIMPSE-ModelInterface. The GLIMPSE-ScenarioBuilder currently requires Windows 10 or Windows 11. The GLIMPSE-ModelInterface can be used independently and has been succesfully tested on Mac and Linux operating systems. 
