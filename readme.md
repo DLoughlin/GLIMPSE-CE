@@ -10,7 +10,7 @@ Please note: EPA's GLIMPSE is a separate project from PNNL's GLIMPSE, which is a
 
 We recommend installation on computers with 20 GB of RAM or more and with more than 100 GB of free hard disk space. GLIMPSE consists of two major components: the GLIMPSE-ScenarioBuilder and the GLIMPSE-ModelInterface. The GLIMPSE-ScenarioBuilder currently requires Windows 10 or Windows 11 (although a Mac/Linux version is under development). The GLIMPSE-ModelInterface can be used independently and has been succesfully tested on Mac and Linux operating systems. 
 
-## Getting started with GLIMPSE
+## Important information
 
 Please see the User's Guide, which can be found in the Docs folder, for installation instructions. We also recommend the tutorials as a good starting place for learning to operate many of GLIMPSE's features. Training materials are currently being revised, but we expect that they will be available on https://epa.gov/glimpse at a later date. 
 
@@ -23,7 +23,12 @@ Several additional notes for consideration:
 * When naming folders, scenarios, and scenario components, please use alpha-numerical characters, as well as "_" or "-". Spaces or special characters such as ">", "\", "%", or "$" may cause problems when the GLIMPSE software parses the text.
 * Windows limits file paths to 256 characters. Because GLIMPSE and GCAM involve many nested folders, some users have experienced problems when installing GLIMPSE to a folder that has a long path. We recommend installing in a location such as C:\Projects\GLIMPSE or C:\Users\USERNAME\local_folder to avoid this problem.     
 * As indicated in the Users' Guide, please do not install GLIMPSE to a location that is continuously backed up, such as OneDrive, as this may lead to model execution and synchronization issues.
-* The Contrib folder includes files that exceed GitHub size limits if it is unzipped. Unzip this folder after downloading to have access to its contents.  
+* The Contrib folder includes files that exceed GitHub size limits if it is unzipped. Unzip this folder after downloading to have access to its contents.
+
+## Starting GLIMPSE
+
+* To start GLIMPSE configured for GCAM-USA 7.0, double-click on "run_GLIMPSE_GCAM-USA-7.0.bat". The tutorials in the Users' Guide have been developed to work with this version.
+* To start GLIMPSE configured for global GCAM 7.0, double-click on "run_GLIMPSE_GCAM-global-7.0.bat". This version has not been tested to the same degree, and the Scenario Component Library is includes only a single component.
 
 ## For more information and to keep up with GLIMPSE developments
 
