@@ -16,6 +16,7 @@ Please see the User's Guide, which can be found in the Docs folder, for installa
 
 Several additional notes for consideration: 
 
+* You can find the full GLIMPSE downloadable package at the "Releases" link to the right (GLIMPSE-Full-Windows-v1.x.zip). Those who would like to use the GLIMPSE-ModelInterface independently from the rest of the GLIMPSE package can download that executable and associated files (GLIMPSE-ModelInterface-Only-Windowms-v1.x.zip). 
 * Please do not install GLIMPSE in a folder that includes spaces in its full path. 
 * It is recommended that you modify your computer's power settings such that it will not go to sleep while GCAM is running.
 * Please wait for the GLIMPSE-v*.*.zip file to fully download before unzipping.
