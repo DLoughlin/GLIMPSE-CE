@@ -321,7 +321,7 @@ public class InterfaceMain implements ActionListener {
 			unitFileLocation = (String) opts.valueOf("u");
 		} else {
 			// also look in the current directory
-			File f = new File("units_rules.csv");
+			File f = new File("config"+File.separator+"units_rules.csv");
 			if (f.exists()) {
 				unitFileLocation = f.getAbsolutePath();
 			}
@@ -333,8 +333,9 @@ public class InterfaceMain implements ActionListener {
 			presetRegionListLocation = (String) opts.valueOf("p");
 			//System.out.println("found the preset region list file from the command line: " + presetRegionListLocation);
 		} else {
-			// also look in the current directory
-			File f_preset = new File("preset_region_list.txt");
+			// also look in the current config directory
+			File f_preset = new File("config"+File.separator+"preset_region_list.txt");
+					
 			if (f_preset.exists()) {
 				presetRegionListLocation = f_preset.getAbsolutePath();
 				//System.out.println("found the region list file: " + presetRegionListLocation);
@@ -346,7 +347,7 @@ public class InterfaceMain implements ActionListener {
 			//System.out.println("found the favorite queries file from the command line: " + favoriteQueriesFileLocation);
 		} else {
 			// also look in the current directory
-			File f_favorite = new File("favorite_queries_list.txt");
+			File f_favorite = new File("config"+File.separator+"favorite_queries_list.txt");
 			if (f_favorite.exists()) {
 				favoriteQueriesFileLocation = f_favorite.getAbsolutePath();
 				//System.out.println("found the favorite queries file: " + favoriteQueriesFileLocation);
