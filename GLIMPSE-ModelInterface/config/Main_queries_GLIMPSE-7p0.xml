@@ -2402,7 +2402,7 @@
 					</level>
 				</labelRewriteList>
 			</supplyDemandQuery>
-		  </queryGroup>
+		  </queryGroup> 
 		  <queryGroup name="output">
 			<supplyDemandQuery title="Electricity generation by region (centralized)">
 				<axis1 name="region">region</axis1>
