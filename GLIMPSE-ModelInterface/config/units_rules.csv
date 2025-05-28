@@ -48,7 +48,12 @@ million90$,million2020$,1.98,Prices of all markets (2020$s),,,,,,,,
 1990$/GJ,2020$/gal,0.261,Refined liquid prices (2020$/gal),,,,,,,,
 1975$/GJ,2020$/gal,0.551,Refined liquid prices (2020$/gal),,,,,,,,
 
+#Correcting units
 1990$/pass-km,1990$/veh-km,1.0,Amortized cap costs of transport techs (corrected units),,,,,,,,
+1990$/pass-km,1990$/veh-km,1.0,Transport tech amortized cap costs,,,,,,,,
+1990$/ton-km,1990$/veh-km,1.0,Transport tech amortized cap costs,,,,,,,,
+1990$/pass-km,1990$/veh-km,1.0,Transport tech amortized cap costs (corrected units),,,,,,,,
+1990$/ton-km,1990$/veh-km,1.0,Transport tech amortized cap costs (corrected units),,,,,,,,
 
 #EJ,billion gallons,0.13176,Transport final energy by tech and fuel,technology,*Liquids,,,,,,
 #MTC,MTCO2,3.666,,,,,,,,,    
