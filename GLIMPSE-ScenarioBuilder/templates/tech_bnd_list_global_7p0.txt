@@ -101,22 +101,24 @@ refining : gas to liquids : gas to liquids : regional natural gas : EJ : refinin
 refining : gas to liquids : gas to liquids CCS level 1 : regional natural gas : EJ : refining : EJ : Industry-fuels
 refining : gas to liquids : gas to liquids CCS level 2 : regional natural gas : EJ : refining : EJ : Industry-fuels
 refining : oil refining : oil refining : regional oil : EJ : refining : EJ : Industry-fuels
+regional natural gas : domestic natural gas : domestic natural gas : natural gas : EJ : regional natural gas : EJ : Industry-fuels
+regional natural gas : imported natural gas : imported LNG : traded LNG : EJ : regional natural gas : EJ : Industry-fuels
+regional natural gas : imported natural gas : imported pipeline gas : traded N.Amer pipeline gas : EJ : regional natural gas : EJ : Industry-fuels
+regional oil : domestic crude oil : domestic crude oil : crude oil : EJ : regional oil : EJ : Industry-fuels
+regional oil : imported crude oil : imported crude oil : traded crude oil : EJ : regional oil : EJ : Industry-fuels
+regional coal : domestic coal : domestic coal : coal : EJ : regional coal : EJ : Industry-fuels
+regional coal : imported coal : imported coal : traded coal : EJ : regional coal : EJ : Industry-fuels
+unconventional oil production : unconventional oil production : unconventional oil production : regional natural gas : EJ : unconventional oil production : EJ : Industry-fuels
+unconventional oil production : unconventional oil production : unconventional oil production : unconventional oil : EJ : unconventional oil production : EJ : Industry-fuels
 regional biomass : regional biomass : regional biomass : regional biomass : EJ : regional biomass : EJ : Industry-fuels
 regional biomass : regional biomass : regional biomass : total biomass : EJ : regional biomass : EJ : Industry-fuels
 regional biomassOil : regional biomassOil : Soybean : regional soybean : EJ : DDGS and feedcakes : Mt : Industry-fuels
 regional biomassOil : regional biomassOil : OilCrop : regional oilcrop : EJ : DDGS and feedcakes : Mt : Industry-fuels
 regional biomassOil : regional biomassOil : OilCrop : regional oilcrop : Mt : DDGS and feedcakes : Mt : Industry-fuels
 regional biomassOil : regional biomassOil : PalmFruit : regional palmfruit : Mt : regional biomassOil : EJ : Industry-fuels
-regional coal : regional coal : regional coal : coal : EJ : regional coal : EJ : Industry-fuels
-regional coal : regional coal : regional coal : regional coal : EJ : regional coal : EJ : Industry-fuels
 regional corn for ethanol : regional corn for ethanol : regional corn for ethanol : regional corn : EJ : DDGS and feedcakes : Mt : Industry-fuels
 regional corn for ethanol : regional corn for ethanol : regional corn for ethanol : regional corn : Mt : DDGS and feedcakes : Mt : Industry-fuels
-regional natural gas : regional natural gas : regional natural gas : natural gas : EJ : regional natural gas : EJ : Industry-fuels
-regional oil : crude oil : crude oil : crude oil : EJ : regional oil : EJ : Industry-fuels
-regional oil : unconventional oil : unconventional oil : traded unconventional oil : EJ : regional oil : EJ : Industry-fuels
 regional sugar for ethanol : regional sugar for ethanol : regional sugar for ethanol : regional sugarcrop : Mt : regional sugar for ethanol : EJ : Industry-fuels
-unconventional oil production : unconventional oil production : unconventional oil production : regional natural gas : EJ : unconventional oil production : EJ : Industry-fuels
-unconventional oil production : unconventional oil production : unconventional oil production : unconventional oil : EJ : unconventional oil production : EJ : Industry-fuels
 resid clothes dryers : electricity : clothes dryer : elect_td_bld : EJ : resid clothes dryers : Mt : Buildings
 resid clothes dryers : electricity : clothes dryer hi-eff : elect_td_bld : EJ : resid clothes dryers : Mt : Buildings
 resid clothes dryers : gas : clothes dryer : delivered gas : EJ : resid clothes dryers : Mt : Buildings
