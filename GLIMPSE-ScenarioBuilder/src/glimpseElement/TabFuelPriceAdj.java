@@ -212,7 +212,12 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 		textFieldMarketName.setPrefWidth(pref_wid);
 		comboBoxConvertFrom.setPrefWidth(min_wid);
 		
-		checkComboBoxFuel.getItems().addAll("Coal","Natural Gas","Crude Oil","Unconv Oil","Corn for Ethanol","Sugar for Ethanol","Oil for Biodiesel","Other Bioenergy");
+		String[][] tech_list=vars.getTechInfo(); 
+		ArrayList<String> fuel_list=extractFuelsFromTechList(tech_list);
+		
+		checkComboBoxFuel.getItems().addAll(fuel_list);
+		
+		//checkComboBoxFuel.getItems().addAll("Coal","Natural Gas","Crude Oil","Unconv Oil","Corn for Ethanol","Sugar for Ethanol","Oil for Biodiesel","Other Bioenergy");
 		//checkComboBoxFuel.getCheckModel().check(0);
 		
 		comboBoxModificationType.getItems().addAll("Initial w/% Growth/yr", "Initial w/% Growth/pd",
@@ -303,6 +308,22 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 	}
 
 	
+	private ArrayList<String> extractFuelsFromTechList(String[][] tech_list) {
+		ArrayList<String> fuels=new ArrayList<String>();
+		
+		for (int row=0;row<tech_list.length;row++) {
+			String str_col0=tech_list[row][0];
+			if (str_col0.startsWith("regional ")) {
+				String str=tech_list[row][0]+","+tech_list[row][1]+","+tech_list[row][2];//+","+tech_list[row][3];
+				fuels.add(str);
+			}
+		}
+		
+		fuels=utils.getUniqueItemsFromStringArrayList(fuels);
+		
+		return fuels; 
+	}
+	
 	private void setPolicyAndMarketNames() {
 		if (this.checkBoxUseAutoNames.isSelected()) {
 
@@ -316,20 +337,20 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 				if (no_selected_fuels==1) {
 					ObservableList<String> selected_items=checkComboBoxFuel.getCheckModel().getCheckedItems();
 					fuel = selected_items.get(0);
-					if (fuel.equals("Natural Gas")) {
+					if (fuel.contains("gas")) {
 						fuel="gas";
-					} else if (fuel.equals("Crude Oil")) {
+					} else if (fuel.contains("oil")) {
 						fuel="oil";
-					} else if (fuel.equals("Unconventional Oil")) {
+					} else if (fuel.contains("unconv")) {
 							fuel="uncvoil";
-					} else if (fuel.equals("Coal")) {
+					} else if (fuel.contains("coal")) {
 						fuel="coal";
-					} else if (fuel.equals("Other Bioenergy")) {
+					} else if (fuel.contains("bio")) {
 						fuel="bio";
-					} else if (fuel.equals("Corn for Ethanol")) {
-						fuel="eth";
-					} else if (fuel.equals("Oil for Biodiesel")) {
-						fuel="biodsl";
+					} else if (fuel.contains("corn")) {
+						fuel="corn";
+					} else {
+						fuel="oth";
 					}
 				} else if (no_selected_fuels>1) {
 					fuel="mult";
@@ -387,6 +408,83 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 	}
 
 	private void saveScenarioComponent(TreeView<String> tree) {
+
+
+		
+		if (!qaInputs()){
+			Thread.currentThread().destroy();
+		} else {
+
+			String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+
+			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+			String states = utils.returnAppendedString(listOfSelectedLeaves);
+
+			filename_suggestion = "";
+
+			// constructs a filename suggestion for the scenario component
+			ObservableList<String> fuel_list = checkComboBoxFuel.getCheckModel().getCheckedItems();
+
+			
+			//String ID=this.getUniqueMarketName(textFieldMarketName.getText());
+			String ID=utils.getUniqueString();
+			filename_suggestion=this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_")+".csv";
+			String policy_name = this.textFieldPolicyName.getText()+ID;
+			String market_name = this.textFieldMarketName.getText()+ID;
+			
+			file_content = getMetaDataContent(tree,market_name,policy_name);
+
+			for (int f = 0; f < fuel_list.size(); f++) {
+				
+				String fuel_line=fuel_list.get(f);
+				
+				ArrayList<String> temp=utils.createArrayListFromString(fuel_line,",");
+				
+				String sector = temp.get(0);
+				String subsector = temp.get(1);
+				String tech= temp.get(2);
+				//String fuel= temp.get(3);
+
+				if (f!=0) file_content+=vars.getEol();
+
+				//filename_suggestion = policy_name.replaceAll("/", "-").replaceAll(" ", "_").replaceAll("+","-")+".csv";
+
+				String region = states.replace(",", "");
+				if (region.length() > 6) {
+					region = "Reg";
+				}
+
+				// sets up the content of the CSV file to store the scenario component data
+
+
+				String header = "GLIMPSEFuelPriceAdj";
+
+				// part 1
+				file_content += "INPUT_TABLE" + vars.getEol();
+				file_content += "Variable ID" + vars.getEol();
+				file_content += header + vars.getEol() + vars.getEol();
+				file_content += "region,supplysector,subsector,technology,param,year,adjustment" + vars.getEol();
+
+				for (int s = 0; s < listOfSelectedLeaves.length; s++) {
+					String state = listOfSelectedLeaves[s];
+
+					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
+					for (int i = 0; i < data.size(); i++) {
+						String data_str = data.get(i).replace(" ", "");
+						String year = utils.splitString(data_str, ",")[0];
+						String val = utils.splitString(data_str, ",")[1];
+						file_content += state + "," + sector + "," + subsector + "," + tech + ","
+								+ year + ",regional price adjustment," +val + vars.getEol();
+					}
+
+				}
+			}
+
+		}
+	
+	}
+
+	private void saveScenarioComponentOld(TreeView<String> tree) {
 
 		if (!qaInputs()){
 			Thread.currentThread().destroy();
@@ -495,6 +593,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 		}
 	
 	}
+
 	
 	public String getMetaDataContent(TreeView<String> tree,String market,String policy) {
 		String rtn_str="";
@@ -643,22 +742,23 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 					}
 				}
 				
-				ObservableList<String> fuel_list = checkComboBoxFuel.getCheckModel().getCheckedItems();	
-				String fuel="";
-				for (int f = 0; f < fuel_list.size(); f++) {					
-					fuel=fuel_list.get(f);	
-					if ((fuel.equals("Coal"))||(fuel.equals("Natural Gas"))||(fuel.equals("Crude Oil"))||(fuel.equals("Unconv Oil"))) {
-						if (applied_to_a_state) { 
-							message += "Price adjustments for "+fuel+" cannot be applied at the state level." + vars.getEol();
-						    //error_count++;	
-						}
-					} else {
-						if ((!applied_to_a_state)&&(is_usa_selected)) { 
-							message += "Price adjustments for "+fuel+" cannot be applied at the national level for the US." + vars.getEol();
-						    //error_count++;	
-						}
-					}
-				}
+//				ObservableList<String> fuel_list = checkComboBoxFuel.getCheckModel().getCheckedItems();	
+//				String fuel="";
+//				for (int f = 0; f < fuel_list.size(); f++) {					
+//					fuel=fuel_list.get(f);	
+//					if ((fuel.contains("coal"))||(fuel.contains("gas"))||(fuel.contains("oil"))) {
+//						if (applied_to_a_state) { 
+//							message += "Note: Price adjustments for "+fuel+" cannot be applied at the state level since this is a national fuel market." + vars.getEol();
+//						    //error_count++;	
+//						}
+//					} 
+////					else {
+////						if ((!applied_to_a_state)&&(is_usa_selected)) { 
+////							message += "Price adjustments for "+fuel+" cannot be applied at the national level for the US." + vars.getEol();
+////						    //error_count++;	
+////						}
+////					}
+//				}
 			}
 
 		} catch (Exception e1) {

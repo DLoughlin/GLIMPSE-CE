@@ -701,6 +701,26 @@ public class GLIMPSEUtils {
 		files.saveFile(arraylist, filename);
 	}
 
+	public ArrayList<String> getUniqueItemsFromStringArrayList(ArrayList<String> list){
+		
+		ArrayList<String> rtn_list=new ArrayList<String>();
+		
+		for (int i=0;i<list.size();i++) {
+			String str1=list.get(i).trim();
+			boolean match=false;
+			for (int j=0;j<rtn_list.size();j++) {
+				String str2=rtn_list.get(j).trim();
+				if (str1.equals(str2)) {
+					match=true;
+					break;
+				}
+			}
+			if (!match) rtn_list.add(str1);
+		}
+		return rtn_list;
+	}
+	
+	
 	public String getUniqueString() {
 		String rtn_str = "";
 
