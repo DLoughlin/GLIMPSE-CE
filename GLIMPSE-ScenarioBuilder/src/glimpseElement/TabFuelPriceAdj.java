@@ -313,7 +313,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 		
 		for (int row=0;row<tech_list.length;row++) {
 			String str_col0=tech_list[row][0];
-			if (str_col0.startsWith("regional ")) {
+			if ((str_col0.startsWith("regional "))||(str_col0.contains("wholesale"))||(str_col0.contains("delivered"))||(str_col0.contains("elect_td"))) {
 				String str=tech_list[row][0]+","+tech_list[row][1]+","+tech_list[row][2];//+","+tech_list[row][3];
 				fuels.add(str);
 			}

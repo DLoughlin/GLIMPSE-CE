@@ -601,6 +601,8 @@ delivered coal : delivered coal : delivered coal : delivered coal : EJ : deliver
 delivered coal : delivered coal : delivered coal : regional coal : EJ : delivered coal : EJ : Other
 delivered gas : delivered gas : delivered gas : delivered gas : EJ : delivered gas : EJ : Other
 delivered gas : delivered gas : delivered gas : gas pipeline : EJ : delivered gas : EJ : Other
+wholesale gas : wholesale gas : wholesale gas : gas pipeline : EJ : wholesale gas : EJ : Industry-fuels
+wholesale gas : wholesale gas : wholesale gas : wholesale gas : EJ : wholesale gas : EJ : Other
 district heat : biomass : biomass : delivered biomass : EJ : district heat : EJ : Other
 district heat : coal : coal : delivered coal : EJ : district heat : EJ : Other
 district heat : gas : gas : wholesale gas : EJ : district heat : EJ : Other
@@ -617,5 +619,3 @@ refined liquids enduse : refined liquids enduse : refined liquids enduse : refin
 refined liquids enduse : refined liquids enduse : refined liquids enduse : refining : EJ : refined liquids enduse : EJ : Industry-fuels
 refined liquids industrial : refined liquids industrial : refined liquids industrial : refined liquids industrial : EJ : refined liquids industrial : EJ : Other
 refined liquids industrial : refined liquids industrial : refined liquids industrial : refining : EJ : refined liquids industrial : EJ : Industry-fuels
-wholesale gas : wholesale gas : wholesale gas : gas pipeline : EJ : wholesale gas : EJ : Industry-fuels
-wholesale gas : wholesale gas : wholesale gas : wholesale gas : EJ : wholesale gas : EJ : Other
