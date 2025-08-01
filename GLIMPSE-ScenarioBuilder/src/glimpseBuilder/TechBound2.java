@@ -26,62 +26,96 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package glimpseBuilder;
 
-public class TechBound2 {
+import java.util.Objects;
 
-	private String firstYear;
-	private String lastYear;
-	private String techName;
-	private boolean active;
+/**
+ * An immutable data object representing a technology's active status over a given year or range of years.
+ */
+public final class TechBound2 {
 
-	public TechBound2(String lastYearA, String techNameB, boolean activeC) {
-		this.firstYear = lastYearA;
-		this.lastYear = lastYearA;
-		this.techName = techNameB;
-		this.active = activeC;
-	}
+    private final String firstYear;
+    private final String lastYear;
+    private final String techName;
+    private final boolean active;
 
-	public TechBound2(String firstYearA, String lastYearA, String techNameB, boolean activeC) {
-		this.firstYear = firstYearA;
-		this.lastYear = lastYearA;
-		this.techName = techNameB;
-		this.active = activeC;
-	}
+    /**
+     * Private constructor. Use static factory methods to create instances.
+     */
+    private TechBound2(String firstYear, String lastYear, String techName, boolean active) {
+        this.firstYear = Objects.requireNonNull(firstYear, "First year cannot be null.");
+        this.lastYear = Objects.requireNonNull(lastYear, "Last year cannot be null.");
+        this.techName = Objects.requireNonNull(techName, "Tech name cannot be null.");
+        this.active = active;
+    }
 
-	public String getFirstYear() {
-		return firstYear;
-	}
+    /**
+     * Creates a TechBound2 instance for a single year.
+     *
+     * @param year The year for which the bound is active.
+     * @param techName The name of the technology.
+     * @param isActive The active status.
+     * @return A new TechBound2 instance.
+     */
+    public static TechBound2 createForSingleYear(String year, String techName, boolean isActive) {
+        return new TechBound2(year, year, techName, isActive);
+    }
 
-	public void setFirstYear(String yearA) {
-		this.firstYear = yearA;
-	}
+    /**
+     * Creates a TechBound2 instance for a range of years.
+     *
+     * @param firstYear The first year of the range (inclusive).
+     * @param lastYear The last year of the range (inclusive).
+     * @param techName The name of the technology.
+     * @param isActive The active status.
+     * @return A new TechBound2 instance.
+     */
+    public static TechBound2 createForYearRange(String firstYear, String lastYear, String techName, boolean isActive) {
+        return new TechBound2(firstYear, lastYear, techName, isActive);
+    }
 
-	public String getLastYear() {
-		return lastYear;
-	}
+    public String getFirstYear() {
+        return firstYear;
+    }
 
-	public void setLastYear(String yearA) {
-		this.lastYear = yearA;
-	}
+    public String getLastYear() {
+        return lastYear;
+    }
 
-	public String getTechName() {
-		return techName;
-	}
+    public String getTechName() {
+        return techName;
+    }
 
-	public void setTechName(String techNameA) {
-		this.techName = techNameA;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TechBound2 that = (TechBound2) o;
+        return active == that.active &&
+               firstYear.equals(that.firstYear) &&
+               lastYear.equals(that.lastYear) &&
+               techName.equals(that.techName);
+    }
 
-	public void setActive(boolean activeA) {
-		this.active = activeA;
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstYear, lastYear, techName, active);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "TechBound2{techName='%s', firstYear='%s', lastYear='%s', active=%b}",
+            techName, firstYear, lastYear, active
+        );
+    }
 }

@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -70,7 +70,7 @@ public class PaneForCountryStateTree extends VBox {
 		
 		loadRegionAndSubregionData();
 		
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 		tree_view=treeViewAddRegions();
 		if (vars.isGcamUSA()) tree_view = treeViewAddSubregions();
 
@@ -81,7 +81,7 @@ public class PaneForCountryStateTree extends VBox {
 		TreeItem treeItem = tree_view.getRoot();
 		treeItem.setExpanded(true);
 		StackPane tree = new StackPane(tree_view);
-		labelAppliedTo.setStyle(styles.style3);
+		labelAppliedTo.setStyle(styles.getStyle3());
 		
 		comboBoxPresetRegions=utils.createComboBoxString();
 		comboBoxPresetRegions.getItems().add("Select (optional)");
@@ -97,10 +97,10 @@ public class PaneForCountryStateTree extends VBox {
 		hbox.setSpacing(5.);
 		hbox.setPadding(new Insets(3., 0., 0., 0.));
 		hbox.getChildren().addAll(labelPresetRegions,comboBoxPresetRegions);
-		hbox.setStyle(styles.style2);
+		hbox.setStyle(styles.getStyle2());
 
 		this.getChildren().addAll(labelAppliedTo, tree,hbox);
-		this.setStyle(styles.style2);
+		this.setStyle(styles.getStyle2());
 		
 	}
 	
@@ -135,9 +135,9 @@ public class PaneForCountryStateTree extends VBox {
 	}
 	
 	public void loadRegionAndSubregionData() {
-		String state_list_filename=vars.getgCamGUIDir()+File.separator+"resources"+File.separator+"subregion_list.txt";
-		String region_list_filename=vars.getgCamGUIDir()+File.separator+"resources"+File.separator+"region_list.txt";
-		String preset_region_list_filename=vars.getgCamGUIDir()+File.separator+"resources"+File.separator+"preset_region_list.txt";
+		String state_list_filename=vars.getSubRegionsFilename();
+		String region_list_filename=vars.getRegionListFilename();
+		String preset_region_list_filename=vars.getPresetRegionListFilename();
 		
 		//state list
 		try {
@@ -148,7 +148,7 @@ public class PaneForCountryStateTree extends VBox {
 				if (line.indexOf(":")>0) subregion_list.add(line);
 			}
 		} catch (Exception e) {
-			String s= "USA:AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY"/*,USA*/;
+			String s= "USA:AL,AK,AZ,AR,CA,CO,CT,DE,DC,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY";
 			subregion_list.add(s);
 		}
 		

@@ -234,7 +234,7 @@ public class GLIMPSEUtils {
 			stage.setResizable(false);
 			stage.setAlwaysOnTop(true);
 
-			Button okButton = createButton("OK", styles.bigButtonWid, null);
+			Button okButton = createButton("OK", styles.getBigButtonWidth(), null);
 
 			okButton.setOnAction(e -> {
 				stage.close();
@@ -513,7 +513,7 @@ public class GLIMPSEUtils {
 
 	public Label createLabel(String txt) {
 		Label label = new Label(txt);
-		label.setStyle(styles.font_style);
+		label.setStyle(styles.getFontStyle());
 		label.setPadding(new Insets(1, 1, 1, 1));
 		return label;
 	}
@@ -538,20 +538,20 @@ public class GLIMPSEUtils {
 
 	public TextField createTextField() {
 		TextField tf = new TextField();
-		tf.setStyle(styles.font_style);
+		tf.setStyle(styles.getFontStyle());
 		return tf;
 	}
 
 	public ComboBox<String> createComboBoxString() {
 		ComboBox<String> comboBox = new ComboBox<String>();
-		comboBox.setStyle(styles.font_style);
+		comboBox.setStyle(styles.getFontStyle());
 
 		return comboBox;
 	}
 
 	public CheckComboBox<String> createCheckComboBox() {
 		CheckComboBox<String> checkComboBox = new CheckComboBox<String>();
-		checkComboBox.setStyle(styles.font_style);
+		checkComboBox.setStyle(styles.getFontStyle());
 		checkComboBox.setPrefWidth(Double.MAX_VALUE);
 
 		return checkComboBox;
@@ -559,7 +559,7 @@ public class GLIMPSEUtils {
 
 	public CheckBox createCheckBox(String s) {
 		CheckBox checkBox = new CheckBox(s);
-		checkBox.setStyle(styles.font_style);
+		checkBox.setStyle(styles.getFontStyle());
 		return checkBox;
 	}
 
@@ -573,13 +573,13 @@ public class GLIMPSEUtils {
 				ImageView imageView = new ImageView(image);
 				imageView.autosize();
 				button.setGraphic(imageView);
-				button.setPrefSize(styles.smallButtonWid, 35);
-				button.setMaxSize(styles.smallButtonWid, 35);
-				button.setMinSize(styles.smallButtonWid, 35);
+				button.setPrefSize(styles.getSmallButtonWidth(), 35);
+				button.setMaxSize(styles.getSmallButtonWidth(), 35);
+				button.setMinSize(styles.getSmallButtonWidth(), 35);
 				button.setPadding(new Insets(2, 2, 2, 2));
 				if (tt != null) {
 					Tooltip tooltip = new Tooltip(tt);
-					tooltip.setFont(Font.font(styles.font_style));
+					tooltip.setFont(Font.font(styles.getFontStyle()));
 					button.setTooltip(tooltip);
 				}
 			} catch (Exception e) {
@@ -594,7 +594,7 @@ public class GLIMPSEUtils {
 	}
 
 	public Button createButton(String text) {
-		Button button = createButton(text, styles.bigButtonWid, null);
+		Button button = createButton(text, styles.getBigButtonWidth(), null);
 		button = resizeButtonText(button);
 		return button;
 	}
@@ -606,7 +606,7 @@ public class GLIMPSEUtils {
 
 		if (tt != null) {
 			Tooltip tooltip = new Tooltip(tt);
-			tooltip.setFont(Font.font(styles.font_style));
+			tooltip.setFont(Font.font(styles.getFontStyle()));
 			button.setTooltip(tooltip);
 		}
 
@@ -629,7 +629,7 @@ public class GLIMPSEUtils {
 
 	public Button resizeButtonText(Button button) {
 		String text = button.getText();
-		resizeButtonText(button, text, styles.font_size);
+		resizeButtonText(button, text, styles.getFontSize());
 		return button;
 	}
 
@@ -655,7 +655,7 @@ public class GLIMPSEUtils {
 	}
 
 	public Label resizeLabelText(Label label) {
-		return resizeLabelText(label, label.getText(), styles.font_size);
+		return resizeLabelText(label, label.getText(), styles.getFontSize());
 	}
 
 	public Label resizeLabelText(Label label, String text, double size) {
@@ -1054,7 +1054,7 @@ public class GLIMPSEUtils {
 		textArea.setPrefSize(785, 775);
 		textArea.setWrapText(doWrap);
 
-		Button closeButton = createButton("Close", styles.bigButtonWid, null);
+		Button closeButton = createButton("Close", styles.getBigButtonWidth(), null);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -1121,7 +1121,7 @@ public class GLIMPSEUtils {
 		BorderPane border = new BorderPane();
 		stage.setResizable(true);
 
-		Button closeButton = createButton("Close", styles.bigButtonWid, null);
+		Button closeButton = createButton("Close", styles.getBigButtonWidth(), null);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -1749,7 +1749,7 @@ public class GLIMPSEUtils {
 	
 	public void loadTrnVehInfo() {
 
-		String filename = vars.getTrnVehInfoFile();
+		String filename = vars.getTrnVehInfoFilename();
 		System.out.println("Loading transportation info from "+filename);
 
 		try {
@@ -1786,46 +1786,6 @@ public class GLIMPSEUtils {
 		}
 	}
 	
-	
-	
-
-//	public void getLoadTablesNotUsed() {
-//
-//		String filename = vars.getTrnVehInfoFile();
-//
-//		try {
-//
-//			ArrayList<String> contents = files.getStringArrayFromFile(filename, "#");
-//			ArrayList<String> ldv2w = new ArrayList<String>();
-//			ArrayList<String> ldv4w = new ArrayList<String>();
-//			ArrayList<String> hdv = new ArrayList<String>();
-//			ArrayList<String> other = new ArrayList<String>();
-//			ldv2w.add(contents.get(0));
-//			ldv4w.add(contents.get(0));
-//			hdv.add(contents.get(0));
-//			other.add(contents.get(0));
-//
-//			for (int i = 1; i < contents.size(); i++) {
-//				String str = contents.get(i);
-//				if (str.indexOf("4W") >= 0) {
-//					ldv4w.add(str);
-//				} else if (str.indexOf("2W") >= 0) {
-//					ldv2w.add(str);
-//				} else if (str.indexOf("trn_freight_road") >= 0) {
-//					hdv.add(str);
-//				} else {
-//					other.add(str);
-//				}
-//			}
-//
-//			ldv4W_table = getDataMatrixFromArrayList(ldv4w);
-//			ldv2W_table = getDataMatrixFromArrayList(ldv2w);
-//			hdv_table = getDataMatrixFromArrayList(hdv);
-//			oth_table = getDataMatrixFromArrayList(other);
-//		} catch (Exception e) {
-//			System.out.println("Problem reading transportation technology load data from " + filename);
-//		}
-//	}
 
 	public ArrayList generateErrorReportOld(String main_log_file, String scenario) {
 
@@ -2311,7 +2271,7 @@ public class GLIMPSEUtils {
 
 	public void resetLogFile() {
 		// replace glimpse log file with empty file
-		String glimpse_log_filename = vars.getgCamGUILogDir() + File.separator + "glimpse_log.txt";
+		String glimpse_log_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log.txt";
 		files.deleteFile(glimpse_log_filename);
 		File f = new File(glimpse_log_filename);
 		files.saveFile("", f);
@@ -2319,8 +2279,8 @@ public class GLIMPSEUtils {
 
 	public void resetLogFile(String s) {
 		// replace glimpse log file with empty file
-		String glimpse_log_filename = vars.getgCamGUILogDir() + File.separator + "glimpse_log.txt";
-		String glimpse_log_prior_filename = vars.getgCamGUILogDir() + File.separator + "glimpse_log_prior.txt";
+		String glimpse_log_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log.txt";
+		String glimpse_log_prior_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log_prior.txt";
 		files.deleteFile(glimpse_log_prior_filename);
 		files.copyFile(glimpse_log_filename, glimpse_log_prior_filename);
 		files.deleteFile(glimpse_log_filename);

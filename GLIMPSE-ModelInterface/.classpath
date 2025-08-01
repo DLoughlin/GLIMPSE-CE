@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src/MIEnhancements"/>
 	<classpathentry kind="src" path="src/mif411"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_141">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="lib/jep-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/joost-0.9.1.jar"/>

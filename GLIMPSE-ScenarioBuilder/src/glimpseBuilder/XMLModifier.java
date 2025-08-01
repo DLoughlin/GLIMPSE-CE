@@ -30,6 +30,9 @@
 * Visualization Laboratory contract. 
 * 
 */
+
+
+
 package glimpseBuilder;
 
 import java.io.File;

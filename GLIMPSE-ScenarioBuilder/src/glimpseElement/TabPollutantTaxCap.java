@@ -77,12 +77,12 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	Label labelComboBoxMeasure = utils.createLabel("Measure: ", label_wid);
 	ComboBox<String> comboBoxMeasure = utils.createComboBoxString();
 
-	Label labelComboBoxSector = utils.createLabel("Sector: ", label_wid);
-	ComboBox<String> comboBoxSector = utils.createComboBoxString();
+	Label labelComboBoxType = utils.createLabel("Type: ", label_wid);
+	ComboBox<String> comboBoxType = utils.createComboBoxString();
 	Label labelComboBoxPollutant = utils.createLabel("Pollutant: ", label_wid);
 	ComboBox<String> comboBoxPollutant = utils.createComboBoxString();
 
-	Label labelModificationType = utils.createLabel("Type: ", label_wid);
+	Label labelModificationType = utils.createLabel("Source Type: ", label_wid);
 	ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
 
 	Label labelUseAutoNames = utils.createLabel("Names: ", label_wid);
@@ -112,10 +112,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	VBox vBoxCenter = new VBox();
 	HBox hBoxHeaderCenter = new HBox();
 	Label labelValue = utils.createLabel("Values: ");
-	Button buttonPopulate = utils.createButton("Populate", styles.bigButtonWid, null);
-	Button buttonImport = utils.createButton("Import", styles.bigButtonWid, null);
-	Button buttonDelete = utils.createButton("Delete", styles.bigButtonWid, null);
-	Button buttonClear = utils.createButton("Clear", styles.bigButtonWid, null);
+	Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
+	Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
 	PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
 
 	// Initializing components of right column
@@ -126,7 +126,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	public TabPollutantTaxCap(String title, Stage stageX) {
 		// sets tab title
 		this.setText(title);
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		// sets up initial state of check box and policy and market textfields
 		checkBoxUseAutoNames.setSelected(true);
@@ -136,31 +136,31 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		// left column
 
 		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-		gridPaneLeft.addColumn(0, labelComboBoxMeasure, labelComboBoxPollutant, labelComboBoxSector, new Label(),
+		gridPaneLeft.addColumn(0, labelComboBoxMeasure, labelComboBoxPollutant, labelComboBoxType, new Label(),
 				new Separator(), labelUseAutoNames, /* labelPolicyName, */
 				labelPolicyName, labelMarketName, new Label(), new Separator(), utils.createLabel("Populate:"),
 				labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth,labelConvertFrom);
 
-		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant,  comboBoxSector, new Label(), new Separator(),
+		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant,  comboBoxType, new Label(), new Separator(),
 				checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
 				new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
 				textFieldGrowth,comboBoxConvertFrom);
 
 		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.style2);
+		gridPaneLeft.setStyle(styles.getStyle2());
 
 		// center column
 
 		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
 		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.style3);
+		hBoxHeaderCenter.setStyle(styles.getStyle3());
 
 		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.style2);
+		vBoxCenter.setStyle(styles.getStyle2());
 
 		// right column
 		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.style2);
+		vBoxRight.setStyle(styles.getStyle2());
 
 		gridPanePresetModification.addColumn(0, gridPaneLeft);
 		gridPanePresetModification.addColumn(1, vBoxCenter);
@@ -173,19 +173,19 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 		// default sizing
 		double max_wid = 225;
-		comboBoxSector.setMaxWidth(max_wid);
+		comboBoxType.setMaxWidth(max_wid);
 		comboBoxMeasure.setMaxWidth(max_wid);
 		comboBoxModificationType.setMaxWidth(max_wid);
 		comboBoxPollutant.setMaxWidth(max_wid);
 
 		double min_wid = 115;
-		comboBoxSector.setMinWidth(min_wid);
+		comboBoxType.setMinWidth(min_wid);
 		comboBoxMeasure.setMinWidth(min_wid);
 		comboBoxModificationType.setMinWidth(min_wid);
 		comboBoxPollutant.setMinWidth(min_wid);
 
 		double pref_wid = 225;
-		comboBoxSector.setPrefWidth(pref_wid);
+		comboBoxType.setPrefWidth(pref_wid);
 		comboBoxMeasure.setPrefWidth(pref_wid);
 		comboBoxModificationType.setPrefWidth(pref_wid);
 		comboBoxPollutant.setPrefWidth(pref_wid);
@@ -195,19 +195,18 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBoxPollutant.getItems().addAll("Select One", "CO2 (MT C)", "CO2 (MT CO2)", "GHG (MT CO2E)", "NOx (Tg)",
 				"SO2 (Tg)", "PM2.5 (Tg)", "NMVOC (Tg)", "CO (Tg)", "NH3 (Tg)", "CH4 (Tg)", "N2O (Tg)");
 
-		comboBoxSector.getItems().addAll("Select One", "All", "EGU", "Industry-All", "Industry-Fuels", "Buildings",
-				"Trn-All", "Trn-Onroad", "Trn-Nonroad");
+		comboBoxType.getItems().addAll(vars.getTypesFromTechBnd());
 
 		comboBoxModificationType.getItems().addAll("Initial w/% Growth/yr", "Initial w/% Growth/pd",
 				"Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final");
 
 		comboBoxMeasure.getSelectionModel().selectFirst();
 		comboBoxPollutant.getSelectionModel().selectFirst();
-		comboBoxSector.getSelectionModel().selectFirst();
+		comboBoxType.getSelectionModel().selectFirst();
 		comboBoxModificationType.getSelectionModel().selectFirst();
 
 		comboBoxPollutant.setDisable(true);
-		comboBoxSector.setDisable(true);
+		comboBoxType.setDisable(true);
 
 		comboBoxConvertFrom.getItems().addAll("None","2023$s","2020$s","2015$s","2010$s","2005$s","2000$s");
 		comboBoxConvertFrom.getSelectionModel().selectFirst();
@@ -220,14 +219,14 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBoxMeasure.setOnAction(e -> {
 			if (comboBoxMeasure.getSelectionModel().getSelectedIndex() > 0) {
 				comboBoxPollutant.setDisable(false);
-				comboBoxSector.setDisable(true);
+				comboBoxType.setDisable(true);
 			} else {
 				comboBoxPollutant.setDisable(true);				
-				comboBoxSector.setDisable(true);		
+				comboBoxType.setDisable(true);		
 			}
 
 			comboBoxPollutant.getSelectionModel().selectFirst();
-			comboBoxSector.getSelectionModel().selectFirst();
+			comboBoxType.getSelectionModel().selectFirst();
 			
 			if (comboBoxMeasure.getSelectionModel().getSelectedItem().startsWith("Emission Tax")) {
 				labelConvertFrom.setVisible(true);
@@ -244,11 +243,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			String selectedItem = comboBoxPollutant.getSelectionModel().getSelectedItem();
 
 			if (selectedItem != "Select One") {
-				comboBoxSector.setDisable(true);
-				comboBoxSector.getSelectionModel().select("All");
+				comboBoxType.setDisable(true);
+				comboBoxType.getSelectionModel().select("All");
 				if (selectedItem.startsWith("CO2")) {
-					comboBoxSector.setDisable(false);
-					comboBoxSector.getSelectionModel().selectFirst();
+					comboBoxType.setDisable(false);
+					comboBoxType.getSelectionModel().selectFirst();
 				}
 			}
 
@@ -256,7 +255,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 		});
 
-		comboBoxSector.setOnAction(e -> {
+		comboBoxType.setOnAction(e -> {
 			setPolicyAndMarketNames();
 		});
 
@@ -322,6 +321,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 		this.setContent(tabLayout);
 	}
+	
+
 
 	private void setPolicyAndMarketNames() {
 		if (this.checkBoxUseAutoNames.isSelected()) {
@@ -337,7 +338,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					policy_type = "Tax";
 				if (s.indexOf("Cap") >= 0)
 					policy_type = "Cap";
-				s = comboBoxSector.getValue();
+				s = comboBoxType.getValue();
 				if (!s.startsWith("Select"))
 					sector = s;
 				s = comboBoxPollutant.getValue();
@@ -414,7 +415,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			String market_name = this.textFieldMarketName.getText() + ID;
 			filename_suggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
 
-			String sector = comboBoxSector.getValue();
+			String sector = comboBoxType.getValue();
 
 			String type = this.comboBoxMeasure.getValue();
 			if (type.indexOf("Cap") > -1) {
@@ -744,7 +745,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			String policy_name = this.textFieldPolicyName.getText() + ID;
 			String market_name = this.textFieldMarketName.getText() + ID;
 
-			String sector = comboBoxSector.getValue();
+			String sector = comboBoxType.getValue();
 
 			filename_suggestion = policy_name;
 			String type = this.comboBoxMeasure.getValue();
@@ -999,7 +1000,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		rtn_str += "#Scenario component type: Pollutant Tax/Cap" + vars.getEol();
 		rtn_str += "#Measure: " + comboBoxMeasure.getValue() + vars.getEol();
 		rtn_str += "#Pollutant: " + comboBoxPollutant.getValue() + vars.getEol();
-		rtn_str += "#Sector: " + comboBoxSector.getValue() + vars.getEol();
+		rtn_str += "#Sector: " + comboBoxType.getValue() + vars.getEol();
 		if (policy == null)
 			market = textFieldPolicyName.getText();
 		rtn_str += "#Policy name: " + policy + vars.getEol();
@@ -1039,8 +1040,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					comboBoxPollutant.fireEvent(new ActionEvent());
 				}
 				if (param.equals("sector")) {
-					comboBoxSector.setValue(value);
-					comboBoxSector.fireEvent(new ActionEvent());
+					comboBoxType.setValue(value);
+					comboBoxType.fireEvent(new ActionEvent());
 				}
 				if (param.equals("policy name")) {
 					textFieldPolicyName.setText(value);
@@ -1100,7 +1101,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				message += "Action comboBox must have a selection" + vars.getEol();
 				error_count++;
 			}
-			if (comboBoxSector.getSelectionModel().getSelectedItem().equals("Select One")) {
+			if (comboBoxType.getSelectionModel().getSelectedItem().equals("Select One")) {
 				message += "Sector comboBox must have a selection" + vars.getEol();
 				error_count++;
 			}

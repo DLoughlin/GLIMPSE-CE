@@ -116,31 +116,32 @@ public class GLIMPSEFiles {
 
 	public void loadFiles() {
 		try {
-			glimpseXMLHeadersFileContent = getStringArrayFromFile(vars.getXmlHeaderFile(), "#");
+			glimpseXMLHeadersFileContent = getStringArrayFromFile(vars.getXmlHeaderFilename(), "#");
 		} catch (Exception e) {
 			System.out.println("\nError opening files needed by GLIMPSE.");
 			System.out.println("Exception " + e);
 		}
 		try {
-			glimpseTechBoundFileContent = getStringArrayFromFile(vars.getTchBndListFile(), "#");
+			glimpseTechBoundFileContent = getStringArrayFromFile(vars.getTchBndListFilename(), "#");
 		} catch (Exception e) {
 			System.out.println("Error opening files needed by GLIMPSE.");
 			System.out.println("Exception " + e);
 		}
 
 		try {
-			gCamConfigurationTemplateFileContent = getStringArrayFromFile(vars.getConfigurationTemplate(), "#");
+			gCamConfigurationTemplateFileContent = getStringArrayFromFile(vars.getConfigurationTemplateFilename(), "#");
 		} catch (Exception e) {
 			System.out.println("Error opening files needed by GLIMPSE.");
 			System.out.println("Exception " + e);
 		}
 
-		/*
-		 * try { monetaryConversionsFileContent =
-		 * getStringArrayFromFile(vars.getMonetaryConversionsFile(), "#"); } catch
-		 * (Exception e) { System.out.println("Error opening files needed by GLIMPSE.");
-		 * System.out.println("Exception " + e); }
-		 */
+		try { 
+			monetaryConversionsFileContent = getStringArrayFromFile(vars.getMonetaryConversionsFilename(), "#"); 
+		} catch (Exception e) { 
+			System.out.println("Error opening files needed by GLIMPSE.");
+		    System.out.println("Exception " + e); 
+		}
+		 
 	}
 
 	public ArrayList<String> getStringArrayWithPrefix(String filename, String prefix) {
@@ -158,7 +159,7 @@ public class GLIMPSEFiles {
 			}
 			br.close();
 		} catch (Exception e) {
-			String msg = "Error reading file " + filename + ". Attempting to continue.";
+			String msg = "In getStringArrayWithPrefix ("+prefix+"): Error reading file " + filename + ". Attempting to continue.";
 			String msg2 = "   exception: " + e;
 			System.out.println(msg + msg2);
 			//utils.warningMessage(msg);
@@ -183,7 +184,7 @@ public class GLIMPSEFiles {
 			}
 			br.close();
 		} catch (Exception e) {
-			String msg = "Error reading file " + filename + ". Attempting to continue.";
+			String msg = "In getStringArrayWithPrefix (multiple): Error reading file " + filename + ". Attempting to continue.";
 			String msg2 = "   exception:" + e;
 			System.out.println(msg + msg2);
 			//utils.warningMessage(msg);
@@ -206,9 +207,10 @@ public class GLIMPSEFiles {
 			}
 			br.close();
 		} catch (Exception e) {
-			String msg = "Error reading file " + filename + ". Attempting to continue.";
+			String msg = "In getStringArrayFromFile: Error reading file " + filename + ". Attempting to continue.";
 			String msg2 = "   exception:" + e;
 			System.out.println(msg + msg2);
+			e.printStackTrace();
 			//utils.warningMessage(msg);//Dan:Disabled. These messages were annoying
 		}
 		return arrayList;
@@ -227,7 +229,7 @@ public class GLIMPSEFiles {
 			}
 			br.close();
 		} catch (Exception e) {
-			String msg = "Error reading file " + filename + ". Attempting to continue.";
+			String msg = "In getLineXFromFile ("+x+"): Error reading file " + filename + ". Attempting to continue.";
 			String msg2 = "   exception:" + e;
 			System.out.println(msg + msg2);
 			//utils.warningMessage(msg);
@@ -271,7 +273,7 @@ public class GLIMPSEFiles {
 			return;
 		}
 		
-		String cmd = vars.get("textEditor") + " " + filename;
+		String cmd = vars.getTextEditor() + " " + filename;
 
 		try {
 			java.lang.Runtime rt = java.lang.Runtime.getRuntime();
@@ -297,7 +299,7 @@ public class GLIMPSEFiles {
 
 	public void showFileInXmlEditor(String filename) {
 		GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-		String cmd = vars.get("xmlEditor") + " " + filename;
+		String cmd = vars.getTextEditor() + " " + filename;
 
 		try {
 			java.lang.Runtime rt = java.lang.Runtime.getRuntime();
@@ -436,7 +438,7 @@ public class GLIMPSEFiles {
 			oInStream.close();
 			oOutStream.close();
 		} catch (Exception e) {
-			System.out.println("Error trying to back up configuration file for scenario.");
+			System.out.println("Error trying to copy file from "+origFilename+" to "+newFilename);
 			System.out.println("error: " + e);
 			utils.exitOnException();
 		}

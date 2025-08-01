@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -69,125 +69,7 @@ public class CsvFileWriter {
 		return instance;
 	}
 
-	public ArrayList<String> createCsvContent2(ArrayList<String> colList, ArrayList<String> dataList) {
-		ArrayList<String> arrayList = new ArrayList<String>();
 
-		for (int i = 0; i < dataList.size(); i++) {
-			String data_str = dataList.get(i);
-
-			ArrayList<String> content = utils.createArrayListFromString(data_str, ";");
-
-			String type = utils.getMatch(content, "type", ":");
-			String sectorText = utils.getMatch(content, "sector", ":");
-			String subsectorText = utils.getMatch(content, "subsector", ":");
-			String technologyText = utils.getMatch(content, "technology", ":");
-			String inputText = utils.getStringUpToChar(utils.getMatch(content, "input", ":"), "(");
-			String outputText = utils.getStringUpToChar(utils.getMatch(content, "output", ":"), "(");
-			String paramText = utils.getMatch(content, "param", ":");
-			String param2Text = utils.getMatch(content, "param2", ":");
-			String[] yearsText = utils.getMatches(content, "year", ":", ",");
-			String[] valuesText = utils.getMatches(content, "value", ":", ",");
-			String[] regionsText = utils.getMatches(content, "region", ":", ",");
-			String dollarYearText = utils.getMatch(content, "dollarYear", ":");
-			if (type.contains("Subsector"))
-				param2Text = subsectorText;
-			try {
-				if (!dollarYearText.equals(""))
-					valuesText = utils.convertTo1990Dollars(valuesText, dollarYearText);
-			} catch (Exception e) {
-				System.out.println("Couldn't convert dollar years. Continuing.");
-			}
-			int no_years = yearsText.length;
-			int no_regions = regionsText.length;
-
-			String headerText = utils.getMatch(colList, type, ";");
-			System.out.println("Echo header text: " + headerText);
-			String[] headerAndColNames = headerText.split(":");
-			String header = headerAndColNames[0];
-			String colNames = headerAndColNames[1];
-
-			if (subsectorText.indexOf("=>") > -1) {
-				subsectorText = subsectorText.replace("=>", ",");
-				colNames = colNames.replace("=>", ",");
-				header += "-Nest";
-			}
-
-			arrayList.add("INPUT_TABLE");
-			arrayList.add("Variable ID");
-			arrayList.add(header);
-			arrayList.add("");
-			arrayList.add(colNames);
-			String[] cols = utils.splitString(colNames, ",");
-			for (int s = 0; s < no_regions; s++) {
-				for (int j = 0; j < no_years; j++) {
-					String line = "";
-					for (int c = 0; c < cols.length; c++) {
-						String col_name = cols[c];
-						;
-
-						switch (col_name) {
-						case "region":
-							line += regionsText[s];
-							break;
-						case "sector":
-							line += sectorText;
-							break;
-						case "subsector":
-							line += subsectorText;
-							break;
-						case "subsector1=>subsector2":
-							line += subsectorText;
-							break;
-						case "subsector1":
-							String temp = subsectorText;
-							// if user is applying a subsector shareweight, only considers text before comma
-							// inelegant solution
-							if (paramText.startsWith("Nested-Subsector Shareweight")) {
-								if (temp.indexOf(",") > -1) {
-									temp = temp.split(",")[0];
-								}
-							}
-							line += temp;
-							break;
-						case "subsector2":
-							break;
-						case "technology":
-							line += technologyText;
-							break;
-						case "input":
-							line += inputText;
-							break;
-						case "output":
-							line += outputText;
-							break;
-						case "year":
-							line += yearsText[j];
-							break;
-						case "data":
-							line += valuesText[j];
-							break;
-						default:
-							int loc_of_slash = col_name.indexOf("/");
-							if (loc_of_slash >= 0) {
-								line += col_name.split("/")[1];
-							}
-							break;
-						}
-						if (!col_name.equals("subsector2")) {
-							if (c < cols.length - 1)
-								line += ",";
-						}
-					}
-					arrayList.add(line);
-				}
-
-			}
-
-			arrayList.add("");
-
-		}
-		return arrayList;
-	}
 
 	public ArrayList<String> createCsvContent(ArrayList<String> colList, ArrayList<String> dataList) {
 		ArrayList<String> arrayList = new ArrayList<String>();

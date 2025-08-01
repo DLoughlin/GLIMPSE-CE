@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -57,25 +57,25 @@ public class TabXMLList extends PolicyTab {
 	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 	// private XmlElements xmlEle = XmlElements.getInstance();
 	// Defining the table at the left (candidate scenario components)
-	TableView<ComponentRow> tableIncludeXMLList = new TableView<>(ComponentLibraryTable.listOfFiles);
+	TableView<ComponentRow> tableIncludeXMLList = new TableView<>(ComponentLibraryTable.getListOfFiles());
 	// Initializing overall grid
 	VBox paneIncludeXMLList = new VBox();
 	// Initializing components of center column
 	VBox vBoxCenter = new VBox();
 	HBox hBoxHeaderCenter = new HBox();
 	Label labelValue = utils.createLabel("XML Files: ");
-	Button buttonAdd = utils.createButton("Add", styles.bigButtonWid, null);
-	Button buttonDelete = utils.createButton("Delete", styles.bigButtonWid, null);
-	Button buttonClear = utils.createButton("Clear", styles.bigButtonWid, null);
-	Button buttonMoveUp = utils.createButton("Move Up", styles.bigButtonWid, null);
-	Button buttonMoveDown = utils.createButton("Move Down", styles.bigButtonWid, null);
+	Button buttonAdd = utils.createButton("Add", styles.getBigButtonWidth(), null);
+	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
+	Button buttonMoveUp = utils.createButton("Move Up", styles.getBigButtonWidth(), null);
+	Button buttonMoveDown = utils.createButton("Move Down", styles.getBigButtonWidth(), null);
 
 	PaneForComponentDetails paneForXMLList = new PaneForComponentDetails();
 
 	public TabXMLList(String title, Stage stageX, TableView<ComponentRow> tableComponents) {
 		// sets tab title
 		this.setText(title);
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		paneForXMLList.setColumnNames(null, "XML Filename");
 		paneForXMLList.setAddItemVisible(false);
@@ -85,10 +85,10 @@ public class TabXMLList extends PolicyTab {
 		// center column
 		hBoxHeaderCenter.getChildren().addAll(buttonAdd, buttonMoveUp, buttonMoveDown, buttonDelete, buttonClear);
 		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.style3);
+		hBoxHeaderCenter.setStyle(styles.getStyle3());
 
 		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForXMLList);
-		vBoxCenter.setStyle(styles.style2);
+		vBoxCenter.setStyle(styles.getStyle2());
 		vBoxCenter.setFillWidth(true);
 
 		// ---adding components to the overall grid---
@@ -101,15 +101,15 @@ public class TabXMLList extends PolicyTab {
 		});
 
 		buttonAdd.setOnAction(e -> {
-			File f = new File(vars.get("xmlLibrary"));
+			File f = new File(vars.getXmlLibrary());
 			FileChooser fc = new FileChooser();
 			try {
 				fc.setInitialDirectory(f);
 			} catch (Exception e1) {
 				utils.warningMessage("Could not find xmlLibrary.");
-				System.out.println("Could not find xmlLibrary " + vars.get("xmlLibrary") + ". Defaulting to "
-						+ vars.get("gCamExecutableDir"));
-				fc.setInitialDirectory(new File(vars.get("gCamExecutableDir")));
+				System.out.println("Could not find xmlLibrary " + vars.getXmlLibrary() + ". Defaulting to "
+						+ vars.getgCamExecutableDir());
+				fc.setInitialDirectory(new File(vars.getgCamExecutableDir()));
 			}
 
 			FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
@@ -121,7 +121,7 @@ public class TabXMLList extends PolicyTab {
 			if ((file != null) && (file.size() > 0)) {
 				for (int i = 0; i < file.size(); i++) {
 					paneForXMLList.addItem(
-							files.getRelativePath(vars.get("gCamExecutableDir"), file.get(i).toString().trim()));
+							files.getRelativePath(vars.getgCamExecutableDir(), file.get(i).toString().trim()));
 				}
 			}
 		});
@@ -157,7 +157,7 @@ public class TabXMLList extends PolicyTab {
 			  paneForXMLList.addItem(str, temp);
 			}
 		}
-		ComponentLibraryTable.tableComponents.refresh();
+		ComponentLibraryTable.getTableComponents().refresh();
 
 	}
 

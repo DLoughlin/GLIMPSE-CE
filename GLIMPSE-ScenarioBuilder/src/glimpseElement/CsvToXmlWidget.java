@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -53,7 +53,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class CsvToXmlWidget {
 	protected GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
@@ -64,7 +66,7 @@ public class CsvToXmlWidget {
 	TextField csvFileTextField=utils.createTextField();
 	TextField headerFileTextField=utils.createTextField();
 	String csvFilename="";
-	String headersFilename=vars.getXmlHeaderFile();
+	String headersFilename=vars.getXmlHeaderFilename();
 	String xmlFilename="";
 	
 	public void csvToXmlWidget() {
@@ -85,10 +87,10 @@ public class CsvToXmlWidget {
 		
 		Label csvFileLabel=utils.createLabel("CSV file");
 		//TextField csvFileTextField=utils.createTextField();
-		Button browseForCsvFile=utils.createButton("Browse", styles.bigButtonWid,"Locate CSV file");
+		Button browseForCsvFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate CSV file");
 		Label headerFileLabel=utils.createLabel("Header file");
 		//TextField headerFileTextField=utils.createTextField();
-		Button browseForHeaderFile=utils.createButton("Browse", styles.bigButtonWid,"Locate header file");
+		Button browseForHeaderFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate header file");
 
 		headerFileTextField.setText(headersFilename);
 
@@ -130,8 +132,8 @@ public class CsvToXmlWidget {
 				
 		grid.add(new Separator(Orientation.HORIZONTAL), 0, 3, 3,1);
 		
-		Button convertButton = utils.createButton("Convert", styles.bigButtonWid,"Converts CSV to XML using header");
-		Button closeButton = utils.createButton("Close", styles.bigButtonWid,null);
+		Button convertButton = utils.createButton("Convert", styles.getBigButtonWidth(),"Converts CSV to XML using header");
+		Button closeButton = utils.createButton("Close", styles.getBigButtonWidth(),null);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -166,10 +168,26 @@ public class CsvToXmlWidget {
 		
     }
 
+//    /**
+//     * Shows an "Open File" dialog.
+//     *
+//     * @param ownerWindow      The parent window for the dialog.
+//     * @param title            The title for the dialog window.
+//     * @param initialDirectory The directory to open initially.
+//     * @param filter           The extension filter to apply.
+//     * @return An Optional containing the selected file, or an empty Optional if canceled.
+//     */
+//    public static File showOpenDialog(Window ownerWindow, String title, File initialDirectory, FileChooser.ExtensionFilter filter) {
+//        FileChooser chooser = createAndConfigureChooser(title, initialDirectory, null, filter);
+//        File result = chooser.showOpenDialog(ownerWindow);
+//        return result;
+//    }
+	
 	private String browseForFile(String filter1,String filter2,String path,String which) {
 		String tmp="";
 			try {
-				tmp=FileChooserPlus.main(filter1,filter2,path,which).toString();
+				File file = FileChooserPlus.showOpenDialog(null, which,new File(path),FileChooserPlus.createExtensionFilter(filter1,filter2));
+				tmp=file.getPath();
 			} catch(Exception ex) {
 				System.out.println("Error in "+which+" "+filter2+" file:");
 				System.out.println("  "+ex);

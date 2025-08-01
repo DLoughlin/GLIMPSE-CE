@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -59,16 +59,17 @@ public class SetupTableCreateScenario {
 
 	public void setup() {// TableView<ComponentRow> setup() {
 
-		ComponentLibraryTable.tableCreateScenario = new TableView<>(ComponentLibraryTable.listOfFilesCreateScenario);
+		//Dan: we probably want to make this table private eventually
+		ComponentLibraryTable.tableCreateScenario = new TableView<>(ComponentLibraryTable.getListOfFilesCreateScenario());
 
 		TableColumn<ComponentRow, String> polScenNameCol = ComponentLibraryTable.getFileNameColumn();
-		polScenNameCol.prefWidthProperty().bind(ComponentLibraryTable.tableCreateScenario.widthProperty());// .divide(2));
+		polScenNameCol.prefWidthProperty().bind(ComponentLibraryTable.getTableCreateScenario().widthProperty());// .divide(2));
 
 		TableColumn<ComponentRow, Date> polScenDateCol = ComponentLibraryTable.getBirthDateColumn();
-		polScenDateCol.prefWidthProperty().bind(ComponentLibraryTable.tableCreateScenario.widthProperty().divide(2));
+		polScenDateCol.prefWidthProperty().bind(ComponentLibraryTable.getTableCreateScenario().widthProperty().divide(2));
 
-		ComponentLibraryTable.tableCreateScenario.getColumns().addAll(polScenNameCol);
-		ComponentLibraryTable.tableCreateScenario.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		ComponentLibraryTable.getTableCreateScenario().getColumns().addAll(polScenNameCol);
+		ComponentLibraryTable.getTableCreateScenario().getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		enableDoubleClickForInfo();
 
@@ -76,13 +77,13 @@ public class SetupTableCreateScenario {
 	}
 
 	private void enableDoubleClickForInfo() {
-		ComponentLibraryTable.tableCreateScenario.setOnMousePressed(new EventHandler<MouseEvent>() {
+		ComponentLibraryTable.getTableCreateScenario().setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				try {
 					if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 
-						ComponentRow mf1 = ComponentLibraryTable.tableCreateScenario.getSelectionModel().getSelectedItem();
+						ComponentRow mf1 = ComponentLibraryTable.getTableCreateScenario().getSelectionModel().getSelectedItem();
 						String filename = mf1.getAddress();
 
 						files.showFileInTextEditor(filename);
@@ -90,7 +91,7 @@ public class SetupTableCreateScenario {
 //						try {
 //							File f = new File(filename);
 //							if (f.exists()) {
-//								String cmd = vars.get("textEditor") + " " + filename;
+//								String cmd = vars.getTextEditor() + " " + filename;
 //
 //								java.lang.Runtime rt = java.lang.Runtime.getRuntime();
 //								@SuppressWarnings("unused")
@@ -100,7 +101,7 @@ public class SetupTableCreateScenario {
 //							utils.warningMessage("Problem opening file in editor.");
 //							System.out.println("Error trying to open file to view with editor.");
 //							System.out.println("   file: " + filename);
-//							System.out.println("   editor: " + vars.get("textEditor"));
+//							System.out.println("   editor: " + vars.getTextEditor());
 //							System.out.println("Error: " + e);
 //
 //						}

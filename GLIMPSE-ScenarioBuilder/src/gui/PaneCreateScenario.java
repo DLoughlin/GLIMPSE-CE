@@ -81,10 +81,10 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 	PaneCreateScenario(Stage stage) {
 		vBox = new VBox(1);
-		textFieldScenarioName = utils.createTextField(2.5 * styles.bigButtonWid);
+		textFieldScenarioName = utils.createTextField(2.5 * styles.getBigButtonWidth());
 
 		textFieldScenarioName.setTooltip(new Tooltip("Enter name of scenario being constructed"));
-		vBox.setStyle(styles.font_style);
+		vBox.setStyle(styles.getFontStyle());
 
 		Label labelName = utils.createLabel("Name: ");
 		Label labelComponents = utils.createLabel("Components: ");
@@ -93,13 +93,13 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 		HBox hBoxRun = new HBox(/* 50 */);
 
-		Client.buttonMoveComponentUp = utils.createButton(null, styles.smallButtonWid, "Move selected item up in list",
+		Client.buttonMoveComponentUp = utils.createButton(null, styles.getSmallButtonWidth(), "Move selected item up in list",
 				"upArrow7");
 
-		Client.buttonMoveComponentDown = utils.createButton(null, styles.smallButtonWid,
+		Client.buttonMoveComponentDown = utils.createButton(null, styles.getSmallButtonWidth(),
 				"Move selected item down in list", "downArrow7");
 
-		Client.buttonCreateScenarioConfigFile = utils.createButton("Create", styles.bigButtonWid,
+		Client.buttonCreateScenarioConfigFile = utils.createButton("Create", styles.getBigButtonWidth(),
 				"Create: Contruct scenario from template and selected scenario components", "add2");
 
 		Client.buttonCreateScenarioConfigFile.setDisable(true);
@@ -107,36 +107,36 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		Client.buttonMoveComponentDown.setDisable(true);
 
 		Client.buttonMoveComponentUp.setOnAction(e -> {
-			ObservableList<ComponentRow> allFiles1 = ComponentLibraryTable.tableCreateScenario.getItems();
+			ObservableList<ComponentRow> allFiles1 = ComponentLibraryTable.getTableCreateScenario().getItems();
 
-			ObservableList<ComponentRow> selectedFiles1 = ComponentLibraryTable.tableCreateScenario.getSelectionModel()
+			ObservableList<ComponentRow> selectedFiles1 = ComponentLibraryTable.getTableCreateScenario().getSelectionModel()
 					.getSelectedItems();
 			if (selectedFiles1.size() == 1) {
-				int n = ComponentLibraryTable.tableCreateScenario.getSelectionModel().getSelectedIndex();
+				int n = ComponentLibraryTable.getTableCreateScenario().getSelectionModel().getSelectedIndex();
 				if (n - 1 >= 0) {
 					ComponentRow filea = allFiles1.get(n);
 					ComponentRow fileb = allFiles1.get(n - 1);
 					allFiles1.set(n - 1, filea);
 					allFiles1.set(n, fileb);
-					ComponentLibraryTable.tableCreateScenario.setItems(allFiles1);
+					ComponentLibraryTable.getTableCreateScenario().setItems(allFiles1);
 				}
 			}
 		});
 
 		Client.buttonMoveComponentDown.setOnAction(e -> {
-			ObservableList<ComponentRow> allFiles1 = ComponentLibraryTable.tableCreateScenario.getItems();
+			ObservableList<ComponentRow> allFiles1 = ComponentLibraryTable.getTableCreateScenario().getItems();
 			System.out.println("allFiles1: " + allFiles1.toString());
-			ObservableList<ComponentRow> selectedFiles1 = ComponentLibraryTable.tableCreateScenario.getSelectionModel()
+			ObservableList<ComponentRow> selectedFiles1 = ComponentLibraryTable.getTableCreateScenario().getSelectionModel()
 					.getSelectedItems();
 			System.out.println("allFiles1: " + selectedFiles1.toString());
 			if (selectedFiles1.size() == 1) {
-				int n = ComponentLibraryTable.tableCreateScenario.getSelectionModel().getSelectedIndex();
+				int n = ComponentLibraryTable.getTableCreateScenario().getSelectionModel().getSelectedIndex();
 				if (n + 1 < allFiles1.size()) {
 					ComponentRow filea = allFiles1.get(n);
 					ComponentRow fileb = allFiles1.get(n + 1);
 					allFiles1.set(n + 1, filea);
 					allFiles1.set(n, fileb);
-					ComponentLibraryTable.tableCreateScenario.setItems(allFiles1);
+					ComponentLibraryTable.getTableCreateScenario().setItems(allFiles1);
 				}
 			}
 		});
@@ -147,14 +147,14 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 			Client.buttonRefreshScenarioStatus.fire();
 		});
 		
-		ComponentLibraryTable.tableCreateScenario.setOnMouseClicked(e -> {
+		ComponentLibraryTable.getTableCreateScenario().setOnMouseClicked(e -> {
 			setArrowAndButtonStatus();
 		});
 		textFieldScenarioName.setOnKeyPressed(e -> {
 			setArrowAndButtonStatus();
 		});
 
-		labelScenarioName = utils.createLabel("Create Scenario", 1.5 * styles.bigButtonWid);
+		labelScenarioName = utils.createLabel("Create Scenario", 1.5 * styles.getBigButtonWidth());
 		hBox.getChildren().addAll(labelScenarioName, textFieldScenarioName);
 
 		hBoxRun.getChildren().addAll(Client.buttonCreateScenarioConfigFile,
@@ -167,7 +167,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		hBoxRun.setAlignment(Pos.CENTER);
 
 		// hBox.getChildren().addAll(labelName, textFieldScenarioName);
-		vBox.getChildren().addAll(hBox, ComponentLibraryTable.tableCreateScenario, hBoxRun);
+		vBox.getChildren().addAll(hBox, ComponentLibraryTable.getTableCreateScenario(), hBoxRun);
 		vBox.prefWidthProperty().bind(stage.widthProperty().multiply(2.0 / 7.0));
 	}
 
@@ -196,7 +196,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 			// for each list, adds info from each row from the Construct or
 			// Edit ScenarioRow table
-			for (ComponentRow i : ComponentLibraryTable.listOfFilesCreateScenario) {
+			for (ComponentRow i : ComponentLibraryTable.getListOfFilesCreateScenario()) {
 				copy1.add(i);
 				copy2.add(i);
 			}
@@ -236,7 +236,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 			
 		
 		if (checkInList(scenName, ScenarioTable.tableScenariosLibrary)) {
-			String main_log_file = vars.get("scenarioDir") + File.separator + scenName + File.separator
+			String main_log_file = vars.getScenarioDir() + File.separator + scenName + File.separator
 					+ "main_log.txt";
 			files.deleteFile(main_log_file);
 
@@ -258,17 +258,17 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		newDescription = "<!--" + vars.getEol()+ newDescription + vars.getEol()+ "-->";
 
 		// cleans scenario folder of all txt and xml files when scenario is created
-		String main_log_file = vars.get("scenarioDir") + File.separator + scenarioName + File.separator
+		String main_log_file = vars.getScenarioDir() + File.separator + scenarioName + File.separator
 				+ "main_log.txt";
 		File file = new File(main_log_file);
 
 		if (file.exists()) {
-			files.deleteFiles(vars.get("scenarioDir"), ".txt");
-			files.deleteFiles(vars.get("scenarioDir"), ".xml");
+			files.deleteFiles(vars.getScenarioDir(), ".txt");
+			files.deleteFiles(vars.getScenarioDir(), ".xml");
 		}
 		
 		// creates name of folder where scenario info will be stored
-		String workingDir = vars.get("scenarioDir") + File.separator + scenarioName;
+		String workingDir = vars.getScenarioDir() + File.separator + scenarioName;
 
 		// if the working directory does not exist, it is created
 
@@ -290,7 +290,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 		// gets name of configuration template copies it to the working
 		// scenario directory, re-naming it
-		String templateConfigFileAddress = vars.get("configurationTemplate");
+		String templateConfigFileAddress = vars.getConfigurationTemplateFilename();
 		String savedConfigFileAddress = workingDir + File.separator + "configuration" + "_" + scenarioName + ".xml";
 		files.copyFile(templateConfigFileAddress, savedConfigFileAddress);
 
@@ -307,7 +307,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 		// creates a path instance pointing to the GCAM distribution exe
 		// directory
-		Path gcamexepath = Paths.get(vars.get("gCamExecutableDir"));
+		Path gcamexepath = Paths.get(vars.getgCamExecutableDir());
 
 		// iterates over the list of selected scenario components in the
 		// ScenarioRow pane
@@ -351,11 +351,11 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 				// does the magic to create a scenario component xml file
 				if (fileType.equals("INPUT_TABLE")) {
 					try {
-						String[] s = { f.getAddress(), vars.getXmlHeaderFile(), xmlFileAddress };
+						String[] s = { f.getAddress(), vars.getXmlHeaderFilename(), xmlFileAddress };
 						s=utils.getRidOfTrailingCommasInStringArray(s);
 						System.out.println("csv to xml conversion commencing:");
 						System.out.println("    csv file: " + f.getAddress());
-						System.out.println("    header file: " + vars.getXmlHeaderFile());
+						System.out.println("    header file: " + vars.getXmlHeaderFilename());
 						System.out.println("    xml file: " + xmlFileAddress);
 						String header = utils.getRidOfTrailingCommasInString(files.getLineXFromFile(f.getAddress(), 3, "#").trim());
 						System.out.println("header specified in csv file: " + header);
@@ -364,14 +364,14 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 						// Warning pops up otherwise
 						String header1 = header + ",";
 						String header2 = header + " ";
-						int header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFile()), header,
+						int header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFilename()), header,
 								"#");
 						if (header_in_file == 0) {
-							header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFile()), header1,
+							header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFilename()), header1,
 									"#");
 						}
 						if (header_in_file == 0) {
-						header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFile()), header2,
+						header_in_file = files.countLinesWithTextInFile(new File(vars.getXmlHeaderFilename()), header2,
 								"#");
 						}
 						
@@ -428,40 +428,40 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 
 		XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "scenarioName", scenarioName);
 
-		if (vars.get("stopPeriod") != null)
-			XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "stop-period", vars.get("stopPeriod"));
+		if (vars.getStopPeriod() != null)
+			XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "stop-period", vars.getStopPeriod());
 
-		String s=vars.get("useAllAvailableProcessors");
-		if (s.equals("false")) {
+		boolean b=vars.getUseAllAvailableProcessors();
+		if (!b) {
 			XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "max-parallelism", "1");
 		}
 			
-		if (vars.get("debugRegion") != null)
-			XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "debug-region", vars.get("debugRegion"));
+		if (vars.getDebugRegion() != null)
+			XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "debug-region", vars.getDebugRegion());
 
-		if (vars.get("debugCreate") != null)
+		if (vars.getDebugCreate() != null)
 			XMLModifier.updateAttributeValue(xmlDoc, "Files", "Value", "xmlDebugFileName", "write-output",
-					vars.get("debugCreate"));
+					vars.getDebugCreate());
 		
-		if (vars.get("debugRename") != null)
+		if (vars.getDebugRename() != null)
 			XMLModifier.updateAttributeValue(xmlDoc, "Files", "Value", "xmlDebugFileName", "append-scenario-name",
-					vars.get("debugRename"));
+					vars.getDebugRename());
 
-		if (vars.get("gCamSolver") != null) {
+		if (vars.getgCamSolver() != null) {
 			try {
-				File solverFile = new File(vars.get("gCamSolver"));
+				File solverFile = new File(vars.getgCamSolver());
 				Path solverPath = Paths.get(solverFile.getPath());
 				XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver",
 						gcamexepath.relativize(solverPath).toString()); // gCamSolver);
 			} catch (Exception e) {
 				System.out.println("Could not set solver path in config file. Using full path.");
 				System.out.println("  error: " + e);
-				XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", vars.get("gCamSolver"));
+				XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", vars.getgCamSolver());
 			}
 		}
-		if (vars.get("gCamOutputDatabase") != null) {
+		if (vars.getgCamOutputDatabase() != null) {
 			try {
-				File databaseDir = new File(vars.get("gCamOutputDatabase"));
+				File databaseDir = new File(vars.getgCamOutputDatabase());
 				Path databasePath = Paths.get(databaseDir.getPath());
 				XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location",
 						gcamexepath.relativize(databasePath).toString()); // gCamSolver);
@@ -469,7 +469,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 				System.out.println("Could not set relative database path in config file. Using full path.");
 				System.out.println("  error: " + e);
 				XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location",
-						vars.get("gCamOutputDatabase"));
+						vars.getgCamOutputDatabase());
 			}
 		}
 
@@ -576,9 +576,8 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		});
 		
 		CheckBox useAllAvailableProcessors = new CheckBox("Use all available processors?");
-		strIsChecked = vars.get("useAllAvailableProcessors");
-		if (strIsChecked.equals("true") || strIsChecked.equals("yes") || strIsChecked.equals("1"))
-			isChecked = true;
+		boolean b = vars.getUseAllAvailableProcessors();
+		if (b) isChecked = true;
 		useAllAvailableProcessors.setSelected(isChecked);
 		
 		Label filesToSaveLabel = new Label("Save files in scenario folder: (global setting)");
@@ -642,8 +641,8 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		stage.setResizable(false);
 		stage.setAlwaysOnTop(true);
 
-		Button okButton = utils.createButton("OK", styles.bigButtonWid, null);
-		Button cancelButton = utils.createButton("Cancel", styles.bigButtonWid, null);
+		Button okButton = utils.createButton("OK", styles.getBigButtonWidth(), null);
+		Button cancelButton = utils.createButton("Cancel", styles.getBigButtonWidth(), null);
 
 		final int status;
 

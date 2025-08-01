@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -66,7 +66,7 @@ public class PaneForComponentDetails extends VBox {
 	HBox inputHBox = new HBox();
 	TextField textFieldCol0 = utils.createTextField();
 	TextField textFieldCol1 = utils.createTextField();
-	Button buttonAdd = utils.createButton("Add", styles.bigButtonWid, null);
+	Button buttonAdd = utils.createButton("Add", styles.getBigButtonWidth(), null);
 	boolean enforceYrValPair = true;
 //
 	TableColumn<DataPoint,String> col0;
@@ -74,7 +74,7 @@ public class PaneForComponentDetails extends VBox {
 
 	public PaneForComponentDetails() {
 
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		col0 = new TableColumn<DataPoint, String>("Year");
 		col1 = new TableColumn<DataPoint, String>("Value");
@@ -85,7 +85,7 @@ public class PaneForComponentDetails extends VBox {
 		col0.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("year"));
 		col0.setCellFactory(TextFieldTableCell.forTableColumn());
 		col0.prefWidthProperty().bind(table.widthProperty().divide(8. / 3.)); 
-		col0.setStyle(styles.style5);
+		col0.setStyle(styles.getStyle5());
 		col0.setEditable(true);
 
 
@@ -93,7 +93,7 @@ public class PaneForComponentDetails extends VBox {
 		col1.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("value"));
 		col1.setCellFactory(TextFieldTableCell.forTableColumn());
 		col1.prefWidthProperty().bind(table.widthProperty().divide(8. / 5.));
-		col1.setStyle(styles.style5);
+		col1.setStyle(styles.getStyle5());
 		col1.setEditable(true);
 
 

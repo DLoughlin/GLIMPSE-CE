@@ -100,10 +100,10 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 	VBox vBoxCenter = new VBox();
 	HBox hBoxHeaderCenter = new HBox();
 	Label labelValue = utils.createLabel("Values: ", label_wid);
-	Button buttonPopulate = utils.createButton("Populate", styles.bigButtonWid, null);
-	Button buttonImport = utils.createButton("Import", styles.bigButtonWid, null);
-	Button buttonDelete = utils.createButton("Delete", styles.bigButtonWid, null);
-	Button buttonClear = utils.createButton("Clear", styles.bigButtonWid, null);
+	Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
+	Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
 	PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
 
 	// Initializing components of right column
@@ -117,7 +117,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 	public TabFixedDemand(String title, Stage stageX) {
 		// sets tab title
 		this.setText(title);
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		// gets or creates list of sectors and their outputs
 		sector_info = vars.getSectorInfo();
@@ -134,20 +134,20 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 		gridPaneLeft.setAlignment(Pos.TOP_LEFT);
 
 		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.style2);
+		gridPaneLeft.setStyle(styles.getStyle2());
 
 		// center column
 
 		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
 		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.style3);
+		hBoxHeaderCenter.setStyle(styles.getStyle3());
 
 		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.style2);
+		vBoxCenter.setStyle(styles.getStyle2());
 
 		// right column
 		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.style2);
+		vBoxRight.setStyle(styles.getStyle2());
 
 		gridPanePresetModification.addColumn(0, gridPaneLeft);
 		gridPanePresetModification.addColumn(1, vBoxCenter);

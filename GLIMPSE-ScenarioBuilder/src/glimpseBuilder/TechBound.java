@@ -26,90 +26,120 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package glimpseBuilder;
 
-public class TechBound {
+import java.util.Objects;
 
-	private String firstYear;
-	private String lastYear;
-	private String techName;
-	private boolean isBoundAll=false;
-	private boolean isBoundRange=false;
+/**
+ * An immutable data object representing a technology's "bound" status for a given year or range of years.
+ */
+public final class TechBound {
 
-	public TechBound(String lastYearA, String techNameB) {
-		this.firstYear = lastYearA;
-		this.lastYear = lastYearA;
-		this.techName = techNameB;
-		this.isBoundAll = false;
-		this.isBoundRange = false;
-	}
-	
-	public TechBound(String lastYearA, String techNameB, boolean activeC, boolean activeD) {
-		this.firstYear = lastYearA;
-		this.lastYear = lastYearA;
-		this.techName = techNameB;
-		this.isBoundAll = activeC;
-		this.isBoundRange = activeD;
-	}
+    private String firstYear;
+    private String lastYear;
+    private String techName;
+    private boolean isBoundAll;
+    private boolean isBoundRange;
 
-	public TechBound(String firstYearA, String lastYearA, String techNameB, boolean activeC, boolean activeD) {
-		this.firstYear = firstYearA;
-		this.lastYear = lastYearA;
-		this.techName = techNameB;
-		this.isBoundAll = activeC;
-	}
+    /**
+     * Private constructor. Use static factory methods to create instances.
+     */
+    public TechBound(String firstYear, String lastYear, String techName, boolean isBoundAll, boolean isBoundRange) {
+        this.firstYear = Objects.requireNonNull(firstYear, "First year cannot be null.");
+        this.lastYear = Objects.requireNonNull(lastYear, "Last year cannot be null.");
+        this.techName = Objects.requireNonNull(techName, "Tech name cannot be null.");
+        this.isBoundAll = isBoundAll;
+        this.isBoundRange = isBoundRange;
+    }
 
-	public String getFirstYear() {
-		String rtn_val=firstYear;
-		return rtn_val;
-	}
+    /**
+     * Creates a TechBound instance for a single year.
+     */
+    public static TechBound createForSingleYear(String year, String techName, boolean isBoundAll, boolean isBoundRange) {
+        return new TechBound(year, year, techName, isBoundAll, isBoundRange);
+    }
 
-	public void setFirstYear(String yearA) {
-		this.firstYear = yearA;
-	}
+    /**
+     * Creates a TechBound instance for a range of years.
+     */
+    public static TechBound createForYearRange(String firstYear, String lastYear, String techName, boolean isBoundAll, boolean isBoundRange) {
+        return new TechBound(firstYear, lastYear, techName, isBoundAll, isBoundRange);
+    }
 
-	public String getLastYear() {
-		String rtn_val=lastYear;
-		return rtn_val;
-	}
+    public String getFirstYear() {
+        return firstYear;
+    }
 
-	public void setLastYear(String yearA) {
-		this.lastYear = yearA;
-	}
+    public void setFirstYear(String val) {
+    	this.firstYear=val;
+    }
+    
+    public String getLastYear() {
+        return lastYear;
+    }
 
-	public String getTechName() {
-		return techName;
-	}
+    public void setLastYear(String val) {
+    	this.lastYear=val;
+    }
+    
+    public String getTechName() {
+        return techName;
+    }
 
-	public void setTechName(String techNameA) {
-		this.techName = techNameA;
-	}
+    public void setTechName(String val) {
+    	this.techName=val;
+    }
+    
+    public boolean isBoundAll() {
+        return isBoundAll;
+    }
 
-	public boolean isBoundAll() {
-		return isBoundAll;
-	}
+    public boolean isBoundRange() {
+        return isBoundRange;
+    }
+    
+    public void setIsBoundAll(boolean isBound) {
+    	this.isBoundAll=isBound;
+    }
 
-	public void setBoundAll(boolean activeA) {
-		this.isBoundAll = activeA;
-	}
-	
-	public boolean isBoundRange() {
-		return isBoundRange;
-	}
+    public void setIsBoundRange(boolean isBound) {
+    	this.isBoundRange=isBound;
+    }
+    
+    /**
+     * Checks if the technology is bound in any way (either for all years or for a range).
+     * @return true if the technology is bound, false otherwise.
+     */
+    public boolean isBound() {
+        return isBoundAll || isBoundRange;
+    }
 
-	public void setBoundRange(boolean activeA) {
-		this.isBoundRange = activeA;
-	}
-	
-	public boolean isBound() {
-		boolean isBound=false;
-		if (this.isBoundRange||this.isBoundAll) isBound=true;
-		return isBound;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TechBound techBound = (TechBound) o;
+        return isBoundAll == techBound.isBoundAll &&
+               isBoundRange == techBound.isBoundRange &&
+               firstYear.equals(techBound.firstYear) &&
+               lastYear.equals(techBound.lastYear) &&
+               techName.equals(techBound.techName);
+    }
 
-	
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstYear, lastYear, techName, isBoundAll, isBoundRange);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "TechBound{techName='%s', firstYear='%s', lastYear='%s', isBoundAll=%b, isBoundRange=%b}",
+            techName, firstYear, lastYear, isBoundAll, isBoundRange
+        );
+    }
 }

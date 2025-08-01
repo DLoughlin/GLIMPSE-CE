@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,9 +34,12 @@ package glimpseElement;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
-
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableCell;
@@ -45,20 +48,55 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ComponentLibraryTable {
+/**
+ * A utility class to manage TableView components and their associated data
+ * for the component library and scenario creation panes.
+ */
+public final class ComponentLibraryTable {
 
-	public static TableView<ComponentRow> tableComponents;
-	public static TableView<ComponentRow> tableCreateScenario;
-	public static TextField filterComponentsTextField;
-	
-	public static ObservableList<ComponentRow> listOfFiles = FXCollections.observableArrayList();
-	public static ObservableList<ComponentRow> listOfFilesCreateScenario = FXCollections.observableArrayList();
+    // --- Column Header Constants ---
+    private static final String ID_COLUMN_HEADER = "Id";
+    private static final String FILENAME_COLUMN_HEADER = "Component Name";
+    private static final String ADDRESS_COLUMN_HEADER = "Address";
+    private static final String CREATED_DATE_COLUMN_HEADER = "Created";
 
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
+
+    // --- Private Static Fields ---
+    public static TableView<ComponentRow> tableComponents;
+    public static TableView<ComponentRow> tableCreateScenario;
+    private static TextField filterComponentsTextField;
+
+    private static ObservableList<ComponentRow> listOfFiles = FXCollections.observableArrayList();
+    private static ObservableList<ComponentRow> listOfFilesCreateScenario = FXCollections.observableArrayList();
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private ComponentLibraryTable() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    // --- Public Getters for UI Components and Data Lists ---
+
+    public static TableView<ComponentRow> getTableComponents() { return tableComponents; }
+    public static TableView<ComponentRow> getTableCreateScenario() { return tableCreateScenario; }
+    public static TextField getFilterComponentsTextField() { return filterComponentsTextField; }
+    public static ObservableList<ComponentRow> getListOfFiles() { return listOfFiles; }
+    public static ObservableList<ComponentRow> getListOfFilesCreateScenario() { return listOfFilesCreateScenario; }
+    
+    // Setter methods to initialize the UI components from outside
+    public static void setTableComponents(TableView<ComponentRow> table) { tableComponents = table; }
+    public static void setTableCreateScenario(TableView<ComponentRow> table) { tableCreateScenario = table; }
+    public static void setFilterComponentsTextField(TextField textField) { filterComponentsTextField = textField; }
+
+
+    // --- Data Manipulation Methods for Component Library List ---
+    // Note: Co-pilot replaced this method with the one below it, but I added it back to address inconsistency between this and PaneNewScenarioComponent
 	public static void addToListOfFiles(ComponentRow[] fileArray) {
 		boolean match = false;
 		for (ComponentRow j : listOfFiles) {
 			for (ComponentRow i : fileArray) {
-				//TODO:  String comparison with .equals
 				if (j.getFileName().equals(i.getFileName())) {
 					match = true;
 					j.setAddress(i.getAddress());
@@ -73,94 +111,84 @@ public class ComponentLibraryTable {
 			}
 		}
 	}
+    
+    public static void addOrUpdateFiles(ComponentRow... fileArray) {
+        if (fileArray == null || fileArray.length == 0) return;
 
-	public static void createListOfFiles(ComponentRow[] fileArray) {
-		listOfFiles.clear();
-		for (ComponentRow i : fileArray) {
-			listOfFiles.add(i);
-		}
-	}
+        Map<String, ComponentRow> fileMap = listOfFiles.stream()
+            .collect(Collectors.toMap(ComponentRow::getFileName, Function.identity()));
 
-	public static void addToListOfFilesCreatePolicyScenario(ObservableList<ComponentRow> fileArray) {
-		for (ComponentRow i : fileArray) {
-			if (!listOfFilesCreateScenario.contains(i)) {
-				listOfFilesCreateScenario.add(i);
-			}
-		}
-	}
+        for (ComponentRow newFile : fileArray) {
+            fileMap.put(newFile.getFileName(), newFile); // Adds new or overwrites existing
+        }
 
-	public static void createListOfFilesCreatePolicyScenario(ComponentRow[] fileArray) {
-		listOfFilesCreateScenario.clear();
+        listOfFiles.setAll(fileMap.values());
+    }
 
-		if (fileArray!=null) {
-			for (ComponentRow i : fileArray) {
-				listOfFilesCreateScenario.add(i);
-			}
-		}
-	}
+    public static void createListOfFiles(ComponentRow... fileArray) {
+        listOfFiles.clear();
+        if (fileArray != null) {
+            listOfFiles.setAll(fileArray);
+        }
+    }
 
-	public static void removeFromListOfFilesCreatePolicyScenario(ObservableList<ComponentRow> fileArray) {
-		ObservableList<ComponentRow> copy = FXCollections.observableArrayList();
-		for (ComponentRow i : fileArray) {
-			copy.add(i);
-		}
-		for (ComponentRow i : copy) {
-			listOfFilesCreateScenario.remove(i);
-		}
-	}
+    public static void removeFromListOfFiles(ObservableList<ComponentRow> filesToRemove) {
+        listOfFiles.removeAll(filesToRemove);
+    }
 
-	public static void removeFromListOfFiles(ObservableList<ComponentRow> fileArray) {
-		ObservableList<ComponentRow> copy = FXCollections.observableArrayList();
-		for (ComponentRow i : fileArray) {
-			copy.add(i);
-		}
-		for (ComponentRow i : copy) {
-			listOfFiles.remove(i);
-		}
-	}
+    // --- Data Manipulation Methods for Create Scenario List ---
 
-	/* Returns File Id TableColumn */
-	public static TableColumn<ComponentRow, Integer> getIdColumn() {
-		TableColumn<ComponentRow, Integer> FileIdCol = new TableColumn<>("Id");
-		FileIdCol.setCellValueFactory(new PropertyValueFactory<>("FileId"));
-		return FileIdCol;
-	}
-
-	/* Returns First Name TableColumn */
-	public static TableColumn<ComponentRow, String> getFileNameColumn() {
-		TableColumn<ComponentRow, String> fNameCol = new TableColumn<>("Component Name");
-		fNameCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-		return fNameCol;
-	}
-
-	/* Returns Last Name TableColumn */
-	public static TableColumn<ComponentRow, String> getAddressColumn() {
-		TableColumn<ComponentRow, String> addressCol = new TableColumn<>("Address");
-		addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-		return addressCol;
-	}
-
-	/* Returns Birth Date TableColumn */
-	public static TableColumn<ComponentRow, Date> getBirthDateColumn() {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
-		TableColumn<ComponentRow, Date> bDateCol = new TableColumn<>("Created");
-		bDateCol.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-		bDateCol.setStyle("-fx-alignment: CENTER;");
-		bDateCol.setCellFactory(column -> {
-        return new TableCell<ComponentRow, Date>() {
-            @Override
-            protected void updateItem(Date date, boolean dateIsEmpty) {
-                super.updateItem(date, dateIsEmpty);
-                if (date == null || dateIsEmpty) {
-                    setText(null);
-                } else {
-                    setText(format.format(date));
-                }
+    public static void addToListOfFilesCreatePolicyScenario(ObservableList<ComponentRow> filesToAdd) {
+        filesToAdd.forEach(file -> {
+            if (!listOfFilesCreateScenario.contains(file)) {
+                listOfFilesCreateScenario.add(file);
             }
-        };
-    }); 
-		return bDateCol;
-	}
-	
+        });
+    }
 
+    public static void createListOfFilesCreatePolicyScenario(ComponentRow... fileArray) {
+        listOfFilesCreateScenario.clear();
+        if (fileArray != null) {
+            listOfFilesCreateScenario.setAll(Arrays.asList(fileArray));
+        }
+    }
+
+    public static void removeFromListOfFilesCreatePolicyScenario(ObservableList<ComponentRow> filesToRemove) {
+        listOfFilesCreateScenario.removeAll(filesToRemove);
+    }
+
+    // --- TableColumn Factory Methods ---
+
+    public static TableColumn<ComponentRow, Integer> getIdColumn() {
+        TableColumn<ComponentRow, Integer> idCol = new TableColumn<>(ID_COLUMN_HEADER);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("FileId"));
+        return idCol;
+    }
+
+    public static TableColumn<ComponentRow, String> getFileNameColumn() {
+        TableColumn<ComponentRow, String> fileNameCol = new TableColumn<>(FILENAME_COLUMN_HEADER);
+        fileNameCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        return fileNameCol;
+    }
+
+    public static TableColumn<ComponentRow, String> getAddressColumn() {
+        TableColumn<ComponentRow, String> addressCol = new TableColumn<>(ADDRESS_COLUMN_HEADER);
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        return addressCol;
+    }
+
+    public static TableColumn<ComponentRow, Date> getBirthDateColumn() {
+        TableColumn<ComponentRow, Date> bDateCol = new TableColumn<>(CREATED_DATE_COLUMN_HEADER);
+        bDateCol.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        bDateCol.setStyle("-fx-alignment: CENTER;");
+
+        bDateCol.setCellFactory(col -> new TableCell<ComponentRow, Date>() {
+            @Override
+            protected void updateItem(Date date, boolean empty) {
+                super.updateItem(date, empty);
+                setText((date == null || empty) ? null : DATE_FORMAT.format(date));
+            }
+        });
+        return bDateCol;
+    }
 }

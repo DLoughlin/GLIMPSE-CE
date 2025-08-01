@@ -26,12 +26,13 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package glimpseUtil;
 
+import java.io.File;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.StringTokenizer;
@@ -229,14 +230,14 @@ public class TableUtils {
 					continue;
 				}
 
-				// System.out.println( rowClipboard + "/" + colClipboard + ": "
+				// System.out.println( rowClipboard + File.separator + colClipboard + ": "
 				// + cell);
 
 				// get cell
 				TableColumn tableColumn = table.getColumns().get(colTable);
 				ObservableValue observableValue = tableColumn.getCellObservableValue(rowTable);
 
-				System.out.println(rowTable + "/" + colTable + ": " + observableValue);
+				System.out.println(rowTable + File.separator + colTable + ": " + observableValue);
 
 				// TODO: handle boolean, etc
 				if (observableValue instanceof DoubleProperty) {
@@ -271,7 +272,7 @@ public class TableUtils {
 
 				}
 
-				System.out.println(rowTable + "/" + colTable);
+				System.out.println(rowTable + File.separator + colTable);
 				
 			}
 

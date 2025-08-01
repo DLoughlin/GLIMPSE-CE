@@ -1,47 +1,47 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
-* Visualization Laboratory contract. 
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ *
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ * and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * For the GLIMPSE project, GCAM development, data processing, and support for
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency
+ * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew
+ * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron
+ * Parks and Yadong Xu of ARA through the EPAs Environmental Modeling and
+ * Visualization Laboratory contract.
+ *
+ */
 package gui;
 
-import java.io.File;
-import java.util.List;
-
-import org.controlsfx.control.StatusBar;
-
-import glimpseBuilder.SetupMenuTools;
+import glimpseBuilder.SetupMenuEdit;
 import glimpseBuilder.SetupMenuFile;
 import glimpseBuilder.SetupMenuHelp;
+import glimpseBuilder.SetupMenuTools;
 import glimpseBuilder.SetupMenuView;
-import glimpseBuilder.SetupMenuEdit;
+import glimpseUtil.GLIMPSEFiles;
+import glimpseUtil.GLIMPSEStyles;
+import glimpseUtil.GLIMPSEVariables;
+import java.io.File;
+import java.util.List;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -59,336 +59,334 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEVariables;
+import org.controlsfx.control.StatusBar;
 
 public class Client extends Application {
 
-	// class variables which are used in all of the subclasses and methods.
-	public static Stage primaryStage;
-	public static String optionsFilename = null;
-	//public static String runQueueStr = "Queue is empty.";
-	public static boolean exit_on_exception = false;
+    // region Constants
+    private static final double MIN_WINDOW_HEIGHT = 650;
+    private static final double MIN_WINDOW_WIDTH = 955;
+    private static final double SPLASH_WIDTH = 383.0;
+    private static final double SPLASH_HEIGHT = 384.0;
+    private static final String OPTIONS_ARG_FLAG = "-options";
+    // endregion
 
-	// GUI Panels
-	public static PaneCreateScenario paneCreateScenario;
-	public static PaneScenarioLibrary paneWorkingScenarios;
-	public static PaneNewScenarioComponent paneCandidateComponents;
+    // region Static Fields
+    static Stage primaryStage;
+    private static String optionsFilename = null;
+    public static boolean exit_on_exception = false; // Retained public for potential external access
+    // endregion
 
-	// Arrow buttons between the top right/left pane
-	public static Button buttonRightArrow;
-	public static Button buttonLeftArrow;
-	public static Button buttonLeftDoubleArrow;
-	public static Button buttonEditScenario;
+    // region GUI Panels
+    static PaneCreateScenario paneCreateScenario;
+    static PaneScenarioLibrary paneWorkingScenarios;
+    static PaneNewScenarioComponent paneCandidateComponents;
+    // endregion
 
-	// Buttons on the top left pane
-	public static Button buttonDeleteComponent;
-	public static Button buttonRefreshComponents;
-	public static Button buttonNewComponent;
-	public static Button buttonEditComponent;
-	public static Button buttonBrowseComponentLibrary;
+    // region GUI Buttons
+    // Arrow buttons between the top right/left pane
+    static Button buttonRightArrow;
+    static Button buttonLeftArrow;
+    static Button buttonLeftDoubleArrow;
+    static Button buttonEditScenario;
 
-	// Buttons on the top right pane
-	public static Button buttonMoveComponentUp;
-	public static Button buttonMoveComponentDown;
-	public static Button buttonCreateScenarioConfigFile;
+    // Buttons on the top left pane
+    static Button buttonDeleteComponent;
+    static Button buttonRefreshComponents;
+    static Button buttonNewComponent;
+    static Button buttonEditComponent;
+    static Button buttonBrowseComponentLibrary;
 
-	// Buttons on the bottom pane
-	public static Button buttonViewConfig;
-	public static Button buttonViewLog;
-	public static Button buttonViewExeLog;
-	public static Button buttonViewErrors;
-	public static Button buttonViewExeErrors;
-	public static Button buttonBrowseScenarioFolder;
-	public static Button buttonImportScenario;
-	public static Button buttonDiffFiles;
-	public static Button buttonShowRunQueue;
-	public static Button buttonRefreshScenarioStatus;
-	public static Button buttonDeleteScenario;
-	public static Button buttonRunScenario;
-	public static Button buttonResults;
-	public static Button buttonResultsForSelected;
-	public static Button buttonArchiveScenario;
-	public static Button buttonReport;
-	public static Button buttonExamineScenario;
+    // Buttons on the top right pane
+    static Button buttonMoveComponentUp;
+    static Button buttonMoveComponentDown;
+    static Button buttonCreateScenarioConfigFile;
 
-	// GCAM threads
-	public static GCAMExecutionThread gCAMExecutionThread;
-	public static GCAMExecutionThread gCAMPPExecutionThread;
+    // Buttons on the bottom pane
+    static Button buttonViewConfig;
+    static Button buttonViewLog;
+    static Button buttonViewExeLog;
+    static Button buttonViewErrors;
+    static Button buttonViewExeErrors;
+    static Button buttonBrowseScenarioFolder;
+    public static Button buttonImportScenario;
+    static Button buttonDiffFiles;
+    static Button buttonShowRunQueue;
+    public static Button buttonRefreshScenarioStatus;
+    static Button buttonDeleteScenario;
+    static Button buttonRunScenario;
+    static Button buttonResults;
+    static Button buttonResultsForSelected;
+    public static Button buttonArchiveScenario;
+    static Button buttonReport;
+    public static Button buttonExamineScenario;
+    // endregion
 
-	//
-	private ScenarioBuilder scenarioBuilder = ScenarioBuilder.getInstance();
-	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	private GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	private glimpseUtil.GLIMPSEUtils utils = glimpseUtil.GLIMPSEUtils.getInstance();
- 
-	StatusBar sb=new StatusBar();
+    // region GCAM Threads
+    public static GCAMExecutionThread gCAMExecutionThread;
+    public static GCAMExecutionThread modelInterfaceExecutionThread;
+    // endregion
 
-	// MAIN
-	// ///////////////////////////////////////////////////////////////////////////////////
-	// Main method which initiates the app and calls the start method described
-	// below.
-	// ///////////////////////////////////////////////////////////////////////////////////
-	public static void main(String[] args) {
-		//added following line to address issue on VMs that caused JavaFX to shutdown when WM_ENDSESSION was called
-		Platform.setImplicitExit(false);
-		launch(args);
-	}
+    // region Instance Variables
+    private final ScenarioBuilder scenarioBuilder = ScenarioBuilder.getInstance();
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    private final glimpseUtil.GLIMPSEUtils utils = glimpseUtil.GLIMPSEUtils.getInstance();
+    private final StatusBar sb = new StatusBar();
+    // endregion
 
-	@Override
-	public void init() throws Exception {
-		System.out.println("Loading settings and initializing.");
+    /**
+     * Main method which initiates the app and calls the start method.
+     *
+     * @param args Command line arguments.
+     */
+    public static void main(String[] args) {
+        // Added following line to address issue on VMs that caused JavaFX to shutdown when WM_ENDSESSION was called.
+        Platform.setImplicitExit(false);
+        launch(args);
+    }
 
-		// gives utility/variable objects ability to talk to eachother
-		vars.init(utils, vars, styles, files);
-		files.init(utils, vars, styles, files);
-		utils.init(utils, vars, styles, files);
+    @Override
+    public void init() throws Exception {
+        System.out.println("Loading settings and initializing.");
 
-		// reads command-line arguments
-		processArgs();
+        // Gives utility/variable objects ability to talk to each other.
+        vars.init(utils, vars, styles, files);
+        files.init(utils, vars, styles, files);
+        utils.init(utils, vars, styles, files);
 
-		// loads options into the vars singleton
-		vars.loadOptions(optionsFilename);
-		
-		String setup=vars.examineGLIMPSESetup();
-		if (setup.length()>0) {
-			System.out.println(setup);
-		}
-		
-		utils.resetLogFile(utils.getComputerStatString());
+        // Reads command-line arguments.
+        processArgs();
 
-		// loads data files into files singleton
-		files.loadFiles();
-		
-		utils.sb=this.sb;
+        // Loads options into the vars singleton.
+        vars.loadOptions(optionsFilename);
 
-	}
+        final String setup = vars.examineGLIMPSESetup();
+        if (setup.length() > 0) {
+            System.out.println(setup);
+        }
 
-	// START //
-	// ///////////////////////////////////////////////////////////////////////////////////
-	// this method initiates the UI. This is the root method of UI in JAVAFX. It
-	// contains all of the panes and technically whatever you see in UI.
-	// //////////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void start(Stage primaryStage) {
+        utils.resetLogFile(utils.getComputerStatString());
 
-		System.out.println("Starting GLIMPSE Graphical User Interface...");
+        // Loads data files into files singleton.
+        files.loadFiles();
+        utils.sb = this.sb;
+    }
 
-		// Record Current stage
-		Client.primaryStage = primaryStage;
-		
-		primaryStage.setOnCloseRequest(event -> {
-		    Client.gCAMExecutionThread.status.terminate();
-		    Client.gCAMPPExecutionThread.status.terminate();
-			Client.gCAMExecutionThread.shutdownNow();
-		    Client.gCAMPPExecutionThread.shutdownNow();
-		    //System.exit(0);
-		    Platform.exit();
-		});
-		
-		// build panels
-		scenarioBuilder.build();
+    /**
+     * This method initiates the UI. This is the root method of UI in JavaFX.
+     *
+     * @param primaryStage The primary stage for this application.
+     */
+    @Override
+    public void start(Stage primaryStage) {
+        System.out.println("Starting GLIMPSE Graphical User Interface...");
 
-		// Creates the menu at the top of the GUI
-		// Sets the title of the main window and its size
-		setMainWindow(combineAllElementsIntoOnePane(), createMenuBar());
+        Client.primaryStage = primaryStage;
 
-		// Sets up execution threads
-		setupExecutionThreads();
+        primaryStage.setOnCloseRequest(event -> {
+            Client.gCAMExecutionThread.status.terminate();
+            Client.modelInterfaceExecutionThread.status.terminate();
+            Client.gCAMExecutionThread.shutdownNow();
+            Client.modelInterfaceExecutionThread.shutdownNow();
+            Platform.exit();
+        });
 
-		String iconfile = "file:" + vars.getgCamGUIDir() + File.separator + "resources" + File.separator
-				+ "GLIMPSE_icon.png";
-		primaryStage.getIcons().add(new Image(iconfile));
-		
+        // Build GUI panels.
+        scenarioBuilder.build();
 
+        // Creates the menu at the top of the GUI and sets up the main window.
+        setMainWindow(combineAllElementsIntoOnePane(), createMenuBar());
 
-	}
-	
-	
+        // Sets up execution threads.
+        setupExecutionThreads();
 
-	private void processArgs() {
-		final Parameters params = getParameters();
-		final List<String> paramList = params.getRaw();
+        final String iconFile = "file:" + vars.getGlimpseResourceDir() + File.separator + "GLIMPSE_icon.png";
+        primaryStage.getIcons().add(new Image(iconFile));
+    }
 
-		if (!paramList.isEmpty()) {
-			if (paramList.size() == 1) {
-				optionsFilename = paramList.get(0);
-			} else {
-				for (int i = 0; i < paramList.size(); i++) {
-					if (paramList.get(i).toLowerCase().equals("-options")) {
-						optionsFilename = paramList.get(i + 1);
-						break;
-					}
-				}
-			}
-		}
-	}
+    private void processArgs() {
+        final Parameters params = getParameters();
+        final List<String> paramList = params.getRaw();
 
-	private MenuBar createMenuBar() {
+        if (paramList.isEmpty()) {
+            return;
+        }
 
-		// /////////// Menu setup
-		MenuBar menuBar = new MenuBar();
+        if (paramList.size() == 1) {
+            optionsFilename = paramList.get(0);
+        } else {
+            for (int i = 0; i < paramList.size(); i++) {
+                if (OPTIONS_ARG_FLAG.equalsIgnoreCase(paramList.get(i)) && i + 1 < paramList.size()) {
+                    optionsFilename = paramList.get(i + 1);
+                    break;
+                }
+            }
+        }
+    }
 
-		// ////////// File menu
-		Menu menuFile = new Menu("File");
-		SetupMenuFile setupMenuFile = new SetupMenuFile();
-		setupMenuFile.setup(menuFile);
+    private MenuBar createMenuBar() {
+        final MenuBar menuBar = new MenuBar();
 
-		// ////////// Edit menu
-		Menu menuEdit = new Menu("Edit");
-		SetupMenuEdit setupMenuEdit = new SetupMenuEdit();
-		setupMenuEdit.setup(menuEdit);
-		
-		// ////////// Actions menu
-		Menu menuTools = new Menu("Tools");
-		SetupMenuTools setupMenuTools = new SetupMenuTools();
-		setupMenuTools.setup(menuTools);
+        // File menu
+        final Menu menuFile = new Menu("File");
+        new SetupMenuFile().setup(menuFile);
 
-		// ////////// View menu
-		Menu menuView = new Menu("View");
-		SetupMenuView setupMenuView = new SetupMenuView();
-		setupMenuView.setup(menuView);
+        // Edit menu
+        final Menu menuEdit = new Menu("Edit");
+        new SetupMenuEdit().setup(menuEdit);
 
-		// ////////// Help menu
-		Menu menuHelp = new Menu("Help");
-		SetupMenuHelp setupMenuHelp = new SetupMenuHelp();
-		setupMenuHelp.setup(menuHelp);
+        // Tools menu
+        final Menu menuTools = new Menu("Tools");
+        new SetupMenuTools().setup(menuTools);
 
-		// Adds the menu elements to the menubar
-		menuBar.getMenus().addAll(menuFile, menuEdit, menuView, menuTools, menuHelp);
-		return menuBar;
-	}
-	
+        // View menu
+        final Menu menuView = new Menu("View");
+        new SetupMenuView().setup(menuView);
 
+        // Help menu
+        final Menu menuHelp = new Menu("Help");
+        new SetupMenuHelp().setup(menuHelp);
 
-	private GridPane combineAllElementsIntoOnePane() {
+        // Adds the menu elements to the menubar.
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuView, menuTools, menuHelp);
+        return menuBar;
+    }
 
-		GridPane mainGridPane = new GridPane();
-		mainGridPane.add(scenarioBuilder.getvBoxComponentLibrary(), 0, 0);
-		mainGridPane.add(scenarioBuilder.getvBoxButton(), 1, 0);
-		mainGridPane.add(scenarioBuilder.getvBoxCreateScenario(), 3, 0);
+    private GridPane combineAllElementsIntoOnePane() {
+        final GridPane mainGridPane = new GridPane();
+        mainGridPane.add(scenarioBuilder.getvBoxComponentLibrary(), 0, 0);
+        mainGridPane.add(scenarioBuilder.getvBoxButton(), 1, 0);
+        mainGridPane.add(scenarioBuilder.getvBoxCreateScenario(), 3, 0);
 
-		HBox stack = new HBox(20);
-		stack.getChildren().addAll(scenarioBuilder.getvBoxRun());
-		stack.prefWidthProperty().bind(primaryStage.widthProperty().multiply(1));
-		stack.setStyle(styles.style1);
-		mainGridPane.add(stack, 0, 1, 4, 1);
-		return mainGridPane;
-	}
+        final HBox stack = new HBox(20);
+        stack.getChildren().addAll(scenarioBuilder.getvBoxRun());
+        stack.prefWidthProperty().bind(primaryStage.widthProperty());
+        stack.setStyle(styles.getStyle1());
+        mainGridPane.add(stack, 0, 1, 4, 1);
 
-	private void setMainWindow(GridPane mainGridPane, MenuBar menuBar) {
-		// Creates and sets the default size of the main window
+        return mainGridPane;
+    }
 
-		Scene scene = new Scene(new VBox(), vars.ScenarioBuilderWidth, vars.ScenarioBuilderHeight);
-		// loadSplashScreen();
-		
-		((VBox) scene.getRoot()).getChildren().addAll(menuBar, mainGridPane,sb);
+    private void setMainWindow(GridPane mainGridPane, MenuBar menuBar) {
+        final VBox root = new VBox(menuBar, mainGridPane, sb);
+        final Scene scene = new Scene(root, vars.ScenarioBuilderWidth, vars.ScenarioBuilderHeight);
 
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("GLIMPSE Scenario Builder");
-		primaryStage.setMinHeight(650);
-		primaryStage.setHeight(650);
-		//primaryStage.setMinWidth(900);
-		primaryStage.setMinWidth(955);
-		primaryStage.setWidth(955);
-		
-		primaryStage.show();
-		if (vars.getShowSplash())
-			loadSplashScreen();
-	}
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("GLIMPSE Scenario Builder");
+        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
+        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
+        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
+        primaryStage.setWidth(MIN_WINDOW_WIDTH);
+        primaryStage.show();
 
-	private void setupExecutionThreads() {
-		// starting separate execution queues for GCAM and postprocessor
+        if (vars.getShowSplash()) {
+            loadSplashScreen();
+        }
+    }
 
-		gCAMExecutionThread = new GCAMExecutionThread();
-		gCAMPPExecutionThread = new GCAMExecutionThread();
+    private void setupExecutionThreads() {
+        // Starting separate execution queues for GCAM and post-processor.
+        gCAMExecutionThread = new GCAMExecutionThread();
+        modelInterfaceExecutionThread = new GCAMExecutionThread();
 
-		gCAMExecutionThread.startUpExecutorSingle();
-		gCAMPPExecutionThread.startUpExecutorMulti();
-	}
-	
+        gCAMExecutionThread.startUpExecutorSingle();
+        modelInterfaceExecutionThread.startUpExecutorMulti();
+    }
 
+    private boolean loadSplashScreen() {
+        try {
+            final Stage splashStage = new Stage();
+            final VBox splashRoot = new VBox();
+            final Scene splashScene = new Scene(splashRoot, SPLASH_WIDTH, SPLASH_HEIGHT, Color.TRANSPARENT);
 
-	private boolean loadSplashScreen() {
-		try {
-			// Load splash screen view FXML
-			// StackPane pane = FXMLLoader.load(getClass().getResource(("splash.fxml")));
-			Stage splashStage = new Stage();
-			Scene splashScene = new Scene(new VBox(), 383., 384.);
-			splashScene.setFill(Color.TRANSPARENT);
-			splashStage.setScene(splashScene);
-			splashStage.centerOnScreen();
-			splashStage.initOwner(primaryStage);
-			splashStage.initModality(Modality.WINDOW_MODAL);
-			splashStage.initStyle(StageStyle.UNDECORATED);
-			splashStage.initStyle(StageStyle.TRANSPARENT);
-			splashStage.setOpacity(0.9);
+            splashStage.setScene(splashScene);
+            splashStage.centerOnScreen();
+            splashStage.initOwner(primaryStage);
+            splashStage.initModality(Modality.WINDOW_MODAL);
+            splashStage.initStyle(StageStyle.TRANSPARENT);
+            splashStage.setOpacity(0.9);
 
-			GridPane pane = new GridPane();
-			// pane.setStyle("-fx-background-color: rgba(255, 255, 255, 1);");
+            final GridPane pane = new GridPane();
+            final String imagePath = "File:" + vars.getGlimpseDir() + File.separator + "resources" + File.separator + "glimpse-splash.png";
+            final Image image = new Image(imagePath);
 
-			String image_path = vars.getgCamGUIDir() + File.separator + "resources" + File.separator
-					+ "glimpse-splash.png";
-			
-			Image image = new Image("File:" + image_path);
-			if (image.isError()) {
-				System.out.println("Could not find splash graphic. Continuing.");
-				return false; 
-			}
-			
-			pane.getChildren().add(new ImageView(image));
+            if (image.isError()) {
+                System.err.println("Could not find splash graphic. Continuing without splash screen.");
+                return false;
+            }
 
-			VBox v = ((VBox) splashStage.getScene().getRoot());
-			v.getChildren().add(pane);
-			v.setStyle("-fx-background-color: rgba(255, 255, 255, 0);");
-			// ((VBox) splashStage.getScene().getRoot()).getChildren().add(pane);
+            pane.getChildren().add(new ImageView(image));
+            splashRoot.getChildren().add(pane);
+            splashRoot.setStyle("-fx-background-color: transparent;");
+            splashStage.show();
 
-			splashStage.show();
+            // Fade in effect
+            final FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
+            fadeIn.setFromValue(0.1);
+            fadeIn.setToValue(1);
 
-			// Load splash screen with fade in effect
-			FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
-			fadeIn.setFromValue(0.1);
-			fadeIn.setToValue(1);
-			fadeIn.setCycleCount(1);
+            // Fade out effect
+            final FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
 
-			// Finish splash with fade out effect
-			FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
-			fadeOut.setFromValue(1);
-			fadeOut.setToValue(0);
-			fadeOut.setCycleCount(1);
+            // After fade in, start fade out
+            fadeIn.setOnFinished(e -> fadeOut.play());
 
-			fadeIn.play();
+            // After fade out, hide the splash screen
+            fadeOut.setOnFinished(e -> splashStage.hide());
 
-			// After fade in, start fade out
-			fadeIn.setOnFinished((e) -> {
-				// Do the loading tasks
-				try {
-					;// Thread.sleep(5000);
-				} catch (Exception ex) {
-					;
-				}
-				fadeOut.play();
-			});
+            fadeIn.play();
 
-			// After fade out, load actual content
-			fadeOut.setOnFinished((e) -> {
-				try {
-					splashStage.hide();
-					// splashStage=null;
-				} catch (Exception ex1) {
-					;
-				}
-			});
-		} catch (Exception ex) {
-			;// Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return true;
-	}
-	
-	protected void setStatusBarText(String text) {
-		sb.setText(text);
-	}
+        } catch (Exception ex) {
+            System.err.println("An error occurred while loading the splash screen.");
+            ex.printStackTrace();
+        }
+        return true;
+    }
 
+    protected void setStatusBarText(String text) {
+        sb.setText(text);
+    }
+    
+    // region Getters for private static fields
+    public static Stage getPrimaryStage() { return primaryStage; }
+    public static String getOptionsFilename() { return optionsFilename; }
+    public static PaneCreateScenario getPaneCreateScenario() { return paneCreateScenario; }
+    public static PaneScenarioLibrary getPaneWorkingScenarios() { return paneWorkingScenarios; }
+    public static PaneNewScenarioComponent getPaneCandidateComponents() { return paneCandidateComponents; }
+    public static Button getButtonRightArrow() { return buttonRightArrow; }
+    public static Button getButtonLeftArrow() { return buttonLeftArrow; }
+    public static Button getButtonLeftDoubleArrow() { return buttonLeftDoubleArrow; }
+    public static Button getButtonEditScenario() { return buttonEditScenario; }
+    public static Button getButtonDeleteComponent() { return buttonDeleteComponent; }
+    public static Button getButtonRefreshComponents() { return buttonRefreshComponents; }
+    public static Button getButtonNewComponent() { return buttonNewComponent; }
+    public static Button getButtonEditComponent() { return buttonEditComponent; }
+    public static Button getButtonBrowseComponentLibrary() { return buttonBrowseComponentLibrary; }
+    public static Button getButtonMoveComponentUp() { return buttonMoveComponentUp; }
+    public static Button getButtonMoveComponentDown() { return buttonMoveComponentDown; }
+    public static Button getButtonCreateScenarioConfigFile() { return buttonCreateScenarioConfigFile; }
+    public static Button getButtonViewConfig() { return buttonViewConfig; }
+    public static Button getButtonViewLog() { return buttonViewLog; }
+    public static Button getButtonViewExeLog() { return buttonViewExeLog; }
+    public static Button getButtonViewErrors() { return buttonViewErrors; }
+    public static Button getButtonViewExeErrors() { return buttonViewExeErrors; }
+    public static Button getButtonBrowseScenarioFolder() { return buttonBrowseScenarioFolder; }
+    public static Button getButtonImportScenario() { return buttonImportScenario; }
+    public static Button getButtonDiffFiles() { return buttonDiffFiles; }
+    public static Button getButtonShowRunQueue() { return buttonShowRunQueue; }
+    public static Button getButtonRefreshScenarioStatus() { return buttonRefreshScenarioStatus; }
+    public static Button getButtonDeleteScenario() { return buttonDeleteScenario; }
+    public static Button getButtonRunScenario() { return buttonRunScenario; }
+    public static Button getButtonResults() { return buttonResults; }
+    public static Button getButtonResultsForSelected() { return buttonResultsForSelected; }
+    public static Button getButtonArchiveScenario() { return buttonArchiveScenario; }
+    public static Button getButtonReport() { return buttonReport; }
+    public static Button getButtonExamineScenario() { return buttonExamineScenario; }
+    public static GCAMExecutionThread getgCAMExecutionThread() { return gCAMExecutionThread; }
+    public static GCAMExecutionThread getgCAMPPExecutionThread() { return modelInterfaceExecutionThread; }
+    // endregion
 }

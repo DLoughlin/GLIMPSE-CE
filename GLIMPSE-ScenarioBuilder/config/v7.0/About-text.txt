@@ -1,0 +1,13 @@
+GLIMPSE is the GCAM Long-term Interactive Multi-Pollutant Scenario Evaluator, a graphical user interface that has been built for the GCAM model by researchers within the U.S. EPA's Office of Research and Development.  
+
+GCAM is the Global Change Assessment Model, a human-Earth systems model that is publicly available via https://github.com/JGCRI/gcam-core. The lead developer for GCAM is the Joint Global Change Research Institute, a joint venture between the Pacific Northwest National Laboratory and the University of Maryland. 
+
+NOTICES: 
+* This version of GLIMPSE has been reviewed in accordance to U.S. Environmental Protection Agency policy and approved for dissemination. 
+* Any mention of trade names, manufactureres or products does not imply an endorsement by the United States Government or the U.S. EPA. EPA and its employees do not endorse any commercial products, services, or enterprises. 
+* No warranty is provided regarding the functionality or results provided by GLIMPSE and GCAM.
+* GLIMPSE installation and use must be made at the user's own risk. Neither the U.S. EPA nor the program developers can assume responsibility for program modification, cntent, output interpretation, or usage.
+* As with all complex software, GILMPSE and GCAM may not be completely free of errors and may not be applicable for all cases. In no event will the U.S. EPA be liable for direct, indirect, special, incidental, or consequential damages arising out of the use of the program and/or associated documentation. 
+* GLIMPSE is actively being developed, and users are requested to periodically check epa.gov/GLIMPSE for updates. Please report comments, suggestions, to one of the GLIMPSE contacts listed on that website. 
+
+EXPORT CONTROL: User agrees that the Software will not be shipped, transferred or exported into any country or used in a manner prohibited by the United States Export Administation Act or any other applicable export laws, restrictions, or regulations (collectively the "Export Laws"). Export of the Software may require some form of license or other authority from the U.S. Government, and failure to obtain such export control license may result in criminal liability under U.S. laws. In addition, if the Software is identified as export controlled items under the Export Laws, User represents and warrants that User is not a citizen, or otherwise located within, an embargoed nation (including without limitation Iran, Syria, Sudan, Cuba, and North Korea) and that User is not otherwise prohibited under the Export Laws from receiving the Software.  

@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -44,7 +44,7 @@ class PaneForXmlDetails extends StackPane {
 	TextArea xmlTextArea = new TextArea();
 
 	PaneForXmlDetails() {
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 		this.getChildren().add(xmlTextArea);
 		xmlTextArea.setEditable(true);
 		xmlTextArea.setMaxHeight(Double.MAX_VALUE);
