@@ -189,9 +189,9 @@ public class DOMTreeBuilder {
 	*
 	*   \warning user must set a header before calling this function.
 	*/
-	public void addToTree (ArrayList<String> data) throws Exception {
+	public void addToTree (List<String> dataArr) throws Exception {
 		if(renameNodeNames) {
-			addToRenameMap(data);
+			addToRenameMap(dataArr);
 			return;
 		}
         if(addTagEquiv) {
@@ -201,18 +201,18 @@ public class DOMTreeBuilder {
             // are element tag names which are equivalent to the other tags in the
             // group. If a group has already been created then tags provided will be
             // merged with those that were previously provided.
-            if(data.size() < 2) {
+            if(dataArr.size() < 2) {
                 System.out.println("Error not enough data to create equivalence.");
                 return;
             }
-            String equivName = data.get(0);
+            String equivName = dataArr.get(0);
             Set<String> equivTagNames = equivMap.get(equivName);
             if(equivTagNames == null) {
                 equivTagNames = new HashSet<String>();
             }
-            for( int i = 1; i < data.size(); ++i) {
+            for( int i = 1; i < dataArr.size(); ++i) {
                 // Note that equivTagNames is a set so duplicates will be ignored
-                equivTagNames.add(data.get(i));
+                equivTagNames.add(dataArr.get(i));
             }
             equivMap.put(equivName, equivTagNames);
             return;
@@ -222,9 +222,9 @@ public class DOMTreeBuilder {
 			return;
 		}
 		if (buildMap) {
-			addToMap(data);
+			addToMap(dataArr);
 		} else {
-			makeTree(doc.getDocumentElement(), head.getRoot(), data);
+			makeTree(doc.getDocumentElement(), head.getRoot(), dataArr);
 		}
 	}
 

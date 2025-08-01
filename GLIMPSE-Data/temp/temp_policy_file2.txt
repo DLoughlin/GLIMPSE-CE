@@ -1,12 +1,7 @@
-
 INPUT_TABLE
 Variable ID
-GLIMPSEPFStdAdjCoef-Nest
+GLIMPSEStubTechShrwt-Nest
 
-region,sector,nested-subsector,tech,year,policy,adjcoef-year,adjcoef
+region,sector,nesting-subsector,subsector,tech,year,value
 
-INPUT_TABLE
-Variable ID
-GLIMPSEPFStd2ndOut-Nest
 
-region,sector,nested-subsector,subsector,tech,year,policy,output-ratio,pMultiplier

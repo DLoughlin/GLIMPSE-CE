@@ -32,6 +32,7 @@
 */
 package glimpseElement;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
 
@@ -120,10 +121,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
 	VBox vBoxCenter = new VBox();
 	HBox hBoxHeaderCenter = new HBox();
 	Label labelValue = utils.createLabel("Values: ");
-	Button buttonPopulate = utils.createButton("Populate", styles.bigButtonWid, null);
-	Button buttonImport = utils.createButton("Import", styles.bigButtonWid, null);
-	Button buttonDelete = utils.createButton("Delete", styles.bigButtonWid, null);
-	Button buttonClear = utils.createButton("Clear", styles.bigButtonWid, null);
+	Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
+	Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
 	PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
 
 	// Initializing components of right column
@@ -136,7 +137,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 	public TabTechParam(String title, Stage stageX) {
 		// sets tab title
 		this.setText(title);
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		checkComboBoxTech.getItems().clear();
 		checkComboBoxTech.getItems().add("Select One or More");
@@ -168,7 +169,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 				textFieldGrowth,comboBoxConvertFrom);
 
 		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.style2);
+		gridPaneLeft.setStyle(styles.getStyle2());
 		
 		scrollPaneLeft.setContent(gridPaneLeft);
 
@@ -176,14 +177,14 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
 		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
 		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.style3);
+		hBoxHeaderCenter.setStyle(styles.getStyle3());
 
 		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.style2);
+		vBoxCenter.setStyle(styles.getStyle2());
 
 		// right column
 		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.style2);
+		vBoxRight.setStyle(styles.getStyle2());
 
 		// ---adding components to the overall grid---
 		gridPanePresetModification.addColumn(0, scrollPaneLeft);
@@ -504,7 +505,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
 		} catch (Exception e) {
 			utils.warningMessage("Problem reading tech list.");
-			System.out.println("Error reading tech list from " + vars.get("tchBndListFile") + ":");
+			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 
 		}
@@ -550,7 +551,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
 		} catch (Exception e) {
 			utils.warningMessage("Problem reading tech list.");
-			System.out.println("Error reading tech list from " + vars.get("tchBndListFile") + ":");
+			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 
 		}
@@ -756,8 +757,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
 			ArrayList<String> dataList = loadDataFromGUI(tree);
 
-			ArrayList<String> colList = files.getStringArrayFromFile(vars.get("csvColumnFile"), "#");
-			ArrayList<String> csvContent = cfw.createCsvContent2(colList, dataList);
+			ArrayList<String> colList = files.getStringArrayFromFile(vars.getCsvColumnFilename(), "#");
+			ArrayList<String> csvContent = cfw.createCsvContent(colList, dataList); //Dan: if doesn't work, reset to createCsvContent2
 
 			file_content = getMetaDataContent(tree);
 
@@ -810,7 +811,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 				group = "trn";
 			if (sector.indexOf("generation") >= 0)
 				group = "egu";
-			String type = "type:" + group + "/" + this.comboBoxParam.getValue();
+			String type = "type:" + group + File.separator + this.comboBoxParam.getValue();
 
 			String data_str = type + ";" + sector + ";" + subsector + ";" + tech + ";" + region + ";" + input + ";"
 					+ output + ";" + param + ";" + param2 + ";" + /*dollarYear + ";" +*/ year + ";" + value;

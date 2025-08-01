@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -63,23 +63,23 @@ public class SetupTableComponentLibrary {
 	public void setup() { //TableView<ComponentRow>
 
 		//TableView<ComponentRow> 
-		ComponentLibraryTable.tableComponents = new TableView<>(ComponentLibraryTable.listOfFiles);
+		ComponentLibraryTable.tableComponents = new TableView<>(ComponentLibraryTable.getListOfFiles());
 
 		// Creates the _ column and sets its width to be 1/4 of the full table
 		TableColumn<ComponentRow, String> nameCol = ComponentLibraryTable.getFileNameColumn();
-		nameCol.prefWidthProperty().bind(ComponentLibraryTable.tableComponents.widthProperty().divide(1./(2./3.)));
+		nameCol.prefWidthProperty().bind(ComponentLibraryTable.getTableComponents().widthProperty().divide(1./(2./3.)));
 
 		// Creates the _ column and sets its width to be 1/2 of the full table
 		// Not currently shown in table!!!!
 		TableColumn<ComponentRow, String> addressCol = ComponentLibraryTable.getAddressColumn();
-		addressCol.prefWidthProperty().bind(ComponentLibraryTable.tableComponents.widthProperty().divide(2.));
+		addressCol.prefWidthProperty().bind(ComponentLibraryTable.getTableComponents().widthProperty().divide(2.));
 
 		// Creates the _ column and sets its width to be 1/4 of the full table
 		TableColumn<ComponentRow, Date> dateCol = ComponentLibraryTable.getBirthDateColumn();
-		dateCol.prefWidthProperty().bind(ComponentLibraryTable.tableComponents.widthProperty().divide(3.));
-		ComponentLibraryTable.tableComponents.getColumns().addAll(nameCol, /*addressCol,*/ dateCol);
+		dateCol.prefWidthProperty().bind(ComponentLibraryTable.getTableComponents().widthProperty().divide(3.));
+		ComponentLibraryTable.getTableComponents().getColumns().addAll(nameCol, /*addressCol,*/ dateCol);
 
-		ComponentLibraryTable.tableComponents.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		ComponentLibraryTable.getTableComponents().getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		showComponentDetailsOnDoubleClick();//ComponentTable.tableComponents);
 
@@ -91,12 +91,12 @@ public class SetupTableComponentLibrary {
 
 	private void showComponentDetailsOnDoubleClick() {//TableView<ComponentRow> tableComponents) {
 
-		ComponentLibraryTable.tableComponents.setOnMousePressed(new EventHandler<MouseEvent>() {
+		ComponentLibraryTable.getTableComponents().setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 					// If the table is double clicked
-					ComponentRow mf1 = ComponentLibraryTable.tableComponents.getSelectionModel().getSelectedItem();
+					ComponentRow mf1 = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItem();
 					String filename = mf1.getAddress();
 					
 					files.showFileInTextEditor(filename);
@@ -123,13 +123,13 @@ public class SetupTableComponentLibrary {
 //					}
 				}
 				if (event.isPrimaryButtonDown()) {
-					ComponentRow mf1 = ComponentLibraryTable.tableComponents.getSelectionModel().getSelectedItem();
+					ComponentRow mf1 = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItem();
 					
-					if (ComponentLibraryTable.tableComponents.getSelectionModel().getSelectedCells().size()==1) {
+					if (ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedCells().size()==1) {
 						String componentList=mf1.getAddress().replace(";",vars.getEol());
-						ComponentLibraryTable.tableComponents.setTooltip(new Tooltip(componentList));	
+						ComponentLibraryTable.getTableComponents().setTooltip(new Tooltip(componentList));	
 					} else {
-						ComponentLibraryTable.tableComponents.setTooltip(null);
+						ComponentLibraryTable.getTableComponents().setTooltip(null);
 					}
 				}
 			}
@@ -139,12 +139,12 @@ public class SetupTableComponentLibrary {
 
 	private void addFiltering() {//TableView<ComponentRow> table) {
 
-		ComponentLibraryTable.filterComponentsTextField = utils.createTextField();
-		ComponentLibraryTable.filterComponentsTextField.setMinWidth(styles.bigButtonWid);
+		ComponentLibraryTable.setFilterComponentsTextField(utils.createTextField());
+		ComponentLibraryTable.getFilterComponentsTextField().setMinWidth(styles.getBigButtonWidth());
 
-		FilteredList<ComponentRow> filteredComponents = new FilteredList<>(ComponentLibraryTable.tableComponents.getItems(), p -> true);
+		FilteredList<ComponentRow> filteredComponents = new FilteredList<>(ComponentLibraryTable.getTableComponents().getItems(), p -> true);
 
-		ComponentLibraryTable.filterComponentsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+		ComponentLibraryTable.getFilterComponentsTextField().textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredComponents.setPredicate(myfile1 -> {
 				// If user hasn't typed anything into the search bar
 					if (newValue == null || newValue.isEmpty()) {
@@ -166,7 +166,7 @@ public class SetupTableComponentLibrary {
 
 		// Adds the ability to sort the list after being filtered
 		SortedList<ComponentRow> sortedComponents = new SortedList<>(filteredComponents);
-		sortedComponents.comparatorProperty().bind(ComponentLibraryTable.tableComponents.comparatorProperty());
+		sortedComponents.comparatorProperty().bind(ComponentLibraryTable.getTableComponents().comparatorProperty());
 		ComponentLibraryTable.tableComponents.setItems(sortedComponents);
 
 	}

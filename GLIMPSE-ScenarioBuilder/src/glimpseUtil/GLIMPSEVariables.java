@@ -49,7 +49,7 @@ public class GLIMPSEVariables {
 	private GLIMPSEFiles files;
 	private GLIMPSEStyles styles;
 
-    private String GLIMPSEVersion="GLIMPSE v1.1-2024.12.12";
+    private String GLIMPSEVersion="GLIMPSE-CE v1.2";
 	
 	//other parameters
 	public int ScenarioBuilderWidth = 1200;
@@ -75,47 +75,54 @@ public class GLIMPSEVariables {
 	private boolean showSplash = true;
 	private boolean useAllAvailableProcessors = true;
 	private String glimpseDir = null;
+	private String glimpseResourceDir = null; 
 	private String glimpseDocDir = null;
 	private String gCamHomeDir = null;
 	private String gCamSolver = null;
-	private String gCamGUIDir = null;
-	private String gCamGUIJarDir = null;
-	private String gCamGUIJar = null;
+	private String scenarioBuilderDir = null;
+	private String scenarioBuilderJar = null;
+	private String scenarioBuilderJarDir = null;
 	private String gCamExecutable = null;
 	private String gCamExecutableArgs = " -C ";
 	private String gCamExecutableDir = null;
-	private String gCamPPExecutable = null;
-	private String gCamPPExecutableDir = null;
+	private String modelInterfaceJar = null;
+	private String modelInterfaceJarDir = null;
+	private String modelInterfaceDir = null;
 	private String filesToSave = null;
 	private String scenarioComponentsDir = null;
 	private String scenarioDir = null;
-	private String gCamGUILogDir = null;
-	//private String gCamGUIBatDir = null;
+	private String glimpseLogDir = null;
 	private String resourceDir = null;
 	private String trashDir = null;
-	private String configurationTemplate = null;
-	private String trnVehInfoFile = null;
-	private String tchBndListFile = null;
-	private String csvColumnFile = null;
-	private String xmlHeaderFile = null;
-	//private String monetaryConversionsFile = null;
-	private String presetRegionsFilename = null; 
 	private String gCamDataDir = null;
 	private String gCamOutputDatabase = null;
 	private String optionsFilename = null;
 	private String xmlLibrary = null;
-	private String queryFile = null;
 	private String textEditor = null;
 	private String xmlEditor = null;
 	private String descriptionText = "";
-	private String stopPeriod = null;
-	private String unitConversionsFile = "../../../GLIMPSE-ModelInterface/exe/units_rules.csv"; 
+	private String stopPeriod = null;	
+	private String stopYear = null; 
 	private int simulationStartYear = 2015;
 	private int simulationLastYear = 2100;
 	private int simulationYearIncrement = 5;
 
+	//customize GLIMPSE to GCAM version
+	private String configurationTemplateFilename = null;
+	private String queryFilename = null;
+	private String favoriteQueryFilename = null;
+	private String tchBndListFilename = null;
+	private String trnVehInfoFilename = null;
+	private String regionListFilename = null; 
+	private String subRegionListFilename = null; 
+	private String presetRegionListFilename = null; 
+	private String csvColumnFilename = null;
+	private String xmlHeaderFilename = null;	
+	private String unitConversionsFilename = null;
+	private String monetaryConversionsFilename = null;
+	private String aboutTextFilename = null; 
 
-
+	
 	private GLIMPSEVariables() {
 	}
 
@@ -133,13 +140,37 @@ public class GLIMPSEVariables {
 	public String getGLIMPSEVersion() {
 		return GLIMPSEVersion;
 	}
-	
-	public String getPresetRegionsFilename() {
-		return presetRegionsFilename; 
+
+	public String getAboutTextFilename() {
+		return aboutTextFilename; 
 	}
 	
-	public void setPresetRegionsFilename(String s) {
-		presetRegionsFilename=s; 
+	public void setAboutTextFilename(String s) {
+		aboutTextFilename=s; 
+	}
+	
+	public String getPresetRegionListFilename() {
+		return presetRegionListFilename; 
+	}
+	
+	public void setPresetRegionListFilename(String s) {
+		presetRegionListFilename=s; 
+	}
+
+	public String getSubRegionsFilename() {
+		return subRegionListFilename; 
+	}
+	
+	public void setSubRegionsFilename(String s) {
+		subRegionListFilename=s; 
+	}
+	
+	public String getRegionListFilename() {
+		return regionListFilename; 
+	}
+	
+	public void setRegionListFilename(String s) {
+		regionListFilename=s; 
 	}
 	
 	public int getSimulationStartYear() {
@@ -284,6 +315,14 @@ public class GLIMPSEVariables {
 		this.glimpseDir = s;
 	}
 
+	public String getGlimpseResourceDir() {
+		return glimpseResourceDir;
+	}
+
+	public void setGlimpseResourceDir(String s) {
+		this.glimpseResourceDir = s;
+	}
+	
 	public String getGlimpseDocDir() {
 		return glimpseDocDir;
 	}
@@ -309,28 +348,28 @@ public class GLIMPSEVariables {
 		this.gCamSolver = s;
 	}
 
-	public String getgCamGUIDir() {
-		return gCamGUIDir;
+	public String scenarioBuilderDir() {
+		return scenarioBuilderDir;
 	}
 
-	public void setgCamGUIDir(String s) {
-		this.gCamGUIDir = s;
+	public void setScenarioBuilderDir(String s) {
+		this.scenarioBuilderDir = s;
 	}
 
-	public String getgCamGUIJarDir() {
-		return gCamGUIJarDir;
-	}
-
-	public void setgCamGUIJarDir(String s) {
-		this.gCamGUIJarDir = s;
-	}
+//	public String getScenarioBuilderJarDir() {
+//		return scenairoBuilderJarDir;
+//	}
+//
+//	public void setScenarioBuilderJarDir(String s) {
+//		this.scenarioBuilderJarDir = s;
+//	}
 	
-	public String getgCamGUIJar() {
-		return gCamGUIJar;
+	public String getScenarioBuilderJar() {
+		return scenarioBuilderJar;
 	}
 
-	public void setgCamGUIJar(String s) {
-		this.gCamGUIJar = s;
+	public void setScenarioBuilderJar(String s) {
+		this.scenarioBuilderJar = s;
 	}
 	
 	public String getgCamExecutable() {
@@ -357,22 +396,30 @@ public class GLIMPSEVariables {
 		this.gCamExecutableDir = s;
 	}
 
-	public String getgCamPPExecutable() {
-		return gCamPPExecutable;
+	public String getModelInterfaceJar() {
+		return modelInterfaceJar;
 	}
 
-	public void setgCamPPExecutable(String s) {
-		this.gCamPPExecutable = s;
+	public void setModelInterfaceJar(String s) {
+		this.modelInterfaceJar = s;
 	}
 
-	public String getgCamPPExecutableDir() {
-		return gCamPPExecutableDir;
+	public String getModelInterfaceDir() {
+		return modelInterfaceDir;
 	}
 
-	public void setgCamPPExecutableDir(String s) {
-		this.gCamPPExecutableDir = s;
+	public void setModelInterfaceDir(String s) {
+		this.modelInterfaceJarDir = s;
 	}
 
+	public String getModelInterfaceJarDir() {
+		return modelInterfaceDir;
+	}
+
+	public void setModelInterfaceJarDir(String s) {
+		this.modelInterfaceJarDir = s;
+	}
+	
 	public String getFilesToSave() {
 		return filesToSave;
 	}
@@ -398,38 +445,34 @@ public class GLIMPSEVariables {
 		this.scenarioDir = s;
 	}
 
-	public String getgCamGUILogDir() {
-		return gCamGUILogDir;
-	}
-	
-	public String getQueryFile() {
-		return queryFile;
+	public String getGlimpseLogDir() {
+		return glimpseLogDir;
 	}
 
-	public void setgCamGUILogDir(String s) {
-		this.gCamGUILogDir = s;
+	public void setGlimpseLogDir(String s) {
+		glimpseLogDir=s;
 	}
 	
-	public void setQueryFile(String s) {
-		this.queryFile=s;
-	}
-	
-	public void setUnitConversionsFile(String s) {
-		this.unitConversionsFile=s;
+	public String getQueryFilename() {
+		return queryFilename;
 	}
 
-	public String getUnitConversionsFile() {
-		return unitConversionsFile;
+	public String getFavoriteQueryFilename() {
+		return favoriteQueryFilename;
 	}
 	
-//	public String getgCamGUIBatDir() {
-//		return gCamGUIBatDir;
-//	}
-//
-//	public void setgCamGUIBatDir(String s) {
-//		this.gCamGUIBatDir = s;
-//	}
+	public void setQueryFilename(String s) {
+		this.queryFilename=s;
+	}
+	
+	public void setUnitConversionsFilename(String s) {
+		this.unitConversionsFilename=s;
+	}
 
+	public String getUnitConversionsFilename() {
+		return unitConversionsFilename;
+	}
+	
 	public String getResourceDir() {
 		return resourceDir;
 	}
@@ -446,28 +489,28 @@ public class GLIMPSEVariables {
 		this.trashDir = s;
 	}
 
-	public String getConfigurationTemplate() {
-		return configurationTemplate;
+	public String getConfigurationTemplateFilename() {
+		return configurationTemplateFilename;
 	}
 
-	public void setConfigurationTemplate(String s) {
-		this.configurationTemplate = s;
+	public void setConfigurationTemplateFilename(String s) {
+		this.configurationTemplateFilename = s;
 	}
 
-	public String getTrnVehInfoFile() {
-		return trnVehInfoFile;
+	public String getTrnVehInfoFilename() {
+		return trnVehInfoFilename;
 	}
 
-	public void setTrnVehInfoFile(String s) {
-		this.trnVehInfoFile = s;
+	public void setTrnVehInfoFilename(String s) {
+		this.trnVehInfoFilename = s;
 	}
 
-	public String getTchBndListFile() {
-		return tchBndListFile;
+	public String getTchBndListFilename() {
+		return tchBndListFilename;
 	}
 
-	public void setTchBndListFile(String s) {
-		this.tchBndListFile = s;
+	public void setTchBndListFilename(String s) {
+		this.tchBndListFilename = s;
 	}
 
 	public String getgCamDataDir() {
@@ -527,13 +570,13 @@ public class GLIMPSEVariables {
 		this.xmlEditor = s;
 	}
 
-	//public String getMonetaryConversionsFile() {
-	//	return this.monetaryConversionsFile;
-	//}
+	public String getMonetaryConversionsFilename() {
+		return this.monetaryConversionsFilename;
+	}
 
-	//public void setMonetaryConversionsFile(String s) {
-	//	this.monetaryConversionsFile = s;
-	//}
+	public void setMonetaryConversionsFilename(String s) {
+		this.monetaryConversionsFilename = s;
+	}
 
 	public String getDescriptionText() {
 		return descriptionText;
@@ -551,6 +594,14 @@ public class GLIMPSEVariables {
 		this.stopPeriod = s;
 	}
 
+	public String getStopYear() {
+		return stopYear;
+	}
+
+	public void setStopYear(String s) {
+		this.stopYear = s;
+	}
+	
 	public String getRunQueueStr() {
 		return runQueueStr;
 	}
@@ -567,12 +618,12 @@ public class GLIMPSEVariables {
 		this.eol = s;
 	}
 
-	public String getCsvColumnFile() {
-		return csvColumnFile;
+	public String getCsvColumnFilename() {
+		return csvColumnFilename;
 	}
 
-	public void setCsvColumnFile(String s) {
-		csvColumnFile = s;
+	public void setCsvColumnFilename(String s) {
+		csvColumnFilename = s;
 	}
 
 	public String getUseIcons() {
@@ -587,12 +638,12 @@ public class GLIMPSEVariables {
 		}
 	}
 
-	public String getXmlHeaderFile() {
-		return xmlHeaderFile;
+	public String getXmlHeaderFilename() {
+		return xmlHeaderFilename;
 	}
 
-	public void setXmlHeaderFile(String s) {
-		xmlHeaderFile = s;
+	public void setXmlHeaderFilename(String s) {
+		xmlHeaderFilename = s;
 	}
 
 	public String getPreferredFontSize() {
@@ -609,7 +660,7 @@ public class GLIMPSEVariables {
 		}
 	}
 
-	public String get(String param) {
+	private String get(String param) {
 		String returnVal = "";
 
 		param = param.toLowerCase();
@@ -636,6 +687,9 @@ public class GLIMPSEVariables {
 		case "glimpsedir":
 			returnVal = glimpseDir;
 			break;
+		case "glimpseresourcedir":
+			returnVal = glimpseResourceDir;
+			break;
 		case "glimpsedocdir":
 			returnVal = glimpseDocDir;
 			break;
@@ -648,8 +702,8 @@ public class GLIMPSEVariables {
 		case "gcamsolver":
 			returnVal = gCamSolver;
 			break;
-		case "gcamguidir":
-			returnVal = gCamGUIDir;
+		case "scenariobuilderdir":
+			returnVal = scenarioBuilderDir;
 			break;
 		case "gcamexecutable":
 			returnVal = gCamExecutable;
@@ -660,11 +714,14 @@ public class GLIMPSEVariables {
 		case "gcamexecutabledir":
 			returnVal = gCamExecutableDir;
 			break;
-		case "gcamppexecutable":
-			returnVal = gCamPPExecutable;
+		case "modelinterfacejar":
+			returnVal = modelInterfaceJar;
 			break;
-		case "gcamppexecutabledir":
-			returnVal = gCamPPExecutableDir;
+		case "modelinterfacedir":
+			returnVal = modelInterfaceDir;
+			break;
+		case "modelinterfacejardir":
+			returnVal = modelInterfaceJarDir;
 			break;
 		case "filestosave":
 			returnVal = filesToSave;
@@ -681,41 +738,47 @@ public class GLIMPSEVariables {
 		case "scenariodir":
 			returnVal = scenarioDir;
 			break;
-		case "gcamguilogdir":
-			returnVal = gCamGUILogDir;
+		case "glimpselogdir":
+			returnVal = glimpseLogDir;
 			break;
-		case "queryfile":
-			returnVal = queryFile;
+		case "queryfilename":
+			returnVal = queryFilename;
 			break;
-		case "gcamguijardir":
-			returnVal = gCamGUIJarDir;
+		case "favoritequeryfilename":
+			returnVal = queryFilename;
 			break;
-		case "gcamguijar":
-			returnVal = gCamGUIJar;
+		case "scenariobuilderjardir":
+			returnVal = scenarioBuilderJarDir;
 			break;
-		//case "gcamguibatdir":
-		//	returnVal = gCamGUIBatDir;
-		//	break;
+		case "scenariobuilderjar":
+			returnVal = scenarioBuilderJar;
+			break;
 		case "resourcedir":
 			returnVal = resourceDir;
 			break;
-		case "presetregionsfilename":
-			returnVal = presetRegionsFilename;
+		case "presetregionlistfilename":
+			returnVal = presetRegionListFilename;
+			break;
+		case "regionlistfilename":
+			returnVal = regionListFilename;
+			break;
+		case "subregionlistfilename":
+			returnVal = subRegionListFilename;
 			break;
 		case "trashdir":
 			returnVal = trashDir;
 			break;
-		case "configurationtemplate":
-			returnVal = configurationTemplate;
+		case "configurationtemplatefilename":
+			returnVal = configurationTemplateFilename;
 			break;
-		case "tranloadfactorsfile":
-			returnVal = trnVehInfoFile;
+		case "tranloadfactorsfilename":
+			returnVal = trnVehInfoFilename;
 			break;
-		case "trnvehinfofile":
-			returnVal = trnVehInfoFile;
+		case "trnvehinfofilename":
+			returnVal = trnVehInfoFilename;
 			break;
-		case "tchbndlistfile":
-			returnVal = tchBndListFile;
+		case "tchbndlistfilename":
+			returnVal = tchBndListFilename;
 			break;
 		case "gcamdatadir":
 			returnVal = gCamDataDir;
@@ -747,6 +810,12 @@ public class GLIMPSEVariables {
 		case "stop-period":
 			returnVal = stopPeriod;
 			break;
+		case "stopyear":
+			returnVal = stopYear;
+			break;
+		case "stop-year":
+			returnVal = stopYear;
+			break;
 		case "runqueuestr":
 			returnVal = runQueueStr;
 			break;
@@ -756,11 +825,11 @@ public class GLIMPSEVariables {
 		case "isgcamusa":
 			returnVal = String.valueOf(isGcamUSA);
 			break;
-		case "csvcolumnfile":
-			returnVal = csvColumnFile;
+		case "csvcolumnfilename":
+			returnVal = csvColumnFilename;
 			break;
-		case "xmlheaderfile":
-			returnVal = xmlHeaderFile;
+		case "xmlheaderfilename":
+			returnVal = xmlHeaderFilename;
 			break;
 		case "preferredfontsize":
 			returnVal = preferredFontSize;
@@ -771,12 +840,12 @@ public class GLIMPSEVariables {
 		case "use_icons":
 			returnVal = useIcons;
 			break;
-		case "unitconversionsfile":
-			returnVal = unitConversionsFile;
+		case "unitconversionsfilename":
+			returnVal = unitConversionsFilename;
 			break;
-		//case "monetaryconversionsfile":
-		//	returnVal = monetaryConversionsFile;
-		//	break;
+		case "monetaryconversionsfilename":
+			returnVal = monetaryConversionsFilename;
+			break;
 		case "debugregion":
 			returnVal = debugRegion;
 			break;
@@ -793,7 +862,7 @@ public class GLIMPSEVariables {
 		return returnVal;
 	}
 
-	public void set(String param, String val) {
+	private void set(String param, String val) {
 
 		param = param.toLowerCase();
 		if (val.indexOf("#") > -1){
@@ -834,21 +903,23 @@ public class GLIMPSEVariables {
 		case "glimpsedocdir":
 			glimpseDocDir = fixDir(val);
 			break;
-
+		case "glimpseresourcedir":
+			glimpseResourceDir = fixDir(val);
+			break;
 		case "solver":
 			gCamSolver = fixDir(val);
 			break;
 		case "gcamsolver":
 			gCamSolver = fixDir(val);
 			break;
-		case "gcamguidir":
-			gCamGUIDir = fixDir(val);
+		case "scenariobuilderdir":
+			scenarioBuilderDir = fixDir(val);
 			break;
-		case "gcamguijardir":
-			gCamGUIJarDir = fixDir(val);
+		case "scenariobuilderjardir":
+			scenarioBuilderJarDir = fixDir(val);
 			break;
-		case "gcamguijar":
-			gCamGUIJar = val;
+		case "scenariobuilderjar":
+			scenarioBuilderJar = val;
 			break;
 		case "gcamexecutable":
 			gCamExecutable = fixDir(val);
@@ -859,11 +930,14 @@ public class GLIMPSEVariables {
 		case "gcamexecutabledir":
 			gCamExecutableDir = fixDir(val);
 			break;
-		case "gcamppexecutable":
-			gCamPPExecutable = fixDir(val);
+		case "modelinterfacejar":
+			modelInterfaceJar = fixDir(val);
 			break;
-		case "gcamppexecutabledir":
-			gCamPPExecutableDir = fixDir(val);
+		case "modelinterfacedir":
+			modelInterfaceDir = fixDir(val);
+			break;
+		case "modelinterfacejardir":
+			modelInterfaceJarDir = fixDir(val);
 			break;
 		case "gcamoutputtosave":
 			filesToSave = fixDir(val);
@@ -880,38 +954,44 @@ public class GLIMPSEVariables {
 		case "scenariodir":
 			scenarioDir = fixDir(val);
 			break;
-		case "gcamguilogdir":
-			gCamGUILogDir = fixDir(val);
+		case "glimpselogdir":
+			glimpseLogDir = fixDir(val);
 			break;
-		case "queryfile":
-			queryFile = fixDir(val);
+		case "queryfilename":
+			queryFilename = fixDir(val);
 			break;
-		case "unitconversionsfile":
-			unitConversionsFile = fixDir(val);
+		case "favoritequeryfilename":
+			favoriteQueryFilename = fixDir(val);
 			break;
-			//case "gcamguibatdir":
-		//	gCamGUIBatDir = fixDir(val);
-		//	break;
+		case "unitconversionsfilename":
+			unitConversionsFilename = fixDir(val);
+			break;
 		case "resourcedir":
 			resourceDir = fixDir(val);
 			break;
-		case "presetregionsfilename":
-			presetRegionsFilename = fixDir(val);
+		case "presetregionlistfilename":
+			presetRegionListFilename = fixDir(val);
 			break;
+		case "regionlistfilename":
+			regionListFilename = fixDir(val);
+			break;
+		case "subregionlistfilename":
+			subRegionListFilename = fixDir(val);
+			break;			
 		case "trashdir":
 			trashDir = fixDir(val);
 			break;
-		case "configurationtemplate":
-			configurationTemplate = fixDir(val);
+		case "configurationtemplatefilename":
+			configurationTemplateFilename = fixDir(val);
 			break;
-		case "tranloadfactorsfile":
-			trnVehInfoFile = fixDir(val);
+		case "tranloadfactorsfilename":
+			trnVehInfoFilename = fixDir(val);
 			break;
-		case "trnvehinfofile":
-			trnVehInfoFile = fixDir(val);
+		case "trnvehinfofilename":
+			trnVehInfoFilename = fixDir(val);
 			break;
-		case "tchbndlistfile":
-			tchBndListFile = fixDir(val);
+		case "tchbndlistfilename":
+			tchBndListFilename = fixDir(val);
 			break;
 		case "gcamdatadir":
 			gCamDataDir = fixDir(val);
@@ -943,6 +1023,12 @@ public class GLIMPSEVariables {
 		case "stop-period":
 			stopPeriod = val;
 			break;
+		case "stopyear":
+			stopYear = val;
+			break;
+		case "stop-year":
+			stopYear = val;
+			break;
 		case "runqueuestr":
 			runQueueStr = fixDir(val);
 			break;
@@ -954,11 +1040,11 @@ public class GLIMPSEVariables {
 			if (val.toLowerCase().trim().equals("true"))
 				isGcamUSA = true;
 			break;
-		case "csvcolumnfile":
-			csvColumnFile = fixDir(val);
+		case "csvcolumnfilename":
+			csvColumnFilename = fixDir(val);
 			break;
-		case "xmlheaderfile":
-			xmlHeaderFile = fixDir(val);
+		case "xmlheaderfilename":
+			xmlHeaderFilename = fixDir(val);
 			break;
 		case "preferredfontsize":
 			setPreferredFontSize(val);
@@ -969,9 +1055,9 @@ public class GLIMPSEVariables {
 		case "use_icons":
 			setUseIcons(val);
 			break;
-		//case "monetaryconversionsfile":
-		//	setMonetaryConversionsFile(val);
-		//	break;
+		case "monetaryconversionsfilename":
+			setMonetaryConversionsFilename(fixDir(val));
+			break;
 		case "debugregion":
 			setDebugRegion(val);
 			break;
@@ -981,7 +1067,7 @@ public class GLIMPSEVariables {
 		case "debugrename":
 			setDebugRename(val);
 			break;	
-		case "startYearForShare":
+		case "startyearforshare":
 			setStartYearForShare(val);
 			break;	
 			}
@@ -1002,8 +1088,11 @@ public class GLIMPSEVariables {
 		if (filename.indexOf("#gCamHomeDir#") > -1) {
 			filename = filename.replace("#gCamHomeDir#", gCamHomeDir);
 		}
-		if (filename.indexOf("#gCamGuiDir#") > -1) {
-			filename = filename.replace("#gCamGuiDir#", gCamGUIDir);
+		if (filename.indexOf("#scenarioBuilderDir#") > -1) {
+			filename = filename.replace("#scenarioBuilderDir#", scenarioBuilderDir);
+		}
+		if (filename.indexOf("#modelInterfaceDir#") > -1) {
+			filename = filename.replace("#modelInterfaceDir#", modelInterfaceDir);
 		}
 		
 		//for new convention with wildcards surrounded by $s
@@ -1013,8 +1102,11 @@ public class GLIMPSEVariables {
 		if (filename.indexOf("$gCamHomeDir$") > -1) {
 			filename = filename.replace("$gCamHomeDir$", gCamHomeDir);
 		}
-		if (filename.indexOf("$gCamGuiDir$") > -1) {
-			filename = filename.replace("$gCamGuiDir$", gCamGUIDir);
+		if (filename.indexOf("$scenarioBuilderDir$") > -1) {
+			filename = filename.replace("$scenarioBuilderDir$", scenarioBuilderDir);
+		}
+		if (filename.indexOf("$modelInterfaceDir$") > -1) {
+			filename = filename.replace("$modelInterfaceDir$", modelInterfaceDir);
 		}
 
 		filename = filename.replace("/", File.separator).replace("\\", File.separator).replace("\\\\", File.separator);
@@ -1277,13 +1369,22 @@ public class GLIMPSEVariables {
 		String rtn_str="";
 		
 		//testing to make sure key parameters have been defined
-		String[] params= {"glimpseDir","glimpseDocDir","gCamHomeDir","solver","gCamSolver","gCamGuiDir",
-				"gCamExecutable","gCamExecutableArgs","gCamExecutableDir","gCamPPExecutable","gCamPPExecutableDir","filesToSave",
-				"scenarioComponentsDir","scenarioXMLDir","scenarioDir","queryFile","gCamGuiJarDir","gCamGuiJar",
-				"resourceDir","trashDir","configurationTemplate","tranLoadFactorsFile","tchBndListFile","gCamDataDir","gCamOutputDatabase",
-				"maxDatabaseSizeGB","optionsFilename","xmlLibrary","textEditor","xmlEditor","stopPeriod","stop-period","runQueueStr",
-				"isGcamUSA","csvColumnFile","xmlHeaderFile","preferredFontSize","useIcons","use_icons",/*"monetaryConversionsFile",*/"debugRegion",
-				"debugCreate","startYearForShare","debugRename"};
+		String[] params= {
+				"glimpseDir","glimpseResourceDir","glimpseDocDir","gCamHomeDir","solver","gCamSolver",
+				"scenarioBuilderJar","scenarioBuilderDir",
+				"gCamExecutable","gCamExecutableArgs","gCamExecutableDir",
+				"modelInterfaceJar","modelInterfaceJarDir",
+				"scenarioComponentsDir","scenarioXMLDir","scenarioDir",
+				"configurationTemplateFilename","queryFilename","favoriteQueryFilename",
+				"tchBndListFilename","tranLoadFactorsFilename",
+				"regionListFilename","subRegionListFilename","presetRegionListFilename",
+				"monetaryConversionsFilename","csvColumnFilename","xmlHeaderFilename",
+				"scenarioBuilderJarDir","scenarioBuilderJar",
+				"resourceDir","trashDir","gCamDataDir","gCamOutputDatabase",
+				"maxDatabaseSizeGB","optionsFilename","xmlLibrary","textEditor","xmlEditor",
+				"stopPeriod","runQueueStr",
+				"isGcamUSA","preferredFontSize","useIcons","use_icons","debugRegion",
+				"debugCreate","startYearForShare","debugRename","filesToSave"};
 		
 		ArrayList<String> report=new ArrayList<String>();
 		
@@ -1372,22 +1473,22 @@ public class GLIMPSEVariables {
 		
 		report.add(" ");
 		report.add("------ Check to verify that key files exist as specified --------");
-		String filename=this.getXmlHeaderFile();
+		String filename=this.getXmlHeaderFilename();
 		String s="XML header file: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);
-		filename=this.getTchBndListFile();
+		filename=this.getTchBndListFilename();
 		s="Tech Bound file: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);
-		filename=this.getConfigurationTemplate();
+		filename=this.getConfigurationTemplateFilename();
 		s="Configuration template file: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);		
-		filename=this.getQueryFile();
+		filename=this.getQueryFilename();
 		s="Query file: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);	
 		filename=this.getgCamExecutableDir()+File.separator+this.getgCamExecutable();
 		s="GCAM executable: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);	
-		filename=this.getgCamPPExecutableDir()+File.separator+this.getgCamPPExecutable();
+		filename=this.getModelInterfaceJarDir()+File.separator+this.getModelInterfaceJar();
 		s="ModelInterface executable: "+filename+" - "+files.doesFileExist(filename);
 		report.add(s);			
 		
@@ -1460,5 +1561,18 @@ public class GLIMPSEVariables {
 		return rtn_str;
 	}
 
+	public ArrayList<String> getTypesFromTechBnd(){
+		ArrayList<String> result=new ArrayList<String>();
+		
+		String[][] tech_info = getTechInfo();
+		
+		result.add("All");
+		
+		for (int i=0;i<tech_info.length;i++) {
+			utils.addToArrayListIfUnique(result,tech_info[i][tech_info[0].length-1]);
+		}
+		return result;
+	}
+	
 
 }

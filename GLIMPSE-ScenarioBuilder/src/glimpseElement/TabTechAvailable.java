@@ -84,8 +84,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	ObservableList<TechBound> orig_list;
 	ObservableList<TechBound> table_list;
 	
-	Label filterBySectorLabel=utils.createLabel("Filter by Sector: ");
-	ComboBox<String> comboBoxSectorFilter = utils.createComboBoxString();
+	Label filterByTypeLabel=utils.createLabel("Filter by Type: ");
+	ComboBox<String> comboBoxTypeFilter = utils.createComboBoxString();
 	
 	Label filterByTextLabel=utils.createLabel(" Text: ");
 	TextField filterTextField=utils.createTextField();
@@ -93,26 +93,26 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	TextField firstYrTextField=utils.createTextField();
 	Label lastYrLabel=utils.createLabel(" Last yr: ");
 	TextField lastYrTextField=utils.createTextField();
-	Button setFirstLastYrsButton=utils.createButton("Set Years",styles.bigButtonWid, "Set first, last years for visible technologies");
+	Button setFirstLastYrsButton=utils.createButton("Set Years",styles.getBigButtonWidth(), "Set first, last years for visible technologies");
 	Label selectLabel=utils.createLabel("Select: ");
-	Button selectAllButton=utils.createButton("Never",styles.bigButtonWid, "Selects All? for visible technologies");
-	Button selectRangeButton=utils.createButton("Range",styles.bigButtonWid, "Selects Range? for visible technologies");
+	Button selectAllButton=utils.createButton("Never",styles.getBigButtonWidth(), "Selects All? for visible technologies");
+	Button selectRangeButton=utils.createButton("Range",styles.getBigButtonWidth(), "Selects Range? for visible technologies");
 
 	
 	public TabTechAvailable(String title, Stage stageX) {
 
-		this.setStyle(styles.font_style);
+		this.setStyle(styles.getFontStyle());
 
 		firstYrTextField.setText("1975");
-		firstYrTextField.setPrefWidth(styles.bigButtonWid);
+		firstYrTextField.setPrefWidth(styles.getBigButtonWidth());
 		lastYrTextField.setText("2015");
-		lastYrTextField.setPrefWidth(styles.bigButtonWid);
+		lastYrTextField.setPrefWidth(styles.getBigButtonWidth());
 
 		TableColumn<TechBound, Boolean> isBoundAll = new TableColumn<TechBound, Boolean>("Never?");
 		TableColumn<TechBound, Boolean> isBoundRange = new TableColumn<TechBound, Boolean>("Range?");
 		
 		TableColumn<TechBound, String> techNameCol = new TableColumn<TechBound, String>(
-				"Sector : Subsector : Technology : Units");
+				"Sector : Subsector : Technology : Units // Type");
 		TableColumn<TechBound, String> firstYearCol = new TableColumn<TechBound, String>("First");
 		TableColumn<TechBound, String> lastYearCol = new TableColumn<TechBound, String>("Last");
 
@@ -146,8 +146,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					@Override
 					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
 							Boolean newValue) {
-						tb.setBoundAll(newValue);
-
+						tb.setIsBoundAll(newValue);
+					
 					}
 				});
 				return booleanProp;
@@ -178,7 +178,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					@Override
 					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
 							Boolean newValue) {
-						tb.setBoundRange(newValue);
+						tb.setIsBoundRange(newValue);
 
 					}
 				});
@@ -283,8 +283,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		HBox filterLayout = new HBox();
 		filterLayout.setPadding(new Insets(10,10,10,10));
 
-		filterLayout.getChildren().addAll(filterBySectorLabel,comboBoxSectorFilter,filterByTextLabel,filterTextField);
-		setupComboBoxSector();
+		filterLayout.getChildren().addAll(filterByTypeLabel,comboBoxTypeFilter,filterByTextLabel,filterTextField);
+		setupComboBoxType();
 		
 		HBox resetYrLayout = new HBox();
 		resetYrLayout.setPadding(new Insets(5,5,5,5));
@@ -301,7 +301,12 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
 	}
 	
-	private void setupComboBoxSector() {
+	private void setupComboBoxType() {
+		comboBoxTypeFilter.getItems().addAll(vars.getTypesFromTechBnd());
+		comboBoxTypeFilter.getSelectionModel().selectFirst();
+	}
+	
+	private void setupComboBoxSectorOld() {
 
 		try {
 			String[][] tech_info = vars.getTechInfo();
@@ -324,13 +329,13 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			}
 
 			for (int i = 0; i < sectorList.size(); i++) {
-				comboBoxSectorFilter.getItems().add(sectorList.get(i).trim());
+				comboBoxTypeFilter.getItems().add(sectorList.get(i).trim());
 			}
-			comboBoxSectorFilter.getSelectionModel().selectFirst();
+			comboBoxTypeFilter.getSelectionModel().selectFirst();
 
 		} catch (Exception e) {
 			utils.warningMessage("Problem reading tech list.");
-			System.out.println("Error reading tech list from " + vars.get("tchBndListFile") + ":");
+			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 
 		}
@@ -417,7 +422,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		for (int i=0;i<visibleComponents.size();i++) {
 			TechBound tb=visibleComponents.get(i);
 			if (tb.isBoundAll()) b=false;
-			tb.setBoundAll(b);
+			tb.setIsBoundAll(b);
 		}
 		String text=filterTextField.getText();
 		filterTextField.setText("Resetting...");
@@ -432,7 +437,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		for (int i=0;i<visibleComponents.size();i++) {
 			TechBound tb=visibleComponents.get(i);
 			if (tb.isBoundRange()) b=false;
-			tb.setBoundRange(b);
+			tb.setIsBoundRange(b);
 		}
 		String text=filterTextField.getText();
 		filterTextField.setText("Resetting...");
@@ -445,12 +450,12 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		
 		filterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredComponents.setPredicate(techBound -> {
-				
+
 				//check sector first
-				String sector=comboBoxSectorFilter.getSelectionModel().getSelectedItem().toLowerCase().trim();
-				if (sector.equals("all")||sector.equals("filter by sector?")){
+				String type=comboBoxTypeFilter.getSelectionModel().getSelectedItem().toLowerCase().trim();
+				if (type.equals("")||type.equals("all")||type.equals("filter by type?")){
 					;
-				} else if (!techBound.getTechName().toLowerCase().startsWith(sector)) {
+				} else if (!techBound.getTechName().toLowerCase().trim().endsWith(type)) {
 					return false;
 				}
 				
@@ -477,11 +482,11 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 				});
 		});
 		
-		comboBoxSectorFilter.valueProperty().addListener((observable, oldValue, newValue) -> {
+		comboBoxTypeFilter.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filteredComponents.setPredicate(techBound -> {
 								
 				// If user hasn't typed anything into the search bar
-					if (newValue.equals("Filter by Sector?") || (newValue.equals("All"))) {
+					if (newValue.equals("Filter by Type?") || (newValue.equals("All"))) {
 						// Display all items						
 						return true;
 					}
@@ -490,7 +495,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					// Comparison is not case sensitive
 					String lowerCaseFilter = newValue.toLowerCase();
 
-					if (techBound.getTechName().toLowerCase().startsWith(lowerCaseFilter)) {
+					if (techBound.getTechName().toLowerCase().trim().endsWith(lowerCaseFilter)) {
 						// Displays results that match
 						return true;
 					}
@@ -502,7 +507,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			String filterText=filterTextField.getText();
 			filterTextField.setText("");
 			
-			 if (!newValue.equals("Filter by Sector?")) {
+			 if (!newValue.equals("Filter by Type?")) {
 				 //Platform.runLater(()->
 				 filterTextField.setText(filterText);
 				 //);
@@ -530,109 +535,109 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	
 
 
-//	@Override
-//	public void saveScenarioComponent() {//_part2() {
-//		
-//	
-//		if (qaInputs()) {
-//			
-//			TreeView<String> tree = this.paneForCountryStateTree.getTree();
-//
-//			String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
-//
-//			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-//			String states = utils.returnAppendedString(listOfSelectedLeaves);
-//
-//			filename_suggestion = "TechAvailBnd";
-//
-//			String region = states.replace(",", "");
-//			if (region.length() > 6) {
-//				region = "Reg";
-//			}
-//			filename_suggestion += region;
-//			filename_suggestion = filename_suggestion.replaceAll("/", "-").replaceAll(" ", "");
-//
-//			// sets up the content of the CSV file to store the scenario component data
-//			file_content = getMetaDataContent(tree);
-//			String file_content1 = "";
-//			String file_content2 = "";
-//
-//			String header_1 = "GLIMPSETechAvailBnd";
-//			String header_2 = "GLIMPSETechAvailBnd-Nest";
-//			
-//			int num_non_nest=0;
-//			int num_nest=0;
-//
-//			// Setting up non-nested-inputs 
-//			file_content1 += "INPUT_TABLE" + vars.getEol();
-//			file_content1 += "Variable ID" + vars.getEol();
-//			file_content1 += header_1 + vars.getEol() + vars.getEol();
-//			file_content1 += "region,sector,subsector,tech,init-year,final-year" + vars.getEol();
-//
-//			file_content2 += "INPUT_TABLE" + vars.getEol();
-//			file_content2 += "Variable ID" + vars.getEol();
-//			file_content2 += header_2 + vars.getEol() + vars.getEol();
-//			file_content2 += "region,sector,nesting-subsector,subsector,tech,init-year,final-year" + vars.getEol();
-//
-//			
-//			int count = 0;
-//			boolean isNested=false;
-//			for (int j = 0; j < table_list/*techList*/.size(); j++) {
-//				TechBound techBound = table_list/*techList*/.get(j);
-//				
-//				if ((techBound.isBoundAll())||(techBound.isBoundRange())) {
-//					String tblName = techBound.getTechName();
-//					String name=getMatchingLineFromTechList(tblName);
-//					
-//					if (name.indexOf("=>")>-1) { 
-//						isNested=true;
-//					} else {
-//						isNested=false;
-//					}
-//					
-//					String firstYear = techBound.getFirstYear();
-//					String lastYear = techBound.getLastYear();
-//
-//					String[] info = name.split(":");
-//					name=info[0].trim()+","+info[1].trim()+","+info[2].trim();
-//								
-//					if (techBound.isBoundAll()) {
-//						firstYear = "3000";
-//						lastYear = "3005";
-//					}
-//					if (isNested) name=name.replace("=>",",").trim();
-//					
-//					for (int s = 0; s < listOfSelectedLeaves.length; s++) {
-//						String state = listOfSelectedLeaves[s];						
-//						
-//						String line = state + "," + name + "," + firstYear + ","
-//							+ lastYear + vars.getEol();
-//						
-//						if (!isNested) {
-//							num_non_nest++;
-//							file_content1+=line;
-//						} else {
-//							num_nest++;
-//							file_content2+=line;
-//						}
-//					}
-//				}
-//			}
-//			if ((num_non_nest>0)&&(num_nest>0)) file_content2=vars.getEol()+file_content2;
-//			if (num_non_nest>0) file_content+=file_content1;
-//			if (num_nest>0) file_content+=file_content2;
-//			
-//			System.out.println("Exciting tab save code. file_content ..."+file_content.length()+" characters");
-//			
-//		}
-//	}
-	
+    //This approach does not seem to work
 	public void saveScenarioComponent() {//_part2() {
+		
+	
+		if (qaInputs()) {
+			
+			TreeView<String> tree = this.paneForCountryStateTree.getTree();
+
+			String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+
+			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+			String states = utils.returnAppendedString(listOfSelectedLeaves);
+
+			filename_suggestion = "TechAvailBnd";
+
+			String region = states.replace(",", "");
+			if (region.length() > 6) {
+				region = "Reg";
+			}
+			filename_suggestion += region;
+			filename_suggestion = filename_suggestion.replaceAll("/", "-").replaceAll(" ", "");
+
+			// sets up the content of the CSV file to store the scenario component data
+			file_content = getMetaDataContent(tree);
+			String file_content1 = "";
+			String file_content2 = "";
+
+			String header_1 = "GLIMPSETechAvailBnd";
+			String header_2 = "GLIMPSETechAvailBnd-Nest";
+			
+			int num_non_nest=0;
+			int num_nest=0;
+
+			// Setting up non-nested-inputs 
+			file_content1 += "INPUT_TABLE" + vars.getEol();
+			file_content1 += "Variable ID" + vars.getEol();
+			file_content1 += header_1 + vars.getEol() + vars.getEol();
+			file_content1 += "region,sector,subsector,tech,init-year,final-year" + vars.getEol();
+
+			file_content2 += "INPUT_TABLE" + vars.getEol();
+			file_content2 += "Variable ID" + vars.getEol();
+			file_content2 += header_2 + vars.getEol() + vars.getEol();
+			file_content2 += "region,sector,nesting-subsector,subsector,tech,init-year,final-year" + vars.getEol();
+
+			
+			int count = 0;
+			boolean isNested=false;
+			for (int j = 0; j < table_list/*techList*/.size(); j++) {
+				TechBound techBound = table_list/*techList*/.get(j);
+				
+				if ((techBound.isBoundAll())||(techBound.isBoundRange())) {
+					String tblName = techBound.getTechName();
+					String name=getMatchingLineFromTechList(tblName);
+					
+					if (name.indexOf("=>")>-1) { 
+						isNested=true;
+					} else {
+						isNested=false;
+					}
+					
+					String firstYear = techBound.getFirstYear();
+					String lastYear = techBound.getLastYear();
+
+					String[] info = name.split(":");
+					name=info[0].trim()+","+info[1].trim()+","+info[2].trim();
+								
+					if (techBound.isBoundAll()) {
+						firstYear = "3000";
+						lastYear = "3005";
+					}
+					if (isNested) name=name.replace("=>",",").trim();
+					
+					for (int s = 0; s < listOfSelectedLeaves.length; s++) {
+						String state = listOfSelectedLeaves[s];						
+						
+						String line = state + "," + name + "," + firstYear + ","
+							+ lastYear + vars.getEol();
+						
+						if (!isNested) {
+							num_non_nest++;
+							file_content1+=line;
+						} else {
+							num_nest++;
+							file_content2+=line;
+						}
+					}
+				}
+			}
+			if ((num_non_nest>0)&&(num_nest>0)) file_content2=vars.getEol()+file_content2;
+			if (num_non_nest>0) file_content+=file_content1;
+			if (num_nest>0) file_content+=file_content2;
+			
+			//System.out.println("Exciting tab save code. file_content ..."+file_content.length()+" characters");
+			
+		}
+	}
+
+	public void saveScenarioComponentShareweight() {//_part2() {
 		
 		
 		if (!qaInputs()){
-			Thread.currentThread().destroy();
-		} else {
+//			Thread.currentThread().destroy();
+//		} else {
 			
 			TreeView<String> tree = this.paneForCountryStateTree.getTree();
 
@@ -753,9 +758,6 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					
 				}
 			}
-			//if ((num_non_nest>0)&&(num_nest>0)) file_content2=vars.getEol()+file_content2;
-			//if (num_non_nest>0) file_content+=file_content1;
-			//if (num_nest>0) file_content+=file_content2;
 			
 			//final management steps to close buffered files, then concatenate contents
 			files.closeBufferedFile(bw0);
@@ -843,8 +845,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					for(int k=0;k<techList.size();k++) {
 						TechBound tb=techList.get(k);
 						if (tb.getTechName().toLowerCase().equals(tech)) {
-							if (never.equals("true")) tb.setBoundAll(true);
-							if (range.equals("true")) tb.setBoundRange(true);
+							if (never.equals("true")) tb.setIsBoundAll(true);
+							if (range.equals("true")) tb.setIsBoundRange(true);
 							if (!first.equals("")) tb.setFirstYear(first);
 							if (!last.equals("")) tb.setLastYear(last);
 							break;
@@ -858,33 +860,6 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			}
 		}
 	}
-
-
-
-//	private void clearActive() {
-//
-//		ObservableList<TechBound> techList = tableTechBounds.getItems();
-//
-//		for (int j = 0; j < techList.size(); j++) {
-//			TechBound techBound = techList.get(j);
-//			if (techBound.isBoundAll())
-//				techBound.setBoundAll(false);
-//		}
-//	}
-
-//	private void setTechInfo(String tech, String firstYear, String lastYear) {
-//
-//		ObservableList<TechBound> techList = tableTechBounds.getItems();
-//
-//		for (int j = 0; j < techList.size(); j++) {
-//			TechBound techBound = techList.get(j);
-//			if (techBound.getTechName().trim().equals(tech)) {
-//				techBound.setBoundAll(true);
-//				techBound.setFirstYear(firstYear);
-//				techBound.setLastYear(lastYear);
-//			}
-//		}
-//	}
 
 	private ObservableList<TechBound> getBoundList() {
 		ObservableList<TechBound> list = FXCollections.observableArrayList();
@@ -901,6 +876,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					last_line=line;
 					if (tech_info[i].length >= 7)
 						line += " : " + tech_info[i][6];
+					if (tech_info[i].length >= 8)
+						line += " // " + tech_info[i][7];
 					if (line.length() > 0) {
 						list.add(new TechBound("1975", "2015", line, new Boolean(false),new Boolean(false)));
 					}
@@ -910,7 +887,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
 		} catch (Exception e) {
 			utils.warningMessage("Problem reading tech list. Attempting to use defaults.");
-			System.out.println("Error reading tech list from " + vars.get("tchBndListFile") + ":");
+			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 			if (num == 0)
 				System.out.println("Stopping with " + num + " read in.");

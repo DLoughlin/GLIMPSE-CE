@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -91,8 +91,8 @@ public class NewDBWidget {
 
 		grid.add(new Separator(Orientation.HORIZONTAL), 0, 3, 3, 1);
 
-		Button createButton = utils.createButton("Create", styles.bigButtonWid, "Creates new DB or opens existing");
-		Button cancelButton = utils.createButton("Cancel", styles.bigButtonWid, null);
+		Button createButton = utils.createButton("Create", styles.getBigButtonWidth(), "Creates new DB or opens existing");
+		Button cancelButton = utils.createButton("Cancel", styles.getBigButtonWidth(), null);
 
 		cancelButton.setOnAction(e -> {
 			stage.close();
@@ -123,7 +123,7 @@ public class NewDBWidget {
 
 	}
 
-	private void creator() {
+	private void creator() { 
 		try {
 			// runs the GCAM model postprocessor
 			boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
@@ -136,17 +136,17 @@ public class NewDBWidget {
 			}
 
 			String[] cmd = new String[1];
-			String command = shell + " cd " + vars.get("gCamPPExecutableDir") + " & dir & java -jar "
-					+ vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable") + " -o "
+			String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & dir & java -jar "
+					+ vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
 					+ vars.getgCamExecutableDir() + File.separator + ".." + File.separator + "output" + File.separator
 					+ newDBNameTextField.getText();
 			// + " -l modelinterface.log";
 			// " -dbOpen "
 			cmd[0] = command;
-			System.out.println("Starting ORDModelInterface...");
+			System.out.println("Starting ModelInterface...");
 			System.out.println("   cmd:" + cmd[0]);
 			try {
-				Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
+				Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
 			} catch (Exception e) {
 				utils.warningMessage("Problem starting up post-processor.");
 				System.out.println("Error in trying to start up post-processor:");

@@ -32,90 +32,53 @@
 */
 package glimpseBuilder;
 
-import java.util.ArrayList;
-
 import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
 import gui.Client;
+import java.util.ArrayList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 
-public class SetupMenuFile {
+/**
+ * Manages the setup of the "File" menu in the GLIMPSE application.
+ */
+public final class SetupMenuFile {
 
-	Menu menuFile;
-	GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-	GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 
-	public void setup(Menu menuFile) {
-		this.menuFile = menuFile;
-		createShowOptionsMainMenuItem();
-		//createCheckOptionsMainMenuItem();
-		createEditOptionsMainMenuItem();
-		createReloadOptionsMainMenuItem();
-		menuFile.getItems().addAll(new SeparatorMenuItem());
-		createImportScenarioMainMenuItem();
-		menuFile.getItems().addAll(new SeparatorMenuItem());
-		createExitMainMenuItem();
+    /**
+     * Populates the "File" menu with its items.
+     * @param menuFile The menu to populate.
+     */
+    public void setup(Menu menuFile) {
+        menuFile.getItems().addAll(
+            createMenuItem("Show Options", () -> {
+                ArrayList<String> optionsList = vars.getArrayListOfOptions();
+                utils.displayArrayList(optionsList, "Options");
+            }),
+            createMenuItem("Edit Options", () -> files.showFileInTextEditor(vars.getOptionsFilename())),
+            createMenuItem("Reload Options", () -> {
+                vars.loadOptions();
+                utils.showInformationDialog("Information", "Caution",
+                    "Existing scenarios must be re-created (+) for changes in the options file to be reflected in their configuration file.");
+            }),
+            new SeparatorMenuItem(),
+            createMenuItem("Import Scenario", () -> Client.buttonImportScenario.fire()),
+            new SeparatorMenuItem(),
+            createMenuItem("Exit", () -> System.exit(0))
+        );
+    }
 
-	}
-
-	private void createShowOptionsMainMenuItem() {
-		MenuItem menuItemShowOptions = new MenuItem("Show Options");
-		menuItemShowOptions.setOnAction(e -> {
-			showOptions();
-		});
-		menuFile.getItems().addAll(menuItemShowOptions);
-	}
-	
-	private void createEditOptionsMainMenuItem() {
-		MenuItem menuItemEditOptions = new MenuItem("Edit Options");
-		menuItemEditOptions.setOnAction(e -> {
-			files.showFileInTextEditor(vars.getOptionsFilename());
-		});
-		menuFile.getItems().addAll(menuItemEditOptions);
-	}
-
-	private void createReloadOptionsMainMenuItem() {
-		MenuItem menuItemReloadOptions = new MenuItem("Reload Options");
-		menuItemReloadOptions.setOnAction(e -> {
-			loadOptions();
-			utils.showInformationDialog("Information","Caution", "Existing scenarios must be re-created (+) for changes in the options file to be reflected in their configuration file.");
-		});
-		menuFile.getItems().addAll(menuItemReloadOptions);
-	}
-	
-	private void createImportScenarioMainMenuItem() {
-		MenuItem menuItemImportScenario = new MenuItem("Import Scenario");
-		menuItemImportScenario.setOnAction(e -> {
-			Client.buttonImportScenario.fire();
-		});
-		menuFile.getItems().addAll(menuItemImportScenario);
-	} 
-
-	private void createExitMainMenuItem() {
-		MenuItem menuItemExit = new MenuItem("Exit");
-		menuItemExit.setOnAction(e -> {
-			System.exit(0);
-		});
-		menuFile.getItems().addAll(menuItemExit);
-	}
-
-	private void showOptions() {
-		ArrayList<String> optionsList = vars.getArrayListOfOptions();
-		displayOptions(optionsList);
-	}
-
-	private void displayOptions(ArrayList<String> arrayListArg) {
-		utils.displayArrayList(arrayListArg, "Options");
-	}
-
-	public void loadOptions() {
-		vars.loadOptions();
-	}
-
+    /**
+     * Helper to create a MenuItem with a title and an action.
+     */
+    private MenuItem createMenuItem(String title, Runnable action) {
+        MenuItem menuItem = new MenuItem(title);
+        menuItem.setOnAction(e -> action.run());
+        return menuItem;
+    }
 }

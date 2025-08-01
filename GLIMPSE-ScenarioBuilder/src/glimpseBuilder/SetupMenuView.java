@@ -26,152 +26,85 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package glimpseBuilder;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.util.ArrayList;
-
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import java.io.File;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 
-public class SetupMenuView {
+/**
+ * Manages the setup of the "View" menu in the GLIMPSE application.
+ */
+public final class SetupMenuView {
 
-	GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-	GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 
-	public void setup(Menu menuView) {
+    public void setup(Menu menuView) {
+        Menu menuResourceLogs = new Menu("Resource Logs");
+        Menu menuBrowseFolders = new Menu("Browse Folder");
 
-		//Dan: Created 'edit' menu and moved many of the setup/configuration files there
-		//Menu menuAdvancedFiles = new Menu("Advanced");		
-		Menu menuResourceLogs = new Menu("Resource Logs");
-		Menu menuBrowseFolders = new Menu("Browse Folder");
-		
-		MenuItem menuItemViewDebugFile = new MenuItem("Debug File");
-		menuItemViewDebugFile.setOnAction(e -> {
-			String filename=vars.getgCamExecutableDir() + File.separator + "debug.xml";
-			if ((vars.getDebugRename()=="1")||(vars.getDebugRename().toLowerCase()=="true")||(vars.getDebugRename().toLowerCase()=="yes")) {
-			   filename = vars.getgCamExecutableDir() + File.separator + "debug"+vars.getDebugRegion().trim()+".xml";			   
-			}
-			files.showFileInTextEditor(filename);
-		});
+        // --- Main Log Viewing Items ---
+        String mainLogPath = Paths.get(vars.getgCamExecutableDir(), "logs", "main_log.txt").toString();
+        menuView.getItems().addAll(
+            createMenuItem("Current Main Log", () -> files.showFileInTextEditor(mainLogPath)),
+            createMenuItem("Errors in Main Log", () -> {
+                ArrayList<String> errors = utils.generateErrorReport(mainLogPath, null);
+                utils.displayArrayList(errors, "Error Report", false);
+            }),
+            createMenuItem("Current Solver Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "solver_log.csv").toString())),
+            createMenuItem("Current Worst Market Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "worst_market_log.txt").toString())),
+            createMenuItem("Current Calibration Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "calibration_log.txt").toString())),
+            createMenuItem("Debug File", this::showDebugFile),
+            new SeparatorMenuItem()
+        );
 
-		MenuItem menuItemViewCurrentResourceLog = new MenuItem("Current Session");
-		menuItemViewCurrentResourceLog.setOnAction(e -> {
-			String filename=vars.getgCamGUILogDir() + File.separator + "glimpse_log.txt";
-			files.showFileInTextEditor(filename);
-		});
-		
-		MenuItem menuItemViewPriorResourceLog = new MenuItem("Prior Session");
-		menuItemViewPriorResourceLog.setOnAction(e -> {
-			String filename=vars.getgCamGUILogDir() + File.separator + "glimpse_log_prior.txt";
-			files.showFileInTextEditor(filename);
-		});
-		
-		MenuItem menuItemViewMainLog = new MenuItem("Current Main Log");
-		menuItemViewMainLog.setOnAction(e -> {
-			String filename = vars.getgCamExecutableDir() + File.separator+"logs"+File.separator+"main_log.txt";
-			files.showFileInTextEditor(filename);
-		});
-		MenuItem menuItemViewErrorsInMainLog = new MenuItem("Errors in Main Log");
-		menuItemViewErrorsInMainLog.setOnAction(e -> {
-			String filename = vars.getgCamExecutableDir() + File.separator+"logs"+File.separator+"main_log.txt";
-			ArrayList<String> errors=utils.generateErrorReport(filename,null);
-//			errors.add("----------------");
-//			errors.add(utils.processErrors(errors, 0.01));
-//			errors.add("----------------");
-			utils.displayArrayList(errors, "Error Report", false);
-		});
-		MenuItem menuItemViewSolverLog = new MenuItem("Current Solver Log");
-		menuItemViewSolverLog.setOnAction(e -> {
-			String filename = vars.getgCamExecutableDir() + File.separator+"logs"+File.separator+"solver_log.csv";
-			files.showFileInTextEditor(filename);
-		});		
-		MenuItem menuItemViewWorstMarketLog = new MenuItem("Current Worst Market Log");
-		menuItemViewWorstMarketLog.setOnAction(e -> {
-			String filename = vars.getgCamExecutableDir() + File.separator+"logs"+File.separator+"worst_market_log.txt";
-			files.showFileInTextEditor(filename);
-		});
-		MenuItem menuItemViewCalibrationLog = new MenuItem("Current Calibration Log");
-		menuItemViewCalibrationLog.setOnAction(e -> {
-			String filename = vars.getgCamExecutableDir() + File.separator+"logs"+File.separator+"calibration_log.txt";
-			files.showFileInTextEditor(filename);
-		});
-		
-		MenuItem menuItemBrowseGLIMPSEFolder = new MenuItem("GLIMPSE Folder");
-		menuItemBrowseGLIMPSEFolder.setOnAction(e -> {
-			String pathname = vars.getGlimpseDir();
-			files.openFileExplorer(pathname);
-		});
-		
-		MenuItem menuItemBrowseGLIMPSEScenarioFolder = new MenuItem("GLIMPSE Scenario Folder");
-		menuItemBrowseGLIMPSEScenarioFolder.setOnAction(e -> {
-			String pathname = vars.getScenarioDir();
-			files.openFileExplorer(pathname);
-		});
+        // --- Resource Logs Submenu ---
+        menuResourceLogs.getItems().addAll(
+            createMenuItem("Current Session", () -> files.showFileInTextEditor(Paths.get(vars.getGlimpseLogDir(), "glimpse_log.txt").toString())),
+            createMenuItem("Prior Session", () -> files.showFileInTextEditor(Paths.get(vars.getGlimpseLogDir(), "glimpse_log_prior.txt").toString()))
+        );
 
-		MenuItem menuItemBrowseGLIMPSEScenarioComponentFolder = new MenuItem("GLIMPSE Scenario Component Folder");
-		menuItemBrowseGLIMPSEScenarioComponentFolder.setOnAction(e -> {
-			String pathname = vars.getScenarioComponentsDir();
-			files.openFileExplorer(pathname);
-		});
-		
-		MenuItem menuItemBrowseGLIMPSEContribFolder = new MenuItem("GLIMPSE Contrib Folder");
-		menuItemBrowseGLIMPSEContribFolder.setOnAction(e -> {
-			String pathname = vars.getGlimpseDir()+File.separator+"Contrib";
-			files.openFileExplorer(pathname);
-		});
-		
-		MenuItem menuItemBrowseGLIMPSETrashFolder = new MenuItem("GLIMPSE Trash Folder");
-		menuItemBrowseGLIMPSETrashFolder.setOnAction(e -> {
-			String pathname = vars.getTrashDir();
-			files.openFileExplorer(pathname);
-		});
-		
-		MenuItem menuItemBrowseGcamExeFolder = new MenuItem("GCAM exe Folder");
-		menuItemBrowseGcamExeFolder.setOnAction(e -> {
-			String pathname = vars.getgCamExecutableDir();
-			files.openFileExplorer(pathname);
-		});
+        // --- Browse Folders Submenu ---
+        menuBrowseFolders.getItems().addAll(
+            createMenuItem("GLIMPSE Folder", () -> files.openFileExplorer(vars.getGlimpseDir())),
+            createMenuItem("GLIMPSE Scenario Folder", () -> files.openFileExplorer(vars.getScenarioDir())),
+            createMenuItem("GLIMPSE Scenario Component Folder", () -> files.openFileExplorer(vars.getScenarioComponentsDir())),
+            createMenuItem("GLIMPSE Contrib Folder", () -> files.openFileExplorer(Paths.get(vars.getGlimpseDir(), "Contrib").toString())),
+            createMenuItem("GLIMPSE Trash Folder", () -> files.openFileExplorer(vars.getTrashDir())),
+            new SeparatorMenuItem(),
+            createMenuItem("GCAM exe Folder", () -> files.openFileExplorer(vars.getgCamExecutableDir())),
+            createMenuItem("GCAM log Folder", () -> files.openFileExplorer(Paths.get(vars.getgCamExecutableDir(), "logs").toString())),
+            createMenuItem("GCAM input Folder", () -> files.openFileExplorer(new File(vars.getgCamExecutableDir()).getParentFile().toPath().resolve("input").toString())),
+            createMenuItem("GCAM output Folder", () -> files.openFileExplorer(new File(vars.getgCamExecutableDir()).getParentFile().toPath().resolve("output").toString()))
+        );
+        
+        menuView.getItems().addAll(menuResourceLogs, new SeparatorMenuItem(), menuBrowseFolders);
+    }
 
-		MenuItem menuItemBrowseGcamLogFolder = new MenuItem("GCAM log Folder");
-		menuItemBrowseGcamLogFolder.setOnAction(e -> {
-			String pathname = vars.getgCamExecutableDir()+File.separator+"logs";
-			files.openFileExplorer(pathname);
-		});
-		
-		MenuItem menuItemBrowseGcamInputFolder = new MenuItem("GCAM input Folder");
-		menuItemBrowseGcamInputFolder.setOnAction(e -> {
-			String pathname=new File(vars.getgCamExecutableDir()).getParentFile().getPath()+File.separator+"input";
-			files.openFileExplorer(pathname);
-		});
+    private void showDebugFile() {
+        String debugFileName = ("1".equals(vars.getDebugRename()) || "true".equalsIgnoreCase(vars.getDebugRename()) || "yes".equalsIgnoreCase(vars.getDebugRename()))
+            ? "debug" + vars.getDebugRegion().trim() + ".xml"
+            : "debug.xml";
+        String fullPath = Paths.get(vars.getgCamExecutableDir(), debugFileName).toString();
+        files.showFileInTextEditor(fullPath);
+    }
 
-		MenuItem menuItemBrowseGcamOutputFolder = new MenuItem("GCAM output Folder");
-		menuItemBrowseGcamOutputFolder.setOnAction(e -> {
-			String pathname=new File(vars.getgCamExecutableDir()).getParentFile().getPath()+File.separator+"output";
-			files.openFileExplorer(pathname);
-		});
-		
-		//created new Edit menu and re-ordered items
-		//menuAdvancedFiles.getItems().addAll(menuItemViewScenarioTemplate, new SeparatorMenuItem(),menuItemViewTchBndList,menuItemViewPresetRegionFile, menuItemViewXmlDescriptor, menuItemViewCsvDescriptor,menuItemViewSolverFile, menuItemViewLogConfigFile, menuItemViewQueryFile);
-
-		menuResourceLogs.getItems().addAll(menuItemViewCurrentResourceLog,menuItemViewPriorResourceLog);
-		
-		menuBrowseFolders.getItems().addAll(menuItemBrowseGLIMPSEFolder,menuItemBrowseGLIMPSEScenarioFolder,menuItemBrowseGLIMPSEScenarioComponentFolder,menuItemBrowseGLIMPSEContribFolder,menuItemBrowseGLIMPSETrashFolder,new SeparatorMenuItem(),
-				menuItemBrowseGcamExeFolder,menuItemBrowseGcamLogFolder,menuItemBrowseGcamInputFolder,menuItemBrowseGcamOutputFolder);
-		
-		menuView.getItems().addAll(menuItemViewMainLog,menuItemViewErrorsInMainLog,menuItemViewSolverLog,
-				menuItemViewWorstMarketLog, menuItemViewCalibrationLog,menuItemViewDebugFile,new SeparatorMenuItem(),menuResourceLogs,new SeparatorMenuItem(),menuBrowseFolders);//,menuAdvancedFiles);
-
-	}
-
+    private MenuItem createMenuItem(String title, Runnable action) {
+        MenuItem menuItem = new MenuItem(title);
+        menuItem.setOnAction(e -> action.run());
+        return menuItem;
+    }
 }
+

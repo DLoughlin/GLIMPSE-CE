@@ -1,0 +1,34 @@
+all/Levelized Non-Energy Cost;GLIMPSEStubTechCost:region,sector,subsector1=>subsector2,technology,year,minicam-non-energy-input/capital,data
+all/Efficiency;GLIMPSEStubTechEff:region,sector,subsector1=>subsector2,technology,year,input,data
+all/Coefficient;GLIMPSEStubTechCoef:region,sector,subsector1=>subsector2,technology,year,input,data
+all/Fixed Output;GLIMPSEStubTechFixOut:region,sector,subsector1=>subsector2,technology,year,data
+all/Shareweight;GLIMPSEStubTechShrwt:region,sector,subsector1=>subsector2,technology,year,data
+all/Subsector Shareweight;GLIMPSESubsectorShrwt:region,sector,subsector1=>subsector2,year,data
+all/Lifetime;GLIMPSEStubTechLifetime:region,sector,subsector1=>subsector2,technology,year,data
+all/Halflife;GLIMPSEStubTechHalflife:region,sector,subsector1=>subsector2,technology,year,data
+all/InputEmissCoef;GLIMPSEInputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+all/OutputEmissCoef;GLIMPSEOutputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+egu/Capacity Factor;GLIMPSEStubTechCapFactor:region,sector,subsector1=>subsector2,technology,year,data
+egu/Levelized Non-Energy Cost;GLIMPSEStubTechCapital:region,sector,subsector1=>subsector2,technology,year,input-capital/capital,data
+egu/Efficiency;GLIMPSEStubTechEff:region,sector,subsector1=>subsector2,technology,year,input,data
+egu/Coefficient;GLIMPSEStubTechCoef:region,sector,subsector1=>subsector2,technology,year,input,data
+egu/Fixed Output;GLIMPSEStubTechFixOut:region,sector,subsector1=>subsector2,technology,year,data
+egu/Shareweight;GLIMPSEStubTechShrwt:region,sector,subsector1=>subsector2,technology,year,data
+egu/Subsector Shareweight;GLIMPSESubsectorShrwt:region,sector,subsector1=>subsector2,year,data
+egu/Nested-Subsector Shareweight;GLIMPSENestedSubsectorShrwt:region,sector,subsector1,year,data
+egu/Lifetime;GLIMPSEStubTechLifetime:region,sector,subsector1=>subsector2,technology,year,data
+egu/Halflife;GLIMPSEStubTechHalflife:region,sector,subsector1=>subsector2,technology,year,data
+egu/InputEmissCoef;GLIMPSEInputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+egu/OutputEmissCoef;GLIMPSEOutputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+trn/Load Factor;GLIMPSETranTechLoadFactor:region,sector,subsector1=>subsector2,technology,year,data
+trn/Levelized Non-Energy Cost;GLIMPSETranTechCost:region,sector,subsector1=>subsector2,technology,year,minicam-non-energy-input/non-energy,data
+trn/Efficiency;GLIMPSETranTechEff:region,sector,subsector1=>subsector2,technology,year,minicam-energy-input,data
+trn/Coefficient;GLIMPSETranTechCoef:region,sector,subsector1=>subsector2,technology,year,minicam-energy-input,data
+trn/Lifetime;GLIMPSETranTechLifetime:region,sector,subsector1=>subsector2,technology,year,data
+trn/Halflife;GLIMPSETranTechHalflife:region,sector,subsector1=>subsector2,technology,year,data
+trn/Shareweight;GLIMPSETranTechShrwt:region,sector,subsector1=>subsector2,technology,year,data
+trn/Subsector Shareweight;GLIMPSETranSubsectorShrwt:region,sector,subsector1=>subsector2,year,data
+trn/Fixed Output;GLIMPSETranTechFixOut:region,sector,subsector1=>subsector2,technology,year,data
+trn/InputEmissCoef;GLIMPSETranTechInputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+trn/OutputEmissCoef;GLIMPSTranTechOutputEmissCoef:region,sector,subsector1=>subsector2,technology,year,species,data
+

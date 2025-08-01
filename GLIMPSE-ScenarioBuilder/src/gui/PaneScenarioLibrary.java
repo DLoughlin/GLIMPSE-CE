@@ -81,15 +81,15 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
 	ArrayList<String> runs_queued_list = new ArrayList<String>();
 	ArrayList<String> runs_completed_list = new ArrayList<String>();
-	
-	long time_at_startup=0;
+
+	long time_at_startup = 0;
 
 	HBox hBox = new HBox(1);
 
 	// Constructor
 	PaneScenarioLibrary(Stage stage) {
 
-		hBox.setStyle(styles.font_style);
+		hBox.setStyle(styles.getFontStyle());
 
 		hBox.setSpacing(10);
 		// sets up whether buttons are disabled or not and how this is
@@ -106,9 +106,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
 		hBox.getChildren().addAll(ScenarioTable.tableScenariosLibrary);
 
-		if (time_at_startup==0) time_at_startup=(new Date()).getTime();
-		System.out.println("time now="+(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(time_at_startup));
-		
+		if (time_at_startup == 0)
+			time_at_startup = (new Date()).getTime();
+		System.out.println("time now=" + (new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(time_at_startup));
+
 		this.updateRunStatus();
 
 	}
@@ -119,52 +120,52 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
 	private void createScenarioLibraryButtons() {
 		// Creating buttons on the bottom pane
-		Client.buttonDiffFiles = utils.createButton("Diff", styles.bigButtonWid,
+		Client.buttonDiffFiles = utils.createButton("Diff", styles.getBigButtonWidth(),
 				"Diff: Compare first two selected configurations", "compare");
 
-		Client.buttonRefreshScenarioStatus = utils.createButton("Refresh", styles.bigButtonWid,
+		Client.buttonRefreshScenarioStatus = utils.createButton("Refresh", styles.getBigButtonWidth(),
 				"Refresh: Update scenario completion status", "refresh");
 
-		Client.buttonResults = utils.createButton("Results", styles.bigButtonWid,
+		Client.buttonResults = utils.createButton("Results", styles.getBigButtonWidth(),
 				"Results: Open the ModelInterface to view results", "results");
 
-		Client.buttonResultsForSelected = utils.createButton("Results (selected)", styles.bigButtonWid,
+		Client.buttonResultsForSelected = utils.createButton("Results (selected)", styles.getBigButtonWidth(),
 				"Results-Selected: Open the ModelInterface to view results for selected scenario", "results-selected");
 
-		Client.buttonRunScenario = utils.createButton("Play", styles.bigButtonWid,
+		Client.buttonRunScenario = utils.createButton("Play", styles.getBigButtonWidth(),
 				"Play: Add the selected scenarios to execution queue", "run");
 
-		Client.buttonDeleteScenario = utils.createButton("Delete", styles.bigButtonWid,
+		Client.buttonDeleteScenario = utils.createButton("Delete", styles.getBigButtonWidth(),
 				"Delete: Move the selected scenarios to trash", "delete");
 
-		Client.buttonViewConfig = utils.createButton("Config", styles.bigButtonWid,
+		Client.buttonViewConfig = utils.createButton("Config", styles.getBigButtonWidth(),
 				"Open: Open configuration file for selected scenario", "edit");
 
-		Client.buttonViewLog = utils.createButton("Log", styles.bigButtonWid, 
-				"Main_Log-Selected: View main_log.txt in selected scenario folder","log2");
+		Client.buttonViewLog = utils.createButton("Log", styles.getBigButtonWidth(),
+				"Main_Log-Selected: View main_log.txt in selected scenario folder", "log2");
 
-		Client.buttonViewExeErrors = utils.createButton("ExeError", styles.bigButtonWid,
+		Client.buttonViewExeErrors = utils.createButton("ExeError", styles.getBigButtonWidth(),
 				"Errors: View errors in main_log.txt file in exe/log folder", "exe-errors");
-		
-		Client.buttonViewErrors = utils.createButton("Errors", styles.bigButtonWid,
+
+		Client.buttonViewErrors = utils.createButton("Errors", styles.getBigButtonWidth(),
 				"Errors-Selected: View errors in selected scenario main_log.txt file", "errors");
 
-		Client.buttonViewExeLog = utils.createButton("ExeLog", styles.bigButtonWid, 
-				"Main_Log: View main_log.txt in the ee/log folder","exe-log");
+		Client.buttonViewExeLog = utils.createButton("ExeLog", styles.getBigButtonWidth(),
+				"Main_Log: View main_log.txt in the ee/log folder", "exe-log");
 
-		Client.buttonBrowseScenarioFolder = utils.createButton("Browse", styles.bigButtonWid,
+		Client.buttonBrowseScenarioFolder = utils.createButton("Browse", styles.getBigButtonWidth(),
 				"Browse: Open the folder of the selected scenarios", "open_folder");
 
-		Client.buttonImportScenario = utils.createButton("Import", styles.bigButtonWid,
+		Client.buttonImportScenario = utils.createButton("Import", styles.getBigButtonWidth(),
 				"Import: Import an existing configuration file to create new scenario", "import");
 
-		Client.buttonShowRunQueue = utils.createButton("Queue", styles.bigButtonWid,
+		Client.buttonShowRunQueue = utils.createButton("Queue", styles.getBigButtonWidth(),
 				"Queue: List scenarios added to queue this session", "queue");
 
-		Client.buttonArchiveScenario = utils.createButton("Archive", styles.bigButtonWid, 
-				"Archive: Archive the selected scenarios","archive");
+		Client.buttonArchiveScenario = utils.createButton("Archive", styles.getBigButtonWidth(),
+				"Archive: Archive the selected scenarios", "archive");
 
-		Client.buttonReport = utils.createButton("Report", styles.bigButtonWid,
+		Client.buttonReport = utils.createButton("Report", styles.getBigButtonWidth(),
 				"Report: Generate scenario execution report", "report");
 
 		// setting initial button status
@@ -219,10 +220,11 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			try {
 				for (int i = 0; i < selectedFiles2.size(); i++) {
 					String scenName = selectedFiles2.get(i).getScenarioName();
-					String workingDir = vars.get("scenarioDir") + "/" + scenName;
-					String exeDir = vars.get("gCamExecutableDir");
-					String configFilename = workingDir + "/configuration_" + scenName + ".xml";
-					String archiveConfigFilename = workingDir + "/configuration_" + scenName + "_archive.xml";
+					String workingDir = vars.getScenarioDir() + File.separator + scenName;
+					String exeDir = vars.getgCamExecutableDir();
+					String configFilename = workingDir + File.separator + "configuration_" + scenName + ".xml";
+					String archiveConfigFilename = workingDir + File.separator + "configuration_" + scenName
+							+ "_archive.xml";
 
 					archiveScenario(exeDir, workingDir, archiveConfigFilename, configFilename, scenName);
 
@@ -249,9 +251,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			try {
 				for (int i = 0; i < selectedFiles2.size(); i++) {
 					String scenName = selectedFiles2.get(i).getScenarioName();
-					String xml_dir = vars.get("scenarioDir") + File.separator + scenName;
+					String xml_dir = vars.getScenarioDir() + File.separator + scenName;
 
-					String trash_dir_folder = vars.get("trashDir") + File.separator + scenName;
+					String trash_dir_folder = vars.getTrashDir() + File.separator + scenName;
 					File trashDir = new File(trash_dir_folder);
 
 					if (trashDir.exists())
@@ -282,15 +284,15 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		// handles the event of pressing the results button
 		Client.buttonResults.setOnAction(e -> {
 
-			if (vars.get("gCamExecutableDir").equals("")) {
+			if (vars.getgCamExecutableDir().equals("")) {
 
 				utils.warningMessage("Please specify gCamExecutableDir in options file.");
 
 			} else {
 
 				try {
-//					runGcamPostproc(vars.get("gCamExecutableDir"));
-					runORDModelInterface();
+//					runGcamPostproc(vars.getgCamExecutableDir());
+					runModelInterface();
 					// writeRunsTxtFile();
 				} catch (Exception e1) {
 					// to-do: Currently messy handling of exceptions.
@@ -303,7 +305,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		// handles the event of pressing the results button
 		Client.buttonResultsForSelected.setOnAction(e -> {
 
-			if (vars.get("gCamExecutableDir").equals("")) {
+			if (vars.getgCamExecutableDir().equals("")) {
 
 				utils.warningMessage("Please specify gCamExecutableDir in options file.");
 
@@ -316,7 +318,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 					if (selectedFiles.size() == 1) {
 
 						String scenName = selectedFiles.get(0).getScenarioName();
-						String config_filename = vars.get("scenarioDir") + File.separator + scenName + File.separator
+						String config_filename = vars.getScenarioDir() + File.separator + scenName + File.separator
 								+ "configuration_" + scenName + ".xml";
 						System.out.println("Reading database name from " + config_filename);
 						File config_file = new File(config_filename);
@@ -346,7 +348,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			try {
 				for (int i = 0; i < selectedFiles.size(); i++) {
 					String scenName = selectedFiles.get(i).getScenarioName();
-					String xml_dir = vars.get("scenarioDir") + File.separator + scenName;
+					String xml_dir = vars.getScenarioDir() + File.separator + scenName;
 					files.openFileExplorer(xml_dir);
 				}
 			} catch (Exception e1) {
@@ -360,15 +362,18 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		Client.buttonImportScenario.setOnAction(e -> {
 			System.out.println("Todo: add callback to buttonImport");
 
+			String filter1="XML files (*.xml)";
+			String filter2="*.xml";
+			
 			String exe_folder = vars.getgCamExecutableDir();
-			File new_config_file = FileChooserPlus.main("Scenario files (configuration*.xml)", "configuration*.xml",
-					exe_folder, "Open");
+			File new_config_file = FileChooserPlus.showOpenDialog(null, "Select scenario configuration file",new File(vars.getgCamExecutableDir()),FileChooserPlus.createExtensionFilter(filter1,filter2));
+
 			if (new_config_file != null) {
 				String str = files.searchForTextInFileS(new_config_file, "scenarioName", "<!--");
 
 				String scenario_name = utils.getStringBetweenCharSequences(str, ">", "</");
 
-				String working_scenario_log = vars.get("gCamGUILogDir") + File.separator + "Runs.txt";
+				String working_scenario_log = vars.getGlimpseLogDir() + File.separator + "Runs.txt";
 
 				File working_scenarios_file = new File(working_scenario_log);
 
@@ -390,7 +395,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 				}
 
 				// make folder for scenario
-				String new_scen_folder_name = vars.get("scenarioDir") + File.separator + scenario_name;
+				String new_scen_folder_name = vars.getScenarioDir() + File.separator + scenario_name;
 				File new_scen_folder = new File(new_scen_folder_name);
 
 				new_scen_folder.mkdir();
@@ -421,7 +426,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			try {
 				for (int i = 0; i < selectedFiles.size(); i++) {
 					String scenName = selectedFiles.get(i).getScenarioName();
-					String xml_file = vars.get("scenarioDir") + File.separator + scenName + File.separator
+					String xml_file = vars.getScenarioDir() + File.separator + scenName + File.separator
 							+ "configuration_" + scenName + ".xml";
 					System.out.println("File to show: " + xml_file);
 					files.showFileInTextEditor(xml_file);
@@ -443,7 +448,8 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 				if (selectedFiles.size() > 0) {
 					for (int i = 0; i < selectedFiles.size(); i++) {
 						String scenName = selectedFiles.get(i).getScenarioName();
-						String txt_file = vars.get("scenarioDir") + "/" + scenName + "/main_log.txt";
+						String txt_file = vars.getScenarioDir() + File.separator + scenName + File.separator
+								+ "main_log.txt";
 						files.showFileInTextEditor(txt_file);
 					}
 				}
@@ -459,7 +465,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			// to-do: modify to use user-specified xml viewer
 			generateExeErrorReport();
 		});
-		
+
 		// handles the event of pressing the ViewConfig button
 		Client.buttonViewErrors.setOnAction(e -> {
 			// to-do: modify to use user-specified xml viewer
@@ -487,10 +493,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			if (selectedFiles2.size() == 2) {
 				String sName1 = selectedFiles2.get(0).getScenarioName();
 				String sName2 = selectedFiles2.get(1).getScenarioName();
-				String file1 = vars.get("scenarioDir") + File.separator + sName1 + File.separator + "configuration"
-						+ "_" + sName1 + ".xml";
-				String file2 = vars.get("scenarioDir") + File.separator + sName2 + File.separator + "configuration"
-						+ "_" + sName2 + ".xml";
+				String file1 = vars.getScenarioDir() + File.separator + sName1 + File.separator + "configuration" + "_"
+						+ sName1 + ".xml";
+				String file2 = vars.getScenarioDir() + File.separator + sName2 + File.separator + "configuration" + "_"
+						+ sName2 + ".xml";
 				utils.diffTwoFiles(file1, file2);
 			}
 		});
@@ -618,59 +624,56 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 	}
 
 	public void updateRunStatus() {
-		//System.out.println("checking status...");
+		// System.out.println("checking status...");
 		// loads run data and populates the bottom pane table
 		String current_main_log_name = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator
 				+ "main_log.txt";
 		File current_main_log_file = new File(current_main_log_name);
-		
 
 		String running_scenario = utils.getRunningScenario(current_main_log_file);
 
 		// ScenarioTable.listOfScenarioRuns.clear();
 		ScenarioTable.tableScenariosLibrary.refresh();
 
-		String address = vars.get("gCamGUILogDir") + File.separator + "Runs.txt";
+		String address = vars.getGlimpseLogDir() + File.separator + "Runs.txt";
 		DateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
-		
+
 		ArrayList<String> searchArray = new ArrayList<String>();
 
-
-
 		Platform.runLater(new Runnable() {
-			//String computer_stats=utils.getComputerStatString().trim();
-		    @Override
-		    public void run() {	
-		    	String computer_stats=utils.getComputerStatString().trim();
-		    	if (computer_stats.endsWith("!!!")) {
-		    	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-		    	    Date date = new Date();  		    		
-		    	    String time=formatter.format(date);  
-		    		String glimpse_log_filename = vars.getgCamGUILogDir() + File.separator + "glimpse_log.txt";
-		    		String log_text=running_scenario+":"+time+":"+computer_stats+vars.getEol();
-		    		files.appendTextToFile(log_text,glimpse_log_filename);
-		    	}
-		    	utils.sb.setText(computer_stats);
-		    	if (computer_stats.endsWith("!")) { 
-		    		utils.sb.setStyle("-fx-text-fill: red");
-		    	} else {
-		    		utils.sb.setStyle("-fx-text-fill: black");
-		    	}
+			// String computer_stats=utils.getComputerStatString().trim();
+			@Override
+			public void run() {
+				String computer_stats = utils.getComputerStatString().trim();
+				if (computer_stats.endsWith("!!!")) {
+					SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+					Date date = new Date();
+					String time = formatter.format(date);
+					String glimpse_log_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log.txt";
+					String log_text = running_scenario + ":" + time + ":" + computer_stats + vars.getEol();
+					files.appendTextToFile(log_text, glimpse_log_filename);
+				}
+				utils.sb.setText(computer_stats);
+				if (computer_stats.endsWith("!")) {
+					utils.sb.setStyle("-fx-text-fill: red");
+				} else {
+					utils.sb.setStyle("-fx-text-fill: black");
+				}
 
-		    }
+			}
 		});
 
 		try {
 			File[] scenarioFolders = new File(vars.getScenarioDir()).listFiles(File::isDirectory);
 
 			for (int f = 0; f < scenarioFolders.length; f++) {
-				
+
 				searchArray.clear();
 				searchArray.add("Model run completed.");
 				searchArray.add("Data Readin, Model Run & Write Time:");
 				searchArray.add("The following model periods did not solve:");
-				
+
 				Long created_date = 0l;
 				Long started_date = 0l;
 				Long completed_date = 0l;
@@ -693,7 +696,6 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 					String runtime = "";
 					String unsolved = "";
 
-
 					created_date = config_file.lastModified();
 
 					if (main_log_exists) {
@@ -705,12 +707,12 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 							status = "Success";
 						} else {
 							status = "DNF";
-							String running_status=utils.getScenarioStatusFromMainLog(main_log_file);
+							String running_status = utils.getScenarioStatusFromMainLog(main_log_file);
 							if (running_status.contains(",ERR")) {
-								String temp=running_status.substring(0,running_status.indexOf(",")); 
-								String error_str=running_status.substring(running_status.indexOf(",")+4);								
-								unsolved=error_str;
-							} 					
+								String temp = running_status.substring(0, running_status.indexOf(","));
+								String error_str = running_status.substring(running_status.indexOf(",") + 4);
+								unsolved = error_str;
+							}
 						}
 						for (int i = 0; i < this.runs_queued_list.size(); i++) {
 							String line = runs_queued_list.get(i);
@@ -737,16 +739,16 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 						}
 						runtime = runtime.replace("seconds.", "").trim();
 						try {
-							int totalSecs=(int)Math.round(Float.parseFloat(runtime));
-						    int hours = (totalSecs - totalSecs%3600)/3600;
-						    int minutes = (totalSecs%3600 - totalSecs%3600%60)/60;
-						    int seconds = totalSecs%3600%60;
-						    
-						    runtime=hours+" hr "+minutes+" min ";
-						    
-						} catch(Exception e) {
-							//System.out.println("Problem converting seconds to HMS");
-							runtime+="";
+							int totalSecs = (int) Math.round(Float.parseFloat(runtime));
+							int hours = (totalSecs - totalSecs % 3600) / 3600;
+							int minutes = (totalSecs % 3600 - totalSecs % 3600 % 60) / 60;
+							int seconds = totalSecs % 3600 % 60;
+
+							runtime = hours + " hr " + minutes + " min ";
+
+						} catch (Exception e) {
+							// System.out.println("Problem converting seconds to HMS");
+							runtime += "";
 						}
 					}
 
@@ -754,7 +756,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 						try {
 							unsolved = searchArray.get(2).split(":")[1].trim();
 							status = "Unsolved mkts";
-							
+
 						} catch (Exception e) {
 							unsolved = "";
 						}
@@ -768,35 +770,37 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 					if (completed_date != 0L)
 						completed_date_str = format2.format(completed_date);
 
-					//what to do if it thinks scenario might still be running...
+					// what to do if it thinks scenario might still be running...
 					if ((!status.equals("Success")) && (!status.equals("Unsolved mkts")) && (!status.equals("DNF"))) {
-						//System.out.println("Evaluating status for "+scenario_name+" in Scenario Library.");
+						// System.out.println("Evaluating status for "+scenario_name+" in Scenario
+						// Library.");
 						if (scenario_name.equals(running_scenario)) {
 							status = "Running";
 
-							long last_date=current_main_log_file.lastModified();
-							//System.out.println("last date="+(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(last_date));
-							if (last_date<time_at_startup) { 
-								status="Lost handle";
-									//files.copyFile(current_main_log_name,main_log_name);
-									//updateRunStatus();
-									//break;
-							} else  {
-								//adds last period and whether errors have occurred
-								
-								String running_status=utils.getScenarioStatusFromMainLog(current_main_log_file);
+							long last_date = current_main_log_file.lastModified();
+							// System.out.println("last date="+(new SimpleDateFormat("MM/dd/yyyy
+							// HH:mm:ss")).format(last_date));
+							if (last_date < time_at_startup) {
+								status = "Lost handle";
+								// files.copyFile(current_main_log_name,main_log_name);
+								// updateRunStatus();
+								// break;
+							} else {
+								// adds last period and whether errors have occurred
+
+								String running_status = utils.getScenarioStatusFromMainLog(current_main_log_file);
 								if (running_status.contains(",ERR")) {
-									String temp=running_status.substring(0,running_status.indexOf(",")); 
-									status=status+"("+temp+")";
-									
-									String error_str=running_status.substring(running_status.indexOf(",")+4);								
-									unsolved=error_str;
+									String temp = running_status.substring(0, running_status.indexOf(","));
+									status = status + "(" + temp + ")";
+
+									String error_str = running_status.substring(running_status.indexOf(",") + 4);
+									unsolved = error_str;
 								} else {
-									String temp=running_status; 
-									if (temp=="") {
+									String temp = running_status;
+									if (temp == "") {
 										;
 									} else {
-										status=status+"("+temp+")";
+										status = status + "(" + temp + ")";
 									}
 								}
 
@@ -823,7 +827,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 							s.setCompletedDate(completed_date_str);
 							s.setComponents(components);
 							s.setRuntime(runtime);
-							//s.setRuntime(String.format("%.1f", Float.parseFloat(runtime)));
+							// s.setRuntime(String.format("%.1f", Float.parseFloat(runtime)));
 							s.setUnsolvedMarkets(unsolved);
 						}
 					}
@@ -850,8 +854,6 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			System.out.println("Problem updating scenario table: " + ex);
 		}
 	}
-
-	
 
 	private String getComponentsFromConfig(File file) {
 		String rtn_str = "";
@@ -904,7 +906,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		for (int i = 0; i < scenarioConfigFiles.length; i++) {
 
 			if (scenarioConfigFiles[i] != null) {
-				//scenarioConfigFiles[i]=utils.correctInteriorQuotes(scenarioConfigFiles[i]);
+				// scenarioConfigFiles[i]=utils.correctInteriorQuotes(scenarioConfigFiles[i]);
 				final String dir = scenarioConfigFiles[i]
 						.substring(0, scenarioConfigFiles[i].lastIndexOf(File.separator))
 						.replaceAll("/", File.separator);
@@ -917,14 +919,13 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 					@Override
 					public String call() throws Exception {
 						System.out.println("Cleaning out folder.");
-						String[] filesToDelete = vars.get("gCamOutputToSave").replaceAll("/", File.separator)
-								.split(";");
+						String[] filesToDelete = vars.getFilesToSave().replaceAll("/", File.separator).split(";");
 						for (int j = 0; j < filesToDelete.length; j++) {
 							String fileToDelete = "";
 
 							fileToDelete = dir + File.separator
 									+ filesToDelete[j].substring(filesToDelete[j].lastIndexOf(File.separator) + 1);
-							//fileToDelete=utils.correctInteriorQuotes(fileToDelete);
+							// fileToDelete=utils.correctInteriorQuotes(fileToDelete);
 							System.out.println(" Deleting " + fileToDelete);
 							File file = new File(fileToDelete);
 
@@ -953,28 +954,26 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 					cmd = "/bin/sh -c";
 				}
 
-				
-				String cmd_str = cmd + " " + vars.get("gCamExecutable") + " " + vars.get("gCamExecutableArgs") + " "
+				String cmd_str = cmd + " " + vars.getgCamExecutable() + " " + vars.getgCamExecutableArgs() + " "
 						+ scenarioConfigFiles[i];
-				Future f = Client.gCAMExecutionThread.executeRunnableCmd(cmd_str, vars.get("gCamExecutableDir"));
+				Future f = Client.gCAMExecutionThread.executeRunnableCmd(cmd_str, vars.getgCamExecutableDir());
 
 				// replace by adding callables to the queue
 				Client.gCAMExecutionThread.executeCallableCmd(new Callable<String>() {
 					@Override
 					public String call() throws Exception {
 						System.out.println("Moving results to scenario folder.");
-						if ((vars.get("gCamOutputToSave") != null) && (vars.get("gCamOutputToSave").length() > 0)) {
-							String[] filesToSave = vars.get("gCamOutputToSave").replaceAll("/", File.separator)
-									.split(";");
+						if ((vars.getFilesToSave() != null) && (vars.getFilesToSave().length() > 0)) {
+							String[] filesToSave = vars.getFilesToSave().replaceAll("/", File.separator).split(";");
 							for (int j = 0; j < filesToSave.length; j++) {
-								//filesToSave[j]=utils.correctInteriorQuotes(filesToSave[j]);
+								// filesToSave[j]=utils.correctInteriorQuotes(filesToSave[j]);
 								File file = new File(filesToSave[j]);
 								if (file.exists()) {
 
 									Path source = Paths.get(filesToSave[j]);
 									String destination_str = dir + File.separator
 											+ filesToSave[j].substring(filesToSave[j].lastIndexOf(File.separator) + 1);
-									//destination_str=utils.correctInteriorQuotes(destination_str);
+									// destination_str=utils.correctInteriorQuotes(destination_str);
 									Path destination = Paths.get(destination_str);
 
 									System.out.println(" Moving " + filesToSave[j] + " to " + destination);
@@ -1002,7 +1001,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 										files.deleteFile(file);
 									updateRunStatus();
 								} else {
-									//utils.warningMessage("Unable to save " + filesToSave[j]);
+									// utils.warningMessage("Unable to save " + filesToSave[j]);
 									System.out.println("Unable to save " + filesToSave[j]);
 								}
 							}
@@ -1026,8 +1025,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			mfr.setCreatedDate(new Date());
 			String scenName = mfr.getScenarioName();
 
-			String main_log_file = vars.get("scenarioDir") + File.separator + scenName + File.separator
-					+ "main_log.txt";
+			String main_log_file = vars.getScenarioDir() + File.separator + scenName + File.separator + "main_log.txt";
 
 			boolean b = true;
 
@@ -1038,7 +1036,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
 			if (b) {
 				files.deleteFile(main_log_file);
-				configFiles[i] = vars.get("scenarioDir") + File.separator + scenName + File.separator + "configuration"
+				configFiles[i] = vars.getScenarioDir() + File.separator + scenName + File.separator + "configuration"
 						+ "_" + scenName + ".xml";
 				mfr.setStatus("In queue");
 			} else {
@@ -1063,197 +1061,209 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		runGcamModel(configFiles);
 	}
 
-
-	
 	private void runORDModelInterfaceJar() throws IOException {
-		
-		runORDModelInterfaceWhich(vars.get("gCamOutputDatabase"));
+
+		runORDModelInterfaceWhich(vars.getgCamOutputDatabase());
 
 	}
-	
+
 	private void runGcamPostprocWhichJar(String database_name) throws IOException {
-		
+
 		System.out.println("In runGcamPostProc");
 
 //		String[] args= {
 //		"o",database_name,
-//		"q",vars.get("queryFile")
+//		"q",vars.getQueryFilename()
 //		};
 //		InterfaceMain.main(args);
-		
+
 		Client.gCAMExecutionThread.executeCallableCmd(new Callable<String>() {
 			public String call() throws Exception {
 
 				System.out.println("In callable argument prior to starting InterfaceMain.main...");
-				String[] args= {
-						"-o",database_name,
-						"-q",vars.get("queryFile")
-				};
-				
+				String[] args = { 
+						"-o", database_name, 
+						"-q", vars.getQueryFilename(),
+						"-u", vars.getUnitConversionsFilename(),
+						"-f", vars.getFavoriteQueryFilename(),
+						"-p", vars.getPresetRegionListFilename(),
+						};
+
 				try {
-					//SwingUtilities.invokeLater(()->{;
-					   InterfaceMain.main(args); //why is this class not being found?
-					//});
+					// SwingUtilities.invokeLater(()->{;
+					InterfaceMain.main(args); // why is this class not being found?
+					// });
 				} catch (Exception e) {
-					System.out.println("exception in running InterfaceMain.main... "+e);
+					System.out.println("exception in running InterfaceMain.main... " + e);
 				}
-					
+
 				return "Done with callable";
 			}
 		});
 
 	}
-	
-	private void runORDModelInterface() throws IOException {
-	// submitting gcam run to the queue
-	boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
-	String shell = "cmd.exe /C";
-	if (isWindows) {
-		shell = "cmd.exe /C";
-	} else {
-		shell = "/bin/sh -c";
-	}
+	private void runModelInterface() throws IOException {
+		// submitting gcam run to the queue
+		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
-	String[] cmd = new String[1];
-	String command = shell + " cd " + vars.get("gCamPPExecutableDir") + " & java -jar "
-			+ vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable") + " -o "
-			+ vars.get("gCamOutputDatabase");
+		String shell = "cmd.exe /C";
+		if (isWindows) {
+			shell = "cmd.exe /C";
+		} else {
+			shell = "/bin/sh -c";
+		}
 
-	String temp = vars.get("queryFile");
-	if ((temp != null)&&(temp!="")) command += " -q " + temp;
+		String[] cmd = new String[1];
+		String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & java -jar "
+				+ vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
+				+ vars.getgCamOutputDatabase();
 
-	temp = vars.get("unitConversionsFile");
-	if ((temp != null)&&(temp!="")) command += " -u " + temp;
+		String temp = vars.getQueryFilename();
+		if ((temp != null) && (temp != ""))
+			command += " -q " + temp;
 
-	temp = vars.get("presetRegionsFile");
-	if ((temp != null)&&(temp!="")) command += " -p " + temp;
-	
-	cmd[0] = command;
-	System.out.println("Starting "+vars.get("gCamPPExecutable")+" using database "+vars.get("gCamOutputDatabase"));
-	System.out.println("   cmd:" + cmd[0]);
-	try {
-		Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
-	} catch (Exception e) {
-		utils.warningMessage("Problem starting up ModelInterface.");
-		System.out.println("Error in trying to start up ModelInterface:");
-		System.out.println(e);
-	}
-}
-	
-	
-	private void runORDModelInterfaceAarons() throws IOException {
-	// submitting gcam run to the queue
-	boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+		temp = vars.getUnitConversionsFilename();
+		if ((temp != null) && (temp != ""))
+			command += " -u " + temp;
 
-	ArrayList<String> indCmd=new ArrayList<>();
-	
-	String shell = null;
-	if (isWindows) {
-		shell = "cmd.exe /C";
-		indCmd.add("cmd.exe");
-		indCmd.add("/C");
-	} else {
-		shell = "/bin/bash -l -c ";
-		//indCmd.add("/bin/bash");
-		//indCmd.add("-l");
-		//indCmd.add("-c");
-	}
-	
-	String javaToUse="java";
-	String java_home_folder=System.getenv("JAVA_HOME");
-	if(java_home_folder != null && java_home_folder.trim().length()>0) {
-		javaToUse=java_home_folder+File.separator+"bin"+File.separator+"java";
-	}
+		temp = vars.getPresetRegionListFilename();
+		if ((temp != null) && (temp != ""))
+			command += " -p " + temp;
 
-	String[] cmd = new String[1];
-	
-//	String command = shell + " cd " + vars.get("gCamPPExecutableDir") + " & "+javaToUse+" -jar "
-//			+ vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable") + " -o "
-//			+ vars.get("gCamOutputDatabase");
+		temp = vars.getFavoriteQueryFilename();
+		if ((temp != null) && (temp != ""))
+			command += " -f " + temp;
 
-	String command = javaToUse+" -jar "
-			+ vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable") + " -o "
-			+ vars.get("gCamOutputDatabase");
-	indCmd.add(javaToUse);
-	indCmd.add("-jar");
-	indCmd.add(vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable"));
-	indCmd.add("-o");
-	indCmd.add(vars.get("gCamOutputDatabase"));
-	
-	String temp = vars.get("queryFile");
-
-
-	
-	if (temp != null &&(temp!="")) {
-		command += " -q " + temp;
-		indCmd.add("-q");
-		indCmd.add(temp);
-	}
-
-	temp = vars.get("unitConversionsFile");
-	if ((temp == null)&&(temp!="")) {
-		temp=vars.get("gCamPPExecutableDir")+File.separator+"units_rules.csv";
+		temp = vars.getModelInterfaceDir() + File.separator + "map_resources";
+		if ((temp != null) && (temp != ""))
+			command += " -m " + temp;
 		
+		cmd[0] = command;
+		System.out
+				.println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
+		System.out.println("   cmd:" + cmd[0]);
+		try {
+			Client.modelInterfaceExecutionThread.executeRunnableCmd(cmd[0]);
+			//Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(indCmd.toArray(new String[indCmd.size()]));
+		} catch (Exception e) {
+			utils.warningMessage("Problem starting up ModelInterface.");
+			System.out.println("Error in trying to start up ModelInterface:");
+			System.out.println(e);
+		}
 	}
-	command += " -u " + temp;
-	indCmd.add("-u");
-	indCmd.add(temp);
 
-	temp = vars.get("presetRegionsFile");
-	if ((temp != null)&&(temp!="")) {
-		command += " -p " + temp;
-		indCmd.add("-p");
+
+
+	private void runORDModelInterfaceWhich(String database_name) throws IOException {
+		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+
+		String shell = "cmd.exe /C";
+		if (isWindows) {
+			shell = "cmd.exe /C";
+		} else {
+			shell = "/bin/sh -c";
+		}
+
+		String[] cmd = new String[1];
+		String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & java -jar "
+				+ vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
+				+ database_name;
+
+		String temp = vars.getQueryFilename();
+		if (temp != null)
+			command += " -q " + vars.getQueryFilename();
+
+		// + " -l modelinterface.log";
+		// " -dbOpen "
+		cmd[0] = command;
+		System.out.println("Starting GLIMPSE-ModelInterface...");
+		System.out.println("   cmd:" + cmd[0]);
+		try {
+			Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
+		} catch (Exception e) {
+			utils.warningMessage("Problem starting up post-processor.");
+			System.out.println("Error in trying to start up post-processor:");
+			System.out.println(e);
+		}
+	}
+
+	private void runORDModelInterfaceAarons() throws IOException {
+		// submitting gcam run to the queue
+		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+
+		ArrayList<String> indCmd = new ArrayList<>();
+
+		String shell = null;
+		if (isWindows) {
+			shell = "cmd.exe /C";
+			indCmd.add("cmd.exe");
+			indCmd.add("/C");
+		} else {
+			shell = "/bin/bash -l -c ";
+			// indCmd.add("/bin/bash");
+			// indCmd.add("-l");
+			// indCmd.add("-c");
+		}
+
+		String javaToUse = "java";
+		String java_home_folder = System.getenv("JAVA_HOME");
+		if (java_home_folder != null && java_home_folder.trim().length() > 0) {
+			javaToUse = java_home_folder + File.separator + "bin" + File.separator + "java";
+		}
+
+		String[] cmd = new String[1];
+
+//	String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & "+javaToUse+" -jar "
+//			+ vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
+//			+ vars.getgCamOutputDatabase();
+
+		String command = javaToUse + " -jar " + vars.getModelInterfaceJarDir() + File.separator
+				+ vars.getModelInterfaceJar() + " -o " + vars.getgCamOutputDatabase();
+		indCmd.add(javaToUse);
+		indCmd.add("-jar");
+		indCmd.add(vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar());
+		indCmd.add("-o");
+		indCmd.add(vars.getgCamOutputDatabase());
+
+		String temp = vars.getQueryFilename();
+
+		if (temp != null && (temp != "")) {
+			command += " -q " + temp;
+			indCmd.add("-q");
+			indCmd.add(temp);
+		}
+
+		temp = vars.getUnitConversionsFilename();
+		if ((temp == null) && (temp != "")) {
+			temp = vars.getModelInterfaceJarDir() + File.separator + "units_rules.csv";
+
+		}
+		command += " -u " + temp;
+		indCmd.add("-u");
 		indCmd.add(temp);
-	}
 
+		temp = vars.getPresetRegionListFilename();
+		if ((temp != null) && (temp != "")) {
+			command += " -p " + temp;
+			indCmd.add("-p");
+			indCmd.add(temp);
+		}
+
+		cmd[0] = command;
+		System.out
+				.println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
+		System.out.println("   cmd:" + cmd[0]);
+		try {
+			// Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
+			Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(indCmd.toArray(new String[indCmd.size()]));
+		} catch (Exception e) {
+			utils.warningMessage("Problem starting up ModelInterface.");
+			System.out.println("Error in trying to start up ModelInterface:");
+			System.out.println(e);
+		}
+	}
 	
-	cmd[0] = command;
-	System.out.println("Starting "+vars.get("gCamPPExecutable")+" using database "+vars.get("gCamOutputDatabase"));
-	System.out.println("   cmd:" + cmd[0]);
-	try {
-		//Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
-		Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(indCmd.toArray(new String[indCmd.size()]));
-	} catch (Exception e) {
-		utils.warningMessage("Problem starting up ModelInterface.");
-		System.out.println("Error in trying to start up ModelInterface:");
-		System.out.println(e);
-	}
-}
-
-private void runORDModelInterfaceWhich(String database_name) throws IOException {
-	boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-	String shell = "cmd.exe /C";
-	if (isWindows) {
-		shell = "cmd.exe /C";
-	} else {
-		shell = "/bin/sh -c";
-	}
-
-	String[] cmd = new String[1];
-	String command = shell + " cd " + vars.get("gCamPPExecutableDir") + " & java -jar "
-			+ vars.get("gCamPPExecutableDir") + File.separator + vars.get("gCamPPExecutable") + " -o "
-			+ database_name;
-
-	String temp = vars.get("queryFile");
-	if (temp != null)
-		command += " -q " + vars.get("queryFile");
-
-	// + " -l modelinterface.log";
-	// " -dbOpen "
-	cmd[0] = command;
-	System.out.println("Starting EnhancedModelInterface...");
-	System.out.println("   cmd:" + cmd[0]);
-	try {
-		Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
-	} catch (Exception e) {
-		utils.warningMessage("Problem starting up post-processor.");
-		System.out.println("Error in trying to start up post-processor:");
-		System.out.println(e);
-	}
-}
-
 	private void setButtonRunSelectedStatus(boolean b) {
 		Client.buttonRunScenario.setDisable(!b);
 	}
@@ -1266,7 +1276,7 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 
 		boolean inScenarioComponents = false;
 
-		String archiveFoldername = workingDir + "/archive";
+		String archiveFoldername = workingDir + File.separator + "archive";
 		File archiveFolder = new File(archiveFoldername);
 		if (archiveFolder.exists()) {
 			String msg = "Archive already exists. Replace?";
@@ -1303,8 +1313,10 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 
 					Path sourcePath = exePath.resolve(origPath).normalize();
 
-					String destFilename = workingDir + "/archive/" + sourcePath.getFileName();
-					File destFile = new File(workingDir + "/archive/" + sourcePath.getFileName());
+					String destFilename = workingDir + File.separator + "archive" + File.separator
+							+ sourcePath.getFileName();
+					File destFile = new File(
+							workingDir + File.separator + "archive" + File.separator + sourcePath.getFileName());
 
 					line = line.replace(orig_path, destFilename);
 
@@ -1337,10 +1349,10 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 		String destFilename = archiveFolder + File.separator + "configuration_" + scenName + "_archive.xml";
 		files.saveFile(new_config_content, destFilename);
 
-		String zipFolder = workingDir + "/archive";
+		String zipFolder = workingDir + File.separator + "archive";
 		File zipDir = new File(zipFolder);
 
-		String zipFilename = workingDir + "/archive" + utils.getCurrentTimeStamp() + ".zip";
+		String zipFilename = workingDir + File.separator + "archive" + utils.getCurrentTimeStamp() + ".zip";
 		File zipFile = new File(zipFilename);
 		if (zipFile.exists())
 			files.deleteDirectory(zipFile);
@@ -1383,7 +1395,7 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 		utils.displayArrayList(report, "Error Report", false);
 
 	}
-	
+
 	private void generateErrorReport() {
 
 		// create report array
@@ -1419,7 +1431,7 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 		}
 
 		utils.displayArrayList(report, "Error Report", false);
-         
+
 	}
 
 	private void generateRunReport() {
@@ -1494,7 +1506,7 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 				System.out.println(str);
 		}
 
-		String report_file = vars.getgCamGUILogDir() + File.separator + "scenario_report.csv";
+		String report_file = vars.getGlimpseLogDir() + File.separator + "scenario_report.csv";
 		files.saveFile(report, report_file);
 		// utils.displayArrayList(report, "Scenario Report");
 
@@ -1518,7 +1530,5 @@ private void runORDModelInterfaceWhich(String database_name) throws IOException 
 		}
 		return str;
 	}
-	
-
 
 }
