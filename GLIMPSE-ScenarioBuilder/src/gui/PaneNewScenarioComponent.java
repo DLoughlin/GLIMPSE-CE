@@ -465,7 +465,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 			use_temp_file=true;
 		}
 		
-		if ((filename_suggestion!=null)||(!filename_suggestion.equals(""))) {
+		if ((filename_suggestion!=null)&&(!filename_suggestion.equals(""))) {
 			// opens the browser for saving
 			enableButtons();
 			tab.resetFileContent();
@@ -477,11 +477,11 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 			
 			if (file_content.indexOf("xmllist")>=0) {
 				filter1="TXT files (*.txt)";
-				filter2="*.txt";
+				filter2="txt";
 				if ((!filename_suggestion.endsWith(".txt"))&&(!filename_suggestion.endsWith(".TXT"))) filename_suggestion+=".txt";	
 			} else {
 				filter1="CSV files (*.csv)";
-				filter2="*.csv";				
+				filter2="csv";				
 				if ((!filename_suggestion.endsWith(".csv"))&&(!filename_suggestion.endsWith(".CSV"))) filename_suggestion+=".csv";				
 			}
 			
