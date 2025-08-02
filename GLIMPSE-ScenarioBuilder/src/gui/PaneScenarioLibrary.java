@@ -956,7 +956,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
 				String cmd_str = cmd + " " + vars.getgCamExecutable() + " " + vars.getgCamExecutableArgs() + " "
 						+ scenarioConfigFiles[i];
-				Future f = Client.gCAMExecutionThread.executeRunnableCmd(cmd_str, vars.getgCamExecutableDir());
+				Future f = Client.gCAMExecutionThread.submitCommandWithDirectory(cmd_str, vars.getgCamExecutableDir());
 
 				// replace by adding callables to the queue
 				Client.gCAMExecutionThread.executeCallableCmd(new Callable<String>() {
@@ -1144,7 +1144,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 				.println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
 		System.out.println("   cmd:" + cmd[0]);
 		try {
-			Client.modelInterfaceExecutionThread.executeRunnableCmd(cmd[0]);
+			Client.modelInterfaceExecutionThread.submitCommands(cmd);
 			//Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(indCmd.toArray(new String[indCmd.size()]));
 		} catch (Exception e) {
 			utils.warningMessage("Problem starting up ModelInterface.");
@@ -1180,7 +1180,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		System.out.println("Starting GLIMPSE-ModelInterface...");
 		System.out.println("   cmd:" + cmd[0]);
 		try {
-			Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
+			Client.modelInterfaceExecutionThread.submitCommands(cmd);
 		} catch (Exception e) {
 			utils.warningMessage("Problem starting up post-processor.");
 			System.out.println("Error in trying to start up post-processor:");
@@ -1256,7 +1256,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 		System.out.println("   cmd:" + cmd[0]);
 		try {
 			// Client.gCAMPPExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
-			Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(indCmd.toArray(new String[indCmd.size()]));
+			Client.modelInterfaceExecutionThread.submitCommands(indCmd.toArray(new String[indCmd.size()]));
 		} catch (Exception e) {
 			utils.warningMessage("Problem starting up ModelInterface.");
 			System.out.println("Error in trying to start up ModelInterface:");

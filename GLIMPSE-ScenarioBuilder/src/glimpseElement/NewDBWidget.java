@@ -146,7 +146,7 @@ public class NewDBWidget {
 			System.out.println("Starting ModelInterface...");
 			System.out.println("   cmd:" + cmd[0]);
 			try {
-				Client.modelInterfaceExecutionThread.addRunnableCmdsToExecuteQueue(cmd);
+				Client.modelInterfaceExecutionThread.submitCommands(cmd);
 			} catch (Exception e) {
 				utils.warningMessage("Problem starting up post-processor.");
 				System.out.println("Error in trying to start up post-processor:");

@@ -123,8 +123,8 @@ public class Client extends Application {
     // endregion
 
     // region GCAM Threads
-    public static GCAMExecutionThread gCAMExecutionThread;
-    public static GCAMExecutionThread modelInterfaceExecutionThread;
+    public static ExecutionThread gCAMExecutionThread;
+    public static ExecutionThread modelInterfaceExecutionThread;
     // endregion
 
     // region Instance Variables
@@ -186,8 +186,8 @@ public class Client extends Application {
         Client.primaryStage = primaryStage;
 
         primaryStage.setOnCloseRequest(event -> {
-            Client.gCAMExecutionThread.status.terminate();
-            Client.modelInterfaceExecutionThread.status.terminate();
+            Client.gCAMExecutionThread.getStatusChecker().terminate();
+            Client.modelInterfaceExecutionThread.getStatusChecker().terminate();
             Client.gCAMExecutionThread.shutdownNow();
             Client.modelInterfaceExecutionThread.shutdownNow();
             Platform.exit();
@@ -288,8 +288,8 @@ public class Client extends Application {
 
     private void setupExecutionThreads() {
         // Starting separate execution queues for GCAM and post-processor.
-        gCAMExecutionThread = new GCAMExecutionThread();
-        modelInterfaceExecutionThread = new GCAMExecutionThread();
+        gCAMExecutionThread = new ExecutionThread();
+        modelInterfaceExecutionThread = new ExecutionThread();
 
         gCAMExecutionThread.startUpExecutorSingle();
         modelInterfaceExecutionThread.startUpExecutorMulti();
@@ -386,7 +386,7 @@ public class Client extends Application {
     public static Button getButtonArchiveScenario() { return buttonArchiveScenario; }
     public static Button getButtonReport() { return buttonReport; }
     public static Button getButtonExamineScenario() { return buttonExamineScenario; }
-    public static GCAMExecutionThread getgCAMExecutionThread() { return gCAMExecutionThread; }
-    public static GCAMExecutionThread getgCAMPPExecutionThread() { return modelInterfaceExecutionThread; }
+    public static ExecutionThread getgCAMExecutionThread() { return gCAMExecutionThread; }
+    public static ExecutionThread getgCAMPPExecutionThread() { return modelInterfaceExecutionThread; }
     // endregion
 }
