@@ -1,4 +1,6 @@
 /Contrib/
+/GLIMPSE-ScenarioBuilder/*.jar
+/GLIMPSE-ModelInterface/*.jar
 **/GLIMPSE*.jar
 **/debug*.*
 **/Restart/Restart*
@@ -10,3 +12,4 @@
 **/GLIMPSE-Data/GCAM*/ScenarioComponents/*
 **/GLIMPSE-Data/GCAM*/ScenarioFolders/*
 /amazon-corretto-8.442.06.1-windows-x64-jre/
+**/*log.txt
