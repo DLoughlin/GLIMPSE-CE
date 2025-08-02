@@ -363,7 +363,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 			System.out.println("Todo: add callback to buttonImport");
 
 			String filter1="XML files (*.xml)";
-			String filter2="*.xml";
+			String filter2="xml";
 			
 			String exe_folder = vars.getgCamExecutableDir();
 			File new_config_file = FileChooserPlus.showOpenDialog(null, "Select scenario configuration file",new File(vars.getgCamExecutableDir()),FileChooserPlus.createExtensionFilter(filter1,filter2));
