@@ -826,7 +826,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					String tech="";
 					for (int j=0;j<attributes.length;j++) {
 						String str=attributes[j];
-						System.out.println("i:"+i+" "+str);
+						//System.out.println("i:"+i+" "+str);
 						int pos2=str.indexOf(">");
 						String att=str.substring(0,pos2).trim().toLowerCase();
 						String val=str.substring(pos2+1).trim();
