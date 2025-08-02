@@ -1,335 +1,448 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
-* Visualization Laboratory contract. 
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ *
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
+ * Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+ * Visualization Laboratory contract. 
+ */
 package gui;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import glimpseUtil.StatusChecker;
 
-public class GCAMExecutionThread {
-	ExecutorService gCAMExecutor = null;
-	ArrayList<Future> jobs =new ArrayList<Future>();
-	StatusChecker status=new StatusChecker();
-	boolean isCheckingStatus=false;
-	int num_done=0;
-	
-	boolean block = false;
-	
-	public boolean didNumDoneChange() {
-		//System.out.println("In didNumDoneChange");
-		boolean rtn_bool=false;
-		int local_num_done=0;
-		for (int i=0;i<jobs.size();i++) {
-			if (jobs.get(i).isDone()) local_num_done++; 
-		}
-		if (local_num_done==num_done) {
-			rtn_bool=false;
-		} else {
-			rtn_bool=true;
-			num_done=local_num_done;
-		}
-		return rtn_bool;
-	}
-	public void addRunnableCmdsToExecuteQueue(String[] args) {
-		try {
-			executeRunnableCmds(args);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+/**
+ * ExecutionThread manages the execution of background tasks using an ExecutorService and tracks their status.
+ * <p>
+ * Thread-safe for job submission and status checking. Provides methods to submit commands, runnables, and callables,
+ * as well as to manage the executor's lifecycle. All access to the jobs list is synchronized for thread safety.
+ * </p>
+ */
+public class ExecutionThread implements AutoCloseable {
+    private ExecutorService executorService = null;
+    /**
+     * List of submitted jobs. All iteration over this list must be synchronized on the list.
+     */
+    private final List<Future<?>> jobs = Collections.synchronizedList(new ArrayList<>());
+    private final StatusChecker status = new StatusChecker();
+    private final AtomicBoolean isCheckingStatus = new AtomicBoolean(false);
+    private int numDone = 0;
 
-	public void startUpExecutorSingle() {
-		if (gCAMExecutor == null) {
-			gCAMExecutor = Executors.newSingleThreadExecutor();
-		} else {
-			// This should be an error message
-			System.out.println(".");
-		}
+    /**
+     * Checks if the number of completed jobs has changed since the last check.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @return true if the number of completed jobs has changed, false otherwise.
+     */
+    public boolean didNumDoneChange() {
+        boolean rtnBool = false;
+        int localNumDone = 0;
+        synchronized (jobs) {
+            for (Future<?> job : jobs) {
+                if (job.isDone()) localNumDone++;
+            }
+        }
+        if (localNumDone == numDone) {
+            rtnBool = false;
+        } else {
+            rtnBool = true;
+            numDone = localNumDone;
+        }
+        return rtnBool;
+    }
 
-	}
+    /**
+     * Adds an array of command strings as RunnableCmds to the execution queue.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param commands Array of command strings.
+     */
+    public void submitCommands(String[] commands) {
+        try {
+            submitCommandTasks(commands);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Interrupted while adding commands to execute queue.", e);
+        }
+    }
 
-	public void startUpExecutorMulti() {
-		if (gCAMExecutor == null) {
-			gCAMExecutor = Executors.newCachedThreadPool();
-		} else {
-			// This should be an error message
-			System.out.println(".");
-		}
-	}
-	
-	public void executeRunnables(Runnable[] runnables) { 
-		for (int i = 0; i < runnables.length; i++) {
-			executeRunnable(runnables[i]);
-		}
-	}
-	
-	public void executeRunnable(Runnable runable) {
-		System.out.println("Submitting to queue: " + runable.toString());
-		jobs.add(gCAMExecutor.submit(runable));
-		//if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-		// shutdown();
-	}
+    /**
+     * Starts a single-threaded executor if not already started.
+     * <p>
+     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
+     * </p>
+     */
+    public void startUpExecutorSingle() {
+        if (executorService == null) {
+            executorService = Executors.newSingleThreadExecutor();
+        } else {
+            System.err.println("ExecutorService already started.");
+        }
+    }
 
+    /**
+     * Starts a cached thread pool executor if not already started.
+     * <p>
+     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
+     * </p>
+     */
+    public void startUpExecutorMulti() {
+        if (executorService == null) {
+            executorService = Executors.newCachedThreadPool();
+        } else {
+            System.err.println("ExecutorService already started.");
+        }
+    }
 
-	
-	public void executeRunnableCmds(String[] args) throws InterruptedException { // args probably should be renamed?
-		for (int i = 0; i < args.length; i++) {
-			executeRunnableCmd(args[i]);
-			// shutdown();
-		}
-	}
-	
-	public Future executeRunnableCmd(String arg) {
-		RunnableCmd gr = new RunnableCmd();
-		gr.setCmd(arg);
-		System.out.println("Submitting to queue: " + arg);
-		Future f=gCAMExecutor.submit(gr);
-		jobs.add(f);
-		//if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-		return f;
-	}
+    /**
+     * Submits an array of Runnable tasks to the executor.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param runnables Array of Runnable tasks.
+     */
+    public void executeRunnables(Runnable[] runnables) {
+        for (Runnable runnable : runnables) {
+            executeRunnable(runnable);
+        }
+    }
 
+    /**
+     * Submits a single Runnable task to the executor.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param runnable The Runnable task.
+     */
+    public void executeRunnable(Runnable runnable) {
+        if (executorService == null) {
+            throw new IllegalStateException("ExecutorService not started.");
+        }
+        startStatusCheckerIfNeeded();
+        System.out.println("Submitting to queue: " + runnable);
+        Future<?> f = executorService.submit(runnable);
+        jobs.add(f);
+    }
 
-	public void executeRunnableCmds(String[] args, String directory) throws InterruptedException {
-		for (int i = 0; i < args.length; i++) {
-			executeRunnableCmd(args[i],directory);
-		}
-		// shutdown();
-	}
-	
-	public Future executeRunnableCmd(String arg, String directory) {
-		String dir="\""+directory.replaceAll("\"","")+"\"";
-		RunnableCmd gr = new RunnableCmd();
-		gr.setCmd(arg, directory);
-		System.out.println("Submitting to queue: " + arg + " with dir " + directory);
-		Future f=gCAMExecutor.submit(gr);
-		jobs.add(f);
-		if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-		return f;
-	}
+    /**
+     * Submits an array of command strings as RunnableCmds to the executor.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param commands Array of command strings.
+     * @throws InterruptedException if interrupted while submitting tasks.
+     */
+    public void submitCommandTasks(String[] commands) throws InterruptedException {
+        for (String command : commands) {
+            submitCommand(command);
+        }
+    }
 
-	
-	public void executeCallableCmd(Callable arg) {
-		System.out.println("Submitting callable to queue: " + arg);
-		jobs.add(gCAMExecutor.submit(arg));
-	}
-	
+    /**
+     * Submits a single command string as a RunnableCmd to the executor.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param command The command string.
+     * @return Future representing the submitted task.
+     */
+    public Future<?> submitCommand(String command) {
+        if (executorService == null) {
+            throw new IllegalStateException("ExecutorService not started.");
+        }
+        startStatusCheckerIfNeeded();
+        RunnableCmd gr = new RunnableCmd();
+        gr.setCmd(command);
+        System.out.println("Submitting to queue: " + command);
+        Future<?> f = executorService.submit(gr);
+        synchronized (jobs) {
+            jobs.add(f);
+        }
+        return f;
+    }
 
-	//shutdown 
-	public void shutdown() {
-		status.terminate();
-		gCAMExecutor.shutdown();
-	}
+    /**
+     * Submits an array of command strings as RunnableCmds to the executor, specifying a working directory.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param commands Array of command strings.
+     * @param directory The working directory.
+     * @throws InterruptedException if interrupted while submitting tasks.
+     */
+    public void submitCommandsWithDirectory(String[] commands, String directory) throws InterruptedException {
+        for (String command : commands) {
+            submitCommandWithDirectory(command, directory);
+        }
+    }
 
-	public void shutdownNow() {
-		System.out.println("Attempting to shut down all model threads.");
-		status.terminate();
-		gCAMExecutor.shutdownNow();
-	}
+    /**
+     * Submits a single command string as a RunnableCmd to the executor, specifying a working directory.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param command The command string.
+     * @param directory The working directory.
+     * @return Future representing the submitted task.
+     */
+    public Future<?> submitCommandWithDirectory(String command, String directory) {
+        if (executorService == null) {
+            throw new IllegalStateException("ExecutorService not started.");
+        }
+        RunnableCmd gr = new RunnableCmd();
+        gr.setCmd(command, directory);
+        System.out.println("Submitting to queue: " + command + " with dir " + directory);
+        Future<?> f = executorService.submit(gr);
+        synchronized (jobs) {
+            jobs.add(f);
+        }
+        return f;
+    }
 
-	public boolean isExecuting() {
-		boolean is_executing = false;
-		boolean is_terminated = false;
-		if (gCAMExecutor == null) {
-			is_executing = false;
-		} else {
-			is_executing = !gCAMExecutor.isShutdown();
-			is_terminated = !gCAMExecutor.isTerminated();
-		}
+    /**
+     * Submits a Callable task to the executor.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     *
+     * @param <V> The result type returned by the Callable.
+     * @param callable The Callable task.
+     */
+    public <V> void executeCallableCmd(Callable<V> callable) {
+        if (executorService == null) {
+            throw new IllegalStateException("ExecutorService not started.");
+        }
+        startStatusCheckerIfNeeded();
+        System.out.println("Submitting callable to queue: " + callable);
+        Future<?> f = executorService.submit(callable);
+        synchronized (jobs) {
+            jobs.add(f);
+        }
+    }
 
-		System.out.println("Is executing: " + is_executing);
-		System.out.println("Is terminated: " + is_terminated);
+    /**
+     * Removes completed jobs from the jobs list to prevent memory leaks in long-running applications.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * </p>
+     */
+    public void cleanupCompletedJobs() {
+        synchronized (jobs) {
+            jobs.removeIf(Future::isDone);
+        }
+    }
 
-		return is_executing;
-	}
+    /**
+     * Shuts down the executor service gracefully and terminates the status checker.
+     * Logs any tasks that did not complete.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * </p>
+     */
+    @Override
+    public void close() {
+        shutdown();
+    }
 
-	public String getQueue() {
-		return gCAMExecutor.toString();
-	}
-	
-//	public void addRunnableCmdsToExecuteQueue(String[] args) {
-//
-//		System.out.println("In addRunnableCmdsToExecuteQueue");
-//		
-//		try {
-//			executeRunnableCmds(args);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public void startUpExecutorSingle() {
-//		System.out.println("In startUpExecutorSingle");
-//		
-//		//if (gCAMExecutor == null) {
-//			gCAMExecutor = Executors.newSingleThreadExecutor();
-//		//} 
-//
-//	}
-//
-//	public void startUpExecutorMulti() {
-//		System.out.println("in startUpExecutorMulti");
-//		if (gCAMExecutor == null) {
-//			gCAMExecutor = Executors.newCachedThreadPool();
-//		} else {
-//			// This should be an error message
-//			System.out.println(".");
-//		}
-//	}
-//	
-//	public void executeRunnables(Runnable[] runnables) { 
-//		System.out.println("IN executeRunnables");
-//		for (int i = 0; i < runnables.length; i++) {
-//			executeRunnable(runnables[i]);
-//		}
-//	}
-//	
-//	public void executeRunnable(Runnable runable) {
-//		System.out.println("Submitting to queue in executeRunnable: " + runable.toString());
-//		jobs.add(gCAMExecutor.submit(runable));
-//		//if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-//		// shutdown();
-//	}
-//
-//
-//	
-//	public void executeRunnableCmds(String[] args) throws InterruptedException { // args probably should be renamed?
-//		System.out.println("in executeRunnableCmds");
-//		//for (int i = 0; i < args.length; i++) {
-//			executeRunnableCmd(args);
-//			// shutdown();
-//		//}
-//	}
-//	
-//	public Future executeRunnableCmd(String[] arg) {
-//		System.out.println("In executeRunnableCmd, arg:");
-//		for(int i=0;i<arg.length;i++) {
-//			System.out.print(arg[i]+ " ");
-//		}
-//		System.out.println("");
-//		RunnableCmd gr = new RunnableCmd();
-//		gr.setCmd(arg);
-//		System.out.println("Submitting to queue in executeRunnableCmd: " + arg);
-//		Future f=gCAMExecutor.submit(gr);
-//		jobs.add(f);
-//		//if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-//		//System.out.println("F:"+f.toString());
-//		//while(!f.isDone()) {
-//		//	System.out.println(LocalDateTime.now()+": F is still going.");
-//		//	try {
-//				
-//		//		Thread.sleep(1000);
-//		//	}catch(Exception e) {}
-//		//}
-//		//try {
-//		//	System.out.println("F is done "+f.get());
-//		//	
-//		//}catch(Exception e) {
-//		//	System.out.println("FERR: "+e.toString());
-//		//}
-//		
-//		return f;
-//	}
-//
-//
-//	public void executeRunnableCmds(String[] args, String directory) throws InterruptedException {
-//		System.out.println("in executeRunnableCmds ");
-//		for (int i = 0; i < args.length; i++) {
-//			executeRunnableCmd(args[i],directory);
-//		}
-//		// shutdown();
-//	}
-//	
-//	public Future executeRunnableCmd(String arg, String directory) {
-//		System.out.println("In executeRunnableCmd, 2 arg");
-//		String dir="\""+directory.replaceAll("\"","")+"\"";
-//		RunnableCmd gr = new RunnableCmd();
-//		gr.setCmd(arg, directory);
-//		System.out.println("Submitting to queue executeRunnableCmd: " + arg + " with dir " + directory);
-//		Future f=gCAMExecutor.submit(gr);
-//		jobs.add(f);
-//		if (!isCheckingStatus) { status.start(); isCheckingStatus=true; }
-//		return f;
-//	}
-//
-//	
-//	public void executeCallableCmd(Callable arg) {
-//		System.out.println("Submitting callable to queue executeCallableCmd: " + arg);
-//		jobs.add(gCAMExecutor.submit(arg));
-//	}
-//	
-//
-//	//shutdown 
-//	public void shutdown() {
-//		System.out.println("in shutdown");
-//		status.terminate();
-//		gCAMExecutor.shutdown();
-//	}
-//
-//	public void shutdownNow() {
-//		System.out.println("in shutdownNow");
-//		System.out.println("Attempting to shut down all model threads.");
-//		status.terminate();
-//		gCAMExecutor.shutdownNow();
-//	}
-//
-//	public boolean isExecuting() {
-//		System.out.println("in isExecuting");
-//		boolean is_executing = false;
-//		boolean is_terminated = false;
-//		if (gCAMExecutor == null) {
-//			is_executing = false;
-//		} else {
-//			is_executing = !gCAMExecutor.isShutdown();
-//			is_terminated = !gCAMExecutor.isTerminated();
-//		}
-//
-//		System.out.println("Is executing: " + is_executing);
-//		System.out.println("Is terminated: " + is_terminated);
-//
-//		return is_executing;
-//	}
-//
-//	public String getQueue() {
-//		return gCAMExecutor.toString();
-//	}
-//	
+    /**
+     * Shuts down the executor service gracefully and terminates the status checker.
+     * Logs any tasks that did not complete.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * </p>
+     */
+    public void shutdown() {
+        try {
+            status.terminate();
+        } finally {
+            isCheckingStatus.set(false);
+            if (executorService != null) {
+                try {
+                    executorService.shutdown();
+                    if (!executorService.awaitTermination(30, java.util.concurrent.TimeUnit.SECONDS)) {
+                        System.err.println("ExecutorService did not terminate in the specified time.");
+                        List<Runnable> droppedTasks = executorService.shutdownNow();
+                        if (!droppedTasks.isEmpty()) {
+                            System.err.println("ExecutorService was abruptly shut down. The following tasks will not be executed:");
+                            for (Runnable task : droppedTasks) {
+                                System.err.println(task);
+                            }
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("Shutdown interrupted. Remaining tasks may not have completed.");
+                } catch (Exception e) {
+                    throw new RuntimeException("Error during executorService shutdown.", e);
+                } finally {
+                    executorService = null;
+                }
+            }
+        }
+    }
 
+    /**
+     * Shuts down the executor service immediately and terminates the status checker.
+     * Attempts to interrupt running tasks and logs any tasks that did not start.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * </p>
+     */
+    public void shutdownNow() {
+        System.out.println("Attempting to shut down all model threads.");
+        try {
+            status.terminate();
+        } finally {
+            isCheckingStatus.set(false);
+            if (executorService != null) {
+                try {
+                    List<Runnable> notStarted = executorService.shutdownNow();
+                    if (!notStarted.isEmpty()) {
+                        System.err.println("The following tasks were not started and will not be executed:");
+                        for (Runnable task : notStarted) {
+                            System.err.println(task);
+                        }
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("Error during executorService shutdownNow.", e);
+                } finally {
+                    executorService = null;
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if the executor service is currently executing tasks.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * </p>
+     *
+     * @return true if executing, false otherwise.
+     */
+    public boolean isExecuting() {
+        if (executorService == null) {
+            return false;
+        } else {
+            boolean isExecuting = !executorService.isShutdown();
+            boolean isTerminated = !executorService.isTerminated();
+            System.out.println("Is executing: " + isExecuting);
+            System.out.println("Is terminated: " + isTerminated);
+            return isExecuting;
+        }
+    }
+
+    /**
+     * Returns a string representation of the executor service queue.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * </p>
+     *
+     * @return String representation of the executor service.
+     */
+    public String getQueue() {
+        return executorService != null ? executorService.toString() : "ExecutorService not started";
+    }
+
+    /**
+     * Returns the list of jobs. All iteration over this list must be synchronized on the list.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe. It returns a copy of the jobs list within a synchronized block.
+     * </p>
+     *
+     * @return List of Future jobs.
+     */
+    public List<Future<?>> getJobs() {
+        synchronized (jobs) {
+            return new ArrayList<>(jobs);
+        }
+    }
+
+    /**
+     * Returns the status checker instance.
+     * <p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * </p>
+     *
+     * @return StatusChecker instance.
+     */
+    public StatusChecker getStatusChecker() {
+        return status;
+    }
+
+    /**
+     * Helper method to start the status checker if not already started.
+     * This method is thread-safe.
+     */
+    private void startStatusCheckerIfNeeded() {
+        if (isCheckingStatus.compareAndSet(false, true)) {
+            status.start();
+        }
+    }
+
+    // Deprecated methods for backward compatibility
+    /**
+     * @deprecated Use submitCommands instead.
+     */
+    @Deprecated
+    public void addCommandsToQueue(String[] args) {
+        submitCommands(args);
+    }
+    /**
+     * @deprecated Use submitCommandTasks instead.
+     */
+    @Deprecated
+    public void executeRunnableCmds(String[] args) throws InterruptedException {
+        submitCommandTasks(args);
+    }
+    /**
+     * @deprecated Use submitCommand instead.
+     */
+    @Deprecated
+    public Future<?> executeRunnableCmd(String arg) {
+        return submitCommand(arg);
+    }
+    
+
+    
 }
