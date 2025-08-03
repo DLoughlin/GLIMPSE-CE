@@ -60,6 +60,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * TabMarketShare provides the user interface and logic for creating and editing market share policies
+ * in the GLIMPSE Scenario Builder. This tab allows users to select subsets and supersets, filter options,
+ * and configure market share policy details for scenario components.
+ *
+ * <p>
+ * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
+ * </p>
+ *
+ * <p>
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
+ * </p>
+ */
 public class TabMarketShare extends PolicyTab implements Runnable {
 	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
 	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
@@ -87,13 +100,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	Label labelSubset = utils.createLabel("Subset: ", label_wid);
 	CheckComboBox<String> checkComboBoxSubset = utils.createCheckComboBox();
-	// Button checkAllSubsetButton = utils.createButton("(Un)Check All", 25,
-	// "(Un)check all subset items","check-uncheck" );
 
 	Label labelSuperset = utils.createLabel("Superset: ", label_wid);
 	CheckComboBox<String> checkComboBoxSuperset = utils.createCheckComboBox();
-	// Button checkAllSupersetButton = utils.createButton("(Un)Check All", 25,
-	// "(Un)check all superset items","check-uncheck" );
 
 	// applied to
 	Label labelAppliedTo = utils.createLabel("Applied to: ", label_wid);
@@ -377,6 +386,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		this.setContent(tabLayout);
 	}
 
+    /**
+     * Sets up the left column of the UI with labels and input controls for policy specification and population.
+     */
     private void setupLeftColumn() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelPolicyType, labelSubsetFilter, labelSubset, labelSupersetFilter, labelSuperset, labelConstraint,
@@ -395,6 +407,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         scrollPaneLeft.setContent(gridPaneLeft);
     }
 
+    /**
+     * Sets up the center column of the UI with value controls and action buttons.
+     */
     private void setupCenterColumn() {
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
@@ -403,16 +418,26 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         vBoxCenter.setStyle(styles.getStyle2());
     }
 
+    /**
+     * Sets up the right column of the UI with the country/state tree.
+     */
     private void setupRightColumn() {
         vBoxRight.getChildren().addAll(paneForCountryStateTree);
         vBoxRight.setStyle(styles.getStyle2());
     }
 
+    /**
+     * Sets up the subset and superset check combo boxes based on the selected policy type and filters.
+     */
     private void setupCheckComboBoxes() {
 		String item = this.comboBoxPolicyType.getSelectionModel().getSelectedItem();
 		setupCheckComboBoxes(item);
 	}
 
+    /**
+     * Sets up the subset and superset check combo boxes for a given policy type.
+     * @param selected_item The selected policy type.
+     */
 	private void setupCheckComboBoxes(String selected_item) {
 
 		String[][] tech_info = vars.getTechInfo();
@@ -844,6 +869,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	
+	/**
+	 * Sets the policy and market names automatically based on current selections if auto-naming is enabled.
+	 */
 	private void setPolicyAndMarketNames() {
 		if (this.checkBoxUseAutoNames.isSelected()) {
 
@@ -895,6 +923,10 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		}
 	}
 
+	/**
+	 * Calculates the values for the policy table based on user input and selected calculation type.
+	 * @return A 2D array of calculated values.
+	 */
 	private double[][] calculateValues() {
 		String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
 		int start_year = Integer.parseInt(textFieldStartYear.getText());
@@ -908,16 +940,26 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		return returnMatrix;
 	}
 
+	/**
+	 * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+	 */
 	@Override
 	public void run() {
 		saveScenarioComponent();
 	}
 
+	/**
+	 * Saves the scenario component using the selected regions from the country/state tree.
+	 */
 	@Override
 	public void saveScenarioComponent() {
 		saveScenarioComponent(paneForCountryStateTree.getTree());
 	}
 
+	/**
+	 * Saves the scenario component using the provided tree of selected regions.
+	 * @param tree The TreeView containing selected regions.
+	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
 
 		if (!qaInputs()) {
@@ -930,7 +972,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			String ID = utils.getUniqueString();
 			String policy_name = this.textFieldPolicyName.getText() + ID;
 			String market_name = this.textFieldMarketName.getText() + ID;
-			filename_suggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+			filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
 
 			String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
 			File test = new File(tempDirName);
@@ -947,7 +989,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			int no_nested = 0;
 			int no_non_nested = 0;
 
-			file_content = "use temp file";
+			fileContent = "use temp file";
 			files.writeToBufferedFile(bw0, getMetaDataContent(tree, market_name, policy_name));
 
 			String treatment = comboBoxTreatment.getValue().toLowerCase().trim();
@@ -1129,7 +1171,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					}
 				}
 				double progress = s / (listOfSelectedLeaves.length - 1.);
-				progress_bar.setProgress(progress);
+				progressBar.setProgress(progress);
 			}
 
 			int max_year = utils.getMaxValFromStringArray(year_list);
@@ -1219,7 +1261,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					}
 				}
 				double progress = s / (listOfSelectedLeaves.length - 1.);
-				progress_bar.setProgress(progress);
+				progressBar.setProgress(progress);
 			}
 
 			// part 3 - turn on markets in and/or across regions
@@ -1276,7 +1318,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 
 				double progress = s / (listOfSelectedLeaves.length - 1.);
-				progress_bar.setProgress(progress);
+				progressBar.setProgress(progress);
 			}
 
 			files.closeBufferedFile(bw0);
@@ -1308,6 +1350,13 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	}
 
+	/**
+	 * Generates the metadata content for the scenario component, including selected options and table data.
+	 * @param tree The TreeView containing selected regions.
+	 * @param market The market name.
+	 * @param policy The policy name.
+	 * @return The metadata content as a String.
+	 */
 	public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
 		String rtn_str = "";
 
@@ -1346,6 +1395,10 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		return rtn_str;
 	}
 
+	/**
+	 * Loads the content of a scenario component from a list of strings, updating the UI accordingly.
+	 * @param content The content to load.
+	 */
 	@Override
 	public void loadContent(ArrayList<String> content) {
 		for (int i = 0; i < content.size(); i++) {
@@ -1412,6 +1465,10 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		this.paneForComponentDetails.updateTable();
 	}
 
+	/**
+	 * Performs QA checks to ensure all required fields for populating the table are filled.
+	 * @return true if all required fields are filled, false otherwise.
+	 */
 	public boolean qaPopulate() {
 		boolean is_correct = true;
 
@@ -1427,6 +1484,10 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		return is_correct;
 	}
 
+	/**
+	 * Performs QA checks to ensure all required inputs for saving the scenario component are valid.
+	 * @return true if all required inputs are valid, false otherwise.
+	 */
 	protected boolean qaInputs() {
 
 		TreeView<String> tree = paneForCountryStateTree.getTree();
@@ -1548,24 +1609,38 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		return is_correct;
 	}
 
+	/**
+	 * Gets the suggested filename for the scenario component file.
+	 * @return The filename suggestion.
+	 */
 	@Override
 	public String getFilenameSuggestion() {
-		return filename_suggestion;
+		return filenameSuggestion;
 	}
 
+	/**
+	 * Resets the filename suggestion to null.
+	 */
 	@Override
 	public void resetFilenameSuggestion() {
-		filename_suggestion = null;
+		filenameSuggestion = null;
 	}
 
+	/**
+	 * Gets the file content for the scenario component.
+	 * @return The file content as a String.
+	 */
 	@Override
 	public String getFileContent() {
-		return file_content;
+		return fileContent;
 	}
 
+	/**
+	 * Resets the file content to null.
+	 */
 	@Override
 	public void resetFileContent() {
-		file_content = null;
+		fileContent = null;
 	}
 
 }

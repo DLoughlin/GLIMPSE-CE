@@ -148,12 +148,12 @@ public class GLIMPSEUtils {
 	/**
      * Checks if a string matches any item in the provided list.
      * @param str String to check
-     * @param list List of strings
+     * @param marketList List of strings
      * @return true if match found, false otherwise
      */
-	public boolean getMatch(String str, ArrayList<String> list) {
-        if (str == null || list == null) return false;
-        for (String item : list) {
+	public boolean getMatch(String str, List<String> marketList) {
+        if (str == null || marketList == null) return false;
+        for (String item : marketList) {
             if (str.equals(item)) {
                 return true;
             }
@@ -388,11 +388,11 @@ public class GLIMPSEUtils {
      */
 	public String[] getRidOfTrailingCommasInStringArray(String[] s) {
         if (s == null) return null;
-		for (int i = 0; i < s.length; i++) {
-			s[i] = getRidOfTrailingCommasInString(s[i]);
-		}
-		return s;
-	}
+        for (int i = 0; i < s.length; i++) {
+            s[i] = getRidOfTrailingCommasInString(s[i]);
+        }
+        return s;
+    }
 
 	/**
      * Clears the text in a TextArea.
@@ -487,14 +487,13 @@ public class GLIMPSEUtils {
      */
 	public ArrayList<String> createArrayListFromString(String line, String delim) {
         if (line == null || delim == null) return new ArrayList<>();
-		ArrayList<String> linesList = new ArrayList<String>();
-		String[] lines = splitString(line, delim);
-		for (int i = 0; i < lines.length; i++) {
-			lines[i] = lines[i];// + vars.getEol();
-			linesList.add(lines[i]);
-		}
-		return linesList;
-	}
+        ArrayList<String> linesList = new ArrayList<>();
+        String[] lines = splitString(line, delim);
+        for (String l : lines) {
+            linesList.add(l);
+        }
+        return linesList;
+    }
 
 	/**
      * Creates an ArrayList from a string split by end-of-line.
@@ -503,13 +502,12 @@ public class GLIMPSEUtils {
      */
 	public ArrayList<String> createArrayListFromString(String line) {
         if (line == null) return new ArrayList<>();
-		ArrayList<String> linesList = new ArrayList<String>();
-		String[] lines = splitEOL(line);
-		for (int i = 0; i < lines.length; i++) {
-			lines[i] = lines[i];// + vars.getEol();
-			linesList.add(lines[i]);
-		}
-		return linesList;
+        ArrayList<String> linesList = new ArrayList<>();
+        String[] lines = splitEOL(line);
+        for (String l : lines) {
+            linesList.add(l);
+        }
+        return linesList;
 	}
 
 	/**
@@ -545,13 +543,12 @@ public class GLIMPSEUtils {
      */
 	public String[] createStringArrayFromObservableList(ObservableList<String> array_str) {
         if (array_str == null) return new String[0];
-		String[] rtn_str = new String[array_str.size()];
-
-		for (int i = 0; i < array_str.size(); i++) {
-			rtn_str[i] = array_str.get(i) + vars.getEol();
-		}
-
-		return rtn_str;
+        String[] rtn_str = new String[array_str.size()];
+        int i = 0;
+        for (String s : array_str) {
+            rtn_str[i++] = s + vars.getEol();
+        }
+        return rtn_str;
 	}
 
 	/**
@@ -579,8 +576,9 @@ public class GLIMPSEUtils {
 	public String[] createStringArrayFromArrayList(ArrayList<String> arrayList) {
         if (arrayList == null) return new String[0];
         String[] result = new String[arrayList.size()];
-        for (int i = 0; i < arrayList.size(); i++) {
-            result[i] = arrayList.get(i) + vars.getEol();
+        int i = 0;
+        for (String s : arrayList) {
+            result[i++] = s + vars.getEol();
         }
         return result;
     }

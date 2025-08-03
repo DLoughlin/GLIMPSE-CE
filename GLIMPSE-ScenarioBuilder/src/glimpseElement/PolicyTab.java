@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,6 +34,7 @@ package glimpseElement;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
@@ -42,93 +43,163 @@ import glimpseUtil.GLIMPSEVariables;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 
+/**
+ * Abstract base class for policy-related tabs in the GLIMPSE Scenario Builder.
+ * <p>
+ * Provides shared functionality for all scenario component tabs, including:
+ * <ul>
+ *   <li>Progress tracking for long-running operations (e.g., file generation)</li>
+ *   <li>File content and filename suggestion management for scenario component export</li>
+ *   <li>Market name uniqueness checking to avoid naming conflicts</li>
+ *   <li>Access to shared utility singletons (styles, variables, file and utility helpers)</li>
+ * </ul>
+ * <p>
+ * Subclasses must implement {@link #saveScenarioComponent()} and {@link #loadContent(ArrayList)}
+ * to define how scenario components are saved and loaded for each policy type.
+ * </p>
+ *
+ * <h2>Usage Example</h2>
+ * <pre>
+ * public class TabTechTax extends PolicyTab {
+ *     // ... implement abstract methods ...
+ * }
+ * </pre>
+ *
+ * <h2>Thread Safety</h2>
+ * <p>This class is <b>not</b> thread-safe and should be used only on the JavaFX Application Thread.</p>
+ */
 public abstract class PolicyTab extends Tab {
-	public ProgressBar progress_bar = new ProgressBar(0.0);
-	public String filename_suggestion = null;
-	public String file_content = null;
-	public ArrayList<String> market_list;
+    // === Fields for scenario component file management and progress ===
+    protected final ProgressBar progressBar = new ProgressBar(0.0); // Progress bar for UI
+    protected String filenameSuggestion = null; // Suggested filename for saving
+    protected String fileContent = null;        // Content of the file to be saved
+    protected List<String> marketList;          // List of unique market names
 
-	protected GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	protected GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	protected GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	protected GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-	
-	public abstract void saveScenarioComponent();
-	public abstract void loadContent(ArrayList<String> content);
+    // === Singleton utility instances for use by subclasses ===
+    protected final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    protected final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    protected final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    protected final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-	public void setProgress(double d) {
-		progress_bar.setProgress(d);
-	}
+    /**
+     * Save the scenario component. Implemented by subclasses to define how the component is saved.
+     */
+    public abstract void saveScenarioComponent();
 
-	public String getFilenameSuggestion() {
-		return filename_suggestion;
-	}
+    /**
+     * Load content into the tab. Implemented by subclasses to define how content is loaded.
+     * @param content List of content lines to load (e.g., from a file)
+     */
+    public abstract void loadContent(ArrayList<String> content);
 
-	public String getFileContent() {
-		System.out.println("Getting file content... length:"+file_content.length());
-		return file_content;
-	}
+    /**
+     * Set the progress bar value for long-running operations.
+     * @param progress Progress value between 0.0 and 1.0
+     */
+    public void setProgress(double progress) {
+        getProgressBar().setProgress(progress);
+    }
 
-	public void resetFileContent() {
-		file_content = null;
-	}
+    /**
+     * Get the suggested filename for saving the scenario component.
+     * @return Suggested filename, or null if not set
+     */
+    public String getFilenameSuggestion() {
+        return filenameSuggestion;
+    }
 
-	public void resetFilenameSuggestion() {
-		filename_suggestion = null;
-	}
+    /**
+     * Get the file content for the scenario component.
+     * @return File content string, or null if not set
+     */
+    public String getFileContent() {
+        if (fileContent == null) {
+            System.out.println("File content is null.");
+            return null;
+        }
+        System.out.println("Getting file content... length:" + fileContent.length());
+        return fileContent;
+    }
 
-	public void resetProgressBar() {
-		progress_bar.setProgress(0.0);
-	}
+    /**
+     * Reset the file content to null after saving or cancelling.
+     */
+    public void resetFileContent() {
+        fileContent = null;
+    }
 
-	PolicyTab() {
-		;
-	}
+    /**
+     * Reset the filename suggestion to null after saving or cancelling.
+     */
+    public void resetFilenameSuggestion() {
+        filenameSuggestion = null;
+    }
 
-	public String getUniqueMarketName(String market_name) {
-		String rtn_str="";
-		
-		File folder = new File(vars.getScenarioComponentsDir());
-		String[] file_list = folder.list();
+    /**
+     * Reset the progress bar to 0 after an operation completes.
+     */
+    public void resetProgressBar() {
+        getProgressBar().setProgress(0.0);
+    }
 
-		if (market_list == null) {
-			market_list = new ArrayList<String>();
+    /**
+     * Protected constructor for subclassing. Prevents direct instantiation.
+     * Subclasses should call this constructor.
+     */
+    protected PolicyTab() {
+        // No-op constructor for subclassing
+    }
 
-			for (int i = 0; i < file_list.length; i++) {
-				String filename=vars.getScenarioComponentsDir()+File.separator+file_list[i];
-				File f=new File(filename);
-				if (!f.isDirectory()) {
-					ArrayList<String> lines = files.searchForTextInFileA(filename, "Mkt", "#");
-					for (int j = 0; j < lines.size(); j++) {
-						String mkt_name = utils.getTokenWithText(lines.get(j), "Mkt", ",");
-						boolean match = utils.getMatch(mkt_name, market_list);
-						if (!match) {
-							market_list.add(mkt_name);
-						} 
-					}
-				}
-			}
-		}
+    /**
+     * Generate a unique market name if the given name already exists in the market list.
+     * <p>
+     * This method checks the scenario components directory for existing market names and appends a numeric suffix if needed.
+     * </p>
+     * @param marketName The original market name
+     * @return A unique market name suffix (e.g., "2"), or empty string if not needed
+     */
+    public String getUniqueMarketName(String marketName) {
+        String result = "";
+        File folder = new File(vars.getScenarioComponentsDir());
+        String[] fileList = folder.list();
+        if (fileList == null) {
+            return result;
+        }
+        if (marketList == null) {
+            marketList = new ArrayList<>();
+            for (String fileName : fileList) {
+                String filePath = vars.getScenarioComponentsDir() + File.separator + fileName;
+                File file = new File(filePath);
+                if (!file.isDirectory()) {
+                    ArrayList<String> lines = files.searchForTextInFileA(filePath, "Mkt", "#");
+                    for (String line : lines) {
+                        String mktName = utils.getTokenWithText(line, "Mkt", ",");
+                        if (!utils.getMatch(mktName, marketList)) {
+                            marketList.add(mktName);
+                        }
+                    }
+                }
+            }
+        }
+        int id = 0;
+        for (String marketFromList : marketList) {
+            if (marketFromList != null && marketFromList.startsWith(marketName)) {
+                id++;
+            }
+        }
+        if (id != 0) {
+            String uniqueName = marketName + id;
+            marketList.add(uniqueName);
+            result = String.valueOf(id);
+        }
+        return result;
+    }
 
-		int ID = 0;
-		
-		String orig_market_name=market_name;
-		
-		for (int i=0;i<market_list.size();i++) {
-			String market_from_list=market_list.get(i);
-			if (market_from_list.startsWith(orig_market_name)) {
-				ID++;
-			}
-		}
-		
-		if (ID!=0) { 
-			market_list.add(orig_market_name+=""+ID);
-			rtn_str=""+ID;
-		}
-		
-		return rtn_str; 
-	}
-	
-	
-	
+    /**
+     * Get the progress bar associated with this tab for UI binding.
+     * @return ProgressBar instance for this tab
+     */
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
 }

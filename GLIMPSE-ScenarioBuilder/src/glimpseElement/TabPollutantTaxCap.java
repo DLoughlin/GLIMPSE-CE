@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -53,77 +53,132 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * TabPollutantTaxCap provides the user interface and logic for creating and editing pollutant tax/cap policies
+ * in the GLIMPSE Scenario Builder.
+ * <p>
+ * <b>Main responsibilities:</b>
+ * <ul>
+ *   <li>Allow users to select measure type (tax or cap), pollutant, and sector</li>
+ *   <li>Configure policy and market names (auto/manual)</li>
+ *   <li>Specify and populate cap/tax values over time</li>
+ *   <li>Validate, import, and export scenario component data as CSV</li>
+ * </ul>
+ * </p>
+ *
+ * <b>Features:</b>
+ * <ul>
+ *   <li>Support for multiple pollutants (CO2, GHG, NOx, SO2, etc.)</li>
+ *   <li>Automatic and manual naming for policy and market</li>
+ *   <li>Dynamic enabling/disabling of UI controls based on selections</li>
+ *   <li>Validation of user input and units</li>
+ *   <li>Progress tracking for file generation</li>
+ * </ul>
+ *
+ * <b>Usage:</b>
+ * <pre>
+ * TabPollutantTaxCap tab = new TabPollutantTaxCap("Pollutant Tax/Cap", stage);
+ * // Add to TabPane, interact via UI
+ * </pre>
+ *
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used only on the JavaFX Application Thread.
+ */
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
-	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	private GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+    // === Utility Instances ===
+    // GLIMPSEVariables: global variables and configuration
+    // GLIMPSEStyles: style definitions for UI
+    // GLIMPSEFiles: file I/O utilities
+    // GLIMPSEUtils: general helper utilities
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-	public static String descriptionText = "";
-	public static String runQueueStr = "Queue is empty.";
+    // === UI Constants ===
+    // LABEL_WIDTH: standard label width for UI controls
+    private static final double LABEL_WIDTH = 125;
 
-	int check_count = 0;
+    // === State ===
+    // descriptionText: description for the tab (not shown in UI)
+    // runQueueStr: status string for queue (not shown in UI)
+    // check_count: internal counter for checks (not shown in UI)
+    public static String descriptionText = "";
+    public static String runQueueStr = "Queue is empty.";
+    private int check_count = 0;
 
-	double label_wid = 125;
+    // === Layout and UI Components ===
+    // gridPanePresetModification: main layout grid for the tab
+    // gridPaneLeft: left column for policy/tech selection
+    // vBoxCenter: center column container
+    // hBoxHeaderCenter: header for center column (buttons)
+    // vBoxRight: right column container
+    // hBoxHeaderRight: header for right column (not used)
+    // paneForComponentDetails: table for year/value pairs
+    // paneForCountryStateTree: region selection tree
+    private final GridPane gridPanePresetModification = new GridPane();
+    private final GridPane gridPaneLeft = new GridPane();
+    private final VBox vBoxCenter = new VBox();
+    private final HBox hBoxHeaderCenter = new HBox();
+    private final VBox vBoxRight = new VBox();
+    private final HBox hBoxHeaderRight = new HBox();
+    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
+    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
-	// String file_content=null;
+    // === UI Controls ===
+    // labelComboBoxMeasure, comboBoxMeasure: select measure type (tax/cap)
+    // labelComboBoxType, comboBoxType: select sector
+    // labelComboBoxPollutant, comboBoxPollutant: select pollutant
+    // labelModificationType, comboBoxModificationType: select source type
+    // labelUseAutoNames, checkBoxUseAutoNames: toggle auto-naming
+    // labelPolicyName, textFieldPolicyName: policy name (auto/manual)
+    // labelMarketName, textFieldMarketName: market name (auto/manual)
+    // labelStartYear, textFieldStartYear: start year for values
+    // labelEndYear, textFieldEndYear: end year for values
+    // labelInitialAmount, textFieldInitialAmount: initial value
+    // labelGrowth, textFieldGrowth: growth/final value
+    // labelPeriodLength, textFieldPeriodLength: period length for value calculation
+    // labelConvertFrom, comboBoxConvertFrom: currency conversion for tax
+    // labelValue: label for value table
+    // buttonPopulate, buttonImport, buttonDelete, buttonClear: table actions
+    private final Label labelComboBoxMeasure = utils.createLabel("Measure: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxMeasure = utils.createComboBoxString();
+    private final Label labelComboBoxType = utils.createLabel("Type: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxType = utils.createComboBoxString();
+    private final Label labelComboBoxPollutant = utils.createLabel("Pollutant: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxPollutant = utils.createComboBoxString();
+    private final Label labelModificationType = utils.createLabel("Source Type: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
+    private final Label labelUseAutoNames = utils.createLabel("Names: ", LABEL_WIDTH);
+    private final CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
+    private final Label labelPolicyName = utils.createLabel("Policy: ", LABEL_WIDTH);
+    private final TextField textFieldPolicyName = new TextField("");
+    private final Label labelMarketName = utils.createLabel("Market: ", LABEL_WIDTH);
+    private final TextField textFieldMarketName = new TextField("");
+    private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
+    private final TextField textFieldStartYear = new TextField("2020");
+    private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
+    private final TextField textFieldEndYear = new TextField("2050");
+    private final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
+    private final TextField textFieldInitialAmount = utils.createTextField();
+    private final Label labelGrowth = utils.createLabel("Growth (%): ", LABEL_WIDTH);
+    private final TextField textFieldGrowth = utils.createTextField();
+    private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
+    private final TextField textFieldPeriodLength = new TextField("5");
+    private final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
+    private final Label labelValue = utils.createLabel("Values: ");
+    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
+    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
 
-	// Initializing overall grid
-	GridPane gridPanePresetModification = new GridPane();
-
-	// Initializing components of left column
-	GridPane gridPaneLeft = new GridPane();
-
-	Label labelComboBoxMeasure = utils.createLabel("Measure: ", label_wid);
-	ComboBox<String> comboBoxMeasure = utils.createComboBoxString();
-
-	Label labelComboBoxType = utils.createLabel("Type: ", label_wid);
-	ComboBox<String> comboBoxType = utils.createComboBoxString();
-	Label labelComboBoxPollutant = utils.createLabel("Pollutant: ", label_wid);
-	ComboBox<String> comboBoxPollutant = utils.createComboBoxString();
-
-	Label labelModificationType = utils.createLabel("Source Type: ", label_wid);
-	ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-
-	Label labelUseAutoNames = utils.createLabel("Names: ", label_wid);
-	CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
-
-	Label labelPolicyName = utils.createLabel("Policy: ", label_wid);
-	TextField textFieldPolicyName = new TextField("");
-
-	Label labelMarketName = utils.createLabel("Market: ", label_wid);
-	TextField textFieldMarketName = new TextField("");
-
-	Label labelStartYear = utils.createLabel("Start Year: ", label_wid);
-	TextField textFieldStartYear = new TextField("2020");
-	Label labelEndYear = utils.createLabel("End Year: ", label_wid);
-	TextField textFieldEndYear = new TextField("2050");
-	Label labelInitialAmount = utils.createLabel("Initial Val:   ", label_wid);
-	TextField textFieldInitialAmount = utils.createTextField();
-	Label labelGrowth = utils.createLabel("Growth (%): ", label_wid);
-	TextField textFieldGrowth = utils.createTextField();
-	Label labelPeriodLength = utils.createLabel("Period Length: ", label_wid);
-	TextField textFieldPeriodLength = new TextField("5");
-	
-	Label labelConvertFrom = utils.createLabel("Convert $s from: ",label_wid);
-	ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
-	
-	// Initializing components of center column
-	VBox vBoxCenter = new VBox();
-	HBox hBoxHeaderCenter = new HBox();
-	Label labelValue = utils.createLabel("Values: ");
-	Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-	Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
-	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
-	PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-
-	// Initializing components of right column
-	HBox hBoxHeaderRight = new HBox();
-	VBox vBoxRight = new VBox();
-	PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
-
-	public TabPollutantTaxCap(String title, Stage stageX) {
+    /**
+     * Constructs a TabPollutantTaxCap for the given title and stage.
+     * Sets up all UI controls, listeners, and default values for the pollutant tax/cap policy tab.
+     * @param title Tab title
+     * @param stageX JavaFX Stage (not used directly)
+     */
+    public TabPollutantTaxCap(String title, Stage stageX) {
 		// sets tab title
 		this.setText(title);
 		this.setStyle(styles.getFontStyle());
@@ -324,6 +379,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	
 
 
+	/**
+	 * Automatically sets the policy and market names based on current selections and options.
+	 * If auto-naming is enabled, updates the text fields accordingly.
+	 */
 	private void setPolicyAndMarketNames() {
 		if (this.checkBoxUseAutoNames.isSelected()) {
 
@@ -367,6 +426,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		}
 	}
 
+	/**
+	 * Calculates the values matrix for the cap/tax table based on user input and modification type.
+	 * Applies currency conversion if needed.
+	 * @return 2D array of calculated values for each year/period
+	 */
 	private double[][] calculateValues() {
 		String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
 		int start_year = Integer.parseInt(textFieldStartYear.getText());
@@ -377,8 +441,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		ObservableList<DataPoint> data;
 		double factor=1.0;
 		String convertYear=this.comboBoxConvertFrom.getValue();
-		if (convertYear!="None") {
-			factor=utils.getConversionFactor(convertYear,"1990$s");
+		if (!"None".equals(convertYear)) {
+			factor=utils.getConversionFactor(convertYear,"1975$s");
 		}
 		double[][] returnMatrix = utils.calculateValues(calc_type, false, start_year, end_year, initial_value, growth,
 				period_length,factor);
@@ -386,16 +450,29 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		return returnMatrix;
 	}
 
+	/**
+	 * Runnable implementation: triggers saving the scenario component.
+	 * Calls saveScenarioComponent().
+	 */
 	@Override
 	public void run() {
 		saveScenarioComponent();
 	}
 
+	/**
+	 * Saves the scenario component by generating metadata and CSV content.
+	 * Uses selected regions, pollutant, sector, and cap/tax values.
+	 */
 	@Override
 	public void saveScenarioComponent() {
 		saveScenarioComponent(paneForCountryStateTree.getTree());
 	}
 
+	/**
+	 * Saves the scenario component using the provided region tree.
+	 * Validates inputs, generates metadata and CSV, and sets fileContent/filenameSuggestion.
+	 * @param tree TreeView of selected regions
+	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
 		if (!qaInputs()) {
 			Thread.currentThread().destroy();
@@ -413,7 +490,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			String ID = utils.getUniqueString();
 			String policy_name = this.textFieldPolicyName.getText() + ID;
 			String market_name = this.textFieldMarketName.getText() + ID;
-			filename_suggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+			filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
 
 			String sector = comboBoxType.getValue();
 
@@ -428,9 +505,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
 
 			// sets up the content of the CSV file to store the scenario component data
-			file_content = getMetaDataContent(tree, market_name, policy_name);
+			fileContent = getMetaDataContent(tree, market_name, policy_name);
 
-			String file_content2 = "";
+			String fileContent2 = "";
 
 			boolean generate_links = false;
 
@@ -452,15 +529,15 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 				// part 1 - sets up cap or tax values
 
-				file_content += "INPUT_TABLE" + vars.getEol();
-				file_content += "Variable ID" + vars.getEol();
+				fileContent += "INPUT_TABLE" + vars.getEol();
+				fileContent += "Variable ID" + vars.getEol();
 				if (type.equals("Cap")) {
-					file_content += "GLIMPSEEmissionCap" + vars.getEol() + vars.getEol();
-					file_content += "region,pollutant,market,year,cap" + vars.getEol();
+					fileContent += "GLIMPSEEmissionCap" + vars.getEol() + vars.getEol();
+					fileContent += "region,pollutant,market,year,cap" + vars.getEol();
 					;
 				} else if (type.equals("Tax")) {
-					file_content += "GLIMPSEEmissionTax" + vars.getEol() + vars.getEol();
-					file_content += "region,pollutant,market,year,tax" + vars.getEol();
+					fileContent += "GLIMPSEEmissionTax" + vars.getEol() + vars.getEol();
+					fileContent += "region,pollutant,market,year,tax" + vars.getEol();
 					;
 				}
 
@@ -469,22 +546,22 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
 					for (int i = 0; i < data.size(); i++) {
 						String data_str = data.get(i).replaceAll(" ", "");
-						file_content += state + "," + pol + "," + market_name + "," + data_str + vars.getEol();
+						fileContent += state + "," + pol + "," + market_name + "," + data_str + vars.getEol();
 					}
 				}
 
 				// part 2 - set up the regions in the market
 				if (listOfSelectedLeaves.length > 1) {
-					file_content += vars.getEol();
-					file_content += "INPUT_TABLE" + vars.getEol();
-					file_content += "Variable ID" + vars.getEol();
-					file_content += "GLIMPSEEmissionMarket" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,pollutant,market" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "INPUT_TABLE" + vars.getEol();
+					fileContent += "Variable ID" + vars.getEol();
+					fileContent += "GLIMPSEEmissionMarket" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "region,pollutant,market" + vars.getEol();
 					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
-						file_content += listOfSelectedLeaves[s] + "," + pol + "," + market_name + vars.getEol();
+						fileContent += listOfSelectedLeaves[s] + "," + pol + "," + market_name + vars.getEol();
 						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
+						progressBar.setProgress(progress);
 					}
 
 				}
@@ -494,21 +571,21 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
 
-					String file_content_nest = vars.getEol();
-					file_content_nest += "INPUT_TABLE" + vars.getEol();
-					file_content_nest += "Variable ID" + vars.getEol();
-					file_content_nest += "GLIMPSEAddCO2Subspecies-Nest" + vars.getEol();
-					file_content_nest += vars.getEol();
-					file_content_nest += "region,supplysector,nesting-subsector,subsector,technology,year,pollutant"
+					String fileContent_nest = vars.getEol();
+					fileContent_nest += "INPUT_TABLE" + vars.getEol();
+					fileContent_nest += "Variable ID" + vars.getEol();
+					fileContent_nest += "GLIMPSEAddCO2Subspecies-Nest" + vars.getEol();
+					fileContent_nest += vars.getEol();
+					fileContent_nest += "region,supplysector,nesting-subsector,subsector,technology,year,pollutant"
 							+ vars.getEol();
 					int nest_count = 0;
 
-					String file_content_nonest = vars.getEol();
-					file_content_nonest += "INPUT_TABLE" + vars.getEol();
-					file_content_nonest += "Variable ID" + vars.getEol();
-					file_content_nonest += "GLIMPSEAddCO2Subspecies" + vars.getEol();
-					file_content_nonest += vars.getEol();
-					file_content_nonest += "region,supplysector,subsector,technology,year,pollutant" + vars.getEol();
+					String fileContent_nonest = vars.getEol();
+					fileContent_nonest += "INPUT_TABLE" + vars.getEol();
+					fileContent_nonest += "Variable ID" + vars.getEol();
+					fileContent_nonest += "GLIMPSEAddCO2Subspecies" + vars.getEol();
+					fileContent_nonest += vars.getEol();
+					fileContent_nonest += "region,supplysector,subsector,technology,year,pollutant" + vars.getEol();
 					int nonest_count = 0;
 
 					int max_year = 0;
@@ -548,10 +625,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 												+ vars.getEol();
 										;
 										if (subsector_r.indexOf("=>") > -1) {
-											file_content_nest += line;
+											fileContent_nest += line;
 											nest_count++;
 										} else {
-											file_content_nonest += line;
+											fileContent_nonest += line;
 											nonest_count++;
 										}
 									}
@@ -560,30 +637,30 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 							}
 
 							double progress = s / (listOfSelectedLeaves.length - 1.);
-							progress_bar.setProgress(progress);
+							progressBar.setProgress(progress);
 						}
 					}
 					if (nest_count > 0)
-						file_content += file_content_nest;
+						fileContent += fileContent_nest;
 					if (nonest_count > 0)
-						file_content += file_content_nonest;
+						fileContent += fileContent_nonest;
 				}
 				// cycle through selected regions and tech list ... link pol to each tech
 
 			} else { // pol does start with GHG
 				// GHG target (must be system-wide)
 				// part 1 - sets up cap or tax values
-				file_content += "INPUT_TABLE" + vars.getEol();
-				file_content += "Variable ID" + vars.getEol();
+				fileContent += "INPUT_TABLE" + vars.getEol();
+				fileContent += "Variable ID" + vars.getEol();
 				if (type.equals("Cap")) {
-					file_content += "GLIMPSEGHGEmissionCap" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,GHG-Policy,GHG-Market,year,cap" + vars.getEol();
+					fileContent += "GLIMPSEGHGEmissionCap" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "region,GHG-Policy,GHG-Market,year,cap" + vars.getEol();
 
 				} else if (type.equals("Tax")) {
-					file_content += "GLIMPSEGHGEmissionTax" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,GHG-Policy,GHG-Market,year,tax" + vars.getEol();
+					fileContent += "GLIMPSEGHGEmissionTax" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "region,GHG-Policy,GHG-Market,year,tax" + vars.getEol();
 
 				}
 
@@ -592,34 +669,34 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
 					for (int i = 0; i < data.size(); i++) {
 						String data_str = data.get(i).replace(" ", "");
-						file_content += state + "," + policy_name + "," + market_name + "," + data_str + vars.getEol();
+						fileContent += state + "," + policy_name + "," + market_name + "," + data_str + vars.getEol();
 					}
 				}
 
 				// part 2 // part 2 - set up the regions in the market
 				if (listOfSelectedLeaves.length > 1) {
-					file_content += vars.getEol();
-					file_content += "INPUT_TABLE" + vars.getEol();
-					file_content += "Variable ID" + vars.getEol();
-					file_content += "GLIMPSEEmissionMarket" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,pollutant,market" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "INPUT_TABLE" + vars.getEol();
+					fileContent += "Variable ID" + vars.getEol();
+					fileContent += "GLIMPSEEmissionMarket" + vars.getEol();
+					fileContent += vars.getEol();
+					fileContent += "region,pollutant,market" + vars.getEol();
 					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
-						file_content += listOfSelectedLeaves[s] + "," + policy_name + "," + market_name + vars.getEol();
+						fileContent += listOfSelectedLeaves[s] + "," + policy_name + "," + market_name + vars.getEol();
 						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
+						progressBar.setProgress(progress);
 					}
-					// file_content += vars.getEol();
+					// fileContent += vars.getEol();
 				}
 
 
 				// part 3 - set up the linked GHG part regions in the market
-				file_content2 += vars.getEol();
-				file_content2 += "INPUT_TABLE" + vars.getEol();
-				file_content2 += "Variable ID" + vars.getEol();
-				file_content2 += "GLIMPSELinkedGHGEmissionMarketP1" + vars.getEol();
-				file_content2 += vars.getEol();
-				file_content2 += "region,pollutant,GHG-market,GHG-Policy,price-adjust,demand-adjust,price-unit,output-unit"
+				fileContent2 += vars.getEol();
+				fileContent2 += "INPUT_TABLE" + vars.getEol();
+				fileContent2 += "Variable ID" + vars.getEol();
+				fileContent2 += "GLIMPSELinkedGHGEmissionMarketP1" + vars.getEol();
+				fileContent2 += vars.getEol();
+				fileContent2 += "region,pollutant,GHG-market,GHG-Policy,price-adjust,demand-adjust,price-unit,output-unit"
 						+ vars.getEol();
 
 				String[] GHGs = new String[] { "CO2", "CH4", "N2O", "C2F6", "CF4", "HFC125", "HFC134a", "HRC245fa",
@@ -639,7 +716,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 					for (int i = 0; i < GHGs.length; i++) {
 						if ((pol.equals("GHG")) || ((pol.equals("CO2")) && (GHGs[i].equals("CO2")))) {
-							file_content2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name + ","
+							fileContent2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name + ","
 									+ price_adjust[i] + "," + demand_adjust[i] + "," + price_unit[i] + ","
 									+ output_unit[i] + vars.getEol();
 						}
@@ -647,33 +724,41 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				}
 
 				if (listOfSelectedLeaves.length > 1) {
-					file_content2 += vars.getEol();
-					file_content2 += "INPUT_TABLE" + vars.getEol();
-					file_content2 += "Variable ID" + vars.getEol();
-					file_content2 += "GLIMPSELinkedGHGEmissionMarketP2" + vars.getEol();
-					file_content2 += vars.getEol();
-					file_content2 += "region,pollutant,GHG-market,GHG-Policy" + vars.getEol();
+					fileContent2 += vars.getEol();
+					fileContent2 += "INPUT_TABLE" + vars.getEol();
+					fileContent2 += "Variable ID" + vars.getEol();
+					fileContent2 += "GLIMPSELinkedGHGEmissionMarketP2" + vars.getEol();
+					fileContent2 += vars.getEol();
+					fileContent2 += "region,pollutant,GHG-market,GHG-Policy" + vars.getEol();
 					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
 						for (int i = 0; i < GHGs.length; i++) {
 							if ((pol.equals("GHG")) || ((pol.equals("CO2")) && (GHGs[i].equals("CO2")))) {
 								String state = listOfSelectedLeaves[s];
-								file_content2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name
+								fileContent2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name
 										+ vars.getEol();
 							}
 						}
 						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
+						progressBar.setProgress(progress);
 					}
 				}
 			
 			}
-			if (file_content2.length() > 0)
-				file_content += file_content2;
-			// files.saveFile(file_content, file);
+			if (fileContent2.length() > 0)
+				fileContent += fileContent2;
+			// files.saveFile(fileContent, file);
 
 		}
 	}
 
+	/**
+	 * Special implementation for CO2 cap policies, generating robust scenario files for complex scenarios.
+	 * @param listOfSelectedRegions Array of selected region names
+	 * @param pol Pollutant string
+	 * @param sector Sector string
+	 * @param market_name Market name
+	 * @param policy_name Policy name
+	 */
 	private void saveScenarioComponentCO2Cap(String[] listOfSelectedRegions, String pol, String sector,
 			String market_name, String policy_name) {
 
@@ -684,10 +769,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 		// part 1 - sets up cap or tax values
 		// -------------------------------------------
-		file_content += "INPUT_TABLE" + vars.getEol();
-		file_content += "Variable ID" + vars.getEol();
-		file_content += "GLIMPSEEmissionCap-PPS-P1" + vars.getEol() + vars.getEol();
-		file_content += "region,policy,policy-type,min-price,market,year,cap" + vars.getEol();
+		fileContent += "INPUT_TABLE" + vars.getEol();
+		fileContent += "Variable ID" + vars.getEol();
+		fileContent += "GLIMPSEEmissionCap-PPS-P1" + vars.getEol() + vars.getEol();
+		fileContent += "region,policy,policy-type,min-price,market,year,cap" + vars.getEol();
 
 		if (listOfSelectedRegions.length > 0) {
 			// String state = listOfSelectedRegions[0];
@@ -697,7 +782,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
 				for (int i = 0; i < data.size(); i++) {
 					String data_str = data.get(i).replaceAll(" ", "");
-					file_content += state + "," + policy_name + ",tax,1," + market_name + "," + data_str
+					fileContent += state + "," + policy_name + ",tax,1," + market_name + "," + data_str
 							+ vars.getEol();
 				}
 			}
@@ -711,288 +796,32 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		pol = pol.substring(0, pol.indexOf(" ")).trim();
 
 		if (listOfSelectedRegions.length >= 1) {
-			file_content += vars.getEol();
-			file_content += "INPUT_TABLE" + vars.getEol();
-			file_content += "Variable ID" + vars.getEol();
-			file_content += "GLIMPSEEmissionCap-PPS-P2" + vars.getEol();
-			file_content += vars.getEol();
-			file_content += "region,linked-ghg-policy,price-adjust0,demand-adjust0,market,linked-policy,price-unit,output-unit,price-adjust1,demandAdjust1"
+			fileContent += vars.getEol();
+			fileContent += "INPUT_TABLE" + vars.getEol();
+			fileContent += "Variable ID" + vars.getEol();
+			fileContent += "GLIMPSEEmissionCap-PPS-P2" + vars.getEol();
+			fileContent += vars.getEol();
+			fileContent += "region,linked-ghg-policy,price-adjust0,demand-adjust0,market,linked-policy,price-unit,output-unit,price-adjust1,demandAdjust1"
 					+ vars.getEol();
 			for (int s = 0; s < listOfSelectedRegions.length; s++) {
 				String region = listOfSelectedRegions[s];
-				file_content += region + "," + pol + ",0,0," + market_name + "," + policy_name + ",1990$/Tg,Tg,1,"
+				fileContent += region + "," + pol + ",0,0," + market_name + "," + policy_name + ",1990$/Tg,Tg,1,"
 						+ dmdAdj + vars.getEol();
 				double progress = s / (listOfSelectedRegions.length - 1.);
-				progress_bar.setProgress(progress);
+				progressBar.setProgress(progress);
 			}
 
 		}
 
 	}
 
-	private void saveScenarioComponentWorking(TreeView<String> tree) {
-		if (qaInputs()) {
-
-			int start_year = 2010;
-
-			String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
-
-			// Dan: messy approach to make sure inclusion of USA is intentional
-			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-			String states = utils.returnAppendedString(listOfSelectedLeaves);
-
-			String ID = this.getUniqueMarketName(textFieldMarketName.getText());
-			String policy_name = this.textFieldPolicyName.getText() + ID;
-			String market_name = this.textFieldMarketName.getText() + ID;
-
-			String sector = comboBoxType.getValue();
-
-			filename_suggestion = policy_name;
-			String type = this.comboBoxMeasure.getValue();
-			if (type.indexOf("Cap") > -1) {
-				type = "Cap";
-			} else {
-				type = "Tax";
-			}
-
-			String temp = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
-			String pol = temp.substring(0, temp.indexOf(" ")).trim();
-
-			filename_suggestion = policy_name + ".csv";
-
-			// sets up the content of the CSV file to store the scenario component data
-			file_content = getMetaDataContent(tree, market_name, policy_name);
-
-			String file_content2 = "";
-
-			if (!pol.startsWith("GHG")) {
-
-				String pol_orig = pol;
-
-				// part 0 - sets up pollutant species to tax or cap
-				if (!sector.equals("All")) {
-					pol = market_name;
-				}
-				// cycle through selected regions and tech list ... link pol to each tech
-
-				// part 1 - sets up cap or tax values
-
-				file_content += "INPUT_TABLE" + vars.getEol();
-				file_content += "Variable ID" + vars.getEol();
-				if (type.equals("Cap")) {
-					file_content += "GLIMPSEEmissionCap" + vars.getEol() + vars.getEol();
-					file_content += "region,pollutant,market,year,cap" + vars.getEol();
-					;
-				} else if (type.equals("Tax")) {
-					file_content += "GLIMPSEEmissionTax" + vars.getEol() + vars.getEol();
-					file_content += "region,pollutant,market,year,tax" + vars.getEol();
-					;
-				}
-
-				if (listOfSelectedLeaves.length > 0) {
-					String state = listOfSelectedLeaves[0];
-					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
-					for (int i = 0; i < data.size(); i++) {
-						String data_str = data.get(i).replaceAll(" ", "");
-						file_content += state + "," + pol + "," + market_name + "," + data_str + vars.getEol();
-					}
-				}
-
-				// part 2 - set up the regions in the market
-				if (listOfSelectedLeaves.length > 1) {
-					file_content += vars.getEol();
-					file_content += "INPUT_TABLE" + vars.getEol();
-					file_content += "Variable ID" + vars.getEol();
-					file_content += "GLIMPSEEmissionMarket" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,pollutant,market" + vars.getEol();
-					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
-						file_content += listOfSelectedLeaves[s] + "," + pol + "," + market_name + vars.getEol();
-						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
-					}
-
-				}
-
-				// part 3 - setting up sector-specific pollutant definitions
-				if (!sector.equals("All")) {
-
-					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
-
-					String file_content_nest = vars.getEol();
-					file_content_nest += "INPUT_TABLE" + vars.getEol();
-					file_content_nest += "Variable ID" + vars.getEol();
-					file_content_nest += "GLIMPSEAddCO2Subspecies-Nest" + vars.getEol();
-					file_content_nest += vars.getEol();
-					file_content_nest += "region,supplysector,nesting-subsector,subsector,technology,year,pollutant"
-							+ vars.getEol();
-					int nest_count = 0;
-
-					String file_content_nonest = vars.getEol();
-					file_content_nonest += "INPUT_TABLE" + vars.getEol();
-					file_content_nonest += "Variable ID" + vars.getEol();
-					file_content_nonest += "GLIMPSEAddCO2Subspecies" + vars.getEol();
-					file_content_nonest += vars.getEol();
-					file_content_nonest += "region,supplysector,subsector,technology,year,pollutant" + vars.getEol();
-					int nonest_count = 0;
-
-					int max_year = 0;
-					for (int m = 0; m < data.size(); m++) {
-						int year = Integer.parseInt(data.get(m).split(",")[0].trim());
-						if (year > max_year)
-							max_year = year;
-					}
-
-					if (listOfSelectedLeaves.length > 0) {
-						for (int s = 0; s < listOfSelectedLeaves.length; s++) {
-
-							String[][] tech_list = vars.getTechInfo();
-
-							int cols = tech_list[0].length;
-							int rows = tech_list.length;
-
-							String sector_lwc = sector.toLowerCase();
-
-							for (int r = 0; r < rows; r++) {
-
-								String sector_r = tech_list[r][0];
-								String subsector_r = tech_list[r][1];
-								String tech_r = tech_list[r][2];
-								String cat_r = tech_list[r][cols - 1];
-
-								for (int y = start_year; y <= max_year; y += 5) {
-
-									String cat_r_lwc = cat_r.toLowerCase();
-
-									if (((sector_lwc.equals(cat_r))
-											|| ((sector_lwc.equals("industry-all")) || (sector_lwc.equals("ind-all")))
-													&& (cat_r_lwc.startsWith("ind")))
-											|| ((sector_lwc.equals("trn-all")) && (cat_r_lwc.startsWith("trn")))) {
-										String line = listOfSelectedLeaves[s] + "," + sector_r + ","
-												+ subsector_r.replace("=>", ",") + "," + tech_r + "," + y + "," + pol
-												+ vars.getEol();
-										;
-										if (subsector_r.indexOf("=>") > -1) {
-											file_content_nest += line;
-											nest_count++;
-										} else {
-											file_content_nonest += line;
-											nonest_count++;
-										}
-									}
-
-								}
-							}
-
-							double progress = s / (listOfSelectedLeaves.length - 1.);
-							progress_bar.setProgress(progress);
-						}
-					}
-					if (nest_count > 0)
-						file_content += file_content_nest;
-					if (nonest_count > 0)
-						file_content += file_content_nonest;
-				}
-				// cycle through selected regions and tech list ... link pol to each tech
-
-			} else {
-				// GHG target (must be system-wide)
-				// part 1 - sets up cap or tax values
-				file_content += "INPUT_TABLE" + vars.getEol();
-				file_content += "Variable ID" + vars.getEol();
-				if (type.equals("Cap")) {
-					file_content += "GLIMPSEGHGEmissionCap" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,GHG-Policy,GHG-Market,year,cap" + vars.getEol();
-
-				} else if (type.equals("Tax")) {
-					file_content += "GLIMPSEGHGEmissionTax" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,GHG-Policy,GHG-Market,year,tax" + vars.getEol();
-
-				}
-
-				if (listOfSelectedLeaves.length > 0) {
-					String state = listOfSelectedLeaves[0];
-					ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
-					for (int i = 0; i < data.size(); i++) {
-						String data_str = data.get(i).replace(" ", "");
-						file_content += state + "," + policy_name + "," + market_name + "," + data_str + vars.getEol();
-					}
-				}
-
-				// part 2 // part 2 - set up the regions in the market
-				if (listOfSelectedLeaves.length > 1) {
-					file_content += vars.getEol();
-					file_content += "INPUT_TABLE" + vars.getEol();
-					file_content += "Variable ID" + vars.getEol();
-					file_content += "GLIMPSEEmissionMarket" + vars.getEol();
-					file_content += vars.getEol();
-					file_content += "region,pollutant,market" + vars.getEol();
-					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
-						file_content += listOfSelectedLeaves[s] + "," + policy_name + "," + market_name + vars.getEol();
-						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
-					}
-					file_content += vars.getEol();
-				}
-
-				// part 3 - set up the linked GHG part regions in the market
-
-				file_content2 += vars.getEol();
-				file_content2 += "INPUT_TABLE" + vars.getEol();
-				file_content2 += "Variable ID" + vars.getEol();
-				file_content2 += "GLIMPSELinkedGHGEmissionMarketP1" + vars.getEol();
-				file_content2 += vars.getEol();
-				file_content2 += "region,pollutant,GHG-market,GHG-Policy,price-adjust,demand-adjust,price-unit,output-unit"
-						+ vars.getEol();
-
-				String[] GHGs = new String[] { "CO2", "CH4", "N2O", "C2F6", "CF4", "HFC125", "HFC134a", "HRC245fa",
-						"SF6", "CH4_AWB", "CH4_AGR", "N2O_AWB", "N2O_AGR" };
-				String[] price_adjust = new String[] { "1", "5.728", "84.55", "0", "0", "0", "0", "0", "0", "5.727",
-						"5.727", "84.55", "84.55" };
-				String[] demand_adjust = new String[] { "3.667", "21", "310", "9.2", "6.5", "2.8", "1.3", "1.03",
-						"23.9", "21", "21", "310", "310" };
-				String[] price_unit = new String[] { "1990$/tC", "1990$/GgCH4", "1990$/GgN2O", "1990$/MgC2F6",
-						"1990$/MgCF4", "1990$/MgHFC125", "1990$/MgHFC13a", "1990$/MgHFC245fa", "1990$/MgSF6",
-						"1990$/GgCH4", "1990$/GgCH4", "1990$/GgN2O", "1990$/GgN2O" };
-				String[] output_unit = new String[] { "MtC", "TgCH4", "TgN2O", "GgC2F6", "GgCF4", "GgHFC125",
-						"GgHFC134a", "GgHFC245fa", "GgSF6", "TgCH4", "TgCH4", "TgN2O", "TgN2O" };
-
-				String state = listOfSelectedLeaves[0];
-
-				for (int i = 0; i < GHGs.length; i++) {
-					file_content2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name + ","
-							+ price_adjust[i] + "," + demand_adjust[i] + "," + price_unit[i] + "," + output_unit[i]
-							+ vars.getEol();
-				}
-
-				if (listOfSelectedLeaves.length > 1) {
-					file_content2 += vars.getEol();
-					file_content2 += "INPUT_TABLE" + vars.getEol();
-					file_content2 += "Variable ID" + vars.getEol();
-					file_content2 += "GLIMPSELinkedGHGEmissionMarketP2" + vars.getEol();
-					file_content2 += vars.getEol();
-					file_content2 += "region,pollutant,GHG-market,GHG-Policy" + vars.getEol();
-					for (int s = 1; s < listOfSelectedLeaves.length; s++) {
-						for (int i = 0; i < GHGs.length; i++) {
-							state = listOfSelectedLeaves[s];
-							file_content2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name
-									+ vars.getEol();
-						}
-						double progress = s / (listOfSelectedLeaves.length - 1.);
-						progress_bar.setProgress(progress);
-					}
-				}
-			}
-
-			if (file_content2.length() > 0)
-				file_content += file_content2;
-			// files.saveFile(file_content, file);
-
-		}
-	}
-
+	/**
+	 * Returns metadata content for the scenario component file, including measure, pollutant, sector, regions, and table data.
+	 * @param tree TreeView of selected regions
+	 * @param market Market name
+	 * @param policy Policy name
+	 * @return Metadata string for file header
+	 */
 	public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
 		String rtn_str = "";
 
@@ -1022,6 +851,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		return rtn_str;
 	}
 
+	/**
+	 * Loads content into the tab from a list of strings (e.g., when editing a component).
+	 * Populates measure, pollutant, sector, regions, and table data from file content.
+	 * @param content List of file lines to load
+	 */
 	@Override
 	public void loadContent(ArrayList<String> content) {
 		for (int i = 0; i < content.size(); i++) {
@@ -1065,6 +899,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		this.paneForComponentDetails.updateTable();
 	}
 
+	/**
+	 * Checks if all required fields for populating values are filled.
+	 * @return true if all required fields are filled, false otherwise
+	 */
 	public boolean qaPopulate() {
 		boolean is_correct = true;
 
@@ -1080,6 +918,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		return is_correct;
 	}
 
+	/**
+	 * Validates all required inputs before saving the scenario component.
+	 * Checks for at least one region, at least one table entry, and required selections.
+	 * @return true if all inputs are valid, false otherwise
+	 */
 	protected boolean qaInputs() {
 
 		TreeView<String> tree = paneForCountryStateTree.getTree();
