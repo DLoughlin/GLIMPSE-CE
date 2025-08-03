@@ -35,7 +35,6 @@ package glimpseElement;
 import java.io.File;
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
-
 import glimpseBuilder.CsvFileWriter;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
@@ -558,7 +557,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
 	}
 
-	@Override
 	public String getMetaDataContent(TreeView<String> tree) {
 		String rtn_str = "";
 

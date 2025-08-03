@@ -45,7 +45,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 import glimpseElement.PolicyTab;
 import glimpseElement.ScenarioRow;
@@ -63,10 +62,10 @@ import glimpseElement.TabTechAvailable;
 import glimpseElement.TabTechBound;
 import glimpseElement.TabTechParam;
 import glimpseElement.TabFixedDemand;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
-import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
@@ -74,27 +73,33 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 // /////////////////////////////////////////////////////////////////////////////////////////
 // this class generates the top-left pane
 // /////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * PaneNewScenarioComponent generates the top-left pane for scenario component management in the GLIMPSE Scenario Builder.
+ * It provides UI and logic for creating, editing, deleting, and saving scenario components.
+ */
 public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 
-	Thread computational_tread;
-	
-	double dialog_width=950;
-	double dialog_height=635;
-	
-	VBox vBox = new VBox(1);
+	// === UI Components ===
+	// Main layout containers
+	VBox vBox = createMainVBox();
+	HBox hBoxButton = createButtonHBox();
 
+	// Dialog UI elements
+	ProgressBar progressBar;
+	Button buttonSaveComponent;
+	Button buttonClose;
+	HBox hBoxButtons;
+	HBox hBoxProgress;
+
+	// === Tab Components ===
 	TabPollutantTaxCap pollTaxCapTab;
-	//TabTechSectorShare techSectorShareTab;
 	TabMarketShare techMarketShareTab;
-
 	TabTechBound techBoundTab;
 	TabTechAvailable techAvailTab;
 	TabFixedDemand fixedDemandTab;
@@ -104,470 +109,545 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	TabCafeStd cafeStdTab;
 	TabXMLList xmlListTab;
 	PolicyTab tab;
-	
-	ProgressBar progress_bar; 
 
-	HBox hBoxButton = new HBox(1);
-	
-	Button buttonSaveComponent;
-	Button buttonClose;
-	
-	Task task;
-	Thread thread;
-	
+	// === State and Task Management ===
+	Thread computationalThread;
+	Task<?> saveTask;
+	Thread saveThread;
 	Stage stageWithTabs;
-	
-	double progress=0.0;
-	
-	DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
+	double progress = 0.0;
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
 
+	// === Tab name constants to avoid magic strings ===
+	private static final String TAB_MARKET_SHARE = "Market Share";
+	private static final String TAB_FLEX_SHARE = "Flex Share";
+	private static final String TAB_MPG_TARGET = "MPG Target";
+	private static final String TAB_TECH_BOUND = "Tech Bound";
+	private static final String TAB_TECH_AVAIL = "Tech Avail";
+	private static final String TAB_TECH_PARAM = "Tech Param";
+	private static final String TAB_TECH_TAX = "Tech Tax/Subsidy";
+	private static final String TAB_XML_LIST = "XML List";
+	private static final String TAB_POLLUTANT_TAX_CAP = "Pollutant Tax/Cap";
+	private static final String TAB_FUEL_PRICE_ADJ = "Fuel Price Adj";
+	private static final String TAB_FIXED_DEMAND = "Fixed Demand";
+
+	/**
+	 * Constructor for PaneNewScenarioComponent. Initializes UI components and event handlers.
+	 */
 	public PaneNewScenarioComponent() {
-		// Client.tableComponents = Client.tableComponents;
 		vBox.setStyle(styles.getFontStyle());
-		// Buttons on the top left pane
+		initializeButtons();
+		initializeComponentLibraryTable();
+		setupEventHandlers();
+		vBox.getChildren().addAll(ComponentLibraryTable.getTableComponents());
+		vBox.prefWidthProperty().bind(Client.primaryStage.widthProperty().multiply(4.0 / 7.0));
+	}
+
+	// === Initialization Methods ===
+	private void initializeButtons() {
 		Client.buttonNewComponent = utils.createButton("New", styles.getBigButtonWidth(),
 				"New: Open dialog to create new scenario component", "add");
-		
 		Client.buttonEditComponent = utils.createButton("Edit", styles.getBigButtonWidth(),
 				"Edit: Edit selected scenario component", "edit");
 		Client.buttonEditComponent.setDisable(true);
-
 		Client.buttonBrowseComponentLibrary = utils.createButton("Browse", styles.getBigButtonWidth(),
 				"Browse: Open scenario component library folder", "open_folder");
-		
 		Client.buttonDeleteComponent = utils.createButton("Delete", styles.getBigButtonWidth(),
 				"Delete: Remove selected scenario component", "delete");
 		Client.buttonDeleteComponent.setDisable(true);
-		
 		Client.buttonRefreshComponents = utils.createButton("Refresh", styles.getBigButtonWidth(),
 				"Refresh: Reload list of candidate scenario components", "refresh");
+	}
 
+	private void initializeComponentLibraryTable() {
 		try {
 			refreshComponentLibraryTable();
-		} catch (Exception e) {
+		} catch (Exception exception) {
 			utils.warningMessage("Problem loading scenario component files.");
 			System.out.println("Error loading scenario component files from:");
 			System.out.println("    " + vars.getScenarioComponentsDir());
-			System.out.println("Error: " + e);
+			System.out.println("Error: " + exception);
 			utils.exitOnException();
 		}
-		//System.out.println("tableComponents " + ComponentLibraryTable.geTableComponents().getItems().size());
-		ComponentLibraryTable.getTableComponents().setOnMouseClicked(e -> {
-			setArrowAndButtonStatus();
-		});
+	}
 
-		//System.out.println("buttonDeleteComponent " + Client.buttonDeleteComponent.isVisible());
+	private void setupEventHandlers() {
+		ComponentLibraryTable.getTableComponents().setOnMouseClicked(event -> setArrowAndButtonStatus());
 		Client.buttonDeleteComponent.setDisable(true);
+		Client.buttonNewComponent.setOnAction(event -> showComponentDialog(null, null, Client.primaryStage, null, null));
+		Client.buttonEditComponent.setOnAction(event -> handleEditComponent());
+		Client.buttonRefreshComponents.setOnAction(event -> refreshComponentLibraryTable());
+		Client.buttonBrowseComponentLibrary.setOnAction(event -> handleBrowseComponentLibrary());
+		Client.buttonDeleteComponent.setOnAction(event -> handleDeleteComponent());
+	}
 
-		// what happens when button new is clicked
-		Client.buttonNewComponent.setOnAction(e -> {
-			showComponentDialog(null, null, Client.primaryStage, null,null);
-		});
-		
-		// what happens when button new is clicked
-		Client.buttonEditComponent.setOnAction(e -> {
-			ObservableList<ComponentRow> selectedFiles = ComponentLibraryTable.getTableComponents().getSelectionModel()
-					.getSelectedItems();
-			String which=null;
-			if (selectedFiles.size()!=1) {
-				//System.out.println("Editing requires exactly one scenario component to be selected.");
-				utils.showInformationDialog("Information","Unsupported action", "Editing requires exactly one scenario component to be selected.");
-				return;
-			} 
-			
-			String component_to_edit=selectedFiles.get(0).getAddress();
-			System.out.println("Editing component "+component_to_edit);
-			
-			if (component_to_edit.toLowerCase().endsWith(".xml")) {
-				String filename_to_edit=vars.getScenarioComponentsDir()+File.separator+component_to_edit;
-				files.showFileInXmlEditor(filename_to_edit);
-			} else {
-			
-			String tabType=null;
-			
-			ArrayList<String> contents=files.getStringArrayFromFile(component_to_edit,null);
-
-			if (contents.size()>1) {
-				String first_line=contents.get(0);
-				if (first_line.indexOf("xmllist")>-1) {
-					tabType="XML List";
+	// === Event Handlers ===
+	/**
+	 * Handles the logic for editing a scenario component.
+	 * - Only allows editing if exactly one component is selected.
+	 * - If the selected file is an XML, it opens in the XML editor.
+	 * - Otherwise, attempts to determine the component type from the file's contents
+	 *   and opens the appropriate dialog for editing.
+	 */
+	private void handleEditComponent() {
+		ObservableList<ComponentRow> selectedComponentRows = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
+		// Only allow editing if exactly one component is selected
+		if (selectedComponentRows.size() != 1) {
+			utils.showInformationDialog("Information", "Unsupported action",
+					"Editing requires exactly one scenario component to be selected.");
+			return;
+		}
+		String componentFilePath = selectedComponentRows.get(0).getAddress();
+		System.out.println("Editing component " + componentFilePath);
+		// If the file is an XML, open it in the XML editor
+		if (componentFilePath.toLowerCase().endsWith(".xml")) {
+			String xmlFilePath = vars.getScenarioComponentsDir() + File.separator + componentFilePath;
+			files.showFileInXmlEditor(xmlFilePath);
+		} else {
+			String tabType = null;
+			ArrayList<String> fileContents = files.getStringArrayFromFile(componentFilePath, null);
+			// Try to determine the tab type from the file's first line or header
+			if (fileContents.size() > 1) {
+				String firstLine = fileContents.get(0);
+				if (firstLine.indexOf("xmllist") > -1) {
+					tabType = "XML List";
 				}
 			}
-			if (tabType==null) {
-			  for (int i=0;i<contents.size();i++){
-				String line=contents.get(i);
-				if (line.startsWith("#Scenario component type:")){
-					tabType=line.substring(line.indexOf(":")+1).trim();
+			// If not found, search for a header line indicating the scenario component type
+			if (tabType == null) {
+				for (String line : fileContents) {
+					if (line.startsWith("#Scenario component type:")) {
+						tabType = line.substring(line.indexOf(":") + 1).trim();
+					}
 				}
-			  }
-			}	
-			
-			showComponentDialog(null, null, Client.primaryStage, tabType, contents);
 			}
-		});
+			// Open the dialog for editing the component with the detected tab type
+			showComponentDialog(null, null, Client.primaryStage, tabType, fileContents);
+		}
+	}
 
+	private void handleBrowseComponentLibrary() {
+		try {
+			String scenarioComponentsDirectory = vars.getScenarioComponentsDir();
+			files.openFileExplorer(scenarioComponentsDirectory);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			utils.exitOnException();
+		}
+	}
 
-
-		// what happens when button new is clicked
-		Client.buttonRefreshComponents.setOnAction(e -> {
-			refreshComponentLibraryTable();
-		});
-
-
-		// what happens when button delete is clicked
-		Client.buttonBrowseComponentLibrary.setOnAction(e -> {
-
+	private void handleDeleteComponent() {
+		ObservableList<ComponentRow> selectedComponentRows = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
+		// Prevent deletion if any selected component is used in a scenario
+		if (checkIfComponentsAreUsed(selectedComponentRows)) {
+			String message = "Cannot delete selected scenario component since it is used in a scenario.";
+			utils.warningMessage(message);
+			return;
+		}
+		// Confirm with the user before deleting
+		if (!utils.confirmDelete())
+			return;
+		List<ComponentRow> componentsToRemove = new ArrayList<>();
+		for (ComponentRow componentRow : selectedComponentRows) {
+			String componentFilePath = componentRow.getAddress();
+			String trashFileName = componentRow.getFileName();
+			// Remove any directory path from the filename for trash
+			if (trashFileName.indexOf(File.separator) > 0)
+				trashFileName = trashFileName.substring(trashFileName.lastIndexOf(File.separator) + 1);
+			String trashFilePath = vars.getTrashDir() + File.separator + trashFileName;
 			try {
-					String scen_dir = vars.getScenarioComponentsDir();
-					files.openFileExplorer(scen_dir);
-			} catch (Exception e1) {
-				// to-do: Currently messy handling of exceptions.
-				e1.printStackTrace();
+				// Move the file to the trash directory, replacing if it already exists
+				Files.move(Paths.get(componentFilePath), Paths.get(trashFilePath),
+						StandardCopyOption.REPLACE_EXISTING);
+				componentsToRemove.add(componentRow);
+			} catch (Exception exception) {
+				utils.warningMessage("Problem moving file " + componentFilePath + " to trash");
+				System.out.println("error:" + exception);
 				utils.exitOnException();
 			}
-		});
-		
-		// what happens when button delete is clicked
-		Client.buttonDeleteComponent.setOnAction(e -> {
+		}
+		// Remove the deleted components from the table after all moves are complete
+		ComponentLibraryTable.removeFromListOfFiles(javafx.collections.FXCollections.observableArrayList(componentsToRemove));
+	}
 
+	/**
+	 * Checks if any of the selected scenario components are used in existing scenarios.
+	 * @param selectedFiles List of selected ComponentRow objects
+	 * @return true if any component is used, false otherwise
+	 */
+	private boolean checkIfComponentsAreUsed(ObservableList<ComponentRow> selectedFiles) {
+		boolean b = false;
 
-			ObservableList<ComponentRow> selectedFiles = ComponentLibraryTable.getTableComponents().getSelectionModel()
-					.getSelectedItems();
-
-			if (checkIfComponentsAreUsed(selectedFiles)) {
-				String msg="Cannot delete selected scenario component since it is used in a scenario.";
-				utils.warningMessage(msg);
-				return;
-			}
-				
-			if (!utils.confirmDelete())
-				return;
-			
-			
-			for (int i = 0; i < selectedFiles.size(); i++) {
-				
-				String componentFilename = selectedFiles.get(i).getAddress();
-				String trashFilename = selectedFiles.get(i).getFileName();
-				if (trashFilename.indexOf(File.separator)>0) trashFilename=trashFilename.substring(trashFilename.lastIndexOf(File.separator)+1);
-				String trashpathname = vars.getTrashDir() + File.separator + trashFilename;
-				
-				try {
-					Files.move(Paths.get(componentFilename), Paths.get(trashpathname),
-							StandardCopyOption.REPLACE_EXISTING);
-				} catch (Exception e1) {
-					utils.warningMessage("Problem moving file "+componentFilename+" to trash");
-					System.out.println("error:" + e1);
-					utils.exitOnException();
+		// todo: add logic to check to see if items for deletion exist in any of the
+		// scenarios in the scenario library
+		ObservableList<ScenarioRow> scenario_library = ScenarioTable.listOfScenarioRuns;
+		for (int s = 0; s < scenario_library.size(); s++) {
+			if (!b) {
+				ScenarioRow scenario = scenario_library.get(s);
+				String components = scenario.getComponents();
+				if (components.length() > 0) {
+					for (int c = 0; c < selectedFiles.size(); c++) {
+						String file_to_delete = selectedFiles.get(c).getFileName();
+						if (components.indexOf(file_to_delete) > -1)
+							b = true;
+						break;
+					}
 				}
 			}
-
-			ComponentLibraryTable.removeFromListOfFiles(selectedFiles);
-
-		});
-			
-		vBox.getChildren().addAll(ComponentLibraryTable.getTableComponents());
-		vBox.prefWidthProperty().bind(Client.primaryStage.widthProperty().multiply(4.0 / 7.0));
-
-	}
-	
-	private boolean checkIfComponentsAreUsed(ObservableList<ComponentRow> selectedFiles) {
-		boolean b=false;
-		
-		//todo: add logic to check to see if items for deletion exist in any of the scenarios in the scenario library
-		ObservableList<ScenarioRow> scenario_library=ScenarioTable.listOfScenarioRuns;
-		for (int s=0;s<scenario_library.size();s++) {
-			if (!b) {
-			ScenarioRow scenario=scenario_library.get(s);
-			String components=scenario.getComponents();
-			if (components.length()>0) {
-			for (int c=0;c<selectedFiles.size();c++) {
-				String file_to_delete=selectedFiles.get(c).getFileName();
-				if (components.indexOf(file_to_delete)>-1) b=true;
-				break;
-			}
-			}
-			}
 		}
-		
+
 		return b;
 	}
 
-	private void showComponentDialog(String name, String filename, Stage mainStage, String whichTab, ArrayList<String> contentToLoad) {
+	/**
+	 * Shows the dialog for creating or editing a scenario component.
+	 * - Sets up the dialog UI, initializes all tab panes, and binds event handlers for save and close actions.
+	 * - Handles the logic for saving the component file and updating the component library table.
+	 * - Manages the dialog's lifecycle and ensures proper cleanup on close or cancel.
+	 *
+	 * @param name Name of the component (optional)
+	 * @param filename Filename of the component (optional)
+	 * @param mainStage The main application stage
+	 * @param whichTab The tab to select (optional)
+	 * @param contentToLoad Content to load into the tab (optional)
+	 */
+	private void showComponentDialog(String name, String filename, Stage mainStage, String whichTab,
+			ArrayList<String> contentToLoad) {
 		stageWithTabs = new Stage();
+		double dialogWidth = 950;
+		double dialogHeight = 635;
 
-		// Initializing components of button area
-		HBox hBoxButtons = new HBox();
-		buttonSaveComponent = utils.createButton("Save", styles.getBigButtonWidth(), null);
-		buttonClose = utils.createButton("Close", styles.getBigButtonWidth(), null);
-		
+		// === Grouped Dialog UI Elements ===
+		hBoxButtons = createButtonHBox();
+		buttonSaveComponent = createDialogButton("Save");
+		buttonClose = createDialogButton("Close");
 		hBoxButtons.getChildren().addAll(buttonSaveComponent, buttonClose);
 		hBoxButtons.setStyle(styles.getStyle4());
 		hBoxButtons.setSpacing(5.);
 		hBoxButtons.setAlignment(javafx.geometry.Pos.CENTER);
 
-		// Status Bar area
-		progress_bar=new ProgressBar(0.0);
+		progressBar = createProgressBar(dialogWidth - 25);
+		hBoxProgress = createProgressHBox(progressBar);
 
-		progress_bar.setPrefWidth(dialog_width - 25);
-		HBox hBoxProgress = new HBox();
-		hBoxProgress.setAlignment(javafx.geometry.Pos.CENTER);
-		hBoxProgress.getChildren().add(progress_bar);
-		
-		
-		xmlListTab = new TabXMLList("XML List", stageWithTabs, ComponentLibraryTable.getTableComponents());
+		xmlListTab = new TabXMLList(TAB_XML_LIST, stageWithTabs, ComponentLibraryTable.getTableComponents());
 		xmlListTab.setClosable(false);
-		pollTaxCapTab = new TabPollutantTaxCap("Pollutant Tax/Cap", stageWithTabs);
+		pollTaxCapTab = new TabPollutantTaxCap(TAB_POLLUTANT_TAX_CAP, stageWithTabs);
 		pollTaxCapTab.setClosable(false);
-		fuelPriceAdjTab = new TabFuelPriceAdj("Fuel Price Adj", stageWithTabs);
+		fuelPriceAdjTab = new TabFuelPriceAdj(TAB_FUEL_PRICE_ADJ, stageWithTabs);
 		fuelPriceAdjTab.setClosable(false);
-		//note: sector share has been replaced by market share
-		//techSectorShareTab = new TabTechSectorShare("Sector Share", stageWithTabs);
-		//techSectorShareTab.setClosable(false);
-		techMarketShareTab = new TabMarketShare("Market Share", stageWithTabs, this);
+		techMarketShareTab = new TabMarketShare(TAB_MARKET_SHARE, stageWithTabs, this);
 		techMarketShareTab.setClosable(false);
-		techBoundTab = new TabTechBound("Tech Bound", stageWithTabs);
+		techBoundTab = new TabTechBound(TAB_TECH_BOUND, stageWithTabs);
 		techBoundTab.setClosable(false);
-		cafeStdTab = new TabCafeStd("MPG Target", stageWithTabs);
+		cafeStdTab = new TabCafeStd(TAB_MPG_TARGET, stageWithTabs);
 		cafeStdTab.setClosable(false);
-		techAvailTab = new TabTechAvailable("Tech Avail", stageWithTabs);
+		techAvailTab = new TabTechAvailable(TAB_TECH_AVAIL, stageWithTabs);
 		techAvailTab.setClosable(false);
-		techParamTab = new TabTechParam("Tech Param", stageWithTabs);
+		techParamTab = new TabTechParam(TAB_TECH_PARAM, stageWithTabs);
 		techParamTab.setClosable(false);
-		techTaxTab = new TabTechTax("Tech Tax/Subsidy", stageWithTabs);
+		techTaxTab = new TabTechTax(TAB_TECH_TAX, stageWithTabs);
 		techTaxTab.setClosable(false);
-		fixedDemandTab = new TabFixedDemand("Fixed Demand",stageWithTabs);
+		fixedDemandTab = new TabFixedDemand(TAB_FIXED_DEMAND, stageWithTabs);
 		fixedDemandTab.setClosable(false);
-		
-		TabPane addComponentTabPane = new TabPane();
-		//addComponentTabPane.setSide(Side.LEFT);
-		//addComponentTabPane.setRotateGraphic(true);
-		
 
-		//hiding techParamTab for now until more testing
-		addComponentTabPane.getTabs().addAll(xmlListTab,pollTaxCapTab,techAvailTab,techMarketShareTab,techBoundTab,techTaxTab,cafeStdTab,techParamTab,fuelPriceAdjTab,fixedDemandTab);
-		
+		TabPane addComponentTabPane = new TabPane();
+
+		// hiding techParamTab for now until more testing
+		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, techBoundTab,
+				techTaxTab, cafeStdTab, techParamTab, fuelPriceAdjTab, fixedDemandTab);
+
 		addComponentTabPane.setStyle(styles.getStyle1b());
-		addComponentTabPane.setPrefHeight(dialog_height - 25);
+		addComponentTabPane.setPrefHeight(dialogHeight - 25);
 
 		VBox dialogPane = new VBox();
-		
-
 		dialogPane.getChildren().addAll(addComponentTabPane, hBoxProgress, hBoxButtons);
 
 		stageWithTabs.initOwner(mainStage);
 		stageWithTabs.initModality(APPLICATION_MODAL);
 
-		stageWithTabs.setScene(new Scene(dialogPane, dialog_width, dialog_height));
+		stageWithTabs.setScene(new Scene(dialogPane, dialogWidth, dialogHeight));
 
 		stageWithTabs.setTitle("New Scenario Component Creator");
-		
+
 		stageWithTabs.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent e) {
-				if (task!=null) task.cancel();
-				if (thread!=null) thread.stop();
+				if (saveTask != null) {
+					saveTask.cancel();
+				}
+				if (saveThread != null && saveThread.isAlive()) {
+					saveThread.interrupt();
+				}
+				if (stageWithTabs != null) {
+					stageWithTabs.hide();
+					stageWithTabs.setOnCloseRequest(null);
+					stageWithTabs = null;
+				}
 			}
 		});
 
-		buttonClose.setOnAction(e -> stageWithTabs.close());
+		buttonClose.setOnAction(e -> {
+			if (stageWithTabs != null) {
+				stageWithTabs.close();
+				stageWithTabs.setOnCloseRequest(null);
+				stageWithTabs = null;
+			}
+		});
 
 		buttonSaveComponent.setOnAction(e -> {
-						
-			  String which = addComponentTabPane.getSelectionModel().getSelectedItem().getText();
 
-			  if (which.equals("Market Share")) tab=techMarketShareTab;
-			  if (which.equals("Flex Share")) tab=techMarketShareTab;
-			  //if (which.equals("Sector Share")) tab=techSectorShareTab;
-			  if (which.equals("MPG Target")) tab=this.cafeStdTab;
-			  if (which.equals("Tech Bound")) tab=this.techBoundTab;
-			  if (which.equals("Tech Avail")) tab=this.techAvailTab;
-			  if (which.equals("Tech Param")) tab=this.techParamTab;
-			  if (which.equals("Tech Tax/Subsidy")) tab=this.techTaxTab;
-			  if (which.equals("XML List")) tab=this.xmlListTab;
-			  if (which.equals("Pollutant Tax/Cap")) tab=this.pollTaxCapTab;
-			  if (which.equals("Fuel Price Adj")) tab=this.fuelPriceAdjTab;
-			  if (which.equals("Fixed Demand")) tab=this.fixedDemandTab;
-			  progress_bar.progressProperty().bind(tab.progress_bar.progressProperty());
-			  
-		  task = new Task<Integer>() {
-	
-		  
-			 @Override public Integer call() throws Exception {
-				 tab.saveScenarioComponent();
-				 return 1;
-			 }
-			 
-			 @Override protected void succeeded() {
-			      super.succeeded();
-			      System.out.println("Done!");
-			      //Platform.runLater(()->saveComponentFile(tab));
-			      saveComponentFile(tab);
-			 }
+			String which = addComponentTabPane.getSelectionModel().getSelectedItem().getText();
+			tab = getTabByName(which);
+			if (tab == null) {
+				utils.warningMessage("Unknown tab selected: " + which);
+				return;
+			}
+			progressBar.progressProperty().bind(tab.progress_bar.progressProperty());
 
-			 @Override protected void cancelled() {
-				 super.cancelled();
-				 System.out.println("Cancelled!");
-				 utils.warningMessage("Process of building scenario component cancelled.");
-				 enableButtons();
-				 tab.resetFileContent();
-				 tab.resetFilenameSuggestion();
-				 tab.resetProgressBar();			     
-			 }
+			saveTask = new Task<Integer>() {
 
-			@Override protected void failed() {
-			    super.failed();
-			    System.out.println("Failed!");
-			    utils.warningMessage("Process of building scenario component failed.");
-				enableButtons();
-				tab.resetFileContent();
-				tab.resetFilenameSuggestion();
-				tab.resetProgressBar();
-			}			 			 
-		  };
-		  
-		  thread=new Thread(task);
-		  thread.setDaemon(false);
-		  thread.start();
-			
+				@Override
+				public Integer call() throws Exception {
+					tab.saveScenarioComponent();
+					return 1;
+				}
 
-		  disableButtons();
-	    });		
-		
-		if (whichTab!=null) { 
-			selectTabAndLoadContent(whichTab,contentToLoad,addComponentTabPane);
+				@Override
+				protected void succeeded() {
+					super.succeeded();
+					Platform.runLater(() -> {
+						System.out.println("Done!");
+						saveComponentFile(tab);
+					});
+				}
+
+				@Override
+				protected void cancelled() {
+					super.cancelled();
+					Platform.runLater(() -> {
+						System.out.println("Cancelled!");
+						utils.warningMessage("Process of building scenario component cancelled.");
+						enableButtons();
+						tab.resetFileContent();
+						tab.resetFilenameSuggestion();
+						tab.resetProgressBar();
+					});
+				}
+
+				@Override
+				protected void failed() {
+					super.failed();
+					Platform.runLater(() -> {
+						System.out.println("Failed!");
+					 utils.warningMessage("Process of building scenario component failed.");
+						enableButtons();
+						tab.resetFileContent();
+						tab.resetFilenameSuggestion();
+						tab.resetProgressBar();
+					});
+				}
+			};
+
+			saveThread = new Thread(saveTask);
+			saveThread.setDaemon(true);
+			saveThread.start();
+
+			disableButtons();
+		});
+
+		if (whichTab != null) {
+			tab = getTabByName(whichTab);
+			if (tab != null) {
+				selectTabAndLoadContent(whichTab, contentToLoad, addComponentTabPane);
+			}
 		}
-			
+
 		stageWithTabs.setResizable(false);
 		stageWithTabs.show();
 	}
-	
-	private void selectTabAndLoadContent(String whichTab,ArrayList<String> contentToLoad,TabPane tp) {
-		ObservableList<Tab> tabs=tp.getTabs();
-		//Tab tab=null;
-		if (whichTab.equals("Flex Share")) whichTab="Market Share";
-		for (int i=0;i<tabs.size();i++) {
-			PolicyTab tempTab=(PolicyTab) tabs.get(i);
-			if (tempTab.getText().equals(whichTab)) {
-				tab=tempTab;
-				tab.loadContent(contentToLoad);
-				tp.getSelectionModel().select(tab);
+
+	/**
+	 * Returns the PolicyTab instance corresponding to the given tab name.
+	 * @param tabName The name of the tab
+	 * @return The PolicyTab instance, or null if not found
+	 */
+	private PolicyTab getTabByName(String tabName) {
+		switch (tabName) {
+			case TAB_MARKET_SHARE:
+			case TAB_FLEX_SHARE:
+				return techMarketShareTab;
+			case TAB_MPG_TARGET:
+				return cafeStdTab;
+			case TAB_TECH_BOUND:
+				return techBoundTab;
+			case TAB_TECH_AVAIL:
+				return techAvailTab;
+			case TAB_TECH_PARAM:
+				return techParamTab;
+			case TAB_TECH_TAX:
+				return techTaxTab;
+			case TAB_XML_LIST:
+				return xmlListTab;
+			case TAB_POLLUTANT_TAX_CAP:
+				return pollTaxCapTab;
+			case TAB_FUEL_PRICE_ADJ:
+				return fuelPriceAdjTab;
+			case TAB_FIXED_DEMAND:
+				return fixedDemandTab;
+			default:
+				return null;
+		}
+	}
+
+	/**
+	 * Loads content into the specified PolicyTab and selects it in the TabPane.
+	 * @param tab The PolicyTab to load content into
+	 * @param contentToLoad The content to load
+	 * @param tp The TabPane containing the tabs
+	 */
+	private void selectTabAndLoadContent(String whichTab, ArrayList<String> contentToLoad, TabPane tp) {
+		if (whichTab == null) return;
+		for (Tab t : tp.getTabs()) {
+			if (t instanceof PolicyTab && t.getText().equals(whichTab)) {
+				PolicyTab policyTab = (PolicyTab) t;
+				policyTab.loadContent(contentToLoad);
+				tp.getSelectionModel().select(policyTab);
 				break;
 			}
 		}
 	}
-	
-		
+
+	/**
+	 * Saves the scenario component file using the provided PolicyTab's content and filename suggestion.
+	 * @param tab The PolicyTab containing the file content and filename suggestion
+	 */
 	public void saveComponentFile(PolicyTab tab) {
-		String filename_suggestion=tab.getFilenameSuggestion();
-		String file_content=tab.getFileContent();
-		boolean use_temp_file=false;
+		String filename_suggestion = tab.getFilenameSuggestion();
+		String file_content = tab.getFileContent();
+		boolean use_temp_file = false;
 		if (file_content.equals("use temp file")) {
-			use_temp_file=true;
+			use_temp_file = true;
 		}
-		
-		if ((filename_suggestion!=null)&&(!filename_suggestion.equals(""))) {
+
+		if ((filename_suggestion != null) && (!filename_suggestion.equals(""))) {
 			// opens the browser for saving
 			enableButtons();
 			tab.resetFileContent();
 			tab.resetFilenameSuggestion();
 			tab.resetProgressBar();
-			
-			String filter1="";
-			String filter2="";
-			
-			if (file_content.indexOf("xmllist")>=0) {
-				filter1="TXT files (*.txt)";
-				filter2="txt";
-				if ((!filename_suggestion.endsWith(".txt"))&&(!filename_suggestion.endsWith(".TXT"))) filename_suggestion+=".txt";	
+
+			String filter1 = "";
+			String filter2 = "";
+
+			if (file_content.indexOf("xmllist") >= 0) {
+				filter1 = "TXT files (*.txt)";
+				filter2 = "txt";
+				if ((!filename_suggestion.endsWith(".txt")) && (!filename_suggestion.endsWith(".TXT")))
+					filename_suggestion += ".txt";
 			} else {
-				filter1="CSV files (*.csv)";
-				filter2="csv";				
-				if ((!filename_suggestion.endsWith(".csv"))&&(!filename_suggestion.endsWith(".CSV"))) filename_suggestion+=".csv";				
+				filter1 = "CSV files (*.csv)";
+				filter2 = "csv";
+				if ((!filename_suggestion.endsWith(".csv")) && (!filename_suggestion.endsWith(".CSV")))
+					filename_suggestion += ".csv";
 			}
-			
-			File file = FileChooserPlus.showSaveDialog(stageWithTabs, "Save Scenario Component",new File(vars.getScenarioComponentsDir()),filename_suggestion,FileChooserPlus.createExtensionFilter(filter1,filter2));
+
+			File file = FileChooserPlus.showSaveDialog(stageWithTabs, "Save Scenario Component",
+					new File(vars.getScenarioComponentsDir()), filename_suggestion,
+					FileChooserPlus.createExtensionFilter(filter1, filter2));
 
 			if (file == null)
 				return;
 			if (!use_temp_file) {
-//				System.out.println("Attempting to save file_content... "+file_content.length()+" characters");
-			    files.saveFile(file_content, file);
-//			    System.out.println("Done.");
+				files.saveFile(file_content, file);
 			} else {
-				String temp_policy_filename=vars.getGlimpseDir()+File.separator+"GLIMPSE-Data"+File.separator+"temp"+File.separator+"temp_policy_file.txt";
+				String temp_policy_filename = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator
+						+ "temp" + File.separator + "temp_policy_file.txt";
 				try {
 					Files.move(Paths.get(temp_policy_filename), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-				} catch(Exception e) {
-					System.out.println("Error creating policy file: "+e);
+				} catch (Exception e) {
+					System.out.println("Error creating policy file: " + e);
 				}
 			}
-			
+
 			ComponentRow p1 = new ComponentRow(file.getName(), file.getPath(), new Date());
 			ComponentRow[] fileArr = { p1 };
 
-			//Dan: testing something new
-			ComponentLibraryTable.addOrUpdateFiles(fileArr);					
+			// Dan: testing something new
+			ComponentLibraryTable.addOrUpdateFiles(fileArr);
 		}
-		
-		
+
 		refreshComponentLibraryTable();
-		
+
 	}
-	
+
+	/**
+	 * Disables the Save and Close buttons in the component dialog.
+	 */
 	public void disableButtons() {
 		buttonSaveComponent.setDisable(true);
 		buttonClose.setDisable(true);
 	}
-	
+
+	/**
+	 * Enables the Save and Close buttons in the component dialog.
+	 */
 	public void enableButtons() {
 		buttonSaveComponent.setDisable(false);
 		buttonClose.setDisable(false);
 	}
 
-	// called from TabIncludeXMLList
+	/**
+	 * Refreshes the scenario component library table by scanning the components directory.
+	 */
 	public void refreshComponentLibraryTable() {
 
 		File folder = new File(vars.getScenarioComponentsDir());
-		
-		ArrayList<File> fileList=new ArrayList<File>();		
-		fileList=buildFileList(folder.toPath());
+
+		ArrayList<File> fileList = new ArrayList<File>();
+		fileList = buildFileList(folder.toPath());
 		ComponentRow[] fileArr = new ComponentRow[fileList.size()];
-		
+
 		int k = 0;
 		for (int i = 0; i < fileList.size(); i++) {
-			String relative_name=files.getRelativePath(folder.toString(), fileList.get(i).getAbsolutePath());
+			String relative_name = files.getRelativePath(folder.toString(), fileList.get(i).getAbsolutePath());
 			ComponentRow p1 = new ComponentRow(relative_name, fileList.get(i).getPath(),
 					new Date(fileList.get(i).lastModified()));
 			fileArr[k] = p1;
-			k++;	
+			k++;
 		}
 
 		ComponentLibraryTable.createListOfFiles(fileArr);
 	}
 
+	/**
+	 * Recursively builds a list of files from the given directory path.
+	 * @param path The root directory path
+	 * @return ArrayList of File objects found in the directory and subdirectories
+	 */
+	public ArrayList<File> buildFileList(Path path) {
+		ArrayList<File> rtn_array = new ArrayList<File>();
+		File root = path.toFile();
+		File[] list = root.listFiles();
 
-	
-	public ArrayList<File> buildFileList(Path path){
-		ArrayList<File> rtn_array=new ArrayList<File>();
-		File root=path.toFile();
-		File[] list=root.listFiles();
+		if (list == null)
+			return rtn_array;
 
-        if (list == null) return rtn_array;
+		for (File f : list) {
+			if (f.isDirectory()) {
+				rtn_array.addAll(buildFileList(f.toPath()));
 
-        for ( File f : list ) {
-            if ( f.isDirectory() ) {
-                rtn_array.addAll(buildFileList( f.toPath()));
+			} else {
 
-            }
-            else {
-
-                rtn_array.add(f);
-            }
-        }
-        return rtn_array;
+				rtn_array.add(f);
+			}
+		}
+		return rtn_array;
 	}
-	
 
+	/**
+	 * Loads the given list of files into the component library table.
+	 * @param file List of File objects to load
+	 */
 	public void loadFile(List<File> file) {
 		int k = 0;
 		ComponentRow[] fileArr = new ComponentRow[file.size()];
@@ -579,8 +659,39 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 		ComponentLibraryTable.addToListOfFiles(fileArr);
 	}
 
+	/**
+	 * Returns the VBox containing the component library table.
+	 * @return VBox with the component library table
+	 */
 	public VBox getvBox() {
 		return vBox;
 	}
 
+	private VBox createMainVBox() {
+		VBox vbox = new VBox(1);
+		vbox.setStyle(styles.getFontStyle());
+		return vbox;
+	}
+
+	private HBox createButtonHBox() {
+		HBox hbox = new HBox(1);
+		return hbox;
+	}
+
+	private ProgressBar createProgressBar(double width) {
+		ProgressBar bar = new ProgressBar(0.0);
+		bar.setPrefWidth(width);
+		return bar;
+	}
+
+	private HBox createProgressHBox(ProgressBar bar) {
+		HBox hbox = new HBox();
+		hbox.setAlignment(javafx.geometry.Pos.CENTER);
+		hbox.getChildren().add(bar);
+		return hbox;
+	}
+
+	private Button createDialogButton(String text) {
+		return utils.createButton(text, styles.getBigButtonWidth(), null);
+	}
 }

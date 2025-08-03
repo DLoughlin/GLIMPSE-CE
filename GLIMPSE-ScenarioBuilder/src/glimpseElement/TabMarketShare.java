@@ -66,11 +66,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	private GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-//	public static String descriptionText = "";
-//	public static String runQueueStr = "Queue is empty.";
-//	
-//	public CompletionListener completion_listener; 
-
 	// Initializing overall grid
 	GridPane gridPanePresetModification = new GridPane();
 
@@ -178,39 +173,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		checkComboBoxSubset.setMaxWidth(70);
 		checkComboBoxSuperset.setMaxWidth(70);
 
-		// left column
-		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-		gridPaneLeft.addColumn(0, labelPolicyType, labelSubsetFilter, labelSubset, labelSupersetFilter, labelSuperset, labelConstraint,
-				labelAppliedTo, labelTreatment, /* new Label(), */ new Separator(), labelUseAutoNames, labelPolicyName,
-				labelMarketName, /* new Label(), */
-				new Separator(), utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear,
-				labelInitialAmount, labelGrowth);
-
-		gridPaneLeft.addColumn(1, comboBoxPolicyType, textFieldSubsetFilter, checkComboBoxSubset, textFieldSupersetFilter, checkComboBoxSuperset,
-				comboBoxConstraint, comboBoxAppliedTo, comboBoxTreatment, /* new Label(), */ new Separator(),
-				checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, /* new Label(), */ new Separator(),
-				new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
-				textFieldGrowth);
-		gridPaneLeft.setAlignment(Pos.TOP_LEFT);
-
-		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.getStyle2());
-		
-		scrollPaneLeft.setContent(gridPaneLeft);		
-
-		// center column
-
-		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.getStyle3());
-
-		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.getStyle2());
-
-		// right column
-
-		vBoxRight.getChildren().addAll(paneForCountryStateTree/* ,progress_bar,progress_indicator */);
-		vBoxRight.setStyle(styles.getStyle2());
+		setupLeftColumn();
+		setupCenterColumn();
+		setupRightColumn();
 
 		// other setup
 		gridPanePresetModification.addColumn(0, scrollPaneLeft);
@@ -412,7 +377,38 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		this.setContent(tabLayout);
 	}
 
-	private void setupCheckComboBoxes() {
+    private void setupLeftColumn() {
+        gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelPolicyType, labelSubsetFilter, labelSubset, labelSupersetFilter, labelSuperset, labelConstraint,
+                labelAppliedTo, labelTreatment, new Separator(), labelUseAutoNames, labelPolicyName,
+                labelMarketName, new Separator(), utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear,
+                labelInitialAmount, labelGrowth);
+
+        gridPaneLeft.addColumn(1, comboBoxPolicyType, textFieldSubsetFilter, checkComboBoxSubset, textFieldSupersetFilter, checkComboBoxSuperset,
+                comboBoxConstraint, comboBoxAppliedTo, comboBoxTreatment, new Separator(),
+                checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Separator(),
+                new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
+                textFieldGrowth);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
+    }
+
+    private void setupCenterColumn() {
+        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+        hBoxHeaderCenter.setSpacing(2.);
+        hBoxHeaderCenter.setStyle(styles.getStyle3());
+        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+        vBoxCenter.setStyle(styles.getStyle2());
+    }
+
+    private void setupRightColumn() {
+        vBoxRight.getChildren().addAll(paneForCountryStateTree);
+        vBoxRight.setStyle(styles.getStyle2());
+    }
+
+    private void setupCheckComboBoxes() {
 		String item = this.comboBoxPolicyType.getSelectionModel().getSelectedItem();
 		setupCheckComboBoxes(item);
 	}
@@ -846,312 +842,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		}
 
 	}
-
-//	private void setupCheckComboBoxesOld(String selected_item) {
-//
-//		String[][] tech_info = vars.getTechInfo();
-//
-//		try {
-//
-//			ArrayList<String> techList = new ArrayList<String>();
-//
-//			String filterText = textFieldFilter.getText().trim();
-//			boolean useFilter = false;
-//			if ((filterText != null) && (filterText.length() > 0))
-//				useFilter = true;
-//
-//			String last_line = "";
-//			for (int i = 0; i < tech_info.length; i++) {
-//				String line = tech_info[i][0].trim() + " : " + tech_info[i][1] + " : " + tech_info[i][2];
-//				if (line.equals(last_line)) {
-//					;
-//				} else {
-//					last_line = line;
-//					if (tech_info[i].length >= 7) {
-//						line += " : " + tech_info[i][6] + " : " + tech_info[i][7];
-//					}
-//
-//					boolean show = true;
-//					if (useFilter) {
-//						show = false;
-//						for (int j = 0; j < tech_info[i].length; j++) {
-//							String temp = tech_info[i][j];
-//							if (temp.contains(filterText))
-//								show = true;
-//						}
-//					}
-//					if (show)
-//						techList.add(line.trim());
-//
-//				}
-//			}
-//
-//			// clear check combo boxes
-//			checkComboBoxSubset.getCheckModel().clearChecks();
-//			checkComboBoxSubset.getItems().clear();
-//			checkComboBoxSuperset.getCheckModel().clearChecks();
-//			checkComboBoxSuperset.getItems().clear();
-//
-//			boolean show_egu = false;
-//			boolean show_ldv_car = false;
-//			boolean show_ldv_truck = false;
-//			boolean show_ldv_4w = false;
-//			boolean show_ldv_all = false;
-//			boolean show_hdv_all = false;
-//			boolean show_hdv_light = false;
-//			boolean show_hdv_medium = false;
-//			boolean show_hdv_heavy = false;
-//			boolean show_lighting = false;
-//			boolean show_heating = false;
-//			boolean show_refining = false;
-//
-//			boolean show_sector_egu = false;
-//			boolean show_sector_buildings = false;
-//			boolean show_sector_industry = false;
-//			boolean show_sector_industry_fuels = false;
-//			boolean show_sector_trn_onroad = false;
-//			boolean show_sector_trn_alm = false;
-//			boolean show_sector_other = false;
-//
-//			String policy_type = comboBoxPolicyType.getValue();
-//			if (policy_type.contains("CES")) {
-//				show_egu = true;
-//			}
-//			if (policy_type.contains("RPS")) {
-//				show_egu = true;
-//			}
-////			if (policy_type.equals("EV passenger car"))
-////				show_ldv_car = true;
-////			if (policy_type.equals("EV passenger large car and truck"))
-////				show_ldv_truck = true;
-//			if (policy_type.equals("EV passenger cars and trucks"))
-//				show_ldv_4w = true;
-//			if (policy_type.equals("EV passenger cars trucks and MCs"))
-//				show_ldv_all = true;
-//			if (policy_type.equals("EV freight light truck"))
-//				show_hdv_light = true;
-//			if (policy_type.equals("EV freight medium truck"))
-//				show_hdv_medium = true;
-//			if (policy_type.equals("EV freight medium truck"))
-//				show_hdv_heavy = true;
-//			if (policy_type.equals("EV freight all truck"))
-//				show_hdv_all = true;
-//			if (policy_type.equals("LED lights"))
-//				show_lighting = true;
-//			if (policy_type.equals("Heat pumps"))
-//				show_heating = true;
-//			if (policy_type.equals("Biofuels"))
-//				show_refining = true;
-//			if (policy_type.equals("Sector:EGU"))
-//				show_sector_egu = true;
-//			if (policy_type.equals("Sector:Buildings"))
-//				show_sector_buildings = true;
-//			if (policy_type.equals("Sector:Industry"))
-//				show_sector_industry = true;
-//			if (policy_type.equals("Sector:Industry-fuels"))
-//				show_sector_industry_fuels = true;
-//			if (policy_type.equals("Sector:Trn-Onroad"))
-//				show_sector_trn_onroad = true;
-//			if (policy_type.equals("Sector:Trn-ALM"))
-//				show_sector_trn_alm = true;
-//			if (policy_type.equals("Sector:Other"))
-//				show_sector_trn_alm = true;
-//
-//			for (int i = 0; i < techList.size(); i++) {
-//				boolean show_tech = false;
-//				String tech_line = techList.get(i).trim();
-//				String tech_line_lc = tech_line.toLowerCase();
-//				if (show_egu) {
-//					if (tech_line_lc.startsWith("electricity ")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.startsWith("base load")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.startsWith("intermediate")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.startsWith("peak")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.startsWith("subpeak")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.startsWith("elec_")) {
-//						show_tech = true;
-//					} else if (tech_line_lc.indexOf("cogen") > -1) {
-//						show_tech = true;
-//					}
-//				} else if (show_ldv_truck) {
-//					if (tech_line_lc.contains("large car and truck")) {
-//						show_tech = true;
-//					}
-//				} else if (show_ldv_car) {
-//					if (tech_line_lc.contains(": car :")) {
-//						show_tech = true;
-//					}
-//				} else if (show_ldv_4w) {
-//					if (tech_line_lc.indexOf("ldv_4w") > -1) {
-//						show_tech = true;
-//					}
-//				} else if (show_ldv_all) {
-//					if (tech_line_lc.indexOf("ldv") > -1) {
-//						show_tech = true;
-//					}
-//				} else if (show_hdv_light) {
-//					if (tech_line_lc.startsWith("trn_freight_road")) {
-//						if (tech_line_lc.contains("light"))
-//							show_tech = true;
-//					}
-//				} else if (show_hdv_medium) {
-//					if (tech_line_lc.startsWith("trn_freight_road")) {
-//						if (tech_line_lc.contains("medium"))
-//							show_tech = true;
-//					}
-//				} else if (show_hdv_heavy) {
-//					if (tech_line_lc.startsWith("trn_freight_road")) {
-//						if (tech_line_lc.contains("heavy"))
-//							show_tech = true;
-//					}
-//				} else if (show_hdv_all) {
-//					if (tech_line_lc.startsWith("trn_freight_road")) {
-//						show_tech = true;
-//					}
-//				} else if (show_lighting) {
-//					if ((tech_line_lc.startsWith("resid lighting")) || (tech_line_lc.startsWith("comm lighting"))) {
-//						show_tech = true;
-//					}
-//				} else if (show_heating) {
-//					if ((tech_line_lc.startsWith("resid heating")) || (tech_line_lc.startsWith("comm heating"))) {
-//						show_tech = true;
-//					}
-//				} else if (show_refining) {
-//					if ((tech_line_lc.startsWith("oil refining")) || (tech_line_lc.startsWith("biomass liquids"))) {
-//						show_tech = true;
-//					}
-//				} else if (show_sector_egu) {
-//					if (tech_line_lc.endsWith("egu"))
-//						show_tech = true;
-//
-//				} else if (show_sector_industry) {
-//					if (tech_line_lc.endsWith("industry"))
-//						show_tech = true;
-//
-//				} else if (show_sector_industry_fuels) {
-//					if (tech_line_lc.endsWith("industry-fuels"))
-//						show_tech = true;
-//
-//				} else if (show_sector_buildings) {
-//					if (tech_line_lc.endsWith("buildings"))
-//						show_tech = true;
-//
-//				} else if (show_sector_trn_onroad) {
-//					if (tech_line_lc.endsWith("trn-onroad"))
-//						show_tech = true;
-//
-//				} else if (show_sector_trn_alm) {
-//					if ((tech_line_lc.endsWith("trn-alm")) || (tech_line_lc.endsWith("trn-nonroad")))
-//						show_tech = true;
-//
-//				} else if (show_sector_other) {
-//					show_tech = true;
-//
-//				} else {
-//					show_tech = true;
-//				}
-//				if (show_tech) {
-//					checkComboBoxSubset.getItems().add(tech_line);
-//					checkComboBoxSuperset.getItems().add(tech_line);
-//				}
-//			}
-//
-//			// setting up RPS and CES checks
-//			if ((policy_type.contains("RPS")) || (policy_type.contains("CES"))) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if ((item_text.indexOf("solar") >= 0) || (item_text.indexOf("csp") >= 0)
-//							|| (item_text.indexOf("pv") >= 0))
-//						checkComboBoxSubset.getCheckModel().check(i);
-//					if (item_text.indexOf("wind") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//					if ((item_text.indexOf("hydro") >= 0) && (item_text.indexOf("hydrogen") < 0))
-//						checkComboBoxSubset.getCheckModel().check(i);
-//					if (item_text.indexOf("geothermal") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//					if (item_text.indexOf("biomass") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//			if (policy_type.contains("CES")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("ccs") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//					if (item_text.indexOf("nuclear") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//			}
-//
-//			// setting up LDV-EV checks
-//			if (policy_type.contains("EV")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("bev") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//
-//			// setting up HDV-EV checks
-//			if (policy_type.startsWith("EV")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("bev") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//
-//			// setting up LED checks
-//			if (policy_type.contains("LED")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("solid state") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//
-//			// setting up heat pump checks
-//			if (policy_type.contains("Heat pump")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("heat pump") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//
-//			// setting up refining checks
-//			if (policy_type.contains("Biofuel")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String item_text = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (item_text.indexOf("bio") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//
-//			}
-//
-//		} catch (Exception e) {
-//			utils.warningMessage("Problem reading tech list.");
-//			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
-//			System.out.println("  ---> " + e);
-//
-//		}
-//
-//	}
 
 	
 	private void setPolicyAndMarketNames() {
@@ -1877,14 +1567,5 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	public void resetFileContent() {
 		file_content = null;
 	}
-
-//	public void setCompletionListener(CompletionListener completion_listener2) {
-//		this.completion_listener=(CompletionListener) completion_listener2;
-//	}
-//	
-//    @FunctionalInterface
-//    public interface CompletionListener {
-//        String onCompleted(int count);
-//    }
 
 }

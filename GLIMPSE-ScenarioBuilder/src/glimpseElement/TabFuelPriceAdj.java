@@ -34,7 +34,6 @@ package glimpseElement;
 
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
-
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;

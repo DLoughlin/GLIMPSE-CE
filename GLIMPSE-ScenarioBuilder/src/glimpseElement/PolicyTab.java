@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,8 +34,6 @@ package glimpseElement;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
@@ -43,12 +41,11 @@ import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TreeView;
 
-public class PolicyTab extends Tab {
+public abstract class PolicyTab extends Tab {
 	public ProgressBar progress_bar = new ProgressBar(0.0);
-	public String filename_suggestion = "";
-	public String file_content = "";
+	public String filename_suggestion = null;
+	public String file_content = null;
 	public ArrayList<String> market_list;
 
 	protected GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
@@ -56,20 +53,8 @@ public class PolicyTab extends Tab {
 	protected GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 	protected GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 	
-	//TODO:  Where is this called
-	public void saveScenarioComponent() {
-		// TODO Auto-generated method stub
-		;
-	}
-
-	public String getMetaDataContent(TreeView<String> tree) {
-		String rtn_str = "";
-		return rtn_str;
-	}
-
-	public void loadContent(ArrayList<String> content) {
-		;
-	}
+	public abstract void saveScenarioComponent();
+	public abstract void loadContent(ArrayList<String> content);
 
 	public void setProgress(double d) {
 		progress_bar.setProgress(d);
@@ -85,11 +70,11 @@ public class PolicyTab extends Tab {
 	}
 
 	public void resetFileContent() {
-		file_content = "";
+		file_content = null;
 	}
 
 	public void resetFilenameSuggestion() {
-		filename_suggestion = "";
+		filename_suggestion = null;
 	}
 
 	public void resetProgressBar() {
@@ -143,5 +128,7 @@ public class PolicyTab extends Tab {
 		
 		return rtn_str; 
 	}
+	
+	
 	
 }

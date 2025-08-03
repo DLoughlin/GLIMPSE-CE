@@ -39,7 +39,6 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -92,7 +91,6 @@ import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;
 import com.github.difflib.text.DiffRow;
 import com.github.difflib.text.DiffRowGenerator;
-//import com.sun.deploy.uitoolkit.impl.fx.Utils;
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
@@ -127,157 +125,213 @@ public class GLIMPSEUtils {
 	public GLIMPSEUtils() {
 	}
 
+	/**
+     * Returns the singleton instance of GLIMPSEUtils.
+     */
 	public static GLIMPSEUtils getInstance() {
 		return instance;
 	}
 
+	/**
+     * Initializes utility class with references to variables, styles, and files.
+     * @param u GLIMPSEUtils instance (not used)
+     * @param v GLIMPSEVariables instance
+     * @param s GLIMPSEStyles instance
+     * @param f GLIMPSEFiles instance
+     */
 	public void init(GLIMPSEUtils u, GLIMPSEVariables v, GLIMPSEStyles s, GLIMPSEFiles f) {
 		vars = v;
 		styles = s;
 		files = f;
 	}
 
+	/**
+     * Checks if a string matches any item in the provided list.
+     * @param str String to check
+     * @param list List of strings
+     * @return true if match found, false otherwise
+     */
 	public boolean getMatch(String str, ArrayList<String> list) {
-		boolean b = false;
+        if (str == null || list == null) return false;
+        for (String item : list) {
+            if (str.equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-		for (int i = 0; i < list.size(); i++) {
-			if (str.equals(list.get(i))) {
-				b = true;
-				break;
-			}
-		}
-		return b;
-	}
-
+	/**
+     * Adds a string to the list if it is not already present.
+     * @param list List of strings
+     * @param str String to add
+     * @return Updated list
+     */
 	public ArrayList<String> addToArrayListIfUnique(ArrayList<String> list, String str) {
-		boolean match = false;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).compareTo(str) == 0) {
-				match = true;
-				break;
-			}
-		}
-		if (!match)
-			list.add(str);
-		return list;
-	}
+        if (list == null || str == null) return list;
+        for (String item : list) {
+            if (item.compareTo(str) == 0) {
+                return list;
+            }
+        }
+        list.add(str);
+        return list;
+    }
 
+	/**
+     * Returns the first token containing the specified text from a delimited line.
+     * @param line Input string
+     * @param txt Text to search for
+     * @param delim Delimiter
+     * @return Token containing the text, or empty string if not found
+     */
 	public String getTokenWithText(String line, String txt, String delim) {
-		String rtn_str = "";
+        if (line == null || txt == null || delim == null) return "";
+        String[] tokens = line.split(delim);
+        for (String token : tokens) {
+            if (token.indexOf(txt) >= 0) {
+                return token;
+            }
+        }
+        return "";
+    }
 
-		String[] tokens = line.split(delim);
+	/**
+     * Concatenates elements of an ObservableList into a single string separated by the given separator.
+     * @param ol ObservableList
+     * @param separator Separator string
+     * @return Concatenated string
+     */
+	public String getStringFromList(ObservableList<?> ol, String separator) {
+        if (ol == null || separator == null) return "";
+        StringBuilder rtn_str = new StringBuilder();
+        for (Object o : ol) {
+            rtn_str.append(o).append(separator);
+        }
+        return rtn_str.toString();
+    }
 
-		for (int i = 0; i < tokens.length; i++) {
-			if (tokens[i].indexOf(txt) >= 0) {
-				rtn_str = tokens[i];
-				break;
-			}
-		}
-
-		return rtn_str;
-	}
-
-	public String getStringFromList(ObservableList ol, String separator) {
-		String rtn_str = "";
-
-		for (int i = 0; i < ol.size(); i++) {
-			rtn_str += ol.get(i) + ";";
-		}
-
-		return rtn_str;
-	}
-
+	/**
+     * Returns the current date as a string in yyyy-MM-dd format.
+     * @return Current date string
+     */
 	public String getCurrentTimeStamp() {
-		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");// dd/MM/yyyy
-		Date now = new Date();
-		String strDate = sdfDate.format(now);
-		return strDate;
-	}
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");// dd/MM/yyyy
+        Date now = new Date();
+        String strDate = sdfDate.format(now);
+        return strDate;
+    }
 
+	/**
+     * Parses a date string using the class dateFormatStr.
+     * @param dateStr Date string
+     * @return Date object, or null if parsing fails
+     */
 	public Date getFormattedDate(String dateStr) {
-		DateFormat format = new SimpleDateFormat(dateFormatStr, Locale.ENGLISH);
-		Date formattedDate = null;
-		try {
-			formattedDate = format.parse(dateStr);
-		} catch (Exception e) {
-			System.out.println("Error formatting " + dateStr);
-		}
-		return formattedDate;
-	}
+        if (dateStr == null) return null;
+        DateFormat format = new SimpleDateFormat(dateFormatStr, Locale.ENGLISH);
+        Date formattedDate = null;
+        try {
+            formattedDate = format.parse(dateStr);
+        } catch (Exception e) {
+            System.out.println("Error formatting " + dateStr);
+        }
+        return formattedDate;
+    }
 
+	/**
+     * Shows a warning message dialog on the JavaFX application thread.
+     * @param msg Message to display
+     */
 	public void warningMessage(String msg) {
-		Platform.runLater(() -> {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Warning");
-			alert.setHeaderText("Warning");
-			alert.setContentText(msg);
+        if (msg == null) return;
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Warning");
+            alert.setContentText(msg);
 
-			alert.showAndWait();
-		});
+            alert.showAndWait();
+        });
 
-	}
+    }
 
+	/**
+     * Displays a dialog for text input and returns the entered text.
+     * @param descriptionType Dialog title
+     * @return Entered text
+     */
 	public String getTextDialog(String descriptionType) {
+        if (descriptionType == null) descriptionType = "";
+        String title = descriptionType;
+        TextArea textArea = new TextArea();
+        textArea.setEditable(true);
+        textArea.setPrefSize(385, 375);
 
-		String title = descriptionType;
-		TextArea textArea = new TextArea();
-		textArea.setEditable(true);
-		textArea.setPrefSize(385, 375);
+        try {
+            Stage stage = new Stage();
 
-		try {
-			Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setWidth(400);
+            stage.setHeight(400);
+            Scene scene = new Scene(new Group());
+            stage.setResizable(false);
+            stage.setAlwaysOnTop(true);
 
-			stage.setTitle(title);
-			stage.setWidth(400);
-			stage.setHeight(400);
-			Scene scene = new Scene(new Group());
-			stage.setResizable(false);
-			stage.setAlwaysOnTop(true);
+            Button okButton = createButton("OK", styles.getBigButtonWidth(), null);
 
-			Button okButton = createButton("OK", styles.getBigButtonWidth(), null);
+            okButton.setOnAction(e -> {
+                stage.close();
+            });
 
-			okButton.setOnAction(e -> {
-				stage.close();
-			});
+            VBox root = new VBox();
+            root.setPadding(new Insets(4, 4, 4, 4));
+            root.setSpacing(5);
+            root.setAlignment(Pos.TOP_LEFT);
 
-			VBox root = new VBox();
-			root.setPadding(new Insets(4, 4, 4, 4));
-			root.setSpacing(5);
-			root.setAlignment(Pos.TOP_LEFT);
+            String text = "";
 
-			String text = "";
+            textArea.setText(text);
 
-			textArea.setText(text);
+            HBox buttonBox = new HBox();
+            buttonBox.setPadding(new Insets(4, 4, 4, 4));
+            buttonBox.setSpacing(5);
+            buttonBox.setAlignment(Pos.CENTER);
+            buttonBox.getChildren().addAll(okButton);
 
-			HBox buttonBox = new HBox();
-			buttonBox.setPadding(new Insets(4, 4, 4, 4));
-			buttonBox.setSpacing(5);
-			buttonBox.setAlignment(Pos.CENTER);
-			buttonBox.getChildren().addAll(okButton);
+            root.getChildren().addAll(textArea, buttonBox);
+            scene.setRoot(root);
 
-			root.getChildren().addAll(textArea, buttonBox);
-			scene.setRoot(root);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Exception on textArea dialog:" + e);
+        }
 
-			stage.setScene(scene);
-			stage.showAndWait();
-		} catch (Exception e) {
-			System.out.println("Exception on textArea dialog:" + e);
-		}
+        return textArea.getText();
+    }
 
-		return textArea.getText();
-	}
-
+	/**
+     * Converts a string to an integer, returns 0 if conversion fails.
+     * @param s String to convert
+     * @return Integer value
+     */
 	public int convertStringToInt(String s) {
-		int rtn_val = 0;
+        if (s == null) return 0;
+        int rtn_val = 0;
+        try {
+            rtn_val = Integer.parseInt(s);
+        } catch (Exception e) {
+            System.out.println("problem converting " + s + " to int: "+e);
+        }
+        return rtn_val;
+    }
 
-		try {
-			rtn_val = Integer.parseInt(s);
-		} catch (Exception e) {
-			System.out.println("problem converting " + s + " to int: "+e);
-		}
-		return rtn_val;
-	}
-
+	/**
+     * Returns the year string for a given period index.
+     * @param period Period index
+     * @return Year as string
+     */
 	public String getYearForPeriod(int period) {
 		String rtn_str = "";
 
@@ -295,43 +349,67 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 
+	/**
+     * Returns the period index for a given year string.
+     * @param year Year as string
+     * @return Period index as string
+     */
 	public String getPeriodForYear(String year) {
-		String rtn_str = "";
+        if (year == null) return "";
+        String rtn_str = "";
+        double year_d = 0;
+        try {
+            year_d = Double.parseDouble(year);
+        } catch (NumberFormatException e) {
+            return "";
+        }
+        double increment = (year_d - 2005.) / 5. + 2;
+        int increment_int = (int) increment;
+        return "" + increment_int;
+    }
 
-		double year_d = Double.parseDouble(year);
-
-		double increment = (year_d - 2005.) / 5. + 2;
-
-		int increment_int = (int) increment;
-
-		return "" + increment_int;
-	}
-
+	/**
+     * Removes trailing commas from a string.
+     * @param s Input string
+     * @return String without trailing commas
+     */
 	public String getRidOfTrailingCommasInString(String s) {
-
+        if (s == null) return null;
 		while (s.endsWith(",")) {
 			s = s.substring(0, s.length() - 1);
 		}
-
 		return s;
 	}
 
+	/**
+     * Removes trailing commas from each string in an array.
+     * @param s Array of strings
+     * @return Array with trailing commas removed
+     */
 	public String[] getRidOfTrailingCommasInStringArray(String[] s) {
-
+        if (s == null) return null;
 		for (int i = 0; i < s.length; i++) {
 			s[i] = getRidOfTrailingCommasInString(s[i]);
 		}
-
 		return s;
 	}
 
-
-
+	/**
+     * Clears the text in a TextArea.
+     * @param ta TextArea to clear
+     */
 	public void clearTextArea(TextArea ta) {
+        if (ta == null) return;
 		ta.setText(null);
 	}
 
+	/**
+     * Capitalizes only the first letter of a string.
+     * @param input_string Input string
+     * @return String with only the first letter capitalized
+     */
 	public String capitalizeOnlyFirstLetterOfString(String input_string) {
+        if (input_string == null || input_string.isEmpty()) return input_string;
 		String output_string = input_string;
 
 		if (input_string.length() == 1) {
@@ -343,6 +421,10 @@ public class GLIMPSEUtils {
 		return output_string;
 	}
 
+	/**
+     * Shows a confirmation dialog for deletion.
+     * @return true if user confirms, false otherwise
+     */
 	public boolean confirmDelete() {
 		// confirmation of delete
 		boolean continueWithDelete = true;
@@ -357,17 +439,32 @@ public class GLIMPSEUtils {
 		return continueWithDelete;
 	}
 
+	/**
+     * Exits the application if Client.exit_on_exception is true.
+     */
 	public void exitOnException() {
 		if (Client.exit_on_exception == true) {
 			System.exit(0);
 		}
 	}
 
+	/**
+     * Splits a string by the given delimiter.
+     * @param str Input string
+     * @param delim Delimiter
+     * @return Array of split strings
+     */
 	public String[] splitString(String str, String delim) {
+        if (str == null || delim == null) return new String[0];
 		String s[] = str.split(delim);
 		return s;
 	}
 
+	/**
+     * Splits a string by end-of-line characters.
+     * @param line Input string
+     * @return Array of lines
+     */
 	public String[] splitEOL(String line) {
 		if (line == null) {
 			line = "";
@@ -382,7 +479,14 @@ public class GLIMPSEUtils {
 		return lines;
 	}
 
+	/**
+     * Creates an ArrayList from a delimited string.
+     * @param line Input string
+     * @param delim Delimiter
+     * @return ArrayList of strings
+     */
 	public ArrayList<String> createArrayListFromString(String line, String delim) {
+        if (line == null || delim == null) return new ArrayList<>();
 		ArrayList<String> linesList = new ArrayList<String>();
 		String[] lines = splitString(line, delim);
 		for (int i = 0; i < lines.length; i++) {
@@ -392,7 +496,13 @@ public class GLIMPSEUtils {
 		return linesList;
 	}
 
+	/**
+     * Creates an ArrayList from a string split by end-of-line.
+     * @param line Input string
+     * @return ArrayList of strings
+     */
 	public ArrayList<String> createArrayListFromString(String line) {
+        if (line == null) return new ArrayList<>();
 		ArrayList<String> linesList = new ArrayList<String>();
 		String[] lines = splitEOL(line);
 		for (int i = 0; i < lines.length; i++) {
@@ -402,23 +512,39 @@ public class GLIMPSEUtils {
 		return linesList;
 	}
 
-	public String createStringFromArrayList(ArrayList<String> array_str) {
-		String rtr_str = "";
-		for (int i = 0; i < array_str.size(); i++) {
-			rtr_str += array_str.get(i) + vars.getEol();
-		}
-		return rtr_str;
-	}
+	/**
+     * Concatenates an ArrayList of strings into a single string with EOL separators.
+     * @param array_str ArrayList of strings
+     * @return Concatenated string
+     */
+	public String createStringFromArrayList(ArrayList<String> arrayList) {
+        if (arrayList == null) return "";
+        StringBuilder result = new StringBuilder();
+        for (String s : arrayList) {
+            result.append(s).append(vars.getEol());
+        }
+        return result.toString();
+    }
 
-	public String createStringFromArrayList(ArrayList<String> array_str, String delim) {
-		String rtr_str = "";
-		for (int i = 0; i < array_str.size(); i++) {
-			rtr_str += array_str.get(i) + delim;
-		}
-		return rtr_str;
-	}
+    public String createStringFromArrayList(ArrayList<String> arrayList, String delimiter) {
+        if (arrayList == null || delimiter == null) return "";
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < arrayList.size(); i++) {
+            result.append(arrayList.get(i));
+            if (i < arrayList.size() - 1) {
+                result.append(delimiter);
+            }
+        }
+        return result.toString();
+    }
 
+	/**
+     * Converts an ObservableList of strings to a string array, appending EOL to each.
+     * @param array_str ObservableList of strings
+     * @return Array of strings
+     */
 	public String[] createStringArrayFromObservableList(ObservableList<String> array_str) {
+        if (array_str == null) return new String[0];
 		String[] rtn_str = new String[array_str.size()];
 
 		for (int i = 0; i < array_str.size(); i++) {
@@ -428,7 +554,13 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 
+	/**
+     * Concatenates a string array into a single comma-separated string.
+     * @param str_array Array of strings
+     * @return Concatenated string
+     */
 	public String createStringFromStringArray(String[] str_array) {
+        if (str_array == null) return "";
 		String rtn_str = "";
 
 		for (int i = 0; i < str_array.length; i++) {
@@ -439,22 +571,27 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 	
-	public String[] createStringArrayFromArrayList(ArrayList<String> array_str) {
-		String[] rtn_str = new String[array_str.size()];
+	/**
+     * Converts an ArrayList of strings to a string array, appending EOL to each.
+     * @param array_str ArrayList of strings
+     * @return Array of strings
+     */
+	public String[] createStringArrayFromArrayList(ArrayList<String> arrayList) {
+        if (arrayList == null) return new String[0];
+        String[] result = new String[arrayList.size()];
+        for (int i = 0; i < arrayList.size(); i++) {
+            result[i] = arrayList.get(i) + vars.getEol();
+        }
+        return result;
+    }
 
-		for (int i = 0; i < array_str.size(); i++) {
-			rtn_str[i] = array_str.get(i) + vars.getEol();
-		}
-
-		return rtn_str;
-	}
-
-	public void printArrayList(ArrayList<String> textList) {
-		for (String str : textList) {
-			System.out.println(str);
-		}
-	}
-
+	/**
+     * Creates a JavaFX Separator with specified orientation, length, and visibility.
+     * @param orientation Orientation of the separator
+     * @param length Minimum width
+     * @param visible Visibility flag
+     * @return Separator instance
+     */
 	public Separator getSeparator(Orientation orientation, int length, boolean visible) {
 
 		Separator separator = new Separator(orientation);
@@ -464,6 +601,12 @@ public class GLIMPSEUtils {
 		return separator;
 	}
 
+	/**
+     * Retrieves the value for a given key from a list of key-value pairs.
+     * @param keyValuePairs List of key-value string arrays
+     * @param key Key to search for
+     * @return Value string, or null if not found
+     */
 	public String getKeyValue(ArrayList<String[]> keyValuePairs, String key) {
 		String value = null;
 
@@ -482,6 +625,13 @@ public class GLIMPSEUtils {
 		return value;
 	}
 
+	/**
+     * Finds a match for an item in a list of delimited strings and returns the associated value.
+     * @param list List of delimited strings
+     * @param item Item to match
+     * @param delimiter Delimiter
+     * @return Associated value, or empty string if not found
+     */
 	public String getMatch(ArrayList<String> list, String item, String delimiter) {
 		String rtn_str = "";
 		item = item.trim();
@@ -498,6 +648,14 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 
+	/**
+     * Finds matches for an item in a list of delimited strings and returns associated values as an array.
+     * @param list List of delimited strings
+     * @param item Item to match
+     * @param delimiter1 First delimiter
+     * @param delimiter2 Second delimiter
+     * @return Array of associated values
+     */
 	public String[] getMatches(ArrayList<String> list, String item, String delimiter1, String delimiter2) {
 		String rtn_str = "";
 		item = item.trim();
@@ -511,6 +669,11 @@ public class GLIMPSEUtils {
 		return rtn_str.split(delimiter2);
 	}
 
+	/**
+     * Creates a JavaFX Label with the specified text and default style.
+     * @param txt Label text
+     * @return Label instance
+     */
 	public Label createLabel(String txt) {
 		Label label = new Label(txt);
 		label.setStyle(styles.getFontStyle());
@@ -518,6 +681,12 @@ public class GLIMPSEUtils {
 		return label;
 	}
 
+	/**
+     * Creates a JavaFX Label with the specified text, width, and default style.
+     * @param txt Label text
+     * @param pref_width Preferred width
+     * @return Label instance
+     */
 	public Label createLabel(String txt, double pref_width) {
 		Label label = createLabel(txt);
 		label.setPrefWidth(pref_width);
@@ -528,6 +697,11 @@ public class GLIMPSEUtils {
 		return label;
 	}
 
+	/**
+     * Creates a JavaFX TextField with the specified width.
+     * @param wid Width
+     * @return TextField instance
+     */
 	public TextField createTextField(double wid) {
 		TextField tf = new TextField();
 		tf.setPrefWidth(wid);
@@ -536,12 +710,20 @@ public class GLIMPSEUtils {
 		return tf;
 	}
 
+	/**
+     * Creates a JavaFX TextField with default style.
+     * @return TextField instance
+     */
 	public TextField createTextField() {
 		TextField tf = new TextField();
 		tf.setStyle(styles.getFontStyle());
 		return tf;
 	}
 
+	/**
+     * Creates a JavaFX ComboBox for strings with default style.
+     * @return ComboBox instance
+     */
 	public ComboBox<String> createComboBoxString() {
 		ComboBox<String> comboBox = new ComboBox<String>();
 		comboBox.setStyle(styles.getFontStyle());
@@ -549,6 +731,10 @@ public class GLIMPSEUtils {
 		return comboBox;
 	}
 
+	/**
+     * Creates a ControlsFX CheckComboBox for strings with default style.
+     * @return CheckComboBox instance
+     */
 	public CheckComboBox<String> createCheckComboBox() {
 		CheckComboBox<String> checkComboBox = new CheckComboBox<String>();
 		checkComboBox.setStyle(styles.getFontStyle());
@@ -557,75 +743,92 @@ public class GLIMPSEUtils {
 		return checkComboBox;
 	}
 
+	/**
+     * Creates a JavaFX CheckBox with the specified label and default style.
+     * @param s Label text
+     * @return CheckBox instance
+     */
 	public CheckBox createCheckBox(String s) {
 		CheckBox checkBox = new CheckBox(s);
 		checkBox.setStyle(styles.getFontStyle());
 		return checkBox;
 	}
 
-	public Button createButton(String text, int wid, String tt, String imageName) {
-		Button button = createButton(text, wid, tt);
+    private Button createButtonInternal(String text, int wid, String tt, String imageName) {
+        Button button = new Button();
+        button.setPadding(new Insets(1, 1, 1, 1));
+        if (tt != null) {
+            Tooltip tooltip = new Tooltip(tt);
+            tooltip.setFont(Font.font(styles.getFontStyle()));
+            button.setTooltip(tooltip);
+        }
+        if (text != null) {
+            button.setText(text);
+        }
+        if (imageName != null && (vars.getUseIcons().toLowerCase().equals("true") || text == null)) {
+            try {
+                String imagePath = "file:" + vars.getResourceDir() + File.separator + imageName + ".png";
+                Image image = new Image(imagePath, 25, 25, false, true);
+                ImageView imageView = new ImageView(image);
+                imageView.autosize();
+                button.setGraphic(imageView);
+                button.setPrefSize(styles.getSmallButtonWidth(), 35);
+                button.setMaxSize(styles.getSmallButtonWidth(), 35);
+                button.setMinSize(styles.getSmallButtonWidth(), 35);
+                button.setPadding(new Insets(2, 2, 2, 2));
+            } catch (Exception e) {
+                System.out.println("Could not create button images.");
+            }
+        } else if (wid > 0) {
+            button.setPrefSize(wid, 35);
+            button.setMaxSize(wid, 35);
+            button.setMinSize(wid, 35);
+        }
+        button = resizeButtonText(button);
+        return button;
+    }
 
-		if ((vars.getUseIcons().toLowerCase().equals("true")) || (text == null)) {
-			try {
-				String imagePath = "file:" + vars.getResourceDir() + File.separator + imageName + ".png";
-				Image image = new Image(imagePath, 25, 25, false, true);
-				ImageView imageView = new ImageView(image);
-				imageView.autosize();
-				button.setGraphic(imageView);
-				button.setPrefSize(styles.getSmallButtonWidth(), 35);
-				button.setMaxSize(styles.getSmallButtonWidth(), 35);
-				button.setMinSize(styles.getSmallButtonWidth(), 35);
-				button.setPadding(new Insets(2, 2, 2, 2));
-				if (tt != null) {
-					Tooltip tooltip = new Tooltip(tt);
-					tooltip.setFont(Font.font(styles.getFontStyle()));
-					button.setTooltip(tooltip);
-				}
-			} catch (Exception e) {
-				System.out.println("Could not create button images.");
-			}
-		} else {
-			button = createButton(text, wid, tt);
-		}
+    /**
+     * Creates a JavaFX Button with the specified text, width, tooltip, and icon image.
+     * @param text Button text
+     * @param wid Button width
+     * @param tt Tooltip text
+     * @param imageName Icon image file name (without extension)
+     * @return Button instance
+     */
+    public Button createButton(String text, int wid, String tt, String imageName) {
+        return createButtonInternal(text, wid, tt, imageName);
+    }
 
-		button = resizeButtonText(button);
-		return button;
-	}
+    /**
+     * Creates a JavaFX Button with the specified text and default width.
+     * @param text Button text
+     * @return Button instance
+     */
+    public Button createButton(String text) {
+        return createButtonInternal(text, styles.getBigButtonWidth(), null, null);
+    }
 
-	public Button createButton(String text) {
-		Button button = createButton(text, styles.getBigButtonWidth(), null);
-		button = resizeButtonText(button);
-		return button;
-	}
+    /**
+     * Creates a JavaFX Button with the specified text and tooltip.
+     * @param text Button text
+     * @param tt Tooltip text
+     * @return Button instance
+     */
+    public Button createButton(String text, String tt) {
+        return createButtonInternal(text, -1, tt, null);
+    }
 
-	public Button createButton(String text, String tt) {
-		Button button = new Button();
-
-		button.setPadding(new Insets(1, 1, 1, 1));
-
-		if (tt != null) {
-			Tooltip tooltip = new Tooltip(tt);
-			tooltip.setFont(Font.font(styles.getFontStyle()));
-			button.setTooltip(tooltip);
-		}
-
-		button.setText(text);
-
-		button = resizeButtonText(button); // Dan uncommented to test dynamic sizing
-		return button;
-	}
-
-	public Button createButton(String text, int wid, String tt) {
-		Button button = createButton(text, tt);
-
-		button.setPrefSize(wid, 35);
-		button.setMaxSize(wid, 35);
-		button.setMinSize(wid, 35);
-
-		button = resizeButtonText(button);
-		return button;
-	}
+    /**
+     * Creates a JavaFX Button with the specified text, width, and tooltip.
+     * @param text Button text
+     * @param wid Button width
+     * @param tt Tooltip text
+     * @return Button instance
+     */
+    public Button createButton(String text, int wid, String tt) {
+        return createButtonInternal(text, wid, tt, null);
+    }
 
 	public Button resizeButtonText(Button button) {
 		String text = button.getText();
@@ -675,13 +878,14 @@ public class GLIMPSEUtils {
 			return label;
 	}
 
-	public String returnAppendedString(String[] listOfStrings) {
-		String list = listOfStrings[0];
-		for (int i = 1; i < listOfStrings.length; i++) {
-			list = list + "," + listOfStrings[i];
-		}
-		return list;
-	}
+	public String returnAppendedString(String[] stringArray) {
+        if (stringArray == null || stringArray.length == 0) return "";
+        StringBuilder result = new StringBuilder(stringArray[0]);
+        for (int i = 1; i < stringArray.length; i++) {
+            result.append(",").append(stringArray[i]);
+        }
+        return result.toString();
+    }
 
 	public void insertLinesIntoFile(String filename, String lines, int startRow) {
 		ArrayList<String> linesList = createArrayListFromString(lines);
@@ -701,24 +905,20 @@ public class GLIMPSEUtils {
 		files.saveFile(arraylist, filename);
 	}
 
-	public ArrayList<String> getUniqueItemsFromStringArrayList(ArrayList<String> list){
-		
-		ArrayList<String> rtn_list=new ArrayList<String>();
-		
-		for (int i=0;i<list.size();i++) {
-			String str1=list.get(i).trim();
-			boolean match=false;
-			for (int j=0;j<rtn_list.size();j++) {
-				String str2=rtn_list.get(j).trim();
-				if (str1.equals(str2)) {
-					match=true;
-					break;
-				}
-			}
-			if (!match) rtn_list.add(str1);
-		}
-		return rtn_list;
-	}
+	public ArrayList<String> getUniqueItemsFromStringArrayList(ArrayList<String> list) {
+        ArrayList<String> resultList = new ArrayList<>();
+        for (String str1 : list) {
+            boolean match = false;
+            for (String str2 : resultList) {
+                if (str1.trim().equals(str2.trim())) {
+                    match = true;
+                    break;
+                }
+            }
+            if (!match) resultList.add(str1.trim());
+        }
+        return resultList;
+    }
 	
 	
 	public String getUniqueString() {
@@ -846,12 +1046,12 @@ public class GLIMPSEUtils {
 	}
 
 	public ArrayList<CheckBoxTreeItem<String>> returnAllSelectedLeaves(TreeItem<String> rootNode) {
-		ArrayList<TreeItem<String>> leaves = new ArrayList<TreeItem<String>>();
-		ArrayList<CheckBoxTreeItem<String>> selectedLeaves = new ArrayList<CheckBoxTreeItem<String>>();
+		ArrayList<TreeItem<String>> leaves = new ArrayList<>();
+		ArrayList<CheckBoxTreeItem<String>> selectedLeaves = new ArrayList<>();
 		getAllChildren(rootNode, leaves);
-		CheckBoxTreeItem<String> temp = new CheckBoxTreeItem<String>();
-		for (int i = 0; i < leaves.size(); i++) {
-			temp = (CheckBoxTreeItem<String>) leaves.get(i);
+		CheckBoxTreeItem<String> temp;
+		for (TreeItem<String> leaf : leaves) {
+			temp = (CheckBoxTreeItem<String>) leaf;
 			if (temp.isSelected()) {
 				selectedLeaves.add(temp);
 			}
@@ -1018,10 +1218,10 @@ public class GLIMPSEUtils {
 	}
 
 	public void printArrayListToStdout(ArrayList<String> arrayListArg) {
-		for (int i = 0; i < arrayListArg.size(); i++) {
-			String str = "i:" + arrayListArg.get(i);
-			String[] test_array = str.split(":");
-			System.out.println(str + " - " + test_array.length);
+		for (String str : arrayListArg) {
+			String out = "i:" + str;
+			String[] test_array = out.split(":");
+			System.out.println(out + " - " + test_array.length);
 		}
 	}
 
@@ -1099,7 +1299,7 @@ public class GLIMPSEUtils {
 	// this could probably be improved: demo purposes only
 	private final Pattern doublePattern = Pattern.compile("-?(([0-9]+)|([0-9]*\\.[0-9]+))");
 
-	public String[][] getDataMatrixFromArrayList(ArrayList data) {
+	public String[][] getDataMatrixFromArrayList(ArrayList<String> data) {
 		int num_cols = data.get(0).toString().split(",").length;
 		int num_rows = data.size();
 		String[][] dataMatrix = new String[num_rows][num_cols];
@@ -1402,32 +1602,32 @@ public class GLIMPSEUtils {
 	public double getConversionFactor(String fromYear,String toYear) {
 		double d=1.0;
 		
-		if (toYear=="1990$s") {
-		  if (fromYear=="2023$s") {
+		if ("1990$s".equals(toYear)) {
+		  if ("2023$s".equals(fromYear)) {
 			  d=0.49;
-		  } else if(fromYear=="2020$s") {
+		  } else if("2020$s".equals(fromYear)) {
 			  d=0.56;
-		  } else if(fromYear=="2015$s") {
+		  } else if("2015$s".equals(fromYear)) {
 			  d=0.61;
-		  } else if(fromYear=="2010$s") {
+		  } else if("2010$s".equals(fromYear)) {
 			  d=0.66;
-		  } else if(fromYear=="2005$s") {
+		  } else if("2005$s".equals(fromYear)) {
 			  d=0.73;
-		  } else if(fromYear=="2000$s") {
+		  } else if("2000$s".equals(fromYear)) {
 			  d=0.82;
 		  }
 		} else { //1975$s
-			  if (fromYear=="2023$s") {
+			  if ("2023$s".equals(fromYear)) {
 				  d=0.23;
-			  } else if(fromYear=="2020$s") {
+			  } else if("2020$s".equals(fromYear)) {
 				  d=0.26;
-			  } else if(fromYear=="2015$s") {
+			  } else if("2015$s".equals(fromYear)) {
 				  d=0.29;
-			  } else if(fromYear=="2010$s") {
+			  } else if("2010$s".equals(fromYear)) {
 				  d=0.31;
-			  } else if(fromYear=="2005$s") {
+			  } else if("2005$s".equals(fromYear)) {
 				  d=0.34;
-			  } else if(fromYear=="2000$s") {
+			  } else if("2000$s".equals(fromYear)) {
 				  d=0.38;
 			  }			
 		}
@@ -1541,6 +1741,13 @@ public class GLIMPSEUtils {
 		return old_format;
 	}
 
+	/**
+     * Checks if a subsector is present in the specified region and sector.
+     * @param region Region name
+     * @param sector Sector name
+     * @param subsector Subsector name
+     * @return true if subsector is in region, false otherwise
+     */
 	public boolean isSubsectorInRegion(String region, String sector, String subsector) {
 		boolean b = false;
 
@@ -1574,10 +1781,28 @@ public class GLIMPSEUtils {
 		return b;
 	}
 	
+	/**
+     * Retrieves the load factor for a transportation technology in a specific region, sector, and year.
+     * @param region Region name
+     * @param sector Sector name
+     * @param subsector Subsector name
+     * @param tech Technology name
+     * @param year Year as string
+     * @return Load factor as string
+     */
 	public String getLoadFactor(String region, String sector, String subsector, String tech, String year) {
 		return getTrnVehInfo("load",region,sector,subsector,tech,year);
 	}
 
+	/**
+     * Retrieves the vehicle coefficient for a transportation technology in a specific region, sector, and year.
+     * @param region Region name
+     * @param sector Sector name
+     * @param subsector Subsector name
+     * @param tech Technology name
+     * @param year Year as string
+     * @return Vehicle coefficient as string
+     */
 	public String getVehCoefficient(String region, String sector, String subsector, String tech, String year) {
 		return getTrnVehInfo("coefficient",region,sector,subsector,tech,year);
 	}
@@ -1611,6 +1836,13 @@ public class GLIMPSEUtils {
 		return data;
 	}
 	
+	/**
+     * Retrieves the technology names for a given subsector in a region.
+     * @param region Region name
+     * @param sector Sector name
+     * @param subsector Subsector name
+     * @return Array of technology names
+     */
 	public String[] getTrnTechsInSubsector(String region,String sector, String subsector) {
 		
 		region=region.toLowerCase();
@@ -1653,6 +1885,16 @@ public class GLIMPSEUtils {
 	
 
 	
+	/**
+     * Retrieves transportation vehicle information for a given parameter, region, sector, subsector, technology, and year.
+     * @param param Parameter name
+     * @param region Region name
+     * @param sector Sector name
+     * @param subsector Subsector name
+     * @param tech Technology name
+     * @param year_str Year as string
+     * @return Parameter value as string
+     */
 	public String getTrnVehInfo(String param,String region, String sector, String subsector, String tech, String year_str) {
 		String val = null;
 
@@ -1685,12 +1927,12 @@ public class GLIMPSEUtils {
 			if (year_col > -1) {
 				for (int j = 1; j < data.length; j++) {
 					String temp=data[j][0];
-					if (((old_format)&&(param=="load"))||(temp.toLowerCase().trim().startsWith(param))) {
+					if (((old_format)&&("load".equals(param)))||(temp.toLowerCase().trim().startsWith(param))) {
 					String data_region = data[j][region_col].trim();
 					String data_subsector = data[j][subsector_col].trim();
 					String data_tech=data[j][tech_col].trim();
 					if ((region.equals(data_region)) && (subsector.equals(data_subsector))) {
-						if ((param=="load")||((param!="load")&&(tech.equals(data_tech)))) {
+						if (("load".equals(param))||((!"load".equals(param))&&(tech.equals(data_tech)))) {
 					
 						match_row = j;
 						break;
@@ -1747,6 +1989,9 @@ public class GLIMPSEUtils {
 		return return_val;
 	}
 	
+	/**
+     * Loads transportation vehicle information from a file and categorizes it into different tables based on vehicle type.
+     */
 	public void loadTrnVehInfo() {
 
 		String filename = vars.getTrnVehInfoFilename();
@@ -1787,7 +2032,7 @@ public class GLIMPSEUtils {
 	}
 	
 
-	public ArrayList generateErrorReportOld(String main_log_file, String scenario) {
+	public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
 
 		if (scenario == null)
 			scenario = "exe/main_log.txt";
@@ -1797,7 +2042,7 @@ public class GLIMPSEUtils {
 		File mainlogfile = new File(main_log_file);
 		if (mainlogfile.exists()) {
 			String[] str = { "ERROR", "Period" };
-			ArrayList error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
+			ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
 			for (int j = 0; j < error_lines.size(); j++) {
 				String s = scenario + ":" + ("" + error_lines.get(j)).replace(":", ",");
 				report.add(s);
@@ -1808,7 +2053,7 @@ public class GLIMPSEUtils {
 
 	}
 
-	public ArrayList generateErrorReport(String main_log_file, String scenario) {
+	public ArrayList<String> generateErrorReport(String main_log_file, String scenario) {
 
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
 
@@ -1841,7 +2086,7 @@ public class GLIMPSEUtils {
 		File mainlogfile = new File(main_log_file);
 		if (mainlogfile.exists()) {
 			String[] str = { "ERROR", "Period" };
-			ArrayList error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
+			ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
 			for (int j = 0; j < error_lines.size(); j++) {
 				String line = scenario + ":" + ("" + error_lines.get(j)).replace(":", ",");
 				try {
@@ -1863,7 +2108,7 @@ public class GLIMPSEUtils {
 								// only evaluating fails that are greater than arg "min"
 								if ((red > min_red) && (mkt.indexOf("water consumption") == -1)) {
 
-									// testing market name
+																	// testing market name
 									String state = mkt.trim().substring(0, 2);
 									if (isState(state) || (state == "US")) {
 										maj_us_fails++;
@@ -1885,10 +2130,11 @@ public class GLIMPSEUtils {
 									if (dmd <= min_dmd) {
 										maj_smallmkt_fails++;
 									}
+
 									if (red > min_red * 5.0) {
 										line += " *** MAJOR (" + formatter.format(red * 100.) + "%>"
 												+ formatter.format(min_red * 5.0 * 100.) + "%) ***";
-										major_fails++;
+									 major_fails++;
 									} else {
 										line += " *** MODERATE (" + formatter.format(red * 100.) + "% is >"
 												+ min_red * 100. + " and <" + formatter.format(min_red * 5.0 * 100.)
@@ -1964,7 +2210,6 @@ public class GLIMPSEUtils {
 		}
 
 		return report;
-
 	}
 
 	public String correctInteriorQuotes(String orig) {
@@ -2094,6 +2339,11 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 
+	/**
+     * Retrieves the scenario name from the main log file.
+     * @param current_main_log_file Main log file
+     * @return Scenario name as string
+     */
 	public String getRunningScenario(File current_main_log_file) {
 		String rtn_str = "";
 
@@ -2104,14 +2354,16 @@ public class GLIMPSEUtils {
 		return rtn_str;
 	}
 
+	/**
+     * Extracts the scenario name from the main log file.
+     * @param file Main log file
+     * @return Scenario name as string
+     */
 	public String getScenarioNameFromMainLog(File file) {
-		String rtn_str = "";
-		Scanner fileScanner;
-		try {
-			fileScanner = new Scanner(file);
+	 String rtn_str = "";
+		try (Scanner fileScanner = new Scanner(file)) {
 			boolean stop_recording = false;
-
-			while ((fileScanner.hasNext()) && (stop_recording == false)) {
+			while ((fileScanner.hasNext()) && !stop_recording) {
 				String line = fileScanner.nextLine().trim();
 				if (line.startsWith("Configuration file: ")) {
 					try {
@@ -2125,34 +2377,33 @@ public class GLIMPSEUtils {
 					stop_recording = true;
 				}
 			}
-			fileScanner.close();
 		} catch (Exception e) {
 			System.out.println("Problem reading components from " + file.getName() + ": " + e);
 		}
-
 		return rtn_str;
 	}
 
+	/**
+     * Retrieves the status of a scenario from the main log file.
+     * @param file Main log file
+     * @return Status string
+     */
 	public String getScenarioStatusFromMainLog(File file) {
 
 		boolean has_err = false;
 		String status = "";
 		String errors = "";
 		String current_period = "";
-		boolean new_period=true;
-
-		Scanner fileScanner;
-		try {
-			fileScanner = new Scanner(file);
+		boolean new_period = true;
+		try (Scanner fileScanner = new Scanner(file)) {
 			boolean stop_recording = false;
-
-			while ((fileScanner.hasNext()) && (stop_recording == false)) {
+			while ((fileScanner.hasNext()) && !stop_recording) {
 				String line = fileScanner.nextLine().trim();
 				if (line.startsWith("Period ")) {
 					try {
 						current_period = line.substring(7, line.indexOf(":"));
-						status=current_period;//current_period=status;
-						new_period=true;
+						status = current_period;
+						new_period = true;
 					} catch (Exception e) {
 						status = "?";
 					}
@@ -2160,9 +2411,9 @@ public class GLIMPSEUtils {
 				if (line.startsWith("ERROR:X")) {
 					has_err = true;
 					if (new_period) {
-						if (errors!="") errors+=",";
-						errors+=current_period;
-						new_period=false;
+						if (!errors.isEmpty()) errors += ",";
+						errors += current_period;
+						new_period = false;
 					}
 				}
 
@@ -2171,8 +2422,7 @@ public class GLIMPSEUtils {
 				}
 			}
 			if (has_err)
-				status += ",ERR"+errors;
-			fileScanner.close();
+				status += ",ERR" + errors;
 		} catch (Exception e) {
 			System.out.println("Problem reading components from " + file.getName() + ": " + e);
 		}
