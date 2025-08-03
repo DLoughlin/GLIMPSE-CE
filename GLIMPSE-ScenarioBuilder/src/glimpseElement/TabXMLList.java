@@ -148,7 +148,6 @@ public class TabXMLList extends PolicyTab {
 	
 	@Override
 	public void loadContent(ArrayList<String> content) {
-		
 		int i = 0;
 		for (String temp : content) {
 			if (!temp.startsWith("@")) {
@@ -158,15 +157,11 @@ public class TabXMLList extends PolicyTab {
 			}
 		}
 		ComponentLibraryTable.getTableComponents().refresh();
-
 	}
 
 	public void loadInfoFromFile(String filename, String typeString) {
-
 		ArrayList<String> fileList = files.loadFileListFromFile(filename, typeString);
-		
 		loadContent(fileList);
-		
 	}
 
 
@@ -177,14 +172,12 @@ public class TabXMLList extends PolicyTab {
 
 	@Override
 	public void saveScenarioComponent() {
-
 		filename_suggestion = "xml_list.txt";
 		file_content = "@type=xmllist" + vars.getEol();
 		ArrayList<String> fileList = paneForXMLList.getValues();
-		for (int i = 0; i < fileList.size(); i++) {
-			file_content += fileList.get(i) + vars.getEol();
+		for (String file : fileList) {
+			file_content += file + vars.getEol();
 		}
-
 	}
 
 }

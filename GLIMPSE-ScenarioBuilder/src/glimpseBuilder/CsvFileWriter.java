@@ -180,7 +180,7 @@ public class CsvFileWriter {
 		dataList = getTestData();
 		csvColumnList = files.getStringArrayFromFile(csvColumnFilename, "#");
 		csvList = createCsvContent(csvColumnList, dataList);
-		utils.printArrayList(csvList);
+		utils.printArrayListToStdout(csvList);
 	}
 
 	private ArrayList<String> getTestData() {

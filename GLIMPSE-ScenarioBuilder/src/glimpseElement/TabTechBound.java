@@ -36,7 +36,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
-
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;

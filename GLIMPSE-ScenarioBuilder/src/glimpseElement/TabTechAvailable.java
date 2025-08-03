@@ -788,7 +788,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		}
 	}
 	
-	@Override
+	
 	public String getMetaDataContent(TreeView<String> tree) {
 		String rtn_str="############ Scenario Component Meta-Data ############"+vars.getEol();				
 		rtn_str+="#Scenario component type: Tech Avail"+vars.getEol();

@@ -32,16 +32,12 @@
 */
 package glimpseElement;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
-
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -373,7 +369,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		double initial_value = Double.parseDouble(this.textFieldInitialAmount.getText());
 		double growth = Double.parseDouble(textFieldGrowth.getText());
 		int period_length = Integer.parseInt(this.textFieldPeriodLength.getText());
-		ObservableList<DataPoint> data;
+		//ObservableList<DataPoint> data;
 		double[][] returnMatrix = utils.calculateValues(calc_type, start_year, end_year, initial_value, growth,
 				period_length);
 		return returnMatrix;
@@ -411,7 +407,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 			//// -----------getting selected regions info from GUI
 			String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
 			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-			String states = utils.returnAppendedString(listOfSelectedLeaves);
+			//String states = utils.returnAppendedString(listOfSelectedLeaves);
 
 			//// -----------getting constraint data from GUI
 			
@@ -716,5 +712,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 
 		return unit;
 	}
+
+
 
 }
