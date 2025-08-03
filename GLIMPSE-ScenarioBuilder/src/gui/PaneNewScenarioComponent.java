@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -76,49 +76,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-// /////////////////////////////////////////////////////////////////////////////////////////
-// this class generates the top-left pane
-// /////////////////////////////////////////////////////////////////////////////////////////
 /**
  * PaneNewScenarioComponent generates the top-left pane for scenario component management in the GLIMPSE Scenario Builder.
  * It provides UI and logic for creating, editing, deleting, and saving scenario components.
  */
-public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
+public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
-	// === UI Components ===
-	// Main layout containers
-	VBox vBox = createMainVBox();
-	HBox hBoxButton = createButtonHBox();
-
-	// Dialog UI elements
-	ProgressBar progressBar;
-	Button buttonSaveComponent;
-	Button buttonClose;
-	HBox hBoxButtons;
-	HBox hBoxProgress;
-
-	// === Tab Components ===
-	TabPollutantTaxCap pollTaxCapTab;
-	TabMarketShare techMarketShareTab;
-	TabTechBound techBoundTab;
-	TabTechAvailable techAvailTab;
-	TabFixedDemand fixedDemandTab;
-	TabTechParam techParamTab;
-	TabTechTax techTaxTab;
-	TabFuelPriceAdj fuelPriceAdjTab;
-	TabCafeStd cafeStdTab;
-	TabXMLList xmlListTab;
-	PolicyTab tab;
-
-	// === State and Task Management ===
-	Thread computationalThread;
-	Task<?> saveTask;
-	Thread saveThread;
-	Stage stageWithTabs;
-	double progress = 0.0;
-	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
-
-	// === Tab name constants to avoid magic strings ===
+	// === Constants ===
 	private static final String TAB_MARKET_SHARE = "Market Share";
 	private static final String TAB_FLEX_SHARE = "Flex Share";
 	private static final String TAB_MPG_TARGET = "MPG Target";
@@ -130,32 +94,83 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	private static final String TAB_POLLUTANT_TAX_CAP = "Pollutant Tax/Cap";
 	private static final String TAB_FUEL_PRICE_ADJ = "Fuel Price Adj";
 	private static final String TAB_FIXED_DEMAND = "Fixed Demand";
+	private static final String BUTTON_LABEL_NEW = "New";
+	private static final String BUTTON_LABEL_EDIT = "Edit";
+	private static final String BUTTON_LABEL_BROWSE = "Browse";
+	private static final String BUTTON_LABEL_DELETE = "Delete";
+	private static final String BUTTON_LABEL_REFRESH = "Refresh";
+	private static final String BUTTON_LABEL_SAVE = "Save";
+	private static final String BUTTON_LABEL_CLOSE = "Close";
+	private static final String DIALOG_TITLE_NEW_COMPONENT = "New Scenario Component Creator";
+	private static final String FILE_FILTER_TXT = "TXT files (*.txt)";
+	private static final String FILE_FILTER_CSV = "CSV files (*.csv)";
+	private static final String FILE_EXT_TXT = "txt";
+	private static final String FILE_EXT_CSV = "csv";
+	private static final String XML_LIST_KEYWORD = "xmllist";
+	private static final String TEMP_POLICY_FILENAME = "temp_policy_file.txt";
+	private static final String ERROR_LOADING_COMPONENTS = "Problem loading scenario component files.";
+	private static final String ERROR_MOVING_FILE = "Problem moving file ";
+	private static final String ERROR_CREATING_POLICY_FILE = "Error creating policy file: ";
+	private static final String INFO_EDIT_REQUIRES_ONE = "Editing requires exactly one scenario component to be selected.";
+	private static final String INFO_UNSUPPORTED_ACTION = "Unsupported action";
+	private static final String WARNING_COMPONENT_USED = "Cannot delete selected scenario component since it is used in a scenario.";
+	private static final String WARNING_UNKNOWN_TAB = "Unknown tab selected: ";
+	private static final String WARNING_PROCESS_CANCELLED = "Process of building scenario component cancelled.";
+	private static final String WARNING_PROCESS_FAILED = "Process of building scenario component failed.";
+
+	// === UI Components ===
+	private final VBox mainVBox = createMainVBox();
+	private final HBox buttonHBox = createButtonHBox();
+	private ProgressBar progressBar;
+	private Button buttonSaveComponent;
+	private Button buttonClose;
+	private HBox hBoxButtons;
+	private HBox hBoxProgress;
+
+	// === Tab Components ===
+	private TabPollutantTaxCap pollTaxCapTab;
+	private TabMarketShare techMarketShareTab;
+	private TabTechBound techBoundTab;
+	private TabTechAvailable techAvailTab;
+	private TabFixedDemand fixedDemandTab;
+	private TabTechParam techParamTab;
+	private TabTechTax techTaxTab;
+	private TabFuelPriceAdj fuelPriceAdjTab;
+	private TabCafeStd cafeStdTab;
+	private TabXMLList xmlListTab;
+	private PolicyTab currentTab;
+
+	// === State and Task Management ===
+	private Task<?> saveTask;
+	private Thread saveThread;
+	private Stage stageWithTabs;
+	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
 
 	/**
 	 * Constructor for PaneNewScenarioComponent. Initializes UI components and event handlers.
 	 */
 	public PaneNewScenarioComponent() {
-		vBox.setStyle(styles.getFontStyle());
+		mainVBox.setStyle(styles.getFontStyle());
 		initializeButtons();
 		initializeComponentLibraryTable();
 		setupEventHandlers();
-		vBox.getChildren().addAll(ComponentLibraryTable.getTableComponents());
-		vBox.prefWidthProperty().bind(Client.primaryStage.widthProperty().multiply(4.0 / 7.0));
+		mainVBox.getChildren().addAll(ComponentLibraryTable.getTableComponents());
+		mainVBox.prefWidthProperty().bind(Client.primaryStage.widthProperty().multiply(4.0 / 7.0));
 	}
 
 	// === Initialization Methods ===
 	private void initializeButtons() {
-		Client.buttonNewComponent = utils.createButton("New", styles.getBigButtonWidth(),
+		Client.buttonNewComponent = utils.createButton(BUTTON_LABEL_NEW, styles.getBigButtonWidth(),
 				"New: Open dialog to create new scenario component", "add");
-		Client.buttonEditComponent = utils.createButton("Edit", styles.getBigButtonWidth(),
+		Client.buttonEditComponent = utils.createButton(BUTTON_LABEL_EDIT, styles.getBigButtonWidth(),
 				"Edit: Edit selected scenario component", "edit");
 		Client.buttonEditComponent.setDisable(true);
-		Client.buttonBrowseComponentLibrary = utils.createButton("Browse", styles.getBigButtonWidth(),
+		Client.buttonBrowseComponentLibrary = utils.createButton(BUTTON_LABEL_BROWSE, styles.getBigButtonWidth(),
 				"Browse: Open scenario component library folder", "open_folder");
-		Client.buttonDeleteComponent = utils.createButton("Delete", styles.getBigButtonWidth(),
+		Client.buttonDeleteComponent = utils.createButton(BUTTON_LABEL_DELETE, styles.getBigButtonWidth(),
 				"Delete: Remove selected scenario component", "delete");
 		Client.buttonDeleteComponent.setDisable(true);
-		Client.buttonRefreshComponents = utils.createButton("Refresh", styles.getBigButtonWidth(),
+		Client.buttonRefreshComponents = utils.createButton(BUTTON_LABEL_REFRESH, styles.getBigButtonWidth(),
 				"Refresh: Reload list of candidate scenario components", "refresh");
 	}
 
@@ -163,7 +178,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 		try {
 			refreshComponentLibraryTable();
 		} catch (Exception exception) {
-			utils.warningMessage("Problem loading scenario component files.");
+			utils.warningMessage(ERROR_LOADING_COMPONENTS);
 			System.out.println("Error loading scenario component files from:");
 			System.out.println("    " + vars.getScenarioComponentsDir());
 			System.out.println("Error: " + exception);
@@ -191,37 +206,31 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 */
 	private void handleEditComponent() {
 		ObservableList<ComponentRow> selectedComponentRows = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
-		// Only allow editing if exactly one component is selected
-		if (selectedComponentRows.size() != 1) {
-			utils.showInformationDialog("Information", "Unsupported action",
-					"Editing requires exactly one scenario component to be selected.");
+		if (selectedComponentRows == null || selectedComponentRows.size() != 1) {
+			utils.showInformationDialog("Information", INFO_UNSUPPORTED_ACTION, INFO_EDIT_REQUIRES_ONE);
 			return;
 		}
 		String componentFilePath = selectedComponentRows.get(0).getAddress();
 		System.out.println("Editing component " + componentFilePath);
-		// If the file is an XML, open it in the XML editor
 		if (componentFilePath.toLowerCase().endsWith(".xml")) {
 			String xmlFilePath = vars.getScenarioComponentsDir() + File.separator + componentFilePath;
 			files.showFileInXmlEditor(xmlFilePath);
 		} else {
 			String tabType = null;
 			ArrayList<String> fileContents = files.getStringArrayFromFile(componentFilePath, null);
-			// Try to determine the tab type from the file's first line or header
-			if (fileContents.size() > 1) {
+			if (fileContents != null && fileContents.size() > 1) {
 				String firstLine = fileContents.get(0);
-				if (firstLine.indexOf("xmllist") > -1) {
-					tabType = "XML List";
+				if (firstLine.contains(XML_LIST_KEYWORD)) {
+					tabType = TAB_XML_LIST;
 				}
 			}
-			// If not found, search for a header line indicating the scenario component type
-			if (tabType == null) {
+			if (tabType == null && fileContents != null) {
 				for (String line : fileContents) {
 					if (line.startsWith("#Scenario component type:")) {
 						tabType = line.substring(line.indexOf(":") + 1).trim();
 					}
 				}
 			}
-			// Open the dialog for editing the component with the detected tab type
 			showComponentDialog(null, null, Client.primaryStage, tabType, fileContents);
 		}
 	}
@@ -238,35 +247,30 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 
 	private void handleDeleteComponent() {
 		ObservableList<ComponentRow> selectedComponentRows = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
-		// Prevent deletion if any selected component is used in a scenario
+		if (selectedComponentRows == null) return;
 		if (checkIfComponentsAreUsed(selectedComponentRows)) {
-			String message = "Cannot delete selected scenario component since it is used in a scenario.";
-			utils.warningMessage(message);
+			utils.warningMessage(WARNING_COMPONENT_USED);
 			return;
 		}
-		// Confirm with the user before deleting
 		if (!utils.confirmDelete())
 			return;
 		List<ComponentRow> componentsToRemove = new ArrayList<>();
 		for (ComponentRow componentRow : selectedComponentRows) {
 			String componentFilePath = componentRow.getAddress();
 			String trashFileName = componentRow.getFileName();
-			// Remove any directory path from the filename for trash
-			if (trashFileName.indexOf(File.separator) > 0)
+			if (trashFileName.contains(File.separator))
 				trashFileName = trashFileName.substring(trashFileName.lastIndexOf(File.separator) + 1);
 			String trashFilePath = vars.getTrashDir() + File.separator + trashFileName;
 			try {
-				// Move the file to the trash directory, replacing if it already exists
 				Files.move(Paths.get(componentFilePath), Paths.get(trashFilePath),
 						StandardCopyOption.REPLACE_EXISTING);
 				componentsToRemove.add(componentRow);
 			} catch (Exception exception) {
-				utils.warningMessage("Problem moving file " + componentFilePath + " to trash");
+				utils.warningMessage(ERROR_MOVING_FILE + componentFilePath + " to trash");
 				System.out.println("error:" + exception);
 				utils.exitOnException();
 			}
 		}
-		// Remove the deleted components from the table after all moves are complete
 		ComponentLibraryTable.removeFromListOfFiles(javafx.collections.FXCollections.observableArrayList(componentsToRemove));
 	}
 
@@ -276,27 +280,19 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 * @return true if any component is used, false otherwise
 	 */
 	private boolean checkIfComponentsAreUsed(ObservableList<ComponentRow> selectedFiles) {
-		boolean b = false;
-
-		// todo: add logic to check to see if items for deletion exist in any of the
-		// scenarios in the scenario library
-		ObservableList<ScenarioRow> scenario_library = ScenarioTable.listOfScenarioRuns;
-		for (int s = 0; s < scenario_library.size(); s++) {
-			if (!b) {
-				ScenarioRow scenario = scenario_library.get(s);
-				String components = scenario.getComponents();
-				if (components.length() > 0) {
-					for (int c = 0; c < selectedFiles.size(); c++) {
-						String file_to_delete = selectedFiles.get(c).getFileName();
-						if (components.indexOf(file_to_delete) > -1)
-							b = true;
-						break;
-					}
+		if (selectedFiles == null) return false;
+		ObservableList<ScenarioRow> scenarioLibrary = ScenarioTable.listOfScenarioRuns;
+		for (ScenarioRow scenario : scenarioLibrary) {
+			String components = scenario.getComponents();
+			if (components.length() > 0) {
+				for (ComponentRow selectedFile : selectedFiles) {
+					String fileToDelete = selectedFile.getFileName();
+					if (components.contains(fileToDelete))
+						return true;
 				}
 			}
 		}
-
-		return b;
+		return false;
 	}
 
 	/**
@@ -317,10 +313,9 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 		double dialogWidth = 950;
 		double dialogHeight = 635;
 
-		// === Grouped Dialog UI Elements ===
 		hBoxButtons = createButtonHBox();
-		buttonSaveComponent = createDialogButton("Save");
-		buttonClose = createDialogButton("Close");
+		buttonSaveComponent = createDialogButton(BUTTON_LABEL_SAVE);
+		buttonClose = createDialogButton(BUTTON_LABEL_CLOSE);
 		hBoxButtons.getChildren().addAll(buttonSaveComponent, buttonClose);
 		hBoxButtons.setStyle(styles.getStyle4());
 		hBoxButtons.setSpacing(5.);
@@ -351,11 +346,8 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 		fixedDemandTab.setClosable(false);
 
 		TabPane addComponentTabPane = new TabPane();
-
-		// hiding techParamTab for now until more testing
 		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, techBoundTab,
 				techTaxTab, cafeStdTab, techParamTab, fuelPriceAdjTab, fixedDemandTab);
-
 		addComponentTabPane.setStyle(styles.getStyle1b());
 		addComponentTabPane.setPrefHeight(dialogHeight - 25);
 
@@ -364,10 +356,8 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 
 		stageWithTabs.initOwner(mainStage);
 		stageWithTabs.initModality(APPLICATION_MODAL);
-
 		stageWithTabs.setScene(new Scene(dialogPane, dialogWidth, dialogHeight));
-
-		stageWithTabs.setTitle("New Scenario Component Creator");
+		stageWithTabs.setTitle(DIALOG_TITLE_NEW_COMPONENT);
 
 		stageWithTabs.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
@@ -395,69 +385,62 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 		});
 
 		buttonSaveComponent.setOnAction(e -> {
-
 			String which = addComponentTabPane.getSelectionModel().getSelectedItem().getText();
-			tab = getTabByName(which);
-			if (tab == null) {
-				utils.warningMessage("Unknown tab selected: " + which);
+			currentTab = getTabByName(which);
+			if (currentTab == null) {
+				utils.warningMessage(WARNING_UNKNOWN_TAB + which);
 				return;
 			}
-			progressBar.progressProperty().bind(tab.getProgressBar().progressProperty());
+			progressBar.progressProperty().bind(currentTab.getProgressBar().progressProperty());
 
 			saveTask = new Task<Integer>() {
-
 				@Override
 				public Integer call() throws Exception {
-					tab.saveScenarioComponent();
+					currentTab.saveScenarioComponent();
 					return 1;
 				}
-
 				@Override
 				protected void succeeded() {
 					super.succeeded();
 					Platform.runLater(() -> {
 						System.out.println("Done!");
-						saveComponentFile(tab);
+						saveComponentFile(currentTab);
 					});
 				}
-
 				@Override
 				protected void cancelled() {
 					super.cancelled();
 					Platform.runLater(() -> {
 						System.out.println("Cancelled!");
-						utils.warningMessage("Process of building scenario component cancelled.");
+						utils.warningMessage(WARNING_PROCESS_CANCELLED);
 						enableButtons();
-						tab.resetFileContent();
-						tab.resetFilenameSuggestion();
-						tab.resetProgressBar();
+						currentTab.resetFileContent();
+						currentTab.resetFilenameSuggestion();
+						currentTab.resetProgressBar();
 					});
 				}
-
 				@Override
 				protected void failed() {
 					super.failed();
 					Platform.runLater(() -> {
 						System.out.println("Failed!");
-					 utils.warningMessage("Process of building scenario component failed.");
+						utils.warningMessage(WARNING_PROCESS_FAILED);
 						enableButtons();
-						tab.resetFileContent();
-						tab.resetFilenameSuggestion();
-						tab.resetProgressBar();
+						currentTab.resetFileContent();
+						currentTab.resetFilenameSuggestion();
+						currentTab.resetProgressBar();
 					});
 				}
 			};
-
 			saveThread = new Thread(saveTask);
 			saveThread.setDaemon(true);
 			saveThread.start();
-
 			disableButtons();
 		});
 
 		if (whichTab != null) {
-			tab = getTabByName(whichTab);
-			if (tab != null) {
+			currentTab = getTabByName(whichTab);
+			if (currentTab != null) {
 				selectTabAndLoadContent(whichTab, contentToLoad, addComponentTabPane);
 			}
 		}
@@ -501,7 +484,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 
 	/**
 	 * Loads content into the specified PolicyTab and selects it in the TabPane.
-	 * @param tab The PolicyTab to load content into
+	 * @param whichTab The tab name
 	 * @param contentToLoad The content to load
 	 * @param tp The TabPane containing the tabs
 	 */
@@ -522,100 +505,84 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 * @param tab The PolicyTab containing the file content and filename suggestion
 	 */
 	public void saveComponentFile(PolicyTab tab) {
-		String filename_suggestion = tab.getFilenameSuggestion();
-		String file_content = tab.getFileContent();
-		boolean use_temp_file = false;
-		if (file_content.equals("use temp file")) {
-			use_temp_file = true;
+		if (tab == null) return;
+		String filenameSuggestion = tab.getFilenameSuggestion();
+		String fileContent = tab.getFileContent();
+		boolean useTempFile = false;
+		if (fileContent.equals("use temp file")) {
+			useTempFile = true;
 		}
-
-		if ((filename_suggestion != null) && (!filename_suggestion.equals(""))) {
-			// opens the browser for saving
+		if ((filenameSuggestion != null) && (!filenameSuggestion.equals(""))) {
 			enableButtons();
 			tab.resetFileContent();
 			tab.resetFilenameSuggestion();
 			tab.resetProgressBar();
-
 			String filter1 = "";
 			String filter2 = "";
-
-			if (file_content.indexOf("xmllist") >= 0) {
-				filter1 = "TXT files (*.txt)";
-				filter2 = "txt";
-				if ((!filename_suggestion.endsWith(".txt")) && (!filename_suggestion.endsWith(".TXT")))
-					filename_suggestion += ".txt";
+			if (fileContent.contains(XML_LIST_KEYWORD)) {
+				filter1 = FILE_FILTER_TXT;
+				filter2 = FILE_EXT_TXT;
+				if ((!filenameSuggestion.endsWith(".txt")) && (!filenameSuggestion.endsWith(".TXT")))
+					filenameSuggestion += ".txt";
 			} else {
-				filter1 = "CSV files (*.csv)";
-				filter2 = "csv";
-				if ((!filename_suggestion.endsWith(".csv")) && (!filename_suggestion.endsWith(".CSV")))
-					filename_suggestion += ".csv";
+				filter1 = FILE_FILTER_CSV;
+				filter2 = FILE_EXT_CSV;
+				if ((!filenameSuggestion.endsWith(".csv")) && (!filenameSuggestion.endsWith(".CSV")))
+					filenameSuggestion += ".csv";
 			}
-
 			File file = FileChooserPlus.showSaveDialog(stageWithTabs, "Save Scenario Component",
-					new File(vars.getScenarioComponentsDir()), filename_suggestion,
+					new File(vars.getScenarioComponentsDir()), filenameSuggestion,
 					FileChooserPlus.createExtensionFilter(filter1, filter2));
-
 			if (file == null)
 				return;
-			if (!use_temp_file) {
-				files.saveFile(file_content, file);
+			if (!useTempFile) {
+				files.saveFile(fileContent, file);
 			} else {
-				String temp_policy_filename = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator
-						+ "temp" + File.separator + "temp_policy_file.txt";
+				String tempPolicyFilename = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator
+						+ "temp" + File.separator + TEMP_POLICY_FILENAME;
 				try {
-					Files.move(Paths.get(temp_policy_filename), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.move(Paths.get(tempPolicyFilename), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				} catch (Exception e) {
-					System.out.println("Error creating policy file: " + e);
+					System.out.println(ERROR_CREATING_POLICY_FILE + e);
 				}
 			}
-
 			ComponentRow p1 = new ComponentRow(file.getName(), file.getPath(), new Date());
 			ComponentRow[] fileArr = { p1 };
-
-			// Dan: testing something new
 			ComponentLibraryTable.addOrUpdateFiles(fileArr);
 		}
-
 		refreshComponentLibraryTable();
-
 	}
 
 	/**
 	 * Disables the Save and Close buttons in the component dialog.
 	 */
 	public void disableButtons() {
-		buttonSaveComponent.setDisable(true);
-		buttonClose.setDisable(true);
+		if (buttonSaveComponent != null) buttonSaveComponent.setDisable(true);
+		if (buttonClose != null) buttonClose.setDisable(true);
 	}
 
 	/**
 	 * Enables the Save and Close buttons in the component dialog.
 	 */
 	public void enableButtons() {
-		buttonSaveComponent.setDisable(false);
-		buttonClose.setDisable(false);
+		if (buttonSaveComponent != null) buttonSaveComponent.setDisable(false);
+		if (buttonClose != null) buttonClose.setDisable(false);
 	}
 
 	/**
 	 * Refreshes the scenario component library table by scanning the components directory.
 	 */
 	public void refreshComponentLibraryTable() {
-
 		File folder = new File(vars.getScenarioComponentsDir());
-
-		ArrayList<File> fileList = new ArrayList<File>();
-		fileList = buildFileList(folder.toPath());
+		ArrayList<File> fileList = buildFileList(folder.toPath());
 		ComponentRow[] fileArr = new ComponentRow[fileList.size()];
-
 		int k = 0;
-		for (int i = 0; i < fileList.size(); i++) {
-			String relative_name = files.getRelativePath(folder.toString(), fileList.get(i).getAbsolutePath());
-			ComponentRow p1 = new ComponentRow(relative_name, fileList.get(i).getPath(),
-					new Date(fileList.get(i).lastModified()));
+		for (File file : fileList) {
+			String relativeName = files.getRelativePath(folder.toString(), file.getAbsolutePath());
+			ComponentRow p1 = new ComponentRow(relativeName, file.getPath(), new Date(file.lastModified()));
 			fileArr[k] = p1;
 			k++;
 		}
-
 		ComponentLibraryTable.createListOfFiles(fileArr);
 	}
 
@@ -625,23 +592,18 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 * @return ArrayList of File objects found in the directory and subdirectories
 	 */
 	public ArrayList<File> buildFileList(Path path) {
-		ArrayList<File> rtn_array = new ArrayList<File>();
+		ArrayList<File> rtnArray = new ArrayList<>();
 		File root = path.toFile();
 		File[] list = root.listFiles();
-
-		if (list == null)
-			return rtn_array;
-
+		if (list == null) return rtnArray;
 		for (File f : list) {
 			if (f.isDirectory()) {
-				rtn_array.addAll(buildFileList(f.toPath()));
-
+				rtnArray.addAll(buildFileList(f.toPath()));
 			} else {
-
-				rtn_array.add(f);
+				rtnArray.add(f);
 			}
 		}
-		return rtn_array;
+		return rtnArray;
 	}
 
 	/**
@@ -649,6 +611,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 * @param file List of File objects to load
 	 */
 	public void loadFile(List<File> file) {
+		if (file == null) return;
 		int k = 0;
 		ComponentRow[] fileArr = new ComponentRow[file.size()];
 		for (File i : file) {
@@ -664,7 +627,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	 * @return VBox with the component library table
 	 */
 	public VBox getvBox() {
-		return vBox;
+		return mainVBox;
 	}
 
 	private VBox createMainVBox() {
@@ -674,8 +637,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 	}
 
 	private HBox createButtonHBox() {
-		HBox hbox = new HBox(1);
-		return hbox;
+		return new HBox(1);
 	}
 
 	private ProgressBar createProgressBar(double width) {

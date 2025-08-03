@@ -96,9 +96,9 @@ public final class SetupMenuTools {
         float sizeInGB = (float) files.getDirectorySize(databaseFolder.toPath()) / GIGABYTE;
         
         String message = String.format("Current size is %.2f GB.%s", sizeInGB, vars.getEol());
-        String recommendation = String.format("Max advisable size is %d GB.", vars.maxDatabaseSizeGB);
+        String recommendation = String.format("Max advisable size is %d GB.", vars.getMaxDatabaseSizeGB());
 
-        if (sizeInGB > vars.maxDatabaseSizeGB * 0.75) {
+        if (sizeInGB > vars.getMaxDatabaseSizeGB() * 0.75) {
             message += "WARNING! " + recommendation + " Please see Users Guide on managing database size." + vars.getEol();
         } else {
             message += recommendation + vars.getEol();

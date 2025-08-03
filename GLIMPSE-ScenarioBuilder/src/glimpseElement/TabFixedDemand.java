@@ -33,9 +33,11 @@
 package glimpseElement;
 
 import java.util.ArrayList;
+import java.util.List;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -77,7 +79,36 @@ import javafx.stage.Stage;
  * <p>This class is not thread-safe and should be used only on the JavaFX Application Thread.</p>
  */
 public class TabFixedDemand extends PolicyTab implements Runnable {
-    // Utility singletons for style, variables, and helpers
+    // === Constants for UI Strings and Options ===
+    private static final String LABEL_SECTOR = "Sector: ";
+    private static final String LABEL_UNITS = "Units: ";
+    private static final String LABEL_TYPE = "Type: ";
+    private static final String LABEL_START_YEAR = "Start Year: ";
+    private static final String LABEL_END_YEAR = "End Year: ";
+    private static final String LABEL_INITIAL = "Initial: ";
+    private static final String LABEL_FINAL = "Final: ";
+    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
+    private static final String LABEL_VALUES = "Values: ";
+    private static final String LABEL_SPECIFICATION = "Specification:";
+    private static final String LABEL_POPULATE = "Populate:";
+    private static final String BUTTON_POPULATE = "Populate";
+    private static final String BUTTON_DELETE = "Delete";
+    private static final String BUTTON_CLEAR = "Clear";
+    private static final String MOD_TYPE_INITIAL_FINAL = "Initial and Final";
+    private static final String MOD_TYPE_GROWTH_YR = "Initial w/% Growth/yr";
+    private static final String MOD_TYPE_GROWTH_PD = "Initial w/% Growth/pd";
+    private static final String MOD_TYPE_DELTA_YR = "Initial w/Delta/yr";
+    private static final String MOD_TYPE_DELTA_PD = "Initial w/Delta/pd";
+    private static final String[] MODIFICATION_TYPES = {
+            MOD_TYPE_INITIAL_FINAL, MOD_TYPE_GROWTH_YR, MOD_TYPE_GROWTH_PD, MOD_TYPE_DELTA_YR, MOD_TYPE_DELTA_PD
+    };
+    private static final String SECTOR_OTHER = "Other";
+    private static final String SECTOR_SELECT_ONE = "Select One";
+    private static final double MAX_WIDTH = 195;
+    private static final double MIN_WIDTH = 105;
+    private static final double PREF_WIDTH = 195;
+
+    // === Utility singletons ===
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
     private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
@@ -87,35 +118,34 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final GridPane gridPaneLeft = new GridPane();
     private final VBox vBoxCenter = new VBox();
     private final HBox hBoxHeaderCenter = new HBox();
-    private final HBox hBoxHeaderRight = new HBox();
     private final VBox vBoxRight = new VBox();
 
     // === UI controls ===
-    private final Label labelSector = utils.createLabel("Sector: ", 125);
+    private final Label labelSector = utils.createLabel(LABEL_SECTOR, 125);
     private final ComboBox<String> comboBoxSector = utils.createComboBoxString();
-    private final Label labelTextFieldUnits = utils.createLabel("Units: ", 125);
-    private final Label labelTextFieldUnits2 = utils.createLabel("", 125);
-    private final Label labelModificationType = utils.createLabel("Type: ", 125);
+    private final Label labelUnits = utils.createLabel(LABEL_UNITS, 125);
+    private final Label labelUnitsValue = utils.createLabel("", 125);
+    private final Label labelModificationType = utils.createLabel(LABEL_TYPE, 125);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-    private final Label labelStartYear = utils.createLabel("Start Year: ", 125);
+    private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, 125);
     private final TextField textFieldStartYear = new TextField("2020");
-    private final Label labelEndYear = utils.createLabel("End Year: ", 125);
+    private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, 125);
     private final TextField textFieldEndYear = new TextField("2050");
-    private final Label labelInitialAmount = utils.createLabel("Initial: ", 125);
+    private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL, 125);
     private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel("Final: ", 125);
+    private final Label labelGrowth = utils.createLabel(LABEL_FINAL, 125);
     private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel("Period Length: ", 125);
+    private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, 125);
     private final TextField textFieldPeriodLength = new TextField("5");
-    private final Label labelValue = utils.createLabel("Values: ", 125);
-    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
+    private final Label labelValue = utils.createLabel(LABEL_VALUES, 125);
+    private final Button buttonPopulate = utils.createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
+    private final Button buttonDelete = utils.createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
+    private final Button buttonClear = utils.createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
     private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
-    // Sector info for populating output and units (sector_info[i][0]=name, [2]=units)
-    private final String[][] sector_info;
+    // === Data ===
+    private final String[][] sectorInfo;
 
     /**
      * Description text for the tab (not currently used in UI).
@@ -134,7 +164,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     public TabFixedDemand(String title, Stage stageX) {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
-        sector_info = vars.getSectorInfo();
+        sectorInfo = vars.getSectorInfo();
         setupLayout();
         setupActions();
         VBox tabLayout = new VBox(gridPanePresetModification);
@@ -146,10 +176,10 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      */
     private void setupLayout() {
         // Left column
-        gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelSector, new Label(), labelTextFieldUnits, new Separator(),
-                utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth);
-        gridPaneLeft.addColumn(1, comboBoxSector, new Label(), labelTextFieldUnits2, new Separator(), new Label(),
+        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelSector, new Label(), labelUnits, new Separator(),
+                utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth);
+        gridPaneLeft.addColumn(1, comboBoxSector, new Label(), labelUnitsValue, new Separator(), new Label(),
                 comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
         gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
@@ -178,25 +208,23 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Sets up actions and listeners for UI controls (combo boxes, buttons).
+     * Uses Platform.runLater for thread safety if called off JavaFX thread.
      */
     private void setupActions() {
         setupComboBoxSector();
         comboBoxSector.getSelectionModel().selectFirst();
-        comboBoxModificationType.getItems().addAll(
-                "Initial and Final", "Initial w/% Growth/yr", "Initial w/% Growth/pd",
-                "Initial w/Delta/yr", "Initial w/Delta/pd");
+        comboBoxModificationType.getItems().addAll(MODIFICATION_TYPES);
         comboBoxModificationType.getSelectionModel().selectFirst();
-        double max_wid = 195, min_wid = 105, pref_wid = 195;
-        comboBoxSector.setMaxWidth(max_wid);
-        comboBoxModificationType.setMaxWidth(max_wid);
-        comboBoxSector.setMinWidth(min_wid);
-        comboBoxModificationType.setMinWidth(min_wid);
-        comboBoxSector.setPrefWidth(pref_wid);
-        comboBoxModificationType.setPrefWidth(pref_wid);
+        comboBoxSector.setMaxWidth(MAX_WIDTH);
+        comboBoxModificationType.setMaxWidth(MAX_WIDTH);
+        comboBoxSector.setMinWidth(MIN_WIDTH);
+        comboBoxModificationType.setMinWidth(MIN_WIDTH);
+        comboBoxSector.setPrefWidth(PREF_WIDTH);
+        comboBoxModificationType.setPrefWidth(PREF_WIDTH);
         comboBoxSector.setOnAction(e -> {
             String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
             if (selectedItem == null) return;
-            if ("Other".equals(selectedItem)) {
+            if (SECTOR_OTHER.equals(selectedItem)) {
                 // set other sector box to visible and enable
             } else {
                 updateSectorOutputAndUnits();
@@ -220,32 +248,33 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      */
     private void updateGrowthLabel() {
         String type = comboBoxModificationType.getSelectionModel().getSelectedItem();
+        if (type == null) return;
         switch (type) {
-            case "Initial w/% Growth/yr":
-            case "Initial w/% Growth/pd":
+            case MOD_TYPE_GROWTH_YR:
+            case MOD_TYPE_GROWTH_PD:
                 labelGrowth.setText("Growth (%):");
                 break;
-            case "Initial w/Delta/yr":
-            case "Initial w/Delta/pd":
+            case MOD_TYPE_DELTA_YR:
+            case MOD_TYPE_DELTA_PD:
                 labelGrowth.setText("Delta:");
                 break;
-            case "Initial and Final":
+            case MOD_TYPE_INITIAL_FINAL:
             default:
-                labelGrowth.setText("Final:");
+                labelGrowth.setText(LABEL_FINAL);
                 break;
         }
     }
 
     /**
-     * Populates the sector combo box with available sectors from sector_info.
+     * Populates the sector combo box with available sectors from sectorInfo.
      * Adds an "Other" option for custom sectors.
      */
     private void setupComboBoxSector() {
         try {
-            for (String[] sector : sector_info) {
+            for (String[] sector : sectorInfo) {
                 comboBoxSector.getItems().add(sector[0]);
             }
-            comboBoxSector.getItems().add("Other");
+            comboBoxSector.getItems().add(SECTOR_OTHER);
         } catch (Exception e) {
             utils.warningMessage("Problem reading sector list.");
             System.out.println("  ---> " + e);
@@ -254,14 +283,15 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Updates the units label based on the selected sector.
-     * Looks up units in sector_info and displays them next to the sector.
+     * Looks up units in sectorInfo and displays them next to the sector.
      */
     private void updateSectorOutputAndUnits() {
         String selectedSector = comboBoxSector.getValue();
-        labelTextFieldUnits2.setText("");
-        for (String[] sector : sector_info) {
+        labelUnitsValue.setText("");
+        if (selectedSector == null) return;
+        for (String[] sector : sectorInfo) {
             if (selectedSector.equals(sector[0])) {
-                labelTextFieldUnits2.setText(sector[2]);
+                labelUnitsValue.setText(sector[2]);
             }
         }
     }
@@ -271,13 +301,13 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      * @return 2D array of calculated values for each year/period
      */
     private double[][] calculateValues() {
-        String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int start_year = Integer.parseInt(textFieldStartYear.getText());
-        int end_year = Integer.parseInt(textFieldEndYear.getText());
-        double initial_value = Double.parseDouble(textFieldInitialAmount.getText());
+        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
+        int startYear = Integer.parseInt(textFieldStartYear.getText());
+        int endYear = Integer.parseInt(textFieldEndYear.getText());
+        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
         double growth = Double.parseDouble(textFieldGrowth.getText());
-        int period_length = Integer.parseInt(textFieldPeriodLength.getText());
-        return utils.calculateValues(calc_type, start_year, end_year, initial_value, growth, period_length);
+        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
+        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength);
     }
 
     /**
@@ -285,7 +315,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      */
     @Override
     public void run() {
-        saveScenarioComponent();
+        Platform.runLater(this::saveScenarioComponent);
     }
 
     /**
@@ -311,21 +341,25 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             // Sector
-            String sector_name = comboBoxSector.getSelectionModel().getSelectedItem().trim();
-            filenameSuggestion = sector_name + "fxDMD";
-            ArrayList<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();
-            String[] year_list = new String[dataArrayList.size()];
-            String[] value_list = new String[dataArrayList.size()];
-            for (int i = 0; i < dataArrayList.size(); i++) {
-                String str = dataArrayList.get(i).replace(" ", "").trim();
-                year_list[i] = utils.splitString(str, ",")[0];
-                value_list[i] = utils.splitString(str, ",")[1];
+            String sectorName = comboBoxSector.getSelectionModel().getSelectedItem();
+            if (sectorName != null) sectorName = sectorName.trim();
+            filenameSuggestion = sectorName + "fxDMD";
+            List<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();
+            List<String> yearList = new ArrayList<>();
+            List<String> valueList = new ArrayList<>();
+            for (String str : dataArrayList) {
+                String s = str.replace(" ", "").trim();
+                String[] split = utils.splitString(s, ",");
+                if (split.length > 1) {
+                    yearList.add(split[0]);
+                    valueList.add(split[1]);
+                }
             }
             // CSV content
             fileContent += "region,sector,sector,year,value" + vars.getEol();
             for (String region : listOfSelectedLeaves) {
-                for (int i = 0; i < year_list.length; i++) {
-                    fileContent += region + "," + sector_name + "," + sector_name + "," + year_list[i] + "," + value_list[i] + vars.getEol();
+                for (int i = 0; i < yearList.size(); i++) {
+                    fileContent += region + "," + sectorName + "," + sectorName + "," + yearList.get(i) + "," + valueList.get(i) + vars.getEol();
                 }
             }
             System.out.println("here it would construct csv file.");
@@ -340,20 +374,20 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      * @return Metadata string for file header
      */
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
-        StringBuilder rtn_str = new StringBuilder();
-        rtn_str.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-        rtn_str.append("#Scenario component type: Fixed Demand").append(vars.getEol());
-        rtn_str.append("#Sector:").append(comboBoxSector.getValue()).append(vars.getEol());
+        StringBuilder rtnStr = new StringBuilder();
+        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: Fixed Demand").append(vars.getEol());
+        rtnStr.append("#Sector:").append(comboBoxSector.getValue()).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtn_str.append("#Regions: ").append(states).append(vars.getEol());
-        ArrayList<String> table_content = paneForComponentDetails.getDataYrValsArrayList();
-        for (String row : table_content) {
-            rtn_str.append("#Table data:").append(row).append(vars.getEol());
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        List<String> tableContent = paneForComponentDetails.getDataYrValsArrayList();
+        for (String row : tableContent) {
+            rtnStr.append("#Table data:").append(row).append(vars.getEol());
         }
-        rtn_str.append("#################################################").append(vars.getEol());
-        return rtn_str.toString();
+        rtnStr.append("#################################################").append(vars.getEol());
+        return rtnStr.toString();
     }
 
     /**
@@ -403,33 +437,34 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      */
     protected boolean qaInputs() {
         TreeView<String> tree = paneForCountryStateTree.getTree();
-        int error_count = 0;
+        int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
             if (utils.getAllSelectedLeaves(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
-                error_count++;
+                errorCount++;
             }
             if (paneForComponentDetails.table.getItems().size() == 0) {
                 message.append("Data table must have at least one entry").append(vars.getEol());
-                error_count++;
+                errorCount++;
             }
-            if (comboBoxSector.getSelectionModel().getSelectedItem().equals("Select One")) {
+            String selected = comboBoxSector.getSelectionModel().getSelectedItem();
+            if (selected == null || selected.equals(SECTOR_SELECT_ONE)) {
                 message.append("Sector comboBox must have a selection").append(vars.getEol());
-                error_count++;
+                errorCount++;
             }
         } catch (Exception e1) {
-            error_count++;
+            errorCount++;
             message.append("Error in QA of entries").append(vars.getEol());
         }
-        if (error_count > 0) {
-            if (error_count == 1) {
+        if (errorCount > 0) {
+            if (errorCount == 1) {
                 utils.warningMessage(message.toString());
             } else {
                 utils.warningMessage("More than one issue with inputs");
                 utils.displayString(message.toString(), "Parsing Errors");
             }
         }
-        return error_count == 0;
+        return errorCount == 0;
     }
 }

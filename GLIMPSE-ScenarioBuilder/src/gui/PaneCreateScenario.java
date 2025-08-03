@@ -535,7 +535,7 @@ class PaneCreateScenario extends ScenarioBuilder {// VBox {
 		String database_name_short = database_name.substring(database_name.lastIndexOf(File.separator) + 1);
 		Label databaseNameAndSize = new Label(database_name_short+database_size_str);
 
-		if (database_size>=vars.maxDatabaseSizeGB) {
+		if (database_size>=vars.getMaxDatabaseSizeGB()) {
 			boolean b=utils.confirmAction("Database size is dangerously high. See User's Manual for instructions. Continue?");
 			if (!b) return null;
 		}

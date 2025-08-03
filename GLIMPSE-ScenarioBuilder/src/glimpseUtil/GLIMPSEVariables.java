@@ -26,1553 +26,2163 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package glimpseUtil;
 
 import java.io.File;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
-import java.lang.management.OperatingSystemMXBean;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
+import java.util.Optional;
 
+/**
+ * Holds global variables and configuration for GLIMPSE.
+ * Provides accessors and mutators for all configuration options.
+ *
+ * @author US EPA
+ */
 public class GLIMPSEVariables {
 
-	protected static final GLIMPSEVariables instance = new GLIMPSEVariables();
-	
-	private GLIMPSEUtils utils;
-	private GLIMPSEFiles files;
-	private GLIMPSEStyles styles;
-
-    private String GLIMPSEVersion="GLIMPSE-CE v1.2";
-	
-	//other parameters
-	public int ScenarioBuilderWidth = 1200;
-	public int ScenarioBuilderHeight = 800;
-	public float maxDatabaseSizeGB=40;
-	private String executeCmdShort = "cmd /C ";
-	private String executeCmd = "cmd /C start ";
-	private String buildInfo = GLIMPSEVersion;
-	private String runQueueStr = "Queue is empty.";
-	private String eol = System.lineSeparator();
-	private String debugCreate = "0";
-	private String debugRename = "0";
-	private String startYearForShare = "2010";
-	public String[][] tech_info = null; 
-	public String[][] sector_info = null;
-	private String allowablePolicyYears = "2020,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100";
-	
-	//parameters from options file
-	private String preferredFontSize = "12";
-	private String useIcons = "false";
-	private String debugRegion = "USA";
-	private boolean isGcamUSA = false;
-	private boolean showSplash = true;
-	private boolean useAllAvailableProcessors = true;
-	private String glimpseDir = null;
-	private String glimpseResourceDir = null; 
-	private String glimpseDocDir = null;
-	private String gCamHomeDir = null;
-	private String gCamSolver = null;
-	private String scenarioBuilderDir = null;
-	private String scenarioBuilderJar = null;
-	private String scenarioBuilderJarDir = null;
-	private String gCamExecutable = null;
-	private String gCamExecutableArgs = " -C ";
-	private String gCamExecutableDir = null;
-	private String modelInterfaceJar = null;
-	private String modelInterfaceJarDir = null;
-	private String modelInterfaceDir = null;
-	private String filesToSave = null;
-	private String scenarioComponentsDir = null;
-	private String scenarioDir = null;
-	private String glimpseLogDir = null;
-	private String resourceDir = null;
-	private String trashDir = null;
-	private String gCamDataDir = null;
-	private String gCamOutputDatabase = null;
-	private String optionsFilename = null;
-	private String xmlLibrary = null;
-	private String textEditor = null;
-	private String xmlEditor = null;
-	private String descriptionText = "";
-	private String stopPeriod = null;	
-	private String stopYear = null; 
-	private int simulationStartYear = 2015;
-	private int simulationLastYear = 2100;
-	private int simulationYearIncrement = 5;
-
-	//customize GLIMPSE to GCAM version
-	private String configurationTemplateFilename = null;
-	private String queryFilename = null;
-	private String favoriteQueryFilename = null;
-	private String tchBndListFilename = null;
-	private String trnVehInfoFilename = null;
-	private String regionListFilename = null; 
-	private String subRegionListFilename = null; 
-	private String presetRegionListFilename = null; 
-	private String csvColumnFilename = null;
-	private String xmlHeaderFilename = null;	
-	private String unitConversionsFilename = null;
-	private String monetaryConversionsFilename = null;
-	private String aboutTextFilename = null; 
-
-	
-	private GLIMPSEVariables() {
-	}
-
-	public static GLIMPSEVariables getInstance() {
-
-		return instance;
-	}
-
-	public void init(GLIMPSEUtils u, GLIMPSEVariables v, GLIMPSEStyles s, GLIMPSEFiles f) {
-		utils = u;
-		styles = s;
-		files = f;
-	}
-	
-	public String getGLIMPSEVersion() {
-		return GLIMPSEVersion;
-	}
-
-	public String getAboutTextFilename() {
-		return aboutTextFilename; 
-	}
-	
-	public void setAboutTextFilename(String s) {
-		aboutTextFilename=s; 
-	}
-	
-	public String getPresetRegionListFilename() {
-		return presetRegionListFilename; 
-	}
-	
-	public void setPresetRegionListFilename(String s) {
-		presetRegionListFilename=s; 
-	}
-
-	public String getSubRegionsFilename() {
-		return subRegionListFilename; 
-	}
-	
-	public void setSubRegionsFilename(String s) {
-		subRegionListFilename=s; 
-	}
-	
-	public String getRegionListFilename() {
-		return regionListFilename; 
-	}
-	
-	public void setRegionListFilename(String s) {
-		regionListFilename=s; 
-	}
-	
-	public int getSimulationStartYear() {
-		return simulationStartYear;
-	}
-	
-	public void setSimulationStartYear(String startYear) {
-		simulationStartYear = utils.convertStringToInt(startYear);
-		return;
-	}
-	
-	public int getSimulationLastYear() {
-		return simulationLastYear;
-	}
-	
-	public String getAllowablePolicyYears() {
-		return allowablePolicyYears;
-	}
-	
-	public void setAllowablePolicyYears(String year_list) {
-		this.allowablePolicyYears=year_list; 
-	}	
-	
-	public void setSimulationLastYear(String lastYear) {
-		simulationLastYear = utils.convertStringToInt(lastYear);
-		return;
-	}
-	
-	public int getSimulationYearIncrement() {
-		return simulationYearIncrement;
-	}
-
-	public void setSimulationYearIncrement(String yearIncrement) {
-		simulationYearIncrement = utils.convertStringToInt(yearIncrement);
-		return;
-	}
-	
-	public boolean getUseAllAvailableProcessors() {
-		return useAllAvailableProcessors;
-	}
-	
-	public void setUseAllAvailableProcessors(boolean b) {
-		useAllAvailableProcessors=b;
-	}
-	
-	public void setUseAllAvailableProcessors(String str) {
-		boolean b=false;
-		if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
-		useAllAvailableProcessors=b;
-	}
-	
-	public boolean getShowSplash() {
-		return showSplash;
-	}
-	
-	public void setShowSplash(boolean b) {
-		showSplash=b;
-	}
-
-	
-	public void setShowSplash(String str) {
-		boolean b=false;
-		if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
-		showSplash=b;
-	}
-
-	public String getDebugRegion() {
-		return debugRegion;
-	}
-
-	public void setDebugRegion(String s) {
-		this.debugRegion = s;
-	}
-	
-	public String getStartYearForShare() {
-		return startYearForShare;
-	}
-	
-	public void setStartYearForShare(String s) {
-		startYearForShare=s;
-	}
-	
-	public String getDebugCreate() {
-		return debugCreate;
-	}
-
-	public void setDebugCreate(String s) {
-		if (s.toLowerCase().equals("true")) { 
-			s="1";
-		} else if (s.toLowerCase().equals("false")) { 
-			s="0";
-		}
-		this.debugCreate = s;
-	}
-	
-	public String getDebugRename() {
-		return debugRename;
-	}
-
-	public void setDebugRename(String s) {
-		this.debugRename = s;
-	}
-	
-	
-	public String getBuildInfo() {
-		return buildInfo;
-	}
-
-	public void setBuildInfo(String s) {
-		this.buildInfo = s;
-	}
-
-	public boolean isGcamUSA() {
-		return isGcamUSA;
-	}
-
-	public void setGcamUSA(boolean b) {
-		this.isGcamUSA = b;
-	}
-
-	public String getExecuteCmdShort() {
-		return executeCmdShort;
-	}
-
-	public void setExecuteCmdShort(String s) {
-		this.executeCmdShort = s;
-	}
-
-	public String getExecuteCmd() {
-		return executeCmd;
-	}
-
-	public void setExecuteCmd(String s) {
-		this.executeCmd = s;
-	}
-
-	public String getGlimpseDir() {
-		return glimpseDir;
-	}
-
-	public void setGlimpseDir(String s) {
-		this.glimpseDir = s;
-	}
-
-	public String getGlimpseResourceDir() {
-		return glimpseResourceDir;
-	}
-
-	public void setGlimpseResourceDir(String s) {
-		this.glimpseResourceDir = s;
-	}
-	
-	public String getGlimpseDocDir() {
-		return glimpseDocDir;
-	}
-
-	public void setGlimpseDocDir(String s) {
-		this.glimpseDocDir = s;
-	}
-	
-	public String getgCamHomeDir() {
-		return gCamHomeDir;
-	}
-
-	public void setgCamHomeDir(String s) {
-	
-		this.gCamHomeDir = s;
-	}
-
-	public String getgCamSolver() {
-		return gCamSolver;
-	}
-
-	public void setgCamSolver(String s) {
-		this.gCamSolver = s;
-	}
-
-	public String scenarioBuilderDir() {
-		return scenarioBuilderDir;
-	}
-
-	public void setScenarioBuilderDir(String s) {
-		this.scenarioBuilderDir = s;
-	}
-
-//	public String getScenarioBuilderJarDir() {
-//		return scenairoBuilderJarDir;
-//	}
-//
-//	public void setScenarioBuilderJarDir(String s) {
-//		this.scenarioBuilderJarDir = s;
-//	}
-	
-	public String getScenarioBuilderJar() {
-		return scenarioBuilderJar;
-	}
-
-	public void setScenarioBuilderJar(String s) {
-		this.scenarioBuilderJar = s;
-	}
-	
-	public String getgCamExecutable() {
-		return gCamExecutable;
-	}
-
-	public void setgCamExecutable(String s) {
-		this.gCamExecutable = s;
-	}
-
-	public String getgCamExecutableArgs() {
-		return gCamExecutableArgs;
-	}
-
-	public void setgCamExecutableArgs(String s) {
-		this.gCamExecutableArgs = s;
-	}
-	
-	public String getgCamExecutableDir() {
-		return gCamExecutableDir;
-	}
-
-	public void setgCamExecutableDir(String s) {
-		this.gCamExecutableDir = s;
-	}
-
-	public String getModelInterfaceJar() {
-		return modelInterfaceJar;
-	}
-
-	public void setModelInterfaceJar(String s) {
-		this.modelInterfaceJar = s;
-	}
-
-	public String getModelInterfaceDir() {
-		return modelInterfaceDir;
-	}
-
-	public void setModelInterfaceDir(String s) {
-		this.modelInterfaceJarDir = s;
-	}
-
-	public String getModelInterfaceJarDir() {
-		return modelInterfaceDir;
-	}
-
-	public void setModelInterfaceJarDir(String s) {
-		this.modelInterfaceJarDir = s;
-	}
-	
-	public String getFilesToSave() {
-		return filesToSave;
-	}
-
-	
-	public void setFilesToSave(String s) {
-		this.filesToSave = s;
-	}
-
-	public String getScenarioComponentsDir() {
-		return scenarioComponentsDir;
-	}
-
-	public void setScenarioComponentsDir(String s) {
-		this.scenarioComponentsDir = s;
-	}
-
-	public String getScenarioDir() {
-		return scenarioDir;
-	}
-
-	public void setScenarioDir(String s) {
-		this.scenarioDir = s;
-	}
-
-	public String getGlimpseLogDir() {
-		return glimpseLogDir;
-	}
-
-	public void setGlimpseLogDir(String s) {
-		glimpseLogDir=s;
-	}
-	
-	public String getQueryFilename() {
-		return queryFilename;
-	}
-
-	public String getFavoriteQueryFilename() {
-		return favoriteQueryFilename;
-	}
-	
-	public void setQueryFilename(String s) {
-		this.queryFilename=s;
-	}
-	
-	public void setUnitConversionsFilename(String s) {
-		this.unitConversionsFilename=s;
-	}
-
-	public String getUnitConversionsFilename() {
-		return unitConversionsFilename;
-	}
-	
-	public String getResourceDir() {
-		return resourceDir;
-	}
-
-	public void setResourceDir(String s) {
-		this.resourceDir = s;
-	}
-
-	public String getTrashDir() {
-		return trashDir;
-	}
-
-	public void setTrashDir(String s) {
-		this.trashDir = s;
-	}
-
-	public String getConfigurationTemplateFilename() {
-		return configurationTemplateFilename;
-	}
-
-	public void setConfigurationTemplateFilename(String s) {
-		this.configurationTemplateFilename = s;
-	}
-
-	public String getTrnVehInfoFilename() {
-		return trnVehInfoFilename;
-	}
-
-	public void setTrnVehInfoFilename(String s) {
-		this.trnVehInfoFilename = s;
-	}
-
-	public String getTchBndListFilename() {
-		return tchBndListFilename;
-	}
-
-	public void setTchBndListFilename(String s) {
-		this.tchBndListFilename = s;
-	}
-
-	public String getgCamDataDir() {
-		return gCamDataDir;
-	}
-
-	public void setgCamDataDir(String s) {
-		this.gCamDataDir = s;
-	}
-
-	public String getgCamOutputDatabase() {
-		return gCamOutputDatabase;
-	}
-
-	public void setgCamOutputDatabase(String s) {
-		this.gCamOutputDatabase = s;
-	}
-	
-
-	public float getMaxDatabaseSize() {
+    // --- Singleton Pattern ---
+    protected static final GLIMPSEVariables INSTANCE = new GLIMPSEVariables();
+
+    private GLIMPSEUtils utils;
+    private GLIMPSEFiles files;
+    private GLIMPSEStyles styles;
+
+    // --- Constants ---
+    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.2";
+    public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
+    public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
+    private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
+    private static final String DEFAULT_EOL = System.lineSeparator();
+    private static final String DEFAULT_ALLOWABLE_POLICY_YEARS = "2020,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100";
+    private static final String DEFAULT_USE_ICONS = "false";
+    private static final String DEFAULT_PREFERRED_FONT_SIZE = "12";
+    private static final String DEFAULT_DEBUG_REGION = "USA";
+    private static final boolean DEFAULT_SHOW_SPLASH = true;
+    private static final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
+    private static final int DEFAULT_SIMULATION_START_YEAR = 2015;
+    private static final int DEFAULT_SIMULATION_LAST_YEAR = 2100;
+    private static final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
+
+    // --- Fields ---
+    private String glimpseVersion = DEFAULT_GLIMPSE_VERSION;
+    private int scenarioBuilderWidth = DEFAULT_SCENARIO_BUILDER_WIDTH;
+    private int scenarioBuilderHeight = DEFAULT_SCENARIO_BUILDER_HEIGHT;
+    private float maxDatabaseSizeGB = DEFAULT_MAX_DATABASE_SIZE_GB;
+    private String executeCmdShort = "cmd /C ";
+    private String executeCmd = "cmd /C start ";
+    private String buildInfo = glimpseVersion;
+    private String runQueueStr = "Queue is empty.";
+    private String eol = DEFAULT_EOL;
+    private String debugCreate = "0";
+    private String debugRename = "0";
+    private String startYearForShare = "2010";
+    private String[][] techInfo = null;
+    private String[][] sectorInfo = null;
+    private String allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS;
+    private String preferredFontSize = DEFAULT_PREFERRED_FONT_SIZE;
+    private String useIcons = DEFAULT_USE_ICONS;
+    private String debugRegion = DEFAULT_DEBUG_REGION;
+    private boolean isGcamUSA = false;
+    private boolean showSplash = DEFAULT_SHOW_SPLASH;
+    private boolean useAllAvailableProcessors = DEFAULT_USE_ALL_AVAILABLE_PROCESSORS;
+    private String glimpseDir = null;
+    private String glimpseResourceDir = null;
+    private String glimpseDocDir = null;
+    private String gCamHomeDir = null;
+    private String gCamSolver = null;
+    private String scenarioBuilderDir = null;
+    private String scenarioBuilderJar = null;
+    private String scenarioBuilderJarDir = null;
+    private String gCamExecutable = null;
+    private String gCamExecutableArgs = " -C ";
+    private String gCamExecutableDir = null;
+    private String modelInterfaceJar = null;
+    private String modelInterfaceJarDir = null;
+    private String modelInterfaceDir = null;
+    private String filesToSave = null;
+    private String scenarioComponentsDir = null;
+    private String scenarioDir = null;
+    private String glimpseLogDir = null;
+    private String resourceDir = null;
+    private String trashDir = null;
+    private String gCamDataDir = null;
+    private String gCamOutputDatabase = null;
+    private String optionsFilename = null;
+    private String xmlLibrary = null;
+    private String textEditor = null;
+    private String xmlEditor = null;
+    private String descriptionText = "";
+    private String stopPeriod = null;
+    private String stopYear = null;
+    private int simulationStartYear = DEFAULT_SIMULATION_START_YEAR;
+    private int simulationLastYear = DEFAULT_SIMULATION_LAST_YEAR;
+    private int simulationYearIncrement = DEFAULT_SIMULATION_YEAR_INCREMENT;
+    private String configurationTemplateFilename = null;
+    private String queryFilename = null;
+    private String favoriteQueryFilename = null;
+    private String tchBndListFilename = null;
+    private String trnVehInfoFilename = null;
+    private String regionListFilename = null;
+    private String subRegionListFilename = null;
+    private String presetRegionListFilename = null;
+    private String csvColumnFilename = null;
+    private String xmlHeaderFilename = null;
+    private String unitConversionsFilename = null;
+    private String monetaryConversionsFilename = null;
+    private String aboutTextFilename = null;
+
+    /**
+     * Private constructor for singleton pattern.
+     */
+    private GLIMPSEVariables() {}
+
+    /**
+     * Returns the singleton instance of GLIMPSEVariables.
+     * @return GLIMPSEVariables instance
+     */
+    public static GLIMPSEVariables getInstance() {
+        return INSTANCE;
+    }
+
+    /**
+     * Initializes utility, style, and file dependencies.
+     * @param u GLIMPSEUtils
+     * @param v GLIMPSEVariables
+     * @param s GLIMPSEStyles
+     * @param f GLIMPSEFiles
+     */
+    public void init(GLIMPSEUtils u, GLIMPSEVariables v, GLIMPSEStyles s, GLIMPSEFiles f) {
+        this.utils = u;
+        this.styles = s;
+        this.files = f;
+    }
+
+    /**
+     * Returns the GLIMPSE version string.
+     * @return GLIMPSE version
+     */
+    public String getGLIMPSEVersion() {
+        return glimpseVersion;
+    }
+
+    /**
+     * Returns the about text filename.
+     * @return About text filename
+     */
+    public String getAboutTextFilename() {
+        return aboutTextFilename;
+    }
+    
+    /**
+     * Sets the about text filename.
+     * @param s About text filename
+     */
+    public void setAboutTextFilename(String s) {
+        aboutTextFilename=s; 
+    }
+    
+    /**
+     * Returns the preset region list filename.
+     * @return Preset region list filename
+     */
+    public String getPresetRegionListFilename() {
+        return presetRegionListFilename; 
+    }
+    
+    /**
+     * Sets the preset region list filename.
+     * @param s Preset region list filename
+     */
+    public void setPresetRegionListFilename(String s) {
+        presetRegionListFilename=s; 
+    }
+
+    /**
+     * Returns the subregion list filename.
+     * @return Subregion list filename
+     */
+    public String getSubRegionsFilename() {
+        return subRegionListFilename; 
+    }
+    
+    /**
+     * Sets the subregion list filename.
+     * @param s Subregion list filename
+     */
+    public void setSubRegionsFilename(String s) {
+        subRegionListFilename=s; 
+    }
+    
+    /**
+     * Returns the region list filename.
+     * @return Region list filename
+     */
+    public String getRegionListFilename() {
+        return regionListFilename; 
+    }
+    
+    /**
+     * Sets the region list filename.
+     * @param s Region list filename
+     */
+    public void setRegionListFilename(String s) {
+        regionListFilename=s; 
+    }
+    
+    /**
+     * Returns the simulation start year.
+     * @return Simulation start year
+     */
+    public int getSimulationStartYear() {
+        return simulationStartYear;
+    }
+    
+    /**
+     * Sets the simulation start year.
+     * @param startYear Simulation start year
+     */
+    public void setSimulationStartYear(String startYear) {
+        simulationStartYear = utils.convertStringToInt(startYear);
+        return;
+    }
+    
+    /**
+     * Returns the simulation last year.
+     * @return Simulation last year
+     */
+    public int getSimulationLastYear() {
+        return simulationLastYear;
+    }
+    
+    /**
+     * Returns the list of allowable policy years.
+     * @return Allowable policy years
+     */
+    public String getAllowablePolicyYears() {
+        return allowablePolicyYears;
+    }
+    
+    /**
+     * Sets the list of allowable policy years.
+     * @param year_list Comma-separated list of years
+     */
+    public void setAllowablePolicyYears(String year_list) {
+        this.allowablePolicyYears=year_list; 
+    }    
+    
+    /**
+     * Sets the simulation last year.
+     * @param lastYear Simulation last year
+     */
+    public void setSimulationLastYear(String lastYear) {
+        simulationLastYear = utils.convertStringToInt(lastYear);
+        return;
+    }
+    
+    /**
+     * Returns the simulation year increment.
+     * @return Simulation year increment
+     */
+    public int getSimulationYearIncrement() {
+        return simulationYearIncrement;
+    }
+
+    /**
+     * Sets the simulation year increment.
+     * @param yearIncrement Simulation year increment
+     */
+    public void setSimulationYearIncrement(String yearIncrement) {
+        simulationYearIncrement = utils.convertStringToInt(yearIncrement);
+        return;
+    }
+    
+    /**
+     * Returns whether to use all available processors.
+     * @return True if using all available processors, false otherwise
+     */
+    public boolean getUseAllAvailableProcessors() {
+        return useAllAvailableProcessors;
+    }
+    
+    /**
+     * Sets whether to use all available processors.
+     * @param b True to use all available processors, false otherwise
+     */
+    public void setUseAllAvailableProcessors(boolean b) {
+        useAllAvailableProcessors=b;
+    }
+    
+    /**
+     * Sets whether to use all available processors from a string.
+     * @param str "true" or "yes" to use all available processors, "false" otherwise
+     */
+    public void setUseAllAvailableProcessors(String str) {
+        boolean b=false;
+        if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
+        useAllAvailableProcessors=b;
+    }
+    
+    /**
+     * Returns whether to show the splash screen.
+     * @return True to show the splash screen, false otherwise
+     */
+    public boolean getShowSplash() {
+        return showSplash;
+    }
+    
+    /**
+     * Sets whether to show the splash screen.
+     * @param b True to show the splash screen, false otherwise
+     */
+    public void setShowSplash(boolean b) {
+        showSplash=b;
+    }
+
+    /**
+     * Sets whether to show the splash screen from a string.
+     * @param str "true" or "yes" to show the splash screen, "false" otherwise
+     */
+    public void setShowSplash(String str) {
+        boolean b=false;
+        if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
+        showSplash=b;
+    }
+
+    /**
+     * Returns the debug region.
+     * @return Debug region
+     */
+    public String getDebugRegion() {
+        return debugRegion;
+    }
+
+    /**
+     * Sets the debug region.
+     * @param s Debug region
+     */
+    public void setDebugRegion(String s) {
+        this.debugRegion = s;
+    }
+    
+    /**
+     * Returns the start year for sharing.
+     * @return Start year for sharing
+     */
+    public String getStartYearForShare() {
+        return startYearForShare;
+    }
+    
+    /**
+     * Sets the start year for sharing.
+     * @param s Start year for sharing
+     */
+    public void setStartYearForShare(String s) {
+        startYearForShare=s;
+    }
+    
+    /**
+     * Returns the debug create flag.
+     * @return Debug create flag
+     */
+    public String getDebugCreate() {
+        return debugCreate;
+    }
+
+    /**
+     * Sets the debug create flag.
+     * @param s Debug create flag
+     */
+    public void setDebugCreate(String s) {
+        if (s.toLowerCase().equals("true")) { 
+            s="1";
+        } else if (s.toLowerCase().equals("false")) { 
+            s="0";
+        }
+        this.debugCreate = s;
+    }
+    
+    /**
+     * Returns the debug rename flag.
+     * @return Debug rename flag
+     */
+    public String getDebugRename() {
+        return debugRename;
+    }
+
+    /**
+     * Sets the debug rename flag.
+     * @param s Debug rename flag
+     */
+    public void setDebugRename(String s) {
+        this.debugRename = s;
+    }
+    
+    
+    /**
+     * Returns the build information string.
+     * @return Build information
+     */
+    public String getBuildInfo() {
+        return buildInfo;
+    }
+
+    /**
+     * Sets the build information string.
+     * @param s Build information
+     */
+    public void setBuildInfo(String s) {
+        this.buildInfo = s;
+    }
+
+    /**
+     * Returns whether GCAM USA mode is enabled.
+     * @return True if GCAM USA mode is enabled, false otherwise
+     */
+    public boolean isGcamUSA() {
+        return isGcamUSA;
+    }
+
+    /**
+     * Sets whether GCAM USA mode is enabled.
+     * @param b True to enable GCAM USA mode, false otherwise
+     */
+    public void setGcamUSA(boolean b) {
+        this.isGcamUSA = b;
+    }
+
+    /**
+     * Returns the short execute command.
+     * @return Short execute command
+     */
+    public String getExecuteCmdShort() {
+        return executeCmdShort;
+    }
+
+    /**
+     * Sets the short execute command.
+     * @param s Short execute command
+     */
+    public void setExecuteCmdShort(String s) {
+        this.executeCmdShort = s;
+    }
+
+    /**
+     * Returns the execute command.
+     * @return Execute command
+     */
+    public String getExecuteCmd() {
+        return executeCmd;
+    }
+
+    /**
+     * Sets the execute command.
+     * @param s Execute command
+     */
+    public void setExecuteCmd(String s) {
+        this.executeCmd = s;
+    }
+
+    /**
+     * Returns the GLIMPSE directory.
+     * @return GLIMPSE directory
+     */
+    public String getGlimpseDir() {
+        return glimpseDir;
+    }
+
+    /**
+     * Sets the GLIMPSE directory.
+     * @param s GLIMPSE directory
+     */
+    public void setGlimpseDir(String s) {
+        this.glimpseDir = s;
+    }
+
+    /**
+     * Returns the GLIMPSE resource directory.
+     * @return GLIMPSE resource directory
+     */
+    public String getGlimpseResourceDir() {
+        return glimpseResourceDir;
+    }
+
+    /**
+     * Sets the GLIMPSE resource directory.
+     * @param s GLIMPSE resource directory
+     */
+    public void setGlimpseResourceDir(String s) {
+        this.glimpseResourceDir = s;
+    }
+    
+    /**
+     * Returns the GLIMPSE document directory.
+     * @return GLIMPSE document directory
+     */
+    public String getGlimpseDocDir() {
+        return glimpseDocDir;
+    }
+
+    /**
+     * Sets the GLIMPSE document directory.
+     * @param s GLIMPSE document directory
+     */
+    public void setGlimpseDocDir(String s) {
+        this.glimpseDocDir = s;
+    }
+    
+    /**
+     * Returns the GCAM home directory.
+     * @return GCAM home directory
+     */
+    public String getgCamHomeDir() {
+        return gCamHomeDir;
+    }
+
+    /**
+     * Sets the GCAM home directory.
+     * @param s GCAM home directory
+     */
+    public void setgCamHomeDir(String s) {
+        this.gCamHomeDir = s;
+    }
+
+    /**
+     * Returns the GCAM solver.
+     * @return GCAM solver
+     */
+    public String getgCamSolver() {
+        return gCamSolver;
+    }
+
+    /**
+     * Sets the GCAM solver.
+     * @param s GCAM solver
+     */
+    public void setgCamSolver(String s) {
+        this.gCamSolver = s;
+    }
+
+    /**
+     * Returns the scenario builder directory.
+     * @return Scenario builder directory
+     */
+    public String scenarioBuilderDir() {
+        return scenarioBuilderDir;
+    }
+
+    /**
+     * Sets the scenario builder directory.
+     * @param s Scenario builder directory
+     */
+    public void setScenarioBuilderDir(String s) {
+        this.scenarioBuilderDir = s;
+    }
+
+    /**
+     * Returns the scenario builder JAR file.
+     * @return Scenario builder JAR file
+     */
+    public String getScenarioBuilderJar() {
+        return scenarioBuilderJar;
+    }
+
+    /**
+     * Sets the scenario builder JAR file.
+     * @param s Scenario builder JAR file
+     */
+    public void setScenarioBuilderJar(String s) {
+        this.scenarioBuilderJar = s;
+    }
+    
+    /**
+     * Returns the GCAM executable.
+     * @return GCAM executable
+     */
+    public String getgCamExecutable() {
+        return gCamExecutable;
+    }
+
+    /**
+     * Sets the GCAM executable.
+     * @param s GCAM executable
+     */
+    public void setgCamExecutable(String s) {
+        this.gCamExecutable = s;
+    }
+
+    /**
+     * Returns the GCAM executable arguments.
+     * @return GCAM executable arguments
+     */
+    public String getgCamExecutableArgs() {
+        return gCamExecutableArgs;
+    }
+
+    /**
+     * Sets the GCAM executable arguments.
+     * @param s GCAM executable arguments
+     */
+    public void setgCamExecutableArgs(String s) {
+        this.gCamExecutableArgs = s;
+    }
+    
+    /**
+     * Returns the GCAM executable directory.
+     * @return GCAM executable directory
+     */
+    public String getgCamExecutableDir() {
+        return gCamExecutableDir;
+    }
+
+    /**
+     * Sets the GCAM executable directory.
+     * @param s GCAM executable directory
+     */
+    public void setgCamExecutableDir(String s) {
+        this.gCamExecutableDir = s;
+    }
+
+    /**
+     * Returns the model interface JAR file.
+     * @return Model interface JAR file
+     */
+    public String getModelInterfaceJar() {
+        return modelInterfaceJar;
+    }
+
+    /**
+     * Sets the model interface JAR file.
+     * @param s Model interface JAR file
+     */
+    public void setModelInterfaceJar(String s) {
+        this.modelInterfaceJar = s;
+    }
+
+    /**
+     * Returns the model interface directory.
+     * @return Model interface directory
+     */
+    public String getModelInterfaceDir() {
+        return modelInterfaceDir;
+    }
+
+    /**
+     * Sets the model interface directory.
+     * @param s Model interface directory
+     */
+    public void setModelInterfaceDir(String s) {
+        this.modelInterfaceJarDir = s;
+    }
+
+    /**
+     * Returns the model interface JAR directory.
+     * @return Model interface JAR directory
+     */
+    public String getModelInterfaceJarDir() {
+        return modelInterfaceDir;
+    }
+
+    /**
+     * Sets the model interface JAR directory.
+     * @param s Model interface JAR directory
+     */
+    public void setModelInterfaceJarDir(String s) {
+        this.modelInterfaceJarDir = s;
+    }
+    
+    /**
+     * Returns the files to save.
+     * @return Files to save
+     */
+    public String getFilesToSave() {
+        return filesToSave;
+    }
+
+    /**
+     * Sets the files to save.
+     * @param s Files to save
+     */
+    public void setFilesToSave(String s) {
+        this.filesToSave = s;
+    }
+
+    /**
+     * Returns the scenario components directory.
+     * @return Scenario components directory
+     */
+    public String getScenarioComponentsDir() {
+        return scenarioComponentsDir;
+    }
+
+    /**
+     * Sets the scenario components directory.
+     * @param s Scenario components directory
+     */
+    public void setScenarioComponentsDir(String s) {
+        this.scenarioComponentsDir = s;
+    }
+
+    /**
+     * Returns the scenario directory.
+     * @return Scenario directory
+     */
+    public String getScenarioDir() {
+        return scenarioDir;
+    }
+
+    /**
+     * Sets the scenario directory.
+     * @param s Scenario directory
+     */
+    public void setScenarioDir(String s) {
+        this.scenarioDir = s;
+    }
+
+    /**
+     * Returns the GLIMPSE log directory.
+     * @return GLIMPSE log directory
+     */
+    public String getGlimpseLogDir() {
+        return glimpseLogDir;
+    }
+
+    /**
+     * Sets the GLIMPSE log directory.
+     * @param s GLIMPSE log directory
+     */
+    public void setGlimpseLogDir(String s) {
+        glimpseLogDir=s;
+    }
+    
+    /**
+     * Returns the query filename.
+     * @return Query filename
+     */
+    public String getQueryFilename() {
+        return queryFilename;
+    }
+
+    /**
+     * Returns the favorite query filename.
+     * @return Favorite query filename
+     */
+    public String getFavoriteQueryFilename() {
+        return favoriteQueryFilename;
+    }
+    
+    /**
+     * Sets the query filename.
+     * @param s Query filename
+     */
+    public void setQueryFilename(String s) {
+        this.queryFilename=s;
+    }
+    
+    /**
+     * Sets the unit conversions filename.
+     * @param s Unit conversions filename
+     */
+    public void setUnitConversionsFilename(String s) {
+        this.unitConversionsFilename=s;
+    }
+
+    /**
+     * Returns the unit conversions filename.
+     * @return Unit conversions filename
+     */
+    public String getUnitConversionsFilename() {
+        return unitConversionsFilename;
+    }
+    
+    /**
+     * Returns the resource directory.
+     * @return Resource directory
+     */
+    public String getResourceDir() {
+        return resourceDir;
+    }
+
+    /**
+     * Sets the resource directory.
+     * @param s Resource directory
+     */
+    public void setResourceDir(String s) {
+        this.resourceDir = s;
+    }
+
+    /**
+     * Returns the trash directory.
+     * @return Trash directory
+     */
+    public String getTrashDir() {
+        return trashDir;
+    }
+
+    /**
+     * Sets the trash directory.
+     * @param s Trash directory
+     */
+    public void setTrashDir(String s) {
+        this.trashDir = s;
+    }
+
+    /**
+     * Returns the configuration template filename.
+     * @return Configuration template filename
+     */
+    public String getConfigurationTemplateFilename() {
+        return configurationTemplateFilename;
+    }
+
+    /**
+     * Sets the configuration template filename.
+     * @param s Configuration template filename
+     */
+    public void setConfigurationTemplateFilename(String s) {
+        this.configurationTemplateFilename = s;
+    }
+
+    /**
+     * Returns the transportation vehicle information filename.
+     * @return Transportation vehicle information filename
+     */
+    public String getTrnVehInfoFilename() {
+        return trnVehInfoFilename;
+    }
+
+    /**
+     * Sets the transportation vehicle information filename.
+     * @param s Transportation vehicle information filename
+     */
+    public void setTrnVehInfoFilename(String s) {
+        this.trnVehInfoFilename = s;
+    }
+
+    /**
+     * Returns the technology boundary list filename.
+     * @return Technology boundary list filename
+     */
+    public String getTchBndListFilename() {
+        return tchBndListFilename;
+    }
+
+    /**
+     * Sets the technology boundary list filename.
+     * @param s Technology boundary list filename
+     */
+    public void setTchBndListFilename(String s) {
+        this.tchBndListFilename = s;
+    }
+
+    /**
+     * Returns the GCAM data directory.
+     * @return GCAM data directory
+     */
+    public String getgCamDataDir() {
+        return gCamDataDir;
+    }
+
+    /**
+     * Sets the GCAM data directory.
+     * @param s GCAM data directory
+     */
+    public void setgCamDataDir(String s) {
+        this.gCamDataDir = s;
+    }
+
+    /**
+     * Returns the GCAM output database.
+     * @return GCAM output database
+     */
+    public String getgCamOutputDatabase() {
+        return gCamOutputDatabase;
+    }
+
+    /**
+     * Sets the GCAM output database.
+     * @param s GCAM output database
+     */
+    public void setgCamOutputDatabase(String s) {
+        this.gCamOutputDatabase = s;
+    }
+    
+
+    /**
+     * Returns the maximum database size in GB.
+     * @return Maximum database size in GB
+     */
+    public float getMaxDatabaseSize() {
+        return getMaxDatabaseSizeGB();
+    }
+
+    /**
+     * Sets the maximum database size in GB.
+     * @param f Maximum database size in GB
+     */
+    public void setMaxDatabaseSizeGB(float f) {
+        this.maxDatabaseSizeGB = f;
+    }
+    
+    /**
+     * Returns the options filename.
+     * @return Options filename
+     */
+    public String getOptionsFilename() {
+        return optionsFilename;
+    }
+
+    /**
+     * Sets the options filename.
+     * @param s Options filename
+     */
+    public void setOptionsFilename(String s) {
+        this.optionsFilename = s;
+    }
+
+    /**
+     * Returns the XML library.
+     * @return XML library
+     */
+    public String getXmlLibrary() {
+        return xmlLibrary;
+    }
+
+    /**
+     * Sets the XML library.
+     * @param s XML library
+     */
+    public void setXmlLibrary(String s) {
+        this.xmlLibrary = s;
+    }
+
+    /**
+     * Returns the text editor.
+     * @return Text editor
+     */
+    public String getTextEditor() {
+        return textEditor;
+    }
+
+    /**
+     * Sets the text editor.
+     * @param s Text editor
+     */
+    public void setTextEditor(String s) {
+        this.textEditor = s;
+    }
+
+    /**
+     * Returns the XML editor.
+     * @return XML editor
+     */
+    public String getXmlEditor() {
+        return xmlEditor;
+    }
+
+    /**
+     * Sets the XML editor.
+     * @param s XML editor
+     */
+    public void setXmlEditor(String s) {
+        this.xmlEditor = s;
+    }
+
+    /**
+     * Returns the monetary conversions filename.
+     * @return Monetary conversions filename
+     */
+    public String getMonetaryConversionsFilename() {
+        return this.monetaryConversionsFilename;
+    }
+
+    /**
+     * Sets the monetary conversions filename.
+     * @param s Monetary conversions filename
+     */
+    public void setMonetaryConversionsFilename(String s) {
+        this.monetaryConversionsFilename = s;
+    }
+
+    /**
+     * Returns the description text.
+     * @return Description text
+     */
+    public String getDescriptionText() {
+        return descriptionText;
+    }
+
+    /**
+     * Sets the description text.
+     * @param s Description text
+     */
+    public void setDescriptionText(String s) {
+        this.descriptionText = s;
+    }
+
+    /**
+     * Returns the stop period.
+     * @return Stop period
+     */
+    public String getStopPeriod() {
+        return stopPeriod;
+    }
+
+    /**
+     * Sets the stop period.
+     * @param s Stop period
+     */
+    public void setStopPeriod(String s) {
+        this.stopPeriod = s;
+    }
+
+    /**
+     * Returns the stop year.
+     * @return Stop year
+     */
+    public String getStopYear() {
+        return stopYear;
+    }
+
+    /**
+     * Sets the stop year.
+     * @param s Stop year
+     */
+    public void setStopYear(String s) {
+        this.stopYear = s;
+    }
+    
+    /**
+     * Returns the run queue string.
+     * @return Run queue string
+     */
+    public String getRunQueueStr() {
+        return runQueueStr;
+    }
+
+    /**
+     * Sets the run queue string.
+     * @param s Run queue string
+     */
+    public void setRunQueueStr(String s) {
+        this.runQueueStr = s;
+    }
+
+    /**
+     * Returns the end-of-line string.
+     * @return End-of-line string
+     */
+    public String getEol() {
+        return eol;
+    }
+
+    /**
+     * Sets the end-of-line string.
+     * @param s End-of-line string
+     */
+    public void setEol(String s) {
+        this.eol = s;
+    }
+
+    /**
+     * Returns the CSV column filename.
+     * @return CSV column filename
+     */
+    public String getCsvColumnFilename() {
+        return csvColumnFilename;
+    }
+
+    /**
+     * Sets the CSV column filename.
+     * @param s CSV column filename
+     */
+    public void setCsvColumnFilename(String s) {
+        csvColumnFilename = s;
+    }
+
+    /**
+     * Returns whether to use icons.
+     * @return "true" if using icons, "false" otherwise
+     */
+    public String getUseIcons() {
+        return useIcons;
+    }
+
+    /**
+     * Sets whether to use icons.
+     * @param str "true" or "yes" to use icons, "false" otherwise
+     */
+    public void setUseIcons(String str) {
+        if ((str.toLowerCase().equals("yes")) || (str.toLowerCase().equals("true")) || (str.toLowerCase().equals("1"))) {
+            useIcons = "true";
+        } else {
+            useIcons = "false";
+        }
+    }
+
+    /**
+     * Returns the XML header filename.
+     * @return XML header filename
+     */
+    public String getXmlHeaderFilename() {
+        return xmlHeaderFilename;
+    }
+
+    /**
+     * Sets the XML header filename.
+     * @param s XML header filename
+     */
+    public void setXmlHeaderFilename(String s) {
+        xmlHeaderFilename = s;
+    }
+
+    /**
+     * Returns the preferred font size.
+     * @return Preferred font size
+     */
+    public String getPreferredFontSize() {
+        return preferredFontSize;
+    }
+
+    /**
+     * Sets the preferred font size.
+     * @param s Preferred font size
+     */
+    public void setPreferredFontSize(String s) {
+        try {
+            int size = Integer.parseInt(s);
+            preferredFontSize = s;
+            styles.setFontSize(size);
+        } catch (Exception e) {
+            System.out.println("Could not convert font size string " + s + " to double.");
+        }
+    }
+
+    /**
+     * Gets the value of a parameter as a string.
+     * @param param Parameter name
+     * @return Parameter value
+     */
+    private String get(String param) {
+        String returnVal = "";
+
+        param = param.toLowerCase();
+
+        switch (param) {
+        case "allowablepolicyyears":
+            returnVal = ""+allowablePolicyYears;
+            break;
+        case "useallavailableprocessors":
+            returnVal = ""+useAllAvailableProcessors;
+            break;
+        case "showsplash":
+            returnVal = ""+showSplash;
+            break;
+        case "buildinfo":
+            returnVal = buildInfo;
+            break;
+        case "executecmdshort":
+            returnVal = executeCmdShort;
+            break;
+        case "executecmd":
+            returnVal = executeCmd;
+            break;
+        case "glimpsedir":
+            returnVal = glimpseDir;
+            break;
+        case "glimpseresourcedir":
+            returnVal = glimpseResourceDir;
+            break;
+        case "glimpsedocdir":
+            returnVal = glimpseDocDir;
+            break;
+        case "gcamhomedir":
+            returnVal = gCamHomeDir;
+            break;
+        case "solver":
+            returnVal = gCamSolver;
+            break;
+        case "gcamsolver":
+            returnVal = gCamSolver;
+            break;
+        case "scenariobuilderdir":
+            returnVal = scenarioBuilderDir;
+            break;
+        case "gcamexecutable":
+            returnVal = gCamExecutable;
+            break;
+        case "gcamexecutableargs":
+            returnVal = gCamExecutableArgs;
+            break;
+        case "gcamexecutabledir":
+            returnVal = gCamExecutableDir;
+            break;
+        case "modelinterfacejar":
+            returnVal = modelInterfaceJar;
+            break;
+        case "modelinterfacedir":
+            returnVal = modelInterfaceDir;
+            break;
+        case "modelinterfacejardir":
+            returnVal = modelInterfaceJarDir;
+            break;
+        case "filestosave":
+            returnVal = filesToSave;
+            break;
+        case "gcamoutputtosave":
+            returnVal = filesToSave;
+            break;
+        case "scenariocomponentsdir":
+            returnVal = scenarioComponentsDir;
+            break;
+        case "scenarioxmldir":
+            returnVal = scenarioDir;
+            break;
+        case "scenariodir":
+            returnVal = scenarioDir;
+            break;
+        case "glimpselogdir":
+            returnVal = glimpseLogDir;
+            break;
+        case "queryfilename":
+            returnVal = queryFilename;
+            break;
+        case "favoritequeryfilename":
+            returnVal = queryFilename;
+            break;
+        case "scenariobuilderjardir":
+            returnVal = scenarioBuilderJarDir;
+            break;
+        case "scenariobuilderjar":
+            returnVal = scenarioBuilderJar;
+            break;
+        case "resourcedir":
+            returnVal = resourceDir;
+            break;
+        case "presetregionlistfilename":
+            returnVal = presetRegionListFilename;
+            break;
+        case "regionlistfilename":
+            returnVal = regionListFilename;
+            break;
+        case "subregionlistfilename":
+            returnVal = subRegionListFilename;
+            break;
+        case "trashdir":
+            returnVal = trashDir;
+            break;
+        case "configurationtemplatefilename":
+            returnVal = configurationTemplateFilename;
+            break;
+        case "tranloadfactorsfilename":
+            returnVal = trnVehInfoFilename;
+            break;
+        case "trnvehinfofilename":
+            returnVal = trnVehInfoFilename;
+            break;
+        case "tchbndlistfilename":
+            returnVal = tchBndListFilename;
+            break;
+        case "gcamdatadir":
+            returnVal = gCamDataDir;
+            break;
+        case "gcamoutputdatabase":
+            returnVal = gCamOutputDatabase;
+            break;
+        case "maxdatabasesizegb":
+            returnVal = ""+getMaxDatabaseSizeGB();
+            break;
+        case "optionsfilename":
+            returnVal = optionsFilename;
+            break;
+        case "xmllibrary":
+            returnVal = xmlLibrary;
+            break;
+        case "texteditor":
+            returnVal = textEditor;
+            break;
+        case "xmleditor":
+            returnVal = xmlEditor;
+            break;
+        case "descriptiontext":
+            returnVal = descriptionText;
+            break;
+        case "stopperiod":
+            returnVal = stopPeriod;
+            break;
+        case "stop-period":
+            returnVal = stopPeriod;
+            break;
+        case "stopyear":
+            returnVal = stopYear;
+            break;
+        case "stop-year":
+            returnVal = stopYear;
+            break;
+        case "runqueuestr":
+            returnVal = runQueueStr;
+            break;
+        case "eol":
+            returnVal = eol;
+            break;
+        case "isgcamusa":
+            returnVal = String.valueOf(isGcamUSA);
+            break;
+        case "csvcolumnfilename":
+            returnVal = csvColumnFilename;
+            break;
+        case "xmlheaderfilename":
+            returnVal = xmlHeaderFilename;
+            break;
+        case "preferredfontsize":
+            returnVal = preferredFontSize;
+            break;
+        case "useicons":
+            returnVal = useIcons;
+            break;
+        case "use_icons":
+            returnVal = useIcons;
+            break;
+        case "unitconversionsfilename":
+            returnVal = unitConversionsFilename;
+            break;
+        case "monetaryconversionsfilename":
+            returnVal = monetaryConversionsFilename;
+            break;
+        case "debugregion":
+            returnVal = debugRegion;
+            break;
+        case "debugcreate":
+            returnVal = debugCreate;
+            break;
+        case "startyearforshare":
+            returnVal = startYearForShare;
+            break;
+        case "debugrename":
+            returnVal = debugRename;
+        }
+        if ((returnVal==null)||(returnVal.equals(""))) System.out.println("No match for "+param);
+        return returnVal;
+    }
+
+    /**
+     * Sets the value of a parameter.
+     * @param param Parameter name
+     * @param val Parameter value
+     */
+    private void set(String param, String val) {
+
+        param = param.toLowerCase();
+        if (val.indexOf("#") > -1){
+            val = fixDir(val);
+        }
+
+
+        switch (param) {
+
+        case "glimpsedir":
+            String current_dir=System.getProperty("user.dir");
+            glimpseDir = fixDir(val);
+            if (glimpseDir.startsWith(".")) glimpseDir=current_dir;
+
+            break;
+        case "gcamhomedir":
+            gCamHomeDir = fixDir(val);
+            break;        
+        case "allowablepolicyyears":
+            setAllowablePolicyYears(val);
+            break;
+        case "useallavailableprocessors":
+            setUseAllAvailableProcessors(val);
+            break;
+        case "showsplash":
+            setShowSplash(val);
+            break;
+        case "buildinfo":
+            buildInfo = val;
+            break;
+        case "executecmdshort":
+            executeCmdShort = val;
+            break;
+        case "executecmd":
+            executeCmd = val;
+            break;
+
+        case "glimpsedocdir":
+            glimpseDocDir = fixDir(val);
+            break;
+        case "glimpseresourcedir":
+            glimpseResourceDir = fixDir(val);
+            break;
+        case "solver":
+            gCamSolver = fixDir(val);
+            break;
+        case "gcamsolver":
+            gCamSolver = fixDir(val);
+            break;
+        case "scenariobuilderdir":
+            scenarioBuilderDir = fixDir(val);
+            break;
+        case "scenariobuilderjardir":
+            scenarioBuilderJarDir = fixDir(val);
+            break;
+        case "scenariobuilderjar":
+            scenarioBuilderJar = val;
+            break;
+        case "gcamexecutable":
+            gCamExecutable = fixDir(val);
+            break;
+        case "gcamexecutableargs":
+            gCamExecutableArgs = val;
+            break;
+        case "gcamexecutabledir":
+            gCamExecutableDir = fixDir(val);
+            break;
+        case "modelinterfacejar":
+            modelInterfaceJar = fixDir(val);
+            break;
+        case "modelinterfacedir":
+            modelInterfaceDir = fixDir(val);
+            break;
+        case "modelinterfacejardir":
+            modelInterfaceJarDir = fixDir(val);
+            break;
+        case "gcamoutputtosave":
+            filesToSave = fixDir(val);
+            break;
+        case "filestosave":
+            filesToSave = fixDir(val);
+            break;
+        case "scenariocomponentsdir":
+            scenarioComponentsDir = fixDir(val);
+            break;
+        case "scenarioxmldir":
+            scenarioDir = fixDir(val);
+            break;
+        case "scenariodir":
+            scenarioDir = fixDir(val);
+            break;
+        case "glimpselogdir":
+            glimpseLogDir = fixDir(val);
+            break;
+        case "queryfilename":
+            queryFilename = fixDir(val);
+            break;
+        case "favoritequeryfilename":
+            favoriteQueryFilename = fixDir(val);
+            break;
+        case "unitconversionsfilename":
+            unitConversionsFilename = fixDir(val);
+            break;
+        case "resourcedir":
+            resourceDir = fixDir(val);
+            break;
+        case "presetregionlistfilename":
+            presetRegionListFilename = fixDir(val);
+            break;
+        case "regionlistfilename":
+            regionListFilename = fixDir(val);
+            break;
+        case "subregionlistfilename":
+            subRegionListFilename = fixDir(val);
+            break;            
+        case "trashdir":
+            trashDir = fixDir(val);
+            break;
+        case "configurationtemplatefilename":
+            configurationTemplateFilename = fixDir(val);
+            break;
+        case "tranloadfactorsfilename":
+            trnVehInfoFilename = fixDir(val);
+            break;
+        case "trnvehinfofilename":
+            trnVehInfoFilename = fixDir(val);
+            break;
+        case "tchbndlistfilename":
+            tchBndListFilename = fixDir(val);
+            break;
+        case "gcamdatadir":
+            gCamDataDir = fixDir(val);
+            break;
+        case "gcamoutputdatabase":
+            gCamOutputDatabase = fixDir(val);
+            break;
+        case "maxdatabasesizegb":
+            setMaxDatabaseSizeGB(Float.parseFloat(val));
+            break;
+        case "optionsfilename":
+            optionsFilename = fixDir(val);
+            break;
+        case "xmllibrary":
+            xmlLibrary = fixDir(val);
+            break;
+        case "texteditor":
+            textEditor = fixDir(val);
+            break;
+        case "xmleditor":
+            xmlEditor = fixDir(val);
+            break;
+        case "descriptiontext":
+            descriptionText = fixDir(val);
+            break;
+        case "stopperiod":
+            stopPeriod = val;
+            break;
+        case "stop-period":
+            stopPeriod = val;
+            break;
+        case "stopyear":
+            stopYear = val;
+            break;
+        case "stop-year":
+            stopYear = val;
+            break;
+        case "runqueuestr":
+            runQueueStr = fixDir(val);
+            break;
+        case "eol":
+            eol = val;
+            break;
+        case "isgcamusa":
+            isGcamUSA = false;
+            if (val.toLowerCase().trim().equals("true"))
+                isGcamUSA = true;
+            break;
+        case "csvcolumnfilename":
+            csvColumnFilename = fixDir(val);
+            break;
+        case "xmlheaderfilename":
+            xmlHeaderFilename = fixDir(val);
+            break;
+        case "preferredfontsize":
+            setPreferredFontSize(val);
+            break;
+        case "useicons":
+            setUseIcons(val);
+            break;
+        case "use_icons":
+            setUseIcons(val);
+            break;
+        case "monetaryconversionsfilename":
+            setMonetaryConversionsFilename(fixDir(val));
+            break;
+        case "debugregion":
+            setDebugRegion(val);
+            break;
+        case "debugcreate":
+            setDebugCreate(val);
+            break;
+        case "debugrename":
+            setDebugRename(val);
+            break;    
+        case "startyearforshare":
+            setStartYearForShare(val);
+            break;    
+            }
+
+        if (param.indexOf("dir") > 0) {
+            testDirExists(val);
+        }
+
+        return;
+    }
+
+    /**
+     * Fixes directory paths in the options file for backward compatibility.
+     * @param filename Original filename
+     * @return Fixed filename
+     */
+    private String fixDir(String filename) {
+
+        //for backwards compatibility on options file... wildcards surrounded by #
+        if (filename.indexOf("#glimpseDir#") > -1) {
+            filename = filename.replace("#glimpseDir#", glimpseDir);
+        }
+        if (filename.indexOf("#gCamHomeDir#") > -1) {
+            filename = filename.replace("#gCamHomeDir#", gCamHomeDir);
+        }
+        if (filename.indexOf("#scenarioBuilderDir#") > -1) {
+            filename = filename.replace("#scenarioBuilderDir#", scenarioBuilderDir);
+        }
+        if (filename.indexOf("#modelInterfaceDir#") > -1) {
+            filename = filename.replace("#modelInterfaceDir#", modelInterfaceDir);
+        }
+        
+        //for new convention with wildcards surrounded by $s
+        if (filename.indexOf("$glimpseDir$") > -1) {
+            filename = filename.replace("$glimpseDir$", glimpseDir);
+        }
+        if (filename.indexOf("$gCamHomeDir$") > -1) {
+            filename = filename.replace("$gCamHomeDir$", gCamHomeDir);
+        }
+        if (filename.indexOf("$scenarioBuilderDir$") > -1) {
+            filename = filename.replace("$scenarioBuilderDir$", scenarioBuilderDir);
+        }
+        if (filename.indexOf("$modelInterfaceDir$") > -1) {
+            filename = filename.replace("$modelInterfaceDir$", modelInterfaceDir);
+        }
+
+        filename = filename.replace("/", File.separator).replace("\\", File.separator).replace("\\\\", File.separator);
+
+        return filename;
+    }
+
+    /**
+     * Tests if a directory exists.
+     * @param pathName Directory path
+     * @return True if the directory exists, false otherwise
+     */
+    private boolean testDirExists(String pathName) {
+        return testDirExists(pathName, false);
+    }
+
+    /**
+     * Tests if a directory exists, with optional fatal error handling.
+     * @param pathName Directory path
+     * @param isFatal True for fatal error, false otherwise
+     * @return True if the directory exists, false otherwise
+     */
+    private boolean testDirExists(String pathName, boolean isFatal) {
+        boolean b = true;
+
+        try {
+            File f = new File(pathName);
+            b = f.isDirectory();
+        } catch (Exception E) {
+            System.out.println("error openning: " + pathName);
+            b = false;
+            if (isFatal) {
+                System.out.println("exiting");
+                System.exit(0);
+            }
+        }
+
+        return b;
+    }
+    
+    /**
+     * Tests if a file exists.
+     * @param pathName File path
+     * @return True if the file exists, false otherwise
+     */
+    private boolean testFileExists(String pathName) {
+        boolean b = true;
+
+        try {
+            File f = new File(pathName);
+            b = f.exists();
+        } catch (Exception E) {
+            System.out.println("error openning: " + pathName);
+            b = false;
+        }
+
+        return b;
+    }
+
+    /**
+     * Loads options from a specified file.
+     * @param filename Options file name
+     */
+    public void loadOptions(String filename) {
+        set("optionsFilename", filename);
+        loadOptions();
+    }
+
+    /**
+     * Loads options from the options file.
+     */
+    public void loadOptions() {
+        GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+
+        ArrayList<String[]> keyValuePairs = null;
+        File optionsFile = new File(getOptionsFilename());
+        
+        System.out.println("Loading options from " + getOptionsFilename());
+
+        if (!optionsFile.exists()) {
+            System.out.println("Specified options file does not exist.");
+            //utils.warningMessage("Specified options file does not exist. Please check command-line argument.");
+            return;
+        }
+
+        files.optionsFileContent = files.getStringArrayFromFile(getOptionsFilename(), "#");
+
+        String current_line="";
+        
+        try {
+
+            keyValuePairs = files.loadKeyValuePairsFromFile(getOptionsFilename(), "=");
+
+            for (int i = 0; i < keyValuePairs.size(); i++) {
+
+                current_line=keyValuePairs.get(i)[0];
+                String[] s = keyValuePairs.get(i);
+                String s0 = s[0].trim();
+                String s1 = s[1].trim();
+                
+                if (!s0.startsWith("#")) { // pound is the symbol for a comment
+                    set(s0, s1);
+                }
+            }
+        } catch (Exception e) {
+            //utils.warningMessage("Problem reading options file.");
+            System.out.println("Error reading options file: " + optionsFile);
+            System.out.println("Line: "+current_line);
+            System.out.println("Error: " + e);
+            //utils.exitOnException();
+        }
+        return;
+    }
+
+    /**
+     * Returns an ArrayList of options in the format "key = value".
+     * @return ArrayList of options
+     */
+    public ArrayList<String> getArrayListOfOptions() {
+
+        files.optionsFileContent=files.getStringArrayFromFile(optionsFilename, "#");
+        
+        ArrayList<String> optionsFileContent = files.optionsFileContent;
+        ArrayList<String> completed_arrayList = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < optionsFileContent.size(); i++) {
+                String line = optionsFileContent.get(i);
+                int loc_of_equals = line.indexOf("=");
+                if (loc_of_equals > 0) {
+                    String s1 = line.substring(0, loc_of_equals - 1).trim();
+                    String s2 = line.substring(loc_of_equals + 1).trim();
+                    String val = this.get(s1);
+                    if (val != null) {
+                        //System.out.println("s1:"+s1+":"+s2+":"+val+":");
+                        completed_arrayList.add(s1 + " = " + val);
+                    } else {
+                        System.out.println("No translation for "+s1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            utils.warningMessage("Difficulty reading options file.");
+            System.out.println("Difficulty reading options file. Attempting to continue.");
+            completed_arrayList.add("");
+        }
+
+        return completed_arrayList;
+    }
+    
+    /**
+     * Returns the technology information as a matrix.
+     * @return Technology information matrix
+     */
+    public String[][] getTechInfo(){
+        
+        if (techInfo==null) {
+            techInfo=getTechInfoAsMatrix();
+        }
+        
+        return techInfo != null ? techInfo : new String[0][0];
+    }
+    
+    /**
+     * Returns the sector information derived from technology information.
+     * @return Sector information
+     */
+    public String[][] getSectorInfo(){
+        
+        if (techInfo==null) {
+            techInfo=getTechInfoAsMatrix();
+        }
+        if (techInfo == null) return new String[0][0];
+        
+        ArrayList<String> sector_list=new ArrayList<>(); 
+        ArrayList<String> output_list=new ArrayList<>(); 
+        ArrayList<String> units_list=new ArrayList<>(); 
+        
+        for (int i=0;i<techInfo.length;i++) {
+            String sect_i=techInfo[i][0].trim();
+            String output_i=techInfo[i][5].trim();
+            String units_i=techInfo[i][6].trim();
+            
+            int current_len=sector_list.size();
+            boolean match=false;
+            for (int j=0;j<current_len;j++) {
+                if (sector_list.get(j).equals(sect_i)) {
+                    match=true;
+                    break;
+                }
+            }
+            if (!match) {
+                sector_list.add(sect_i);
+                output_list.add(output_i);
+                units_list.add(units_i);
+            }
+        }
+        
+        String[][] sector_info=new String[sector_list.size()][3];
+        for (int i=0;i<sector_list.size();i++) {
+            sector_info[i][0]=sector_list.get(i);
+            sector_info[i][1]=output_list.get(i);
+            sector_info[i][2]=units_list.get(i);
+        }
+        
+        return sector_info;
+    }
+    
+    /**
+     * Returns the technology information as a matrix.
+     * @return Technology information matrix
+     */
+    private String[][] getTechInfoAsMatrix() {
+
+        int num = 0;
+
+        String[][] returnStringMatrix = null;
+        String text="";
+        
+        try {
+
+            ArrayList<String> arrayList = files.glimpseTechBoundFileContent;
+
+            if ((arrayList == null) || (arrayList.size() == 0))
+                throw (new Exception("arrayList not read from file."));
+            
+            int size_j=0;
+            
+            text=arrayList.get(0);
+            String[] textSplit = null;
+            String delim=null;
+            
+            if (text.contains(",")){ 
+                delim=",";
+            } else {
+                delim=":";
+            }
+            textSplit=text.split(delim);
+            size_j=textSplit.length;
+
+            returnStringMatrix = new String[arrayList.size()][size_j];
+
+            //only reads in first 5 fields
+            for (int i = 0; i < arrayList.size(); i++) {
+                text = arrayList.get(i).trim();
+                if (text.length()>0) {
+                textSplit = text.split(delim);
+            
+                  for (int j = 0; j < size_j ; j++) {
+                    returnStringMatrix[i][j] = textSplit[j].trim();
+                  }
+                }
+            }
+            num++;
+
+        } catch (Exception e) {
+            utils.warningMessage("Problem reading tech list: "+text);
+            System.out.println("Error reading tech list from " + get("tchBndListFile") + ":");
+            System.out.println("  ---> " + e);
+            if (num == 0) {
+                System.out.println("Using defaults...");
+
+                String[][] stringMatrix = {
+                        { "trn_pass_road_LDV_4W", "Compact Car", "BEV", "elect_td_trn" },
+                        { "trn_pass_road_LDV_4W", "Compact Car", "FCEV", "H2 enduse" },
+                        { "trn_pass_road_LDV_4W", "Compact Car", "Hybrid Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Compact Car", "Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Compact Car", "NG", "delivered gas" },
+
+                        { "trn_pass_road_LDV_4W", "Midsize Car", "BEV", "elect_td_trn" },
+                        { "trn_pass_road_LDV_4W", "Midsize Car", "FCEV", "H2 enduse" },
+                        { "trn_pass_road_LDV_4W", "Midsize Car", "Hybrid Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Midsize Car", "Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Midsize Car", "NG", "delivered gas" },
+
+                        { "trn_pass_road_LDV_4W", "Large Car", "BEV", "elect_td_trn" },
+                        { "trn_pass_road_LDV_4W", "Large Car", "FCEV", "H2 enduse" },
+                        { "trn_pass_road_LDV_4W", "Large Car", "Hybrid Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Large Car", "Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Large Car", "NG", "delivered gas" },
+
+                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "BEV", "elect_td_trn" },
+                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "FCEV", "H2 enduse" },
+                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "Hybrid Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "Liquids", "refined liquids enduse" },
+                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "NG", "delivered gas" }
+
+                };
+                returnStringMatrix = stringMatrix;
+
+            } else {
+                System.out.println("Stopping with " + num + " read in.");
+            }
+        }
+        return returnStringMatrix;
+    }
+    
+    /**
+     * Examines the GLIMPSE setup for potential issues.
+     * @return Analysis report
+     */
+    public String examineGLIMPSESetup() {
+
+        String rtn_str="";
+        
+        //testing to make sure key parameters have been defined
+        String[] params= {
+                "glimpseDir","glimpseResourceDir","glimpseDocDir","gCamHomeDir","solver","gCamSolver",
+                "scenarioBuilderJar","scenarioBuilderDir",
+                "gCamExecutable","gCamExecutableArgs","gCamExecutableDir",
+                "modelInterfaceJar","modelInterfaceJarDir",
+                "scenarioComponentsDir","scenarioXMLDir","scenarioDir",
+                "configurationTemplateFilename","queryFilename","favoriteQueryFilename",
+                "tchBndListFilename","tranLoadFactorsFilename",
+                "regionListFilename","subRegionListFilename","presetRegionListFilename",
+                "monetaryConversionsFilename","csvColumnFilename","xmlHeaderFilename",
+                "scenarioBuilderJarDir","scenarioBuilderJar",
+                "resourceDir","trashDir","gCamDataDir","gCamOutputDatabase",
+                "maxDatabaseSizeGB","optionsFilename","xmlLibrary","textEditor","xmlEditor",
+                "stopPeriod","runQueueStr",
+                "isGcamUSA","preferredFontSize","useIcons","use_icons","debugRegion",
+                "debugCreate","startYearForShare","debugRename","filesToSave"};
+        
+        ArrayList<String> report=new ArrayList<String>();
+        
+        report.add(" ");
+        report.add("------ Analysis of GLIMPSE setup --------");
+        
+        boolean params_correct=true;
+        
+        for (int i=0;i<params.length;i++) {
+            String str=params[i];
+            String val=get(str);
+            if (val==null) {
+                params_correct=false; 
+                String s="*** Parameter "+str+" is undefined. ***";
+                report.add(s);
+            } else {
+                if (str.indexOf("Dir")>0) {
+                    String dir_name=val;
+                    if (!this.testDirExists(dir_name)) {
+                        params_correct=false;
+                        String s="*** Specified folder for "+str+" does not exist: "+val+" ***";
+                        System.out.println("warning: "+s);
+                        report.add(s);
+                    }
+                    
+                } 
+            }            
+        }
+        if (params_correct) report.add("No problems found with parameters or folders.");
+
+
+        //checks to see if there are spaces in path
+        boolean no_spaces_in_path=true;
+        String good_glimpse_folder = this.getGlimpseDir();
+        
+        if (good_glimpse_folder.contains(" ")) {
+            no_spaces_in_path=false;
+            String s="*** Potentially problematic installation location: The path to your GLIMPSE root folder includes at least one space character. This can cause problems with GLIMPSE operation. Please move GLIMPSE to a folder that does not contain the space character.";		    
+        } else {
+            report.add("No problem was found with spaces in the path to the GLIMPSE root folder.");
+        }
+        
+        //checks to see if folders are nested
+        boolean no_nesting=true;
+        
+        String bad_glimpse_path = good_glimpse_folder + File.separator
+                + good_glimpse_folder.substring(good_glimpse_folder.lastIndexOf(File.separator) + 1);
+        if (this.testDirExists(bad_glimpse_path)) {
+            no_nesting = false;
+            String s = "*** Potentially problematic installation location: Found nesting of GLIMPSE folders. This usually occurs during unzipping or when a GLIMPSE update is placed within the " + good_glimpse_folder
+                    + " as opposed to on top of it. Nesting is not neccesarily an issue, but may result in confusion in the future and, in some instances, may result in file pathnames exceeding the length that can be handled by the operating system. Please check your installation. The Installation Guide in the GLIMPSE documentation provides some instructions to address this issue. ***";
+            report.add(s);
+        } else {
+            report.add("No problem was found with nesting of GLIMPSE folders.");
+        }
+        
+        //checks to make sure the full path is not super long
+        boolean path_len_ok=true;
+        int path_len=this.getGlimpseDir().length();
+        if (path_len>150) {
+            path_len_ok=false; 
+            String s = "*** Full path length to the GLIMPSE root folder is "+path_len+" characters. This exceeds the recommended length of 150 and, in some circumstances, may result in file access problems on operating systems that limit path length to 256 total characters. Please consider re-locating your GLIMPSE root folder such that it has a shorter path.";  
+            report.add(s);
+        } else {
+            report.add("No problem was found with path length.");
+        }
+        
+        //checks to see if java_home is defined 
+        boolean found_java=true;
+        
+        String java_home_folder=System.getenv("JAVA_HOME");
+        if (!files.testFolderExists(java_home_folder)) {
+            found_java=false;
+            String s="*** Your JAVA_HOME is set to "+java_home_folder+", but that folder does not exist. Please update the JAVA_HOME setting in the run_GCAM*.bat file you used to start GLIMPSE. If using the standard version of Java, it is typically C:/Program Files/Java/jre1.8.0_XXX, where you will need to update XXX with the version on your computer. ***";
+            report.add(s);
+        } else {
+            String s="Your JAVA_HOME folder, "+java_home_folder+", was successfully found.";
+            report.add(s); 
+        }
+        
+        if ((found_java)&&(no_nesting)&&(params_correct)&&(path_len_ok)&&(no_spaces_in_path)) {
+            report.add("Installation at location "+this.getGlimpseDir()+" appears to be succesful.");
+        } else {
+            report.add("*** One or more problems found with GLIMPSE installation. ***");
+        }
+        
+        report.add(" ");
+        report.add("------ Check to verify that key files exist as specified --------");
+        String filename=this.getXmlHeaderFilename();
+        String s="XML header file: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);
+        filename=this.getTchBndListFilename();
+        s="Tech Bound file: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);
+        filename=this.getConfigurationTemplateFilename();
+        s="Configuration template file: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);		
+        filename=this.getQueryFilename();
+        s="Query file: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);	
+        filename=this.getgCamExecutableDir()+File.separator+this.getgCamExecutable();
+        s="GCAM executable: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);	
+        filename=this.getModelInterfaceJarDir()+File.separator+this.getModelInterfaceJar();
+        s="ModelInterface executable: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);			
+        
+        try {
+            report.add(" ");
+            report.add("------ Computer Information --------");
+            double gb=1073741824;
+            com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean)
+                     java.lang.management.ManagementFactory.getOperatingSystemMXBean();
+            
+            report.add("-- Memory analysis -- ");
+            try {
+
+                float physicalMemorySize = (float) (os.getTotalPhysicalMemorySize()/gb);
+                float physicalMemoryFree = (float) (os.getFreePhysicalMemorySize()/gb);
+
+                report.add(String.format("Total physical memory: %.1f GB",physicalMemorySize));	
+                report.add(String.format("Free physical memory: %.1f GB",physicalMemoryFree));
+                
+                if ((physicalMemorySize<12.0)&&(!this.isGcamUSA)) report.add("*** At least 12 GB of RAM are recommended for GCAM. The model may stop unexpectedly if RAM is exhausted. ***");
+                if ((physicalMemorySize<14.0)&&(this.isGcamUSA)) report.add("*** At least 14 GB of RAM are recommended for GCAM-USA, although 16 or more may be required when using complex policies such as RPS or CES. The model may stop unexpectedly if RAM is exhausted. ***");				
+                report.add("");		
+            } catch(Exception e1) {
+                report.add("Java version does not support assessing physical memory.");
+                report.add("");
+            }
+                
+            Runtime rt = Runtime.getRuntime();
+
+            report.add("-- Disk space analysis -- ");			
+            File drive = new File("/");
+            
+            double total_space=(double)(drive.getTotalSpace() /gb);
+            double free_space=(double)(drive.getFreeSpace() /gb);
+            
+            report.add(String.format("Total space: %.1f GB",total_space));
+            report.add(String.format("Free space: %.1f GB",free_space));
+            if (free_space<100) report.add("*** Warning: Free space is limited. At least 100 GB is advised. ***");
+
+            try {
+
+                float swapSpaceSize = (float) (os.getTotalSwapSpaceSize()/gb);
+                if ((swapSpaceSize<25.0)&&(this.isGcamUSA)) report.add("*** At least 25 GB of swap space are recommended. The model may stop unexpectedly if swap space is exhausted. ***");
+
+                float freeSwapSpace = (float) (os.getFreeSwapSpaceSize()/gb);
+
+                report.add(String.format("Total swap space: %.1f GB",swapSpaceSize));	
+                report.add(String.format("Free swap space: %.1f GB",freeSwapSpace));
+                report.add("");		
+            } catch(Exception e1) {
+                report.add("Java version does not support assessing swap space size.");
+                report.add("");
+            }			
+                    
+            report.add("-- Processor analysis -- ");
+            int available_processors = rt.availableProcessors();
+            report.add("Available processor cores: "+available_processors);
+            float cpu_load=(float)(os.getSystemCpuLoad());
+            report.add(String.format("Current usage: %.1f", (float)cpu_load*100.)+"%");
+            report.add("");
+                        
+        } catch(Exception e) {
+            System.out.println("Problem checking computer attributes (e.g., RAM)");
+        }
+        
+        //utils.displayArrayList(report,"Result of Check Installation",true);
+        
+        rtn_str=utils.createStringFromArrayList(report);
+        
+        return rtn_str;
+    }
+
+    /**
+     * Returns a list of unique technology types from the technology boundary file.
+     * @return List of technology types
+     */
+    public ArrayList<String> getTypesFromTechBnd(){
+        ArrayList<String> result=new ArrayList<>();
+        
+        String[][] tech_info = getTechInfo();
+        
+        result.add("All");
+        
+        for (int i=0;i<tech_info.length;i++) {
+            utils.addToArrayListIfUnique(result,tech_info[i][tech_info[0].length-1]);
+        }
+        return result;
+    }
+
+	public float getMaxDatabaseSizeGB() {
 		return maxDatabaseSizeGB;
 	}
-
-	public void setMaxDatabaseSizeGB(float f) {
-		this.maxDatabaseSizeGB = f;
-	}
-	
-	public String getOptionsFilename() {
-		return optionsFilename;
-	}
-
-	public void setOptionsFilename(String s) {
-		this.optionsFilename = s;
-	}
-
-	public String getXmlLibrary() {
-		return xmlLibrary;
-	}
-
-	public void setXmlLibrary(String s) {
-		this.xmlLibrary = s;
-	}
-
-	public String getTextEditor() {
-		return textEditor;
-	}
-
-	public void setTextEditor(String s) {
-		this.textEditor = s;
-	}
-
-	public String getXmlEditor() {
-		return xmlEditor;
-	}
-
-	public void setXmlEditor(String s) {
-		this.xmlEditor = s;
-	}
-
-	public String getMonetaryConversionsFilename() {
-		return this.monetaryConversionsFilename;
-	}
-
-	public void setMonetaryConversionsFilename(String s) {
-		this.monetaryConversionsFilename = s;
-	}
-
-	public String getDescriptionText() {
-		return descriptionText;
-	}
-
-	public void setDescriptionText(String s) {
-		this.descriptionText = s;
-	}
-
-	public String getStopPeriod() {
-		return stopPeriod;
-	}
-
-	public void setStopPeriod(String s) {
-		this.stopPeriod = s;
-	}
-
-	public String getStopYear() {
-		return stopYear;
-	}
-
-	public void setStopYear(String s) {
-		this.stopYear = s;
-	}
-	
-	public String getRunQueueStr() {
-		return runQueueStr;
-	}
-
-	public void setRunQueueStr(String s) {
-		this.runQueueStr = s;
-	}
-
-	public String getEol() {
-		return eol;
-	}
-
-	public void setEol(String s) {
-		this.eol = s;
-	}
-
-	public String getCsvColumnFilename() {
-		return csvColumnFilename;
-	}
-
-	public void setCsvColumnFilename(String s) {
-		csvColumnFilename = s;
-	}
-
-	public String getUseIcons() {
-		return useIcons;
-	}
-
-	public void setUseIcons(String str) {
-		if ((str.toLowerCase().equals("yes")) || (str.toLowerCase().equals("true")) || (str.toLowerCase().equals("1"))) {
-			useIcons = "true";
-		} else {
-			useIcons = "false";
-		}
-	}
-
-	public String getXmlHeaderFilename() {
-		return xmlHeaderFilename;
-	}
-
-	public void setXmlHeaderFilename(String s) {
-		xmlHeaderFilename = s;
-	}
-
-	public String getPreferredFontSize() {
-		return preferredFontSize;
-	}
-
-	public void setPreferredFontSize(String s) {
-		try {
-			int size = Integer.parseInt(s);
-			preferredFontSize = s;
-			styles.setFontSize(size);
-		} catch (Exception e) {
-			System.out.println("Could not convert font size string " + s + " to double.");
-		}
-	}
-
-	private String get(String param) {
-		String returnVal = "";
-
-		param = param.toLowerCase();
-
-		switch (param) {
-		case "allowablepolicyyears":
-			returnVal = ""+allowablePolicyYears;
-			break;
-		case "useallavailableprocessors":
-			returnVal = ""+useAllAvailableProcessors;
-			break;
-		case "showsplash":
-			returnVal = ""+showSplash;
-			break;
-		case "buildinfo":
-			returnVal = buildInfo;
-			break;
-		case "executecmdshort":
-			returnVal = executeCmdShort;
-			break;
-		case "executecmd":
-			returnVal = executeCmd;
-			break;
-		case "glimpsedir":
-			returnVal = glimpseDir;
-			break;
-		case "glimpseresourcedir":
-			returnVal = glimpseResourceDir;
-			break;
-		case "glimpsedocdir":
-			returnVal = glimpseDocDir;
-			break;
-		case "gcamhomedir":
-			returnVal = gCamHomeDir;
-			break;
-		case "solver":
-			returnVal = gCamSolver;
-			break;
-		case "gcamsolver":
-			returnVal = gCamSolver;
-			break;
-		case "scenariobuilderdir":
-			returnVal = scenarioBuilderDir;
-			break;
-		case "gcamexecutable":
-			returnVal = gCamExecutable;
-			break;
-		case "gcamexecutableargs":
-			returnVal = gCamExecutableArgs;
-			break;
-		case "gcamexecutabledir":
-			returnVal = gCamExecutableDir;
-			break;
-		case "modelinterfacejar":
-			returnVal = modelInterfaceJar;
-			break;
-		case "modelinterfacedir":
-			returnVal = modelInterfaceDir;
-			break;
-		case "modelinterfacejardir":
-			returnVal = modelInterfaceJarDir;
-			break;
-		case "filestosave":
-			returnVal = filesToSave;
-			break;
-		case "gcamoutputtosave":
-			returnVal = filesToSave;
-			break;
-		case "scenariocomponentsdir":
-			returnVal = scenarioComponentsDir;
-			break;
-		case "scenarioxmldir":
-			returnVal = scenarioDir;
-			break;
-		case "scenariodir":
-			returnVal = scenarioDir;
-			break;
-		case "glimpselogdir":
-			returnVal = glimpseLogDir;
-			break;
-		case "queryfilename":
-			returnVal = queryFilename;
-			break;
-		case "favoritequeryfilename":
-			returnVal = queryFilename;
-			break;
-		case "scenariobuilderjardir":
-			returnVal = scenarioBuilderJarDir;
-			break;
-		case "scenariobuilderjar":
-			returnVal = scenarioBuilderJar;
-			break;
-		case "resourcedir":
-			returnVal = resourceDir;
-			break;
-		case "presetregionlistfilename":
-			returnVal = presetRegionListFilename;
-			break;
-		case "regionlistfilename":
-			returnVal = regionListFilename;
-			break;
-		case "subregionlistfilename":
-			returnVal = subRegionListFilename;
-			break;
-		case "trashdir":
-			returnVal = trashDir;
-			break;
-		case "configurationtemplatefilename":
-			returnVal = configurationTemplateFilename;
-			break;
-		case "tranloadfactorsfilename":
-			returnVal = trnVehInfoFilename;
-			break;
-		case "trnvehinfofilename":
-			returnVal = trnVehInfoFilename;
-			break;
-		case "tchbndlistfilename":
-			returnVal = tchBndListFilename;
-			break;
-		case "gcamdatadir":
-			returnVal = gCamDataDir;
-			break;
-		case "gcamoutputdatabase":
-			returnVal = gCamOutputDatabase;
-			break;
-		case "maxdatabasesizegb":
-			returnVal = ""+maxDatabaseSizeGB;
-			break;
-		case "optionsfilename":
-			returnVal = optionsFilename;
-			break;
-		case "xmllibrary":
-			returnVal = xmlLibrary;
-			break;
-		case "texteditor":
-			returnVal = textEditor;
-			break;
-		case "xmleditor":
-			returnVal = xmlEditor;
-			break;
-		case "descriptiontext":
-			returnVal = descriptionText;
-			break;
-		case "stopperiod":
-			returnVal = stopPeriod;
-			break;
-		case "stop-period":
-			returnVal = stopPeriod;
-			break;
-		case "stopyear":
-			returnVal = stopYear;
-			break;
-		case "stop-year":
-			returnVal = stopYear;
-			break;
-		case "runqueuestr":
-			returnVal = runQueueStr;
-			break;
-		case "eol":
-			returnVal = eol;
-			break;
-		case "isgcamusa":
-			returnVal = String.valueOf(isGcamUSA);
-			break;
-		case "csvcolumnfilename":
-			returnVal = csvColumnFilename;
-			break;
-		case "xmlheaderfilename":
-			returnVal = xmlHeaderFilename;
-			break;
-		case "preferredfontsize":
-			returnVal = preferredFontSize;
-			break;
-		case "useicons":
-			returnVal = useIcons;
-			break;
-		case "use_icons":
-			returnVal = useIcons;
-			break;
-		case "unitconversionsfilename":
-			returnVal = unitConversionsFilename;
-			break;
-		case "monetaryconversionsfilename":
-			returnVal = monetaryConversionsFilename;
-			break;
-		case "debugregion":
-			returnVal = debugRegion;
-			break;
-		case "debugcreate":
-			returnVal = debugCreate;
-			break;
-		case "startyearforshare":
-			returnVal = startYearForShare;
-			break;
-		case "debugrename":
-			returnVal = debugRename;
-		}
-		if ((returnVal==null)||(returnVal.equals(""))) System.out.println("No match for "+param);
-		return returnVal;
-	}
-
-	private void set(String param, String val) {
-
-		param = param.toLowerCase();
-		if (val.indexOf("#") > -1){
-			val = fixDir(val);
-		}
-
-
-		switch (param) {
-
-		case "glimpsedir":
-			String current_dir=System.getProperty("user.dir");
-			glimpseDir = fixDir(val);
-			if (glimpseDir.startsWith(".")) glimpseDir=current_dir;
-
-			break;
-		case "gcamhomedir":
-			gCamHomeDir = fixDir(val);
-			break;		
-		case "allowablepolicyyears":
-			setAllowablePolicyYears(val);
-			break;
-		case "useallavailableprocessors":
-			setUseAllAvailableProcessors(val);
-			break;
-		case "showsplash":
-			setShowSplash(val);
-			break;
-		case "buildinfo":
-			buildInfo = val;
-			break;
-		case "executecmdshort":
-			executeCmdShort = val;
-			break;
-		case "executecmd":
-			executeCmd = val;
-			break;
-
-		case "glimpsedocdir":
-			glimpseDocDir = fixDir(val);
-			break;
-		case "glimpseresourcedir":
-			glimpseResourceDir = fixDir(val);
-			break;
-		case "solver":
-			gCamSolver = fixDir(val);
-			break;
-		case "gcamsolver":
-			gCamSolver = fixDir(val);
-			break;
-		case "scenariobuilderdir":
-			scenarioBuilderDir = fixDir(val);
-			break;
-		case "scenariobuilderjardir":
-			scenarioBuilderJarDir = fixDir(val);
-			break;
-		case "scenariobuilderjar":
-			scenarioBuilderJar = val;
-			break;
-		case "gcamexecutable":
-			gCamExecutable = fixDir(val);
-			break;
-		case "gcamexecutableargs":
-			gCamExecutableArgs = val;
-			break;
-		case "gcamexecutabledir":
-			gCamExecutableDir = fixDir(val);
-			break;
-		case "modelinterfacejar":
-			modelInterfaceJar = fixDir(val);
-			break;
-		case "modelinterfacedir":
-			modelInterfaceDir = fixDir(val);
-			break;
-		case "modelinterfacejardir":
-			modelInterfaceJarDir = fixDir(val);
-			break;
-		case "gcamoutputtosave":
-			filesToSave = fixDir(val);
-			break;
-		case "filestosave":
-			filesToSave = fixDir(val);
-			break;
-		case "scenariocomponentsdir":
-			scenarioComponentsDir = fixDir(val);
-			break;
-		case "scenarioxmldir":
-			scenarioDir = fixDir(val);
-			break;
-		case "scenariodir":
-			scenarioDir = fixDir(val);
-			break;
-		case "glimpselogdir":
-			glimpseLogDir = fixDir(val);
-			break;
-		case "queryfilename":
-			queryFilename = fixDir(val);
-			break;
-		case "favoritequeryfilename":
-			favoriteQueryFilename = fixDir(val);
-			break;
-		case "unitconversionsfilename":
-			unitConversionsFilename = fixDir(val);
-			break;
-		case "resourcedir":
-			resourceDir = fixDir(val);
-			break;
-		case "presetregionlistfilename":
-			presetRegionListFilename = fixDir(val);
-			break;
-		case "regionlistfilename":
-			regionListFilename = fixDir(val);
-			break;
-		case "subregionlistfilename":
-			subRegionListFilename = fixDir(val);
-			break;			
-		case "trashdir":
-			trashDir = fixDir(val);
-			break;
-		case "configurationtemplatefilename":
-			configurationTemplateFilename = fixDir(val);
-			break;
-		case "tranloadfactorsfilename":
-			trnVehInfoFilename = fixDir(val);
-			break;
-		case "trnvehinfofilename":
-			trnVehInfoFilename = fixDir(val);
-			break;
-		case "tchbndlistfilename":
-			tchBndListFilename = fixDir(val);
-			break;
-		case "gcamdatadir":
-			gCamDataDir = fixDir(val);
-			break;
-		case "gcamoutputdatabase":
-			gCamOutputDatabase = fixDir(val);
-			break;
-		case "maxdatabasesizegb":
-			maxDatabaseSizeGB = Float.parseFloat(val);
-			break;
-		case "optionsfilename":
-			optionsFilename = fixDir(val);
-			break;
-		case "xmllibrary":
-			xmlLibrary = fixDir(val);
-			break;
-		case "texteditor":
-			textEditor = fixDir(val);
-			break;
-		case "xmleditor":
-			xmlEditor = fixDir(val);
-			break;
-		case "descriptiontext":
-			descriptionText = fixDir(val);
-			break;
-		case "stopperiod":
-			stopPeriod = val;
-			break;
-		case "stop-period":
-			stopPeriod = val;
-			break;
-		case "stopyear":
-			stopYear = val;
-			break;
-		case "stop-year":
-			stopYear = val;
-			break;
-		case "runqueuestr":
-			runQueueStr = fixDir(val);
-			break;
-		case "eol":
-			eol = val;
-			break;
-		case "isgcamusa":
-			isGcamUSA = false;
-			if (val.toLowerCase().trim().equals("true"))
-				isGcamUSA = true;
-			break;
-		case "csvcolumnfilename":
-			csvColumnFilename = fixDir(val);
-			break;
-		case "xmlheaderfilename":
-			xmlHeaderFilename = fixDir(val);
-			break;
-		case "preferredfontsize":
-			setPreferredFontSize(val);
-			break;
-		case "useicons":
-			setUseIcons(val);
-			break;
-		case "use_icons":
-			setUseIcons(val);
-			break;
-		case "monetaryconversionsfilename":
-			setMonetaryConversionsFilename(fixDir(val));
-			break;
-		case "debugregion":
-			setDebugRegion(val);
-			break;
-		case "debugcreate":
-			setDebugCreate(val);
-			break;
-		case "debugrename":
-			setDebugRename(val);
-			break;	
-		case "startyearforshare":
-			setStartYearForShare(val);
-			break;	
-			}
-
-		if (param.indexOf("dir") > 0) {
-			testDirExists(val);
-		}
-
-		return;
-	}
-
-	private String fixDir(String filename) {
-
-		//for backwards compatibility on options file... wildcards surrounded by #
-		if (filename.indexOf("#glimpseDir#") > -1) {
-			filename = filename.replace("#glimpseDir#", glimpseDir);
-		}
-		if (filename.indexOf("#gCamHomeDir#") > -1) {
-			filename = filename.replace("#gCamHomeDir#", gCamHomeDir);
-		}
-		if (filename.indexOf("#scenarioBuilderDir#") > -1) {
-			filename = filename.replace("#scenarioBuilderDir#", scenarioBuilderDir);
-		}
-		if (filename.indexOf("#modelInterfaceDir#") > -1) {
-			filename = filename.replace("#modelInterfaceDir#", modelInterfaceDir);
-		}
-		
-		//for new convention with wildcards surrounded by $s
-		if (filename.indexOf("$glimpseDir$") > -1) {
-			filename = filename.replace("$glimpseDir$", glimpseDir);
-		}
-		if (filename.indexOf("$gCamHomeDir$") > -1) {
-			filename = filename.replace("$gCamHomeDir$", gCamHomeDir);
-		}
-		if (filename.indexOf("$scenarioBuilderDir$") > -1) {
-			filename = filename.replace("$scenarioBuilderDir$", scenarioBuilderDir);
-		}
-		if (filename.indexOf("$modelInterfaceDir$") > -1) {
-			filename = filename.replace("$modelInterfaceDir$", modelInterfaceDir);
-		}
-
-		filename = filename.replace("/", File.separator).replace("\\", File.separator).replace("\\\\", File.separator);
-
-		return filename;
-	}
-
-	private boolean testDirExists(String pathName) {
-		return testDirExists(pathName, false);
-	}
-
-	private boolean testDirExists(String pathName, boolean isFatal) {
-		boolean b = true;
-
-		try {
-			File f = new File(pathName);
-			b = f.isDirectory();
-		} catch (Exception E) {
-			System.out.println("error openning: " + pathName);
-			b = false;
-			if (isFatal) {
-				System.out.println("exiting");
-				System.exit(0);
-			}
-		}
-
-		return b;
-	}
-	
-	private boolean testFileExists(String pathName) {
-		boolean b = true;
-
-		try {
-			File f = new File(pathName);
-			b = f.exists();
-		} catch (Exception E) {
-			System.out.println("error openning: " + pathName);
-			b = false;
-		}
-
-		return b;
-	}
-
-	public void loadOptions(String filename) {
-		set("optionsFilename", filename);
-		loadOptions();
-	}
-
-	public void loadOptions() {
-		GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-
-		ArrayList<String[]> keyValuePairs = null;
-		File optionsFile = new File(getOptionsFilename());
-		
-		System.out.println("Loading options from " + getOptionsFilename());
-
-		if (!optionsFile.exists()) {
-			System.out.println("Specified options file does not exist.");
-			//utils.warningMessage("Specified options file does not exist. Please check command-line argument.");
-			return;
-		}
-
-		files.optionsFileContent = files.getStringArrayFromFile(getOptionsFilename(), "#");
-
-		String current_line="";
-		
-		try {
-
-			keyValuePairs = files.loadKeyValuePairsFromFile(getOptionsFilename(), "=");
-
-			for (int i = 0; i < keyValuePairs.size(); i++) {
-
-				current_line=keyValuePairs.get(i)[0];
-				String[] s = keyValuePairs.get(i);
-				String s0 = s[0].trim();
-				String s1 = s[1].trim();
-				
-				if (!s0.startsWith("#")) { // pound is the symbol for a comment
-					set(s0, s1);
-				}
-			}
-		} catch (Exception e) {
-			//utils.warningMessage("Problem reading options file.");
-			System.out.println("Error reading options file: " + optionsFile);
-			System.out.println("Line: "+current_line);
-			System.out.println("Error: " + e);
-			//utils.exitOnException();
-		}
-		return;
-	}
-
-	public ArrayList<String> getArrayListOfOptions() {
-
-		files.optionsFileContent=files.getStringArrayFromFile(optionsFilename, "#");
-		
-		ArrayList<String> optionsFileContent = files.optionsFileContent;
-		ArrayList<String> completed_arrayList = new ArrayList<String>();
-
-		try {
-			for (int i = 0; i < optionsFileContent.size(); i++) {
-				String line = optionsFileContent.get(i);
-				int loc_of_equals = line.indexOf("=");
-				if (loc_of_equals > 0) {
-					String s1 = line.substring(0, loc_of_equals - 1).trim();
-					String s2 = line.substring(loc_of_equals + 1).trim();
-					String val = this.get(s1);
-					if (val != null) {
-						//System.out.println("s1:"+s1+":"+s2+":"+val+":");
-						completed_arrayList.add(s1 + " = " + val);
-					} else {
-						System.out.println("No translation for "+s1);
-					}
-				}
-			}
-		} catch (Exception e) {
-			utils.warningMessage("Difficulty reading options file.");
-			System.out.println("Difficulty reading options file. Attempting to continue.");
-			completed_arrayList.add("");
-		}
-
-		return completed_arrayList;
-	}
-	
-	public String[][] getTechInfo(){
-		
-		if (tech_info==null) {
-			tech_info=getTechInfoAsMatrix();
-		}
-		
-		return tech_info;
-	}
-	
-	public String[][] getSectorInfo(){
-		
-		if (tech_info==null) {
-			tech_info=getTechInfoAsMatrix();
-		}
-		
-		ArrayList<String> sector_list=new ArrayList<String>(); 
-		ArrayList<String> output_list=new ArrayList<String>(); 
-		ArrayList<String> units_list=new ArrayList<String>(); 
-		
-		for (int i=0;i<tech_info.length;i++) {
-			String sect_i=tech_info[i][0].trim();
-			String output_i=tech_info[i][5].trim();
-			String units_i=tech_info[i][6].trim();
-			
-			int current_len=sector_list.size();
-			boolean match=false;
-			for (int j=0;j<current_len;j++) {
-				if (sector_list.get(j).equals(sect_i)) {
-					match=true;
-					break;
-				}
-			}
-			if (!match) {
-				sector_list.add(sect_i);
-				output_list.add(output_i);
-				units_list.add(units_i);
-			}
-		}
-		
-		String[][] sector_info=new String[sector_list.size()][3];
-		for (int i=0;i<sector_list.size();i++) {
-			sector_info[i][0]=sector_list.get(i);
-			sector_info[i][1]=output_list.get(i);
-			sector_info[i][2]=units_list.get(i);
-		}
-		
-		return sector_info;
-	}
-	
-	private String[][] getTechInfoAsMatrix() {
-
-		int num = 0;
-
-		String[][] returnStringMatrix = null;
-		String text="";
-		
-		try {
-
-			ArrayList<String> arrayList = files.glimpseTechBoundFileContent;
-
-			if ((arrayList == null) || (arrayList.size() == 0))
-				throw (new Exception("arrayList not read from file."));
-			
-			int size_j=0;
-			
-			text=arrayList.get(0);
-			String[] textSplit = null;
-			String delim=null;
-			
-			if (text.contains(",")){ 
-				delim=",";
-			} else {
-				delim=":";
-			}
-			textSplit=text.split(delim);
-			size_j=textSplit.length;
-
-			returnStringMatrix = new String[arrayList.size()][size_j];
-
-			//only reads in first 5 fields
-			for (int i = 0; i < arrayList.size(); i++) {
-				text = arrayList.get(i).trim();
-				if (text.length()>0) {
-				textSplit = text.split(delim);
-			
-				  for (int j = 0; j < size_j ; j++) {
-					returnStringMatrix[i][j] = textSplit[j].trim();
-				  }
-				}
-			}
-			num++;
-
-		} catch (Exception e) {
-			utils.warningMessage("Problem reading tech list: "+text);
-			System.out.println("Error reading tech list from " + get("tchBndListFile") + ":");
-			System.out.println("  ---> " + e);
-			if (num == 0) {
-				System.out.println("Using defaults...");
-
-				String[][] stringMatrix = {
-						{ "trn_pass_road_LDV_4W", "Compact Car", "BEV", "elect_td_trn" },
-						{ "trn_pass_road_LDV_4W", "Compact Car", "FCEV", "H2 enduse" },
-						{ "trn_pass_road_LDV_4W", "Compact Car", "Hybrid Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Compact Car", "Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Compact Car", "NG", "delivered gas" },
-
-						{ "trn_pass_road_LDV_4W", "Midsize Car", "BEV", "elect_td_trn" },
-						{ "trn_pass_road_LDV_4W", "Midsize Car", "FCEV", "H2 enduse" },
-						{ "trn_pass_road_LDV_4W", "Midsize Car", "Hybrid Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Midsize Car", "Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Midsize Car", "NG", "delivered gas" },
-
-						{ "trn_pass_road_LDV_4W", "Large Car", "BEV", "elect_td_trn" },
-						{ "trn_pass_road_LDV_4W", "Large Car", "FCEV", "H2 enduse" },
-						{ "trn_pass_road_LDV_4W", "Large Car", "Hybrid Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Large Car", "Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Large Car", "NG", "delivered gas" },
-
-						{ "trn_pass_road_LDV_4W", "Light Truck and SUV", "BEV", "elect_td_trn" },
-						{ "trn_pass_road_LDV_4W", "Light Truck and SUV", "FCEV", "H2 enduse" },
-						{ "trn_pass_road_LDV_4W", "Light Truck and SUV", "Hybrid Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Light Truck and SUV", "Liquids", "refined liquids enduse" },
-						{ "trn_pass_road_LDV_4W", "Light Truck and SUV", "NG", "delivered gas" }
-
-				};
-				returnStringMatrix = stringMatrix;
-
-			} else {
-				System.out.println("Stopping with " + num + " read in.");
-			}
-		}
-		return returnStringMatrix;
-	}
-	
-	public String examineGLIMPSESetup() {
-
-		String rtn_str="";
-		
-		//testing to make sure key parameters have been defined
-		String[] params= {
-				"glimpseDir","glimpseResourceDir","glimpseDocDir","gCamHomeDir","solver","gCamSolver",
-				"scenarioBuilderJar","scenarioBuilderDir",
-				"gCamExecutable","gCamExecutableArgs","gCamExecutableDir",
-				"modelInterfaceJar","modelInterfaceJarDir",
-				"scenarioComponentsDir","scenarioXMLDir","scenarioDir",
-				"configurationTemplateFilename","queryFilename","favoriteQueryFilename",
-				"tchBndListFilename","tranLoadFactorsFilename",
-				"regionListFilename","subRegionListFilename","presetRegionListFilename",
-				"monetaryConversionsFilename","csvColumnFilename","xmlHeaderFilename",
-				"scenarioBuilderJarDir","scenarioBuilderJar",
-				"resourceDir","trashDir","gCamDataDir","gCamOutputDatabase",
-				"maxDatabaseSizeGB","optionsFilename","xmlLibrary","textEditor","xmlEditor",
-				"stopPeriod","runQueueStr",
-				"isGcamUSA","preferredFontSize","useIcons","use_icons","debugRegion",
-				"debugCreate","startYearForShare","debugRename","filesToSave"};
-		
-		ArrayList<String> report=new ArrayList<String>();
-		
-		report.add(" ");
-		report.add("------ Analysis of GLIMPSE setup --------");
-		
-		boolean params_correct=true;
-		
-		for (int i=0;i<params.length;i++) {
-			String str=params[i];
-			String val=get(str);
-			if (val==null) {
-				params_correct=false; 
-				String s="*** Parameter "+str+" is undefined. ***";
-				report.add(s);
-			} else {
-				if (str.indexOf("Dir")>0) {
-					String dir_name=val;
-					if (!this.testDirExists(dir_name)) {
-						params_correct=false;
-						String s="*** Specified folder for "+str+" does not exist: "+val+" ***";
-						System.out.println("warning: "+s);
-						report.add(s);
-					}
-					
-				} 
-			}			
-		}
-		if (params_correct) report.add("No problems found with parameters or folders.");
-
-
-		//checks to see if there are spaces in path
-		boolean no_spaces_in_path=true;
-		String good_glimpse_folder = this.getGlimpseDir();
-		
-		if (good_glimpse_folder.contains(" ")) {
-			no_spaces_in_path=false;
-			String s="*** Potentially problematic installation location: The path to your GLIMPSE root folder includes at least one space character. This can cause problems with GLIMPSE operation. Please move GLIMPSE to a folder that does not contain the space character.";		    
-		} else {
-			report.add("No problem was found with spaces in the path to the GLIMPSE root folder.");
-		}
-		
-		//checks to see if folders are nested
-		boolean no_nesting=true;
-		
-		String bad_glimpse_path = good_glimpse_folder + File.separator
-				+ good_glimpse_folder.substring(good_glimpse_folder.lastIndexOf(File.separator) + 1);
-		if (this.testDirExists(bad_glimpse_path)) {
-			no_nesting = false;
-			String s = "*** Potentially problematic installation location: Found nesting of GLIMPSE folders. This usually occurs during unzipping or when a GLIMPSE update is placed within the " + good_glimpse_folder
-					+ " as opposed to on top of it. Nesting is not neccesarily an issue, but may result in confusion in the future and, in some instances, may result in file pathnames exceeding the length that can be handled by the operating system. Please check your installation. The Installation Guide in the GLIMPSE documentation provides some instructions to address this issue. ***";
-			report.add(s);
-		} else {
-			report.add("No problem was found with nesting of GLIMPSE folders.");
-		}
-		
-		//checks to make sure the full path is not super long
-		boolean path_len_ok=true;
-		int path_len=this.getGlimpseDir().length();
-		if (path_len>150) {
-			path_len_ok=false; 
-			String s = "*** Full path length to the GLIMPSE root folder is "+path_len+" characters. This exceeds the recommended length of 150 and, in some circumstances, may result in file access problems on operating systems that limit path length to 256 total characters. Please consider re-locating your GLIMPSE root folder such that it has a shorter path.";  
-			report.add(s);
-		} else {
-			report.add("No problem was found with path length.");
-		}
-		
-		//checks to see if java_home is defined 
-		boolean found_java=true;
-		
-		String java_home_folder=System.getenv("JAVA_HOME");
-		if (!files.testFolderExists(java_home_folder)) {
-			found_java=false;
-			String s="*** Your JAVA_HOME is set to "+java_home_folder+", but that folder does not exist. Please update the JAVA_HOME setting in the run_GCAM*.bat file you used to start GLIMPSE. If using the standard version of Java, it is typically C:/Program Files/Java/jre1.8.0_XXX, where you will need to update XXX with the version on your computer. ***";
-			report.add(s);
-		} else {
-			String s="Your JAVA_HOME folder, "+java_home_folder+", was successfully found.";
-			report.add(s); 
-		}
-		
-		if ((found_java)&&(no_nesting)&&(params_correct)&&(path_len_ok)&&(no_spaces_in_path)) {
-			report.add("Installation at location "+this.getGlimpseDir()+" appears to be succesful.");
-		} else {
-			report.add("*** One or more problems found with GLIMPSE installation. ***");
-		}
-		
-		report.add(" ");
-		report.add("------ Check to verify that key files exist as specified --------");
-		String filename=this.getXmlHeaderFilename();
-		String s="XML header file: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);
-		filename=this.getTchBndListFilename();
-		s="Tech Bound file: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);
-		filename=this.getConfigurationTemplateFilename();
-		s="Configuration template file: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);		
-		filename=this.getQueryFilename();
-		s="Query file: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);	
-		filename=this.getgCamExecutableDir()+File.separator+this.getgCamExecutable();
-		s="GCAM executable: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);	
-		filename=this.getModelInterfaceJarDir()+File.separator+this.getModelInterfaceJar();
-		s="ModelInterface executable: "+filename+" - "+files.doesFileExist(filename);
-		report.add(s);			
-		
-		try {
-			report.add(" ");
-			report.add("------ Computer Information --------");
-			double gb=1073741824;
-		    com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean)
-				     java.lang.management.ManagementFactory.getOperatingSystemMXBean();
-		    
-			report.add("-- Memory analysis -- ");
-			try {
-
-				float physicalMemorySize = (float) (os.getTotalPhysicalMemorySize()/gb);
-				float physicalMemoryFree = (float) (os.getFreePhysicalMemorySize()/gb);
-
-				report.add(String.format("Total physical memory: %.1f GB",physicalMemorySize));	
-				report.add(String.format("Free physical memory: %.1f GB",physicalMemoryFree));
-				
-				if ((physicalMemorySize<12.0)&&(!this.isGcamUSA)) report.add("*** At least 12 GB of RAM are recommended for GCAM. The model may stop unexpectedly if RAM is exhausted. ***");
-				if ((physicalMemorySize<14.0)&&(this.isGcamUSA)) report.add("*** At least 14 GB of RAM are recommended for GCAM-USA, although 16 or more may be required when using complex policies such as RPS or CES. The model may stop unexpectedly if RAM is exhausted. ***");				
-				report.add("");		
-			} catch(Exception e1) {
-				report.add("Java version does not support assessing physical memory.");
-				report.add("");
-			}
-				
-			Runtime rt = Runtime.getRuntime();
-
-			report.add("-- Disk space analysis -- ");			
-			File drive = new File("/");
-			
-			double total_space=(double)(drive.getTotalSpace() /gb);
-			double free_space=(double)(drive.getFreeSpace() /gb);
-			
-			report.add(String.format("Total space: %.1f GB",total_space));
-			report.add(String.format("Free space: %.1f GB",free_space));
-			if (free_space<100) report.add("*** Warning: Free space is limited. At least 100 GB is advised. ***");
-
-			try {
-
-				float swapSpaceSize = (float) (os.getTotalSwapSpaceSize()/gb);
-				if ((swapSpaceSize<25.0)&&(this.isGcamUSA)) report.add("*** At least 25 GB of swap space are recommended. The model may stop unexpectedly if swap space is exhausted. ***");
-
-				float freeSwapSpace = (float) (os.getFreeSwapSpaceSize()/gb);
-
-				report.add(String.format("Total swap space: %.1f GB",swapSpaceSize));	
-				report.add(String.format("Free swap space: %.1f GB",freeSwapSpace));
-				report.add("");		
-			} catch(Exception e1) {
-				report.add("Java version does not support assessing swap space size.");
-				report.add("");
-			}			
-					
-			report.add("-- Processor analysis -- ");
-			int available_processors = rt.availableProcessors();
-			report.add("Available processor cores: "+available_processors);
-			float cpu_load=(float)(os.getSystemCpuLoad());
-			report.add(String.format("Current usage: %.1f", (float)cpu_load*100.)+"%");
-			report.add("");
-						
-		} catch(Exception e) {
-			System.out.println("Problem checking computer attributes (e.g., RAM)");
-		}
-		
-		//utils.displayArrayList(report,"Result of Check Installation",true);
-		
-		rtn_str=utils.createStringFromArrayList(report);
-		
-		return rtn_str;
-	}
-
-	public ArrayList<String> getTypesFromTechBnd(){
-		ArrayList<String> result=new ArrayList<String>();
-		
-		String[][] tech_info = getTechInfo();
-		
-		result.add("All");
-		
-		for (int i=0;i<tech_info.length;i++) {
-			utils.addToArrayListIfUnique(result,tech_info[i][tech_info[0].length-1]);
-		}
-		return result;
-	}
-	
+    
+    // Optional-returning getters for nullable fields
+    public Optional<String> getAboutTextFilenameOptional() { return Optional.ofNullable(aboutTextFilename); }
+    public Optional<String> getPresetRegionListFilenameOptional() { return Optional.ofNullable(presetRegionListFilename); }
+    public Optional<String> getSubRegionsFilenameOptional() { return Optional.ofNullable(subRegionListFilename); }
+    public Optional<String> getRegionListFilenameOptional() { return Optional.ofNullable(regionListFilename); }
+    public Optional<String> getGlimpseDirOptional() { return Optional.ofNullable(glimpseDir); }
+    public Optional<String> getGlimpseResourceDirOptional() { return Optional.ofNullable(glimpseResourceDir); }
+    public Optional<String> getGlimpseDocDirOptional() { return Optional.ofNullable(glimpseDocDir); }
+    public Optional<String> getgCamHomeDirOptional() { return Optional.ofNullable(gCamHomeDir); }
+    public Optional<String> getScenarioBuilderDirOptional() { return Optional.ofNullable(scenarioBuilderDir); }
+    public Optional<String> getScenarioBuilderJarOptional() { return Optional.ofNullable(scenarioBuilderJar); }
+    public Optional<String> getScenarioBuilderJarDirOptional() { return Optional.ofNullable(scenarioBuilderJarDir); }
+    public Optional<String> getgCamExecutableOptional() { return Optional.ofNullable(gCamExecutable); }
+    public Optional<String> getgCamExecutableDirOptional() { return Optional.ofNullable(gCamExecutableDir); }
+    public Optional<String> getModelInterfaceJarOptional() { return Optional.ofNullable(modelInterfaceJar); }
+    public Optional<String> getModelInterfaceJarDirOptional() { return Optional.ofNullable(modelInterfaceJarDir); }
+    public Optional<String> getModelInterfaceDirOptional() { return Optional.ofNullable(modelInterfaceDir); }
+    public Optional<String> getFilesToSaveOptional() { return Optional.ofNullable(filesToSave); }
+    public Optional<String> getScenarioComponentsDirOptional() { return Optional.ofNullable(scenarioComponentsDir); }
+    public Optional<String> getScenarioDirOptional() { return Optional.ofNullable(scenarioDir); }
+    public Optional<String> getGlimpseLogDirOptional() { return Optional.ofNullable(glimpseLogDir); }
+    public Optional<String> getResourceDirOptional() { return Optional.ofNullable(resourceDir); }
+    public Optional<String> getTrashDirOptional() { return Optional.ofNullable(trashDir); }
+    public Optional<String> getgCamDataDirOptional() { return Optional.ofNullable(gCamDataDir); }
+    public Optional<String> getgCamOutputDatabaseOptional() { return Optional.ofNullable(gCamOutputDatabase); }
+    public Optional<String> getOptionsFilenameOptional() { return Optional.ofNullable(optionsFilename); }
+    public Optional<String> getXmlLibraryOptional() { return Optional.ofNullable(xmlLibrary); }
+    public Optional<String> getTextEditorOptional() { return Optional.ofNullable(textEditor); }
+    public Optional<String> getXmlEditorOptional() { return Optional.ofNullable(xmlEditor); }
+    public Optional<String> getDescriptionTextOptional() { return Optional.ofNullable(descriptionText); }
+    public Optional<String> getStopPeriodOptional() { return Optional.ofNullable(stopPeriod); }
+    public Optional<String> getStopYearOptional() { return Optional.ofNullable(stopYear); }
+    public Optional<String> getConfigurationTemplateFilenameOptional() { return Optional.ofNullable(configurationTemplateFilename); }
+    public Optional<String> getQueryFilenameOptional() { return Optional.ofNullable(queryFilename); }
+    public Optional<String> getFavoriteQueryFilenameOptional() { return Optional.ofNullable(favoriteQueryFilename); }
+    public Optional<String> getTchBndListFilenameOptional() { return Optional.ofNullable(tchBndListFilename); }
+    public Optional<String> getTrnVehInfoFilenameOptional() { return Optional.ofNullable(trnVehInfoFilename); }
+    public Optional<String> getCsvColumnFilenameOptional() { return Optional.ofNullable(csvColumnFilename); }
+    public Optional<String> getXmlHeaderFilenameOptional() { return Optional.ofNullable(xmlHeaderFilename); }
+    public Optional<String> getUnitConversionsFilenameOptional() { return Optional.ofNullable(unitConversionsFilename); }
+    public Optional<String> getMonetaryConversionsFilenameOptional() { return Optional.ofNullable(monetaryConversionsFilename); }
 
 }

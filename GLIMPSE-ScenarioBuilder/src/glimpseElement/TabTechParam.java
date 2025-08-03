@@ -34,12 +34,15 @@ package glimpseElement;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.controlsfx.control.CheckComboBox;
 import glimpseBuilder.CsvFileWriter;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,11 +72,51 @@ import javafx.stage.Stage;
  * </p>
  */
 public class TabTechParam extends PolicyTab implements Runnable {
-    // === Utility Instances ===
-    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-    private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+    // === Constants for UI Texts and Options ===
+    private static final double LABEL_WIDTH = 125;
+    private static final double MAX_WIDTH = 195;
+    private static final double MIN_WIDTH = 105;
+    private static final double PREF_WIDTH = 195;
+    private static final String SELECT_ONE = "Select One";
+    private static final String SELECT_ONE_OR_MORE = "Select One or More";
+    private static final String ALL = "All";
+    private static final String[] PARAM_OPTIONS = {
+            "Shareweight", "Subsector Shareweight", "Nested-Subsector Shareweight", "Levelized Non-Energy Cost",
+            "Capacity Factor", "Fixed Output", "Lifetime", "Halflife"
+    };
+    private static final String[] MODIFICATION_TYPE_OPTIONS = {
+            "Initial and Final", "Initial w/% Growth/yr", "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd"
+    };
+    private static final String[] CONVERT_FROM_OPTIONS = {
+            "None", "2023$s", "2020$s", "2015$s", "2010$s", "2005$s", "2000$s"
+    };
+    private static final String[] EMISSION_OPTIONS = {
+            "Select One", "NOx", "SO2", "PM10", "PM2.5", "CO", "NH3", "NMVOC", "BC", "OC"
+    };
+    private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
+    private static final String UNIT_UNITLESS = "unitless";
+    private static final String UNIT_YEARS = "years";
+    private static final String UNIT_UNITLESS_CAPACITY = "Unitless";
+    private static final String LABEL_VALUES = "Values: ";
+    private static final String LABEL_SPECIFICATION = "Specification:";
+    private static final String LABEL_POPULATE = "Populate:";
+    private static final String LABEL_SECTOR = "Sector:";
+    private static final String LABEL_FILTER = "Filter:";
+    private static final String LABEL_TECHS = "Tech(s): ";
+    private static final String LABEL_PARAMETER = "Parameter: ";
+    private static final String LABEL_PARAMETER2 = "Parameter 2: ";
+    private static final String LABEL_INPUT = "Input: ";
+    private static final String LABEL_OUTPUT = "Output: ";
+    private static final String LABEL_UNITS = "Units: ";
+    private static final String LABEL_TYPE = "Type: ";
+    private static final String LABEL_START_YEAR = "Start Year: ";
+    private static final String LABEL_END_YEAR = "End Year: ";
+    private static final String LABEL_INITIAL_VAL = "Initial Val:   ";
+    private static final String LABEL_FINAL_VAL = "Final Val: ";
+    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
+    private static final String LABEL_CONVERT_FROM = "Convert $s from: ";
+    private static final String LABEL_GROWTH = "Growth (%):";
+    private static final String LABEL_DELTA = "Delta:";
 
     // === Layout and UI Components ===
     private final GridPane gridPanePresetModification = new GridPane();
@@ -87,45 +130,44 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === UI Controls ===
-    private static final double LABEL_WIDTH = 125;
-    private final Label labelSector = utils.createLabel("Sector:", LABEL_WIDTH);
+    private final Label labelSector = utils.createLabel(LABEL_SECTOR, LABEL_WIDTH);
     private final ComboBox<String> comboBoxSector = utils.createComboBoxString();
-    private final Label labelFilter = utils.createLabel("Filter:", LABEL_WIDTH);
+    private final Label labelFilter = utils.createLabel(LABEL_FILTER, LABEL_WIDTH);
     private final TextField textFieldFilter = utils.createTextField();
-    private final Label labelCheckComboBoxTech = utils.createLabel("Tech(s): ", LABEL_WIDTH);
+    private final Label labelCheckComboBoxTech = utils.createLabel(LABEL_TECHS, LABEL_WIDTH);
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
-    private final Label labelComboBoxParam = utils.createLabel("Parameter: ", LABEL_WIDTH);
+    private final Label labelComboBoxParam = utils.createLabel(LABEL_PARAMETER, LABEL_WIDTH);
     private final ComboBox<String> comboBoxParam = utils.createComboBoxString();
-    private final Label labelComboBoxParam2 = utils.createLabel("Parameter 2: ", LABEL_WIDTH);
+    private final Label labelComboBoxParam2 = utils.createLabel(LABEL_PARAMETER2, LABEL_WIDTH);
     private final ComboBox<String> comboBoxParam2 = utils.createComboBoxString();
-    private final Label labelTextFieldInput = utils.createLabel("Input: ", LABEL_WIDTH);
+    private final Label labelTextFieldInput = utils.createLabel(LABEL_INPUT, LABEL_WIDTH);
     private final Label labelTextFieldInput2 = utils.createLabel("");
-    private final Label labelTextFieldOutput = utils.createLabel("Output: ", LABEL_WIDTH);
+    private final Label labelTextFieldOutput = utils.createLabel(LABEL_OUTPUT, LABEL_WIDTH);
     private final Label labelTextFieldOutput2 = utils.createLabel("", LABEL_WIDTH);
-    private final Label labelTextFieldUnits = utils.createLabel("Units: ", LABEL_WIDTH);
+    private final Label labelTextFieldUnits = utils.createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelTextFieldUnits2 = utils.createLabel("", LABEL_WIDTH);
-    private final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
+    private final Label labelModificationType = utils.createLabel(LABEL_TYPE, LABEL_WIDTH);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-    private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
+    private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
     private final TextField textFieldStartYear = new TextField("2020");
-    private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
+    private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
     private final TextField textFieldEndYear = new TextField("2050");
-    private final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
+    private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
     private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel("Final Val: ", LABEL_WIDTH);
+    private final Label labelGrowth = utils.createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
     private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
+    private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
     private final TextField textFieldPeriodLength = new TextField("5");
-    private final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
+    private final Label labelConvertFrom = utils.createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
     private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
     private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
     private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
     private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
     private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
-    private final Label labelValue = utils.createLabel("Values: ");
-    
-    
-    private String[][] tech_info = null;
+    private final Label labelValue = utils.createLabel(LABEL_VALUES);
+
+    // === Data ===
+    private String[][] techInfo = null;
 
     /**
      * Constructs a new TabTechParam instance and initializes the UI components for the Technology Parameter tab.
@@ -139,152 +181,130 @@ public class TabTechParam extends PolicyTab implements Runnable {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
 
+        setupUIControls();
+        setupUILayout();
+        setupEventHandlers();
+        techInfo = vars.getTechInfo();
+        setupComboBoxSector();
+        comboBoxSector.getItems().add(SELECT_ONE);
+        comboBoxSector.getSelectionModel().select(0);
+        checkComboBoxTech.setDisable(true);
+    }
+
+    /**
+     * Sets up UI controls with options and default values.
+     */
+    private void setupUIControls() {
         checkComboBoxTech.getItems().clear();
-        checkComboBoxTech.getItems().add("Select One or More");
+        checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
         checkComboBoxTech.getCheckModel().check(0);
 
-        comboBoxConvertFrom.getItems().addAll("None","2023$s","2020$s","2015$s","2010$s","2005$s","2000$s");
+        comboBoxConvertFrom.getItems().addAll(CONVERT_FROM_OPTIONS);
         comboBoxConvertFrom.getSelectionModel().selectFirst();
         comboBoxConvertFrom.setVisible(false);
         labelConvertFrom.setVisible(false);
-        
-        /*
-         * labelTextFieldDollarYear.setVisible(false);
-         * textFieldDollarYear.setVisible(false);
-         */
+
         labelComboBoxParam2.setVisible(false);
         comboBoxParam2.setVisible(false);
-        
-        //this.setUnitsLabel();
 
-        gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
+        comboBoxParam.getItems().addAll(PARAM_OPTIONS);
+        comboBoxParam.getSelectionModel().selectFirst();
+        comboBoxParam.setDisable(false);
+
+        comboBoxParam2.getItems().addAll(SELECT_ONE);
+        comboBoxParam2.getSelectionModel().selectFirst();
+        comboBoxParam2.setDisable(true);
+
+        comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
+        comboBoxModificationType.getSelectionModel().selectFirst();
+
+        setComponentWidths();
+    }
+
+    /**
+     * Sets preferred, min, and max widths for UI components.
+     */
+    private void setComponentWidths() {
+        // Set widths for all relevant UI components
+        Label[] labels = { labelTextFieldInput, labelTextFieldInput2, labelTextFieldOutput, labelTextFieldOutput2 };
+        for (Label label : labels) {
+            if (label != null) {
+                label.setMaxWidth(MAX_WIDTH);
+                label.setMinWidth(MIN_WIDTH);
+                label.setPrefWidth(PREF_WIDTH);
+            }
+        }
+        ComboBox<?>[] comboBoxes = { comboBoxModificationType, comboBoxParam, comboBoxParam2 };
+        for (ComboBox<?> comboBox : comboBoxes) {
+            if (comboBox != null) {
+                comboBox.setMaxWidth(MAX_WIDTH);
+                comboBox.setMinWidth(MIN_WIDTH);
+                comboBox.setPrefWidth(PREF_WIDTH);
+            }
+        }
+        checkComboBoxTech.setMaxWidth(MAX_WIDTH);
+        checkComboBoxTech.setMinWidth(MIN_WIDTH);
+        checkComboBoxTech.setPrefWidth(PREF_WIDTH);
+        textFieldStartYear.setMaxWidth(MAX_WIDTH);
+        textFieldEndYear.setMaxWidth(MAX_WIDTH);
+        textFieldInitialAmount.setMaxWidth(MAX_WIDTH);
+        textFieldGrowth.setMaxWidth(MAX_WIDTH);
+        textFieldPeriodLength.setMaxWidth(MAX_WIDTH);
+        textFieldFilter.setMaxWidth(MAX_WIDTH);
+        textFieldStartYear.setMinWidth(MIN_WIDTH);
+        textFieldEndYear.setMinWidth(MIN_WIDTH);
+        textFieldInitialAmount.setMinWidth(MIN_WIDTH);
+        textFieldGrowth.setMinWidth(MIN_WIDTH);
+        textFieldPeriodLength.setMinWidth(MIN_WIDTH);
+        textFieldFilter.setMinWidth(MIN_WIDTH);
+        textFieldStartYear.setPrefWidth(PREF_WIDTH);
+        textFieldEndYear.setPrefWidth(PREF_WIDTH);
+        textFieldInitialAmount.setPrefWidth(PREF_WIDTH);
+        textFieldGrowth.setPrefWidth(PREF_WIDTH);
+        textFieldPeriodLength.setPrefWidth(PREF_WIDTH);
+        textFieldFilter.setPrefWidth(PREF_WIDTH);
+    }
+
+    /**
+     * Sets up the layout of the tab.
+     */
+    private void setupUILayout() {
+        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelSector, labelCheckComboBoxTech, labelComboBoxParam, labelComboBoxParam2,
-                labelTextFieldInput, labelTextFieldOutput, labelTextFieldUnits, /*labelTextFieldDollarYear,*/ new Separator(),
-                utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
-                labelGrowth,labelConvertFrom);
-
+                labelTextFieldInput, labelTextFieldOutput, labelTextFieldUnits, new Separator(),
+                utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
+                labelGrowth, labelConvertFrom);
         gridPaneLeft.addColumn(1, textFieldFilter, comboBoxSector, checkComboBoxTech, comboBoxParam, comboBoxParam2,
-                labelTextFieldInput2, labelTextFieldOutput2, labelTextFieldUnits2, /*textFieldDollarYear,*/ new Separator(), new Label(),
+                labelTextFieldInput2, labelTextFieldOutput2, labelTextFieldUnits2, new Separator(), new Label(),
                 comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
-                textFieldGrowth,comboBoxConvertFrom);
-
+                textFieldGrowth, comboBoxConvertFrom);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
-        
         scrollPaneLeft.setContent(gridPaneLeft);
-
-        // center column
-
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
         hBoxHeaderCenter.setStyle(styles.getStyle3());
-
         vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
         vBoxCenter.setStyle(styles.getStyle2());
-
-        // right column
         vBoxRight.getChildren().addAll(paneForCountryStateTree);
         vBoxRight.setStyle(styles.getStyle2());
-
-        // ---adding components to the overall grid---
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
         gridPanePresetModification.addColumn(2, vBoxRight);
-
         gridPaneLeft.setPrefWidth(325);
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
         vBoxRight.setPrefWidth(300);
+        VBox tabLayout = new VBox();
+        tabLayout.getChildren().addAll(gridPanePresetModification);
+        this.setContent(tabLayout);
+    }
 
-        // default sizing
-        double max_wid = 195;
-        checkComboBoxTech.setMaxWidth(max_wid);
-        comboBoxModificationType.setMaxWidth(max_wid);
-        comboBoxParam.setMaxWidth(max_wid);
-        comboBoxParam2.setMaxWidth(max_wid);
-        labelTextFieldInput.setMaxWidth(max_wid);
-        labelTextFieldInput2.setMaxWidth(max_wid);
-        labelTextFieldOutput.setMaxWidth(max_wid);
-        labelTextFieldOutput2.setMaxWidth(max_wid);
-        //textFieldDollarYear.setMaxWidth(max_wid);
-        textFieldStartYear.setMaxWidth(max_wid);
-        textFieldEndYear.setMaxWidth(max_wid);
-        textFieldInitialAmount.setMaxWidth(max_wid);
-        textFieldGrowth.setMaxWidth(max_wid);
-        textFieldPeriodLength.setMaxWidth(max_wid);
-        textFieldFilter.setMaxWidth(max_wid);
-        
-        double min_wid = 105;
-        checkComboBoxTech.setMinWidth(min_wid);
-        comboBoxModificationType.setMinWidth(min_wid);
-        comboBoxParam.setMinWidth(min_wid);
-        comboBoxParam2.setMinWidth(min_wid);
-        // labelTextFieldInput.setMinWidth(min_wid);
-        labelTextFieldInput2.setMinWidth(min_wid);
-        // labelTextFieldOutput.setMinWidth(min_wid);
-        labelTextFieldOutput2.setMinWidth(min_wid);
-        //textFieldDollarYear.setMinWidth(min_wid);
-        textFieldStartYear.setMinWidth(min_wid);
-        textFieldEndYear.setMinWidth(min_wid);
-        textFieldInitialAmount.setMinWidth(min_wid);
-        textFieldGrowth.setMinWidth(min_wid);
-        textFieldPeriodLength.setMinWidth(min_wid);
-        textFieldFilter.setMinWidth(min_wid);
-        
-        double pref_wid = 195;
-        checkComboBoxTech.setPrefWidth(pref_wid);
-        comboBoxModificationType.setPrefWidth(pref_wid);
-        comboBoxParam.setPrefWidth(pref_wid);
-        comboBoxParam2.setPrefWidth(pref_wid);
-        // labelTextFieldInput.setPrefWidth(pref_wid);
-        labelTextFieldInput2.setPrefWidth(pref_wid);
-        // labelTextFieldInput.setPrefWidth(pref_wid);
-        labelTextFieldInput2.setPrefWidth(pref_wid);
-        //textFieldDollarYear.setPrefWidth(pref_wid);
-        textFieldStartYear.setPrefWidth(pref_wid);
-        textFieldEndYear.setPrefWidth(pref_wid);
-        textFieldInitialAmount.setPrefWidth(pref_wid);
-        textFieldGrowth.setPrefWidth(pref_wid);
-        textFieldPeriodLength.setPrefWidth(pref_wid);
-        textFieldFilter.setPrefWidth(pref_wid);
-        
-        //
-        tech_info = vars.getTechInfo();
-
-        setupComboBoxSector();
-
-        comboBoxSector.getItems().add("Select One");
-        comboBoxSector.getSelectionModel().select(0);
-        checkComboBoxTech.setDisable(true);
-
-//		comboBoxParam.getItems().addAll("Capacity Factor", "Capital Cost", "Efficiency", "Fixed Output", "Shareweight",
-//				"Subsector Shareweight", "Lifetime", "Halflife", "EF(in)", "EF(out)");
-        comboBoxParam.getItems().addAll("Shareweight", "Subsector Shareweight", "Nested-Subsector Shareweight", "Levelized Non-Energy Cost", "Capacity Factor","Fixed Output",  "Lifetime",
-                "Halflife");
-
-        comboBoxParam.getSelectionModel().selectFirst();
-        comboBoxParam.setDisable(false);
-
-        comboBoxParam2.getItems().addAll("Select One");
-        comboBoxParam2.getSelectionModel().selectFirst();
-        comboBoxParam2.setDisable(true);
-
-        comboBoxModificationType.getItems().addAll("Initial and Final", "Initial w/% Growth/yr",
-                "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd");
-        comboBoxModificationType.getSelectionModel().selectFirst();
-
-//		comboBoxSector.setOnAction(e -> {
-//			String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
-//			if (selectedItem != null) {
-//				updateCheckComboTechs();
-//				checkComboBoxTechs.setDisable(false);
-//			}			
-//		});
-        
-        textFieldFilter.setOnAction(e->{ 
-            setupComboBoxSector(); 
-        });
-
+    /**
+     * Sets up event handlers for UI controls.
+     */
+    private void setupEventHandlers() {
+        textFieldFilter.setOnAction(e -> setupComboBoxSector());
         labelCheckComboBoxTech.setOnMouseClicked(e -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
@@ -297,43 +317,33 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 }
             }
         });
-
         comboBoxSector.setOnAction(e -> {
             String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
-            if (selectedItem == null)
-                return;
-            if (selectedItem.equals("Select One")) {
+            if (selectedItem == null) return;
+            if (selectedItem.equals(SELECT_ONE)) {
                 checkComboBoxTech.getCheckModel().clearChecks();
                 checkComboBoxTech.getItems().clear();
-                checkComboBoxTech.getItems().add("Select One or More");
+                checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
                 checkComboBoxTech.getCheckModel().check(0);
                 checkComboBoxTech.setDisable(true);
                 labelTextFieldUnits2.setText("");
             } else {
                 updateCheckComboTechs();
-                checkComboBoxTech.setDisable(false);                
+                checkComboBoxTech.setDisable(false);
             }
-            this.setUnitsLabel();
-            // setPolicyAndMarketNames();
+            setUnitsLabel();
         });
-
         comboBoxParam.setOnAction(e -> {
-
-            // parameter box 2
             comboBoxParam2.getSelectionModel().selectFirst();
             comboBoxParam2.setDisable(true);
             comboBoxParam2.setVisible(false);
-
-            // other options
-            //labelTextFieldDollarYear.setVisible(false);
-            //textFieldDollarYear.setVisible(false);
-
             try {
                 String selectedItem = comboBoxParam.getSelectionModel().getSelectedItem();
-                if (selectedItem.indexOf("Emis") >= 0) {
+                if (selectedItem != null && selectedItem.contains("Emis")) {
                     comboBoxParam2.getItems().clear();
-                    comboBoxParam2.getItems().addAll("Select One", "NOx", "SO2", "PM10", "PM2.5", "CO", "NH3", "NMVOC",
-                            "BC", "OC");
+                    for (String option : EMISSION_OPTIONS) {
+                        comboBoxParam2.getItems().add(option);
+                    }
                     comboBoxParam2.getSelectionModel().select(0);
                     comboBoxParam2.setDisable(false);
                     comboBoxParam2.setVisible(true);
@@ -341,70 +351,46 @@ public class TabTechParam extends PolicyTab implements Runnable {
                     comboBoxParam2.getSelectionModel().select(0);
                     comboBoxParam2.setDisable(true);
                 }
-
-                if (comboBoxParam.getSelectionModel().getSelectedItem().equals("Levelized Non-Energy Cost")) {
-                    //labelTextFieldDollarYear.setVisible(true);
-                    //textFieldDollarYear.setVisible(true);
+                if (selectedItem != null && selectedItem.equals("Levelized Non-Energy Cost")) {
                     labelConvertFrom.setVisible(true);
                     comboBoxConvertFrom.setVisible(true);
                 }
-                
                 setUnitsLabel();
-
             } catch (Exception ex) {
-                ;
+                // ignore
             }
-
         });
-
         comboBoxModificationType.setOnAction(e -> {
-
-            switch (comboBoxModificationType.getSelectionModel().getSelectedItem()) {
-            case "Initial w/% Growth/yr":
-                this.labelGrowth.setText("Growth (%):");
-                break;
-            case "Initial w/% Growth/pd":
-                this.labelGrowth.setText("Growth (%):");
-                break;
-            case "Initial w/Delta/yr":
-                this.labelGrowth.setText("Delta:");
-                break;
-            case "Initial w/Delta/pd":
-                this.labelGrowth.setText("Delta:");
-                break;
-            case "Initial and Final":
-                this.labelGrowth.setText("Final Val:");
-                break;
+            String selectedType = comboBoxModificationType.getSelectionModel().getSelectedItem();
+            if (selectedType == null) return;
+            switch (selectedType) {
+                case "Initial w/% Growth/yr":
+                case "Initial w/% Growth/pd":
+                    labelGrowth.setText(LABEL_GROWTH);
+                    break;
+                case "Initial w/Delta/yr":
+                case "Initial w/Delta/pd":
+                    labelGrowth.setText(LABEL_DELTA);
+                    break;
+                case "Initial and Final":
+                    labelGrowth.setText(LABEL_FINAL_VAL);
+                    break;
+                default:
+                    labelGrowth.setText(LABEL_GROWTH);
             }
         });
-
-        buttonClear.setOnAction(e -> {
-            this.paneForComponentDetails.clearTable();
-        });
-
-        buttonDelete.setOnAction(e -> {
-            this.paneForComponentDetails.deleteItemsFromTable();
-        });
-
+        buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
+        buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
         buttonPopulate.setOnAction(e -> {
             if (qaPopulate()) {
                 double[][] values = calculateValues();
                 paneForComponentDetails.setValues(values);
             }
         });
-
-        checkComboBoxTech.getCheckModel().getCheckedItems().addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(ListChangeListener.Change c) {
-                updateInputOutputUnits();
-                setUnitsLabel();
-            }
+        checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> {
+            updateInputOutputUnits();
+            setUnitsLabel();
         });
-
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-
-        this.setContent(tabLayout);
     }
 
     /**
@@ -414,7 +400,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
         String input = "";
         String output = "";
-        if (checkedItems.isEmpty()) {
+        if (checkedItems == null || checkedItems.isEmpty()) {
             labelTextFieldInput2.setText("");
             labelTextFieldOutput2.setText("");
             return;
@@ -425,18 +411,18 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 String sector = words[0].trim();
                 String subsector = words[1].trim();
                 String tech = words[2].trim();
-                for (String[] techRow : tech_info) {
+                for (String[] techRow : techInfo) {
                     if (sector.equals(techRow[0]) && subsector.equals(techRow[1]) && tech.equals(techRow[2])) {
-                        String this_input = techRow[3] + "(" + techRow[4] + ")";
-                        String this_output = techRow[5] + "(" + techRow[6] + ")";
+                        String thisInput = techRow[3] + "(" + techRow[4] + ")";
+                        String thisOutput = techRow[5] + "(" + techRow[6] + ")";
                         if (input.isEmpty()) {
-                            input = this_input;
-                        } else if (!input.equals("various") && !input.equals(this_input)) {
+                            input = thisInput;
+                        } else if (!input.equals("various") && !input.equals(thisInput)) {
                             input = "various";
                         }
                         if (output.isEmpty()) {
-                            output = this_output;
-                        } else if (!output.equals("various") && !output.equals(this_output)) {
+                            output = thisOutput;
+                        } else if (!output.equals("various") && !output.equals(thisOutput)) {
                             output = "various";
                         }
                     }
@@ -452,98 +438,79 @@ public class TabTechParam extends PolicyTab implements Runnable {
      */
     private void setupComboBoxSector() {
         comboBoxSector.getItems().clear();
-
         try {
-            String[][] tech_info = vars.getTechInfo();
-
-            ArrayList<String> sectorList = new ArrayList<String>();
-
-            String filterText=textFieldFilter.getText().trim();
-            boolean useFilter=false;
-            if ((filterText!=null)&&(filterText.length()>0)) useFilter=true;
-            
-            if (!useFilter) sectorList.add("Select One");
-            sectorList.add("All");
-            
-            for (String[] tech : tech_info) {
+            String[][] techInfoArr = vars.getTechInfo();
+            List<String> sectorList = new ArrayList<>();
+            String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
+            boolean useFilter = !filterText.isEmpty();
+            if (!useFilter) sectorList.add(SELECT_ONE);
+            sectorList.add(ALL);
+            for (String[] tech : techInfoArr) {
                 String text = tech[0].trim();
-
                 boolean match = false;
                 for (String sector : sectorList) {
-                    if (text.equals(sector))
+                    if (text.equals(sector)) {
                         match = true;
+                        break;
+                    }
                 }
                 if (!match) {
-                    boolean show=true;
+                    boolean show = true;
                     if (useFilter) {
-                        show=false;
+                        show = false;
                         for (String temp : tech) {
-                            if (temp.contains(filterText)) show=true;
+                            if (temp.contains(filterText)) {
+                                show = true;
+                                break;
+                            }
                         }
                     }
                     if (show) sectorList.add(text);
                 }
             }
-
             for (String sector : sectorList) {
                 comboBoxSector.getItems().add(sector.trim());
             }
-
         } catch (Exception e) {
             utils.warningMessage("Problem reading tech list.");
             System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
             System.out.println("  ---> " + e);
         }
     }
-    
+
     /**
      * Updates the technology check combo box based on the selected sector and filter.
      */
     private void updateCheckComboTechs() {
         String sector = comboBoxSector.getValue();
-        String[][] tech_info = vars.getTechInfo();
-
-        boolean is_all_sectors = false;
-        if (sector.equals("All"))
-            is_all_sectors = true;
-
+        String[][] techInfoArr = vars.getTechInfo();
+        boolean isAllSectors = ALL.equals(sector);
         try {
             if (checkComboBoxTech.getItems().size() > 0) {
                 checkComboBoxTech.getCheckModel().clearChecks();
                 checkComboBoxTech.getItems().clear();
             }
-
             if (sector != null) {
-
-                String last_line = "";
-                String filter_text=this.textFieldFilter.getText().trim();
-                
-                for (int i = 0; i < tech_info.length; i++) {
-
-                    String line = tech_info[i][0].trim() + " : " + tech_info[i][1] + " : " + tech_info[i][2];
-                    if ((filter_text.length()==0)||(line.contains(filter_text))) {
-                    
-                    if (tech_info[i].length>=7) line+= " : "+tech_info[i][6];
-
-                    if (line.equals(last_line)) {
-                        ;
-                    } else {
-                        last_line = line;
-                        if ((is_all_sectors) || (line.startsWith(sector))) {
-                            checkComboBoxTech.getItems().add(line);
+                String lastLine = "";
+                String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
+                for (String[] tech : techInfoArr) {
+                    String line = tech[0].trim() + " : " + tech[1] + " : " + tech[2];
+                    if (filterText.isEmpty() || line.contains(filterText)) {
+                        if (tech.length >= 7) line += " : " + tech[6];
+                        if (!line.equals(lastLine)) {
+                            lastLine = line;
+                            if (isAllSectors || line.startsWith(sector)) {
+                                checkComboBoxTech.getItems().add(line);
+                            }
                         }
                     }
                 }
-                }
             }
-
         } catch (Exception e) {
             utils.warningMessage("Problem reading tech list.");
             System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
             System.out.println("  ---> " + e);
-
         }
-
     }
 
     /**
@@ -553,30 +520,24 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return Metadata content string
      */
     public String getMetaDataContent(TreeView<String> tree) {
-        String rtn_str = "";
-
-        rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
-        rtn_str += "#Scenario component type: Tech Param" + vars.getEol();
-        rtn_str += "#Sector: " + comboBoxSector.getValue() + vars.getEol();
-
-        ObservableList tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
-        String techs = utils.getStringFromList(tech_list, ";");
-        rtn_str += "#Technologies: " + techs + vars.getEol();
-
-        rtn_str += "#Parameter: " + comboBoxParam.getValue() + vars.getEol();
-
+        StringBuilder rtnStr = new StringBuilder();
+        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: Tech Param").append(vars.getEol());
+        rtnStr.append("#Sector: ").append(comboBoxSector.getValue()).append(vars.getEol());
+        ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
+        String techs = utils.getStringFromList(techList, ";");
+        rtnStr.append("#Technologies: ").append(techs).append(vars.getEol());
+        rtnStr.append("#Parameter: ").append(comboBoxParam.getValue()).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtn_str += "#Regions: " + states + vars.getEol();
-
-        ArrayList<String> table_content = this.paneForComponentDetails.getDataYrValsArrayList();
-        for (int i = 0; i < table_content.size(); i++) {
-            rtn_str += "#Table data:" + table_content.get(i) + vars.getEol();
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
+        for (String tableLine : tableContent) {
+            rtnStr.append("#Table data:").append(tableLine).append(vars.getEol());
         }
-        rtn_str += "#################################################" + vars.getEol();
-
-        return rtn_str;
+        rtnStr.append("#################################################").append(vars.getEol());
+        return rtnStr.toString();
     }
 
     /**
@@ -586,13 +547,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
      */
     @Override
     public void loadContent(ArrayList<String> content) {
-        for (int i = 0; i < content.size(); i++) {
-            String line = content.get(i);
+        for (String line : content) {
             int pos = line.indexOf(":");
             if (line.startsWith("#") && (pos > -1)) {
                 String param = line.substring(1, pos).trim().toLowerCase();
                 String value = line.substring(pos + 1).trim();
-
                 if (param.equals("sector")) {
                     comboBoxSector.setValue(value);
                     comboBoxSector.fireEvent(new ActionEvent());
@@ -600,9 +559,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 if (param.equals("technologies")) {
                     checkComboBoxTech.getCheckModel().clearChecks();
                     String[] set = utils.splitString(value, ";");
-                    for (int j = 0; j < set.length; j++) {
-                        String item = set[j].trim();
-                        checkComboBoxTech.getCheckModel().check(item);
+                    for (String item : set) {
+                        checkComboBoxTech.getCheckModel().check(item.trim());
                         checkComboBoxTech.fireEvent(new ActionEvent());
                     }
                 }
@@ -618,7 +576,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
                     String[] s = utils.splitString(value, ",");
                     this.paneForComponentDetails.data.add(new DataPoint(s[0], s[1]));
                 }
-
             }
         }
         updateInputOutputUnits();
@@ -631,103 +588,70 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return true if all required fields are filled, false otherwise
      */
     public boolean qaPopulate() {
-        boolean is_correct = true;
-
-        if (textFieldStartYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldEndYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldInitialAmount.getText().isEmpty())
-            is_correct = false;
-        if (textFieldGrowth.getText().isEmpty())
-         is_correct = false;
-
-        return is_correct;
+        return !(textFieldStartYear.getText().isEmpty() || textFieldEndYear.getText().isEmpty()
+                || textFieldInitialAmount.getText().isEmpty() || textFieldGrowth.getText().isEmpty());
     }
 
     /**
      * Adds input and output information to the text fields for a given technology row and prefix.
      *
-     * @param tech_info The technology info array
+     * @param techInfo The technology info array
      * @param row The row index
      * @param prefix The prefix array to match
      */
-    public void addIOToTextFields(String[][] tech_info, int row, String[] prefix) {
-        boolean match = false;
-
-        for (int i = 0; i < tech_info.length; i++) {
-
-            if (doesPrefixMatch(tech_info[i], prefix)) {
-                String text = tech_info[i][3];
-                if (tech_info[i].length > 3)
-                    text += " (" + tech_info[i][4] + ")";
+    public void addIOToTextFields(String[][] techInfo, int row, String[] prefix) {
+        for (String[] tech : techInfo) {
+            if (doesPrefixMatch(tech, prefix)) {
+                String text = tech[3];
+                if (tech.length > 3)
+                    text += " (" + tech[4] + ")";
                 labelTextFieldInput2.setText(text);
-
-                if (tech_info[i].length > 4) {
-                    text = tech_info[i][5];
-                    if (tech_info[i].length > 5)
-                        text += " (" + tech_info[i][6] + ")";
+                if (tech.length > 4) {
+                    text = tech[5];
+                    if (tech.length > 5)
+                        text += " (" + tech[6] + ")";
                     labelTextFieldOutput2.setText(text);
                 } else {
                     labelTextFieldOutput2.setText("");
                 }
             }
-
         }
-
     }
 
     /**
      * Adds non-duplicate items to a combo box from the technology info array, matching a prefix.
      *
      * @param comboBox The combo box to add items to
-     * @param tech_info The technology info array
+     * @param techInfo The technology info array
      * @param row The row index
      * @param prefix The prefix array to match
      */
-    public void addNonDuplicatesToComboBox(ComboBox<String> comboBox, String[][] tech_info, int row, String[] prefix) {
-
-        boolean match = false;
-
-        for (int i = 0; i < tech_info.length; i++) {
-
-            if (doesPrefixMatch(tech_info[i], prefix)) {
-
-                if (comboBox.getItems().indexOf(tech_info[i][row]) < 0) {
-                    comboBox.getItems().add(tech_info[i][row]);
+    public void addNonDuplicatesToComboBox(ComboBox<String> comboBox, String[][] techInfo, int row, String[] prefix) {
+        for (String[] tech : techInfo) {
+            if (doesPrefixMatch(tech, prefix)) {
+                if (!comboBox.getItems().contains(tech[row])) {
+                    comboBox.getItems().add(tech[row]);
                 }
-
             }
-
         }
-
     }
 
     /**
      * Adds non-duplicate items to a check combo box from the technology info array, matching a prefix.
      *
      * @param checkComboBox The check combo box to add items to
-     * @param tech_info The technology info array
+     * @param techInfo The technology info array
      * @param row The row index
      * @param prefix The prefix array to match
      */
-    public void addNonDuplicatesToCheckComboBox(CheckComboBox<String> checkComboBox, String[][] tech_info, int row,
-            String[] prefix) {
-
-        boolean match = false;
-
-        for (int i = 0; i < tech_info.length; i++) {
-
-            if (doesPrefixMatch(tech_info[i], prefix)) {
-
-                if (checkComboBox.getItems().indexOf(tech_info[i][row]) < 0) {
-                    checkComboBox.getItems().add(tech_info[i][row]);
+    public void addNonDuplicatesToCheckComboBox(CheckComboBox<String> checkComboBox, String[][] techInfo, int row, String[] prefix) {
+        for (String[] tech : techInfo) {
+            if (doesPrefixMatch(tech, prefix)) {
+                if (!checkComboBox.getItems().contains(tech[row])) {
+                    checkComboBox.getItems().add(tech[row]);
                 }
-
             }
-
         }
-
     }
 
     /**
@@ -738,17 +662,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return true if the prefix matches, false otherwise
      */
     public boolean doesPrefixMatch(String[] item, String[] prefix) {
-        boolean match = true;
-
-        if (prefix != null) {
-
-            for (int i = 0; i < prefix.length; i++) {
-
-                if (!item[i].equals(prefix[i]))
-                    match = false;
-            }
+        if (prefix == null) return true;
+        for (int i = 0; i < prefix.length; i++) {
+            if (!item[i].equals(prefix[i])) return false;
         }
-        return match;
+        return true;
     }
 
     /**
@@ -757,21 +675,18 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return 2D array of calculated values
      */
     private double[][] calculateValues() {
-        String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int start_year = Integer.parseInt(textFieldStartYear.getText());
-        int end_year = Integer.parseInt(textFieldEndYear.getText());
-        double initial_value = Double.parseDouble(this.textFieldInitialAmount.getText());
+        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
+        int startYear = Integer.parseInt(textFieldStartYear.getText());
+        int endYear = Integer.parseInt(textFieldEndYear.getText());
+        double initialValue = Double.parseDouble(this.textFieldInitialAmount.getText());
         double growth = Double.parseDouble(textFieldGrowth.getText());
-        int period_length = Integer.parseInt(this.textFieldPeriodLength.getText());
-        ObservableList<DataPoint> data;
-        double factor=1.0;
-        String convertYear=this.comboBoxConvertFrom.getValue();
+        int periodLength = Integer.parseInt(this.textFieldPeriodLength.getText());
+        double factor = 1.0;
+        String convertYear = this.comboBoxConvertFrom.getValue();
         if (!"None".equals(convertYear)) {
-            factor=utils.getConversionFactor(convertYear,"1975$s");
+            factor = utils.getConversionFactor(convertYear, "1975$s");
         }
-        double[][] returnMatrix = utils.calculateValues(calc_type, start_year, end_year, initial_value, growth,
-                period_length,factor);
-        return returnMatrix;
+        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength, factor);
     }
 
     /**
@@ -800,20 +715,14 @@ public class TabTechParam extends PolicyTab implements Runnable {
             Thread.currentThread().destroy();
         } else {
             CsvFileWriter cfw = CsvFileWriter.getInstance();
-
             ArrayList<String> dataList = loadDataFromGUI(tree);
-
             ArrayList<String> colList = files.getStringArrayFromFile(vars.getCsvColumnFilename(), "#");
-            ArrayList<String> csvContent = cfw.createCsvContent(colList, dataList); //Dan: if doesn't work, reset to createCsvContent2
-
+            ArrayList<String> csvContent = cfw.createCsvContent(colList, dataList);
             fileContent = getMetaDataContent(tree);
-
             fileContent += utils.createStringFromArrayList(csvContent);
-
             filenameSuggestion = "" + utils.getMatch(dataList, "type", ";") + "techParam.csv";
             filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "_");
         }
-
     }
 
     /**
@@ -823,54 +732,37 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return ArrayList of data strings
      */
     private ArrayList<String> loadDataFromGUI(TreeView<String> tree) {
-
-        ArrayList<String> dataList = new ArrayList<String>();
-
+        ArrayList<String> dataList = new ArrayList<>();
         ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
-
-        String[] words = null;
-        ;
-        for (int c = 0; c < checkedItems.size(); c++) {
-            String line = checkedItems.get(c).trim();
-            words = utils.splitString(line, ":");
-
+        for (String line : checkedItems) {
+            String[] words = utils.splitString(line, ":");
             String sector = "sector:" + words[0].trim();
             String subsector = "subsector:" + words[1].trim();
             String tech = "technology:" + words[2].trim();
-
             String region = "region:" + getSelectedLeaves(tree);
             String input = "input:" + labelTextFieldInput2.getText().trim();
             String output = "output:" + labelTextFieldOutput2.getText().trim();
             String param = "param:" + this.comboBoxParam.getValue();
             String param2 = "param2:" + this.comboBoxParam2.getValue();
-            //String dollarYear = "dolarYear:" + this.textFieldDollarYear.getText();
-
             ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
-            String year = "year:";
-            String value = "value:";
-
+            StringBuilder year = new StringBuilder("year:");
+            StringBuilder value = new StringBuilder("value:");
             for (int i = 0; i < data.size(); i++) {
                 if (i != 0) {
-                    year += ",";
-                    value += ",";
+                    year.append(",");
+                    value.append(",");
                 }
-                year += data.get(i).getYear();
-                value += data.get(i).getValue();
+                year.append(data.get(i).getYear());
+                value.append(data.get(i).getValue());
             }
-
             String group = "all";
-            if (sector.indexOf("trn") >= 0)
-                group = "trn";
-            if (sector.indexOf("generation") >= 0)
-                group = "egu";
+            if (sector.indexOf("trn") >= 0) group = "trn";
+            if (sector.indexOf("generation") >= 0) group = "egu";
             String type = "type:" + group + File.separator + this.comboBoxParam.getValue();
-
-            String data_str = type + ";" + sector + ";" + subsector + ";" + tech + ";" + region + ";" + input + ";"
-                    + output + ";" + param + ";" + param2 + ";" + /*dollarYear + ";" +*/ year + ";" + value;
-
-            dataList.add(data_str);
+            String dataStr = type + ";" + sector + ";" + subsector + ";" + tech + ";" + region + ";" + input + ";"
+                    + output + ";" + param + ";" + param2 + ";" + year + ";" + value;
+            dataList.add(dataStr);
         }
-
         return dataList;
     }
 
@@ -896,142 +788,105 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return true if all inputs are valid, false otherwise
      */
     protected boolean qaInputs() {
-
         TreeView<String> tree = paneForCountryStateTree.getTree();
-
-        int error_count = 0;
-        String message = "";
-
+        int errorCount = 0;
+        StringBuilder message = new StringBuilder();
         try {
-
             if (utils.getAllSelectedLeaves(tree).length < 1) {
-                message += "Must select at least one region from tree" + vars.getEol();
-                error_count++;
+                message.append("Must select at least one region from tree").append(vars.getEol());
+                errorCount++;
             }
             if (paneForComponentDetails.table.getItems().size() == 0) {
-                message += "Data table must have at least one entry" + vars.getEol();
-                error_count++;
+                message.append("Data table must have at least one entry").append(vars.getEol());
+                errorCount++;
             } else {
                 boolean match = false;
-
                 String listOfAllowableYears = vars.getAllowablePolicyYears();
                 ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
-                String year = "";
-
-                for (int i = 0; i < data.size(); i++) {
-                    year = data.get(i).getYear().trim();
-                    if (listOfAllowableYears.contains(year))
-                        match = true;
+                for (DataPoint dp : data) {
+                    String year = dp.getYear().trim();
+                    if (listOfAllowableYears.contains(year)) match = true;
                 }
                 if (!match) {
-                    message += "Years specified in table must match allowable policy years (" + listOfAllowableYears
-                            + ")" + vars.getEol();
-                    error_count++;
+                    message.append("Years specified in table must match allowable policy years (")
+                            .append(listOfAllowableYears).append(")").append(vars.getEol());
+                    errorCount++;
                 }
             }
-
-            if (comboBoxSector.getSelectionModel().getSelectedItem().equals("Select One")) {
-                message += "Sector comboBox must have a selection" + vars.getEol();
-                error_count++;
+            if (comboBoxSector.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
+                message.append("Sector comboBox must have a selection").append(vars.getEol());
+                errorCount++;
             }
-//			if (comboBoxSubSector.getSelectionModel().getSelectedItem().equals("Select One")) {
-//				message += "SubSector comboBox must have a selection" + vars.getEol();
-//				error_count++;
-//			}
-//			if (comboBoxTechName.getSelectionModel().getSelectedItem().equals("Select One")) { //DAN!!!
-//				message += "Tech comboBox must have a selection" + vars.getEol();
-//				error_count++;
-//			}
-            if (comboBoxParam.getSelectionModel().getSelectedItem().equals("Select One")) {
-                message += "Parameter comboBox must have a selection" + vars.getEol();
-                error_count++;
+            if (comboBoxParam.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
+                message.append("Parameter comboBox must have a selection").append(vars.getEol());
+                errorCount++;
             }
             if (comboBoxParam2.isVisible()) {
-                if (comboBoxParam2.getSelectionModel().getSelectedItem().equals("Select One")) {
-                    message += "Parameter2 comboBox must have a selection" + vars.getEol();
-                    error_count++;
+                if (comboBoxParam2.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
+                    message.append("Parameter2 comboBox must have a selection").append(vars.getEol());
+                    errorCount++;
                 }
             }
-
         } catch (Exception e1) {
-            error_count++;
-            message += "Error in QA of entries" + vars.getEol();
+            errorCount++;
+            message.append("Error in QA of entries").append(vars.getEol());
         }
-        if (error_count > 0) {
-            if (error_count == 1) {
-                utils.warningMessage(message);
-            } else if (error_count > 1) {
-                utils.displayString(message, "Parsing Errors");
+        if (errorCount > 0) {
+            if (errorCount == 1) {
+                utils.warningMessage(message.toString());
+            } else if (errorCount > 1) {
+                utils.displayString(message.toString(), "Parsing Errors");
             }
         }
-
-        boolean is_correct;
-        if (error_count == 0) {
-            is_correct = true;
-        } else {
-            is_correct = false;
-        }
-        return is_correct;
+        return errorCount == 0;
     }
-    
+
     /**
      * Sets the units label based on the selected technologies and parameter.
      */
     public void setUnitsLabel() {
-        String s=getUnits();
-        
-        String label="";
-        
-        String selected_param=this.comboBoxParam.getSelectionModel().getSelectedItem();
-        
-        if (this.checkComboBoxTech.getCheckModel().getCheckedIndices().size()>0){
-            
-        
-        switch(selected_param) {
-		   
-		    case "Levelized Non-Energy Cost":
-				if (s.equals("No match")) { 
-					label="Warning - Units do not match!";
-				} else if (s.equals("million pass-km")){
-					label="1990$ per veh-km";
-				} else if (s.equals("million ton-km")){
-					label="1990$ per veh-km";
-				} else if (s.equals("")){
-					label="";
-				} else {
-					String s2="GJ";
-					if (s.equals("EJ")) s2="GJ";
-					if (s.equals("petalumen-hours")) s2="megalumen-hours";
-					if (s.equals("million km3")) s2="million m3";
-					if (s.equals("billion cycles")) s2="cycle";
-					if (s.equals("Mt")) s2="kg";
-					if (s.equals("km^3")) s2="m^3";
-					
-					label="1975$s per "+s2; 
-				}		         	
-		    	break;
-		    case "Capacity Factor":
-		    	label="Unitless";
-		    	break;
-		    case "Fixed Output":
-		    	String s2=this.labelTextFieldOutput2.getText();
-		    	label=utils.getParentheticString(s2);
-		    	break;
-		    case "Lifetime":
-		    	label="years";
-		    	break;
-		    case "Halflife":
-		    	label="years";
-		    	break;
-		    default:
-		    	label="unitless";
-		    	
-		}   
-		
-		}
-		labelTextFieldUnits2.setText(label);
-		
-	}
+        String s = getUnits();
+        String label = "";
+        String selectedParam = this.comboBoxParam.getSelectionModel().getSelectedItem();
+        if (this.checkComboBoxTech.getCheckModel().getCheckedIndices().size() > 0) {
+            switch (selectedParam) {
+                case "Levelized Non-Energy Cost":
+                    if (s.equals("No match")) {
+                        label = WARNING_UNITS_MISMATCH;
+                    } else if (s.equals("million pass-km")) {
+                        label = "1990$ per veh-km";
+                    } else if (s.equals("million ton-km")) {
+                        label = "1990$ per veh-km";
+                    } else if (s.equals("")) {
+                        label = "";
+                    } else {
+                        String s2 = "GJ";
+                        if (s.equals("EJ")) s2 = "GJ";
+                        if (s.equals("petalumen-hours")) s2 = "megalumen-hours";
+                        if (s.equals("million km3")) s2 = "million m3";
+                        if (s.equals("billion cycles")) s2 = "cycle";
+                        if (s.equals("Mt")) s2 = "kg";
+                        if (s.equals("km^3")) s2 = "m^3";
+                        label = "1975$s per " + s2;
+                    }
+                    break;
+                case "Capacity Factor":
+                    label = UNIT_UNITLESS_CAPACITY;
+                    break;
+                case "Fixed Output":
+                    String s2 = this.labelTextFieldOutput2.getText();
+                    label = utils.getParentheticString(s2);
+                    break;
+                case "Lifetime":
+                case "Halflife":
+                    label = UNIT_YEARS;
+                    break;
+                default:
+                    label = UNIT_UNITLESS;
+            }
+        }
+        labelTextFieldUnits2.setText(label);
+    }
 
     /**
      * Gets the units string for the selected technologies.
@@ -1039,22 +894,21 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return The units string, or "No match" if units are inconsistent
      */
     public String getUnits() {
-		ObservableList<String> tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
-		String unit = "";
-		for (String line : tech_list) {
-			try {
-				String item = line.substring(line.lastIndexOf(":") + 1).trim();
-				if (unit.isEmpty()) {
-					unit = item;
-				} else if (!unit.equals(item)) {
-					unit = "No match";
-				}
-			} catch (Exception e) {
-				// ignore
-			}
-		}
-		if (unit.equals("Select One or More")) unit = "";
-		return unit;
-	}
-
+        ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
+        String unit = "";
+        for (String line : techList) {
+            try {
+                String item = line.substring(line.lastIndexOf(":") + 1).trim();
+                if (unit.isEmpty()) {
+                    unit = item;
+                } else if (!unit.equals(item)) {
+                    unit = "No match";
+                }
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        if (unit.equals(SELECT_ONE_OR_MORE)) unit = "";
+        return unit;
+    }
 }

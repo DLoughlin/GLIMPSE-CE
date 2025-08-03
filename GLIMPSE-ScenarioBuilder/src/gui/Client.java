@@ -304,7 +304,7 @@ public class Client extends Application {
     private void setMainWindow(GridPane mainGridPane, MenuBar menuBar) {
         // Compose the root layout
         final VBox root = new VBox(menuBar, mainGridPane, sb);
-        final Scene scene = new Scene(root, vars.ScenarioBuilderWidth, vars.ScenarioBuilderHeight);
+        final Scene scene = new Scene(root, vars.DEFAULT_SCENARIO_BUILDER_WIDTH, vars.DEFAULT_SCENARIO_BUILDER_HEIGHT);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("GLIMPSE Scenario Builder");
