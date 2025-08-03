@@ -32,6 +32,7 @@
 */
 package glimpseElement;
 
+// Grouped imports for clarity
 import java.util.ArrayList;
 import org.controlsfx.control.CheckComboBox;
 import glimpseUtil.GLIMPSEFiles;
@@ -41,220 +42,207 @@ import glimpseUtil.GLIMPSEVariables;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+/**
+ * TabCafeStd provides the UI and logic for creating/editing CAFE standard policies.
+ * Improves readability by grouping UI setup, event handlers, and logic into clear sections.
+ */
 public class TabCafeStd extends PolicyTab implements Runnable {
-	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	private GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+    // Utility singletons
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-	public static String descriptionText = "";
-	public static String runQueueStr = "Queue is empty.";
+    // UI constants
+    private static final double LABEL_WIDTH = 125;
+    private static final double FIELD_WIDTH = 175;
 
-	// Initializing overall grid
-	GridPane gridPanePresetModification = new GridPane();
-	// Label labelComponent = utils.createLabel("Specification: ");
+    // UI components
+    private final GridPane gridPanePresetModification = new GridPane();
+    private final GridPane gridPaneLeft = new GridPane();
+    private final ScrollPane scrollPaneLeft = new ScrollPane();
+    private final Label labelComboBoxSubsector = utils.createLabel("Onroad subsector? ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxSubsector = utils.createComboBoxString();
+    private final Label labelCheckComboBoxTech = utils.createLabel("Tech(s): ", LABEL_WIDTH);
+    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
+    private final Label labelWhichUnits = utils.createLabel("Units? ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxWhichUnits = utils.createComboBoxString();
+    private final Label labelPolicyName = utils.createLabel("Policy: ", LABEL_WIDTH);
+    private final TextField textFieldPolicyName = new TextField("");
+    private final Label labelMarketName = utils.createLabel("Market: ", LABEL_WIDTH);
+    private final TextField textFieldMarketName = new TextField("");
+    private final Label labelUseAutoNames = utils.createLabel("Names: ", LABEL_WIDTH);
+    private final CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
+    private final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
+    private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
+    private final TextField textFieldStartYear = new TextField("2020");
+    private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
+    private final TextField textFieldEndYear = new TextField("2050");
+    private final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
+    private final TextField textFieldInitialAmount = utils.createTextField();
+    private final Label labelGrowth = utils.createLabel("Final Val: ", LABEL_WIDTH);
+    private final TextField textFieldGrowth = utils.createTextField();
+    private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
+    private final TextField textFieldPeriodLength = new TextField("5");
+    private final VBox vBoxCenter = new VBox();
+    private final HBox hBoxHeaderCenter = new HBox();
+    private final Label labelValue = utils.createLabel("Values: ");
+    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
+    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
+    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
+    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
+    private final HBox hBoxHeaderRight = new HBox();
+    private final VBox vBoxRight = new VBox();
+    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
+    
+    String selected_sector="";
+    String selected_subsector=""; 
 
-	// Initializing components of left column
-	GridPane gridPaneLeft = new GridPane();
-	ScrollPane scrollPaneLeft = new ScrollPane();
+    /**
+     * Constructs a new TabCafeStd instance and initializes the UI components for the CAFE Standard tab.
+     * Sets up event handlers and populates controls with available data.
+     *
+     * @param title The title of the tab
+     * @param stageX The JavaFX stage
+     */
+    public TabCafeStd(String title, Stage stageX) {
+        // sets tab title
+        this.setText(title);
+        this.setStyle(styles.getFontStyle());
 
-	double label_wid = 125;
+        // sets up initial state of check box and policy and market textfields
+        checkBoxUseAutoNames.setSelected(true);
+        textFieldPolicyName.setDisable(true);
+        textFieldMarketName.setDisable(true);
 
-	Label labelComboBoxSubsector = utils.createLabel("Onroad subsector? ", label_wid);
-	ComboBox<String> comboBoxSubsector = utils.createComboBoxString();
+        // left column
+        gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelComboBoxSubsector, labelCheckComboBoxTech,  
+                labelWhichUnits, new Label(),  new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
+                new Label(), new Separator(), utils.createLabel("Populate:"), labelModificationType, labelStartYear,
+                labelEndYear, labelInitialAmount, labelGrowth);
 
-	Label labelCheckComboBoxTech = utils.createLabel("Tech(s): ", label_wid);
-	CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
+        gridPaneLeft.addColumn(1, comboBoxSubsector, checkComboBoxTech,  
+                comboBoxWhichUnits, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
+                textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
+                textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
 
-	Label labelWhichUnits = utils.createLabel("Units? ", label_wid);
-	ComboBox<String> comboBoxWhichUnits = utils.createComboBoxString();
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        
+        scrollPaneLeft.setContent(gridPaneLeft);
 
-	Label labelPolicyName = utils.createLabel("Policy: ", label_wid);
-	TextField textFieldPolicyName = new TextField("");
+        comboBoxSubsector.getItems().addAll("Select One","Car","Large Car and Truck","Light Truck","Medium Truck","Heavy Truck");
+        comboBoxSubsector.getSelectionModel().select("Select One");
+        
+        checkComboBoxTech.getItems().addAll("BEV","FCEV","Hybrid Liquids","Liquids","NG");
+        checkComboBoxTech.getCheckModel().checkAll();
+        checkComboBoxTech.setDisable(true);
+        
+        comboBoxWhichUnits.getItems().addAll("Select One", "MPG", "MJ/vkt");
+        //comboBoxWhichUnits.getSelectionModel().select("Select One");
+        comboBoxWhichUnits.getSelectionModel().select("MPG");
+        comboBoxWhichUnits.setDisable(true);
+        
+        comboBoxModificationType.getItems().addAll("Initial and Final", "Initial w/% Growth/yr",
+                "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd");
+        comboBoxModificationType.getSelectionModel().selectFirst();
+        
+        // center column
 
-	Label labelMarketName = utils.createLabel("Market: ", label_wid);
-	TextField textFieldMarketName = new TextField("");
+        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+        hBoxHeaderCenter.setSpacing(2.);
+        hBoxHeaderCenter.setStyle(styles.getStyle3());
 
-	Label labelUseAutoNames = utils.createLabel("Names: ", label_wid);
-	CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
+        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+        vBoxCenter.setStyle(styles.getStyle2());
 
-	Label labelModificationType = utils.createLabel("Type: ", label_wid);
-	ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
+        // right column
+        vBoxRight.getChildren().addAll(paneForCountryStateTree);
+        vBoxRight.setStyle(styles.getStyle2());
 
-	Label labelStartYear = utils.createLabel("Start Year: ", label_wid);
-	TextField textFieldStartYear = new TextField("2020");
-	Label labelEndYear = utils.createLabel("End Year: ", label_wid);
-	TextField textFieldEndYear = new TextField("2050");
-	Label labelInitialAmount = utils.createLabel("Initial Val:   ", label_wid);
-	TextField textFieldInitialAmount = utils.createTextField();
-	Label labelGrowth = utils.createLabel("Final Val: ", label_wid);
-	TextField textFieldGrowth = utils.createTextField();
-	Label labelPeriodLength = utils.createLabel("Period Length: ", label_wid);
-	TextField textFieldPeriodLength = new TextField("5");
+        gridPanePresetModification.addColumn(0, scrollPaneLeft);
+        gridPanePresetModification.addColumn(1, vBoxCenter);
+        gridPanePresetModification.addColumn(2, vBoxRight);
 
-	// Initializing components of center column
-	VBox vBoxCenter = new VBox();
-	HBox hBoxHeaderCenter = new HBox();
-	Label labelValue = utils.createLabel("Values: ");
-	Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-	Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
-	Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-	Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
-	PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
+        gridPaneLeft.setPrefWidth(325);
+        gridPaneLeft.setMinWidth(325);
+        vBoxCenter.setPrefWidth(300);
+        vBoxRight.setPrefWidth(300);
 
-	// Initializing components of right column
-	HBox hBoxHeaderRight = new HBox();
-	VBox vBoxRight = new VBox();
-	PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
-	
-	String selected_sector="";
-	String selected_subsector=""; 
+        // techs
+        checkComboBoxTech.getCheckModel().checkAll();
+        //checkComboBoxTech.setDisable(true);
 
-	public TabCafeStd(String title, Stage stageX) {
-		// sets tab title
-		this.setText(title);
-		this.setStyle(styles.getFontStyle());
+        comboBoxSubsector.getSelectionModel().selectFirst();
 
-		// sets up initial state of check box and policy and market textfields
-		checkBoxUseAutoNames.setSelected(true);
-		textFieldPolicyName.setDisable(true);
-		textFieldMarketName.setDisable(true);
+        // default sizing
+        double max_wid = 175;
+        comboBoxSubsector.setMaxWidth(max_wid);
+        checkComboBoxTech.setMaxWidth(max_wid);
+        comboBoxWhichUnits.setMaxWidth(max_wid);
+        textFieldStartYear.setMaxWidth(max_wid);
+        textFieldEndYear.setMaxWidth(max_wid);
+        textFieldInitialAmount.setMaxWidth(max_wid);
+        textFieldGrowth.setMaxWidth(max_wid);
+        textFieldPeriodLength.setMaxWidth(max_wid);
+        textFieldPolicyName.setMaxWidth(max_wid);
+        textFieldMarketName.setMaxWidth(max_wid);
+        
+        double min_wid = 105;
+        comboBoxSubsector.setMinWidth(min_wid);
+        checkComboBoxTech.setMinWidth(min_wid);
+        comboBoxWhichUnits.setMinWidth(max_wid);
+        textFieldStartYear.setMinWidth(min_wid);
+        textFieldEndYear.setMinWidth(min_wid);
+        textFieldInitialAmount.setMinWidth(min_wid);
+        textFieldGrowth.setMinWidth(min_wid);
+        textFieldPeriodLength.setMinWidth(min_wid);
+        textFieldPolicyName.setMinWidth(min_wid);
+        textFieldMarketName.setMinWidth(min_wid);
+        
+        double pref_wid = 175;
+        comboBoxSubsector.setPrefWidth(pref_wid);
+        checkComboBoxTech.setPrefWidth(pref_wid);
+        comboBoxWhichUnits.setPrefWidth(pref_wid);
+        textFieldStartYear.setPrefWidth(pref_wid);
+        textFieldEndYear.setPrefWidth(pref_wid);
+        textFieldInitialAmount.setPrefWidth(pref_wid);
+        textFieldGrowth.setPrefWidth(pref_wid);
+        textFieldPeriodLength.setPrefWidth(pref_wid);
+        textFieldPolicyName.setPrefWidth(pref_wid);
+        textFieldMarketName.setPrefWidth(pref_wid);
+        
+        labelCheckComboBoxTech.setOnMouseClicked(e -> {
+            if (!checkComboBoxTech.isDisabled()) {
+                boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
+                if (e.getClickCount() == 2) {
+                    if (isFirstItemChecked) {
+                        checkComboBoxTech.getCheckModel().clearChecks();
+                    } else {
+                        checkComboBoxTech.getCheckModel().checkAll();
+                    }
+                }
+            }
+        });
 
-		// left column
-		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-		gridPaneLeft.addColumn(0, labelComboBoxSubsector, labelCheckComboBoxTech,  
-				labelWhichUnits, new Label(),  new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
-				new Label(), new Separator(), utils.createLabel("Populate:"), labelModificationType, labelStartYear,
-				labelEndYear, labelInitialAmount, labelGrowth);
-
-		gridPaneLeft.addColumn(1, comboBoxSubsector, checkComboBoxTech,  
-				comboBoxWhichUnits, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
-				textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
-				textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
-
-		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.getStyle2());
-		
-		scrollPaneLeft.setContent(gridPaneLeft);
-
-		comboBoxSubsector.getItems().addAll("Select One","Car","Large Car and Truck","Light Truck","Medium Truck","Heavy Truck");
-		comboBoxSubsector.getSelectionModel().select("Select One");
-		
-		checkComboBoxTech.getItems().addAll("BEV","FCEV","Hybrid Liquids","Liquids","NG");
-		checkComboBoxTech.getCheckModel().checkAll();
-		checkComboBoxTech.setDisable(true);
-		
-		comboBoxWhichUnits.getItems().addAll("Select One", "MPG", "MJ/vkt");
-		//comboBoxWhichUnits.getSelectionModel().select("Select One");
-		comboBoxWhichUnits.getSelectionModel().select("MPG");
-		comboBoxWhichUnits.setDisable(true);
-		
-		comboBoxModificationType.getItems().addAll("Initial and Final", "Initial w/% Growth/yr",
-				"Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd");
-		comboBoxModificationType.getSelectionModel().selectFirst();
-		
-		// center column
-
-		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.getStyle3());
-
-		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.getStyle2());
-
-		// right column
-		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.getStyle2());
-
-		gridPanePresetModification.addColumn(0, scrollPaneLeft);
-		gridPanePresetModification.addColumn(1, vBoxCenter);
-		gridPanePresetModification.addColumn(2, vBoxRight);
-
-		gridPaneLeft.setPrefWidth(325);
-		gridPaneLeft.setMinWidth(325);
-		vBoxCenter.setPrefWidth(300);
-		vBoxRight.setPrefWidth(300);
-
-		// techs
-		checkComboBoxTech.getCheckModel().checkAll();
-		//checkComboBoxTech.setDisable(true);
-
-		comboBoxSubsector.getSelectionModel().selectFirst();
-
-		// default sizing
-		double max_wid = 175;
-		comboBoxSubsector.setMaxWidth(max_wid);
-		checkComboBoxTech.setMaxWidth(max_wid);
-		comboBoxWhichUnits.setMaxWidth(max_wid);
-		textFieldStartYear.setMaxWidth(max_wid);
-		textFieldEndYear.setMaxWidth(max_wid);
-		textFieldInitialAmount.setMaxWidth(max_wid);
-		textFieldGrowth.setMaxWidth(max_wid);
-		textFieldPeriodLength.setMaxWidth(max_wid);
-		textFieldPolicyName.setMaxWidth(max_wid);
-		textFieldMarketName.setMaxWidth(max_wid);
-		
-		double min_wid = 105;
-		comboBoxSubsector.setMinWidth(min_wid);
-		checkComboBoxTech.setMinWidth(min_wid);
-		comboBoxWhichUnits.setMinWidth(max_wid);
-		textFieldStartYear.setMinWidth(min_wid);
-		textFieldEndYear.setMinWidth(min_wid);
-		textFieldInitialAmount.setMinWidth(min_wid);
-		textFieldGrowth.setMinWidth(min_wid);
-		textFieldPeriodLength.setMinWidth(min_wid);
-		textFieldPolicyName.setMinWidth(min_wid);
-		textFieldMarketName.setMinWidth(min_wid);
-		
-		double pref_wid = 175;
-		comboBoxSubsector.setPrefWidth(pref_wid);
-		checkComboBoxTech.setPrefWidth(pref_wid);
-		comboBoxWhichUnits.setPrefWidth(pref_wid);
-		textFieldStartYear.setPrefWidth(pref_wid);
-		textFieldEndYear.setPrefWidth(pref_wid);
-		textFieldInitialAmount.setPrefWidth(pref_wid);
-		textFieldGrowth.setPrefWidth(pref_wid);
-		textFieldPeriodLength.setPrefWidth(pref_wid);
-		textFieldPolicyName.setPrefWidth(pref_wid);
-		textFieldMarketName.setPrefWidth(pref_wid);
-		
-		labelCheckComboBoxTech.setOnMouseClicked(e -> {
-			if (!checkComboBoxTech.isDisabled()) {
-				boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
-				if (e.getClickCount() == 2) {
-					if (isFirstItemChecked) {
-						checkComboBoxTech.getCheckModel().clearChecks();
-					} else {
-						checkComboBoxTech.getCheckModel().checkAll();
-					}
-				}
-			}
-		});
-
-		comboBoxSubsector.setOnAction(e -> {
-			if (comboBoxSubsector.getSelectionModel().getSelectedIndex()>0) {
-				this.checkComboBoxTech.setDisable(false);
-			} else {
-				this.checkComboBoxTech.setDisable(true);
-			}
-			setPolicyAndMarketNames();
-		});
+        comboBoxSubsector.setOnAction(e -> {
+            if (comboBoxSubsector.getSelectionModel().getSelectedIndex()>0) {
+                this.checkComboBoxTech.setDisable(false);
+            } else {
+                this.checkComboBoxTech.setDisable(true);
+            }
+            setPolicyAndMarketNames();
+        });
 		 		 
-		EventHandler<TreeModificationEvent> ev = new EventHandler<TreeModificationEvent>() {
+        EventHandler<TreeModificationEvent> ev = new EventHandler<TreeModificationEvent>() {
 			@Override
 			public void handle(TreeModificationEvent ae) {
 				ae.consume();
@@ -321,7 +309,11 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 	}
 
 
-	private void setPolicyAndMarketNames() {
+    /**
+     * Sets the policy and market names automatically based on selected subsector and regions.
+     * If auto-naming is enabled, updates the text fields accordingly.
+     */
+    private void setPolicyAndMarketNames() {
 
 		if (this.checkBoxUseAutoNames.isSelected()) {
 
@@ -362,7 +354,12 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		}
 	}
 
-	private double[][] calculateValues() {
+    /**
+     * Calculates the values for the policy based on user input and selected calculation type.
+     *
+     * @return 2D array of calculated values
+     */
+    private double[][] calculateValues() {
 		String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
 		int start_year = Integer.parseInt(textFieldStartYear.getText());
 		int end_year = Integer.parseInt(textFieldEndYear.getText());
@@ -375,16 +372,27 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		return returnMatrix;
 	}
 
+	/**
+	 * Runnable implementation. Triggers saving of the scenario component.
+	 */
 	@Override
 	public void run() {
 		saveScenarioComponent();
 	}
 
+	/**
+	 * Saves the scenario component using the current UI state and selected regions.
+	 */
 	@Override
 	public void saveScenarioComponent() {
 		saveScenarioComponent(paneForCountryStateTree.getTree());
 	}
 
+	/**
+	 * Saves the scenario component for the specified tree of regions.
+	 *
+	 * @param tree The TreeView of regions
+	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
 
 		if (!qaInputs()) {
@@ -397,10 +405,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 			String ID = utils.getUniqueString();
 			String policy_name = this.textFieldPolicyName.getText() + ID;
 			String market_name = this.textFieldMarketName.getText() + ID;
-			filename_suggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
-
+			filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
 			//clearing info to save to file
-			file_content = this.getMetaDataContent(tree, market_name, policy_name);
+			fileContent = this.getMetaDataContent(tree, market_name, policy_name);
 			String content_p1="";
 			String content_p2="";
 
@@ -492,15 +499,23 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 					}
 				}
 
-				file_content+=content_p1+ vars.getEol();
-				file_content+=content_p2;
+				fileContent+=content_p1+ vars.getEol();
+				fileContent+=content_p2;
 
 			System.out.println("Done");
 			}}
 
 	}
 
-	public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
+	/**
+	 * Generates the metadata content string for the scenario component, including selected subsector, technologies, units, policy/market names, and table data.
+	 *
+	 * @param tree   The TreeView of regions
+	 * @param market The market name
+	 * @param policy The policy name
+	 * @return Metadata content string
+	 */
+    public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
 		String rtn_str = "";
 
 		rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
@@ -534,6 +549,11 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		return rtn_str;
 	}
 
+	/**
+	 * Loads content from a list of strings (typically from a file) and populates the UI fields accordingly.
+	 *
+	 * @param content The list of content lines to load
+	 */
 	@Override
 	public void loadContent(ArrayList<String> content) {
 		for (int i = 0; i < content.size(); i++) {
@@ -583,6 +603,11 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		this.paneForComponentDetails.updateTable();
 	}
 
+	/**
+	 * Performs a quick QA check to ensure required fields for populating values are filled.
+	 *
+	 * @return true if all required fields are filled, false otherwise
+	 */
 	public boolean qaPopulate() {
 		boolean is_correct = true;
 
@@ -598,6 +623,12 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		return is_correct;
 	}
 
+	/**
+	 * Performs QA checks on the current UI state to ensure all required inputs are valid.
+	 * Displays warnings or error messages as needed.
+	 *
+	 * @return true if all inputs are valid, false otherwise
+	 */
 	protected boolean qaInputs() {
 
 		TreeView<String> tree = paneForCountryStateTree.getTree();
@@ -674,7 +705,10 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		return is_correct;
 	}
 
-	public void setUnitsLabel() {
+    /**
+     * Sets the units label based on the selected technologies.
+     */
+    public void setUnitsLabel() {
 		String s = getUnits();
 
 		String label = "";
@@ -687,7 +721,12 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 
 	}
 
-	public String getUnits() {
+    /**
+     * Gets the units string for the selected technologies.
+     *
+     * @return The units string, or "No match" if units are inconsistent
+     */
+    public String getUnits() {
 
 		ObservableList<String> tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
 

@@ -402,7 +402,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {// VBox {
 				utils.warningMessage("Unknown tab selected: " + which);
 				return;
 			}
-			progressBar.progressProperty().bind(tab.progress_bar.progressProperty());
+			progressBar.progressProperty().bind(tab.getProgressBar().progressProperty());
 
 			saveTask = new Task<Integer>() {
 

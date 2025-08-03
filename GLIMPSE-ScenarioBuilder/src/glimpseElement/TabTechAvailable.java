@@ -1,35 +1,35 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
-* Visualization Laboratory contract. 
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
+ * Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+ * Visualization Laboratory contract. 
+ * 
+ */
 
 package glimpseElement;
 
@@ -69,36 +69,93 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-// the following class defines the General tab when the New button of the
-// left pane is clicked.//
+/**
+ * TabTechAvailable provides the user interface and logic for managing technology availability
+ * in the GLIMPSE Scenario Builder. This tab allows users to filter, select, and configure
+ * technology bounds and availability for scenario components.
+ *
+ * <p>
+ * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
+ * </p>
+ *
+ * <p>
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
+ * </p>
+ *
+ * <p>
+ * <b>Main Features:</b>
+ * <ul>
+ *   <li>Displays a table of available technologies with options to set bounds and years.</li>
+ *   <li>Allows filtering by technology type and text search.</li>
+ *   <li>Supports selection of all or a range of technologies for scenario constraints.</li>
+ *   <li>Handles both nested and non-nested technology structures for scenario export.</li>
+ *   <li>Integrates with a region/country selection tree for scenario targeting.</li>
+ *   <li>Provides methods for saving scenario components and shareweights to file.</li>
+ *   <li>Supports loading of scenario component content from file.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Key Methods:</b>
+ * <ul>
+ *   <li>{@link #TabTechAvailable(String, Stage)} - Constructor, sets up UI and event handlers.</li>
+ *   <li>{@link #saveScenarioComponent()} - Saves the current scenario component to file.</li>
+ *   <li>{@link #saveScenarioComponentShareweight()} - Saves shareweight scenario data to file.</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads scenario component data from file.</li>
+ *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Dependencies:</b>
+ * <ul>
+ *   <li>JavaFX for UI components</li>
+ *   <li>GLIMPSE utility classes for file, style, and variable management</li>
+ *   <li>{@link TechBound} for technology data representation</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Author:</b> GLIMPSE Project Team
+ * </p>
+ */
 public class TabTechAvailable extends PolicyTab implements Runnable {
-	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	private GLIMPSEFiles files = GLIMPSEFiles.getInstance();
-	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-	public TableView<TechBound> tableTechBounds = new TableView<>();
-	// Initializing overall grid
-	GridPane gridPaneTechBound = new GridPane();
-	PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
+    // === Utility Instances ===
+    private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
+    private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-	ObservableList<TechBound> orig_list;
-	ObservableList<TechBound> table_list;
-	
-	Label filterByTypeLabel=utils.createLabel("Filter by Type: ");
-	ComboBox<String> comboBoxTypeFilter = utils.createComboBoxString();
-	
-	Label filterByTextLabel=utils.createLabel(" Text: ");
-	TextField filterTextField=utils.createTextField();
-	Label firstYrLabel=utils.createLabel(" First yr: ");
-	TextField firstYrTextField=utils.createTextField();
-	Label lastYrLabel=utils.createLabel(" Last yr: ");
-	TextField lastYrTextField=utils.createTextField();
-	Button setFirstLastYrsButton=utils.createButton("Set Years",styles.getBigButtonWidth(), "Set first, last years for visible technologies");
-	Label selectLabel=utils.createLabel("Select: ");
-	Button selectAllButton=utils.createButton("Never",styles.getBigButtonWidth(), "Selects All? for visible technologies");
-	Button selectRangeButton=utils.createButton("Range",styles.getBigButtonWidth(), "Selects Range? for visible technologies");
+    // === Table and Layout Components ===
+    public final TableView<TechBound> tableTechBounds = new TableView<>();
+    private final GridPane gridPaneTechBound = new GridPane();
+    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
+
+    // === Data Lists ===
+    private ObservableList<TechBound> orig_list;
+    private ObservableList<TechBound> table_list;
+
+    // === Filter and Control UI ===
+    private final Label filterByTypeLabel = utils.createLabel("Filter by Type: ");
+    private final ComboBox<String> comboBoxTypeFilter = utils.createComboBoxString();
+    private final Label filterByTextLabel = utils.createLabel(" Text: ");
+    private final TextField filterTextField = utils.createTextField();
+    private final Label firstYrLabel = utils.createLabel(" First yr: ");
+    private final TextField firstYrTextField = utils.createTextField();
+    private final Label lastYrLabel = utils.createLabel(" Last yr: ");
+    private final TextField lastYrTextField = utils.createTextField();
+    private final Button setFirstLastYrsButton = utils.createButton("Set Years", styles.getBigButtonWidth(), "Set first, last years for visible technologies");
+    private final Label selectLabel = utils.createLabel("Select: ");
+    private final Button selectAllButton = utils.createButton("Never", styles.getBigButtonWidth(), "Selects All? for visible technologies");
+    private final Button selectRangeButton = utils.createButton("Range", styles.getBigButtonWidth(), "Selects Range? for visible technologies");
 
 	
+	/**
+	 * Constructor for TabTechAvailable. Sets up the UI, event handlers, and initializes the technology bounds table.
+	 *
+	 * @param title  the title of the tab
+	 * @param stageX the JavaFX Stage
+	 */
 	public TabTechAvailable(String title, Stage stageX) {
 
 		this.setStyle(styles.getFontStyle());
@@ -315,21 +372,20 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			sectorList.add("Filter by Sector?");
 			sectorList.add("All");
 
-			for (int i = 0; i < tech_info.length; i++) {
-
-				String text = tech_info[i][0].trim();
+			for (String[] tech : tech_info) {
+				String text = tech[0].trim();
 
 				boolean match = false;
-				for (int j = 0; j < sectorList.size(); j++) {
-					if (text.equals(sectorList.get(j)))
+				for (String sector : sectorList) {
+					if (text.equals(sector))
 						match = true;
 				}
 				if (!match)
 					sectorList.add(text);
 			}
 
-			for (int i = 0; i < sectorList.size(); i++) {
-				comboBoxTypeFilter.getItems().add(sectorList.get(i).trim());
+			for (String sector : sectorList) {
+				comboBoxTypeFilter.getItems().add(sector.trim());
 			}
 			comboBoxTypeFilter.getSelectionModel().selectFirst();
 
@@ -344,8 +400,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	private ObservableList<TechBound> hideNestedSubsectorFromTechList() {
 		ObservableList<TechBound> rtn_list=FXCollections.observableArrayList();
 		
-		for (int i=0;i<orig_list.size();i++) {
-			TechBound tb0=orig_list.get(i);
+		for (TechBound tb0 : orig_list) {
 			TechBound tb=new TechBound(tb0.getFirstYear(),tb0.getLastYear(),tb0.getTechName(),tb0.isBoundAll(),tb0.isBoundRange());
 			String name=tb.getTechName();
 			String component[]=name.split(":");
@@ -371,8 +426,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		for (int i=0;i<words.length;i++) words[i]=words[i].trim();
 		boolean match=false;
 	
-		for (int i=0;i<orig_list.size();i++) {
-			String orig_line=orig_list.get(i).getTechName();
+		for (TechBound orig_tb : orig_list) {
+			String orig_line=orig_tb.getTechName();
 			if (!match) {
 				for (int j=0;j<words.length;j++) {
 					match=true;
@@ -404,8 +459,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	private void updateFirstAndLastYears(String firstYr,String lastYr) {
 		FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(),p->true);
 
-		for (int i=0;i<visibleComponents.size();i++) {
-			TechBound tb=visibleComponents.get(i);
+		for (TechBound tb : visibleComponents) {
 			tb.setFirstYear(firstYr);
 			tb.setLastYear(lastYr);
 		}
@@ -419,8 +473,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
 		boolean b=true;
 		
-		for (int i=0;i<visibleComponents.size();i++) {
-			TechBound tb=visibleComponents.get(i);
+		for (TechBound tb : visibleComponents) {
 			if (tb.isBoundAll()) b=false;
 			tb.setIsBoundAll(b);
 		}
@@ -434,8 +487,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
 		boolean b=true;
 		
-		for (int i=0;i<visibleComponents.size();i++) {
-			TechBound tb=visibleComponents.get(i);
+		for (TechBound tb : visibleComponents) {
 			if (tb.isBoundRange()) b=false;
 			tb.setIsBoundRange(b);
 		}
@@ -528,6 +580,9 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	}
 	
 
+	/**
+	 * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+	 */
 	@Override
 	public void run() {
 		  saveScenarioComponent();
@@ -535,7 +590,9 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	
 
 
-    //This approach does not seem to work
+    /**
+     * Saves the current scenario component to file, including both nested and non-nested technology bounds.
+     */
 	public void saveScenarioComponent() {//_part2() {
 		
 	
@@ -548,19 +605,19 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
 			String states = utils.returnAppendedString(listOfSelectedLeaves);
 
-			filename_suggestion = "TechAvailBnd";
+			filenameSuggestion = "TechAvailBnd";
 
 			String region = states.replace(",", "");
 			if (region.length() > 6) {
 				region = "Reg";
 			}
-			filename_suggestion += region;
-			filename_suggestion = filename_suggestion.replaceAll("/", "-").replaceAll(" ", "");
+			filenameSuggestion += region;
+			filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "");
 
 			// sets up the content of the CSV file to store the scenario component data
-			file_content = getMetaDataContent(tree);
-			String file_content1 = "";
-			String file_content2 = "";
+			fileContent = getMetaDataContent(tree);
+			String fileContent1 = "";
+			String fileContent2 = "";
 
 			String header_1 = "GLIMPSETechAvailBnd";
 			String header_2 = "GLIMPSETechAvailBnd-Nest";
@@ -569,15 +626,15 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			int num_nest=0;
 
 			// Setting up non-nested-inputs 
-			file_content1 += "INPUT_TABLE" + vars.getEol();
-			file_content1 += "Variable ID" + vars.getEol();
-			file_content1 += header_1 + vars.getEol() + vars.getEol();
-			file_content1 += "region,sector,subsector,tech,init-year,final-year" + vars.getEol();
+			fileContent1 += "INPUT_TABLE" + vars.getEol();
+			fileContent1 += "Variable ID" + vars.getEol();
+			fileContent1 += header_1 + vars.getEol() + vars.getEol();
+			fileContent1 += "region,sector,subsector,tech,init-year,final-year" + vars.getEol();
 
-			file_content2 += "INPUT_TABLE" + vars.getEol();
-			file_content2 += "Variable ID" + vars.getEol();
-			file_content2 += header_2 + vars.getEol() + vars.getEol();
-			file_content2 += "region,sector,nesting-subsector,subsector,tech,init-year,final-year" + vars.getEol();
+			fileContent2 += "INPUT_TABLE" + vars.getEol();
+			fileContent2 += "Variable ID" + vars.getEol();
+			fileContent2 += header_2 + vars.getEol() + vars.getEol();
+			fileContent2 += "region,sector,nesting-subsector,subsector,tech,init-year,final-year" + vars.getEol();
 
 			
 			int count = 0;
@@ -615,23 +672,26 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 						
 						if (!isNested) {
 							num_non_nest++;
-							file_content1+=line;
+							fileContent1+=line;
 						} else {
 							num_nest++;
-							file_content2+=line;
+							fileContent2+=line;
 						}
 					}
 				}
 			}
-			if ((num_non_nest>0)&&(num_nest>0)) file_content2=vars.getEol()+file_content2;
-			if (num_non_nest>0) file_content+=file_content1;
-			if (num_nest>0) file_content+=file_content2;
+			if ((num_non_nest>0)&&(num_nest>0)) fileContent2=vars.getEol()+fileContent2;
+			if (num_non_nest>0) fileContent+=fileContent1;
+			if (num_nest>0) fileContent+=fileContent2;
 			
-			//System.out.println("Exciting tab save code. file_content ..."+file_content.length()+" characters");
+			//System.out.println("Exciting tab save code. fileContent ..."+fileContent.length()+" characters");
 			
 		}
 	}
 
+	/**
+     * Saves shareweight scenario data to file, handling both nested and non-nested technologies.
+     */
 	public void saveScenarioComponentShareweight() {//_part2() {
 		
 		
@@ -646,7 +706,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
 			String states = utils.returnAppendedString(listOfSelectedLeaves);
 
-			filename_suggestion = "TechAvailBnd";
+			filenameSuggestion = "TechAvailBnd";
 
 			/// setup of temp file to speed component creation; writes lines to disk instead of holding lines in memory
 			String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
@@ -660,7 +720,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
 			BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
 			BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
-			file_content = "use temp file";
+			fileContent = "use temp file";
 			files.writeToBufferedFile(bw0, getMetaDataContent(tree));
 			/////////////////
 			
@@ -668,12 +728,12 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			if (region.length() > 6) {
 				region = "Reg";
 			}
-			filename_suggestion += region;
-			filename_suggestion = filename_suggestion.replaceAll("/", "-").replaceAll(" ", "_");
+			filenameSuggestion += region;
+			filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "_");
 
 			// sets up the content of the CSV file to store the scenario component data			
-			String file_content1 = "";
-			String file_content2 = "";
+			String fileContent1 = "";
+			String fileContent2 = "";
 
 			String header_1 = "GLIMPSEStubTechShrwt";
 			String header_2 = "GLIMPSEStubTechShrwt-Nest";
@@ -682,20 +742,20 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 			int num_nest=0;
 
 			// Setting up non-nested-inputs 
-			file_content1 += "INPUT_TABLE" + vars.getEol();
-			file_content1 += "Variable ID" + vars.getEol();
-			file_content1 += header_1 + vars.getEol() + vars.getEol();
-			file_content1 += "region,sector,subsector,tech,year,value" + vars.getEol();
+			fileContent1 += "INPUT_TABLE" + vars.getEol();
+			fileContent1 += "Variable ID" + vars.getEol();
+			fileContent1 += header_1 + vars.getEol() + vars.getEol();
+			fileContent1 += "region,sector,subsector,tech,year,value" + vars.getEol();
 
-			file_content2 += "INPUT_TABLE" + vars.getEol();
-			file_content2 += "Variable ID" + vars.getEol();
-			file_content2 += header_2 + vars.getEol() + vars.getEol();
-			file_content2 += "region,sector,nesting-subsector,subsector,tech,year,value" + vars.getEol();
+			fileContent2 += "INPUT_TABLE" + vars.getEol();
+			fileContent2 += "Variable ID" + vars.getEol();
+			fileContent2 += header_2 + vars.getEol() + vars.getEol();
+			fileContent2 += "region,sector,nesting-subsector,subsector,tech,year,value" + vars.getEol();
 
-			files.writeToBufferedFile(bw1,file_content1);
-			files.writeToBufferedFile(bw2,file_content2);
-			file_content1="";
-			file_content2="";
+			files.writeToBufferedFile(bw1,fileContent1);
+			files.writeToBufferedFile(bw2,fileContent2);
+			fileContent1="";
+			fileContent2="";
 			
 			
 			int firstSimulationYear = vars.getSimulationStartYear();
@@ -741,20 +801,20 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
 								if (!isNested) {
 									num_non_nest++;
-									file_content1+=line;
+									fileContent1+=line;
 								} else {
 									num_nest++;
-									file_content2+=line;
+									fileContent2+=line;
 								}
 							}
 						}
 					}
-					file_content1+=vars.getEol();
-					file_content2+=vars.getEol();
-					files.writeToBufferedFile(bw1,file_content1);
-					files.writeToBufferedFile(bw2,file_content2);
-					file_content1="";
-					file_content2="";
+					fileContent1+=vars.getEol();
+					fileContent2+=vars.getEol();
+					files.writeToBufferedFile(bw1,fileContent1);
+					files.writeToBufferedFile(bw2,fileContent2);
+					fileContent1="";
+					fileContent2="";
 					
 				}
 			}
@@ -789,6 +849,12 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	}
 	
 	
+	/**
+	 * Generates metadata content for the scenario component, including technology bounds and selected regions.
+	 *
+	 * @param tree the TreeView containing region selections
+	 * @return a String containing the metadata content
+	 */
 	public String getMetaDataContent(TreeView<String> tree) {
 		String rtn_str="############ Scenario Component Meta-Data ############"+vars.getEol();				
 		rtn_str+="#Scenario component type: Tech Avail"+vars.getEol();
@@ -796,7 +862,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		for (int i=0;i<table_list.size();i++) {
 			TechBound bnd=table_list.get(i);
 			if (bnd.isBoundAll()||bnd.isBoundRange()) {
-				rtn_str+="#Bound:Never>"+bnd.isBoundAll()+",Range>"+bnd.isBoundRange()+",First>"+bnd.getFirstYear()+",Last>"+bnd.getLastYear()+",Tech>"+bnd.getTechName()+vars.getEol();;
+				rtn_str+="#Bound:Never>"+bnd.isBoundAll()+",Range>"+bnd.getLastYear()+",First>"+bnd.getFirstYear()+",Last>"+bnd.getLastYear()+",Tech>"+bnd.getTechName()+vars.getEol();;
 			}
 		}
 	
@@ -808,11 +874,15 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		return rtn_str;
 	}
 	
+	/**
+     * Loads scenario component data from file and updates the UI accordingly.
+     *
+     * @param content the list of content lines to load
+     */
 	@Override
 	public void loadContent(ArrayList<String> content) {
 		ObservableList<TechBound> techList=tableTechBounds.getItems();
-		for (int i=0;i<content.size();i++) {
-			String line=content.get(i);
+		for (String line : content) {
 			int pos = line.indexOf(":");
 			if (line.startsWith("#")&&(pos>-1)){
 				String param=line.substring(1,pos).trim().toLowerCase();
@@ -824,8 +894,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 					String first="";
 					String last="";
 					String tech="";
-					for (int j=0;j<attributes.length;j++) {
-						String str=attributes[j];
+					for (String str : attributes) {
 						//System.out.println("i:"+i+" "+str);
 						int pos2=str.indexOf(">");
 						String att=str.substring(0,pos2).trim().toLowerCase();
@@ -842,8 +911,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 							tech=val.toLowerCase();
 						}
 					}
-					for(int k=0;k<techList.size();k++) {
-						TechBound tb=techList.get(k);
+					for(TechBound tb : techList) {
 						if (tb.getTechName().toLowerCase().equals(tech)) {
 							if (never.equals("true")) tb.setIsBoundAll(true);
 							if (range.equals("true")) tb.setIsBoundRange(true);
@@ -868,16 +936,16 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 		try {
 			String[][] tech_info = vars.getTechInfo();
 			String last_line="";
-			for (int i = 0; i < tech_info.length; i++) {
-				String line = tech_info[i][0].trim() + " : " + tech_info[i][1] + " : " + tech_info[i][2];
+			for (String[] tech : tech_info) {
+				String line = tech[0].trim() + " : " + tech[1] + " : " + tech[2];
 				if (line.equals(last_line)) {
 					;
 				} else {
 					last_line=line;
-					if (tech_info[i].length >= 7)
-						line += " : " + tech_info[i][6];
-					if (tech_info[i].length >= 8)
-						line += " // " + tech_info[i][7];
+					if (tech.length >= 7)
+						line += " : " + tech[6];
+					if (tech.length >= 8)
+						line += " // " + tech[7];
 					if (line.length() > 0) {
 						list.add(new TechBound("1975", "2015", line, new Boolean(false),new Boolean(false)));
 					}
@@ -896,6 +964,11 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	}
 	
 
+	/**
+     * Validates user input before saving the scenario component. Checks for at least one region and one technology bound.
+     *
+     * @return true if all required fields are valid, false otherwise
+     */
 	protected boolean qaInputs() {
 
 		TreeView<String> tree = paneForCountryStateTree.getTree();
@@ -948,4 +1021,3 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 	}
 
 }
-

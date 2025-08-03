@@ -137,9 +137,9 @@ public class Client extends Application {
     // endregion
 
     /**
-     * Main method which initiates the app and calls the start method.
+     * The entry point of the application. Sets up JavaFX and launches the GUI.
      *
-     * @param args Command line arguments.
+     * @param args Command line arguments passed to the application.
      */
     public static void main(String[] args) {
         // Added following line to address issue on VMs that caused JavaFX to shutdown when WM_ENDSESSION was called.
@@ -147,19 +147,24 @@ public class Client extends Application {
         launch(args);
     }
 
+    /**
+     * Initializes the application. Loads settings, options, and data files, and sets up utility references.
+     *
+     * @throws Exception if initialization fails
+     */
     @Override
     public void init() throws Exception {
         System.out.println("Loading settings and initializing.");
 
-        // Gives utility/variable objects ability to talk to each other.
+        // Initialize utility/variable objects with references to each other
         vars.init(utils, vars, styles, files);
         files.init(utils, vars, styles, files);
         utils.init(utils, vars, styles, files);
 
-        // Reads command-line arguments.
+        // Parse command-line arguments for options file
         processArgs();
 
-        // Loads options into the vars singleton.
+        // Load options into the vars singleton
         vars.loadOptions(optionsFilename);
 
         final String setup = vars.examineGLIMPSESetup();
@@ -167,15 +172,16 @@ public class Client extends Application {
             System.out.println(setup);
         }
 
+        // Reset log file and log computer stats
         utils.resetLogFile(utils.getComputerStatString());
 
-        // Loads data files into files singleton.
+        // Load data files into files singleton
         files.loadFiles();
         utils.sb = this.sb;
     }
 
     /**
-     * This method initiates the UI. This is the root method of UI in JavaFX.
+     * Starts the JavaFX application and sets up the main window and GUI components.
      *
      * @param primaryStage The primary stage for this application.
      */
@@ -185,7 +191,10 @@ public class Client extends Application {
 
         Client.primaryStage = primaryStage;
 
+        // Ensure threads are properly terminated on window close
         primaryStage.setOnCloseRequest(event -> {
+            // Terminate status checkers and shutdown execution threads
+            // If any UI updates are needed here in the future, use Platform.runLater
             Client.gCAMExecutionThread.getStatusChecker().terminate();
             Client.modelInterfaceExecutionThread.getStatusChecker().terminate();
             Client.gCAMExecutionThread.shutdownNow();
@@ -193,19 +202,24 @@ public class Client extends Application {
             Platform.exit();
         });
 
-        // Build GUI panels.
+        // Build GUI panels and layout
         scenarioBuilder.build();
 
-        // Creates the menu at the top of the GUI and sets up the main window.
+        // Set up the main window with menu and content
         setMainWindow(combineAllElementsIntoOnePane(), createMenuBar());
 
-        // Sets up execution threads.
+        // Set up execution threads for GCAM and post-processor
         setupExecutionThreads();
 
+        // Set application icon
         final String iconFile = "file:" + vars.getGlimpseResourceDir() + File.separator + "GLIMPSE_icon.png";
         primaryStage.getIcons().add(new Image(iconFile));
     }
 
+    /**
+     * Processes command-line arguments to extract the options filename if provided.
+     * Supports both single argument and -options flag.
+     */
     private void processArgs() {
         final Parameters params = getParameters();
         final List<String> paramList = params.getRaw();
@@ -226,6 +240,11 @@ public class Client extends Application {
         }
     }
 
+    /**
+     * Creates the main menu bar for the application, including File, Edit, Tools, View, and Help menus.
+     *
+     * @return MenuBar the constructed menu bar
+     */
     private MenuBar createMenuBar() {
         final MenuBar menuBar = new MenuBar();
 
@@ -249,17 +268,24 @@ public class Client extends Application {
         final Menu menuHelp = new Menu("Help");
         new SetupMenuHelp().setup(menuHelp);
 
-        // Adds the menu elements to the menubar.
+        // Add all menus to the menu bar
         menuBar.getMenus().addAll(menuFile, menuEdit, menuView, menuTools, menuHelp);
         return menuBar;
     }
 
+    /**
+     * Combines all main GUI elements into a single GridPane for the main window layout.
+     *
+     * @return GridPane containing all main UI elements
+     */
     private GridPane combineAllElementsIntoOnePane() {
         final GridPane mainGridPane = new GridPane();
+        // Add component library, button panel, and create scenario panel
         mainGridPane.add(scenarioBuilder.getvBoxComponentLibrary(), 0, 0);
         mainGridPane.add(scenarioBuilder.getvBoxButton(), 1, 0);
         mainGridPane.add(scenarioBuilder.getvBoxCreateScenario(), 3, 0);
 
+        // Add run panel at the bottom, spanning all columns
         final HBox stack = new HBox(20);
         stack.getChildren().addAll(scenarioBuilder.getvBoxRun());
         stack.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -269,7 +295,14 @@ public class Client extends Application {
         return mainGridPane;
     }
 
+    /**
+     * Sets up the main application window with the provided layout and menu bar.
+     *
+     * @param mainGridPane The main content pane
+     * @param menuBar The menu bar
+     */
     private void setMainWindow(GridPane mainGridPane, MenuBar menuBar) {
+        // Compose the root layout
         final VBox root = new VBox(menuBar, mainGridPane, sb);
         final Scene scene = new Scene(root, vars.ScenarioBuilderWidth, vars.ScenarioBuilderHeight);
 
@@ -281,11 +314,16 @@ public class Client extends Application {
         primaryStage.setWidth(MIN_WINDOW_WIDTH);
         primaryStage.show();
 
+        // Optionally show splash screen on startup
         if (vars.getShowSplash()) {
             loadSplashScreen();
         }
     }
 
+    /**
+     * Sets up the execution threads for GCAM and the model interface.
+     * GCAM uses a single-threaded executor, while the model interface uses a multi-threaded executor.
+     */
     private void setupExecutionThreads() {
         // Starting separate execution queues for GCAM and post-processor.
         gCAMExecutionThread = new ExecutionThread();
@@ -295,6 +333,11 @@ public class Client extends Application {
         modelInterfaceExecutionThread.startUpExecutorMulti();
     }
 
+    /**
+     * Loads and displays the splash screen with fade-in and fade-out effects.
+     *
+     * @return true if splash screen loaded successfully, false otherwise
+     */
     private boolean loadSplashScreen() {
         try {
             final Stage splashStage = new Stage();
@@ -309,7 +352,8 @@ public class Client extends Application {
             splashStage.setOpacity(0.9);
 
             final GridPane pane = new GridPane();
-            final String imagePath = "File:" + vars.getGlimpseDir() + File.separator + "resources" + File.separator + "glimpse-splash.png";
+            // Use lowercase 'file:' for cross-platform compatibility
+            final String imagePath = "file:" + vars.getGlimpseDir() + File.separator + "resources" + File.separator + "glimpse-splash.png";
             final Image image = new Image(imagePath);
 
             if (image.isError()) {
@@ -347,46 +391,200 @@ public class Client extends Application {
         return true;
     }
 
+    /**
+     * Sets the text of the status bar at the bottom of the application window.
+     * If called from a background thread, wraps the update in Platform.runLater.
+     *
+     * @param text The text to display in the status bar
+     */
     protected void setStatusBarText(String text) {
-        sb.setText(text);
+        if (Platform.isFxApplicationThread()) {
+            sb.setText(text);
+        } else {
+            Platform.runLater(() -> sb.setText(text));
+        }
     }
     
     // region Getters for private static fields
+    /**
+     * Gets the primary application stage.
+     * @return Stage the primary stage
+     */
     public static Stage getPrimaryStage() { return primaryStage; }
+    /**
+     * Gets the options filename provided via command-line arguments.
+     * @return String the options filename
+     */
     public static String getOptionsFilename() { return optionsFilename; }
+    /**
+     * Gets the pane for creating scenarios.
+     * @return PaneCreateScenario the create scenario pane
+     */
     public static PaneCreateScenario getPaneCreateScenario() { return paneCreateScenario; }
+    /**
+     * Gets the pane for working scenarios.
+     * @return PaneScenarioLibrary the working scenarios pane
+     */
     public static PaneScenarioLibrary getPaneWorkingScenarios() { return paneWorkingScenarios; }
+    /**
+     * Gets the pane for candidate scenario components.
+     * @return PaneNewScenarioComponent the candidate components pane
+     */
     public static PaneNewScenarioComponent getPaneCandidateComponents() { return paneCandidateComponents; }
+    /**
+     * Gets the right arrow button.
+     * @return Button the right arrow button
+     */
     public static Button getButtonRightArrow() { return buttonRightArrow; }
+    /**
+     * Gets the left arrow button.
+     * @return Button the left arrow button
+     */
     public static Button getButtonLeftArrow() { return buttonLeftArrow; }
+    /**
+     * Gets the left double arrow button.
+     * @return Button the left double arrow button
+     */
     public static Button getButtonLeftDoubleArrow() { return buttonLeftDoubleArrow; }
+    /**
+     * Gets the edit scenario button.
+     * @return Button the edit scenario button
+     */
     public static Button getButtonEditScenario() { return buttonEditScenario; }
+    /**
+     * Gets the delete component button.
+     * @return Button the delete component button
+     */
     public static Button getButtonDeleteComponent() { return buttonDeleteComponent; }
+    /**
+     * Gets the refresh components button.
+     * @return Button the refresh components button
+     */
     public static Button getButtonRefreshComponents() { return buttonRefreshComponents; }
+    /**
+     * Gets the new component button.
+     * @return Button the new component button
+     */
     public static Button getButtonNewComponent() { return buttonNewComponent; }
+    /**
+     * Gets the edit component button.
+     * @return Button the edit component button
+     */
     public static Button getButtonEditComponent() { return buttonEditComponent; }
+    /**
+     * Gets the browse component library button.
+     * @return Button the browse component library button
+     */
     public static Button getButtonBrowseComponentLibrary() { return buttonBrowseComponentLibrary; }
+    /**
+     * Gets the move component up button.
+     * @return Button the move component up button
+     */
     public static Button getButtonMoveComponentUp() { return buttonMoveComponentUp; }
+    /**
+     * Gets the move component down button.
+     * @return Button the move component down button
+     */
     public static Button getButtonMoveComponentDown() { return buttonMoveComponentDown; }
+    /**
+     * Gets the create scenario config file button.
+     * @return Button the create scenario config file button
+     */
     public static Button getButtonCreateScenarioConfigFile() { return buttonCreateScenarioConfigFile; }
+    /**
+     * Gets the view config button.
+     * @return Button the view config button
+     */
     public static Button getButtonViewConfig() { return buttonViewConfig; }
+    /**
+     * Gets the view log button.
+     * @return Button the view log button
+     */
     public static Button getButtonViewLog() { return buttonViewLog; }
+    /**
+     * Gets the view exe log button.
+     * @return Button the view exe log button
+     */
     public static Button getButtonViewExeLog() { return buttonViewExeLog; }
+    /**
+     * Gets the view errors button.
+     * @return Button the view errors button
+     */
     public static Button getButtonViewErrors() { return buttonViewErrors; }
+    /**
+     * Gets the view exe errors button.
+     * @return Button the view exe errors button
+     */
     public static Button getButtonViewExeErrors() { return buttonViewExeErrors; }
+    /**
+     * Gets the browse scenario folder button.
+     * @return Button the browse scenario folder button
+     */
     public static Button getButtonBrowseScenarioFolder() { return buttonBrowseScenarioFolder; }
+    /**
+     * Gets the import scenario button.
+     * @return Button the import scenario button
+     */
     public static Button getButtonImportScenario() { return buttonImportScenario; }
+    /**
+     * Gets the diff files button.
+     * @return Button the diff files button
+     */
     public static Button getButtonDiffFiles() { return buttonDiffFiles; }
+    /**
+     * Gets the show run queue button.
+     * @return Button the show run queue button
+     */
     public static Button getButtonShowRunQueue() { return buttonShowRunQueue; }
+    /**
+     * Gets the refresh scenario status button.
+     * @return Button the refresh scenario status button
+     */
     public static Button getButtonRefreshScenarioStatus() { return buttonRefreshScenarioStatus; }
+    /**
+     * Gets the delete scenario button.
+     * @return Button the delete scenario button
+     */
     public static Button getButtonDeleteScenario() { return buttonDeleteScenario; }
+    /**
+     * Gets the run scenario button.
+     * @return Button the run scenario button
+     */
     public static Button getButtonRunScenario() { return buttonRunScenario; }
+    /**
+     * Gets the results button.
+     * @return Button the results button
+     */
     public static Button getButtonResults() { return buttonResults; }
+    /**
+     * Gets the results for selected button.
+     * @return Button the results for selected button
+     */
     public static Button getButtonResultsForSelected() { return buttonResultsForSelected; }
+    /**
+     * Gets the archive scenario button.
+     * @return Button the archive scenario button
+     */
     public static Button getButtonArchiveScenario() { return buttonArchiveScenario; }
+    /**
+     * Gets the report button.
+     * @return Button the report button
+     */
     public static Button getButtonReport() { return buttonReport; }
+    /**
+     * Gets the examine scenario button.
+     * @return Button the examine scenario button
+     */
     public static Button getButtonExamineScenario() { return buttonExamineScenario; }
+    /**
+     * Gets the GCAM execution thread.
+     * @return ExecutionThread the GCAM execution thread
+     */
     public static ExecutionThread getgCAMExecutionThread() { return gCAMExecutionThread; }
+    /**
+     * Gets the model interface execution thread.
+     * @return ExecutionThread the model interface execution thread
+     */
     public static ExecutionThread getgCAMPPExecutionThread() { return modelInterfaceExecutionThread; }
     // endregion
 }
