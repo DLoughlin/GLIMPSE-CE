@@ -111,14 +111,30 @@ public class GLIMPSEUtils {
 	public String[][] hdv_table = null;
 	public String[][] oth_table = null;
 
-	public String[] states = { "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL",
-			"IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM",
-			"NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY",
-			"AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY",
-			"LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH",
-			"OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY" };
+    // Constants for label texts, combo box options, and other hardcoded strings
+    public static final String[] STATE_CODES = { "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL",
+            "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM",
+            "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY",
+            "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY",
+            "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH",
+            "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY" };
+    public static final String DATE_FORMAT_STR = "yyyy MMM dd HH:mm";
+    public static final String LABEL_WARNING = "Warning";
+    public static final String LABEL_CONFIRMATION_DIALOG = "Confirmation Dialog";
+    public static final String LABEL_DELETE_SELECTED_ITEMS = "Delete selected items?";
+    public static final String LABEL_PLEASE_CONFIRM_DELETION = "Please confirm deletion.";
+    public static final String LABEL_CLOSE = "Close";
+    public static final String LABEL_OK = "OK";
+    public static final String LABEL_DISPLAY = "Display";
+    public static final String LABEL_INFORMATION = "Information";
+    public static final String LABEL_ARCHIVE_SCENARIO = "Archive selected scenario(s) by copying all files to scenario folder(s)?";
+    public static final String LABEL_PLEASE_CONFIRM_ARCHIVE = "Please confirm archive.";
+    public static final String LABEL_NOTICE = "Notice";
+    public static final String LABEL_CANNOT_BE_EXECUTED = "Cannot be executed.";
+    public static final String LABEL_RESOURCES = "  Resources... ";
 
-	public String dateFormatStr = "yyyy MMM dd HH:mm";
+	public String[] states = STATE_CODES;
+	public String dateFormatStr = DATE_FORMAT_STR;
 
 	// Specifies style for GUI tables, such as border width and color
 
@@ -197,15 +213,15 @@ public class GLIMPSEUtils {
     }
 
 	/**
-     * Concatenates elements of an ObservableList into a single string separated by the given separator.
-     * @param ol ObservableList
+     * Concatenates elements of an ObservableList<String> into a single string separated by the given separator.
+     * @param ol ObservableList<String>
      * @param separator Separator string
      * @return Concatenated string
      */
-	public String getStringFromList(ObservableList<?> ol, String separator) {
-        if (ol == null || separator == null) return "";
+	public String getStringFromList(ObservableList<String> ol, String separator) {
+        if (ol == null || separator == null || vars == null) return "";
         StringBuilder rtn_str = new StringBuilder();
-        for (Object o : ol) {
+        for (String o : ol) {
             rtn_str.append(o).append(separator);
         }
         return rtn_str.toString();
@@ -247,8 +263,8 @@ public class GLIMPSEUtils {
         if (msg == null) return;
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Warning");
+            alert.setTitle(LABEL_WARNING);
+            alert.setHeaderText(LABEL_WARNING);
             alert.setContentText(msg);
 
             alert.showAndWait();
@@ -388,8 +404,9 @@ public class GLIMPSEUtils {
      */
 	public String[] getRidOfTrailingCommasInStringArray(String[] s) {
         if (s == null) return null;
-        for (int i = 0; i < s.length; i++) {
-            s[i] = getRidOfTrailingCommasInString(s[i]);
+        int i = 0;
+        for (String str : s) {
+            s[i++] = getRidOfTrailingCommasInString(str);
         }
         return s;
     }
@@ -426,18 +443,17 @@ public class GLIMPSEUtils {
      * @return true if user confirms, false otherwise
      */
 	public boolean confirmDelete() {
-		// confirmation of delete
-		boolean continueWithDelete = true;
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Delete selected items?");
-		alert.setContentText("Please confirm deletion.");
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.isPresent() && result.get() == ButtonType.CANCEL) {
-			continueWithDelete = false;
-		}
-		return continueWithDelete;
-	}
+        boolean continueWithDelete = true;
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(LABEL_CONFIRMATION_DIALOG);
+        alert.setHeaderText(LABEL_DELETE_SELECTED_ITEMS);
+        alert.setContentText(LABEL_PLEASE_CONFIRM_DELETION);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+            continueWithDelete = false;
+        }
+        return continueWithDelete;
+    }
 
 	/**
      * Exits the application if Client.exit_on_exception is true.
@@ -512,10 +528,10 @@ public class GLIMPSEUtils {
 
 	/**
      * Concatenates an ArrayList of strings into a single string with EOL separators.
-     * @param array_str ArrayList of strings
+     * @param arrayList ArrayList of strings
      * @return Concatenated string
      */
-	public String createStringFromArrayList(ArrayList<String> arrayList) {
+    public String createStringFromArrayList(ArrayList<String> arrayList) {
         if (arrayList == null) return "";
         StringBuilder result = new StringBuilder();
         for (String s : arrayList) {
@@ -524,6 +540,12 @@ public class GLIMPSEUtils {
         return result.toString();
     }
 
+    /**
+     * Concatenates an ArrayList of strings into a single string with a custom delimiter.
+     * @param arrayList ArrayList of strings
+     * @param delimiter Delimiter string
+     * @return Concatenated string
+     */
     public String createStringFromArrayList(ArrayList<String> arrayList, String delimiter) {
         if (arrayList == null || delimiter == null) return "";
         StringBuilder result = new StringBuilder();
@@ -536,45 +558,43 @@ public class GLIMPSEUtils {
         return result.toString();
     }
 
-	/**
-     * Converts an ObservableList of strings to a string array, appending EOL to each.
-     * @param array_str ObservableList of strings
+    /**
+     * Converts an ObservableList<String> of strings to a string array, appending EOL to each.
+     * @param array_str ObservableList<String> of strings
      * @return Array of strings
      */
-	public String[] createStringArrayFromObservableList(ObservableList<String> array_str) {
-        if (array_str == null) return new String[0];
+    public String[] createStringArrayFromObservableList(ObservableList<String> array_str) {
+        if (array_str == null || vars == null) return new String[0];
         String[] rtn_str = new String[array_str.size()];
         int i = 0;
         for (String s : array_str) {
             rtn_str[i++] = s + vars.getEol();
         }
         return rtn_str;
-	}
+    }
 
-	/**
+    /**
      * Concatenates a string array into a single comma-separated string.
      * @param str_array Array of strings
      * @return Concatenated string
      */
-	public String createStringFromStringArray(String[] str_array) {
+    public String createStringFromStringArray(String[] str_array) {
         if (str_array == null) return "";
-		String rtn_str = "";
+        StringBuilder rtn_str = new StringBuilder();
+        for (int i = 0; i < str_array.length; i++) {
+            if (i > 0) rtn_str.append(",");
+            rtn_str.append(str_array[i]);
+        }
+        return rtn_str.toString();
+    }
 
-		for (int i = 0; i < str_array.length; i++) {
-			if (i>0) rtn_str+=",";
-			rtn_str+=str_array[i];
-		}
-
-		return rtn_str;
-	}
-	
-	/**
+    /**
      * Converts an ArrayList of strings to a string array, appending EOL to each.
-     * @param array_str ArrayList of strings
+     * @param arrayList ArrayList of strings
      * @return Array of strings
      */
-	public String[] createStringArrayFromArrayList(ArrayList<String> arrayList) {
-        if (arrayList == null) return new String[0];
+    public String[] createStringArrayFromArrayList(ArrayList<String> arrayList) {
+        if (arrayList == null || vars == null) return new String[0];
         String[] result = new String[arrayList.size()];
         int i = 0;
         for (String s : arrayList) {
@@ -606,22 +626,17 @@ public class GLIMPSEUtils {
      * @return Value string, or null if not found
      */
 	public String getKeyValue(ArrayList<String[]> keyValuePairs, String key) {
-		String value = null;
-
-		key = key.trim().toLowerCase();
-
-		for (int i = 0; i < keyValuePairs.size(); i++) {
-			String[] s = keyValuePairs.get(i);
-
-			if (s[0].trim().toLowerCase().equals(key)) {
-				value = s[1];
-			}
-		}
-		if (value != null)
-			value = value.trim();
-
-		return value;
-	}
+        String value = null;
+        key = key.trim().toLowerCase();
+        for (String[] s : keyValuePairs) {
+            if (s[0].trim().toLowerCase().equals(key)) {
+                value = s[1];
+            }
+        }
+        if (value != null)
+            value = value.trim();
+        return value;
+    }
 
 	/**
      * Finds a match for an item in a list of delimited strings and returns the associated value.
@@ -631,20 +646,19 @@ public class GLIMPSEUtils {
      * @return Associated value, or empty string if not found
      */
 	public String getMatch(ArrayList<String> list, String item, String delimiter) {
-		String rtn_str = "";
-		item = item.trim();
-
-		String temp = "";
-		for (String str : list) {
-			String[] s = str.split(delimiter);
-			temp = s[0].trim();
-			if (temp.equals(item)) {
-				rtn_str = s[1].trim();
-				break;
-			}
-		}
-		return rtn_str;
-	}
+        String rtn_str = "";
+        item = item.trim();
+        String temp = "";
+        for (String str : list) {
+            String[] s = str.split(delimiter);
+            temp = s[0].trim();
+            if (temp.equals(item)) {
+                rtn_str = s[1].trim();
+                break;
+            }
+        }
+        return rtn_str;
+    }
 
 	/**
      * Finds matches for an item in a list of delimited strings and returns associated values as an array.
@@ -655,17 +669,16 @@ public class GLIMPSEUtils {
      * @return Array of associated values
      */
 	public String[] getMatches(ArrayList<String> list, String item, String delimiter1, String delimiter2) {
-		String rtn_str = "";
-		item = item.trim();
-
-		for (String str : list) {
-			String[] s = str.split(delimiter1);
-			if (s[0].trim().equals(item)) {
-				rtn_str = s[1].trim();
-			}
-		}
-		return rtn_str.split(delimiter2);
-	}
+        String rtn_str = "";
+        item = item.trim();
+        for (String str : list) {
+            String[] s = str.split(delimiter1);
+            if (s[0].trim().equals(item)) {
+                rtn_str = s[1].trim();
+            }
+        }
+        return rtn_str.split(delimiter2);
+    }
 
 	/**
      * Creates a JavaFX Label with the specified text and default style.
@@ -673,11 +686,12 @@ public class GLIMPSEUtils {
      * @return Label instance
      */
 	public Label createLabel(String txt) {
-		Label label = new Label(txt);
-		label.setStyle(styles.getFontStyle());
-		label.setPadding(new Insets(1, 1, 1, 1));
-		return label;
-	}
+        if (styles == null) return new Label(txt); // null check for styles
+        Label label = new Label(txt);
+        label.setStyle(styles.getFontStyle());
+        label.setPadding(new Insets(1, 1, 1, 1));
+        return label;
+    }
 
 	/**
      * Creates a JavaFX Label with the specified text, width, and default style.
@@ -686,14 +700,14 @@ public class GLIMPSEUtils {
      * @return Label instance
      */
 	public Label createLabel(String txt, double pref_width) {
-		Label label = createLabel(txt);
-		label.setPrefWidth(pref_width);
-		label.setMaxWidth(pref_width);
-		label.setMinWidth(pref_width);
-
-		label = resizeLabelText(label);
-		return label;
-	}
+        Label label = createLabel(txt);
+        label.setPrefWidth(pref_width);
+        label.setMaxWidth(pref_width);
+        label.setMinWidth(pref_width);
+        if (styles == null) return label; // null check for styles
+        label = resizeLabelText(label);
+        return label;
+    }
 
 	/**
      * Creates a JavaFX TextField with the specified width.
@@ -714,30 +728,28 @@ public class GLIMPSEUtils {
      */
 	public TextField createTextField() {
 		TextField tf = new TextField();
-		tf.setStyle(styles.getFontStyle());
+		if (styles != null) tf.setStyle(styles.getFontStyle());
 		return tf;
 	}
 
 	/**
-     * Creates a JavaFX ComboBox for strings with default style.
-     * @return ComboBox instance
+     * Creates a JavaFX ComboBox<String> for strings with default style.
+     * @return ComboBox<String> instance
      */
 	public ComboBox<String> createComboBoxString() {
-		ComboBox<String> comboBox = new ComboBox<String>();
-		comboBox.setStyle(styles.getFontStyle());
-
+		ComboBox<String> comboBox = new ComboBox<>();
+		if (styles != null) comboBox.setStyle(styles.getFontStyle());
 		return comboBox;
 	}
 
 	/**
-     * Creates a ControlsFX CheckComboBox for strings with default style.
-     * @return CheckComboBox instance
+     * Creates a ControlsFX CheckComboBox<String> for strings with default style.
+     * @return CheckComboBox<String> instance
      */
 	public CheckComboBox<String> createCheckComboBox() {
-		CheckComboBox<String> checkComboBox = new CheckComboBox<String>();
-		checkComboBox.setStyle(styles.getFontStyle());
+		CheckComboBox<String> checkComboBox = new CheckComboBox<>();
+		if (styles != null) checkComboBox.setStyle(styles.getFontStyle());
 		checkComboBox.setPrefWidth(Double.MAX_VALUE);
-
 		return checkComboBox;
 	}
 
@@ -748,14 +760,14 @@ public class GLIMPSEUtils {
      */
 	public CheckBox createCheckBox(String s) {
 		CheckBox checkBox = new CheckBox(s);
-		checkBox.setStyle(styles.getFontStyle());
+		if (styles != null) checkBox.setStyle(styles.getFontStyle());
 		return checkBox;
 	}
 
     private Button createButtonInternal(String text, int wid, String tt, String imageName) {
         Button button = new Button();
         button.setPadding(new Insets(1, 1, 1, 1));
-        if (tt != null) {
+        if (tt != null && styles != null) {
             Tooltip tooltip = new Tooltip(tt);
             tooltip.setFont(Font.font(styles.getFontStyle()));
             button.setTooltip(tooltip);
@@ -763,7 +775,7 @@ public class GLIMPSEUtils {
         if (text != null) {
             button.setText(text);
         }
-        if (imageName != null && (vars.getUseIcons().toLowerCase().equals("true") || text == null)) {
+        if (imageName != null && vars != null && styles != null && (vars.getUseIcons().toLowerCase().equals("true") || text == null)) {
             try {
                 String imagePath = "file:" + vars.getResourceDir() + File.separator + imageName + ".png";
                 Image image = new Image(imagePath, 25, 25, false, true);
@@ -777,12 +789,12 @@ public class GLIMPSEUtils {
             } catch (Exception e) {
                 System.out.println("Could not create button images.");
             }
-        } else if (wid > 0) {
+        } else if (wid > 0 && styles != null) {
             button.setPrefSize(wid, 35);
             button.setMaxSize(wid, 35);
             button.setMinSize(wid, 35);
         }
-        button = resizeButtonText(button);
+        if (styles != null) button = resizeButtonText(button);
         return button;
     }
 
@@ -829,12 +841,14 @@ public class GLIMPSEUtils {
     }
 
 	public Button resizeButtonText(Button button) {
+        if (styles == null) return button;
 		String text = button.getText();
 		resizeButtonText(button, text, styles.getFontSize());
 		return button;
 	}
 
 	public Button resizeButtonText(Button button, String text, double size) {
+        if (styles == null) return button;
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		button.setFont(Font.font(size));
 		double font = button.getFont().getSize();
@@ -856,10 +870,12 @@ public class GLIMPSEUtils {
 	}
 
 	public Label resizeLabelText(Label label) {
+        if (styles == null) return label;
 		return resizeLabelText(label, label.getText(), styles.getFontSize());
 	}
 
 	public Label resizeLabelText(Label label, String text, double size) {
+        if (styles == null) return label;
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		label.setFont(Font.font(size));
 		double font = label.getFont().getSize();
@@ -886,6 +902,7 @@ public class GLIMPSEUtils {
     }
 
 	public void insertLinesIntoFile(String filename, String lines, int startRow) {
+		if (files == null) return;
 		ArrayList<String> linesList = createArrayListFromString(lines);
 
 		ArrayList<String> arraylist = files.getStringArrayFromFile(filename, "#");
@@ -931,15 +948,14 @@ public class GLIMPSEUtils {
 
 	public String commentLinesInString(String stringLine, String startComment, String endComment) {
 		String[] stringLines = splitEOL(stringLine);
-
-		String newStringLine = "";
-		for (int i = 0; i < stringLines.length; i++) {
-			stringLines[i] = startComment + stringLines[i] + endComment;
-			newStringLine += stringLines[i];
-			if (stringLines[i].indexOf(vars.getEol()) < 0)
-				newStringLine += vars.getEol();
+		StringBuilder newStringLine = new StringBuilder();
+		for (String line : stringLines) {
+			String commented = startComment + line + endComment;
+			newStringLine.append(commented);
+			if (line.indexOf(vars.getEol()) < 0)
+				newStringLine.append(vars.getEol());
 		}
-		return newStringLine;
+		return newStringLine.toString();
 	}
 
 	public String trimIfExists(String str) {
@@ -958,12 +974,13 @@ public class GLIMPSEUtils {
 	}
 
 	public String[] convertTo1990Dollars(String[] vals, String dollarYear) {
+		if (files == null) return vals;
 		String[] ret_vals = vals;
 		String conversion_str = "1.0";
 
 		try {
-			for (int i = 0; i < files.monetaryConversionsFileContent.size(); i++) {
-				String s[] = files.monetaryConversionsFileContent.get(i).split(",");
+			for (int i = 0; i < files.getMonetaryConversionsFileContent().size(); i++) {
+				String s[] = files.getMonetaryConversionsFileContent().get(i).split(",");
 				if (s[0].equals(dollarYear))
 					conversion_str = s[1];
 			}
@@ -999,10 +1016,12 @@ public class GLIMPSEUtils {
 		String[] s_return;
 
 		int world_location = -1;
-		for (int i = 0; i < s_orig.length; i++) {
-			if (s_orig[i].trim().toLowerCase().equals("world")) {
+		int i = 0;
+		for (String s : s_orig) {
+			if (s.trim().toLowerCase().equals("world")) {
 				world_location = i;
 			}
+			i++;
 		}
 
 		if (world_location == -1) {
@@ -1010,9 +1029,9 @@ public class GLIMPSEUtils {
 		} else {
 			s_return = new String[s_orig.length - 1];
 			int pos = 0;
-			for (int i = 0; i < s_orig.length; i++) {
-				if (i != world_location) {
-					s_return[pos] = s_orig[i];
+			for (int j = 0; j < s_orig.length; j++) {
+				if (j != world_location) {
+					s_return[pos] = s_orig[j];
 					pos++;
 				}
 			}
@@ -1025,8 +1044,8 @@ public class GLIMPSEUtils {
 		String[] s_return;
 
 		int usa_count = 0;
-		for (int i = 0; i < s_orig.length; i++) {
-			if (s_orig[i].trim().toLowerCase().equals("usa")) {
+		for (String s : s_orig) {
+			if (s.trim().toLowerCase().equals("usa")) {
 				usa_count++;
 			}
 		}
@@ -1096,6 +1115,7 @@ public class GLIMPSEUtils {
 	}
 
 	public boolean diffTwoFiles(String file1, String file2) {
+		if (files == null) return false;
 		boolean b = false;
 
 		DiffRowGenerator generator = DiffRowGenerator.create().showInlineDiffs(true).inlineDiffByWord(true)
@@ -1126,6 +1146,7 @@ public class GLIMPSEUtils {
 	}
 
 	public boolean diffTwoFiles2(String file1, String file2) {
+		if (files == null) return false;
 		boolean b = false;
 
 		DiffRowGenerator generator = DiffRowGenerator.create().showInlineDiffs(true).inlineDiffByWord(true)
@@ -1154,11 +1175,12 @@ public class GLIMPSEUtils {
 	}
 
 	public boolean confirmArchiveScenario() {
+		if (vars == null) return false;
 		// asks the user to confirm that they want to delete the trash
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Archive selected scenario(s) by copying all files to scenario folder(s)?");
-		alert.setContentText("Please confirm archive.");
+		alert.setTitle(LABEL_CONFIRMATION_DIALOG);
+		alert.setHeaderText(LABEL_ARCHIVE_SCENARIO);
+		alert.setContentText(LABEL_PLEASE_CONFIRM_ARCHIVE);
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.isPresent() && result.get() == ButtonType.CANCEL) {
 			return false;
@@ -1167,19 +1189,18 @@ public class GLIMPSEUtils {
 	}
 
 	public boolean showInformationDialog(String title, String header, String content) {
+		if (title == null || header == null || content == null) return false;
 		// asks the user to confirm that they want to delete the trash
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 		Optional<ButtonType> result = alert.showAndWait();
-//		if (result.isPresent() && result.get() == ButtonType.CANCEL) {
-//			return false;
-//		}
 		return true;
 	}
 
 	public boolean showStatusDialog(String title, String header, String content) {
+		if (title == null || header == null || content == null) return false;
 		// asks the user to confirm that they want to delete the trash
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -1234,11 +1255,11 @@ public class GLIMPSEUtils {
 	}
 
 	public void displayArrayList(ArrayList<String> arrayListArg, String title, boolean doWrap) {
-
-		BorderPane border = new BorderPane();
+        if (styles == null) return;
+        BorderPane border = new BorderPane();
 
 		if (title == null)
-			title = "Display";
+			title = LABEL_DISPLAY;
 
 		Stage stage = new Stage();
 		stage.setTitle(title);
@@ -1252,7 +1273,7 @@ public class GLIMPSEUtils {
 		textArea.setPrefSize(785, 775);
 		textArea.setWrapText(doWrap);
 
-		Button closeButton = createButton("Close", styles.getBigButtonWidth(), null);
+		Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -1308,9 +1329,9 @@ public class GLIMPSEUtils {
 	}
 
 	public void showPopupTableOfCSVData(String title, ArrayList<String> csvData, int wd, int ht) {
-
-		if (title == null)
-			title = "Display";
+        if (styles == null) return;
+        if (title == null)
+			title = LABEL_DISPLAY;
 
 		Stage stage = new Stage();
 		stage.setTitle(title);
@@ -1319,7 +1340,7 @@ public class GLIMPSEUtils {
 		BorderPane border = new BorderPane();
 		stage.setResizable(true);
 
-		Button closeButton = createButton("Close", styles.getBigButtonWidth(), null);
+		Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -1398,27 +1419,12 @@ public class GLIMPSEUtils {
 		}
 	}
 
-	private TableColumn<List<Object>, ?> createColumn(Class<?> type, int index, String name) {
-		String text = name;
-
-		// TODO: This table handles column formatting when displaying the table. It was
-		// broken when I added the scenario components
-
-		/*
-		 * if (type==Integer.class) { TableColumn<List<Object>, Number> col = new
-		 * TableColumn<>(text); col.setCellValueFactory(data -> new
-		 * SimpleIntegerProperty((Integer)data.getValue().get(index))); return col ; }
-		 * else if (type == Double.class) { TableColumn<List<Object>, Number> col = new
-		 * TableColumn<>(text); try { col.setCellValueFactory(data -> new
-		 * SimpleDoubleProperty((Double)data.getValue().get(index))); } catch(Exception
-		 * e) { ; } return col ; } else {
-		 */
-		TableColumn<List<Object>, String> col = new TableColumn<>(text);
-		col.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(index).toString()));
-		return col;
-		// }
-
-	}
+	private TableColumn<List<Object>, String> createColumn(Class<?> type, int index, String name) {
+        String text = name;
+        TableColumn<List<Object>, String> col = new TableColumn<>(text);
+        col.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(index).toString()));
+        return col;
+    }
 
 	private Class<?> deduceColumnType(String[] column) {
 		boolean allInts = true;
@@ -1954,9 +1960,8 @@ public class GLIMPSEUtils {
 
 	public int getMaxValFromStringArray(String[] str_array) {
 		int max_int = 0;
-
-		for (int i = 0; i < str_array.length; i++) {
-			int val = Integer.parseInt(str_array[i]);
+		for (String s : str_array) {
+			int val = Integer.parseInt(s);
 			if (val > max_int)
 				max_int = val;
 		}
@@ -1965,9 +1970,8 @@ public class GLIMPSEUtils {
 
 	public int getMinValFromStringArray(String[] str_array) {
 		int min_int = Integer.MAX_VALUE;
-
-		for (int i = 0; i < str_array.length; i++) {
-			int val = Integer.parseInt(str_array[i]);
+		for (String s : str_array) {
+			int val = Integer.parseInt(s);
 			if (val < min_int)
 				min_int = val;
 		}
@@ -1976,14 +1980,12 @@ public class GLIMPSEUtils {
 
 	public boolean isState(String name) {
 		boolean return_val = false;
-
-		for (int i = 0; i < states.length; i++) {
-			if (name.equals(states[i])) {
+		for (String state : states) {
+			if (name.equals(state)) {
 				return_val = true;
 				break;
 			}
 		}
-
 		return return_val;
 	}
 	
@@ -1991,7 +1993,7 @@ public class GLIMPSEUtils {
      * Loads transportation vehicle information from a file and categorizes it into different tables based on vehicle type.
      */
 	public void loadTrnVehInfo() {
-
+        if (vars == null || files == null) return;
 		String filename = vars.getTrnVehInfoFilename();
 		System.out.println("Loading transportation info from "+filename);
 
@@ -2030,319 +2032,209 @@ public class GLIMPSEUtils {
 	}
 	
 
-	public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
+    /**
+     * Generates an error report from the main log file (legacy version).
+     * @param main_log_file Path to main log file
+     * @param scenario Scenario name
+     * @return List of error report lines
+     */
+    public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
+        if (files == null) return new ArrayList<>();
+        if (scenario == null)
+            scenario = "exe/main_log.txt";
+        ArrayList<String> report = new ArrayList<>();
+        File mainlogfile = new File(main_log_file);
+        if (mainlogfile.exists()) {
+            String[] str = { "ERROR", "Period" };
+            ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
+            for (String errorLine : error_lines) {
+                String s = scenario + ":" + errorLine.replace(":", ",");
+                report.add(s);
+            }
+        }
+        return report;
+    }
 
-		if (scenario == null)
-			scenario = "exe/main_log.txt";
-		// create report array
-		ArrayList<String> report = new ArrayList<String>();
+    /**
+     * Generates a detailed error report from the main log file.
+     * @param main_log_file Path to main log file
+     * @param scenario Scenario name
+     * @return List of error report lines
+     */
+    public ArrayList<String> generateErrorReport(String main_log_file, String scenario) {
+        if (files == null || vars == null) return new ArrayList<>();
+        DecimalFormat formatter = new DecimalFormat("#,###.0");
+        double min_dmd = 0.0001;
+        double min_red = 0.01;
+        int total_fails = 0, minor_fails = 0, min_us_fails = 0, min_water_fails = 0, min_grid_fails = 0, min_trial_fails = 0, min_smallmkt_fails = 0, min_res_type_fails = 0, major_fails = 0, moderate_fails = 0, maj_us_fails = 0, maj_water_fails = 0, maj_grid_fails = 0, maj_trial_fails = 0, maj_smallmkt_fails = 0, maj_res_type_fails = 0;
+        if (scenario == null)
+            scenario = "exe/main_log.txt";
+        ArrayList<String> report = new ArrayList<>();
+        File mainlogfile = new File(main_log_file);
+        if (mainlogfile.exists()) {
+            String[] str = { "ERROR", "Period" };
+            ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
+            for (String errorLine : error_lines) {
+                String line = scenario + ":" + errorLine.replace(":", ",");
+                try {
+                    String right = null;
+                    if (line.contains(":")) {
+                        right = line.substring(line.indexOf(":") + 1);
+                        String[] tokens = right.split(",");
+                        if (tokens.length > 9) {
+                            double red = Double.parseDouble(tokens[7].trim());
+                            String mkt = tokens[12].trim();
+                            String mktyp = tokens[11].trim();
+                            total_fails++;
+                            if ((red > min_red) && (!mkt.contains("water consumption"))) {
+                                String state = mkt.trim().substring(0, 2);
+                                if (isState(state) || "US".equals(state)) maj_us_fails++;
+                                if (mkt.toLowerCase().contains("grid")) maj_grid_fails++;
+                                if (mkt.toLowerCase().contains("water")) maj_water_fails++;
+                                if (mkt.toLowerCase().contains("trial")) maj_trial_fails++;
+                                if (mktyp.equals("RES")) maj_res_type_fails++;
+                                double dmd = Double.parseDouble(tokens[9].trim());
+                                if (dmd <= min_dmd) maj_smallmkt_fails++;
+                                if (red > min_red * 5.0) {
+                                    line += " *** MAJOR (" + formatter.format(red * 100.) + "%>" + formatter.format(min_red * 5.0 * 100.) + "%) ***";
+                                    major_fails++;
+                                } else {
+                                    line += " *** MODERATE (" + formatter.format(red * 100.) + "% is >" + min_red * 100. + " and <" + formatter.format(min_red * 5.0 * 100.) + "%) ***";
+                                    moderate_fails++;
+                                }
+                            } else {
+                                minor_fails++;
+                                String state = mkt.trim().substring(0, 2);
+                                if (isState(state) || "US".equals(state)) min_us_fails++;
+                                if (mkt.toLowerCase().contains("water")) min_water_fails++;
+                                if (mkt.toLowerCase().contains("trial")) min_trial_fails++;
+                                if (mktyp.equals("RES")) min_res_type_fails++;
+                                double dmd = Double.parseDouble(tokens[9].trim());
+                                if (dmd <= min_dmd) min_smallmkt_fails++;
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    // Ignore parse errors for robustness
+                }
+                report.add(line);
+            }
+            if (total_fails > 0) {
+                report.add("------------------------------");
+                String rtn_str = "Evaluation:" + vars.getEol() + "Total errors=" + total_fails + vars.getEol()
+                        + "Major errors (>" + formatter.format(min_red * 5.0 * 100.0) + "%)=" + major_fails
+                        + vars.getEol() + "Moderate errors (>" + formatter.format(min_red * 100.0) + "%)="
+                        + moderate_fails + vars.getEol() + "Small market errors (DMD<" + min_dmd + ")="
+                        + (maj_smallmkt_fails + min_smallmkt_fails) + vars.getEol() + ">>>";
+                if (total_fails == 0) {
+                    rtn_str += "Verdict: Pass (no errors)";
+                } else if (total_fails == minor_fails) {
+                    rtn_str += "Verdict: Pass? (all errors are minor)";
+                } else if (total_fails == minor_fails + moderate_fails) {
+                    rtn_str += "Verdict: Pass? (all errors are minor or moderate)";
+                } else {
+                    if (total_fails == maj_smallmkt_fails + min_smallmkt_fails) {
+                        rtn_str += "Verdict: Pass? (all fails are in small markets)";
+                    } else if (total_fails == maj_smallmkt_fails + minor_fails) {
+                        rtn_str += "Verdict: Pass? (all fails are minor or in small markets)";
+                    } else {
+                        rtn_str += "Verdict: Fail? (major, non-small market failures)";
+                    }
+                }
+                rtn_str += vars.getEol();
+                report.add(rtn_str);
+                report.add("------------------------------");
+            }
+        }
+        return report;
+    }
 
-		File mainlogfile = new File(main_log_file);
-		if (mainlogfile.exists()) {
-			String[] str = { "ERROR", "Period" };
-			ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
-			for (int j = 0; j < error_lines.size(); j++) {
-				String s = scenario + ":" + ("" + error_lines.get(j)).replace(":", ",");
-				report.add(s);
-			}
-		}
+    /**
+     * Removes interior quotes from a string and wraps with quotes.
+     * @param orig Input string
+     * @return Modified string
+     */
+    public String correctInteriorQuotes(String orig) {
+        if (orig == null) return null;
+        return '"' + orig.replaceAll("\"", "") + '"';
+    }
 
-		return report;
+    /**
+     * Processes error lines and summarizes error types.
+     * @param errors List of error lines
+     * @param min_red Minimum RED value
+     * @return Summary string
+     */
+    public String processErrors(ArrayList<String> errors, double min_red) {
+        if (vars == null) return "";
+        if (errors == null) return "";
+        String rtn_str = "";
+        double min_dmd = 0.0001;
+        int total_fails = 0, minor_fails = 0, min_us_fails = 0, min_water_fails = 0, min_grid_fails = 0, min_trial_fails = 0, min_smallmkt_fails = 0, min_res_type_fails = 0, major_fails = 0, maj_us_fails = 0, maj_water_fails = 0, maj_grid_fails = 0, maj_trial_fails = 0, maj_smallmkt_fails = 0, maj_res_type_fails = 0;
+        for (String line : errors) {
+            try {
+                String right = null;
+                if (line.contains(":")) {
+                    right = line.substring(line.indexOf(":") + 1);
+                    String[] tokens = right.split(",");
+                    if (tokens.length > 9) {
+                        double red = Double.parseDouble(tokens[7].trim());
+                        String mkt = tokens[12].trim();
+                        String mktyp = tokens[11].trim();
+                        total_fails++;
+                        if ((red > min_red) && (!mkt.contains("water consumption"))) {
+                            major_fails++;
+                            String state = mkt.trim().substring(0, 2);
+                            if (isState(state) || "US".equals(state)) maj_us_fails++;
+                            if (mkt.toLowerCase().contains("grid")) maj_grid_fails++;
+                            if (mkt.toLowerCase().contains("water")) maj_water_fails++;
+                            if (mkt.toLowerCase().contains("trial")) maj_trial_fails++;
+                            if (mktyp.equals("RES")) maj_res_type_fails++;
+                            double dmd = Double.parseDouble(tokens[9].trim());
+                            if (dmd <= min_dmd) maj_smallmkt_fails++;
+                        } else {
+                            minor_fails++;
+                            String state = mkt.trim().substring(0, 2);
+                            if (isState(state) || "US".equals(state)) min_us_fails++;
+                            if (mkt.toLowerCase().contains("water")) min_water_fails++;
+                            if (mkt.toLowerCase().contains("trial")) min_trial_fails++;
+                            if (mktyp.equals("RES")) min_res_type_fails++;
+                            double dmd = Double.parseDouble(tokens[9].trim());
+                            if (dmd <= min_dmd) min_smallmkt_fails++;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // Ignore parse errors for robustness
+            }
+        }
+        if (total_fails > 0) {
+            if (total_fails == minor_fails) {
+                rtn_str = "Pass (all minor: RED<" + min_red + ")";
+            } else if (total_fails == maj_smallmkt_fails + min_smallmkt_fails) {
+                rtn_str = "Pass (all major are small market: DMD<" + min_dmd + ")";
+            } else if (total_fails == maj_smallmkt_fails + minor_fails) {
+                rtn_str = "Pass (all are major+small market or minor)";
+            } else if (total_fails == maj_res_type_fails + min_res_type_fails) {
+                rtn_str = "All failures are of type RES";
+            } else {
+                rtn_str = "Fail";
+            }
+            rtn_str += "... Major (RED>" + min_red + "): " + major_fails + ", of which " + maj_res_type_fails
+                    + " are type RES, " + maj_us_fails + " are in US, " + maj_smallmkt_fails + " are small mkt; Minor: "
+                    + minor_fails + ", of which " + min_res_type_fails + " are type RES, " + min_us_fails
+                    + " are in US, " + min_smallmkt_fails + " are small mkt." + vars.getEol();
+        }
+        return rtn_str;
+    }
 
-	}
-
-	public ArrayList<String> generateErrorReport(String main_log_file, String scenario) {
-
-		DecimalFormat formatter = new DecimalFormat("#,###.0");
-
-		double min_dmd = 0.0001;
-		double min_red = 0.01;
-
-		int total_fails = 0;
-		int minor_fails = 0;
-		int min_us_fails = 0;
-		int min_water_fails = 0;
-		int min_grid_fails = 0;
-		int min_trial_fails = 0;
-		int min_smallmkt_fails = 0;
-		int min_res_type_fails = 0;
-		int major_fails = 0;
-		int moderate_fails = 0;
-		int maj_fails = 0;
-		int maj_us_fails = 0;
-		int maj_water_fails = 0;
-		int maj_grid_fails = 0;
-		int maj_trial_fails = 0;
-		int maj_smallmkt_fails = 0;
-		int maj_res_type_fails = 0;
-
-		if (scenario == null)
-			scenario = "exe/main_log.txt";
-		// create report array
-		ArrayList<String> report = new ArrayList<String>();
-
-		File mainlogfile = new File(main_log_file);
-		if (mainlogfile.exists()) {
-			String[] str = { "ERROR", "Period" };
-			ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
-			for (int j = 0; j < error_lines.size(); j++) {
-				String line = scenario + ":" + ("" + error_lines.get(j)).replace(":", ",");
-				try {
-
-					String right = null;
-					if (line.indexOf(":") > 0) {
-						right = line.substring(line.indexOf(":") + 1);
-						String[] tokens = right.split(",");
-						if (tokens.length > 0) {
-							if (tokens.length > 9) {
-								double test = Double.parseDouble(tokens[1].trim());
-
-								// testing RED vs. min
-								double red = Double.parseDouble(tokens[7].trim());
-								String mkt = tokens[12].trim();
-								String mktyp = tokens[11].trim();
-								total_fails++;
-
-								// only evaluating fails that are greater than arg "min"
-								if ((red > min_red) && (mkt.indexOf("water consumption") == -1)) {
-
-																	// testing market name
-									String state = mkt.trim().substring(0, 2);
-									if (isState(state) || (state == "US")) {
-										maj_us_fails++;
-									}
-									if (mkt.toLowerCase().indexOf("grid") > 0) {
-										maj_grid_fails++;
-									}
-									if (mkt.toLowerCase().indexOf("water") > 0) {
-										maj_water_fails++;
-									}
-									if (mkt.toLowerCase().indexOf("trial") > 0) {
-										maj_trial_fails++;
-									}
-									if (mktyp.equals("RES")) {
-										maj_res_type_fails++;
-									}
-									// testing demand vs. solution floor of 1e-4 (in solver config)
-									double dmd = Double.parseDouble(tokens[9].trim());
-									if (dmd <= min_dmd) {
-										maj_smallmkt_fails++;
-									}
-
-									if (red > min_red * 5.0) {
-										line += " *** MAJOR (" + formatter.format(red * 100.) + "%>"
-												+ formatter.format(min_red * 5.0 * 100.) + "%) ***";
-									 major_fails++;
-									} else {
-										line += " *** MODERATE (" + formatter.format(red * 100.) + "% is >"
-												+ min_red * 100. + " and <" + formatter.format(min_red * 5.0 * 100.)
-												+ "%) ***";
-										moderate_fails++;
-									}
-
-								} else {
-									minor_fails++;
-									// testing market name
-									String state = mkt.trim().substring(0, 2);
-									if (isState(state) || (state == "US")) {
-										min_us_fails++;
-									}
-
-									if (mkt.toLowerCase().indexOf("water") > 0) {
-										min_water_fails++;
-									}
-									if (mkt.toLowerCase().indexOf("trial") > 0) {
-										min_trial_fails++;
-									}
-									if (mktyp.equals("RES")) {
-										min_res_type_fails++;
-									}
-									// testing demand vs. solution floor of 1e-4 (in solver config)
-									double dmd = Double.parseDouble(tokens[9].trim());
-									if (dmd <= min_dmd) {
-										min_smallmkt_fails++;
-									}
-								}
-
-							}
-						}
-					}
-				} catch (Exception e) {
-					;
-				}
-
-				report.add(line);
-			}
-			if (total_fails > 0) {
-				report.add("------------------------------");
-
-				String rtn_str = "Evaluation:" + vars.getEol() + "Total errors=" + total_fails + vars.getEol()
-						+ "Major errors (>" + formatter.format(min_red * 5.0 * 100.0) + "%)=" + major_fails
-						+ vars.getEol() + "Moderate errors (>" + formatter.format(min_red * 100.0) + "%)="
-						+ moderate_fails + vars.getEol() + "Small market errors (DMD<" + min_dmd + ")="
-						+ (maj_smallmkt_fails + min_smallmkt_fails) + vars.getEol() + ">>>";
-
-				if (total_fails == 0) {
-					rtn_str += "Verdict: Pass (no errors)";
-				} else if (total_fails == minor_fails) {
-					rtn_str += "Verdict: Pass? (all errors are minor)";
-				} else if (total_fails == minor_fails + moderate_fails) {
-					rtn_str += "Verdict: Pass? (all errors are minor or moderate)";
-				} else {
-					if (total_fails == maj_smallmkt_fails + min_smallmkt_fails) {
-						rtn_str += "Verdict: Pass? (all fails are in small markets)";
-					} else if (total_fails == maj_smallmkt_fails + minor_fails) {
-						rtn_str += "Verdict: Pass? (all fails are minor or in small markets)";
-					} else {
-						rtn_str += "Verdict: Fail? (major, non-small market failures)";
-					}
-				}
-				rtn_str += vars.getEol();
-
-				report.add(rtn_str);
-
-				report.add("------------------------------");
-
-			}
-
-		}
-
-		return report;
-	}
-
-	public String correctInteriorQuotes(String orig) {
-		String mod = "\"" + orig.replaceAll("\"", "") + "\"";
-		return mod;
-	}
-
-	public String processErrors(ArrayList<String> errors, double min_red) {
-		String rtn_str = "";
-
-		double min_dmd = 0.0001;
-
-		int total_fails = 0;
-		int minor_fails = 0;
-		int min_us_fails = 0;
-		int min_water_fails = 0;
-		int min_grid_fails = 0;
-		int min_trial_fails = 0;
-		int min_smallmkt_fails = 0;
-		int min_res_type_fails = 0;
-		int major_fails = 0;
-		int maj_fails = 0;
-		int maj_us_fails = 0;
-		int maj_water_fails = 0;
-		int maj_grid_fails = 0;
-		int maj_trial_fails = 0;
-		int maj_smallmkt_fails = 0;
-		int maj_res_type_fails = 0;
-
-		for (int i = 0; i < errors.size(); i++) {
-			try {
-				String line = errors.get(i);
-				String right = null;
-				if (line.indexOf(":") > 0) {
-					right = line.substring(line.indexOf(":") + 1);
-					String[] tokens = right.split(",");
-					if (tokens.length > 0) {
-						if (tokens.length > 9) {
-							double test = Double.parseDouble(tokens[1].trim());
-
-							// testing RED vs. min
-							double red = Double.parseDouble(tokens[7].trim());
-							String mkt = tokens[12].trim();
-							String mktyp = tokens[11].trim();
-							total_fails++;
-
-							// only evaluating fails that are greater than arg "min"
-							if ((red > min_red) && (mkt.indexOf("water consumption") == -1)) {
-								major_fails++;
-								// testing market name
-								String state = mkt.trim().substring(0, 2);
-								if (isState(state) || (state == "US")) {
-									maj_us_fails++;
-								}
-								if (mkt.toLowerCase().indexOf("grid") > 0) {
-									maj_grid_fails++;
-								}
-								if (mkt.toLowerCase().indexOf("water") > 0) {
-									maj_water_fails++;
-								}
-								if (mkt.toLowerCase().indexOf("trial") > 0) {
-									maj_trial_fails++;
-								}
-								if (mktyp.equals("RES")) {
-									maj_res_type_fails++;
-								}
-								// testing demand vs. solution floor of 1e-4 (in solver config)
-								double dmd = Double.parseDouble(tokens[9].trim());
-								if (dmd <= min_dmd) {
-									maj_smallmkt_fails++;
-								}
-
-							} else {
-								minor_fails++;
-								// testing market name
-								String state = mkt.trim().substring(0, 2);
-								if (isState(state) || (state == "US")) {
-									min_us_fails++;
-								}
-
-								if (mkt.toLowerCase().indexOf("water") > 0) {
-									min_water_fails++;
-								}
-								if (mkt.toLowerCase().indexOf("trial") > 0) {
-									min_trial_fails++;
-								}
-								if (mktyp.equals("RES")) {
-									min_res_type_fails++;
-								}
-								// testing demand vs. solution floor of 1e-4 (in solver config)
-								double dmd = Double.parseDouble(tokens[9].trim());
-								if (dmd <= min_dmd) {
-									min_smallmkt_fails++;
-								}
-							}
-
-						}
-					}
-				}
-			} catch (Exception e) {
-				;
-			}
-
-		}
-		if (total_fails > 0) {
-
-			if (total_fails == minor_fails) {
-				rtn_str = "Pass (all minor: RED<" + min_red + ")";
-			} else {
-				if (total_fails == maj_smallmkt_fails + min_smallmkt_fails) {
-					rtn_str = "Pass (all major are small market: DMD<" + min_dmd + ")";
-				} else if (total_fails == maj_smallmkt_fails + minor_fails) {
-					rtn_str = "Pass (all are major+small market or minor)";
-				} else if (total_fails == maj_res_type_fails + min_res_type_fails) {
-					rtn_str = "All failures are of type RES";
-				} else {
-					rtn_str = "Fail";
-				}
-			}
-
-			rtn_str += "... Major (RED>" + min_red + "): " + major_fails + ", of which " + maj_res_type_fails
-					+ " are type RES, " + maj_us_fails + " are in US, " + maj_smallmkt_fails + " are small mkt; Minor: "
-					+ minor_fails + ", of which " + min_res_type_fails + " are type RES, " + min_us_fails
-					+ " are in US, " + min_smallmkt_fails + " are small mkt." + vars.getEol();
-
-		}
-		return rtn_str;
-	}
-
-	/**
+    /**
      * Retrieves the scenario name from the main log file.
      * @param current_main_log_file Main log file
      * @return Scenario name as string
      */
 	public String getRunningScenario(File current_main_log_file) {
+		if (current_main_log_file == null) return "";
 		String rtn_str = "";
 
 		if (current_main_log_file.exists()) {
@@ -2358,6 +2250,7 @@ public class GLIMPSEUtils {
      * @return Scenario name as string
      */
 	public String getScenarioNameFromMainLog(File file) {
+	 if (file == null) return "";
 	 String rtn_str = "";
 		try (Scanner fileScanner = new Scanner(file)) {
 			boolean stop_recording = false;
@@ -2387,7 +2280,7 @@ public class GLIMPSEUtils {
      * @return Status string
      */
 	public String getScenarioStatusFromMainLog(File file) {
-
+        if (file == null) return "";
 		boolean has_err = false;
 		String status = "";
 		String errors = "";
@@ -2431,27 +2324,22 @@ public class GLIMPSEUtils {
 
 	
 	public void fixLostHandle() {
-		// filename
-		String main_log_filename = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator
-				+ "main_log.txt";
-		String err_msg = main_log_filename + " does not exist.";
-		String scenario_name = "";
-		String scenario_main_log_name = "";
-
-		File main_log_file = new File(main_log_filename);
-
-		if (main_log_file.exists()) {
-			scenario_name = this.getScenarioNameFromMainLog(main_log_file);
-			if (scenario_name != "") {
-				scenario_main_log_name = vars.getScenarioDir() + File.separator + scenario_name + File.separator
-						+ "main_log.txt";
-				files.copyFile(main_log_filename, scenario_main_log_name);
-			}
-		} else {
-			this.showInformationDialog("Notice", "Cannot be executed.", err_msg);
-		}
-
-	}
+        if (vars == null || files == null) return;
+        String main_log_filename = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator + "main_log.txt";
+        String err_msg = main_log_filename + " does not exist.";
+        String scenario_name = "";
+        String scenario_main_log_name = "";
+        File main_log_file = new File(main_log_filename);
+        if (main_log_file.exists()) {
+            scenario_name = this.getScenarioNameFromMainLog(main_log_file);
+            if (scenario_name != "") {
+                scenario_main_log_name = vars.getScenarioDir() + File.separator + scenario_name + File.separator + "main_log.txt";
+                files.copyFile(main_log_filename, scenario_main_log_name);
+            }
+        } else {
+            this.showInformationDialog(LABEL_NOTICE, LABEL_CANNOT_BE_EXECUTED, err_msg);
+        }
+    }
 
 	public String getComputerStatString() {
 
@@ -2518,6 +2406,7 @@ public class GLIMPSEUtils {
 	}
 
 	public void resetLogFile() {
+        if (vars == null || files == null) return;
 		// replace glimpse log file with empty file
 		String glimpse_log_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log.txt";
 		files.deleteFile(glimpse_log_filename);
@@ -2526,6 +2415,7 @@ public class GLIMPSEUtils {
 	}
 
 	public void resetLogFile(String s) {
+        if (vars == null || files == null) return;
 		// replace glimpse log file with empty file
 		String glimpse_log_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log.txt";
 		String glimpse_log_prior_filename = vars.getGlimpseLogDir() + File.separator + "glimpse_log_prior.txt";
