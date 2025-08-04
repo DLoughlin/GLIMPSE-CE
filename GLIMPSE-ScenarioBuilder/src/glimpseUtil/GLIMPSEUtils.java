@@ -542,16 +542,16 @@ public class GLIMPSEUtils {
 
     /**
      * Concatenates an ArrayList of strings into a single string with a custom delimiter.
-     * @param arrayList ArrayList of strings
+     * @param filesToSave ArrayList of strings
      * @param delimiter Delimiter string
      * @return Concatenated string
      */
-    public String createStringFromArrayList(ArrayList<String> arrayList, String delimiter) {
-        if (arrayList == null || delimiter == null) return "";
+    public String createStringFromArrayList(List<String> filesToSave, String delimiter) {
+        if (filesToSave == null || delimiter == null) return "";
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < arrayList.size(); i++) {
-            result.append(arrayList.get(i));
-            if (i < arrayList.size() - 1) {
+        for (int i = 0; i < filesToSave.size(); i++) {
+            result.append(filesToSave.get(i));
+            if (i < filesToSave.size() - 1) {
                 result.append(delimiter);
             }
         }

@@ -57,7 +57,6 @@ public class GLIMPSEVariables {
     public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
     public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
     private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
-    private static final String DEFAULT_EOL = System.lineSeparator();
     private static final String DEFAULT_ALLOWABLE_POLICY_YEARS = "2020,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100";
     private static final String DEFAULT_USE_ICONS = "false";
     private static final String DEFAULT_PREFERRED_FONT_SIZE = "12";
@@ -77,7 +76,7 @@ public class GLIMPSEVariables {
     private String executeCmd = "cmd /C start ";
     private String buildInfo = glimpseVersion;
     private String runQueueStr = "Queue is empty.";
-    private String eol = DEFAULT_EOL;
+    private String eol = "\n";
     private String debugCreate = "0";
     private String debugRename = "0";
     private String startYearForShare = "2010";
@@ -160,6 +159,7 @@ public class GLIMPSEVariables {
         this.utils = u;
         this.styles = s;
         this.files = f;
+        this.eol=System.lineSeparator();
     }
 
     /**
@@ -451,7 +451,7 @@ public class GLIMPSEVariables {
      * Sets whether GCAM USA mode is enabled.
      * @param b True to enable GCAM USA mode, false otherwise
      */
-    public void setGcamUSA(boolean b) {
+    public void setIsGcamUSA(boolean b) {
         this.isGcamUSA = b;
     }
 
@@ -1390,6 +1390,17 @@ public class GLIMPSEVariables {
             if (glimpseDir.startsWith(".")) glimpseDir=current_dir;
 
             break;
+        case "gcamguidir":
+        case "glimpseguidir":
+        case "scenariobuilderdir":
+        	scenarioBuilderDir = fixDir(val);
+            break;  
+        case "scenariobuilderjardir":
+            scenarioBuilderJarDir = fixDir(val);
+            break;
+        case "scenariobuilderjar":
+            scenarioBuilderJar = val;
+            break;
         case "gcamhomedir":
             gCamHomeDir = fixDir(val);
             break;        
@@ -1424,15 +1435,7 @@ public class GLIMPSEVariables {
         case "gcamsolver":
             gCamSolver = fixDir(val);
             break;
-        case "scenariobuilderdir":
-            scenarioBuilderDir = fixDir(val);
-            break;
-        case "scenariobuilderjardir":
-            scenarioBuilderJarDir = fixDir(val);
-            break;
-        case "scenariobuilderjar":
-            scenarioBuilderJar = val;
-            break;
+
         case "gcamexecutable":
             gCamExecutable = fixDir(val);
             break;
