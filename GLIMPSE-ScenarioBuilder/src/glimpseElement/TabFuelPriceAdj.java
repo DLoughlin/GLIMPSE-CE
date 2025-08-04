@@ -152,10 +152,10 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(),
                 new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
-                utils.createLabel("Populate:"), labelModificationType, labelStartYear, textFieldEndYear, labelInitialAmount,
+                utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
                 labelGrowth, labelConvertFrom);
-        gridPaneLeft.addColumn(1, comboBoxFuel, new Label(), labelUnitsValue, new Label(), new Separator(),
-                checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
+        gridPaneLeft.addColumn(1, comboBoxFuel, new Label(), labelUnitsValue, new Label(), 
+        		new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
                 new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
                 textFieldGrowth, comboBoxConvertFrom);
         gridPaneLeft.setVgap(3.);
