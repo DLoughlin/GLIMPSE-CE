@@ -114,23 +114,23 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     private final ArrayList<String> runsQueuedList = new ArrayList<>();
     private final ArrayList<String> runsCompletedList = new ArrayList<>();
-    private long timeAtStartup = 0;
-    private final HBox hBox = new HBox(1);
+    private long startupTime = 0;
+    private final HBox scenarioLibraryHBox = new HBox(1);
 
     /**
      * Constructs the scenario library pane and sets up UI controls and event handlers.
      * @param stage the main application stage
      */
     PaneScenarioLibrary(Stage stage) {
-        hBox.setStyle(styles.getFontStyle());
-        hBox.setSpacing(10);
+        scenarioLibraryHBox.setStyle(styles.getFontStyle());
+        scenarioLibraryHBox.setSpacing(10);
         ScenarioTable.tableScenariosLibrary.setOnMouseClicked(e -> setArrowAndButtonStatus());
         createScenarioLibraryButtons();
         ScenarioTable.tableScenariosLibrary.prefWidthProperty().bind(stage.widthProperty().multiply(1.0));
         ScenarioTable.tableScenariosLibrary.prefHeightProperty().bind(stage.heightProperty().multiply(0.7));
-        hBox.getChildren().addAll(ScenarioTable.tableScenariosLibrary);
-        if (timeAtStartup == 0) timeAtStartup = (new Date()).getTime();
-        System.out.println("time now=" + (new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(timeAtStartup));
+        scenarioLibraryHBox.getChildren().addAll(ScenarioTable.tableScenariosLibrary);
+        if (startupTime == 0) startupTime = (new Date()).getTime();
+        System.out.println("time now=" + (new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(startupTime));
         updateRunStatus();
     }
 
@@ -224,6 +224,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
     }
 
     // --- UI Event Handlers ---
+    /**
+     * Handles archiving of selected scenarios. Moves configuration and related files to an archive folder.
+     * Prompts user if archive already exists.
+     */
     private void handleArchiveScenario() {
         if (!utils.confirmArchiveScenario()) return;
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -237,6 +241,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Handles deletion of selected scenarios. Moves scenario folders to trash.
+     * Prompts user for confirmation.
+     */
     private void handleDeleteScenario() {
         if (!utils.confirmDelete()) return;
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -264,6 +272,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         ScenarioTable.removeFromListOfRunFiles(selectedFiles);
     }
 
+    /**
+     * Handles opening ModelInterface for all scenarios. Warns if executable directory is not set.
+     */
     private void handleResults() {
         if (vars.getgCamExecutableDir().isEmpty()) {
             utils.warningMessage("Please specify gCamExecutableDir in options file.");
@@ -277,6 +288,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Handles opening ModelInterface for a selected scenario. Warns if executable directory is not set.
+     */
     private void handleResultsForSelected() {
         if (vars.getgCamExecutableDir().isEmpty()) {
             utils.warningMessage("Please specify gCamExecutableDir in options file.");
@@ -299,6 +313,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Opens the file explorer for the selected scenario folders.
+     */
     private void handleBrowseScenarioFolder() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
         for (ScenarioRow row : selectedFiles) {
@@ -308,6 +325,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Handles importing a scenario configuration file. Prompts for overwrite if scenario exists.
+     */
     private void handleImportScenario() {
         File newConfigFile = FileChooserPlus.showOpenDialog(null, "Select scenario configuration file", new File(vars.getgCamExecutableDir()), FileChooserPlus.createExtensionFilter(XML_FILE_FILTER_LABEL, XML_FILE_FILTER_EXT));
         if (newConfigFile != null) {
@@ -332,6 +352,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Opens the configuration file for the selected scenarios in a text editor.
+     */
     private void handleViewConfig() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
         for (ScenarioRow row : selectedFiles) {
@@ -341,6 +364,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Opens the main log file for the selected scenarios in a text editor.
+     */
     private void handleViewLog() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
         for (ScenarioRow row : selectedFiles) {
@@ -350,11 +376,17 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Opens the main log file in the executable logs directory in a text editor.
+     */
     private void handleViewExeLog() {
         String filename = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator + "main_log.txt";
         files.showFileInTextEditor(filename);
     }
 
+    /**
+     * Compares the configuration files of two selected scenarios using a diff tool.
+     */
     private void handleDiffFiles() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
         if (selectedFiles.size() == 2) {
@@ -366,6 +398,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Displays the current run queue in a popup window.
+     */
     private void handleShowRunQueue() {
         ArrayList<String> txtArray = createSimpleQueueRpt();
         utils.displayArrayList(txtArray, "Run Queue");
@@ -376,7 +411,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      * @return the HBox
      */
     public HBox gethBox() {
-        return hBox;
+        return scenarioLibraryHBox;
     }
 
     /**
@@ -571,7 +606,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
                     if (scenarioName.equals(runningScenario)) {
                         status = "Running";
                         long lastDate = currentMainLogFile.lastModified();
-                        if (lastDate < timeAtStartup) {
+                        if (lastDate < startupTime) {
                             status = "Lost handle";
                         } else {
                             String runningStatus = utils.getScenarioStatusFromMainLog(currentMainLogFile);
@@ -665,6 +700,57 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         return rtnStr;
     }
 
+    /**
+     * Runs GCAM for the selected scenarios. Handles user confirmation and archive logic.
+     * Uses enhanced for-loop for iterating over selected scenarios.
+     *
+     * @throws IOException if file operations fail
+     */
+    private void runGcamOnSelected() throws IOException {
+        ObservableList<ScenarioRow> selectedScenarioRows = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
+        String[] configFiles = new String[selectedScenarioRows.size()];
+        int idx = 0;
+        for (ScenarioRow mfr : selectedScenarioRows) {
+            mfr.setCreatedDate(new Date());
+            String scenName = mfr.getScenarioName();
+            String mainLogFile = vars.getScenarioDir() + File.separator + scenName + File.separator + "main_log.txt";
+            boolean b = true;
+            if (files.doesFileExist(mainLogFile)) {
+                String s = "main_log.txt exists for " + scenName + ". Run anyway?";
+                b = utils.selectYesOrNoDialog(s);
+            }
+            if (b) {
+                files.deleteFile(mainLogFile);
+                configFiles[idx] = vars.getScenarioDir() + File.separator + scenName + File.separator + "configuration" + "_" + scenName + ".xml";
+                mfr.setStatus("In queue");
+            } else {
+                configFiles[idx] = null;
+            }
+            try {
+                String archiveConfigFilename = configFiles[idx] != null ? configFiles[idx].replace(".xml", "_archive.xml") : null;
+                if (archiveConfigFilename != null) {
+                    File archiveConfigFile = new File(archiveConfigFilename);
+                    if (archiveConfigFile.exists()) {
+                        String s = "Run " + scenName + " from archive?";
+                        if (utils.selectYesOrNoDialog(s))
+                            configFiles[idx] = archiveConfigFilename;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Problem checking on existence of archive. Attempting to continue from non-archived files.");
+            }
+            idx++;
+        }
+        runGcamModel(configFiles);
+    }
+
+    /**
+     * Runs GCAM for the provided scenario configuration files. Handles cleaning, execution, and moving results.
+     * Uses background threads for file operations and process execution.
+     *
+     * @param scenarioConfigFiles Array of scenario configuration file paths
+     * @throws IOException if file operations fail
+     */
     private void runGcamModel(String[] scenarioConfigFiles) throws IOException {
         System.out.println("Running scenarios in GCAM...");
         ArrayList<String> cmdList = new ArrayList<String>();
@@ -743,65 +829,12 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
-    private void runGcamOnSelected() throws IOException {
-        ObservableList<ScenarioRow> selectedScenarioRows = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
-        String[] configFiles = new String[selectedScenarioRows.size()];
-        for (int i = 0; i < selectedScenarioRows.size(); i++) {
-            ScenarioRow mfr = selectedScenarioRows.get(i);
-            mfr.setCreatedDate(new Date());
-            String scenName = mfr.getScenarioName();
-            String mainLogFile = vars.getScenarioDir() + File.separator + scenName + File.separator + "main_log.txt";
-            boolean b = true;
-            if (files.doesFileExist(mainLogFile)) {
-                String s = "main_log.txt exists for " + scenName + ". Run anyway?";
-                b = utils.selectYesOrNoDialog(s);
-            }
-            if (b) {
-                files.deleteFile(mainLogFile);
-                configFiles[i] = vars.getScenarioDir() + File.separator + scenName + File.separator + "configuration" + "_" + scenName + ".xml";
-                mfr.setStatus("In queue");
-            } else {
-                configFiles[i] = null;
-            }
-            try {
-                String archiveConfigFilename = configFiles[i].replace(".xml", "_archive.xml");
-                File archiveConfigFile = new File(archiveConfigFilename);
-                if (archiveConfigFile.exists()) {
-                    String s = "Run " + scenName + " from archive?";
-                    if (utils.selectYesOrNoDialog(s))
-                        configFiles[i] = archiveConfigFilename;
-                }
-            } catch (Exception e) {
-                System.out.println("Problem checking on existence of archive. Attempting to continue from non-archived files.");
-            }
-        }
-        runGcamModel(configFiles);
-    }
-
-    private void runORDModelInterfaceJar() throws IOException {
-        runORDModelInterfaceWhich(vars.getgCamOutputDatabase());
-    }
-
-    private void runGcamPostprocWhichJar(String database_name) throws IOException {
-        Client.gCAMExecutionThread.executeCallableCmd(new Callable<String>() {
-            public String call() throws Exception {
-                String[] args = { 
-                        "-o", database_name, 
-                        "-q", vars.getQueryFilename(),
-                        "-u", vars.getUnitConversionsFilename(),
-                        "-f", vars.getFavoriteQueryFilename(),
-                        "-p", vars.getPresetRegionListFilename(),
-                        };
-                try {
-                    InterfaceMain.main(args);
-                } catch (Exception e) {
-                    System.out.println("exception in running InterfaceMain.main... " + e);
-                }
-                return "Done with callable";
-            }
-        });
-    }
-
+    /**
+     * Runs the ModelInterface Java application with the current output database and optional arguments.
+     * Handles both Windows and Unix-like systems.
+     *
+     * @throws IOException if process execution fails
+     */
     private void runModelInterface() throws IOException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
         String shell = isWindows ? "cmd.exe /C" : "/bin/sh -c";
@@ -809,25 +842,30 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & java -jar "
                 + vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
                 + vars.getgCamOutputDatabase();
+        //specifying query file
         String temp = vars.getQueryFilename();
         if ((temp != null) && (temp != ""))
             command += " -q " + temp;
+        //specifying unit conversions file
         temp = vars.getUnitConversionsFilename();
         if ((temp != null) && (temp != ""))
             command += " -u " + temp;
+        //specifying preset region list file
         temp = vars.getPresetRegionListFilename();
         if ((temp != null) && (temp != ""))
             command += " -p " + temp;
+        //specifying favorite query file
         temp = vars.getFavoriteQueryFilename();
         if ((temp != null) && (temp != ""))
             command += " -f " + temp;
+        //
         temp = vars.getModelInterfaceDir() + File.separator + "map_resources";
         if ((temp != null) && (temp != ""))
             command += " -m " + temp;
         cmd[0] = command;
         System.out
                 .println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
-        System.out.println("   cmd:" + cmd[0]);
+        System.out.println(">>   cmd:" + cmd[0]);
         try {
             Client.modelInterfaceExecutionThread.submitCommands(cmd);
         } catch (Exception e) {
@@ -837,6 +875,12 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
+    /**
+     * Runs the ModelInterface Java application for a specific database.
+     *
+     * @param database_name Path to the database file
+     * @throws IOException if process execution fails
+     */
     private void runORDModelInterfaceWhich(String database_name) throws IOException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
         String shell = isWindows ? "cmd.exe /C" : "/bin/sh -c";
@@ -844,63 +888,32 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         String command = shell + " cd " + vars.getModelInterfaceJarDir() + " & java -jar "
                 + vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar() + " -o "
                 + database_name;
+        //specifying query file
         String temp = vars.getQueryFilename();
-        if (temp != null)
-            command += " -q " + vars.getQueryFilename();
-        cmd[0] = command;
-        System.out.println("Starting GLIMPSE-ModelInterface...");
-        System.out.println("   cmd:" + cmd[0]);
-        try {
-            Client.modelInterfaceExecutionThread.submitCommands(cmd);
-        } catch (Exception e) {
-            utils.warningMessage("Problem starting up post-processor.");
-            System.out.println("Error in trying to start up post-processor:");
-            System.out.println(e);
-        }
-    }
-
-    private void runORDModelInterfaceAarons() throws IOException {
-        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        ArrayList<String> indCmd = new ArrayList<>();
-        String shell = isWindows ? "cmd.exe /C" : "/bin/bash -l -c ";
-        String javaToUse = "java";
-        String java_home_folder = System.getenv("JAVA_HOME");
-        if (java_home_folder != null && java_home_folder.trim().length() > 0) {
-            javaToUse = java_home_folder + File.separator + "bin" + File.separator + "java";
-        }
-        String[] cmd = new String[1];
-        String command = javaToUse + " -jar " + vars.getModelInterfaceJarDir() + File.separator
-                + vars.getModelInterfaceJar() + " -o " + vars.getgCamOutputDatabase();
-        indCmd.add(javaToUse);
-        indCmd.add("-jar");
-        indCmd.add(vars.getModelInterfaceJarDir() + File.separator + vars.getModelInterfaceJar());
-        indCmd.add("-o");
-        indCmd.add(vars.getgCamOutputDatabase());
-        String temp = vars.getQueryFilename();
-        if (temp != null && (temp != "")) {
+        if ((temp != null) && (temp != ""))
             command += " -q " + temp;
-            indCmd.add("-q");
-            indCmd.add(temp);
-        }
+        //specifying unit conversions file
         temp = vars.getUnitConversionsFilename();
-        if ((temp == null) && (temp != "")) {
-            temp = vars.getModelInterfaceJarDir() + File.separator + "units_rules.csv";
-        }
-        command += " -u " + temp;
-        indCmd.add("-u");
-        indCmd.add(temp);
+        if ((temp != null) && (temp != ""))
+            command += " -u " + temp;
+        //specifying preset region list file
         temp = vars.getPresetRegionListFilename();
-        if ((temp != null) && (temp != "")) {
+        if ((temp != null) && (temp != ""))
             command += " -p " + temp;
-            indCmd.add("-p");
-            indCmd.add(temp);
-        }
+        //specifying favorite query file
+        temp = vars.getFavoriteQueryFilename();
+        if ((temp != null) && (temp != ""))
+            command += " -f " + temp;
+        //
+        temp = vars.getModelInterfaceDir() + File.separator + "map_resources";
+        if ((temp != null) && (temp != ""))
+            command += " -m " + temp;
         cmd[0] = command;
         System.out
                 .println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
-        System.out.println("   cmd:" + cmd[0]);
+        System.out.println(">>   cmd:" + cmd[0]);
         try {
-            Client.modelInterfaceExecutionThread.submitCommands(indCmd.toArray(new String[indCmd.size()]));
+            Client.modelInterfaceExecutionThread.submitCommands(cmd);
         } catch (Exception e) {
             utils.warningMessage("Problem starting up ModelInterface.");
             System.out.println("Error in trying to start up ModelInterface:");
@@ -908,13 +921,17 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         }
     }
 
-    private void setButtonRunSelectedStatus(boolean b) {
-        Client.buttonRunScenario.setDisable(!b);
-    }
-
-    // archiveScenario(exeDir,workingDir,configFilename);
-    private void archiveScenario(String exeDir, String workingDir, String archiveConfigFilename, String configFilename,
-            String scenName) {
+    /**
+     * Archives scenario files by copying them to an archive folder and zipping the result.
+     * Prompts user if archive already exists.
+     *
+     * @param exeDir Path to the GCAM executable directory
+     * @param workingDir Path to the scenario working directory
+     * @param archiveConfigFilename Path to the archive configuration file
+     * @param configFilename Path to the scenario configuration file
+     * @param scenName Scenario name
+     */
+    private void archiveScenario(String exeDir, String workingDir, String archiveConfigFilename, String configFilename, String scenName) {
         ArrayList<String> config_content = files.getStringArrayFromFile(configFilename, "#");
         ArrayList<String> new_config_content = new ArrayList<String>();
         boolean inScenarioComponents = false;
@@ -979,6 +996,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         System.out.println("Done archiving.");
     }
 
+    /**
+     * Generates and displays an error report for the selected scenarios using the executable log.
+     */
     private void generateExeErrorReport() {
         ArrayList<String> report = new ArrayList<String>();
         ObservableList<ScenarioRow> selectedScenarioRows = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -1001,6 +1021,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         utils.displayArrayList(report, "Error Report", false);
     }
 
+    /**
+     * Generates and displays an error report for the selected scenarios using the scenario log.
+     */
     private void generateErrorReport() {
         ArrayList<String> report = new ArrayList<String>();
         ObservableList<ScenarioRow> selectedScenarioRows = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -1023,6 +1046,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         utils.displayArrayList(report, "Error Report", false);
     }
 
+    /**
+     * Generates and displays a run report for all scenarios, including warnings, errors, and timing information.
+     * Saves the report as a CSV file and displays it in a popup table.
+     */
     private void generateRunReport() {
         ArrayList<String> report = new ArrayList<String>();
         String scenario_name = null;
@@ -1083,11 +1110,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     private String getComponentsFromTable(String scenName) {
         String str = "";
-        TableColumn<ScenarioRow, String> scenCol = ScenarioTable.getScenNameColumn();
-        TableColumn<ScenarioRow, String> compCol = ScenarioTable.getComponentsColumn();
-        int num = ScenarioTable.listOfScenarioRuns.size();
-        for (int i = 0; i < num; i++) {
-            ScenarioRow sr = ScenarioTable.listOfScenarioRuns.get(i);
+        for (ScenarioRow sr : ScenarioTable.listOfScenarioRuns) {
             String sname = sr.getScenarioName();
             if (sname.equals(scenName)) {
                 str = sr.getComponents();

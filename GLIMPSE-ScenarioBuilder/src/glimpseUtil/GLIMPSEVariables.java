@@ -1037,8 +1037,11 @@ public class GLIMPSEVariables {
      * @param s Stop period
      */
     public void setStopPeriod(String s) {
-        this.stopPeriod = s;
+    	this.stopPeriod = s;
+    	int yearInt = Integer.parseInt(s);
+    	this.stopYear = utils.getYearForPeriod(yearInt);
     }
+    
 
     /**
      * Returns the stop year.
@@ -1054,6 +1057,7 @@ public class GLIMPSEVariables {
      */
     public void setStopYear(String s) {
         this.stopYear = s;
+        this.stopPeriod = utils.getPeriodForYear(s);
     }
     
     /**
@@ -1533,16 +1537,12 @@ public class GLIMPSEVariables {
             descriptionText = fixDir(val);
             break;
         case "stopperiod":
-            stopPeriod = val;
-            break;
         case "stop-period":
-            stopPeriod = val;
+        	this.setStopPeriod(val);
             break;
         case "stopyear":
-            stopYear = val;
-            break;
         case "stop-year":
-            stopYear = val;
+            this.setStopYear(val);
             break;
         case "runqueuestr":
             runQueueStr = fixDir(val);

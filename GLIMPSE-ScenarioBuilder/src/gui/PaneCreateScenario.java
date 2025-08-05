@@ -337,8 +337,8 @@ class PaneCreateScenario extends ScenarioBuilder {
             }
         }
         XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "scenarioName", scenarioName);
-        if (vars.getStopPeriod() != null)
-            XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "stop-period", vars.getStopPeriod());
+        if (vars.getStopYear() != null) XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "stop-year", vars.getStopYear());
+        
         boolean useAllProcessors = vars.getUseAllAvailableProcessors();
         if (!useAllProcessors) {
             XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "max-parallelism", "1");
