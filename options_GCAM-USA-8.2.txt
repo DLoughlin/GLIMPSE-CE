@@ -1,9 +1,9 @@
 #Notes: It a line is blank or starts with a #, it is not parsed
-#       The glimpseDir, gCamHomeDir, and gCamGUIDir specifications filter through the rest of the options, 
+#       The glimpseDir, gCamHomeDir, and scenarioBuilderDir specifications filter through the rest of the options, 
 #            replacing $glimpseDir$, $gCamHomeDir$, and $gCamGUIDir$, respectively 
 #       It is important that these be specified at the top of the file
 
-#===========================================================================================
+#=============================== Major options ================================
 #-----set glimpseDir so GLIMPSE knows where your distribution is located-----
 glimpseDir = .
 
@@ -12,6 +12,8 @@ gCamHomeDir = $glimpseDir$/GCAM-Model/gcam-v8.2
 
 #-----set scenarioBuilderDir so GLIMPSE knows where to find the ScenarioBuilder executable and related files
 scenarioBuilderDir = $glimpseDir$/GLIMPSE-ScenarioBuilder
+
+#============================= Other Major Options =========================================
 
 #-----set modelInterfaceDir so GLIMPSE knows where to find the ModelInterface executable and related files
 modelInterfaceDir = $glimpseDir$/GLIMPSE-ModelInterface
@@ -45,27 +47,32 @@ modelInterfaceJar = GLIMPSE-ModelInterface.jar
 modelInterfaceJarDir = $modelInterfaceDir$
 modelInterfaceConfigDir = $modelInterfaceDir$/config
 
-============================================================================================
-#-----Files for tailoring GLIMPSE to a particular version of GCAM-----
-
-#Template configuration file. This file is modified to create a scenario-specific configuration file
-configurationTemplateFilename = $scenarioBuilderDir$/config/v8.2/configuration_GCAM-USA-8.2_template.xml
+========================== modelInterface options ==========================================
 
 #query file used by the GLIMPSE-ModelIngerface
 queryFilename = $modelInterfaceDir$/config/Main_queries_GLIMPSE-8.2.xml
 favoriteQueryFilename = $modelInterfaceDir$/config/favorite_queries_list.xml
 
+#file with all region specifications ... These are also used in the ScenarioBuilder
+regionListFilename = $scenarioBuilderDir$/config/v8.2/region_list_8.2.txt
+subRegionListFilename = $scenarioBuilderDir$/config/v8.2/subregion_list_8.2.txt
+presetRegionListFilename = $scenarioBuilderDir$/config/v8.2/preset_region_list_8.2.txt
+
+#file unit conversion file for ModelInterface
+unitConversionsFilename = $modelInterfaceDir$/config/units_rules.csv
+
+========================== scenarioBuilder options ==========================================
+#-----Files for tailoring GLIMPSE to a particular version of GCAM-----
+
+#Template configuration file. This file is modified to create a scenario-specific configuration file
+configurationTemplateFilename = $scenarioBuilderDir$/config/v8.2/configuration_GCAM-USA-8.2_template.xml
+
 #list of technologies to include in the tech bound scenario component dialog
-tchBndListFilename = $scenarioBuilderDir$/config/v8.2/tech_bnd_list_global_8.2.txt
+tchBndListFilename = $scenarioBuilderDir$/config/v8.2/tech_bnd_list_USA_8.2.txt
 
 #table with load factors for transportation technologies
 #TODO: Need to update for 8.2
 tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_7p0.csv
-
-#file with all region specifications
-regionListFilename = $scenarioBuilderDir$/config/v8.2/region_list_8.2.txt
-subRegionListFilename = $scenarioBuilderDir$/config/v8.2/subregion_list_8.2.txt
-presetRegionListFilename = $scenarioBuilderDir$/config/v8.2/preset_region_list_8.2.txt
 
 #files include specifications used in generating csv and xml files
 csvColumnFilename = $scenarioBuilderDir$/config/v8.2/glimpseCSVColumnsForTechParam.txt
@@ -74,8 +81,6 @@ xmlHeaderFilename = $scenarioBuilderDir$/config/v8.2/glimpseXMLHeaders_v8.2.txt
 #file with conversion factors to convert to 1990 $ years
 monetaryConversionsFilename = $scenarioBuilderDir$/config/v8.2/monetary_conversions.csv
 
-#file unit conversion file for ModelInterface
-unitConversionsFilename = $modelInterfaceDir$/config/units_rules.csv
 ===========================================================================================
 
 #-----Editors that are automatically invoked when you double click on a txt or xml file
@@ -104,7 +109,7 @@ maxDatabaseSizeGB = 38
 allowablePolicyYears = "2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100"
 
 #These values are inserted into the scenario-specific configuration file when it created. Comment with # to use default
-stop-period = 11
+stop-year = 2050
 solver = $gCamHomeDir$/input/solution/cal_broyden_config.xml
 debugRegion = USA
 debugCreate = 1
