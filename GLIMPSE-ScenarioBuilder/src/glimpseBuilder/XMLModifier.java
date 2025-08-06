@@ -21,13 +21,16 @@
 * under the Export Laws from receiving the Software.
 *
 * SUPPORT
+* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
 * For the GLIMPSE project, GCAM development, data processing, and support for 
 * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
+* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
-* Visualization Laboratory contract. 
+* Binsted, and Pralit Patel. 
+* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+* Laboratory contract. 
 * 
 */
 
