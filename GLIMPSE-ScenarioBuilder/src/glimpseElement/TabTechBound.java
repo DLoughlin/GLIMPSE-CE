@@ -101,18 +101,28 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
     private static final String LABEL_VALUES = "Values: ";
     private static final String LABEL_POPULATE = "Populate:";
-    private static final String LABEL_WARNING_UNITS = "Warning - Units do not match!";
-    private static final String UNITS_DEFAULT = "EJ";
+    private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
+    //private static final String UNIT_UNITLESS = "unitless";
+    //private static final String UNIT_YEARS = "years";
+    //private static final String UNIT_UNITLESS_CAPACITY = "Unitless";
     private static final String SELECT_ONE = "Select One";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String ALL = "All";
-    private static final String[] TREATMENT_OPTIONS = {"Select One", "Each Selected Region", "Across Selected Regions"};
-    private static final String[] CONSTRAINT_OPTIONS = {"Select One", "Upper", "Lower", "Fixed"};
+    private static final String CONSTRAINT_UPPER = "Upper Bound";
+    private static final String CONSTRAINT_LOWER = "Lower Bound";
+    private static final String CONSTRAINT_FIXED = "Fixed Bound";
+    private static final String[] CONSTRAINT_OPTIONS = {CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
+    private static final String[] TREATMENT_OPTIONS = {"Each Selected Region", "Across Selected Regions"};
+    //private static final String[] POLICY_OPTIONS = {"Policy1", "Policy2"};
+    //private static final String[] MARKET_OPTIONS = {"Market1", "Market2"};
+    //private static final String[] TYPE_OPTIONS = {"Type1", "Type2"};
+    //private static final String[] UNITS_OPTIONS = {"unitless", "EJ", "GJ", "kg"};
+	private static final String UNITS_DEFAULT = "";
     private static final String[] MODIFICATION_TYPE_OPTIONS = {
-            "Initial and Final", "Initial w/% Growth/yr",
-            "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd"
+            "Initial w/% Growth/yr", "Initial w/% Growth/pd",
+            "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
     };
-
+    
     // === UI Components ===
     private final GridPane gridPanePresetModification = new GridPane();
     private final GridPane gridPaneLeft = new GridPane();
@@ -138,7 +148,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private final Label labelUnits = utils.createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelUnits2 = utils.createLabel(UNITS_DEFAULT, LABEL_UNITS2_WIDTH);
     private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField("2025");
     private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
     private final TextField textFieldEndYear = new TextField("2050");
     private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
@@ -151,11 +161,11 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private final HBox hBoxHeaderCenter = new HBox();
     private final Label labelValue = utils.createLabel(LABEL_VALUES);
     private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
+    //private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
     private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
     private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
     private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final HBox hBoxHeaderRight = new HBox();
+    //private final HBox hBoxHeaderRight = new HBox();
     private final VBox vBoxRight = new VBox();
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
@@ -231,7 +241,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
      */
     private void setupComboBoxOptions() {
         comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
-        comboBoxTreatment.getSelectionModel().select("Each Selected Region");
+        comboBoxTreatment.getSelectionModel().selectFirst();
         comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
         comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
         comboBoxSector.getSelectionModel().selectFirst();
@@ -455,7 +465,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 s = comboBoxTreatment.getValue();
                 if (s.contains("Each")) treatment = "_Ea";
                 if (s.contains("Across")) treatment = "";
-                String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(paneForCountryStateTree.getTree());
+                String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                 if (listOfSelectedLeaves.length > 0) {
                     listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
                     String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
@@ -550,7 +560,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             String treatment = comboBoxTreatment.getValue().toLowerCase();
 
             //// -----------getting selected regions info from GUI
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             // Dan: messy approach to make sure inclusion of USA is intentional
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
 
@@ -767,7 +777,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             market = textFieldMarketName.getText();
         rtn_str += "#Market name: " + market + vars.getEol();
 
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtn_str += "#Regions: " + states + vars.getEol();
@@ -879,7 +889,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
         try {
 
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message += "Must select at least one region from tree" + vars.getEol();
                 error_count++;
             }
@@ -954,7 +964,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
      */
     public void setUnitsLabel() {
         String s = getUnits();
-        String label = (s != null && s.equals("No match")) ? LABEL_WARNING_UNITS : s;
+        String label = (s != null && s.equals("No match")) ? WARNING_UNITS_MISMATCH : s;
         if (labelUnits2 != null) {
             Runnable update = () -> {
                 if (!label.equals(labelUnits2.getText())) {

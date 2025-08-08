@@ -1,7 +1,6 @@
+
 INPUT_TABLE
 Variable ID
-GLIMPSEStubTechShrwt-Nest
+GLIMPSEAddCO2Subspecies
 
-region,sector,nesting-subsector,subsector,tech,year,value
-
-
+region,supplysector,subsector,technology,year,pollutant

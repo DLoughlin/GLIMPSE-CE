@@ -121,6 +121,17 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_GROWTH = "Growth (%):";
     private static final String LABEL_DELTA = "Delta:";
 
+    // === Constants for Metadata ===
+    private static final String SCENARIO_COMPONENT_TYPE = "Tech Param";
+    private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
+    private static final String METADATA_FOOTER = "#################################################";
+    private static final String METADATA_SCENARIO_TYPE = "#Scenario component type: ";
+    private static final String METADATA_SECTOR = "#Sector: ";
+    private static final String METADATA_TECHNOLOGIES = "#Technologies: ";
+    private static final String METADATA_PARAMETER = "#Parameter: ";
+    private static final String METADATA_REGIONS = "#Regions: ";
+    private static final String METADATA_TABLE_DATA = "#Table data:";
+
     // === Layout and UI Components ===
     private final GridPane gridPanePresetModification = new GridPane();
     private final ScrollPane scrollPaneLeft = new ScrollPane();
@@ -152,7 +163,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final Label labelModificationType = utils.createLabel(LABEL_TYPE, LABEL_WIDTH);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
     private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField("2025");
     private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
     private final TextField textFieldEndYear = new TextField("2050");
     private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
@@ -524,22 +535,22 @@ public class TabTechParam extends PolicyTab implements Runnable {
      */
     public String getMetaDataContent(TreeView<String> tree) {
         StringBuilder rtnStr = new StringBuilder();
-        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-        rtnStr.append("#Scenario component type: Tech Param").append(vars.getEol());
-        rtnStr.append("#Sector: ").append(comboBoxSector.getValue()).append(vars.getEol());
+        rtnStr.append(METADATA_HEADER).append(vars.getEol());
+        rtnStr.append(METADATA_SCENARIO_TYPE).append(SCENARIO_COMPONENT_TYPE).append(vars.getEol());
+        rtnStr.append(METADATA_SECTOR).append(comboBoxSector.getValue()).append(vars.getEol());
         ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
         String techs = utils.getStringFromList(techList, ";");
-        rtnStr.append("#Technologies: ").append(techs).append(vars.getEol());
-        rtnStr.append("#Parameter: ").append(comboBoxParam.getValue()).append(vars.getEol());
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        rtnStr.append(METADATA_TECHNOLOGIES).append(techs).append(vars.getEol());
+        rtnStr.append(METADATA_PARAMETER).append(comboBoxParam.getValue()).append(vars.getEol());
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        rtnStr.append(METADATA_REGIONS).append(states).append(vars.getEol());
         ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
         for (String tableLine : tableContent) {
-            rtnStr.append("#Table data:").append(tableLine).append(vars.getEol());
+            rtnStr.append(METADATA_TABLE_DATA).append(tableLine).append(vars.getEol());
         }
-        rtnStr.append("#################################################").append(vars.getEol());
+        rtnStr.append(METADATA_FOOTER).append(vars.getEol());
         return rtnStr.toString();
     }
 
@@ -716,6 +727,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private void saveScenarioComponent(TreeView<String> tree) {
         if (!qaInputs()) {
             Thread.currentThread().destroy();
+            return;
         } else {
             CsvFileWriter cfw = CsvFileWriter.getInstance();
             ArrayList<String> dataList = loadDataFromGUI(tree);
@@ -776,7 +788,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @return Comma-separated string of selected regions
      */
     private String getSelectedLeaves(TreeView<String> tree) {
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         if ((states.contains("USA")) && (vars.isGcamUSA())) {
             states = states.replace(",USA", "");
@@ -795,7 +807,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }

@@ -100,7 +100,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         "Initial and Final %", "Initial w/% Growth/yr", "Initial w/% Growth/pd",
         "Initial w/Delta/yr", "Initial w/Delta/pd"
     };
-    private static final String DEFAULT_START_YEAR = "2020";
+    private static final String DEFAULT_START_YEAR = "2025";
     private static final String DEFAULT_END_YEAR = "2050";
     private static final String DEFAULT_PERIOD_LENGTH = "5";
 
@@ -160,6 +160,21 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     // === Parent Pane Reference ===
     private PaneNewScenarioComponent parentPane = null;
 
+    // === Constants for Metadata ===
+    private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
+    private static final String METADATA_FOOTER = "#################################################";
+    private static final String METADATA_SCENARIO_TYPE = "#Scenario component type: Market Share";
+    private static final String METADATA_TYPE = "#Type: ";
+    private static final String METADATA_SUBSET = "#Subset: ";
+    private static final String METADATA_SUPERSET = "#Superset: ";
+    private static final String METADATA_APPLIED_TO = "#Applied to: ";
+    private static final String METADATA_TREATMENT = "#Treatment: ";
+    private static final String METADATA_CONSTRAINT = "#Constraint: ";
+    private static final String METADATA_POLICY_NAME = "#Policy name: ";
+    private static final String METADATA_MARKET_NAME = "#Market name: ";
+    private static final String METADATA_REGIONS = "#Regions: ";
+    private static final String METADATA_TABLE_DATA = "#Table data:";
+
     /**
      * Constructs a TabMarketShare instance for the given scenario builder tab.
      * @param title The tab title.
@@ -201,7 +216,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
         comboBoxConstraint.getSelectionModel().selectFirst();
         comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
-        comboBoxTreatment.getSelectionModel().select("Across Selected Regions");
+        comboBoxTreatment.getSelectionModel().selectFirst();
         comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
         comboBoxModificationType.getSelectionModel().selectFirst();
         // Sizing
@@ -782,7 +797,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 s = comboBoxTreatment.getValue();
                 if (s != null && s.contains("Each")) treatment = "_Ea";
                 if (s != null && s.contains("Across")) treatment = "";
-                String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(paneForCountryStateTree.getTree());
+                String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                 listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
                 String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
                 if (stateStr.length() < 9) {
@@ -839,6 +854,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
         if (!qaInputs()) {
             Thread.currentThread().destroy();
+            return;
         } else {
 
             String which = this.comboBoxConstraint.getValue().toLowerCase();
@@ -861,16 +877,16 @@ public class TabMarketShare extends PolicyTab implements Runnable {
             BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
             BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
 
-            int no_nested = 0;
-            int no_non_nested = 0;
-
             fileContent = "use temp file";
             files.writeToBufferedFile(bw0, getMetaDataContent(tree, market_name, policy_name));
+            
+            int no_nested = 0;
+            int no_non_nested = 0;
 
             String treatment = comboBoxTreatment.getValue().toLowerCase().trim();
 
             //// -----------getting selected regions info from GUI
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             String states = utils.returnAppendedString(listOfSelectedLeaves);
 
@@ -1234,39 +1250,33 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      */
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
         String rtn_str = "";
-
-        rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
-        rtn_str += "#Scenario component type: Market Share" + vars.getEol();
-        rtn_str += "#Type: " + comboBoxPolicyType.getValue() + vars.getEol();
-
+        rtn_str += METADATA_HEADER + vars.getEol();
+        rtn_str += METADATA_SCENARIO_TYPE + vars.getEol();
+        rtn_str += METADATA_TYPE + comboBoxPolicyType.getValue() + vars.getEol();
         ObservableList subset_list = checkComboBoxSubset.getCheckModel().getCheckedItems();
         String subset = utils.getStringFromList(subset_list, ";");
-        rtn_str += "#Subset: " + subset + vars.getEol();
-
+        rtn_str += METADATA_SUBSET + subset + vars.getEol();
         ObservableList superset_list = checkComboBoxSuperset.getCheckModel().getCheckedItems();
         String superset = utils.getStringFromList(superset_list, ";");
-        rtn_str += "#Superset: " + superset + vars.getEol();
-
-        rtn_str += "#Applied to: " + comboBoxAppliedTo.getValue() + vars.getEol();
-        rtn_str += "#Treatment: " + comboBoxTreatment.getValue() + vars.getEol();
-        rtn_str += "#Constraint: " + comboBoxConstraint.getValue() + vars.getEol();
+        rtn_str += METADATA_SUPERSET + superset + vars.getEol();
+        rtn_str += METADATA_APPLIED_TO + comboBoxAppliedTo.getValue() + vars.getEol();
+        rtn_str += METADATA_TREATMENT + comboBoxTreatment.getValue() + vars.getEol();
+        rtn_str += METADATA_CONSTRAINT + comboBoxConstraint.getValue() + vars.getEol();
         if (policy == null)
             market = textFieldPolicyName.getText();
-        rtn_str += "#Policy name: " + policy + vars.getEol();
+        rtn_str += METADATA_POLICY_NAME + policy + vars.getEol();
         if (market == null)
             market = textFieldMarketName.getText();
-        rtn_str += "#Market name: " + market + vars.getEol();
-
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        rtn_str += METADATA_MARKET_NAME + market + vars.getEol();
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtn_str += "#Regions: " + states + vars.getEol();
-
+        rtn_str += METADATA_REGIONS + states + vars.getEol();
         ArrayList<String> table_content = this.paneForComponentDetails.getDataYrValsArrayList();
         for (int i = 0; i < table_content.size(); i++) {
-            rtn_str += "#Table data:" + table_content.get(i) + vars.getEol();
+            rtn_str += METADATA_TABLE_DATA + table_content.get(i) + vars.getEol();
         }
-        rtn_str += "#################################################" + vars.getEol();
+        rtn_str += METADATA_FOOTER + vars.getEol();
         return rtn_str;
     }
 
@@ -1372,7 +1382,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
         try {
 
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message += "Must select at least one region from tree" + vars.getEol();
                 error_count++;
             }

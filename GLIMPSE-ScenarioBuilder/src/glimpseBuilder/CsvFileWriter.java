@@ -52,14 +52,14 @@ public class CsvFileWriter {
 	ArrayList<String> csvColumnList = null;
 	ArrayList<String> dataList = null;
 	ArrayList<String> csvList = null;
-	String csvColumnFilename = "./GLIMPSE_CSV_columns.txt";
+	//String csvColumnFilename = "./GLIMPSE_CSV_columns.txt";
 
 	// GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 	// GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 
 	public static void main(String[] args) {
 		CsvFileWriter writer = new CsvFileWriter();
-		writer.test();
+		//writer.test();
 	}
 
 	private CsvFileWriter() {
@@ -179,26 +179,26 @@ public class CsvFileWriter {
 		return arrayList;
 	}
 
-	private void test() {
-		dataList = getTestData();
-		csvColumnList = files.getStringArrayFromFile(csvColumnFilename, "#");
-		csvList = createCsvContent(csvColumnList, dataList);
-		utils.printArrayListToStdout(csvList);
-	}
+//	private void test() {
+//		dataList = getTestData();
+//		csvColumnList = files.getStringArrayFromFile(csvColumnFilename, "#");
+//		csvList = createCsvContent(csvColumnList, dataList);
+//		utils.printArrayListToStdout(csvList);
+//	}
 
-	private ArrayList<String> getTestData() {
-		//TODO:  Could we read this from somewhere?
-		ArrayList<String> arrayList = new ArrayList<String>();
-		// first item should correspond to name in header file
-		arrayList.add("region;AL,NC,MD");
-		arrayList.add("sector;electricity");
-		arrayList.add("subsector;coal");
-		arrayList.add("technology;coal (IGCC)");
-		arrayList.add("fuel;regional coal");
-		arrayList.add("year;2020,2025,2030");
-		arrayList.add("value;0.5,0.55,0.56");
-		arrayList.add("param;Efficiency");
-		return arrayList;
-	}
+//	private ArrayList<String> getTestData() {
+//		//TODO:  Could we read this from somewhere?
+//		ArrayList<String> arrayList = new ArrayList<String>();
+//		// first item should correspond to name in header file
+//		arrayList.add("region;AL,NC,MD");
+//		arrayList.add("sector;electricity");
+//		arrayList.add("subsector;coal");
+//		arrayList.add("technology;coal (IGCC)");
+//		arrayList.add("fuel;regional coal");
+//		arrayList.add("year;2020,2025,2030");
+//		arrayList.add("value;0.5,0.55,0.56");
+//		arrayList.add("param;Efficiency");
+//		return arrayList;
+//	}
 
 }

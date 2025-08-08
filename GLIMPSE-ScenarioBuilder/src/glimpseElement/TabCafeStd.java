@@ -105,6 +105,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private static final String TECHNOLOGY = "Tech";
     private static final String TREATMENT = "--";
     private static final String MARKET_SUFFIX = "_Mkt";
+    private static final String DEFAULT_START_YEAR = "2025";
+    private static final String DEFAULT_END_YEAR = "2050";
+    private static final String DEFAULT_PERIOD_LENGTH = "5";
 
     // === UI Components ===
     private final GridPane gridPanePresetModification = new GridPane();
@@ -125,15 +128,15 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private final Label labelModificationType = utils.createLabel(LABEL_TYPE, LABEL_WIDTH);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
     private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
     private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField("2050");
+    private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
     private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
     private final TextField textFieldInitialAmount = utils.createTextField();
     private final Label labelGrowth = utils.createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
     private final TextField textFieldGrowth = utils.createTextField();
     private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField("5");
+    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
     private final VBox vBoxCenter = new VBox();
     private final HBox hBoxHeaderCenter = new HBox();
     private final Label labelValue = utils.createLabel(LABEL_VALUES);
@@ -330,7 +333,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                     s = utils.capitalizeOnlyFirstLetterOfString(s);
                     sector = s;
                 }
-                String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(paneForCountryStateTree.getTree());
+                String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                 if (listOfSelectedLeaves.length > 0) {
                     listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
                     String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
@@ -388,7 +391,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      */
     private void saveScenarioComponent(TreeView<String> tree) {
         if (!qaInputs()) {
-            Thread.currentThread().interrupt();
+        	Thread.currentThread().destroy();
             return;
         }
         String ID = utils.getUniqueString();
@@ -398,7 +401,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         fileContent = getMetaDataContent(tree, marketName, policyName);
         StringBuilder contentP1 = new StringBuilder();
         StringBuilder contentP2 = new StringBuilder();
-        String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedLeaves(tree));
+        String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedRegions(tree));
         ArrayList<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();
         String[] yearList = new String[dataArrayList.size()];
         String[] valueList = new String[dataArrayList.size()];
@@ -468,7 +471,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         rtnStr.append("#Units: ").append(comboBoxWhichUnits.getValue()).append(vars.getEol());
         rtnStr.append("#Policy name: ").append(policy).append(vars.getEol());
         rtnStr.append("#Market name: ").append(market).append(vars.getEol());
-        String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedLeaves(tree));
+        String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedRegions(tree));
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtnStr.append("#Regions: ").append(states).append(vars.getEol());
         ArrayList<String> tableContent = paneForComponentDetails.getDataYrValsArrayList();
@@ -556,7 +559,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }

@@ -50,7 +50,7 @@ import java.util.Scanner;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
-import ModelInterface.InterfaceMain;
+//import ModelInterface.InterfaceMain;
 import glimpseElement.ScenarioRow;
 import glimpseElement.ScenarioTable;
 import glimpseUtil.FileChooserPlus;
@@ -307,7 +307,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
                 String databaseName = utils.getStringBetweenCharSequences(databaseLine, ">", "</");
                 String updatedName = files.getResolvedPath(vars.getgCamExecutableDir(), databaseName);
                 try {
-                    runORDModelInterfaceWhich(updatedName);
+                    runModelInterfaceWhich(updatedName);
                 } catch (Exception e) {
                     e.printStackTrace();
                     utils.exitOnException();
@@ -884,7 +884,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      * @param database_name Path to the database file
      * @throws IOException if process execution fails
      */
-    private void runORDModelInterfaceWhich(String database_name) throws IOException {
+    private void runModelInterfaceWhich(String database_name) throws IOException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
         String shell = isWindows ? "cmd.exe /C" : "/bin/sh -c";
         String[] cmd = new String[1];

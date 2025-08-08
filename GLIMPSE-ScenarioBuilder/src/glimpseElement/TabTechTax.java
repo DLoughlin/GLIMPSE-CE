@@ -90,6 +90,29 @@ public class TabTechTax extends PolicyTab implements Runnable {
             NONE, "2023$s", "2020$s", "2015$s", "2010$s", "2005$s", "2000$s"
     };
 
+    // --- Labels and Strings ---
+    private static final String LABEL_POLICY = "Policy:";
+    private static final String LABEL_MARKET = "Market:";
+    private static final String LABEL_TECHS = "Tech(s): ";
+    private static final String LABEL_SECTOR = "Sector:";
+    private static final String LABEL_FILTER = "Filter:";
+    private static final String LABEL_TYPE = "Type:";
+    private static final String LABEL_START_YEAR = "Start Year:";
+    private static final String LABEL_END_YEAR = "End Year:";
+    private static final String LABEL_INITIAL_VAL = "Initial Val:";
+    private static final String LABEL_FINAL_VAL = "Final Val:";
+    private static final String LABEL_PERIOD_LENGTH = "Period Length:";
+    private static final String LABEL_VALUES = "Values:";
+    private static final String LABEL_POPULATE = "Populate:";
+    private static final String LABEL_UNITS = "Units:";
+    private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
+    private static final String UNIT_UNITLESS = "unitless";
+    private static final String UNIT_YEARS = "years";
+    private static final String UNIT_UNITLESS_CAPACITY = "Unitless";
+    private static final String DEFAULT_START_YEAR = "2025";
+    private static final String DEFAULT_END_YEAR = "2050";
+    private static final String DEFAULT_PERIOD_LENGTH = "5";
+    
     // === Static Fields ===
     public static String descriptionText = "";
     public static String runQueueStr = "Queue is empty.";
@@ -125,15 +148,15 @@ public class TabTechTax extends PolicyTab implements Runnable {
     private final Label labelUnits = utils.createLabel("Units: ", LABEL_WIDTH);
     private final Label labelUnits2 = utils.createLabel(LABEL_UNITS_DEFAULT, 225.);
     private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
     private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField("2050");
+    private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
     private final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
     private final TextField textFieldInitialAmount = utils.createTextField();
     private final Label labelGrowth = utils.createLabel("Growth (%): ", LABEL_WIDTH);
     private final TextField textFieldGrowth = utils.createTextField();
     private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField("5");
+    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
     private final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
     private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
     private final Label labelValue = utils.createLabel("Values: ");
@@ -409,7 +432,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     s = utils.capitalizeOnlyFirstLetterOfString(s);
                     sector = s;
                 }
-                String[] selectedLeaves = utils.getAllSelectedLeaves(paneForCountryStateTree.getTree());
+                String[] selectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                 if (selectedLeaves.length > 0) {
                     selectedLeaves = utils.removeUSADuplicate(selectedLeaves);
                     String stateStr = utils.returnAppendedString(selectedLeaves).replace(",", "");
@@ -471,8 +494,9 @@ public class TabTechTax extends PolicyTab implements Runnable {
     private void saveScenarioComponent(TreeView<String> tree) {
         if (!qaInputs()) {
             Thread.currentThread().destroy();
+            return;
         } else {
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             String states = utils.returnAppendedString(listOfSelectedLeaves);
             filenameSuggestion = "";
@@ -571,7 +595,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
         rtnStr.append("#Policy name: ").append(policy).append(vars.getEol());
         if (market == null) market = textFieldMarketName.getText();
         rtnStr.append("#Market name: ").append(market).append(vars.getEol());
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtnStr.append("#Regions: ").append(states).append(vars.getEol());
@@ -648,7 +672,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }
