@@ -7150,7 +7150,21 @@
 				<emissionsQueryBuilder title="10.22 Emissions by tech and vintage (excluding resource production)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">emissions[@year]</axis2>
-					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'technology']//emissions/node()</xPath>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
+					<comments/>
+					<showAttribute attribute-name="year" level="technology"/>
+				</emissionsQueryBuilder>
+				<emissionsQueryBuilder title="10.22a Emissions by tech and vintage (excluding resource production)">
+					<axis2 name="technology">technology</axis2>
+					<axis1 name="Year">emissions[@year]</axis1>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
+					<comments/>
+					<showAttribute attribute-name="year" level="technology"/>
+				</emissionsQueryBuilder>
+				<emissionsQueryBuilder title="10.22b Emissions by tech and vintage (excluding resource production)">
+					<axis1 name="GHG">GHG</axis1>
+					<axis2 name="Year">emissions[@year]</axis2>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
 					<comments/>
 					<showAttribute attribute-name="year" level="technology"/>
 				</emissionsQueryBuilder>
@@ -7494,6 +7508,32 @@
 					@name='H2 enduse'or @name='refined liquids industrial' or @name='refined liquids enduse')]/
 					cost/text()</xPath>
 					<comments>Prices for energy commodities in meeting end use demands in 1990$s</comments>
+				</supplyDemandQuery>
+			</queryGroup>
+			<queryGroup name="for developing GCAM techbound file">
+				<supplyDemandQuery title="10.39 Inputs by tech for nested subsectors">
+					<axis1 name="input">input</axis1>
+					<axis2 name="Year">demand-physical[@vintage]</axis2>
+					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='subsector']/*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
+					<comments>Inputs into each technology. Useful for tracking fuel and material flows.</comments>
+				</supplyDemandQuery>				
+				<supplyDemandQuery title="10.40 Inputs by tech for non-nested subsectors">
+					<axis1 name="input">input</axis1>
+					<axis2 name="Year">demand-physical[@vintage]</axis2>
+					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
+				<comments>Inputs into each technology. Useful for tracking fuel and material flows.</comments>
+				</supplyDemandQuery>
+				<supplyDemandQuery title="10.41 Outputs by tech for nested subsectors">
+					<axis1 name="output">output</axis1>
+					<axis2 name="Year">physical-output[@vintage]</axis2>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='subsector']//*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
+					<comments>Outputs from each technology. Useful for tracking fuel and material flows.</comments>
+				</supplyDemandQuery>				
+				<supplyDemandQuery title="10.42 Outputs by tech for non-nested subsectors">
+					<axis1 name="output">output</axis1>
+					<axis2 name="Year">physical-output[@vintage]</axis2>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
+					<comments>Outputs from each technology. Useful for tracking fuel and material flows.</comments>
 				</supplyDemandQuery>
 			</queryGroup>
 		</queryGroup>

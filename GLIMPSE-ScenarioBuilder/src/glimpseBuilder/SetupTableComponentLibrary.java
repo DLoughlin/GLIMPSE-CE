@@ -104,26 +104,6 @@ public class SetupTableComponentLibrary {
 					
 					files.showFileInTextEditor(filename);
 
-//					try {
-//						String cmd = vars.getTextEditor() + " " + filename;
-//
-//						java.lang.Runtime rt = java.lang.Runtime.getRuntime();
-//						@SuppressWarnings("unused")
-//						
-//						java.lang.Process p = rt.exec(cmd);
-//					} catch (Exception e) {
-//						System.out.println("Could not use text editor specified in options file. Using system default.");						
-//						try {
-//							File file=new File(filename);
-//							java.awt.Desktop.getDesktop().edit(file);
-//						} catch (Exception e1) {						
-//							utils.warningMessage("Problem trying to open file with editor.");
-//							System.out.println("Error trying to open file to view with editor.");
-//							System.out.println("   file: " + filename);
-//							System.out.println("   editor: " + vars.getTextEditor());
-//							System.out.println("Error: " + e);
-//						}
-//					}
 				}
 				if (event.isPrimaryButtonDown()) {
 					ComponentRow mf1 = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItem();

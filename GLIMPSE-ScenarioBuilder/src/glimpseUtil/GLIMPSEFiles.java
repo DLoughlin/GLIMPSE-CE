@@ -89,7 +89,7 @@ public class GLIMPSEFiles {
 
     // File content caches
     public ArrayList<String> optionsFileContent = new ArrayList<>();
-    public ArrayList<String> glimpseCSVColumnsFileContent = new ArrayList<>();
+    //public ArrayList<String> glimpseCSVColumnsFileContent = new ArrayList<>();
     private ArrayList<String> glimpseXMLHeadersFileContent = new ArrayList<>();
     public ArrayList<String> glimpseTechBoundFileContent = new ArrayList<>();
     private ArrayList<String> gCamConfigurationTemplateFileContent = new ArrayList<>();

@@ -56,7 +56,7 @@ public class GLIMPSEVariables {
     private GLIMPSEStyles styles;
 
     // --- Constants ---
-    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.2";
+    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.0";
     public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
     public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
     private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
@@ -275,7 +275,19 @@ public class GLIMPSEVariables {
      * @param year_list Comma-separated list of years
      */
     public void setAllowablePolicyYears(String year_list) {
-        this.allowablePolicyYears=year_list; 
+    	String [] years = year_list.split(",");
+    	String tempYearList = "";
+    	for (String year : years) {
+			year = year.trim();
+			if (!year.isEmpty()) {
+				if (!tempYearList.isEmpty()) {
+					tempYearList += ",";
+				}
+				tempYearList += year;
+			}
+		}
+    		
+        this.allowablePolicyYears=tempYearList; 
     }    
     
     /**
@@ -1411,9 +1423,6 @@ public class GLIMPSEVariables {
         case "gcamhomedir":
             gCamHomeDir = fixDir(val);
             break;        
-        case "allowablepolicyyears":
-            setAllowablePolicyYears(val);
-            break;
         case "useallavailableprocessors":
             setUseAllAvailableProcessors(val);
             break;
@@ -1429,7 +1438,9 @@ public class GLIMPSEVariables {
         case "executecmd":
             executeCmd = val;
             break;
-
+        case "allowablepolicyyears":
+            setAllowablePolicyYears(val);
+            break;
         case "glimpsedocdir":
             glimpseDocDir = fixDir(val);
             break;
@@ -1858,14 +1869,14 @@ public class GLIMPSEVariables {
             
             int size_j=0;
             
-            text=arrayList.get(0);
+            text=arrayList.get(0).trim();
             String[] textSplit = null;
             String delim=null;
             
-            if (text.contains(",")){ 
-                delim=",";
-            } else {
+            if (text.contains(":")){ 
                 delim=":";
+            } else {
+                delim=",";
             }
             textSplit=text.split(delim);
             size_j=textSplit.length;
@@ -1889,7 +1900,7 @@ public class GLIMPSEVariables {
             utils.warningMessage("Problem reading tech list: "+text);
             System.out.println("Error reading tech list from " + get("tchBndListFile") + ":");
             System.out.println("  ---> " + e);
-            if (num == 0) {
+            /*if (num == 0) {
                 System.out.println("Using defaults...");
 
                 String[][] stringMatrix = {
@@ -1919,10 +1930,10 @@ public class GLIMPSEVariables {
 
                 };
                 returnStringMatrix = stringMatrix;
-
+				
             } else {
                 System.out.println("Stopping with " + num + " read in.");
-            }
+            }*/
         }
         return returnStringMatrix;
     }
@@ -1945,7 +1956,7 @@ public class GLIMPSEVariables {
                 "configurationTemplateFilename","queryFilename","favoriteQueryFilename",
                 "tchBndListFilename","tranLoadFactorsFilename",
                 "regionListFilename","subRegionListFilename","presetRegionListFilename",
-                "monetaryConversionsFilename","csvColumnFilename","xmlHeaderFilename",
+                "monetaryConversionsFilename","xmlHeaderFilename",
                 "scenarioBuilderJarDir","scenarioBuilderJar",
                 "resourceDir","trashDir","gCamDataDir","gCamOutputDatabase",
                 "maxDatabaseSizeGB","optionsFilename","xmlLibrary","textEditor","xmlEditor",
@@ -2132,7 +2143,7 @@ public class GLIMPSEVariables {
      * Returns a list of unique technology types from the technology boundary file.
      * @return List of technology types
      */
-    public ArrayList<String> getTypesFromTechBnd(){
+    public ArrayList<String> getCategoriesFromTechBnd(){
         ArrayList<String> result=new ArrayList<>();
         
         String[][] tech_info = getTechInfo();

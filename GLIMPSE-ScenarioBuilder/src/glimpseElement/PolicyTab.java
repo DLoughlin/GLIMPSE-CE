@@ -120,7 +120,7 @@ public abstract class PolicyTab extends Tab {
             System.out.println("File content is null.");
             return null;
         }
-        System.out.println("Getting file content... length:" + fileContent.length());
+        //System.out.println("Getting file content... length:" + fileContent.length());
         return fileContent;
     }
 

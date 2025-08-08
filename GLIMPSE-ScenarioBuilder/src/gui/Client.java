@@ -66,6 +66,9 @@ import org.controlsfx.control.StatusBar;
 
 public class Client extends Application {
 
+	// version
+	private static final String VERSION = "GLIMPSE-CE v0.1 (alpha) ScenarioBuilder";
+	
     // region Constants
     private static final double MIN_WINDOW_HEIGHT = 650;
     private static final double MIN_WINDOW_WIDTH = 955;
@@ -310,7 +313,7 @@ public class Client extends Application {
         final Scene scene = new Scene(root, vars.DEFAULT_SCENARIO_BUILDER_WIDTH, vars.DEFAULT_SCENARIO_BUILDER_HEIGHT);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("GLIMPSE Scenario Builder");
+        primaryStage.setTitle(VERSION);
         primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
         primaryStage.setHeight(MIN_WINDOW_HEIGHT);
         primaryStage.setMinWidth(MIN_WINDOW_WIDTH);

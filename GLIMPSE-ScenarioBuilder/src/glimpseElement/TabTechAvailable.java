@@ -124,7 +124,7 @@ import javafx.util.Callback;
  */
 public class TabTechAvailable extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===
-    private static final String LABEL_FILTER_BY_TYPE = "Filter by Type: ";
+    private static final String LABEL_FILTER_BY_CATEGORY = "Filter by Category: ";
     private static final String LABEL_TEXT = " Text: ";
     private static final String LABEL_FIRST_YEAR = " First yr: ";
     private static final String LABEL_LAST_YEAR = " Last yr: ";
@@ -133,10 +133,10 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     private static final String BUTTON_SELECT_ALL = "Never";
     private static final String BUTTON_SELECT_RANGE = "Range";
     private static final String LABEL_TECH_SELECT = "Select technologies and specify all, first, or last years to constrain new purchases:";
-    private static final String COMBOBOX_FILTER_TYPE_DEFAULT = "Filter by Type?";
-    private static final String COMBOBOX_FILTER_TYPE_ALL = "All";
+    private static final String COMBOBOX_FILTER_CATEGORY_DEFAULT = "Filter by Category?";
+    private static final String COMBOBOX_FILTER_CATEGORY_ALL = "All";
     private static final String DEFAULT_FIRST_YEAR = "1975";
-    private static final String DEFAULT_LAST_YEAR = "2015";
+    private static final String DEFAULT_LAST_YEAR = "2021";
 
     // === Table and Layout Components ===
     public final TableView<TechBound> tableTechBounds = new TableView<>();
@@ -148,8 +148,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     private ObservableList<TechBound> tableList;
 
     // === Filter and Control UI ===
-    private final Label filterByTypeLabel = utils.createLabel(LABEL_FILTER_BY_TYPE);
-    private final ComboBox<String> comboBoxTypeFilter = utils.createComboBoxString();
+    private final Label filterByCategoryLabel = utils.createLabel(LABEL_FILTER_BY_CATEGORY);
+    private final ComboBox<String> comboBoxCategoryFilter = utils.createComboBoxString();
     private final Label filterByTextLabel = utils.createLabel(LABEL_TEXT);
     private final TextField filterTextField = utils.createTextField();
     private final Label firstYrLabel = utils.createLabel(LABEL_FIRST_YEAR);
@@ -176,7 +176,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
         TableColumn<TechBound, Boolean> isBoundAll = new TableColumn<>(BUTTON_SELECT_ALL + "?");
         TableColumn<TechBound, Boolean> isBoundRange = new TableColumn<>(BUTTON_SELECT_RANGE + "?");
-        TableColumn<TechBound, String> techNameCol = new TableColumn<>("Sector : Subsector : Technology : Units // Type");
+        TableColumn<TechBound, String> techNameCol = new TableColumn<>("Sector : Subsector : Technology : Units // Category");
         TableColumn<TechBound, String> firstYearCol = new TableColumn<>("First");
         TableColumn<TechBound, String> lastYearCol = new TableColumn<>("Last");
 
@@ -215,7 +215,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         leftPanel.getChildren().add(utils.createLabel(LABEL_TECH_SELECT));
         HBox filterLayout = new HBox();
         filterLayout.setPadding(new Insets(10, 10, 10, 10));
-        filterLayout.getChildren().addAll(filterByTypeLabel, comboBoxTypeFilter, filterByTextLabel, filterTextField);
+        filterLayout.getChildren().addAll(filterByCategoryLabel, comboBoxCategoryFilter, filterByTextLabel, filterTextField);
         setupComboBoxType();
         HBox resetYrLayout = new HBox();
         resetYrLayout.setPadding(new Insets(5, 5, 5, 5));
@@ -272,8 +272,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      * Sets up the combo box for type filtering.
      */
     private void setupComboBoxType() {
-        comboBoxTypeFilter.getItems().addAll(vars.getTypesFromTechBnd());
-        comboBoxTypeFilter.getSelectionModel().selectFirst();
+        comboBoxCategoryFilter.getItems().addAll(vars.getCategoriesFromTechBnd());
+        comboBoxCategoryFilter.getSelectionModel().selectFirst();
     }
 
     /**
@@ -391,8 +391,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         FilteredList<TechBound> filteredComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
         filterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredComponents.setPredicate(techBound -> {
-                String type = comboBoxTypeFilter.getSelectionModel().getSelectedItem().toLowerCase().trim();
-                if (type.equals("") || type.equals(COMBOBOX_FILTER_TYPE_ALL.toLowerCase()) || type.equals(COMBOBOX_FILTER_TYPE_DEFAULT.toLowerCase())) {
+                String type = comboBoxCategoryFilter.getSelectionModel().getSelectedItem().toLowerCase().trim();
+                if (type.equals("") || type.equals(COMBOBOX_FILTER_CATEGORY_ALL.toLowerCase()) || type.equals(COMBOBOX_FILTER_CATEGORY_DEFAULT.toLowerCase())) {
                     // pass
                 } else if (!techBound.getTechName().toLowerCase().trim().endsWith(type)) {
                     return false;
@@ -404,9 +404,9 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
                 return techBound.getTechName().toLowerCase().contains(lowerCaseFilter);
             });
         });
-        comboBoxTypeFilter.valueProperty().addListener((observable, oldValue, newValue) -> {
+        comboBoxCategoryFilter.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredComponents.setPredicate(techBound -> {
-                if (newValue.equals(COMBOBOX_FILTER_TYPE_DEFAULT) || newValue.equals(COMBOBOX_FILTER_TYPE_ALL)) {
+                if (newValue.equals(COMBOBOX_FILTER_CATEGORY_DEFAULT) || newValue.equals(COMBOBOX_FILTER_CATEGORY_ALL)) {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
@@ -414,7 +414,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
             });
             String filterText = filterTextField.getText();
             filterTextField.setText("");
-            if (!newValue.equals(COMBOBOX_FILTER_TYPE_DEFAULT)) {
+            if (!newValue.equals(COMBOBOX_FILTER_CATEGORY_DEFAULT)) {
                 filterTextField.setText(filterText);
             }
         });
@@ -438,7 +438,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     public void saveScenarioComponent() {
         if (qaInputs()) {
             TreeView<String> tree = this.paneForCountryStateTree.getTree();
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             String states = utils.returnAppendedString(listOfSelectedLeaves);
             filenameSuggestion = "TechAvailBnd";
@@ -501,10 +501,11 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      */
     public void saveScenarioComponentShareweight() {
         if (!qaInputs()) {
+        	Thread.currentThread().destroy();
             return;
         }
         TreeView<String> tree = this.paneForCountryStateTree.getTree();
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         filenameSuggestion = "TechAvailBnd";
@@ -619,7 +620,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
                         .append(vars.getEol());
             }
         }
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtnStr.append("#Regions: ").append(states).append(vars.getEol());
@@ -722,7 +723,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }

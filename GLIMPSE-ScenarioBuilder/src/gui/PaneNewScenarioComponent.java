@@ -511,6 +511,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		if (tab == null) return;
 		String filenameSuggestion = tab.getFilenameSuggestion();
 		String fileContent = tab.getFileContent();
+		if (fileContent == null) return;
 		boolean useTempFile = false;
 		if (fileContent.equals("use temp file")) {
 			useTempFile = true;

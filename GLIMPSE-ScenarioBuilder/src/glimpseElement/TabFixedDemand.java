@@ -110,7 +110,10 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final double MAX_WIDTH = 195;
     private static final double MIN_WIDTH = 105;
     private static final double PREF_WIDTH = 195;
-
+    private static final int DEFAULT_START_YEAR = 2025;
+    private static final int DEFAULT_END_YEAR = 2050;
+    private static final String DEFAULT_PERIOD_LENGTH = "5";
+    
     // === Utility singletons ===
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
@@ -131,15 +134,15 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final Label labelModificationType = utils.createLabel(LABEL_TYPE, 125);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
     private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, 125);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField(String.valueOf(DEFAULT_START_YEAR));
     private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, 125);
-    private final TextField textFieldEndYear = new TextField("2050");
+    private final TextField textFieldEndYear = new TextField(String.valueOf(DEFAULT_END_YEAR));
     private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL, 125);
     private final TextField textFieldInitialAmount = utils.createTextField();
     private final Label labelGrowth = utils.createLabel(LABEL_FINAL, 125);
     private final TextField textFieldGrowth = utils.createTextField();
     private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, 125);
-    private final TextField textFieldPeriodLength = new TextField("5");
+    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
     private final Label labelValue = utils.createLabel(LABEL_VALUES, 125);
     private final Button buttonPopulate = utils.createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
     private final Button buttonDelete = utils.createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
@@ -341,7 +344,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             fileContent += "INPUT_TABLE" + vars.getEol() + "Variable ID" + vars.getEol();
             fileContent += "GLIMPSEFixedDemand" + vars.getEol() + vars.getEol();
             // Selected regions
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             // Sector
             String sectorName = comboBoxSector.getSelectionModel().getSelectedItem();
@@ -381,7 +384,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
         rtnStr.append("#Scenario component type: Fixed Demand").append(vars.getEol());
         rtnStr.append("#Sector:").append(comboBoxSector.getValue()).append(vars.getEol());
-        String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtnStr.append("#Regions: ").append(states).append(vars.getEol());
@@ -443,7 +446,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (utils.getAllSelectedLeaves(tree).length < 1) {
+            if (utils.getAllSelectedRegions(tree).length < 1) {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }

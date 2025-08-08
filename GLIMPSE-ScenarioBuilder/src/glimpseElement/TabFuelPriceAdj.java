@@ -61,8 +61,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     // === UI constants ===
     private static final double LABEL_WIDTH = 125;
     private static final double FIELD_WIDTH = 180;
-
-    // === Label and ComboBox option constants ===
     private static final String LABEL_FUEL = "Fuel: ";
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_UNITS_VALUE = "1975$s per GJ";
@@ -87,7 +85,10 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         "Initial w/% Growth/yr", "Initial w/% Growth/pd",
         "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
     };
-
+    private static final int DEFAULT_START_YEAR = 2025;
+    private static final int DEFAULT_END_YEAR = 2050;
+    private static final String DEFAULT_PERIOD_LENGTH = "5";
+    
     // === UI components ===
     private final GridPane gridPanePresetModification = new GridPane();
     private final GridPane gridPaneLeft = new GridPane();
@@ -105,15 +106,15 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     private final Label labelModificationType = utils.createLabel(LABEL_MODIFICATION_TYPE, LABEL_WIDTH);
     private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
     private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2020");
+    private final TextField textFieldStartYear = new TextField(String.valueOf(DEFAULT_START_YEAR));
     private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField("2050");
+    private final TextField textFieldEndYear = new TextField(String.valueOf(DEFAULT_END_YEAR));
     private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_AMOUNT, LABEL_WIDTH);
     private final TextField textFieldInitialAmount = utils.createTextField();
     private final Label labelGrowth = utils.createLabel(LABEL_GROWTH, LABEL_WIDTH);
     private final TextField textFieldGrowth = utils.createTextField();
     private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField("5");
+    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
     private final Label labelConvertFrom = utils.createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
     private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
     private final VBox vBoxCenter = new VBox();
@@ -335,7 +336,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                     fuel = "mult";
                 }
                 // Determine selected region(s)
-                String[] listOfSelectedLeaves = (paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null) ? utils.getAllSelectedLeaves(paneForCountryStateTree.getTree()) : new String[0];
+                String[] listOfSelectedLeaves = (paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null) ? utils.getAllSelectedRegions(paneForCountryStateTree.getTree()) : new String[0];
                 if (listOfSelectedLeaves.length > 0) {
                     listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
                     String state_str = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
@@ -402,7 +403,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             Thread.currentThread().destroy();
         } else {
 
-            String[] listOfSelectedLeaves = utils.getAllSelectedLeaves(tree);
+            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
 
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             String states = utils.returnAppendedString(listOfSelectedLeaves);
@@ -491,7 +492,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         rtn_str += "#Policy name: " + policy + vars.getEol();
         if (market == null && textFieldMarketName != null) market = textFieldMarketName.getText();
         rtn_str += "#Market name: " + market + vars.getEol();
-        String[] listOfSelectedLeaves = tree != null ? utils.getAllSelectedLeaves(tree) : new String[0];
+        String[] listOfSelectedLeaves = tree != null ? utils.getAllSelectedRegions(tree) : new String[0];
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
         rtn_str += "#Regions: " + states + vars.getEol();
@@ -606,7 +607,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
         try {
 
-            if (tree == null || utils.getAllSelectedLeaves(tree).length < 1) {
+            if (tree == null || utils.getAllSelectedRegions(tree).length < 1) {
                 message += "Must select at least one region from tree" + vars.getEol();
                 error_count++;
             }
@@ -633,7 +634,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 message += "A market name must be provided" + vars.getEol();
             }
             if (vars.isGcamUSA()) {
-                String[] selected_leaves = tree != null ? utils.getAllSelectedLeaves(tree) : new String[0];
+                String[] selected_leaves = tree != null ? utils.getAllSelectedRegions(tree) : new String[0];
                 boolean applied_to_a_state = false;
                 boolean is_usa_selected = false;
                 for (int s = 0; s < selected_leaves.length; s++) {

@@ -1,6 +1,42 @@
-############ Scenario Component Meta-Data ############
-#Scenario component type: Tech Avail
-#Bound:Never>false,Range>true,First>1975,Last>2025,Tech>electricity  :  biomass  :  biomass (conv)  :  EJ // EGU
-#Bound:Never>false,Range>true,First>1975,Last>2025,Tech>electricity  :  coal  :  coal (conv pul)  :  EJ // EGU
-#Regions: USA,Canada,Central America and Caribbean,Mexico,Brazil,South America_Northern,South America_Southern,Argentina,Colombia,EU-15,EU-12,European Free Trade Association,Europe_Eastern,Europe_Non_EU,Africa_Eastern,Africa_Northern,Africa_Southern,Africa_Western,South Africa,Middle East,Central Asia,Russia,Pakistan,India,South Asia,China,Taiwan,South Korea,Japan,Southeast Asia,Indonesia,Australia_NZ
-######################################################
+########## Scenario Component Metadata ##########
+#Scenario component type: Pollutant Tax/Cap
+#Measure: Emission Cap (Mt)
+#Pollutant: CO2 (MT C)
+#Categories: EGU-USA,
+#Policy name: Cap_EGU-USA_CO2_Reg2075656
+#Market name: Cap_EGU-USA_CO2_Reg_Mkt2075656
+#Regions: CT,DE,MA,MD,ME,NH,NJ,NY,PA,RI,VT
+#Table data:2025    ,    28.36
+#Table data:2030    ,    28.63
+#Table data:2035    ,    20.45
+#Table data:2040    , 20.45
+#Table data:2045    , 20.45
+#Table data:2050    , 20.45
+#################################################
+INPUT_TABLE
+Variable ID
+GLIMPSEEmissionCap
+
+region,pollutant,market,year,cap
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2025,28.36
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2030,28.63
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2035,20.45
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2040,20.45
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2045,20.45
+CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2050,20.45
+
+INPUT_TABLE
+Variable ID
+GLIMPSEEmissionMarket
+
+region,pollutant,market
+DE,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+MA,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+MD,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+ME,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+NH,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+NJ,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+NY,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+PA,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+RI,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
+VT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656

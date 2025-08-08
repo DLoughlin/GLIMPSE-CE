@@ -42,6 +42,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -139,6 +140,8 @@ public class GLIMPSEUtils {
 	public String[] states = STATE_CODES;
 	public String dateFormatStr = DATE_FORMAT_STR;
 
+	private long orig_date=0;
+	
 	// Specifies style for GUI tables, such as border width and color
 
 	public GLIMPSEUtils() {
@@ -940,13 +943,18 @@ public class GLIMPSEUtils {
 	
 	
 	public String getUniqueString() {
-		String rtn_str = "";
 
+		if (orig_date==0) {
+			Calendar cal = Calendar.getInstance();
+			cal.set(2025,Calendar.JULY,15);	
+			orig_date = cal.getTime().getTime();
+		}
+		
 		Date d = new Date();
+		long now=d.getTime();
+		int diff_sec=(int) Math.floor((now-orig_date)/1000.);
 
-		rtn_str += d.getTime();
-
-		return rtn_str;
+		return ""+diff_sec;
 	}
 
 	public String commentLinesInString(String stringLine, String startComment, String endComment) {
@@ -1001,7 +1009,7 @@ public class GLIMPSEUtils {
 		return ret_vals;
 	}
 
-	public String[] getAllSelectedLeaves(TreeView<String> tree) {
+	public String[] getAllSelectedRegions(TreeView<String> tree) {
 
 		ArrayList<CheckBoxTreeItem<String>> selectedLeaves = returnAllSelectedLeaves(tree.getRoot());
 		int n = selectedLeaves.size();
@@ -2035,28 +2043,28 @@ public class GLIMPSEUtils {
 	}
 	
 
-    /**
-     * Generates an error report from the main log file (legacy version).
-     * @param main_log_file Path to main log file
-     * @param scenario Scenario name
-     * @return List of error report lines
-     */
-    public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
-        if (files == null) return new ArrayList<>();
-        if (scenario == null)
-            scenario = "exe/main_log.txt";
-        ArrayList<String> report = new ArrayList<>();
-        File mainlogfile = new File(main_log_file);
-        if (mainlogfile.exists()) {
-            String[] str = { "ERROR", "Period" };
-            ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
-            for (String errorLine : error_lines) {
-                String s = scenario + ":" + errorLine.replace(":", ",");
-                report.add(s);
-            }
-        }
-        return report;
-    }
+//    /**
+//     * Generates an error report from the main log file (legacy version).
+//     * @param main_log_file Path to main log file
+//     * @param scenario Scenario name
+//     * @return List of error report lines
+//     */
+//    public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
+//        if (files == null) return new ArrayList<>();
+//        if (scenario == null)
+//            scenario = "exe/main_log.txt";
+//        ArrayList<String> report = new ArrayList<>();
+//        File mainlogfile = new File(main_log_file);
+//        if (mainlogfile.exists()) {
+//            String[] str = { "ERROR", "Period" };
+//            ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
+//            for (String errorLine : error_lines) {
+//                String s = scenario + ":" + errorLine.replace(":", ",");
+//                report.add(s);
+//            }
+//        }
+//        return report;
+//    }
 
     /**
      * Generates a detailed error report from the main log file.
@@ -2075,7 +2083,7 @@ public class GLIMPSEUtils {
         ArrayList<String> report = new ArrayList<>();
         File mainlogfile = new File(main_log_file);
         if (mainlogfile.exists()) {
-            String[] str = { "ERROR", "Period" };
+            String[] str = { "ERROR", "SEVERE", "Period" };
             ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
             for (String errorLine : error_lines) {
                 String line = scenario + ":" + errorLine.replace(":", ",");

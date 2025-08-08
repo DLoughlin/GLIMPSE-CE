@@ -1,3 +1,0 @@
-replace files with the same names in...
-GLIMPSE-GUI/exe
-GLMIPSE-GUI/templates
