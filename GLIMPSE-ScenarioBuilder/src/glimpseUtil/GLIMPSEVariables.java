@@ -37,12 +37,17 @@ package glimpseUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
  * Holds global variables and configuration for GLIMPSE.
  * Provides accessors and mutators for all configuration options.
+ *
+ * <p>This class implements the Singleton pattern to ensure a single instance
+ * of global variables and configuration settings is used throughout the application.</p>
  *
  * @author US EPA
  */
@@ -60,14 +65,15 @@ public class GLIMPSEVariables {
     public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
     public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
     private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
-    private static final String DEFAULT_ALLOWABLE_POLICY_YEARS = "2020,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100";
+    private static final List<Integer> DEFAULT_ALLOWABLE_POLICY_YEARS_LIST = new ArrayList<>(Arrays.asList(2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
+    private static final List<Integer> DEFAULT_ALL_YEARS_LIST = new ArrayList<>(Arrays.asList(1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
+    private static final Integer DEFAULT_CALIBRATION_YEAR = new Integer(2021);
     private static final String DEFAULT_USE_ICONS = "false";
     private static final String DEFAULT_PREFERRED_FONT_SIZE = "12";
     private static final String DEFAULT_DEBUG_REGION = "USA";
     private static final boolean DEFAULT_SHOW_SPLASH = true;
     private static final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
-    private static final int DEFAULT_SIMULATION_START_YEAR = 2015;
-    private static final int DEFAULT_SIMULATION_LAST_YEAR = 2100;
+
     private static final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
 
     // --- Fields ---
@@ -85,7 +91,9 @@ public class GLIMPSEVariables {
     private String startYearForShare = "2010";
     private String[][] techInfo = null;
     private String[][] sectorInfo = null;
-    private String allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS;
+    private List<Integer> allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS_LIST;
+    private List<Integer> allYears = DEFAULT_ALL_YEARS_LIST;
+    private Integer calibrationYear = DEFAULT_CALIBRATION_YEAR;
     private String preferredFontSize = DEFAULT_PREFERRED_FONT_SIZE;
     private String useIcons = DEFAULT_USE_ICONS;
     private String debugRegion = DEFAULT_DEBUG_REGION;
@@ -121,8 +129,6 @@ public class GLIMPSEVariables {
     private String descriptionText = "";
     private String stopPeriod = null;
     private String stopYear = null;
-    private int simulationStartYear = DEFAULT_SIMULATION_START_YEAR;
-    private int simulationLastYear = DEFAULT_SIMULATION_LAST_YEAR;
     private int simulationYearIncrement = DEFAULT_SIMULATION_YEAR_INCREMENT;
     private String configurationTemplateFilename = null;
     private String queryFilename = null;
@@ -145,7 +151,8 @@ public class GLIMPSEVariables {
 
     /**
      * Returns the singleton instance of GLIMPSEVariables.
-     * @return GLIMPSEVariables instance
+     *
+     * @return The singleton instance of GLIMPSEVariables.
      */
     public static GLIMPSEVariables getInstance() {
         return INSTANCE;
@@ -153,224 +160,203 @@ public class GLIMPSEVariables {
 
     /**
      * Initializes utility, style, and file dependencies.
-     * @param u GLIMPSEUtils
-     * @param v GLIMPSEVariables
-     * @param s GLIMPSEStyles
-     * @param f GLIMPSEFiles
+     *
+     * @param u The GLIMPSEUtils instance.
+     * @param v The GLIMPSEVariables instance.
+     * @param s The GLIMPSEStyles instance.
+     * @param f The GLIMPSEFiles instance.
      */
     public void init(GLIMPSEUtils u, GLIMPSEVariables v, GLIMPSEStyles s, GLIMPSEFiles f) {
         this.utils = u;
         this.styles = s;
         this.files = f;
-        this.eol=System.lineSeparator();
+        this.eol = System.lineSeparator();
     }
 
     /**
      * Returns the GLIMPSE version string.
-     * @return GLIMPSE version
+     *
+     * @return The GLIMPSE version string.
      */
     public String getGLIMPSEVersion() {
         return glimpseVersion;
     }
 
     /**
-     * Returns the about text filename.
-     * @return About text filename
+     * Returns the filename for the "About" text.
+     *
+     * @return The filename for the "About" text.
      */
     public String getAboutTextFilename() {
         return aboutTextFilename;
     }
-    
+
     /**
-     * Sets the about text filename.
-     * @param s About text filename
+     * Sets the filename for the "About" text.
+     *
+     * @param s The filename for the "About" text.
      */
     public void setAboutTextFilename(String s) {
-        aboutTextFilename=s; 
+        aboutTextFilename = s;
     }
-    
+
     /**
-     * Returns the preset region list filename.
-     * @return Preset region list filename
+     * Returns the filename for the preset region list.
+     *
+     * @return The filename for the preset region list.
      */
     public String getPresetRegionListFilename() {
-        return presetRegionListFilename; 
+        return presetRegionListFilename;
     }
-    
+
     /**
-     * Sets the preset region list filename.
-     * @param s Preset region list filename
+     * Sets the filename for the preset region list.
+     *
+     * @param s The filename for the preset region list.
      */
     public void setPresetRegionListFilename(String s) {
-        presetRegionListFilename=s; 
+        presetRegionListFilename = s;
     }
 
     /**
-     * Returns the subregion list filename.
-     * @return Subregion list filename
+     * Returns the filename for the subregion list.
+     *
+     * @return The filename for the subregion list.
      */
     public String getSubRegionsFilename() {
-        return subRegionListFilename; 
-    }
-    
-    /**
-     * Sets the subregion list filename.
-     * @param s Subregion list filename
-     */
-    public void setSubRegionsFilename(String s) {
-        subRegionListFilename=s; 
-    }
-    
-    /**
-     * Returns the region list filename.
-     * @return Region list filename
-     */
-    public String getRegionListFilename() {
-        return regionListFilename; 
-    }
-    
-    /**
-     * Sets the region list filename.
-     * @param s Region list filename
-     */
-    public void setRegionListFilename(String s) {
-        regionListFilename=s; 
-    }
-    
-    /**
-     * Returns the simulation start year.
-     * @return Simulation start year
-     */
-    public int getSimulationStartYear() {
-        return simulationStartYear;
-    }
-    
-    /**
-     * Sets the simulation start year.
-     * @param startYear Simulation start year
-     */
-    public void setSimulationStartYear(String startYear) {
-        simulationStartYear = utils.convertStringToInt(startYear);
-        return;
-    }
-    
-    /**
-     * Returns the simulation last year.
-     * @return Simulation last year
-     */
-    public int getSimulationLastYear() {
-        return simulationLastYear;
-    }
-    
-    /**
-     * Returns the list of allowable policy years.
-     * @return Allowable policy years
-     */
-    public String getAllowablePolicyYears() {
-        return allowablePolicyYears;
-    }
-    
-    /**
-     * Sets the list of allowable policy years.
-     * @param year_list Comma-separated list of years
-     */
-    public void setAllowablePolicyYears(String year_list) {
-    	String [] years = year_list.split(",");
-    	String tempYearList = "";
-    	for (String year : years) {
-			year = year.trim();
-			if (!year.isEmpty()) {
-				if (!tempYearList.isEmpty()) {
-					tempYearList += ",";
-				}
-				tempYearList += year;
-			}
-		}
-    		
-        this.allowablePolicyYears=tempYearList; 
-    }    
-    
-    /**
-     * Sets the simulation last year.
-     * @param lastYear Simulation last year
-     */
-    public void setSimulationLastYear(String lastYear) {
-        simulationLastYear = utils.convertStringToInt(lastYear);
-        return;
-    }
-    
-    /**
-     * Returns the simulation year increment.
-     * @return Simulation year increment
-     */
-    public int getSimulationYearIncrement() {
-        return simulationYearIncrement;
+        return subRegionListFilename;
     }
 
     /**
-     * Sets the simulation year increment.
-     * @param yearIncrement Simulation year increment
+     * Sets the filename for the subregion list.
+     *
+     * @param s The filename for the subregion list.
      */
-    public void setSimulationYearIncrement(String yearIncrement) {
-        simulationYearIncrement = utils.convertStringToInt(yearIncrement);
-        return;
+    public void setSubRegionsFilename(String s) {
+        subRegionListFilename = s;
     }
-    
+
+    /**
+     * Returns the filename for the region list.
+     *
+     * @return The filename for the region list.
+     */
+    public String getRegionListFilename() {
+        return regionListFilename;
+    }
+
+    /**
+     * Sets the filename for the region list.
+     *
+     * @param s The filename for the region list.
+     */
+    public void setRegionListFilename(String s) {
+        regionListFilename = s;
+    }
+
+    /**
+     * Returns the calibration year.
+     *
+     * @return The calibration year.
+     */
+    public Integer getCalibrationYear() {
+        return calibrationYear;
+    }
+
+    /**
+     * Sets the calibration year.
+     *
+     * @param s The calibration year as a string.
+     */
+    public void setCalibrationYear(String s) {
+        calibrationYear = utils.convertStringToInt(s.trim());
+    }
+
+    /**
+     * Returns the list of allowable policy years.
+     *
+     * @return A list of allowable policy years.
+     */
+    public List<Integer> getAllowablePolicyYears() {
+        return allowablePolicyYears;
+    }
+
+    /**
+     * Sets the list of allowable policy years.
+     *
+     * @param year_list A comma-separated list of years.
+     */
+    public void setAllowablePolicyYears(String year_list) {
+        String[] yearArray = year_list.split(",");
+        List<Integer> tempYearList = new ArrayList<>();
+        for (String year : yearArray) {
+            tempYearList.add(utils.convertStringToInt(year.trim()));
+        }
+        this.allowablePolicyYears = tempYearList;
+    }
+
     /**
      * Returns whether to use all available processors.
-     * @return True if using all available processors, false otherwise
+     *
+     * @return True if using all available processors, false otherwise.
      */
     public boolean getUseAllAvailableProcessors() {
         return useAllAvailableProcessors;
     }
-    
+
     /**
      * Sets whether to use all available processors.
-     * @param b True to use all available processors, false otherwise
+     *
+     * @param b True to use all available processors, false otherwise.
      */
     public void setUseAllAvailableProcessors(boolean b) {
-        useAllAvailableProcessors=b;
+        useAllAvailableProcessors = b;
     }
-    
+
     /**
      * Sets whether to use all available processors from a string.
-     * @param str "true" or "yes" to use all available processors, "false" otherwise
+     *
+     * @param str "true" or "yes" to use all available processors, "false" otherwise.
      */
     public void setUseAllAvailableProcessors(String str) {
-        boolean b=false;
-        if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
-        useAllAvailableProcessors=b;
+        boolean b = false;
+        if ((str.toLowerCase().equals("true")) || (str.toLowerCase().equals("yes"))) b = true;
+        useAllAvailableProcessors = b;
     }
-    
+
     /**
      * Returns whether to show the splash screen.
-     * @return True to show the splash screen, false otherwise
+     *
+     * @return True to show the splash screen, false otherwise.
      */
     public boolean getShowSplash() {
         return showSplash;
     }
-    
+
     /**
      * Sets whether to show the splash screen.
-     * @param b True to show the splash screen, false otherwise
+     *
+     * @param b True to show the splash screen, false otherwise.
      */
     public void setShowSplash(boolean b) {
-        showSplash=b;
+        showSplash = b;
     }
 
     /**
      * Sets whether to show the splash screen from a string.
-     * @param str "true" or "yes" to show the splash screen, "false" otherwise
+     *
+     * @param str "true" or "yes" to show the splash screen, "false" otherwise.
      */
     public void setShowSplash(String str) {
-        boolean b=false;
-        if ((str.toLowerCase().equals("true"))||(str.toLowerCase().equals("yes"))) b=true;
-        showSplash=b;
+        boolean b = false;
+        if ((str.toLowerCase().equals("true")) || (str.toLowerCase().equals("yes"))) b = true;
+        showSplash = b;
     }
 
     /**
      * Returns the debug region.
-     * @return Debug region
+     *
+     * @return The debug region.
      */
     public String getDebugRegion() {
         return debugRegion;
@@ -378,31 +364,35 @@ public class GLIMPSEVariables {
 
     /**
      * Sets the debug region.
-     * @param s Debug region
+     *
+     * @param s The debug region.
      */
     public void setDebugRegion(String s) {
         this.debugRegion = s;
     }
-    
+
     /**
      * Returns the start year for sharing.
-     * @return Start year for sharing
+     *
+     * @return The start year for sharing.
      */
     public String getStartYearForShare() {
         return startYearForShare;
     }
-    
+
     /**
      * Sets the start year for sharing.
-     * @param s Start year for sharing
+     *
+     * @param s The start year for sharing.
      */
     public void setStartYearForShare(String s) {
-        startYearForShare=s;
+        startYearForShare = s;
     }
-    
+
     /**
      * Returns the debug create flag.
-     * @return Debug create flag
+     *
+     * @return The debug create flag.
      */
     public String getDebugCreate() {
         return debugCreate;
@@ -410,20 +400,22 @@ public class GLIMPSEVariables {
 
     /**
      * Sets the debug create flag.
-     * @param s Debug create flag
+     *
+     * @param s The debug create flag.
      */
     public void setDebugCreate(String s) {
-        if (s.toLowerCase().equals("true")) { 
-            s="1";
-        } else if (s.toLowerCase().equals("false")) { 
-            s="0";
+        if (s.toLowerCase().equals("true")) {
+            s = "1";
+        } else if (s.toLowerCase().equals("false")) {
+            s = "0";
         }
         this.debugCreate = s;
     }
-    
+
     /**
      * Returns the debug rename flag.
-     * @return Debug rename flag
+     *
+     * @return The debug rename flag.
      */
     public String getDebugRename() {
         return debugRename;
@@ -431,16 +423,17 @@ public class GLIMPSEVariables {
 
     /**
      * Sets the debug rename flag.
-     * @param s Debug rename flag
+     *
+     * @param s The debug rename flag.
      */
     public void setDebugRename(String s) {
         this.debugRename = s;
     }
-    
-    
+
     /**
      * Returns the build information string.
-     * @return Build information
+     *
+     * @return The build information string.
      */
     public String getBuildInfo() {
         return buildInfo;
@@ -448,7 +441,8 @@ public class GLIMPSEVariables {
 
     /**
      * Sets the build information string.
-     * @param s Build information
+     *
+     * @param s The build information string.
      */
     public void setBuildInfo(String s) {
         this.buildInfo = s;
@@ -456,7 +450,8 @@ public class GLIMPSEVariables {
 
     /**
      * Returns whether GCAM USA mode is enabled.
-     * @return True if GCAM USA mode is enabled, false otherwise
+     *
+     * @return True if GCAM USA mode is enabled, false otherwise.
      */
     public boolean isGcamUSA() {
         return isGcamUSA;
@@ -464,7 +459,8 @@ public class GLIMPSEVariables {
 
     /**
      * Sets whether GCAM USA mode is enabled.
-     * @param b True to enable GCAM USA mode, false otherwise
+     *
+     * @param b True to enable GCAM USA mode, false otherwise.
      */
     public void setIsGcamUSA(boolean b) {
         this.isGcamUSA = b;
@@ -1599,7 +1595,16 @@ public class GLIMPSEVariables {
         case "startyearforshare":
             setStartYearForShare(val);
             break;    
-            }
+        case "allYears":
+            setStartYearForShare(val);
+            break;   
+        case "allowablePolicyYears":
+            setStartYearForShare(val);
+            break;   
+        case "calibrationYear":
+            setStartYearForShare(val);
+            break;   
+        }
 
         if (param.indexOf("dir") > 0) {
             testDirExists(val);

@@ -50,6 +50,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 /**
  * TabXMLList provides the user interface and logic for managing lists of XML files
@@ -156,9 +157,8 @@ public class TabXMLList extends PolicyTab {
      * @param stageX The JavaFX stage
      */
     private void setupButtonActions(Stage stageX) {
-        buttonClear.setOnAction(e -> paneForXMLList.clearTable());
-
-        buttonAdd.setOnAction(e -> {
+        buttonClear.setOnAction(e -> Platform.runLater(() -> paneForXMLList.clearTable()));
+        buttonAdd.setOnAction(e -> Platform.runLater(() -> {
             File initialDir = new File(vars.getXmlLibrary());
             FileChooser fileChooser = new FileChooser();
             try {
@@ -189,11 +189,10 @@ public class TabXMLList extends PolicyTab {
                     }
                 }
             }
-        });
-
-        buttonDelete.setOnAction(e -> paneForXMLList.deleteItemsFromTable());
-        buttonMoveUp.setOnAction(e -> paneForXMLList.moveItemUpInTable());
-        buttonMoveDown.setOnAction(e -> paneForXMLList.moveItemDownInTable());
+        }));
+        buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForXMLList.deleteItemsFromTable()));
+        buttonMoveUp.setOnAction(e -> Platform.runLater(() -> paneForXMLList.moveItemUpInTable()));
+        buttonMoveDown.setOnAction(e -> Platform.runLater(() -> paneForXMLList.moveItemDownInTable()));
     }
 
     /**
@@ -244,14 +243,15 @@ public class TabXMLList extends PolicyTab {
     @Override
     public void saveScenarioComponent() {
         filenameSuggestion = XML_LIST_FILENAME;
-        fileContent = XML_LIST_TYPE + vars.getEol();
+        StringBuilder sb = new StringBuilder(XML_LIST_TYPE).append(vars.getEol());
         ArrayList<String> fileList = paneForXMLList.getValues();
         if (fileList != null) {
             for (String file : fileList) {
                 if (file != null) {
-                    fileContent += file + vars.getEol();
+                    sb.append(file).append(vars.getEol());
                 }
             }
         }
+        fileContent = sb.toString();
     }
 }

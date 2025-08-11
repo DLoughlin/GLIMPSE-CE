@@ -320,37 +320,39 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      * If auto-naming is enabled, updates the text fields accordingly.
      */
     private void setPolicyAndMarketNames() {
-        if (checkBoxUseAutoNames.isSelected()) {
-            String policyType = POLICY_TYPE;
-            String technology = TECHNOLOGY;
-            String sector = "--";
-            String state = "--";
-            String treatment = TREATMENT;
-            try {
-                String s = comboBoxSubsector.getValue();
-                if (s != null && !s.equals(SELECT_ONE)) {
-                    s = s.replace(" ", "_");
-                    s = utils.capitalizeOnlyFirstLetterOfString(s);
-                    sector = s;
-                }
-                String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
-                if (listOfSelectedLeaves.length > 0) {
-                    listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-                    String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
-                    if (stateStr.length() < 9) {
-                        state = stateStr;
-                    } else {
-                        state = REG;
+        Platform.runLater(() -> {
+            if (checkBoxUseAutoNames.isSelected()) {
+                String policyType = POLICY_TYPE;
+                String technology = TECHNOLOGY;
+                String sector = "--";
+                String state = "--";
+                String treatment = TREATMENT;
+                try {
+                    String s = comboBoxSubsector.getValue();
+                    if (s != null && !s.equals(SELECT_ONE)) {
+                        s = s.replace(" ", "_");
+                        s = utils.capitalizeOnlyFirstLetterOfString(s);
+                        sector = s;
                     }
+                    String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+                    if (listOfSelectedLeaves.length > 0) {
+                        listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+                        String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
+                        if (stateStr.length() < 9) {
+                            state = stateStr;
+                        } else {
+                            state = REG;
+                        }
+                    }
+                    String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
+                    name = name.replaceAll(" ", "_").replaceAll("--", "-").replaceAll("_-_", "-");
+                    textFieldMarketName.setText(name + MARKET_SUFFIX);
+                    textFieldPolicyName.setText(name);
+                } catch (Exception e) {
+                    System.out.println("Cannot auto-name market. Continuing.");
                 }
-                String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
-                name = name.replaceAll(" ", "_").replaceAll("--", "-").replaceAll("_-_", "-");
-                textFieldMarketName.setText(name + MARKET_SUFFIX);
-                textFieldPolicyName.setText(name);
-            } catch (Exception e) {
-                System.out.println("Cannot auto-name market. Continuing.");
             }
-        }
+        });
     }
 
     /**
@@ -373,7 +375,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      */
     @Override
     public void run() {
-        saveScenarioComponent();
+        Platform.runLater(() -> saveScenarioComponent());
     }
 
     /**
@@ -391,64 +393,66 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      */
     private void saveScenarioComponent(TreeView<String> tree) {
         if (!qaInputs()) {
-        	Thread.currentThread().destroy();
+            Thread.currentThread().destroy();
             return;
         }
+
         String ID = utils.getUniqueString();
         String policyName = textFieldPolicyName.getText() + ID;
         String marketName = textFieldMarketName.getText() + ID;
         filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
         fileContent = getMetaDataContent(tree, marketName, policyName);
-        StringBuilder contentP1 = new StringBuilder();
-        StringBuilder contentP2 = new StringBuilder();
+
+        StringBuilder contentP1 = new StringBuilder(INPUT_TABLE).append(vars.getEol())
+            .append(VARIABLE_ID).append(vars.getEol())
+            .append(HEADER_PART1).append(vars.getEol()).append(vars.getEol())
+            .append("region,sector,subsector,tech,year,input,coefficient,policy,output-ratio,pMultiplier").append(vars.getEol());
+
+        StringBuilder contentP2 = new StringBuilder(INPUT_TABLE).append(vars.getEol())
+            .append(VARIABLE_ID).append(vars.getEol())
+            .append(HEADER_PART2).append(vars.getEol()).append(vars.getEol())
+            .append("region,policy,market,type,year,constrained").append(vars.getEol());
+
         String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedRegions(tree));
         ArrayList<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();
-        String[] yearList = new String[dataArrayList.size()];
-        String[] valueList = new String[dataArrayList.size()];
-        double[] valuefList = new double[dataArrayList.size()];
-        // Headers
-        contentP1.append(INPUT_TABLE).append(vars.getEol());
-        contentP1.append(VARIABLE_ID).append(vars.getEol());
-        contentP1.append(HEADER_PART1).append(vars.getEol()).append(vars.getEol());
-        contentP1.append("region,sector,subsector,tech,year,input,coefficient,policy,output-ratio,pMultiplier").append(vars.getEol());
-        contentP2.append(INPUT_TABLE).append(vars.getEol());
-        contentP2.append(VARIABLE_ID).append(vars.getEol());
-        contentP2.append(HEADER_PART2).append(vars.getEol()).append(vars.getEol());
-        contentP2.append("region,policy,market,type,year,constrained").append(vars.getEol());
+
         for (String region : listOfSelectedLeaves) {
             String subsector = comboBoxSubsector.getValue();
-            String sector = (subsector.equals("Light Truck") || subsector.equals("Medium Truck") || subsector.equals("Heavy Truck")) ? "trn_freight_road" : "trn_pass_road_LDV_4W";
-            for (int i = 0; i < dataArrayList.size(); i++) {
-                String str = dataArrayList.get(i).replaceAll(" ", "").trim();
-                String[] split = utils.splitString(str, ",");
-                yearList[i] = split[0];
-                valueList[i] = split[1];
-                valuefList[i] = Double.parseDouble(valueList[i]);
-                String yr = yearList[i];
-                double val = valuefList[i];
+            String sector = (subsector.equals("Light Truck") || subsector.equals("Medium Truck") || subsector.equals("Heavy Truck"))
+                ? "trn_freight_road" : "trn_pass_road_LDV_4W";
+
+            for (String data : dataArrayList) {
+                String[] split = utils.splitString(data.replaceAll(" ", "").trim(), ",");
+                String year = split[0];
+                double value = Double.parseDouble(split[1]);
+
                 ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
                 for (String tech : techList) {
-                    String loadStr = utils.getTrnVehInfo("load", region, sector, subsector, tech, yr);
+                    String loadStr = utils.getTrnVehInfo("load", region, sector, subsector, tech, year);
                     double load = (loadStr != null) ? Double.parseDouble(loadStr) : 0.0;
-                    String coefStr = utils.getTrnVehInfo("coefficient", region, sector, subsector, tech, yr);
-                    if (coefStr == null) {
-                        coefStr = "5000"; // fallback for NG vehicles
-                        load = 0.0;
-                    }
-                    double coef = Double.parseDouble(coefStr);
-                    String io = yr + "_" + policyName;
+
+                    String coefStr = utils.getTrnVehInfo("coefficient", region, sector, subsector, tech, year);
+                    double coef = (coefStr != null) ? Double.parseDouble(coefStr) : 5000.0; // fallback for NG vehicles
+
+                    String io = year + "_" + policyName;
                     String iom = io + "Mkt";
-                    String outputRatio = Double.toString((float) (1.0 / val / 1.61 * 131.76 / 1e6));
-                    String pMultiplier = Double.toString((float) (load * 1e9));
-                    contentP1.append(region).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(yr).append(",").append(io).append(",").append(coef).append(",").append(io).append(",").append(outputRatio).append(",").append(pMultiplier).append(vars.getEol());
+                    String outputRatio = Double.toString((1.0 / value / 1.61 * 131.76 / 1e6));
+                    String pMultiplier = Double.toString(load * 1e9);
+
+                    contentP1.append(region).append(",").append(sector).append(",").append(subsector).append(",")
+                        .append(tech).append(",").append(year).append(",").append(io).append(",")
+                        .append(coef).append(",").append(io).append(",").append(outputRatio).append(",")
+                        .append(pMultiplier).append(vars.getEol());
+
                     if (techList.indexOf(tech) == 0) {
-                        contentP2.append(region).append(",").append(io).append(",").append(iom).append(",RES,").append(yr).append(",1").append(vars.getEol());
+                        contentP2.append(region).append(",").append(io).append(",").append(iom).append(",RES,")
+                            .append(year).append(",1").append(vars.getEol());
                     }
                 }
             }
         }
-        fileContent += contentP1.toString() + vars.getEol();
-        fileContent += contentP2.toString();
+
+        fileContent += contentP1.toString() + vars.getEol() + contentP2.toString();
         System.out.println("Done");
     }
 
@@ -549,6 +553,23 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     }
 
     /**
+     * Helper method to validate table data years against allowable policy years.
+     * @return true if at least one year matches allowable years, false otherwise
+     */
+    private boolean validateTableDataYears() {
+        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
+        if (data == null) return false;
+        for (DataPoint dp : data) {
+            Integer year = Integer.parseInt(dp.getYear().trim());
+            if (listOfAllowableYears.contains(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
      * Performs QA checks on the current UI state to ensure all required inputs are valid.
      * Displays warnings or error messages as needed.
      *
@@ -567,16 +588,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 message.append("Data table must have at least one entry").append(vars.getEol());
                 errorCount++;
             } else {
-                boolean match = false;
-                String listOfAllowableYears = vars.getAllowablePolicyYears();
-                ObservableList<DataPoint> data = paneForComponentDetails.table.getItems();
-                for (DataPoint dp : data) {
-                    String year = dp.getYear().trim();
-                    if (listOfAllowableYears.contains(year)) match = true;
-                }
+                boolean match = validateTableDataYears();
                 if (!match) {
-                    message.append("Years specified in table must match allowable policy years (")
-                            .append(listOfAllowableYears).append(")").append(vars.getEol());
+                    message.append("Years specified in table must match allowable policy years").append(vars.getEol());
                     errorCount++;
                 }
             }

@@ -94,7 +94,7 @@ public class NewDBWidget {
 
 		grid.add(new Separator(Orientation.HORIZONTAL), 0, 3, 3, 1);
 
-		Button createButton = utils.createButton("Create", styles.getBigButtonWidth(), "Creates new DB or opens existing");
+		Button createButton = utils.createButton("Create", styles.getBigButtonWidth(), "Creates new DB or opens existing",null);
 		Button cancelButton = utils.createButton("Cancel", styles.getBigButtonWidth(), null);
 
 		cancelButton.setOnAction(e -> {

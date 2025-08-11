@@ -59,6 +59,8 @@ import org.controlsfx.control.StatusBar;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -149,6 +151,7 @@ public class GLIMPSEUtils {
 
 	/**
      * Returns the singleton instance of GLIMPSEUtils.
+     * @return GLIMPSEUtils instance
      */
 	public static GLIMPSEUtils getInstance() {
 		return instance;
@@ -338,7 +341,8 @@ public class GLIMPSEUtils {
      * @param s String to convert
      * @return Integer value
      */
-	public int convertStringToInt(String s) {
+    public int convertStringToInt(String s) {
+        s=s.replaceAll("\"", "").replaceAll("'", ""); // Remove quotations
         if (s == null) return 0;
         int rtn_val = 0;
         try {
@@ -354,8 +358,8 @@ public class GLIMPSEUtils {
      * @param period Period index
      * @return Year as string
      */
-	public String getYearForPeriod(int period) {
-		String rtn_str = "";
+    public String getYearForPeriod(int period) {
+        String rtn_str = "";
 
 		if (period == -1) {
 			rtn_str = "2100";
@@ -376,7 +380,7 @@ public class GLIMPSEUtils {
      * @param year Year as string
      * @return Period index as string
      */
-	public String getPeriodForYear(String year) {
+    public String getPeriodForYear(String year) {
         if (year == null) return "";
         String rtn_str = "";
         double year_d = 0;
@@ -397,18 +401,18 @@ public class GLIMPSEUtils {
      */
 	public String getRidOfTrailingCommasInString(String s) {
         if (s == null) return null;
-		while (s.endsWith(",")) {
-			s = s.substring(0, s.length() - 1);
-		}
-		return s;
-	}
+        while (s.endsWith(",")) {
+            s = s.substring(0, s.length() - 1);
+        }
+        return s;
+    }
 
 	/**
      * Removes trailing commas from each string in an array.
      * @param s Array of strings
      * @return Array with trailing commas removed
      */
-	public String[] getRidOfTrailingCommasInStringArray(String[] s) {
+    public String[] getRidOfTrailingCommasInStringArray(String[] s) {
         if (s == null) return null;
         int i = 0;
         for (String str : s) {
@@ -421,10 +425,10 @@ public class GLIMPSEUtils {
      * Clears the text in a TextArea.
      * @param ta TextArea to clear
      */
-	public void clearTextArea(TextArea ta) {
+    public void clearTextArea(TextArea ta) {
         if (ta == null) return;
-		ta.setText(null);
-	}
+        ta.setText(null);
+    }
 
 	/**
      * Capitalizes only the first letter of a string.
@@ -836,14 +840,18 @@ public class GLIMPSEUtils {
     }
 
     /**
-     * Creates a JavaFX Button with the specified text, width, and tooltip.
+     * Creates a JavaFX Button with the specified text, width, and event handler.
      * @param text Button text
-     * @param wid Button width
-     * @param tt Tooltip text
+     * @param width Button width
+     * @param handler Event handler for button action
      * @return Button instance
      */
-    public Button createButton(String text, int wid, String tt) {
-        return createButtonInternal(text, wid, tt, null);
+    public Button createButton(String text, int width, EventHandler<ActionEvent> handler) {
+        Button button = createButtonInternal(text, width, null, null);
+        if (handler != null) {
+            button.setOnAction(handler);
+        }
+        return button;
     }
 
 	public Button resizeButtonText(Button button) {
@@ -1077,11 +1085,12 @@ public class GLIMPSEUtils {
 		ArrayList<TreeItem<String>> leaves = new ArrayList<>();
 		ArrayList<CheckBoxTreeItem<String>> selectedLeaves = new ArrayList<>();
 		getAllChildren(rootNode, leaves);
-		CheckBoxTreeItem<String> temp;
 		for (TreeItem<String> leaf : leaves) {
-			temp = (CheckBoxTreeItem<String>) leaf;
-			if (temp.isSelected()) {
-				selectedLeaves.add(temp);
+			if (leaf instanceof CheckBoxTreeItem) {
+				CheckBoxTreeItem<String> temp = (CheckBoxTreeItem<String>) leaf;
+				if (temp.isSelected()) {
+					selectedLeaves.add(temp);
+				}
 			}
 		}
 		return selectedLeaves;
@@ -1248,77 +1257,56 @@ public class GLIMPSEUtils {
 	}
 
 	public void printArrayListToStdout(ArrayList<String> arrayListArg) {
+		if (arrayListArg == null) return;
 		for (String str : arrayListArg) {
-			String out = "i:" + str;
-			String[] test_array = out.split(":");
-			System.out.println(out + " - " + test_array.length);
+			System.out.println("i: " + str + " - " + (str != null ? str.split(":").length : 0));
 		}
 	}
 
 	public void displayArrayList(ArrayList<String> arrayListArg, String title) {
-		Platform.runLater(new Runnable() {
+        Platform.runLater(() -> displayArrayList(arrayListArg, title, false));
+    }
 
-			@Override
-			public void run() {
-				displayArrayList(arrayListArg, title, false);
-			}
-		});
-	}
-
-	public void displayArrayList(ArrayList<String> arrayListArg, String title, boolean doWrap) {
+    public void displayArrayList(ArrayList<String> arrayListArg, String title, boolean doWrap) {
         if (styles == null) return;
-        BorderPane border = new BorderPane();
-
-		if (title == null)
-			title = LABEL_DISPLAY;
-
-		Stage stage = new Stage();
-		stage.setTitle(title);
-		stage.setWidth(900);
-		stage.setHeight(800);
-
-		stage.setResizable(true);
-
-		TextArea textArea = new TextArea();
-		textArea.setEditable(false);
-		textArea.setPrefSize(785, 775);
-		textArea.setWrapText(doWrap);
-
-		Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
-
-		closeButton.setOnAction(e -> {
-			stage.close();
-		});
-
-		String text = "";
-
-		ArrayList<String> options = arrayListArg;
-
-		if (options != null) {
-			for (int i = 0; i < options.size(); i++) {
-				String str = options.get(i);
-				if (str.indexOf(vars.getEol()) < 0)
-					// str += "\r\n";
-					str += vars.getEol();
-				text += str;
-			}
-			textArea.setText(text);
-
-			HBox buttonBox = new HBox();
-			buttonBox.setPadding(new Insets(4, 4, 4, 4));
-			buttonBox.setSpacing(5);
-			buttonBox.setAlignment(Pos.CENTER);
-			buttonBox.getChildren().addAll(closeButton);
-
-			border.setCenter(textArea);
-			border.setBottom(buttonBox);
-
-			Scene scene = new Scene(border);
-
-			stage.setScene(scene);
-			stage.show();
-		}
-	}
+        final String finalTitle = title;
+        Runnable displayTask = () -> {
+            BorderPane border = new BorderPane();
+            String usedTitle = finalTitle == null ? LABEL_DISPLAY : finalTitle;
+            Stage stage = new Stage();
+            stage.setTitle(usedTitle);
+            stage.setWidth(900);
+            stage.setHeight(800);
+            stage.setResizable(true);
+            TextArea textArea = new TextArea();
+            textArea.setEditable(false);
+            textArea.setPrefSize(785, 775);
+            textArea.setWrapText(doWrap);
+            Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
+            closeButton.setOnAction(e -> stage.close());
+            StringBuilder text = new StringBuilder();
+            if (arrayListArg != null) {
+                for (String str : arrayListArg) {
+                    if (str.indexOf(vars.getEol()) < 0)
+                        text.append(str).append(vars.getEol());
+                    else
+                        text.append(str);
+                }
+                textArea.setText(text.toString());
+                HBox buttonBox = new HBox();
+                buttonBox.setPadding(new Insets(4, 4, 4, 4));
+                buttonBox.setSpacing(5);
+                buttonBox.setAlignment(Pos.CENTER);
+                buttonBox.getChildren().addAll(closeButton);
+                border.setCenter(textArea);
+                border.setBottom(buttonBox);
+                Scene scene = new Scene(border);
+                stage.setScene(scene);
+                stage.show();
+            }
+        };
+        displayTask.run();
+    }
 
 	// ====================== Some table code for generating a popup to show CSV
 	// tables ========================
@@ -1341,67 +1329,64 @@ public class GLIMPSEUtils {
 
 	public void showPopupTableOfCSVData(String title, ArrayList<String> csvData, int wd, int ht) {
         if (styles == null) return;
-        if (title == null)
-			title = LABEL_DISPLAY;
+        final String finalTitle = title;
+        Runnable popupTask = () -> {
+            String usedTitle = finalTitle == null ? LABEL_DISPLAY : finalTitle;
+            Stage stage = new Stage();
+            stage.setTitle(usedTitle);
+            stage.setWidth(wd);
+            stage.setHeight(ht);
+            BorderPane border = new BorderPane();
+            stage.setResizable(true);
 
-		Stage stage = new Stage();
-		stage.setTitle(title);
-		stage.setWidth(wd);
-		stage.setHeight(ht);
-		BorderPane border = new BorderPane();
-		stage.setResizable(true);
+            Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
 
-		Button closeButton = createButton(LABEL_CLOSE, styles.getBigButtonWidth(), null);
+            closeButton.setOnAction(e -> {
+                stage.close();
+            });
 
-		closeButton.setOnAction(e -> {
-			stage.close();
-		});
+			TableView<List<Object>> table = new TableView<>();
+			table.setEditable(false);
+			table.setPrefSize(wd - 15, ht - 25);
+			TableUtils.installCopyPasteHandler(table);
+			table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-//		VBox root = new VBox();
-//		root.setPadding(new Insets(4, 4, 4, 4));
-//		root.setSpacing(5);
-//		root.setAlignment(Pos.TOP_LEFT);
+			String[][] rawData = getDataMatrixFromArrayList(csvData);
+			int numCols = computeMaxRowLength(rawData);
 
-		TableView<List<Object>> table = new TableView<>();
-		table.setEditable(false);
-		table.setPrefSize(wd - 15, ht - 25);
-		TableUtils.installCopyPasteHandler(table);
-		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+			Class<?>[] types = new Class<?>[numCols];
 
-		String[][] rawData = getDataMatrixFromArrayList(csvData);
-		int numCols = computeMaxRowLength(rawData);
-
-		Class<?>[] types = new Class<?>[numCols];
-
-		for (int columnIndex = 0; columnIndex < numCols; columnIndex++) {
-			String[] column = extractColumn(rawData, columnIndex);
-			types[columnIndex] = deduceColumnType(column);
-			table.getColumns().add(createColumn(types[columnIndex], columnIndex, rawData[0][columnIndex]));
-		}
-		;
-		for (int rowIndex = 1; rowIndex < rawData.length; rowIndex++) {
-			List<Object> row = new ArrayList<>();
 			for (int columnIndex = 0; columnIndex < numCols; columnIndex++) {
-				row.add(getDataAsType(rawData[rowIndex], types[columnIndex], columnIndex));
+				String[] column = extractColumn(rawData, columnIndex);
+				types[columnIndex] = deduceColumnType(column);
+				table.getColumns().add(createColumn(types[columnIndex], columnIndex, rawData[0][columnIndex]));
 			}
-			table.getItems().add(row);
-		}
+			;
+			for (int rowIndex = 1; rowIndex < rawData.length; rowIndex++) {
+				List<Object> row = new ArrayList<>();
+				for (int columnIndex = 0; columnIndex < numCols; columnIndex++) {
+					row.add(getDataAsType(rawData[rowIndex], types[columnIndex], columnIndex));
+				}
+				table.getItems().add(row);
+			}
 
-		HBox buttonBox = new HBox();
-		buttonBox.setPadding(new Insets(4, 4, 4, 4));
-		buttonBox.setSpacing(5);
-		buttonBox.setAlignment(Pos.CENTER);
-		buttonBox.getChildren().addAll(closeButton);
+			HBox buttonBox = new HBox();
+			buttonBox.setPadding(new Insets(4, 4, 4, 4));
+			buttonBox.setSpacing(5);
+			buttonBox.setAlignment(Pos.CENTER);
+			buttonBox.getChildren().addAll(closeButton);
 
-		// root.getChildren().addAll(table, buttonBox);
-		border.setCenter(table);
-		border.setBottom(buttonBox);
+			// root.getChildren().addAll(table, buttonBox);
+			border.setCenter(table);
+			border.setBottom(buttonBox);
 
-		Scene scene = new Scene(border);
-		// scene.setRoot(root);
+			Scene scene = new Scene(border);
+			// scene.setRoot(root);
 
-		stage.setScene(scene);
-		stage.show();
+			stage.setScene(scene);
+			stage.show();
+        };
+        popupTask.run();
 	}
 
 	private Object getDataAsType(String[] row, Class<?> type, int columnIndex) {
@@ -2469,4 +2454,42 @@ public class GLIMPSEUtils {
 	     return b;
 	 }
 	
+	/**
+     * Helper method to check if a string is null or empty.
+     * @param s String to check
+     * @return true if null or empty, false otherwise
+     */
+    private boolean isNullOrEmpty(String s) {
+        return s == null || s.trim().isEmpty();
+    }
+
+    /**
+     * Helper method to safely parse an integer from a string.
+     * @param s String to parse
+     * @param defaultValue Value to return if parsing fails
+     * @return Parsed integer or defaultValue
+     */
+    private int safeParseInt(String s, int defaultValue) {
+        if (isNullOrEmpty(s)) return defaultValue;
+        try {
+            return Integer.parseInt(s.trim());
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Helper method to safely parse a double from a string.
+     * @param s String to parse
+     * @param defaultValue Value to return if parsing fails
+     * @return Parsed double or defaultValue
+     */
+    private double safeParseDouble(String s, double defaultValue) {
+        if (isNullOrEmpty(s)) return defaultValue;
+        try {
+            return Double.parseDouble(s.trim());
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
 }

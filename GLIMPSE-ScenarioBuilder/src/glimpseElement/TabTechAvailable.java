@@ -39,12 +39,14 @@ package glimpseElement;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import glimpseBuilder.TechBound;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -148,18 +150,18 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     private ObservableList<TechBound> tableList;
 
     // === Filter and Control UI ===
-    private final Label filterByCategoryLabel = utils.createLabel(LABEL_FILTER_BY_CATEGORY);
-    private final ComboBox<String> comboBoxCategoryFilter = utils.createComboBoxString();
-    private final Label filterByTextLabel = utils.createLabel(LABEL_TEXT);
-    private final TextField filterTextField = utils.createTextField();
-    private final Label firstYrLabel = utils.createLabel(LABEL_FIRST_YEAR);
-    private final TextField firstYrTextField = utils.createTextField();
-    private final Label lastYrLabel = utils.createLabel(LABEL_LAST_YEAR);
-    private final TextField lastYrTextField = utils.createTextField();
-    private final Button setFirstLastYrsButton = utils.createButton(BUTTON_SET_YEARS, styles.getBigButtonWidth(), "Set first, last years for visible technologies");
-    private final Label selectLabel = utils.createLabel(LABEL_SELECT);
-    private final Button selectAllButton = utils.createButton(BUTTON_SELECT_ALL, styles.getBigButtonWidth(), "Selects All? for visible technologies");
-    private final Button selectRangeButton = utils.createButton(BUTTON_SELECT_RANGE, styles.getBigButtonWidth(), "Selects Range? for visible technologies");
+    private final Label filterByCategoryLabel = createLabel(LABEL_FILTER_BY_CATEGORY);
+    private final ComboBox<String> comboBoxCategoryFilter = createComboBoxString();
+    private final Label filterByTextLabel = createLabel(LABEL_TEXT);
+    private final TextField filterTextField = createTextField();
+    private final Label firstYrLabel = createLabel(LABEL_FIRST_YEAR);
+    private final TextField firstYrTextField = createTextField();
+    private final Label lastYrLabel = createLabel(LABEL_LAST_YEAR);
+    private final TextField lastYrTextField = createTextField();
+    private final Button setFirstLastYrsButton = createButton(BUTTON_SET_YEARS, styles.getBigButtonWidth(), null);
+    private final Label selectLabel = createLabel(LABEL_SELECT);
+    private final Button selectAllButton = createButton(BUTTON_SELECT_ALL, styles.getBigButtonWidth(), null);
+    private final Button selectRangeButton = createButton(BUTTON_SELECT_RANGE, styles.getBigButtonWidth(), null);
 
     /**
      * Constructor for TabTechAvailable. Sets up the UI, event handlers, and initializes the technology bounds table.
@@ -182,9 +184,9 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
         tableTechBounds.getColumns().addAll(isBoundAll, isBoundRange, firstYearCol, lastYearCol, techNameCol);
 
-        setFirstLastYrsButton.setOnAction(e -> updateFirstAndLastYears(firstYrTextField.getText(), lastYrTextField.getText()));
-        selectAllButton.setOnAction(e -> selectAllVisibleItems());
-        selectRangeButton.setOnAction(e -> selectRangeVisibleItems());
+        setOnAction(setFirstLastYrsButton, e -> updateFirstAndLastYears(firstYrTextField.getText(), lastYrTextField.getText()));
+        setOnAction(selectAllButton, e -> selectAllVisibleItems());
+        setOnAction(selectRangeButton, e -> selectRangeVisibleItems());
 
         setupBooleanColumn(isBoundAll, true);
         setupBooleanColumn(isBoundRange, false);
@@ -344,44 +346,50 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      * @param lastYr The last year
      */
     private void updateFirstAndLastYears(String firstYr, String lastYr) {
-        FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
-        for (TechBound tb : visibleComponents) {
-            tb.setFirstYear(firstYr);
-            tb.setLastYear(lastYr);
-        }
-        String text = filterTextField.getText();
-        filterTextField.setText("Resetting...");
-        filterTextField.setText(text);
+        Platform.runLater(() -> {
+            FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
+            for (TechBound tb : visibleComponents) {
+                tb.setFirstYear(firstYr);
+                tb.setLastYear(lastYr);
+            }
+            String text = filterTextField.getText();
+            filterTextField.setText("Resetting...");
+            filterTextField.setText(text);
+        });
     }
 
     /**
      * Selects all visible items in the table.
      */
     private void selectAllVisibleItems() {
-        FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
-        boolean b = true;
-        for (TechBound tb : visibleComponents) {
-            if (tb.isBoundAll()) b = false;
-            tb.setIsBoundAll(b);
-        }
-        String text = filterTextField.getText();
-        filterTextField.setText("Resetting...");
-        filterTextField.setText(text);
+        Platform.runLater(() -> {
+            FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
+            boolean b = true;
+            for (TechBound tb : visibleComponents) {
+                if (tb.isBoundAll()) b = false;
+                tb.setIsBoundAll(b);
+            }
+            String text = filterTextField.getText();
+            filterTextField.setText("Resetting...");
+            filterTextField.setText(text);
+        });
     }
 
     /**
      * Selects a range of visible items in the table.
      */
     private void selectRangeVisibleItems() {
-        FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
-        boolean b = true;
-        for (TechBound tb : visibleComponents) {
-            if (tb.isBoundRange()) b = false;
-            tb.setIsBoundRange(b);
-        }
-        String text = filterTextField.getText();
-        filterTextField.setText("Resetting...");
-        filterTextField.setText(text);
+        Platform.runLater(() -> {
+            FilteredList<TechBound> visibleComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
+            boolean b = true;
+            for (TechBound tb : visibleComponents) {
+                if (tb.isBoundRange()) b = false;
+                tb.setIsBoundRange(b);
+            }
+            String text = filterTextField.getText();
+            filterTextField.setText("Resetting...");
+            filterTextField.setText(text);
+        });
     }
 
     /**
@@ -428,7 +436,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      */
     @Override
     public void run() {
-        saveScenarioComponent();
+        Platform.runLater(this::saveScenarioComponent);
     }
 
     /**
@@ -448,156 +456,76 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
             }
             filenameSuggestion += region;
             filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "");
-            fileContent = getMetaDataContent(tree);
-            String fileContent1 = "";
-            String fileContent2 = "";
+
+            StringBuilder fileContentBuilder = new StringBuilder();
+            fileContentBuilder.append(getMetaDataContent(tree));
+
+            StringBuilder fileContent1Builder = new StringBuilder();
+            StringBuilder fileContent2Builder = new StringBuilder();
+
             String header1 = "GLIMPSETechAvailBnd";
             String header2 = "GLIMPSETechAvailBnd-Nest";
+
+            fileContent1Builder.append("INPUT_TABLE").append(vars.getEol())
+                .append("Variable ID").append(vars.getEol())
+                .append(header1).append(vars.getEol()).append(vars.getEol())
+                .append("region,sector,subsector,tech,init-year,final-year").append(vars.getEol());
+
+            fileContent2Builder.append("INPUT_TABLE").append(vars.getEol())
+                .append("Variable ID").append(vars.getEol())
+                .append(header2).append(vars.getEol()).append(vars.getEol())
+                .append("region,sector,nesting-subsector,subsector,tech,init-year,final-year").append(vars.getEol());
+
             int numNonNest = 0;
             int numNest = 0;
-            fileContent1 += "INPUT_TABLE" + vars.getEol();
-            fileContent1 += "Variable ID" + vars.getEol();
-            fileContent1 += header1 + vars.getEol() + vars.getEol();
-            fileContent1 += "region,sector,subsector,tech,init-year,final-year" + vars.getEol();
-            fileContent2 += "INPUT_TABLE" + vars.getEol();
-            fileContent2 += "Variable ID" + vars.getEol();
-            fileContent2 += header2 + vars.getEol() + vars.getEol();
-            fileContent2 += "region,sector,nesting-subsector,subsector,tech,init-year,final-year" + vars.getEol();
-            boolean isNested = false;
+
             for (TechBound techBound : tableList) {
                 if (techBound.isBoundAll() || techBound.isBoundRange()) {
                     String tblName = techBound.getTechName();
                     String name = getMatchingLineFromTechList(tblName);
-                    isNested = name.contains("=>");
+                    boolean isNested = name.contains("=>");
+
                     String firstYear = techBound.getFirstYear();
                     String lastYear = techBound.getLastYear();
                     String[] info = name.split(":");
                     name = info[0].trim() + "," + info[1].trim() + "," + info[2].trim();
+
                     if (techBound.isBoundAll()) {
                         firstYear = "3000";
                         lastYear = "3005";
                     }
-                    if (isNested) name = name.replace("=>", ",").trim();
+
+                    if (isNested) {
+                        name = name.replace("=>", ",").trim();
+                    }
+
                     for (String state : listOfSelectedLeaves) {
                         String line = state + "," + name + "," + firstYear + "," + lastYear + vars.getEol();
                         if (!isNested) {
                             numNonNest++;
-                            fileContent1 += line;
+                            fileContent1Builder.append(line);
                         } else {
                             numNest++;
-                            fileContent2 += line;
+                            fileContent2Builder.append(line);
                         }
                     }
                 }
             }
-            if ((numNonNest > 0) && (numNest > 0)) fileContent2 = vars.getEol() + fileContent2;
-            if (numNonNest > 0) fileContent += fileContent1;
-            if (numNest > 0) fileContent += fileContent2;
-        }
-    }
 
-    /**
-     * Saves shareweight scenario data to file, handling both nested and non-nested technologies.
-     */
-    public void saveScenarioComponentShareweight() {
-        if (!qaInputs()) {
-        	Thread.currentThread().destroy();
-            return;
-        }
-        TreeView<String> tree = this.paneForCountryStateTree.getTree();
-        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
-        listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-        String states = utils.returnAppendedString(listOfSelectedLeaves);
-        filenameSuggestion = "TechAvailBnd";
-        String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp";
-        File test = new File(tempDirName);
-        if (!test.exists()) test.mkdir();
-        String tempFilename0 = "temp_policy_file0.txt";
-        String tempFilename1 = "temp_policy_file1.txt";
-        String tempFilename2 = "temp_policy_file2.txt";
-        BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
-        BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
-        BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
-        fileContent = "use temp file";
-        files.writeToBufferedFile(bw0, getMetaDataContent(tree));
-        String region = states.replace(",", "");
-        if (region.length() > 6) {
-            region = "Reg";
-        }
-        filenameSuggestion += region;
-        filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "_");
-        String fileContent1 = "";
-        String fileContent2 = "";
-        String header1 = "GLIMPSEStubTechShrwt";
-        String header2 = "GLIMPSEStubTechShrwt-Nest";
-        int numNonNest = 0;
-        int numNest = 0;
-        fileContent1 += "INPUT_TABLE" + vars.getEol();
-        fileContent1 += "Variable ID" + vars.getEol();
-        fileContent1 += header1 + vars.getEol() + vars.getEol();
-        fileContent1 += "region,sector,subsector,tech,year,value" + vars.getEol();
-        fileContent2 += "INPUT_TABLE" + vars.getEol();
-        fileContent2 += "Variable ID" + vars.getEol();
-        fileContent2 += header2 + vars.getEol() + vars.getEol();
-        fileContent2 += "region,sector,nesting-subsector,subsector,tech,year,value" + vars.getEol();
-        files.writeToBufferedFile(bw1, fileContent1);
-        files.writeToBufferedFile(bw2, fileContent2);
-        fileContent1 = "";
-        fileContent2 = "";
-        int firstSimulationYear = vars.getSimulationStartYear();
-        int lastSimulationYear = vars.getSimulationLastYear();
-        int yearIncrement = vars.getSimulationYearIncrement();
-        boolean isNested = false;
-        for (TechBound techBound : tableList) {
-            if (techBound.isBoundAll() || techBound.isBoundRange()) {
-                String tblName = techBound.getTechName();
-                String name = getMatchingLineFromTechList(tblName);
-                isNested = name.contains("=>");
-                int firstAvailYear = utils.convertStringToInt(techBound.getFirstYear());
-                int lastAvailYear = utils.convertStringToInt(techBound.getLastYear());
-                if (techBound.isBoundAll()) {
-                    firstAvailYear = 3000;
-                    lastAvailYear = 3005;
-                }
-                String[] info = name.split(":");
-                name = info[0].trim() + "," + info[1].trim() + "," + info[2].trim();
-                if (isNested) name = name.replace("=>", ",").trim();
-                for (String state : listOfSelectedLeaves) {
-                    for (int yr = firstSimulationYear; yr <= lastSimulationYear; yr += yearIncrement) {
-                        if ((yr < firstAvailYear) || (yr > lastAvailYear)) {
-                            String line = state + "," + name + "," + yr + ",0.0" + vars.getEol();
-                            if (!isNested) {
-                                numNonNest++;
-                                fileContent1 += line;
-                            } else {
-                                numNest++;
-                                fileContent2 += line;
-                            }
-                        }
-                    }
-                }
-                fileContent1 += vars.getEol();
-                fileContent2 += vars.getEol();
-                files.writeToBufferedFile(bw1, fileContent1);
-                files.writeToBufferedFile(bw2, fileContent2);
-                fileContent1 = "";
-                fileContent2 = "";
+            if (numNonNest > 0 && numNest > 0) {
+                fileContent2Builder.insert(0, vars.getEol());
             }
+
+            if (numNonNest > 0) {
+                fileContentBuilder.append(fileContent1Builder);
+            }
+
+            if (numNest > 0) {
+                fileContentBuilder.append(fileContent2Builder);
+            }
+
+            fileContent = fileContentBuilder.toString();
         }
-        files.closeBufferedFile(bw0);
-        files.closeBufferedFile(bw1);
-        files.closeBufferedFile(bw2);
-        String tempFile = tempDirName + File.separator + "temp_policy_file.txt";
-        files.deleteFile(tempDirName);
-        String tempFile0 = tempDirName + File.separator + tempFilename0;
-        String tempFile1 = tempDirName + File.separator + tempFilename1;
-        String tempFile2 = tempDirName + File.separator + tempFilename2;
-        ArrayList<String> tempfiles = new ArrayList<>();
-        tempfiles.add(tempFile0);
-        if (numNonNest > 0) tempfiles.add(tempFile1);
-        if (numNest > 0) tempfiles.add(tempFile2);
-        files.concatDestSources(tempFile, tempfiles);
-        System.out.println("Done");
     }
 
     /**

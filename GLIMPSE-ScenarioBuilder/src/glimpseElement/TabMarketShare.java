@@ -117,45 +117,45 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === Labels and Controls ===
-    private final Label labelSubsetFilter = utils.createLabel("Subset Filter:", LABEL_WIDTH);
-    private final TextField textFieldSubsetFilter = utils.createTextField();
-    private final Label labelSupersetFilter = utils.createLabel("Superset Filter:", LABEL_WIDTH);
-    private final TextField textFieldSupersetFilter = utils.createTextField();
-    private final Label labelPolicyType = utils.createLabel("Type?", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxPolicyType = utils.createComboBoxString();
-    private final Label labelSubset = utils.createLabel("Subset: ", LABEL_WIDTH);
-    private final CheckComboBox<String> checkComboBoxSubset = utils.createCheckComboBox();
-    private final Label labelSuperset = utils.createLabel("Superset: ", LABEL_WIDTH);
-    private final CheckComboBox<String> checkComboBoxSuperset = utils.createCheckComboBox();
-    private final Label labelAppliedTo = utils.createLabel("Applied to: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxAppliedTo = utils.createComboBoxString();
-    private final Label labelConstraint = utils.createLabel("Constraint: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxConstraint = utils.createComboBoxString();
-    private final Label labelTreatment = utils.createLabel("Treatment: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxTreatment = utils.createComboBoxString();
-    private final Label labelPolicyName = utils.createLabel("Policy: ", LABEL_WIDTH);
+    private final Label labelSubsetFilter = createLabel("Subset Filter:", LABEL_WIDTH);
+    private final TextField textFieldSubsetFilter = createTextField();
+    private final Label labelSupersetFilter = createLabel("Superset Filter:", LABEL_WIDTH);
+    private final TextField textFieldSupersetFilter = createTextField();
+    private final Label labelPolicyType = createLabel("Type?", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxPolicyType = createComboBoxString();
+    private final Label labelSubset = createLabel("Subset: ", LABEL_WIDTH);
+    private final CheckComboBox<String> checkComboBoxSubset = createCheckComboBox();
+    private final Label labelSuperset = createLabel("Superset: ", LABEL_WIDTH);
+    private final CheckComboBox<String> checkComboBoxSuperset = createCheckComboBox();
+    private final Label labelAppliedTo = createLabel("Applied to: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxAppliedTo = createComboBoxString();
+    private final Label labelConstraint = createLabel("Constraint: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxConstraint = createComboBoxString();
+    private final Label labelTreatment = createLabel("Treatment: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxTreatment = createComboBoxString();
+    private final Label labelPolicyName = createLabel("Policy: ", LABEL_WIDTH);
     private final TextField textFieldPolicyName = new TextField("");
-    private final Label labelMarketName = utils.createLabel("Market: ", LABEL_WIDTH);
+    private final Label labelMarketName = createLabel("Market: ", LABEL_WIDTH);
     private final TextField textFieldMarketName = new TextField("");
-    private final Label labelUseAutoNames = utils.createLabel("Names: ", LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
-    private final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-    private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
+    private final Label labelUseAutoNames = createLabel("Names: ", LABEL_WIDTH);
+    private final CheckBox checkBoxUseAutoNames = createCheckBox("Auto?");
+    private final Label labelModificationType = createLabel("Type: ", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
+    private final Label labelStartYear = createLabel("Start Year: ", LABEL_WIDTH);
     private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
-    private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
+    private final Label labelEndYear = createLabel("End Year: ", LABEL_WIDTH);
     private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
-    private final Label labelInitialAmount = utils.createLabel("Initial (%): ", LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel("Final (%): ", LABEL_WIDTH);
-    private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
+    private final Label labelInitialAmount = createLabel("Initial (%): ", LABEL_WIDTH);
+    private final TextField textFieldInitialAmount = createTextField();
+    private final Label labelGrowth = createLabel("Final (%): ", LABEL_WIDTH);
+    private final TextField textFieldGrowth = createTextField();
+    private final Label labelPeriodLength = createLabel("Period Length: ", LABEL_WIDTH);
     private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
-    private final Label labelValue = utils.createLabel("Values: ", LABEL_WIDTH);
-    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
+    private final Label labelValue = createLabel("Values: ", LABEL_WIDTH);
+    private final Button buttonPopulate = createButton("Populate", styles.getBigButtonWidth(), null);
+    private final Button buttonImport = createButton("Import", styles.getBigButtonWidth(), null);
+    private final Button buttonDelete = createButton("Delete", styles.getBigButtonWidth(), null);
+    private final Button buttonClear = createButton("Clear", styles.getBigButtonWidth(), null);
 
     // === Parent Pane Reference ===
     private PaneNewScenarioComponent parentPane = null;
@@ -298,7 +298,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      * Sets up widget actions and event handlers for UI controls.
      */
     private void setupWidgetActions() {
-        labelSubset.setOnMouseClicked(e -> {
+        setOnMouseClicked(labelSubset, e -> {
             if (!checkComboBoxSubset.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxSubset.getCheckModel().isChecked(0);
                 if (e.getClickCount() == 2) {
@@ -310,7 +310,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 }
             }
         });
-        labelSuperset.setOnMouseClicked(e -> {
+        setOnMouseClicked(labelSuperset, e -> {
             if (!checkComboBoxSuperset.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxSuperset.getCheckModel().isChecked(0);
                 if (e.getClickCount() == 2) {
@@ -322,7 +322,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 }
             }
         });
-        comboBoxPolicyType.setOnAction(e -> {
+        setOnAction(comboBoxPolicyType, e -> {
             String selectedItem = comboBoxPolicyType.getValue();
             if (selectedItem.equals(SELECT_ONE)) {
                 checkComboBoxSubset.getCheckModel().clearChecks();
@@ -340,17 +340,16 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 checkComboBoxSubset.setDisable(false);
                 checkComboBoxSuperset.setDisable(false);
                 if ((selectedItem.contains("RPS")) || (selectedItem.contains("CES"))) {
-                    utils.showInformationDialog("Information", "For RPS and CES options:",
-                            "Technology selections chosen automatically. Modify as needed.");
+                    showInfo("For RPS and CES options:\nTechnology selections chosen automatically. Modify as needed.", "Information");
                 }
             }
             setPolicyAndMarketNames();
         });
-        textFieldSubsetFilter.setOnAction(e -> setupCheckComboBoxes());
-        textFieldSupersetFilter.setOnAction(e -> setupCheckComboBoxes());
-        comboBoxAppliedTo.setOnAction(e -> setPolicyAndMarketNames());
-        comboBoxTreatment.setOnAction(e -> setPolicyAndMarketNames());
-        comboBoxConstraint.setOnAction(e -> setPolicyAndMarketNames());
+        setOnAction(textFieldSubsetFilter, e -> setupCheckComboBoxes());
+        setOnAction(textFieldSupersetFilter, e -> setupCheckComboBoxes());
+        setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
+        setOnAction(comboBoxTreatment, e -> setPolicyAndMarketNames());
+        setOnAction(comboBoxConstraint, e -> setPolicyAndMarketNames());
         EventHandler<TreeModificationEvent<String>> ev = new EventHandler<TreeModificationEvent<String>>() {
             @Override
             public void handle(TreeModificationEvent<String> ae) {
@@ -359,12 +358,12 @@ public class TabMarketShare extends PolicyTab implements Runnable {
             }
         };
         paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-        checkBoxUseAutoNames.setOnAction(e -> {
+        setOnAction(checkBoxUseAutoNames, e -> {
             boolean selected = checkBoxUseAutoNames.isSelected();
             textFieldPolicyName.setDisable(selected);
             textFieldMarketName.setDisable(selected);
         });
-        comboBoxModificationType.setOnAction(e -> {
+        setOnAction(comboBoxModificationType, e -> {
             String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
             if (selected == null) return;
             switch (selected) {
@@ -383,9 +382,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                     break;
             }
         });
-        buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
-        buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
-        buttonPopulate.setOnAction(e -> {
+        setOnAction(buttonClear, e -> paneForComponentDetails.clearTable());
+        setOnAction(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
+        setOnAction(buttonPopulate, e -> {
             if (qaPopulate()) {
                 double[][] values = calculateValues();
                 paneForComponentDetails.setValues(values);
@@ -783,36 +782,38 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      * Sets the policy and market names automatically based on current selections if auto-naming is enabled.
      */
     private void setPolicyAndMarketNames() {
-        if (checkBoxUseAutoNames.isSelected()) {
-            String policyType = comboBoxPolicyType.getValue() != null ? comboBoxPolicyType.getValue().replace(" ", "-").replace("(", "-").replace(")", "").replace(":", "") : "--";
-            if (policyType.equals("Other")) policyType = "Share";
-            if (policyType.equals("SelectOne")) policyType = "---";
-            String toWhich = "--";
-            String state = "--";
-            String treatment = "--";
-            try {
-                String s = comboBoxAppliedTo.getValue();
-                if (s != null && s.contains("New")) toWhich = "New";
-                if (s != null && s.contains("All")) toWhich = "All";
-                s = comboBoxTreatment.getValue();
-                if (s != null && s.contains("Each")) treatment = "_Ea";
-                if (s != null && s.contains("Across")) treatment = "";
-                String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
-                listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-                String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
-                if (stateStr.length() < 9) {
-                    state = stateStr;
-                } else {
-                    state = "Reg";
+        Platform.runLater(() -> {
+            if (checkBoxUseAutoNames.isSelected()) {
+                String policyType = comboBoxPolicyType.getValue() != null ? comboBoxPolicyType.getValue().replace(" ", "-").replace("(", "-").replace(")", "").replace(":", "") : "--";
+                if (policyType.equals("Other")) policyType = "Share";
+                if (policyType.equals("SelectOne")) policyType = "---";
+                String toWhich = "--";
+                String state = "--";
+                String treatment = "--";
+                try {
+                    String s = comboBoxAppliedTo.getValue();
+                    if (s != null && s.contains("New")) toWhich = "New";
+                    if (s != null && s.contains("All")) toWhich = "All";
+                    s = comboBoxTreatment.getValue();
+                    if (s != null && s.contains("Each")) treatment = "_Ea";
+                    if (s != null && s.contains("Across")) treatment = "";
+                    String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+                    listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+                    String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
+                    if (stateStr.length() < 9) {
+                        state = stateStr;
+                    } else {
+                        state = "Reg";
+                    }
+                    String name = policyType + "_" + toWhich + "_" + state + treatment;
+                    name = name.replaceAll(" ", "_").replaceAll("--", "-");
+                    textFieldMarketName.setText(name + "_Mkt");
+                    textFieldPolicyName.setText(name);
+                } catch (Exception e) {
+                    // Ignore auto-naming errors
                 }
-                String name = policyType + "_" + toWhich + "_" + state + treatment;
-                name = name.replaceAll(" ", "_").replaceAll("--", "-");
-                textFieldMarketName.setText(name + "_Mkt");
-                textFieldPolicyName.setText(name);
-            } catch (Exception e) {
-                // Ignore auto-naming errors
             }
-        }
+        });
     }
 
     /**
@@ -834,8 +835,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      */
     @Override
     public void run() {
-        // If using off JavaFX thread, wrap UI updates in Platform.runLater
-        saveScenarioComponent();
+        Platform.runLater(this::saveScenarioComponent);
     }
 
     /**
@@ -851,394 +851,116 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      * @param tree The TreeView containing selected regions.
      */
     private void saveScenarioComponent(TreeView<String> tree) {
-
         if (!qaInputs()) {
             Thread.currentThread().destroy();
             return;
-        } else {
-
-            String which = this.comboBoxConstraint.getValue().toLowerCase();
-
-            // String ID = this.getUniqueMarketName(textFieldMarketName.getText());
-            String ID = utils.getUniqueString();
-            String policy_name = this.textFieldPolicyName.getText() + ID;
-            String market_name = this.textFieldMarketName.getText() + ID;
-            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
-
-            String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
-            File test = new File(tempDirName);
-            if (!test.exists())
-                test.mkdir();
-            String tempFilename0 = "temp_policy_file0.txt";
-            String tempFilename1 = "temp_policy_file1.txt";
-            String tempFilename2 = "temp_policy_file2.txt";
-
-            BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
-            BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
-            BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
-
-            fileContent = "use temp file";
-            files.writeToBufferedFile(bw0, getMetaDataContent(tree, market_name, policy_name));
-            
-            int no_nested = 0;
-            int no_non_nested = 0;
-
-            String treatment = comboBoxTreatment.getValue().toLowerCase().trim();
-
-            //// -----------getting selected regions info from GUI
-            String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
-            listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-            String states = utils.returnAppendedString(listOfSelectedLeaves);
-
-            // tech list
-            ObservableList<String> subset_list = checkComboBoxSubset.getCheckModel().getCheckedItems();
-            ObservableList<String> superset_list = checkComboBoxSuperset.getCheckModel().getCheckedItems();
-
-            ObservableList<String> tech_list1 = subset_list;
-            ObservableList<String> tech_list2 = superset_list;
-
-            // applied to
-            String applied_to = comboBoxAppliedTo.getSelectionModel().getSelectedItem().toLowerCase().trim();
-
-            // data
-            ArrayList<String> dataArrayList = this.paneForComponentDetails.getDataYrValsArrayList();
-            String[] year_list = new String[dataArrayList.size()];
-            String[] value_list = new String[dataArrayList.size()];
-            double[] valuef_list = new double[dataArrayList.size()];
-
-            for (int i = 0; i < dataArrayList.size(); i++) {
-                String str = dataArrayList.get(i).replaceAll(" ", "").trim();
-                year_list[i] = utils.splitString(str, ",")[0];
-                value_list[i] = utils.splitString(str, ",")[1];
-                valuef_list[i] = Double.parseDouble(value_list[i]);
-            }
-
-            int start_year = 2010;
-            String sss = vars.getStartYearForShare();
-            if (!sss.equals("2010")) {
-                try {
-                    start_year = Integer.parseInt(sss);
-                } catch (Exception e1) {
-                    System.out.println(
-                            "Problem converting startYearForShare (" + sss + ") to int. Using default value of 2010.");
-                }
-            }
-
-            // boolean includes_trn_techs=false;
-            ArrayList<String> list_of_policy_sector_combos = new ArrayList<String>();
-
-            // sets up the content of the CSV file to store the scenario component data
-
-            // -------------------------------------------
-            // part 1 - apply constraint fraction targets
-            // -------------------------------------------
-            files.writeToBufferedFile(bw1, vars.getEol());
-            files.writeToBufferedFile(bw1, "INPUT_TABLE" + vars.getEol());
-            files.writeToBufferedFile(bw1, "Variable ID" + vars.getEol());
-            // TODO: Need to handle case with nested
-            files.writeToBufferedFile(bw1, "GLIMPSEPFStdAdjCoef-v2" + vars.getEol() + vars.getEol());
-
-            // note: market in the line below is the market where the input comes from and
-            // should be the same as the state
-
-            files.writeToBufferedFile(bw1,
-                    "region,sector,subsector,tech,year,policy,adjcoef-year,adjcoef,unit-price-conv" + vars.getEol());
-
-            files.writeToBufferedFile(bw2, vars.getEol());
-            files.writeToBufferedFile(bw2, "INPUT_TABLE" + vars.getEol());
-            files.writeToBufferedFile(bw2, "Variable ID" + vars.getEol());
-
-            files.writeToBufferedFile(bw2, "GLIMPSEPFStdAdjCoef-Nest" + vars.getEol() + vars.getEol());
-            // note: market in the line below is the market where the input comes from and
-            // should be the same as the state
-
-            files.writeToBufferedFile(bw2,
-                    "region,sector,nested-subsector,tech,year,policy,adjcoef-year,adjcoef" + vars.getEol());
-
-            for (int s = 0; s < listOfSelectedLeaves.length; s++) {
-
-                String state = listOfSelectedLeaves[s];
-                System.out.println("Creating part 1 of 3 of csv file for " + state + " : " + s + " of "
-                        + (listOfSelectedLeaves.length - 1));
-
-                // iterates over all model years
-                for (int t = start_year; t < 2100; t += 5) {
-
-                    String use_this_market_name = market_name;
-                    String use_this_policy_name = policy_name;
-                    if (treatment.equals("each selected region")) {
-                        if (listOfSelectedLeaves.length >= 2) {
-                            use_this_market_name = state + "_" + market_name;
-                            use_this_policy_name = state + "_" + policy_name;
-                        }
-                    }
-
-                    if (applied_to.equals("new purchases")) {
-                        use_this_market_name += "-" + t;
-                        use_this_policy_name += "-" + t;
-                    }
-
-                    String last_subsector = "";
-                    boolean is_subsector_in_region = true;
-
-                    // iterates over lines in constraint table
-                    for (int i = 0; i < year_list.length; i++) {
-
-                        // if constraint applies to current year
-                        if (((t <= Integer.parseInt(year_list[i])) && (applied_to.equals("all stock")))
-                                || ((t == Integer.parseInt(year_list[i])) && (applied_to.equals("new purchases")))) {
-                            // iterates over selected technologies
-                            for (int j = 0; j < tech_list2.size(); j++) {
-                                String temp = tech_list2.get(j);
-                                // for tech, extracts sector and subsector
-                                if (temp.indexOf(":") >= 0) {
-                                    String[] tempi = utils.splitString(temp, ":");
-                                    String sector_name = tempi[0].trim();
-                                    String subsector_name = tempi[1].trim();
-
-                                    String tech_name = tempi[2].trim();
-
-                                    // special handling for trn sectors
-                                    // does not include technologies not in region (e.g., minicars in US states)
-                                    if (sector_name.startsWith("trn")) {
-                                        if (last_subsector.equals(subsector_name)) {
-                                            is_subsector_in_region = true;
-                                        } else {
-                                            is_subsector_in_region = utils.isSubsectorInRegion(state, sector_name,
-                                                    subsector_name);
-                                        }
-                                    }
-                                    last_subsector = subsector_name;
-
-                                    // keeps track of policy-sector combos
-                                    String ss = use_this_policy_name + ":" + sector_name;
-                                    list_of_policy_sector_combos = utils
-                                            .addToArrayListIfUnique(list_of_policy_sector_combos, ss);
-
-                                    // if not nested, write to bw1
-                                    BufferedWriter bw = bw1;
-                                    // special handling if nested subsector
-                                    if (subsector_name.indexOf("=>") > -1) {
-                                        // write to bw2
-                                        bw = bw2;
-                                        subsector_name = subsector_name.replace("=>", ",");
-                                        no_nested++;
-                                    } else {
-                                        no_non_nested++;
-                                    }
-
-                                    if ((vars.isGcamUSA()) && (state.toLowerCase().equals("usa"))
-                                            && (listOfSelectedLeaves.length > 1)) {
-                                        ; // don't output for USA region if using GCAM-USA and more than one region is
-                                          // selected
-                                          // If you want to make a constraint on USA region, construct that constraint
-                                          // on its own
-                                    } else {
-                                        // uses value from table
-                                        if (is_subsector_in_region) {
-                                            Double val = valuef_list[i];
-                                            String conv = "1.0";
-
-                                            if (sector_name.startsWith("trn")) {
-                                                conv = "1e-3";
-                                                val *= 1000.;
-                                            }
-
-                                            // TODO: correct for transportation?
-
-                                            String line = "";
-
-                                            line = state + "," + sector_name + "," + subsector_name + "," + tech_name
-                                                    + "," + t + "," + use_this_policy_name + "," + year_list[i] + ","
-                                                    + val + "," + conv + vars.getEol();
-
-                                            files.writeToBufferedFile(bw, line);
-
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                double progress = s / (listOfSelectedLeaves.length - 1.);
-                progressBar.setProgress(progress);
-            }
-
-            int max_year = utils.getMaxValFromStringArray(year_list);
-            int min_year = utils.getMinValFromStringArray(year_list);
-
-            // part 2 - constructing constraint by providing secondary output ratio and
-            // p-multiplier
-            files.writeToBufferedFile(bw1, vars.getEol());
-            files.writeToBufferedFile(bw1, "INPUT_TABLE" + vars.getEol());
-            files.writeToBufferedFile(bw1, "Variable ID" + vars.getEol());
-            files.writeToBufferedFile(bw1, "GLIMPSEPFStd2ndOut" + vars.getEol() + vars.getEol());
-            files.writeToBufferedFile(bw1,
-                    "region,sector,subsector,tech,year,policy,output-ratio,pMultiplier" + vars.getEol());
-
-            files.writeToBufferedFile(bw2, vars.getEol());
-            files.writeToBufferedFile(bw2, "INPUT_TABLE" + vars.getEol());
-            files.writeToBufferedFile(bw2, "Variable ID" + vars.getEol());
-            files.writeToBufferedFile(bw2, "GLIMPSEPFStd2ndOut-Nest" + vars.getEol() + vars.getEol());
-            files.writeToBufferedFile(bw2,
-                    "region,sector,nested-subsector,subsector,tech,year,policy,output-ratio,pMultiplier"
-                            + vars.getEol());
-
-            for (int s = 0; s < listOfSelectedLeaves.length; s++) {
-                String state = listOfSelectedLeaves[s];
-                System.out.println("Creating part 2 of 3 of csv file for " + state + " : " + s + " of "
-                        + (listOfSelectedLeaves.length - 1));
-
-                int year_int = -1;
-
-                for (int t = start_year; t < 2100; t += 5) {
-
-                    year_int++;
-
-                    String use_this_market_name = market_name;
-                    String use_this_policy_name = policy_name;
-                    if (treatment.equals("each selected region")) {
-                        if (listOfSelectedLeaves.length >= 2) {
-                            use_this_market_name = state + "_" + market_name;
-                            use_this_policy_name = state + "_" + policy_name;
-                        }
-                    }
-
-                    if (applied_to.equals("new purchases")) {
-                        use_this_market_name += "-" + t;
-                        use_this_policy_name += "-" + t;
-                    }
-
-                    // if (t<=max_year) {
-                    if (((t <= max_year) && (applied_to.equals("all stock")))
-                            || ((t <= max_year) && (t >= min_year) && (applied_to.equals("new purchases")))) {
-
-                        for (int j = 0; j < tech_list1.size(); j++) {
-                            String temp = tech_list1.get(j);
-                            if (temp.indexOf(":") >= 0) {
-                                String sector_name = utils.splitString(temp, ":")[0].trim();
-                                String subsector_name = utils.splitString(temp, ":")[1].trim();
-                                String tech_name = utils.splitString(temp, ":")[2].trim();
-
-                                BufferedWriter bw = bw1;
-                                if (subsector_name.indexOf("=>") > -1) {
-                                    bw = bw2;
-                                    subsector_name = subsector_name.replace("=>", ",");
-                                    no_nested++;
-                                } else {
-                                    no_non_nested++;
-                                }
-
-                                double val = 1.0;
-
-                                String conversions = utils.getSubsectorConversions(val, state, sector_name,
-                                        subsector_name, t);
-
-                                if ((vars.isGcamUSA()) && (state.toLowerCase().equals("usa"))
-                                        && (listOfSelectedLeaves.length > 1)) {
-                                    ;
-                                } else if (conversions != null) {
-                                    if (conversions.startsWith(","))
-                                        conversions = conversions.substring(1);
-                                    String line = state + "," + sector_name + "," + subsector_name + "," + tech_name
-                                            + "," + t + "," + use_this_policy_name + "," + conversions + vars.getEol();
-                                    files.writeToBufferedFile(bw, line);
-                                }
-
-                            }
-                        }
-
-                    }
-                }
-                double progress = s / (listOfSelectedLeaves.length - 1.);
-                progressBar.setProgress(progress);
-            }
-
-            // part 3 - turn on markets in and/or across regions
-            // files.writeToBufferedFile(bw0,vars.getEol());
-            files.writeToBufferedFile(bw0, "INPUT_TABLE" + vars.getEol());
-            files.writeToBufferedFile(bw0, "Variable ID" + vars.getEol());
-            String header = "GLIMPSEPFStdActivate";
-            String colnames = "region,policy,market,type,year,constrained";
-            if (which.equals("fixed")) {
-                header += "Fx";
-                colnames += ",min-price-yr,min-price";
-            }
-            files.writeToBufferedFile(bw0, header + vars.getEol() + vars.getEol());
-            files.writeToBufferedFile(bw0, colnames + vars.getEol());
-
-            for (int s = 0; s < listOfSelectedLeaves.length; s++) {
-                String state = listOfSelectedLeaves[s];
-                System.out.println("Creating part 3  of 3 of csv file for " + state + " : " + s + " of "
-                        + (listOfSelectedLeaves.length - 1));
-
-                for (int i = 0; i < year_list.length; i++) {
-
-                    String use_this_market_name = market_name;
-                    String use_this_policy_name = policy_name;
-                    if (treatment.equals("each selected region")) {
-                        if (listOfSelectedLeaves.length >= 2) {
-                            use_this_market_name = state + "_" + market_name;
-                            use_this_policy_name = state + "_" + policy_name;
-                        }
-                    }
-
-                    if (applied_to.equals("new purchases")) {
-                        use_this_market_name += "-" + year_list[i];
-                        use_this_policy_name += "-" + year_list[i];
-                    }
-
-                    if ((vars.isGcamUSA()) && (state.toLowerCase().equals("usa"))
-                            && (listOfSelectedLeaves.length > 1)) {
-                        ; // don't output for USA region if using GCAM-USA and more than one region is
-                          // selected
-                          // If you want to make a constraint on USA region, construct that constraint on
-                          // its own
-                    } else {
-                        String line = "";
-                        if (which.equals("fixed")) {
-                            line = state + "," + use_this_policy_name + "," + use_this_market_name + ",RES,"
-                                    + year_list[i] + "," + "1," + year_list[i] + ",-100" + vars.getEol();
-                        } else {
-                            line = state + "," + use_this_policy_name + "," + use_this_market_name + ",RES,"
-                                    + year_list[i] + "," + "1" + vars.getEol();
-                        }
-                        files.writeToBufferedFile(bw0, line);
-                    }
-                }
-
-                double progress = s / (listOfSelectedLeaves.length - 1.);
-                progressBar.setProgress(progress);
-            }
-
-            files.closeBufferedFile(bw0);
-            files.closeBufferedFile(bw1);
-            files.closeBufferedFile(bw2);
-
-            // TODO: store temp file name in options file and vars?
-            String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
-
-            files.deleteFile(tempDirName);
-
-            String temp_file0 = tempDirName + File.separator + tempFilename0;
-            String temp_file1 = tempDirName + File.separator + tempFilename1;
-            String temp_file2 = tempDirName + File.separator + tempFilename2;
-
-//		//try { //causes problem because needs full name on tempFilename0,1,2...
-            ArrayList<String> tempfiles = new ArrayList<String>();
-            tempfiles.add(temp_file0);
-
-            if (no_non_nested > 0)
-                tempfiles.add(temp_file1);
-            if (no_nested > 0)
-                tempfiles.add(temp_file2);
-
-            files.concatDestSources(temp_file, tempfiles);
-
-            System.out.println("Done");
         }
 
+        String which = this.comboBoxConstraint.getValue().toLowerCase();
+        String ID = utils.getUniqueString();
+        String policyName = this.textFieldPolicyName.getText() + ID;
+        String marketName = this.textFieldMarketName.getText() + ID;
+        filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+
+        String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp";
+        File test = new File(tempDirName);
+        if (!test.exists()) test.mkdir();
+
+        String tempFilename0 = "temp_policy_file0.txt";
+        String tempFilename1 = "temp_policy_file1.txt";
+        String tempFilename2 = "temp_policy_file2.txt";
+
+        BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
+        BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
+        BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
+
+        fileContent = "use temp file";
+        files.writeToBufferedFile(bw0, getMetaDataContent(tree, marketName, policyName));
+
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
+        listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+
+        ObservableList<String> subsetList = checkComboBoxSubset.getCheckModel().getCheckedItems();
+        ObservableList<String> supersetList = checkComboBoxSuperset.getCheckModel().getCheckedItems();
+
+        ArrayList<String> dataArrayList = this.paneForComponentDetails.getDataYrValsArrayList();
+        String[] yearList = new String[dataArrayList.size()];
+        String[] valueList = new String[dataArrayList.size()];
+        double[] valuefList = new double[dataArrayList.size()];
+
+        for (int i = 0; i < dataArrayList.size(); i++) {
+            String str = dataArrayList.get(i).replaceAll(" ", "").trim();
+            yearList[i] = utils.splitString(str, ",")[0];
+            valueList[i] = utils.splitString(str, ",")[1];
+            valuefList[i] = Double.parseDouble(valueList[i]);
+        }
+
+        int startYear = 2010;
+        try {
+            startYear = Integer.parseInt(vars.getStartYearForShare());
+        } catch (Exception e) {
+            System.out.println("Problem converting startYearForShare to int. Using default value of 2010.");
+        }
+
+        StringBuilder part1Builder = new StringBuilder();
+        part1Builder.append(vars.getEol())
+            .append("INPUT_TABLE").append(vars.getEol())
+            .append("Variable ID").append(vars.getEol())
+            .append("GLIMPSEPFStdAdjCoef-v2").append(vars.getEol()).append(vars.getEol())
+            .append("region,sector,subsector,tech,year,policy,adjcoef-year,adjcoef,unit-price-conv").append(vars.getEol());
+
+        for (String state : listOfSelectedLeaves) {
+            for (int t = startYear; t < 2100; t += 5) {
+                String useMarketName = marketName;
+                String usePolicyName = policyName;
+                if (comboBoxTreatment.getValue().toLowerCase().trim().equals("each selected region") && listOfSelectedLeaves.length >= 2) {
+                    useMarketName = state + "_" + marketName;
+                    usePolicyName = state + "_" + policyName;
+                }
+                if (comboBoxAppliedTo.getValue().toLowerCase().trim().equals("new purchases")) {
+                    useMarketName += "-" + t;
+                    usePolicyName += "-" + t;
+                }
+
+                for (int i = 0; i < yearList.length; i++) {
+                    if (((t <= Integer.parseInt(yearList[i])) && comboBoxAppliedTo.getValue().toLowerCase().trim().equals("all stock")) ||
+                        ((t == Integer.parseInt(yearList[i])) && comboBoxAppliedTo.getValue().toLowerCase().trim().equals("new purchases"))) {
+
+                        for (String temp : supersetList) {
+                            String[] tempi = utils.splitString(temp, ":");
+                            String sectorName = tempi[0].trim();
+                            String subsectorName = tempi[1].trim();
+                            String techName = tempi[2].trim();
+
+                            double val = valuefList[i];
+                            String conv = "1.0";
+                            if (sectorName.startsWith("trn")) {
+                                conv = "1e-3";
+                                val *= 1000.;
+                            }
+
+                            part1Builder.append(state).append(",")
+                                .append(sectorName).append(",")
+                                .append(subsectorName).append(",")
+                                .append(techName).append(",")
+                                .append(t).append(",")
+                                .append(usePolicyName).append(",")
+                                .append(yearList[i]).append(",")
+                                .append(val).append(",")
+                                .append(conv).append(vars.getEol());
+                        }
+                    }
+                }
+            }
+        }
+
+        files.writeToBufferedFile(bw1, part1Builder.toString());
+
+        files.closeBufferedFile(bw0);
+        files.closeBufferedFile(bw1);
+        files.closeBufferedFile(bw2);
+
+        System.out.println("Done");
     }
 
     /**
@@ -1370,6 +1092,23 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
+     * Helper method to validate table data years against allowable policy years.
+     * @return true if at least one year matches allowable years, false otherwise
+     */
+    private boolean validateTableDataYears() {
+        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
+        if (data == null) return false;
+        for (DataPoint dp : data) {
+            Integer year = Integer.parseInt(dp.getYear().trim());
+            if (listOfAllowableYears.contains(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
      * Performs QA checks to ensure all required inputs for saving the scenario component are valid.
      * @return true if all required inputs are valid, false otherwise.
      */
@@ -1390,21 +1129,16 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 message += "Data table must have at least one entry" + vars.getEol();
                 error_count++;
             } else {
-                boolean match = false;
-
-                String listOfAllowableYears = vars.getAllowablePolicyYears();
-                ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
-                String year = "";
-
-                for (int i = 0; i < data.size(); i++) {
-                    year = data.get(i).getYear().trim();
-                    if (listOfAllowableYears.contains(year))
-                        match = true;
-                }
-                if (!match) {
-                    message += "Years specified in table must match allowable policy years (" + listOfAllowableYears
-                            + ")" + vars.getEol();
+ 
+                if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
+                    message += "Data table must have at least one entry" + vars.getEol();
                     error_count++;
+                } else {
+                    boolean match = validateTableDataYears();
+                    if (!match) {
+                        message += "Years specified in table must match allowable policy years (" + vars.getAllowablePolicyYears() + ")" + vars.getEol();
+                        error_count++;
+                    }
                 }
             }
             if ((checkComboBoxSubset.getCheckModel().getItemCount() == 1)
@@ -1528,4 +1262,11 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         fileContent = null;
     }
 
+    /**
+     * Updates the progress bar on the JavaFX Application Thread.
+     * @param progress The progress value to set.
+     */
+    private void updateProgressBar(double progress) {
+        Platform.runLater(() -> progressBar.setProgress(progress));
+    }
 }
