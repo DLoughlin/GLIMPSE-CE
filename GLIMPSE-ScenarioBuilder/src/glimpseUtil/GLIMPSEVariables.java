@@ -38,7 +38,6 @@ package glimpseUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,7 +90,7 @@ public class GLIMPSEVariables {
     private String debugRename = "0";
     private String startYearForShare = "2010";
     private String[][] techInfo = null;
-    private String[][] sectorInfo = null;
+    //private String[][] sectorInfo = null;
     private List<Integer> allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS_LIST;
     private List<Integer> allYears = DEFAULT_ALL_YEARS_LIST;
     private Integer calibrationYear = DEFAULT_CALIBRATION_YEAR;
@@ -1720,8 +1719,6 @@ public class GLIMPSEVariables {
      * Loads options from the options file.
      */
     public void loadOptions() {
-        GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-
         ArrayList<String[]> keyValuePairs = null;
         File optionsFile = new File(getOptionsFilename());
         
@@ -1862,8 +1859,6 @@ public class GLIMPSEVariables {
      */
     private String[][] getTechInfoAsMatrix() {
 
-        int num = 0;
-
         String[][] returnStringMatrix = null;
         String text="";
         
@@ -1901,7 +1896,6 @@ public class GLIMPSEVariables {
                   }
                 }
             }
-            num++;
 
         } catch (Exception e) {
             utils.warningMessage("Problem reading tech list: "+text);
@@ -2008,6 +2002,7 @@ public class GLIMPSEVariables {
         if (good_glimpse_folder.contains(" ")) {
             no_spaces_in_path=false;
             String s="*** Potentially problematic installation location: The path to your GLIMPSE root folder includes at least one space character. This can cause problems with GLIMPSE operation. Please move GLIMPSE to a folder that does not contain the space character.";		    
+            report.add(s);
         } else {
             report.add("No problem was found with spaces in the path to the GLIMPSE root folder.");
         }
@@ -2210,6 +2205,38 @@ public class GLIMPSEVariables {
     public Optional<String> getXmlHeaderFilenameOptional() { return Optional.ofNullable(xmlHeaderFilename); }
     public Optional<String> getUnitConversionsFilenameOptional() { return Optional.ofNullable(unitConversionsFilename); }
     public Optional<String> getMonetaryConversionsFilenameOptional() { return Optional.ofNullable(monetaryConversionsFilename); }
+
+	public int getScenarioBuilderWidth() {
+		return scenarioBuilderWidth;
+	}
+
+	public void setScenarioBuilderWidth(int scenarioBuilderWidth) {
+		this.scenarioBuilderWidth = scenarioBuilderWidth;
+	}
+
+	public int getScenarioBuilderHeight() {
+		return scenarioBuilderHeight;
+	}
+
+	public void setScenarioBuilderHeight(int scenarioBuilderHeight) {
+		this.scenarioBuilderHeight = scenarioBuilderHeight;
+	}
+
+	public List<Integer> getAllYears() {
+		return allYears;
+	}
+
+	public void setAllYears(List<Integer> allYears) {
+		this.allYears = allYears;
+	}
+
+	public int getSimulationYearIncrement() {
+		return simulationYearIncrement;
+	}
+
+	public void setSimulationYearIncrement(int simulationYearIncrement) {
+		this.simulationYearIncrement = simulationYearIncrement;
+	}
 
 
 }

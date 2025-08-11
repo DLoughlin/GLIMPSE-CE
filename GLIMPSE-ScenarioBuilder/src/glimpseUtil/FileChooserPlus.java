@@ -36,7 +36,6 @@
 package glimpseUtil;
 
 import java.io.File;
-import java.util.Optional;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 

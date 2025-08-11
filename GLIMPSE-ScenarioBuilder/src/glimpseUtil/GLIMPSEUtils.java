@@ -382,7 +382,6 @@ public class GLIMPSEUtils {
      */
     public String getPeriodForYear(String year) {
         if (year == null) return "";
-        String rtn_str = "";
         double year_d = 0;
         try {
             year_d = Double.parseDouble(year);
@@ -1138,9 +1137,6 @@ public class GLIMPSEUtils {
 		if (files == null) return false;
 		boolean b = false;
 
-		DiffRowGenerator generator = DiffRowGenerator.create().showInlineDiffs(true).inlineDiffByWord(true)
-				.oldTag(f -> "~").newTag(f -> "**").build();
-
 		ArrayList<String> file1Content = files.getStringArrayFromFile(file1, "#");
 		ArrayList<String> file2Content = files.getStringArrayFromFile(file2, "#");
 
@@ -1215,7 +1211,6 @@ public class GLIMPSEUtils {
 		alert.setTitle(title);
 		alert.setHeaderText(header);
 		alert.setContentText(content);
-		Optional<ButtonType> result = alert.showAndWait();
 		return true;
 	}
 
@@ -1731,16 +1726,6 @@ public class GLIMPSEUtils {
 		return val;
 	}
 	
-	private boolean isOldFormatTrnVehInfo(String[][] data) {
-		boolean old_format=false;
-		
-		if ((data[0][0]!=null)&&(data[0][0].toLowerCase().trim().startsWith("parameter"))){
-			old_format=false;
-		}		
-	
-		return old_format;
-	}
-
 	/**
      * Checks if a subsector is present in the specified region and sector.
      * @param region Region name
@@ -1765,8 +1750,6 @@ public class GLIMPSEUtils {
 		int region_col=param_col+1;
 		int sector_col=region_col+1;
 		int subsector_col=sector_col+1;
-		int tech_col=sector_col+1;	
-
 		for (int j = 0; j < data.length; j++) {
 			String data_region = data[j][region_col];
 			String data_subsector = data[j][subsector_col];
@@ -1806,16 +1789,6 @@ public class GLIMPSEUtils {
 	public String getVehCoefficient(String region, String sector, String subsector, String tech, String year) {
 		return getTrnVehInfo("coefficient",region,sector,subsector,tech,year);
 	}
-	
-//	private String[][] getTrnDataForProcessing(String sector){
-//
-//		String[][] data;
-//		
-//		if (trn_veh_info_table == null)
-//			loadTrnVehInfo();
-//
-//		return trn_veh_info_table;
-//	}
 	
 	private String[][] getTrnDataForProcessing(String sector){
 
@@ -2028,29 +2001,6 @@ public class GLIMPSEUtils {
 	}
 	
 
-//    /**
-//     * Generates an error report from the main log file (legacy version).
-//     * @param main_log_file Path to main log file
-//     * @param scenario Scenario name
-//     * @return List of error report lines
-//     */
-//    public ArrayList<String> generateErrorReportOld(String main_log_file, String scenario) {
-//        if (files == null) return new ArrayList<>();
-//        if (scenario == null)
-//            scenario = "exe/main_log.txt";
-//        ArrayList<String> report = new ArrayList<>();
-//        File mainlogfile = new File(main_log_file);
-//        if (mainlogfile.exists()) {
-//            String[] str = { "ERROR", "Period" };
-//            ArrayList<String> error_lines = files.getStringArrayWithPrefix(mainlogfile.getPath(), str);
-//            for (String errorLine : error_lines) {
-//                String s = scenario + ":" + errorLine.replace(":", ",");
-//                report.add(s);
-//            }
-//        }
-//        return report;
-//    }
-
     /**
      * Generates a detailed error report from the main log file.
      * @param main_log_file Path to main log file
@@ -2062,7 +2012,7 @@ public class GLIMPSEUtils {
         DecimalFormat formatter = new DecimalFormat("#,###.0");
         double min_dmd = 0.0001;
         double min_red = 0.01;
-        int total_fails = 0, minor_fails = 0, min_us_fails = 0, min_water_fails = 0, min_grid_fails = 0, min_trial_fails = 0, min_smallmkt_fails = 0, min_res_type_fails = 0, major_fails = 0, moderate_fails = 0, maj_us_fails = 0, maj_water_fails = 0, maj_grid_fails = 0, maj_trial_fails = 0, maj_smallmkt_fails = 0, maj_res_type_fails = 0;
+        int total_fails = 0, minor_fails = 0, min_smallmkt_fails = 0, major_fails = 0, moderate_fails = 0, maj_smallmkt_fails = 0;
         if (scenario == null)
             scenario = "exe/main_log.txt";
         ArrayList<String> report = new ArrayList<>();
@@ -2084,14 +2034,19 @@ public class GLIMPSEUtils {
                             total_fails++;
                             if ((red > min_red) && (!mkt.contains("water consumption"))) {
                                 String state = mkt.trim().substring(0, 2);
-                                if (isState(state) || "US".equals(state)) maj_us_fails++;
-                                if (mkt.toLowerCase().contains("grid")) maj_grid_fails++;
-                                if (mkt.toLowerCase().contains("water")) maj_water_fails++;
-                                if (mkt.toLowerCase().contains("trial")) maj_trial_fails++;
-                                if (mktyp.equals("RES")) maj_res_type_fails++;
+                                if (isState(state) || "US".equals(state)) {
+								}
+                                if (mkt.toLowerCase().contains("grid")) {
+								}
+                                if (mkt.toLowerCase().contains("water")) {
+								}
+                                if (mkt.toLowerCase().contains("trial")) {
+								}
+                                if (mktyp.equals("RES")) {
+								}
                                 double dmd = Double.parseDouble(tokens[9].trim());
                                 if (dmd <= min_dmd) maj_smallmkt_fails++;
-                                if (red > min_red * 5.0) {
+                                if ( red > min_red * 5.0) {
                                     line += " *** MAJOR (" + formatter.format(red * 100.) + "%>" + formatter.format(min_red * 5.0 * 100.) + "%) ***";
                                     major_fails++;
                                 } else {
@@ -2101,10 +2056,14 @@ public class GLIMPSEUtils {
                             } else {
                                 minor_fails++;
                                 String state = mkt.trim().substring(0, 2);
-                                if (isState(state) || "US".equals(state)) min_us_fails++;
-                                if (mkt.toLowerCase().contains("water")) min_water_fails++;
-                                if (mkt.toLowerCase().contains("trial")) min_trial_fails++;
-                                if (mktyp.equals("RES")) min_res_type_fails++;
+                                if (isState(state) || "US".equals(state)) {
+								}
+                                if (mkt.toLowerCase().contains("water")) {
+								}
+                                if (mkt.toLowerCase().contains("trial")) {
+								}
+                                if (mktyp.equals("RES")) {
+								}
                                 double dmd = Double.parseDouble(tokens[9].trim());
                                 if (dmd <= min_dmd) min_smallmkt_fails++;
                             }
@@ -2166,7 +2125,7 @@ public class GLIMPSEUtils {
         if (errors == null) return "";
         String rtn_str = "";
         double min_dmd = 0.0001;
-        int total_fails = 0, minor_fails = 0, min_us_fails = 0, min_water_fails = 0, min_grid_fails = 0, min_trial_fails = 0, min_smallmkt_fails = 0, min_res_type_fails = 0, major_fails = 0, maj_us_fails = 0, maj_water_fails = 0, maj_grid_fails = 0, maj_trial_fails = 0, maj_smallmkt_fails = 0, maj_res_type_fails = 0;
+        int total_fails = 0, minor_fails = 0, min_us_fails = 0, min_smallmkt_fails = 0, min_res_type_fails = 0, major_fails = 0, maj_us_fails = 0, maj_smallmkt_fails = 0, maj_res_type_fails = 0;
         for (String line : errors) {
             try {
                 String right = null;
@@ -2182,9 +2141,12 @@ public class GLIMPSEUtils {
                             major_fails++;
                             String state = mkt.trim().substring(0, 2);
                             if (isState(state) || "US".equals(state)) maj_us_fails++;
-                            if (mkt.toLowerCase().contains("grid")) maj_grid_fails++;
-                            if (mkt.toLowerCase().contains("water")) maj_water_fails++;
-                            if (mkt.toLowerCase().contains("trial")) maj_trial_fails++;
+                            if (mkt.toLowerCase().contains("grid")) {
+							}
+                            if (mkt.toLowerCase().contains("water")) {
+							}
+                            if (mkt.toLowerCase().contains("trial")) {
+							}
                             if (mktyp.equals("RES")) maj_res_type_fails++;
                             double dmd = Double.parseDouble(tokens[9].trim());
                             if (dmd <= min_dmd) maj_smallmkt_fails++;
@@ -2192,8 +2154,10 @@ public class GLIMPSEUtils {
                             minor_fails++;
                             String state = mkt.trim().substring(0, 2);
                             if (isState(state) || "US".equals(state)) min_us_fails++;
-                            if (mkt.toLowerCase().contains("water")) min_water_fails++;
-                            if (mkt.toLowerCase().contains("trial")) min_trial_fails++;
+                            if (mkt.toLowerCase().contains("water")) {
+							}
+                            if (mkt.toLowerCase().contains("trial")) {
+							}
                             if (mktyp.equals("RES")) min_res_type_fails++;
                             double dmd = Double.parseDouble(tokens[9].trim());
                             if (dmd <= min_dmd) min_smallmkt_fails++;
@@ -2455,41 +2419,24 @@ public class GLIMPSEUtils {
 	 }
 	
 	/**
+     * Checks if the transportation vehicle info data is in old format.
+     * @param data Transportation vehicle info data matrix
+     * @return true if old format, false otherwise
+     */
+    private boolean isOldFormatTrnVehInfo(String[][] data) {
+        boolean old_format = false;
+        if ((data[0][0] != null) && (data[0][0].toLowerCase().trim().startsWith("parameter"))) {
+            old_format = false;
+        }
+        return old_format;
+    }
+
+    /**
      * Helper method to check if a string is null or empty.
      * @param s String to check
      * @return true if null or empty, false otherwise
      */
     private boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
-    }
-
-    /**
-     * Helper method to safely parse an integer from a string.
-     * @param s String to parse
-     * @param defaultValue Value to return if parsing fails
-     * @return Parsed integer or defaultValue
-     */
-    private int safeParseInt(String s, int defaultValue) {
-        if (isNullOrEmpty(s)) return defaultValue;
-        try {
-            return Integer.parseInt(s.trim());
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
-    }
-
-    /**
-     * Helper method to safely parse a double from a string.
-     * @param s String to parse
-     * @param defaultValue Value to return if parsing fails
-     * @return Parsed double or defaultValue
-     */
-    private double safeParseDouble(String s, double defaultValue) {
-        if (isNullOrEmpty(s)) return defaultValue;
-        try {
-            return Double.parseDouble(s.trim());
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
     }
 }

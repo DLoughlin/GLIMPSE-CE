@@ -35,7 +35,6 @@
 */
 package glimpseElement;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import glimpseUtil.GLIMPSEFiles;
