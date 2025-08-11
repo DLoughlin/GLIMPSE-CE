@@ -48,7 +48,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -75,11 +74,8 @@ public class GLIMPSEFiles {
     private static final String COMMENT_CHAR = "#";
     private static final String ERROR_MSG_FILE_NOT_EXIST = "File does not exist:";
     private static final String ERROR_MSG_WRITING_FILE = "Error writing file";
-    private static final String ERROR_MSG_READING_FILE = "Error reading file";
     private static final String ERROR_MSG_DELETING_FILE = "error deleting ";
     private static final String ERROR_MSG_ZIPPING = "Error zipping directory: ";
-    private static final String ZIP_EXTENSION = ".zip";
-
     // Singleton instance
     public final static GLIMPSEFiles instance = new GLIMPSEFiles();
 

@@ -37,8 +37,6 @@ package glimpseElement;
 
 import java.io.File;
 
-import org.controlsfx.control.StatusBar;
-
 import glimpseUtil.FileChooserPlus;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
@@ -56,9 +54,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class CsvToXmlWidget {
 	protected GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
