@@ -42,27 +42,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import gui.PaneNewScenarioComponent;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -81,8 +72,6 @@ import javafx.stage.Stage;
  */
 public class TabMarketShare extends PolicyTab implements Runnable {
     // === Constants for UI text and options ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double MAX_WIDTH = 175;
     private static final double MIN_WIDTH = 175;
     private static final String SELECT_ONE = "Select One";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
@@ -100,21 +89,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         "Initial and Final %", "Initial w/% Growth/yr", "Initial w/% Growth/pd",
         "Initial w/Delta/yr", "Initial w/Delta/pd"
     };
-    private static final String DEFAULT_START_YEAR = "2025";
-    private static final String DEFAULT_END_YEAR = "2050";
-    private static final String DEFAULT_PERIOD_LENGTH = "5";
-
-    // === UI Components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final VBox vBoxRight = new VBox();
-    private final HBox hBoxHeaderRight = new HBox();
-    private final HBox hBoxFooterRight = new HBox();
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === Labels and Controls ===
     private final Label labelSubsetFilter = createLabel("Subset Filter:", LABEL_WIDTH);
@@ -133,32 +107,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private final ComboBox<String> comboBoxConstraint = createComboBoxString();
     private final Label labelTreatment = createLabel("Treatment: ", LABEL_WIDTH);
     private final ComboBox<String> comboBoxTreatment = createComboBoxString();
-    private final Label labelPolicyName = createLabel("Policy: ", LABEL_WIDTH);
-    private final TextField textFieldPolicyName = new TextField("");
-    private final Label labelMarketName = createLabel("Market: ", LABEL_WIDTH);
-    private final TextField textFieldMarketName = new TextField("");
-    private final Label labelUseAutoNames = createLabel("Names: ", LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = createCheckBox("Auto?");
-    private final Label labelModificationType = createLabel("Type: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
-    private final Label labelStartYear = createLabel("Start Year: ", LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
-    private final Label labelEndYear = createLabel("End Year: ", LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
-    private final Label labelInitialAmount = createLabel("Initial (%): ", LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = createTextField();
-    private final Label labelGrowth = createLabel("Final (%): ", LABEL_WIDTH);
-    private final TextField textFieldGrowth = createTextField();
-    private final Label labelPeriodLength = createLabel("Period Length: ", LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
-    private final Label labelValue = createLabel("Values: ", LABEL_WIDTH);
-    private final Button buttonPopulate = createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = createButton("Import", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = createButton("Clear", styles.getBigButtonWidth(), null);
-
-    // === Parent Pane Reference ===
-    private PaneNewScenarioComponent parentPane = null;
 
     // === Constants for Metadata ===
     private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
@@ -182,7 +130,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
      * @param pane The parent pane.
      */
     public TabMarketShare(String title, Stage stageX, PaneNewScenarioComponent pane) {
-        parentPane = pane;
         this.setText(title);
         this.setStyle(styles.getFontStyle());
         initializeUI();
@@ -817,20 +764,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
-     * Calculates the values for the policy table based on user input and selected calculation type.
-     * @return A 2D array of calculated values.
-     */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength);
-    }
-
-    /**
      * Runs background tasks or updates for this tab. Implementation of Runnable interface.
      */
     @Override
@@ -856,7 +789,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
             return;
         }
 
-        String which = this.comboBoxConstraint.getValue().toLowerCase();
+        this.comboBoxConstraint.getValue().toLowerCase();
         String ID = utils.getUniqueString();
         String policyName = this.textFieldPolicyName.getText() + ID;
         String marketName = this.textFieldMarketName.getText() + ID;
@@ -880,7 +813,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
 
-        ObservableList<String> subsetList = checkComboBoxSubset.getCheckModel().getCheckedItems();
+        checkComboBoxSubset.getCheckModel().getCheckedItems();
         ObservableList<String> supersetList = checkComboBoxSuperset.getCheckModel().getCheckedItems();
 
         ArrayList<String> dataArrayList = this.paneForComponentDetails.getDataYrValsArrayList();
@@ -911,14 +844,11 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
         for (String state : listOfSelectedLeaves) {
             for (int t = startYear; t < 2100; t += 5) {
-                String useMarketName = marketName;
                 String usePolicyName = policyName;
                 if (comboBoxTreatment.getValue().toLowerCase().trim().equals("each selected region") && listOfSelectedLeaves.length >= 2) {
-                    useMarketName = state + "_" + marketName;
                     usePolicyName = state + "_" + policyName;
                 }
                 if (comboBoxAppliedTo.getValue().toLowerCase().trim().equals("new purchases")) {
-                    useMarketName += "-" + t;
                     usePolicyName += "-" + t;
                 }
 
@@ -1229,8 +1159,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
-     * Gets the suggested filename for the scenario component file.
-     * @return The filename suggestion.
+     * Returns the suggested filename for the scenario component file.
+     * This is used when saving the scenario component to disk.
+     * @return The suggested filename as a String.
      */
     @Override
     public String getFilenameSuggestion() {
@@ -1238,7 +1169,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
-     * Resets the filename suggestion to null.
+     * Resets the filename suggestion to null. This should be called after saving or discarding the scenario component.
      */
     @Override
     public void resetFilenameSuggestion() {
@@ -1246,7 +1177,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
-     * Gets the file content for the scenario component.
+     * Returns the file content for the scenario component. This is used when saving the scenario component to disk.
      * @return The file content as a String.
      */
     @Override
@@ -1255,7 +1186,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     }
 
     /**
-     * Resets the file content to null.
+     * Resets the file content to null. This should be called after saving or discarding the scenario component.
      */
     @Override
     public void resetFileContent() {
@@ -1264,7 +1195,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
     /**
      * Updates the progress bar on the JavaFX Application Thread.
-     * @param progress The progress value to set.
+     * @param progress The progress value to set (between 0.0 and 1.0).
      */
     private void updateProgressBar(double progress) {
         Platform.runLater(() -> progressBar.setProgress(progress));

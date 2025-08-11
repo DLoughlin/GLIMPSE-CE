@@ -42,24 +42,13 @@ import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
 
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -98,36 +87,15 @@ import javafx.stage.Stage;
  */
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	// === Constants for UI Texts and Options ===
-	private static final double LABEL_WIDTH = 125;
 	private static final double MAX_WIDTH = 225;
 	private static final double MIN_WIDTH = 115;
 	private static final double PREF_WIDTH = 225;
 	private static final String[] MEASURE_OPTIONS = { "Select One", "Emission Cap (Mt)", "Emission Tax ($/t)" };
 	private static final String[] POLLUTANT_OPTIONS = { "Select One", "CO2 (MT C)", "CO2 (MT CO2)", "GHG (MT CO2E)",
 			"NOx (Tg)", "SO2 (Tg)", "PM2.5 (Tg)", "NMVOC (Tg)", "CO (Tg)", "NH3 (Tg)", "CH4 (Tg)", "N2O (Tg)" };
-	private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial w/% Growth/yr", "Initial w/% Growth/pd",
-			"Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final" };
-	private static final String[] CONVERT_FROM_OPTIONS = { "None", "2023$s", "2020$s", "2015$s", "2010$s", "2005$s",
-			"2000$s" };
 	private static final String LABEL_MEASURE = "Measure: ";
 	private static final String LABEL_CATEGORY = "Category: ";
 	private static final String LABEL_POLLUTANT = "Pollutant: ";
-	private static final String LABEL_MODIFICATION_TYPE = "Source Type: ";
-	private static final String LABEL_USE_AUTO_NAMES = "Names: ";
-	private static final String LABEL_POLICY_NAME = "Policy: ";
-	private static final String LABEL_MARKET_NAME = "Market: ";
-	private static final String LABEL_START_YEAR = "Start Year: ";
-	private static final String LABEL_END_YEAR = "End Year: ";
-	private static final String LABEL_INITIAL_AMOUNT = "Initial Val:   ";
-	private static final String LABEL_GROWTH = "Growth (%): ";
-	private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
-	private static final String LABEL_CONVERT_FROM = "Convert $s from: ";
-	private static final String LABEL_VALUES = "Values: ";
-	private static final String BUTTON_POPULATE = "Populate";
-	private static final String BUTTON_IMPORT = "Import";
-	private static final String BUTTON_DELETE = "Delete";
-	private static final String BUTTON_CLEAR = "Clear";
-
 	// === Magic String Constants for Logic ===
 	private static final String TAX = "Tax";
 	private static final String CAP = "Cap";
@@ -147,28 +115,12 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	private static final String GLIMPSE_EMISSION_CAP_PPS_P1 = "GLIMPSEEmissionCap-PPS-P1";
 	private static final String GLIMPSE_EMISSION_CAP_PPS_P2 = "GLIMPSEEmissionCap-PPS-P2";
 	private static final String EMISSION_TAX = "Emission Tax";
-	private static final String EMISSION_CAP = "Emission Cap";
-	private static final String NONE = "None";
 	private static final String GHG = "GHG";
 	private static final String CO2 = "CO2";
-	private static final String DEFAULT_START_YEAR = "2025";
-	private static final String DEFAULT_END_YEAR = "2050";
-	private static final String DEFAULT_PERIOD_LENGTH = "5";
 
 	// === State ===
 	public static String descriptionText = "";
 	public static String runQueueStr = "Queue is empty.";
-	private int check_count = 0;
-
-	// === Layout and UI Components ===
-	private final GridPane gridPanePresetModification = new GridPane();
-	private final GridPane gridPaneLeft = new GridPane();
-	private final VBox vBoxCenter = new VBox();
-	private final HBox hBoxHeaderCenter = new HBox();
-	private final VBox vBoxRight = new VBox();
-	private final HBox hBoxHeaderRight = new HBox();
-	private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-	private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
 	// === UI Controls ===
 	private final Label labelComboBoxMeasure = createLabel(LABEL_MEASURE, LABEL_WIDTH);
@@ -177,31 +129,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	private final CheckComboBox<String> checkComboBoxCategory = createCheckComboBox();
 	private final Label labelComboBoxPollutant = createLabel(LABEL_POLLUTANT, LABEL_WIDTH);
 	private final ComboBox<String> comboBoxPollutant = createComboBoxString();
-	private final Label labelModificationType = createLabel(LABEL_MODIFICATION_TYPE, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxModificationType = createComboBoxString();
-	private final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
-	private final CheckBox checkBoxUseAutoNames = createCheckBox("Auto?");
-	private final Label labelPolicyName = createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
-	private final TextField textFieldPolicyName = createTextField();
-	private final Label labelMarketName = createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
-	private final TextField textFieldMarketName = createTextField();
-	private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-	private final TextField textFieldStartYear = createTextField();
-	private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-	private final TextField textFieldEndYear = createTextField();
-	private final Label labelInitialAmount = createLabel(LABEL_INITIAL_AMOUNT, LABEL_WIDTH);
-	private final TextField textFieldInitialAmount = createTextField();
-	private final Label labelGrowth = createLabel(LABEL_GROWTH, LABEL_WIDTH);
-	private final TextField textFieldGrowth = createTextField();
-	private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-	private final TextField textFieldPeriodLength = createTextField();
-	private final Label labelConvertFrom = createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxConvertFrom = createComboBoxString();
-	private final Label labelValue = createLabel(LABEL_VALUES);
-	private final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
-	private final Button buttonImport = createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
-	private final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
-	private final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
 
 	/**
 	 * Constructs a TabPollutantTaxCap for the given title and stage. Sets up all UI
@@ -263,9 +190,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		}
 		for (String option : vars.getCategoriesFromTechBnd()) {
 			checkComboBoxCategory.getItems().add(option);
-		}
-		for (String option : MODIFICATION_TYPE_OPTIONS) {
-			comboBoxModificationType.getItems().add(option);
 		}
 		for (String option : CONVERT_FROM_OPTIONS) {
 			comboBoxConvertFrom.getItems().add(option);
@@ -366,11 +290,16 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBox.setMinWidth(MIN_WIDTH);
 		comboBox.setPrefWidth(PREF_WIDTH);
 	}
-	private void setComboBoxWidths(CheckComboBox<String> comboBox) {
-		comboBox.setMaxWidth(MAX_WIDTH);
-		comboBox.setMinWidth(MIN_WIDTH);
-		comboBox.setPrefWidth(PREF_WIDTH);
-	}
+	/**
+     * Sets the widths for a CheckComboBox for consistency.
+     *
+     * @param comboBox CheckComboBox to set widths for
+     */
+    private void setComboBoxWidths(CheckComboBox<String> comboBox) {
+        comboBox.setMaxWidth(MAX_WIDTH);
+        comboBox.setMinWidth(MIN_WIDTH);
+        comboBox.setPrefWidth(PREF_WIDTH);
+    }
 
 	/**
 	 * Automatically sets the policy and market names based on current selections
@@ -421,27 +350,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	    });
 	}
 
-	/**
-	 * Calculates the values matrix for the cap/tax table based on user input and
-	 * modification type. Applies currency conversion if needed.
-	 * 
-	 * @return 2D array of calculated values for each year/period
-	 */
-	private double[][] calculateValues() {
-		String calc_type = comboBoxModificationType.getSelectionModel().getSelectedItem();
-		int start_year = Integer.parseInt(textFieldStartYear.getText());
-		int end_year = Integer.parseInt(textFieldEndYear.getText());
-		double initial_value = Double.parseDouble(textFieldInitialAmount.getText());
-		double growth = Double.parseDouble(textFieldGrowth.getText());
-		int period_length = Integer.parseInt(textFieldPeriodLength.getText());
-		double factor = 1.0;
-		String convertYear = comboBoxConvertFrom.getValue();
-		if (!NONE.equals(convertYear)) {
-			factor = utils.getConversionFactor(convertYear, "1975$s");
-		}
-		return utils.calculateValues(calc_type, false, start_year, end_year, initial_value, growth, period_length,
-				factor);
-	}
 
 	/**
 	 * Runnable implementation: triggers saving the scenario component. Calls
@@ -449,8 +357,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 */
 	@Override
 	public void run() {
-	    Platform.runLater(() -> saveScenarioComponent());
-	}
+        Platform.runLater(() -> saveScenarioComponent());
+    }
 
 	/**
 	 * Saves the scenario component by generating metadata and CSV content. Uses
@@ -464,7 +372,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Saves the scenario component using the provided region tree. Validates
 	 * inputs, generates metadata and CSV, and sets fileContent/filenameSuggestion.
-	 * 
+	 *
 	 * @param tree TreeView of selected regions
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
@@ -514,10 +422,12 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Special implementation for CO2 cap policies, generating robust scenario files
 	 * for complex scenarios.
-	 * 
+	 *
 	 * @param listOfSelectedRegions Array of selected region names
+	 * @param measure               Measure type (Tax/Cap)
+	 * @param category              Selected category
+	 * @param categories            List of selected categories
 	 * @param pol                   Pollutant string
-	 * @param sector                Sector string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
@@ -676,12 +586,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	
 
 	/**
-	 * Special implementation for CO2 cap policies, generating robust scenario files
-	 * for complex scenarios.
-	 * 
+	 * Special implementation for GHG tax/cap policies, generating scenario files for GHG policies.
+	 *
 	 * @param listOfSelectedRegions Array of selected region names
+	 * @param measure               Measure type (Tax/Cap)
 	 * @param pol                   Pollutant string
-	 * @param sector                Sector string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
@@ -778,12 +687,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	
 	
 	/**
-	 * Special implementation for CO2 cap policies, generating robust scenario files
-	 * for complex scenarios.
-	 * 
+	 * Special implementation for robust CO2 cap policies, generating scenario files for complex CO2 cap scenarios.
+	 *
 	 * @param listOfSelectedRegions Array of selected region names
 	 * @param pol                   Pollutant string
-	 * @param sector                Sector string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
@@ -827,7 +734,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Returns metadata content for the scenario component file, including measure,
 	 * pollutant, sector, regions, and table data.
-	 * 
+	 *
 	 * @param tree   TreeView of selected regions
 	 * @param market Market name
 	 * @param policy Policy name
@@ -862,7 +769,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * Loads content into the tab from a list of strings (e.g., when editing a
 	 * component). Populates measure, pollutant, sector, regions, and table data
 	 * from file content.
-	 * 
+	 *
 	 * @param content List of file lines to load
 	 */
 	@Override
@@ -918,7 +825,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 	/**
 	 * Checks if all required fields for populating values are filled.
-	 * 
+	 *
 	 * @return true if all required fields are filled, false otherwise
 	 */
 	public boolean qaPopulate() {
@@ -946,7 +853,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Validates all required inputs before saving the scenario component. Checks
 	 * for at least one region, at least one table entry, and required selections.
-	 * 
+	 *
 	 * @return true if all inputs are valid, false otherwise
 	 */
 	protected boolean qaInputs() {
@@ -1001,10 +908,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 	/**
 	 * Updates the progress bar in a thread-safe way.
-	 * 
+	 *
 	 * @param progress Progress value between 0.0 and 1.0
 	 */
 	private void updateProgressBar(double progress) {
-	    Platform.runLater(() -> progressBar.setProgress(progress));
-	}
+        Platform.runLater(() -> progressBar.setProgress(progress));
+    }
 }

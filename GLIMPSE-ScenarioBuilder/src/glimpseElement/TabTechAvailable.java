@@ -36,21 +36,11 @@
 
 package glimpseElement;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-
 import glimpseBuilder.TechBound;
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -60,7 +50,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -68,11 +57,9 @@ import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 /**
  * TabTechAvailable provides the user interface and logic for managing technology availability
@@ -142,7 +129,6 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     // === Table and Layout Components ===
     public final TableView<TechBound> tableTechBounds = new TableView<>();
-    private final GridPane gridPaneTechBound = new GridPane();
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === Data Lists ===
@@ -639,6 +625,15 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
             if (num == 0) System.out.println("Stopping with " + num + " read in.");
         }
         return list;
+    }
+
+    /**
+     * Saves the current scenario component shareweight data to file.
+     * This method should be implemented to export shareweight constraints for technologies.
+     */
+    public void saveScenarioComponentShareweight() {
+        // Implementation for saving shareweight scenario data
+        // (Not implemented in this version)
     }
 
     /**

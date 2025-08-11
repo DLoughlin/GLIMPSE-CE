@@ -45,9 +45,13 @@ import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Button;
@@ -93,6 +97,78 @@ public abstract class PolicyTab extends Tab {
     protected final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
     protected final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
+    // === Constants for UI Texts and Options ===
+    protected static final double LABEL_WIDTH = 125;
+    protected static final double MAX_WIDTH = 175;
+    protected static final double MIN_WIDTH = 105;
+    protected static final double PREF_WIDTH = 175;
+    protected static final String NONE = "None";
+    protected static final String DEFAULT_START_YEAR = "2025";
+    protected static final String DEFAULT_END_YEAR = "2050";
+    protected static final String DEFAULT_PERIOD_LENGTH = "5";
+    protected static final String LABEL_UNITS_DEFAULT = "1975$s per GJ";
+    protected static final String BUTTON_POPULATE = "Populate";
+    protected static final String BUTTON_IMPORT = "Import";
+    protected static final String BUTTON_DELETE = "Delete";
+    protected static final String BUTTON_CLEAR = "Clear";
+    protected static final String LABEL_POLICY_NAME = "Policy: ";
+    protected static final String LABEL_MARKET_NAME = "Market: ";
+    protected static final String LABEL_USE_AUTO_NAMES = "Names: ";
+    protected static final String LABEL_MODIFICATION_TYPE = "Type: ";
+    protected static final String LABEL_VALUES = "Values: ";
+    protected static final String CHECKBOX_AUTO = "Auto?";
+    
+    // === Constants for default values and labels ===
+    protected static final String[] MODIFICATION_TYPE_OPTIONS = {
+            "Initial w/% Growth/yr", "Initial w/% Growth/pd",
+            "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
+    };
+    protected static final String[] CONVERT_FROM_OPTIONS = {
+            NONE, "2023$s", "2020$s", "2015$s", "2010$s", "2005$s", "2000$s"
+    };
+        
+    // GUI elements shared across all policy tabs
+    protected final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
+    protected final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
+    protected final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
+    protected final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
+    protected final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
+    protected final TextField textFieldInitialAmount = utils.createTextField();
+    protected final Label labelGrowth = utils.createLabel("Growth (%): ", LABEL_WIDTH);
+    protected final TextField textFieldGrowth = utils.createTextField();
+    protected final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
+    protected final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
+    protected final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
+    protected final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
+    protected final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
+    protected final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
+    protected final Label labelUnits2 = utils.createLabel(LABEL_UNITS_DEFAULT, 225.);
+
+    protected  final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
+    protected final Button buttonImport = createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
+    protected final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
+    protected final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
+    protected final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
+    protected final HBox hBoxHeaderRight = new HBox();
+    protected final VBox vBoxRight = new VBox();
+    protected final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
+
+    // === UI Components ===
+    protected final GridPane gridPanePresetModification = new GridPane();
+    protected final ScrollPane scrollPaneLeft = new ScrollPane();
+    protected final GridPane gridPaneLeft = new GridPane();
+    protected final VBox vBoxCenter = new VBox();
+    protected final HBox hBoxHeaderCenter = new HBox();
+    
+    protected final Label labelPolicyName = createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
+    protected final TextField textFieldPolicyName = createTextField();
+    protected final Label labelMarketName = createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
+    protected final TextField textFieldMarketName = createTextField();
+    protected final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
+    protected final CheckBox checkBoxUseAutoNames = createCheckBox(CHECKBOX_AUTO);
+    protected final Label labelValue = createLabel(LABEL_VALUES);
+    
+    
     /**
      * Save the scenario component. Implemented by subclasses to define how the component is saved.
      */
@@ -206,7 +282,29 @@ public abstract class PolicyTab extends Tab {
         }
         return result;
     }
-
+    
+    /**
+     * Calculates the values for the policy based on user input and conversion factors.
+     *
+     * @return a 2D array of calculated values
+     */
+    protected double[][] calculateValues() {
+        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
+        int startYear = Integer.parseInt(textFieldStartYear.getText());
+        int endYear = Integer.parseInt(textFieldEndYear.getText());
+        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
+        double growth = Double.parseDouble(textFieldGrowth.getText());
+        int periodLength = vars.getPeriodIncrement();
+        double factor = 1.0;
+        String convertYear = comboBoxConvertFrom.getValue();
+        String tempUnitsVal = labelUnits2.getText();
+        String toYear = tempUnitsVal.contains("1990") ? "1990$s" : "1975$s";
+        if (!NONE.equals(convertYear)) {
+            factor = utils.getConversionFactor(convertYear, toYear);
+        }
+        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength, factor);
+    }
+    
     /**
      * Display a warning message to the user (centralized for all tabs).
      * @param message The warning message to display
@@ -234,26 +332,58 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Standardized UI component creation methods for tab subclasses.
+     * @param text The label text
+     * @return A new Label instance
      */
     protected javafx.scene.control.Label createLabel(String text) {
         return utils.createLabel(text);
     }
+    /**
+     * Create a label with specified text and width.
+     * @param text The label text
+     * @param width The label width
+     * @return A new Label instance
+     */
     protected Label createLabel(String text, double width) {
         Label label = utils.createLabel(text, width);
         return label;
     }
+    /**
+     * Create a new TextField instance.
+     * @return A new TextField
+     */
     protected TextField createTextField() {
         return utils.createTextField();
     }
+    /**
+     * Create a ComboBox for String values.
+     * @return A new ComboBox<String>
+     */
     protected ComboBox<String> createComboBoxString() {
         return utils.createComboBoxString();
     }
+    /**
+     * Create a CheckComboBox for String values.
+     * @return A new CheckComboBox<String>
+     */
     protected CheckComboBox<String> createCheckComboBox() {
         return utils.createCheckComboBox();
     }
+    /**
+     * Create a CheckBox with specified text.
+     * @param text The checkbox label
+     * @return A new CheckBox
+     */
     protected CheckBox createCheckBox(String text) {
         return utils.createCheckBox(text);
     }
+    /**
+     * Create a Button with specified text, width, and event handler.
+     * @param text The button label
+     * @param width The button width
+     * @param handler The event handler (can be null)
+     * @return A new Button
+     */
     protected Button createButton(String text, int width, EventHandler<ActionEvent> handler) {
         Button button = utils.createButton(text, width, handler);
         if (handler != null) button.setOnAction(handler);
@@ -261,20 +391,44 @@ public abstract class PolicyTab extends Tab {
     }
     /**
      * Standardized event handler registration for tab subclasses.
+     * @param comboBox The ComboBox to set the handler for
+     * @param handler The event handler to assign
      */
     protected void setOnAction(ComboBox<?> comboBox, EventHandler<ActionEvent> handler) {
         comboBox.setOnAction(handler);
     }
+    /**
+     * Set the action handler for a Button.
+     * @param button The Button to set the handler for
+     * @param handler The event handler to assign
+     */
     protected void setOnAction(Button button, EventHandler<ActionEvent> handler) {
         button.setOnAction(handler);
     }
+    /**
+     * Set the action handler for a TextField.
+     * @param textField The TextField to set the handler for
+     * @param handler The event handler to assign
+     */
     protected void setOnAction(TextField textField, EventHandler<ActionEvent> handler) {
         textField.setOnAction(handler);
     }
+    /**
+     * Set the mouse click handler for a Label.
+     * @param label The Label to set the handler for
+     * @param handler The mouse event handler to assign
+     */
     protected void setOnMouseClicked(Label label, EventHandler<javafx.scene.input.MouseEvent> handler) {
         label.setOnMouseClicked(handler);
     }
+    /**
+     * Set the action handler for a CheckBox.
+     * @param checkBox The CheckBox to set the handler for
+     * @param handler The event handler to assign
+     */
     protected void setOnAction(CheckBox checkBox, EventHandler<ActionEvent> handler) {
         checkBox.setOnAction(handler);
     }
+    
+    
 }

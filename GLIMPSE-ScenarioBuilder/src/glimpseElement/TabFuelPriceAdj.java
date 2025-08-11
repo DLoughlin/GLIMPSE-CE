@@ -40,15 +40,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -61,75 +55,16 @@ import javafx.stage.Stage;
  */
 public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     // === UI constants ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double FIELD_WIDTH = 180;
+
     private static final String LABEL_FUEL = "Fuel: ";
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_UNITS_VALUE = "1975$s per GJ";
-    private static final String LABEL_POLICY_NAME = "Policy: ";
-    private static final String LABEL_MARKET_NAME = "Market: ";
-    private static final String LABEL_USE_AUTO_NAMES = "Names: ";
-    private static final String LABEL_MODIFICATION_TYPE = "Type: ";
-    private static final String LABEL_START_YEAR = "Start Year: ";
-    private static final String LABEL_END_YEAR = "End Year: ";
-    private static final String LABEL_INITIAL_AMOUNT = "Initial Val:   ";
-    private static final String LABEL_GROWTH = "Growth (%): ";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
-    private static final String LABEL_CONVERT_FROM = "Convert $s from: ";
-    private static final String LABEL_VALUES = "Values: ";
-    private static final String BUTTON_POPULATE = "Populate";
-    private static final String BUTTON_IMPORT = "Import";
-    private static final String BUTTON_DELETE = "Delete";
-    private static final String BUTTON_CLEAR = "Clear";
-    private static final String CHECKBOX_AUTO = "Auto?";
-    private static final String[] CONVERT_FROM_OPTIONS = {"None","2023$s","2020$s","2015$s","2010$s","2005$s","2000$s"};
-    private static final String[] MODIFICATION_TYPE_OPTIONS = {
-        "Initial w/% Growth/yr", "Initial w/% Growth/pd",
-        "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
-    };
-    private static final int DEFAULT_START_YEAR = 2025;
-    private static final int DEFAULT_END_YEAR = 2050;
-    private static final String DEFAULT_PERIOD_LENGTH = "5";
     
     // === UI components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
     private final Label labelFuel = createLabel(LABEL_FUEL, LABEL_WIDTH);
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelUnitsValue = createLabel(LABEL_UNITS_VALUE, 225.);
     private final CheckComboBox<String> comboBoxFuel = createCheckComboBox();
-    private final Label labelPolicyName = createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
-    private final TextField textFieldPolicyName = createTextField();
-    private final Label labelMarketName = createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
-    private final TextField textFieldMarketName = createTextField();
-    private final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = createCheckBox(CHECKBOX_AUTO);
-    private final Label labelModificationType = createLabel(LABEL_MODIFICATION_TYPE, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
-    private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = createTextField();
-    private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = createTextField();
-    private final Label labelInitialAmount = createLabel(LABEL_INITIAL_AMOUNT, LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = createTextField();
-    private final Label labelGrowth = createLabel(LABEL_GROWTH, LABEL_WIDTH);
-    private final TextField textFieldGrowth = createTextField();
-    private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = createTextField();
-    private final Label labelConvertFrom = createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxConvertFrom = createComboBoxString();
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final Label labelValue = createLabel(LABEL_VALUES);
-    private final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
-    private final Button buttonImport = createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
-    private final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final HBox hBoxHeaderRight = new HBox();
-    private final VBox vBoxRight = new VBox();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
     
     /**
      * Constructs a new TabFuelPriceAdj instance and initializes the UI components for the Fuel Price Adjustment tab.
@@ -316,27 +251,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 System.out.println("Cannot auto-name market. Continuing.");
             }
         }
-    }
-
-    /**
-     * Calculates the values for the policy based on user input and selected calculation type.
-     *
-     * @return 2D array of calculated values
-     */
-    private double[][] calculateValues() {
-        String calc_type = comboBoxModificationType != null ? comboBoxModificationType.getSelectionModel().getSelectedItem() : null;
-        int start_year = textFieldStartYear != null ? Integer.parseInt(textFieldStartYear.getText()) : 0;
-        int end_year = textFieldEndYear != null ? Integer.parseInt(textFieldEndYear.getText()) : 0;
-        double initial_value = textFieldInitialAmount != null ? Double.parseDouble(this.textFieldInitialAmount.getText()) : 0.0;
-        double growth = textFieldGrowth != null ? Double.parseDouble(this.textFieldGrowth.getText()) : 0.0;
-        int period_length = textFieldPeriodLength != null ? Integer.parseInt(this.textFieldPeriodLength.getText()) : 0;
-        double factor = 1.0;
-        String convertYear = comboBoxConvertFrom != null ? comboBoxConvertFrom.getValue() : null;
-        if (convertYear != null && !"None".equals(convertYear)) {
-            factor = utils.getConversionFactor(convertYear, "1975$s");
-        }
-        double[][] returnMatrix = utils.calculateValues(calc_type, start_year, end_year, initial_value, growth, period_length, factor);
-        return returnMatrix;
     }
 
     /**
@@ -622,16 +536,26 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Helper method to add items to a ComboBox<String> or CheckComboBox<String>.
+     * Helper method to add items to a ComboBox<String>.
+     *
+     * @param comboBox the ComboBox to add items to
+     * @param items the array of items to add
      */
     private void addItemsToComboBox(ComboBox<String> comboBox, String[] items) {
         comboBox.getItems().addAll(items);
     }
+    /**
+     * Helper method to add items to a CheckComboBox<String>.
+     *
+     * @param checkComboBox the CheckComboBox to add items to
+     * @param items the array of items to add
+     */
     private void addItemsToCheckComboBox(CheckComboBox<String> checkComboBox, String[] items) {
         checkComboBox.getItems().addAll(items);
     }
     /**
      * Registers an event handler for a ComboBox's ActionEvent.
+     *
      * @param comboBox the ComboBox to register the event for
      * @param handler the event handler
      */
@@ -640,6 +564,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
     /**
      * Registers a listener for changes to a CheckComboBox's checked items.
+     *
      * @param checkComboBox the CheckComboBox to register the listener for
      * @param handler the Runnable to execute when checked items change
      */
@@ -648,6 +573,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
     /**
      * Registers an event handler for a CheckBox's ActionEvent.
+     *
      * @param checkBox the CheckBox to register the event for
      * @param handler the event handler
      */
@@ -656,6 +582,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
     /**
      * Registers an event handler for a Button's ActionEvent.
+     *
      * @param button the Button to register the event for
      * @param handler the event handler
      */

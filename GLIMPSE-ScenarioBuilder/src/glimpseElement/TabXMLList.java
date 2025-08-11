@@ -39,10 +39,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -219,8 +215,11 @@ public class TabXMLList extends PolicyTab {
     /**
      * Loads XML list info from a file.
      *
-     * @param filename The file to load from
-     * @param typeString The type string
+     * Loads a list of XML file paths from the specified file, using the provided type string.
+     * The loaded file list is then passed to {@link #loadContent(ArrayList)} to populate the tab.
+     *
+     * @param filename The path to the file containing the XML list
+     * @param typeString The type string used to identify the XML list section in the file
      */
     public void loadInfoFromFile(String filename, String typeString) {
         if (filename == null || typeString == null) return;
@@ -232,6 +231,9 @@ public class TabXMLList extends PolicyTab {
 
     /**
      * Runs the save scenario component logic.
+     *
+     * This method triggers saving the current scenario component, including generating
+     * the filename suggestion and file content for the XML list.
      */
     public void run() {
         saveScenarioComponent();
