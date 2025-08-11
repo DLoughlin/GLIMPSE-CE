@@ -260,7 +260,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
     }
 
     private void setupEventHandlers() {
-        labelCheckComboBoxTech.setOnMouseClicked(e -> {
+        // Wrap all UI updates in Platform.runLater
+        labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
                 if (e.getClickCount() == 2) {
@@ -271,8 +272,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     }
                 }
             }
-        });
-        comboBoxSector.setOnAction(e -> {
+        }));
+        comboBoxSector.setOnAction(e -> Platform.runLater(() -> {
             String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 if (selectedItem.equals(SELECT_ONE)) {
@@ -286,24 +287,19 @@ public class TabTechTax extends PolicyTab implements Runnable {
                 }
             }
             setPolicyAndMarketNames();
-        });
-        checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> {
+        }));
+        checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> Platform.runLater(() -> {
             while (c.next()) {
                 setUnitsLabel();
             }
-        });
-        comboBoxTaxOrSubsidy.setOnAction(e -> setPolicyAndMarketNames());
-        EventHandler<TreeModificationEvent<String>> ev = ae -> {
-            ae.consume();
-            setPolicyAndMarketNames();
-        };
-        paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-        checkBoxUseAutoNames.setOnAction(e -> {
+        }));
+        comboBoxTaxOrSubsidy.setOnAction(e -> Platform.runLater(() -> setPolicyAndMarketNames()));
+        checkBoxUseAutoNames.setOnAction(e -> Platform.runLater(() -> {
             boolean selected = checkBoxUseAutoNames.isSelected();
             textFieldPolicyName.setDisable(selected);
             textFieldMarketName.setDisable(selected);
-        });
-        comboBoxModificationType.setOnAction(e -> {
+        }));
+        comboBoxModificationType.setOnAction(e -> Platform.runLater(() -> {
             String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
             if (selected == null) return;
             switch (selected) {
@@ -319,16 +315,16 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     labelGrowth.setText("Final Val:");
                     break;
             }
-        });
-        buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
-        buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
-        buttonPopulate.setOnAction(e -> {
+        }));
+        buttonClear.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
+        buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
+        buttonPopulate.setOnAction(e -> Platform.runLater(() -> {
             if (qaPopulate()) {
                 double[][] values = calculateValues();
                 paneForComponentDetails.setValues(values);
             }
-        });
-        textFieldFilter.setOnAction(e -> setupComboBoxSector());
+        }));
+        textFieldFilter.setOnAction(e -> Platform.runLater(() -> setupComboBoxSector()));
     }
 
     /**
@@ -506,6 +502,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
             String marketName = this.textFieldMarketName.getText() + ID;
             filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
             fileContent = getMetaDataContent(paneForCountryStateTree.getTree(), marketName, policyName);
+            ObservableList<String> techLines = checkComboBoxTech.getCheckModel().getCheckedItems();
+            ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
             for (int iter = 0; iter < 2; iter++) {
                 String iterType = (iter == 0) ? "Std" : "Tran";
                 String which = "tax";
@@ -518,59 +516,59 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     headerPart2 = "GLIMPSEPF" + iterType + "TechSubsidyP2";
                     headerPart3 = "GLIMPSEPF" + iterType + "TechSubsidyP3";
                 }
-                ObservableList<String> techLines = checkComboBoxTech.getCheckModel().getCheckedItems();
+                StringBuilder sb = new StringBuilder(fileContent);
                 for (String techLine : techLines) {
                     String[] temp = utils.splitString(techLine.trim(), ":");
                     String sector = temp[0].trim();
                     String subsector = temp[1].trim();
                     String tech = temp[2].trim();
-                    if (((iter == 0) && (!sector.startsWith("trn"))) || ((iter == 1) && (sector.startsWith("trn")))) {
+                    boolean isTran = sector.startsWith("trn");
+                    if (((iter == 0) && (!isTran)) || ((iter == 1) && (isTran))) {
                         // part 1
-                        fileContent += "INPUT_TABLE" + vars.getEol();
-                        fileContent += "Variable ID" + vars.getEol();
+                        sb.append("INPUT_TABLE").append(vars.getEol());
+                        sb.append("Variable ID").append(vars.getEol());
                         if (subsector.indexOf("=>") > -1) {
-                            fileContent += headerPart1 + "-Nest" + vars.getEol() + vars.getEol();
-                            fileContent += "region,sector,nesting-subsector,subsector,tech,year,policy-name" + vars.getEol();
+                            sb.append(headerPart1).append("-Nest").append(vars.getEol()).append(vars.getEol());
+                            sb.append("region,sector,nesting-subsector,subsector,tech,year,policy-name").append(vars.getEol());
                             subsector = subsector.replace("=>", ",");
                         } else {
-                            fileContent += headerPart1 + vars.getEol() + vars.getEol();
-                            fileContent += "region,sector,subsector,tech,year,policy-name" + vars.getEol();
+                            sb.append(headerPart1).append(vars.getEol()).append(vars.getEol());
+                            sb.append("region,sector,subsector,tech,year,policy-name").append(vars.getEol());
                         }
                         for (String state : listOfSelectedLeaves) {
-                            ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
                             for (String dataStr : data) {
                                 String year = utils.splitString(dataStr.replace(" ", ""), ",")[0];
-                                fileContent += state + "," + sector + "," + subsector + "," + tech + "," + year + "," + policyName + vars.getEol();
+                                sb.append(state).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(year).append(",").append(policyName).append(vars.getEol());
                             }
                         }
                         // part 2
-                        fileContent += vars.getEol();
-                        fileContent += "INPUT_TABLE" + vars.getEol();
-                        fileContent += "Variable ID" + vars.getEol();
-                        fileContent += headerPart2 + vars.getEol() + vars.getEol();
-                        fileContent += "region,policy-name,market,type,policy-yr,policy-val" + vars.getEol();
+                        sb.append(vars.getEol());
+                        sb.append("INPUT_TABLE").append(vars.getEol());
+                        sb.append("Variable ID").append(vars.getEol());
+                        sb.append(headerPart2).append(vars.getEol()).append(vars.getEol());
+                        sb.append("region,policy-name,market,type,policy-yr,policy-val").append(vars.getEol());
                         if (listOfSelectedLeaves.length > 0) {
                             String state = listOfSelectedLeaves[0];
-                            ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
                             for (String dataStr : data) {
                                 String[] split = utils.splitString(dataStr.replace(" ", ""), ",");
                                 String year = split[0];
                                 String val = split[1];
-                                fileContent += state + "," + policyName + "," + marketName + "," + which + "," + year + "," + val + vars.getEol();
+                                sb.append(state).append(",").append(policyName).append(",").append(marketName).append(",").append(which).append(",").append(year).append(",").append(val).append(vars.getEol());
                             }
                         }
                         // part 3
-                        fileContent += vars.getEol();
-                        fileContent += "INPUT_TABLE" + vars.getEol();
-                        fileContent += "Variable ID" + vars.getEol();
-                        fileContent += headerPart3 + vars.getEol() + vars.getEol();
-                        fileContent += "region,policy-name,market,type" + vars.getEol();
+                        sb.append(vars.getEol());
+                        sb.append("INPUT_TABLE").append(vars.getEol());
+                        sb.append("Variable ID").append(vars.getEol());
+                        sb.append(headerPart3).append(vars.getEol()).append(vars.getEol());
+                        sb.append("region,policy-name,market,type").append(vars.getEol());
                         for (String state : listOfSelectedLeaves) {
-                            fileContent += state + "," + policyName + "," + marketName + "," + which + vars.getEol();
+                            sb.append(state).append(",").append(policyName).append(",").append(marketName).append(",").append(which).append(vars.getEol());
                         }
-                        fileContent += vars.getEol();
+                        sb.append(vars.getEol());
                     }
                 }
+                fileContent = sb.toString();
             }
         }
     }
@@ -663,6 +661,23 @@ public class TabTechTax extends PolicyTab implements Runnable {
     }
 
     /**
+     * Helper method to validate table data years against allowable policy years.
+     * @return true if at least one year matches allowable years, false otherwise
+     */
+    private boolean validateTableDataYears() {
+        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
+        if (data == null) return false;
+        for (DataPoint dp : data) {
+            Integer year = Integer.parseInt(dp.getYear().trim());
+            if (listOfAllowableYears.contains(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
      * Performs quality assurance checks on user inputs and displays warnings if any issues are found.
      *
      * @return true if all inputs are valid, false otherwise
@@ -676,20 +691,13 @@ public class TabTechTax extends PolicyTab implements Runnable {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }
-            if (paneForComponentDetails.table.getItems().size() == 0) {
+            if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
                 message.append("Data table must have at least one entry").append(vars.getEol());
                 errorCount++;
             } else {
-                boolean match = false;
-                String listOfAllowableYears = vars.getAllowablePolicyYears();
-                ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
-                for (DataPoint dp : data) {
-                    String year = dp.getYear().trim();
-                    if (listOfAllowableYears.contains(year)) match = true;
-                }
+                boolean match = validateTableDataYears();
                 if (!match) {
-                    message.append("Years specified in table must match allowable policy years (")
-                            .append(listOfAllowableYears).append(")").append(vars.getEol());
+                    message.append("Years specified in table must match allowable policy years (").append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
                     errorCount++;
                 }
             }

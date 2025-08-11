@@ -90,10 +90,10 @@ public class CsvToXmlWidget {
 		
 		Label csvFileLabel=utils.createLabel("CSV file");
 		//TextField csvFileTextField=utils.createTextField();
-		Button browseForCsvFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate CSV file");
+		Button browseForCsvFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate CSV file",null);
 		Label headerFileLabel=utils.createLabel("Header file");
 		//TextField headerFileTextField=utils.createTextField();
-		Button browseForHeaderFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate header file");
+		Button browseForHeaderFile=utils.createButton("Browse", styles.getBigButtonWidth(),"Locate header file",null);
 
 		headerFileTextField.setText(headersFilename);
 
@@ -135,7 +135,7 @@ public class CsvToXmlWidget {
 				
 		grid.add(new Separator(Orientation.HORIZONTAL), 0, 3, 3,1);
 		
-		Button convertButton = utils.createButton("Convert", styles.getBigButtonWidth(),"Converts CSV to XML using header");
+		Button convertButton = utils.createButton("Convert", styles.getBigButtonWidth(),"Converts CSV to XML using header",null);
 		Button closeButton = utils.createButton("Close", styles.getBigButtonWidth(),null);
 
 		closeButton.setOnAction(e -> {

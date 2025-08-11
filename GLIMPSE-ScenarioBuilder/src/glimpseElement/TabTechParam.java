@@ -144,41 +144,41 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === UI Controls ===
-    private final Label labelSector = utils.createLabel(LABEL_SECTOR, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxSector = utils.createComboBoxString();
-    private final Label labelFilter = utils.createLabel(LABEL_FILTER, LABEL_WIDTH);
-    private final TextField textFieldFilter = utils.createTextField();
-    private final Label labelCheckComboBoxTech = utils.createLabel(LABEL_TECHS, LABEL_WIDTH);
+    private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxSector = createComboBoxString();
+    private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
+    private final TextField textFieldFilter = createTextField();
+    private final Label labelCheckComboBoxTech = createLabel(LABEL_TECHS, LABEL_WIDTH);
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
-    private final Label labelComboBoxParam = utils.createLabel(LABEL_PARAMETER, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxParam = utils.createComboBoxString();
-    private final Label labelComboBoxParam2 = utils.createLabel(LABEL_PARAMETER2, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxParam2 = utils.createComboBoxString();
-    private final Label labelTextFieldInput = utils.createLabel(LABEL_INPUT, LABEL_WIDTH);
-    private final Label labelTextFieldInput2 = utils.createLabel("");
-    private final Label labelTextFieldOutput = utils.createLabel(LABEL_OUTPUT, LABEL_WIDTH);
-    private final Label labelTextFieldOutput2 = utils.createLabel("", LABEL_WIDTH);
-    private final Label labelTextFieldUnits = utils.createLabel(LABEL_UNITS, LABEL_WIDTH);
-    private final Label labelTextFieldUnits2 = utils.createLabel("", LABEL_WIDTH);
-    private final Label labelModificationType = utils.createLabel(LABEL_TYPE, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-    private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField("2025");
-    private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField("2050");
-    private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField("5");
-    private final Label labelConvertFrom = utils.createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
-    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
-    private final Label labelValue = utils.createLabel(LABEL_VALUES);
+    private final Label labelComboBoxParam = createLabel(LABEL_PARAMETER, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxParam = createComboBoxString();
+    private final Label labelComboBoxParam2 = createLabel(LABEL_PARAMETER2, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxParam2 = createComboBoxString();
+    private final Label labelTextFieldInput = createLabel(LABEL_INPUT, LABEL_WIDTH);
+    private final Label labelTextFieldInput2 = createLabel("");
+    private final Label labelTextFieldOutput = createLabel(LABEL_OUTPUT, LABEL_WIDTH);
+    private final Label labelTextFieldOutput2 = createLabel("", LABEL_WIDTH);
+    private final Label labelTextFieldUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
+    private final Label labelTextFieldUnits2 = createLabel("", LABEL_WIDTH);
+    private final Label labelModificationType = createLabel(LABEL_TYPE, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
+    private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
+    private final TextField textFieldStartYear = createTextField();
+    private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
+    private final TextField textFieldEndYear = createTextField();
+    private final Label labelInitialAmount = createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
+    private final TextField textFieldInitialAmount = createTextField();
+    private final Label labelGrowth = createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
+    private final TextField textFieldGrowth = createTextField();
+    private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
+    private final TextField textFieldPeriodLength = createTextField();
+    private final Label labelConvertFrom = createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxConvertFrom = createComboBoxString();
+    private final Button buttonPopulate = createButton("Populate", styles.getBigButtonWidth(), null);
+    private final Button buttonImport = createButton("Import", styles.getBigButtonWidth(), null);
+    private final Button buttonDelete = createButton("Delete", styles.getBigButtonWidth(), null);
+    private final Button buttonClear = createButton("Clear", styles.getBigButtonWidth(), null);
+    private final Label labelValue = createLabel(LABEL_VALUES);
 
     // === Data ===
     private String[][] techInfo = null;
@@ -315,11 +315,30 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
     /**
+     * Registers an event handler for a Button's ActionEvent.
+     */
+    private void registerButtonEvent(Button button, javafx.event.EventHandler<ActionEvent> handler) {
+        button.setOnAction(handler);
+    }
+    /**
+     * Registers an event handler for a ComboBox's ActionEvent.
+     */
+    private void registerComboBoxEvent(ComboBox<String> comboBox, javafx.event.EventHandler<ActionEvent> handler) {
+        comboBox.setOnAction(handler);
+    }
+    /**
+     * Registers an event handler for a TextField's ActionEvent.
+     */
+    private void registerTextFieldEvent(TextField textField, javafx.event.EventHandler<ActionEvent> handler) {
+        textField.setOnAction(handler);
+    }
+
+    /**
      * Sets up event handlers for UI controls.
      */
     private void setupEventHandlers() {
-        textFieldFilter.setOnAction(e -> setupComboBoxSector());
-        labelCheckComboBoxTech.setOnMouseClicked(e -> {
+        registerTextFieldEvent(textFieldFilter, e -> Platform.runLater(() -> setupComboBoxSector()));
+        labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
                 if (e.getClickCount() == 2) {
@@ -330,8 +349,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
                     }
                 }
             }
-        });
-        comboBoxSector.setOnAction(e -> {
+        }));
+        registerComboBoxEvent(comboBoxSector, e -> Platform.runLater(() -> {
             String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
             if (selectedItem == null) return;
             if (selectedItem.equals(SELECT_ONE)) {
@@ -346,8 +365,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 checkComboBoxTech.setDisable(false);
             }
             setUnitsLabel();
-        });
-        comboBoxParam.setOnAction(e -> {
+        }));
+        registerComboBoxEvent(comboBoxParam, e -> Platform.runLater(() -> {
             comboBoxParam2.getSelectionModel().selectFirst();
             comboBoxParam2.setDisable(true);
             comboBoxParam2.setVisible(false);
@@ -373,8 +392,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
             } catch (Exception ex) {
                 // ignore
             }
-        });
-        comboBoxModificationType.setOnAction(e -> {
+        }));
+        registerComboBoxEvent(comboBoxModificationType, e -> Platform.runLater(() -> {
             String selectedType = comboBoxModificationType.getSelectionModel().getSelectedItem();
             if (selectedType == null) return;
             switch (selectedType) {
@@ -392,19 +411,19 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 default:
                     labelGrowth.setText(LABEL_GROWTH);
             }
-        });
-        buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
-        buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
-        buttonPopulate.setOnAction(e -> {
+        }));
+        registerButtonEvent(buttonClear, e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
+        registerButtonEvent(buttonDelete, e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
+        registerButtonEvent(buttonPopulate, e -> Platform.runLater(() -> {
             if (qaPopulate()) {
                 double[][] values = calculateValues();
                 paneForComponentDetails.setValues(values);
             }
-        });
-        checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> {
+        }));
+        checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> Platform.runLater(() -> {
             updateInputOutputUnits();
             setUnitsLabel();
-        });
+        }));
     }
 
     /**
@@ -797,6 +816,23 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
     /**
+     * Helper method to validate table data years against allowable policy years.
+     * @return true if at least one year matches allowable years, false otherwise
+     */
+    private boolean validateTableDataYears() {
+        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
+        if (data == null) return false;
+        for (DataPoint dp : data) {
+            Integer year = Integer.parseInt(dp.getYear().trim());
+            if (listOfAllowableYears.contains(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
      * Performs QA checks on the current UI state to ensure all required inputs are valid.
      * Displays warnings or error messages as needed.
      *
@@ -811,20 +847,13 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 message.append("Must select at least one region from tree").append(vars.getEol());
                 errorCount++;
             }
-            if (paneForComponentDetails.table.getItems().size() == 0) {
+            if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
                 message.append("Data table must have at least one entry").append(vars.getEol());
                 errorCount++;
             } else {
-                boolean match = false;
-                String listOfAllowableYears = vars.getAllowablePolicyYears();
-                ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
-                for (DataPoint dp : data) {
-                    String year = dp.getYear().trim();
-                    if (listOfAllowableYears.contains(year)) match = true;
-                }
+                boolean match = validateTableDataYears();
                 if (!match) {
-                    message.append("Years specified in table must match allowable policy years (")
-                            .append(listOfAllowableYears).append(")").append(vars.getEol());
+                    message.append("Years specified in table must match allowable policy years (").append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
                     errorCount++;
                 }
             }
@@ -871,7 +900,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
                     } else if (s.equals("million pass-km")) {
                         label = "1990$ per veh-km";
                     } else if (s.equals("million ton-km")) {
-                        label = "1990$ per veh-km";
+                    	label = "1990$ per veh-km";
                     } else if (s.equals("")) {
                         label = "";
                     } else {

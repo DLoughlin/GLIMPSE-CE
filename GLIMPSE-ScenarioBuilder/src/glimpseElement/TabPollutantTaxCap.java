@@ -171,37 +171,37 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
 	// === UI Controls ===
-	private final Label labelComboBoxMeasure = utils.createLabel(LABEL_MEASURE, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxMeasure = utils.createComboBoxString();
-	private final Label labelCheckComboBoxCategory = utils.createLabel(LABEL_CATEGORY, LABEL_WIDTH);
-	private final CheckComboBox<String> checkComboBoxCategory = new CheckComboBox<>();
-	private final Label labelComboBoxPollutant = utils.createLabel(LABEL_POLLUTANT, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxPollutant = utils.createComboBoxString();
-	private final Label labelModificationType = utils.createLabel(LABEL_MODIFICATION_TYPE, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-	private final Label labelUseAutoNames = utils.createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
-	private final CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
-	private final Label labelPolicyName = utils.createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
-	private final TextField textFieldPolicyName = new TextField("");
-	private final Label labelMarketName = utils.createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
-	private final TextField textFieldMarketName = new TextField("");
-	private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-	private final TextField textFieldStartYear = new TextField(String.valueOf(DEFAULT_START_YEAR));
-	private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-	private final TextField textFieldEndYear = new TextField(String.valueOf(DEFAULT_END_YEAR));
-	private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_AMOUNT, LABEL_WIDTH);
-	private final TextField textFieldInitialAmount = utils.createTextField();
-	private final Label labelGrowth = utils.createLabel(LABEL_GROWTH, LABEL_WIDTH);
-	private final TextField textFieldGrowth = utils.createTextField();
-	private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-	private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
-	private final Label labelConvertFrom = utils.createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
-	private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
-	private final Label labelValue = utils.createLabel(LABEL_VALUES);
-	private final Button buttonPopulate = utils.createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
-	private final Button buttonImport = utils.createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
-	private final Button buttonDelete = utils.createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
-	private final Button buttonClear = utils.createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
+	private final Label labelComboBoxMeasure = createLabel(LABEL_MEASURE, LABEL_WIDTH);
+	private final ComboBox<String> comboBoxMeasure = createComboBoxString();
+	private final Label labelCheckComboBoxCategory = createLabel(LABEL_CATEGORY, LABEL_WIDTH);
+	private final CheckComboBox<String> checkComboBoxCategory = createCheckComboBox();
+	private final Label labelComboBoxPollutant = createLabel(LABEL_POLLUTANT, LABEL_WIDTH);
+	private final ComboBox<String> comboBoxPollutant = createComboBoxString();
+	private final Label labelModificationType = createLabel(LABEL_MODIFICATION_TYPE, LABEL_WIDTH);
+	private final ComboBox<String> comboBoxModificationType = createComboBoxString();
+	private final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
+	private final CheckBox checkBoxUseAutoNames = createCheckBox("Auto?");
+	private final Label labelPolicyName = createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
+	private final TextField textFieldPolicyName = createTextField();
+	private final Label labelMarketName = createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
+	private final TextField textFieldMarketName = createTextField();
+	private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
+	private final TextField textFieldStartYear = createTextField();
+	private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
+	private final TextField textFieldEndYear = createTextField();
+	private final Label labelInitialAmount = createLabel(LABEL_INITIAL_AMOUNT, LABEL_WIDTH);
+	private final TextField textFieldInitialAmount = createTextField();
+	private final Label labelGrowth = createLabel(LABEL_GROWTH, LABEL_WIDTH);
+	private final TextField textFieldGrowth = createTextField();
+	private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
+	private final TextField textFieldPeriodLength = createTextField();
+	private final Label labelConvertFrom = createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
+	private final ComboBox<String> comboBoxConvertFrom = createComboBoxString();
+	private final Label labelValue = createLabel(LABEL_VALUES);
+	private final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
+	private final Button buttonImport = createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
+	private final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
+	private final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
 
 	/**
 	 * Constructs a TabPollutantTaxCap for the given title and stage. Sets up all UI
@@ -286,7 +286,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBoxConvertFrom.setVisible(false);
 
 		// Action
-		comboBoxMeasure.setOnAction(e -> {
+		setOnAction(comboBoxMeasure, e -> {
 			if (comboBoxMeasure.getSelectionModel().getSelectedItem().startsWith(EMISSION_TAX)) {
 				labelConvertFrom.setVisible(true);
 				comboBoxConvertFrom.setVisible(true);
@@ -296,7 +296,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			}
 			setPolicyAndMarketNames();
 		});
-		comboBoxPollutant.setOnAction(e -> {
+		setOnAction(comboBoxPollutant, e -> {
 			String selectedItem = comboBoxPollutant.getSelectionModel().getSelectedItem();
 			if (!SELECT_ONE.equals(selectedItem)) {
 				if (selectedItem.startsWith(CO2)) {
@@ -309,24 +309,22 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			}
 			setPolicyAndMarketNames();
 		});
-		
-//		checkComboBoxCategory.setOnAction(e -> setPolicyAndMarketNames());	
-//		EventHandler<TreeModificationEvent> ev = new EventHandler<TreeModificationEvent>() {
-//			@Override
-//			public void handle(TreeModificationEvent ae) {
-//				ae.consume();
-//				setPolicyAndMarketNames();
-//			}
-//		};
-//		
-//		paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-//		checkBoxUseAutoNames.setOnAction(e -> {
-//			boolean selected = checkBoxUseAutoNames.isSelected();
-//			textFieldPolicyName.setDisable(selected);
-//			textFieldMarketName.setDisable(selected);
-//		});
-		
-		comboBoxModificationType.setOnAction(e -> {
+		// Uncomment and standardize these as needed:
+		// setOnAction(checkComboBoxCategory, e -> setPolicyAndMarketNames());
+		// EventHandler<TreeModificationEvent> ev = new EventHandler<TreeModificationEvent>() {
+		// 	@Override
+		// 	public void handle(TreeModificationEvent ae) {
+		// 		ae.consume();
+		// 		setPolicyAndMarketNames();
+		// 	}
+		// };
+		// paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
+		setOnAction(checkBoxUseAutoNames, e -> {
+			boolean selected = checkBoxUseAutoNames.isSelected();
+			textFieldPolicyName.setDisable(selected);
+			textFieldMarketName.setDisable(selected);
+		});
+		setOnAction(comboBoxModificationType, e -> {
 			String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
 			if (selected == null)
 				return;
@@ -344,9 +342,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				break;
 			}
 		});
-		buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
-		buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
-		buttonPopulate.setOnAction(e -> {
+		setOnAction(buttonClear, e -> paneForComponentDetails.clearTable());
+		setOnAction(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
+		setOnAction(buttonPopulate, e -> {
 			if (qaPopulate()) {
 				double[][] values = calculateValues();
 				paneForComponentDetails.setValues(values);
@@ -379,46 +377,48 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * and options. If auto-naming is enabled, updates the text fields accordingly.
 	 */
 	private void setPolicyAndMarketNames() {
-		if (checkBoxUseAutoNames.isSelected()) {
-			String policy_type = "--";
-			String pollutant = "--";
-			String category = "--";
-			String state = "--";
-			try {
-				String s = comboBoxMeasure.getValue();
-				if (s != null && s.contains("Tax"))
-					policy_type = "Tax";
-				if (s != null && s.contains("Cap"))
-					policy_type = "Cap";
-				int cats=checkComboBoxCategory.getCheckModel().getCheckedItems().size();
-				if (cats == 0) {
-					category = "All";
-				} else if (cats == 1) {
-					category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
-				} else {
-					category = "Mult";
-				}
-				s = comboBoxPollutant.getValue();
-				if (s != null && !s.equals("Select One")) {
-					pollutant = utils.splitString(s, " ")[0];
-				}
-				String[] listOfSelectedRegions = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
-				if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
-					listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
-					String state_str = utils.returnAppendedString(listOfSelectedRegions).replace(",", "");
-					if (state_str.length() < 9) {
-						state = state_str;
-					} else {
-						state = "Reg";
-					}
-				}
-				String name = policy_type + "_" + category + "_" + pollutant + "_" + state;
-				textFieldMarketName.setText(name + "_Mkt");
-				textFieldPolicyName.setText(name);
-			} catch (Exception e) {
-				System.out.println("Error trying to auto-name market");
-			}
-		}
+	    Platform.runLater(() -> {
+	        if (checkBoxUseAutoNames.isSelected()) {
+	            String policy_type = "--";
+	            String pollutant = "--";
+	            String category = "--";
+	            String state = "--";
+	            try {
+	                String s = comboBoxMeasure.getValue();
+	                if (s != null && s.contains("Tax"))
+	                    policy_type = "Tax";
+	                if (s != null && s.contains("Cap"))
+	                    policy_type = "Cap";
+	                int cats = checkComboBoxCategory.getCheckModel().getCheckedItems().size();
+	                if (cats == 0) {
+	                    category = "All";
+	                } else if (cats == 1) {
+	                    category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
+	                } else {
+	                    category = "Mult";
+	                }
+	                s = comboBoxPollutant.getValue();
+	                if (s != null && !s.equals("Select One")) {
+	                    pollutant = utils.splitString(s, " ")[0];
+	                }
+	                String[] listOfSelectedRegions = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+	                if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
+	                    listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
+	                    String state_str = utils.returnAppendedString(listOfSelectedRegions).replace(",", "");
+	                    if (state_str.length() < 9) {
+	                        state = state_str;
+	                    } else {
+	                        state = "Reg";
+	                    }
+	                }
+	                String name = policy_type + "_" + category + "_" + pollutant + "_" + state;
+	                textFieldMarketName.setText(name + "_Mkt");
+	                textFieldPolicyName.setText(name);
+	            } catch (Exception e) {
+	                System.out.println("Error trying to auto-name market");
+	            }
+	        }
+	    });
 	}
 
 	/**
@@ -449,12 +449,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 */
 	@Override
 	public void run() {
-		// If called from a non-JavaFX thread, wrap in Platform.runLater
-		if (!Platform.isFxApplicationThread()) {
-			Platform.runLater(this::saveScenarioComponent);
-		} else {
-			saveScenarioComponent();
-		}
+	    Platform.runLater(() -> saveScenarioComponent());
 	}
 
 	/**
@@ -473,51 +468,47 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param tree TreeView of selected regions
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
-		if (!qaInputs()) {
-			Thread.currentThread().destroy();
-			return;
-		} else {
+	    if (!qaInputs()) {
+	        Thread.currentThread().destroy();
+	        return;
+	    }
 
-			String[] listOfSelectedRegions = utils.getAllSelectedRegions(tree);
-			listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
+	    String[] listOfSelectedRegions = utils.getAllSelectedRegions(tree);
+	    listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
 
-			String ID = utils.getUniqueString();
-			String policy_name = textFieldPolicyName.getText() + ID;
-			String market_name = textFieldMarketName.getText() + ID;
-			filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
-			String category = null;
-			List<String> cats=checkComboBoxCategory.getCheckModel().getCheckedItems();
-			if (cats.size() == 0) {
-				category = ALL;
-			} else if (cats.size() == 1) {
-				category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
-			} 
-			String measure = comboBoxMeasure.getValue();
-			if (measure.contains(CAP)) {
-				measure = CAP;
-			} else {
-				measure = TAX;
-			}
-			String pol_selection = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
-			String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
-			fileContent = getMetaDataContent(tree, market_name, policy_name);
-			
-			//special case robust implementation for performing CO2 cap on all CO2 emissions across selected regions
-			if (pol.startsWith(CO2) && (ALL.equals(category)) && (CAP.equals(measure))) {
-				saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol, market_name, policy_name);
-				return;
-			//code for performing pollutant taxes and caps on selected sectors and regions
-			} else if (!pol.startsWith(GHG)) {
-				saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name, policy_name);
-				return;
-			//code for performing GHG cap or tax across all selected regions
-			} else if (pol_selection.startsWith(GHG)) {
-				saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
-				return;
-			} else {
-				System.out.println("Cap or tax type not supported!");
-			}
-		}
+	    String ID = utils.getUniqueString();
+	    String policy_name = textFieldPolicyName.getText() + ID;
+	    String market_name = textFieldMarketName.getText() + ID;
+	    filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+
+	    String category = null;
+	    List<String> cats = checkComboBoxCategory.getCheckModel().getCheckedItems();
+	    if (cats.size() == 0) {
+	        category = ALL;
+	    } else if (cats.size() == 1) {
+	        category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
+	    }
+
+	    String measure = comboBoxMeasure.getValue();
+	    measure = measure.contains(CAP) ? CAP : TAX;
+
+	    String pol_selection = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
+	    String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
+
+	    fileContent = getMetaDataContent(tree, market_name, policy_name);
+
+	    if (pol.startsWith(CO2) && ALL.equals(category) && CAP.equals(measure)) {
+	        saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol_selection, market_name, policy_name);
+	        return;
+	    } else if (!pol.startsWith(GHG)) {
+	        saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name, policy_name);
+	        return;
+	    } else if (pol_selection.startsWith(GHG)) {
+	        saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
+	        return;
+	    } else {
+	        System.out.println("Cap or tax type not supported!");
+	    }
 	}
 			
 	/**
@@ -935,6 +926,23 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				&& !textFieldInitialAmount.getText().isEmpty() && !textFieldGrowth.getText().isEmpty();
 	}
 
+    /**
+     * Helper method to validate table data years against allowable policy years.
+     * @return true if at least one year matches allowable years, false otherwise
+     */
+    private boolean validateTableDataYears() {
+        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
+        if (data == null) return false;
+        for (DataPoint dp : data) {
+            Integer year = Integer.parseInt(dp.getYear().trim());
+            if (listOfAllowableYears.contains(year)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 	/**
 	 * Validates all required inputs before saving the scenario component. Checks
 	 * for at least one region, at least one table entry, and required selections.
@@ -946,14 +954,21 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		int error_count = 0;
 		StringBuilder message = new StringBuilder();
 		try {
+			
 			if (utils.getAllSelectedRegions(tree).length < 1) {
 				message.append("Must select at least one region from tree").append(vars.getEol());
 				error_count++;
 			}
-			if (paneForComponentDetails.table.getItems().size() == 0) {
-				message.append("Data table must have at least one entry").append(vars.getEol());
-				error_count++;
-			}
+            if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
+                message.append("Data table must have at least one entry").append(vars.getEol());
+                error_count++;
+            } else {
+                boolean match = validateTableDataYears();
+                if (!match) {
+                    message.append("Years specified in table must match allowable policy years (").append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
+                    error_count++;
+                }
+            }
 			if (comboBoxMeasure.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
 				message.append("Action comboBox must have a selection").append(vars.getEol());
 				error_count++;
@@ -990,10 +1005,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param progress Progress value between 0.0 and 1.0
 	 */
 	private void updateProgressBar(double progress) {
-		if (!Platform.isFxApplicationThread()) {
-			Platform.runLater(() -> progressBar.setProgress(progress));
-		} else {
-			progressBar.setProgress(progress);
-		}
+	    Platform.runLater(() -> progressBar.setProgress(progress));
 	}
 }

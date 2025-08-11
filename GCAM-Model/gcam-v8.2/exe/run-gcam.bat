@@ -7,7 +7,7 @@ REM Users may set the following location to the appropriate Java Runtime install
 REM instead of trying to detect the appropriate location.  This may be necessary if the default
 REM Java version is the 32-bit runtime.
 REM SET JAVA_HOME=C:\Program Files\Java\jre1.8.0_101
-SET JAVA_HOME=..\..\..\amazon-corretto-8.442.06.1-windows-x64-jre
+
 
 REM Attempt to use XMLDBDriver which will print the java.home property of the Java Runtime
 REM used to run it.  Note if the runtime is not 64-bit it will only print an error.

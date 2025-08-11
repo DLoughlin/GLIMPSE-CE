@@ -43,8 +43,17 @@ import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import org.controlsfx.control.CheckComboBox;
 
 /**
  * Abstract base class for policy-related tabs in the GLIMPSE Scenario Builder.
@@ -100,7 +109,7 @@ public abstract class PolicyTab extends Tab {
      * @param progress Progress value between 0.0 and 1.0
      */
     public void setProgress(double progress) {
-        getProgressBar().setProgress(progress);
+        Platform.runLater(() -> getProgressBar().setProgress(progress));
     }
 
     /**
@@ -142,7 +151,7 @@ public abstract class PolicyTab extends Tab {
      * Reset the progress bar to 0 after an operation completes.
      */
     public void resetProgressBar() {
-        getProgressBar().setProgress(0.0);
+        Platform.runLater(() -> getProgressBar().setProgress(0.0));
     }
 
     /**
@@ -199,10 +208,73 @@ public abstract class PolicyTab extends Tab {
     }
 
     /**
+     * Display a warning message to the user (centralized for all tabs).
+     * @param message The warning message to display
+     */
+    public void showWarning(String message) {
+        utils.warningMessage(message);
+    }
+
+    /**
+     * Display an informational message to the user (centralized for all tabs).
+     * @param message The info message to display
+     * @param title The title for the message dialog
+     */
+    public void showInfo(String message, String title) {
+        utils.displayString(message, title);
+    }
+
+    /**
      * Get the progress bar associated with this tab for UI binding.
      * @return ProgressBar instance for this tab
      */
     public ProgressBar getProgressBar() {
         return progressBar;
+    }
+
+    /**
+     * Standardized UI component creation methods for tab subclasses.
+     */
+    protected javafx.scene.control.Label createLabel(String text) {
+        return utils.createLabel(text);
+    }
+    protected Label createLabel(String text, double width) {
+        Label label = utils.createLabel(text, width);
+        return label;
+    }
+    protected TextField createTextField() {
+        return utils.createTextField();
+    }
+    protected ComboBox<String> createComboBoxString() {
+        return utils.createComboBoxString();
+    }
+    protected CheckComboBox<String> createCheckComboBox() {
+        return utils.createCheckComboBox();
+    }
+    protected CheckBox createCheckBox(String text) {
+        return utils.createCheckBox(text);
+    }
+    protected Button createButton(String text, int width, EventHandler<ActionEvent> handler) {
+        Button button = utils.createButton(text, width, handler);
+        if (handler != null) button.setOnAction(handler);
+        return button;
+    }
+    /**
+     * Standardized event handler registration for tab subclasses.
+     */
+    protected void setOnAction(ComboBox<?> comboBox, EventHandler<ActionEvent> handler) {
+        comboBox.setOnAction(handler);
+    }
+    protected void setOnAction(Button button, EventHandler<ActionEvent> handler) {
+        button.setOnAction(handler);
+    }
+    protected void setOnAction(TextField textField, EventHandler<ActionEvent> handler) {
+        textField.setOnAction(handler);
+    }
+    protected void setOnMouseClicked(Label label, EventHandler<javafx.scene.input.MouseEvent> handler) {
+        label.setOnMouseClicked(handler);
+    }
+    protected void setOnAction(CheckBox checkBox, EventHandler<ActionEvent> handler) {
+        checkBox.setOnAction(handler);
     }
 }
