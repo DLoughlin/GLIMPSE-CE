@@ -76,22 +76,12 @@ import javafx.stage.Stage;
  */
 public class TabTechParam extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double MAX_WIDTH = 195;
-    private static final double MIN_WIDTH = 105;
-    private static final double PREF_WIDTH = 195;
     private static final String SELECT_ONE = "Select One";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String ALL = "All";
     private static final String[] PARAM_OPTIONS = {
             "Shareweight", "Subsector Shareweight", "Nested-Subsector Shareweight", "Levelized Non-Energy Cost",
             "Capacity Factor", "Fixed Output", "Lifetime", "Halflife"
-    };
-    private static final String[] MODIFICATION_TYPE_OPTIONS = {
-            "Initial and Final", "Initial w/% Growth/yr", "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd"
-    };
-    private static final String[] CONVERT_FROM_OPTIONS = {
-            "None", "2023$s", "2020$s", "2015$s", "2010$s", "2005$s", "2000$s"
     };
     private static final String[] EMISSION_OPTIONS = {
             "Select One", "NOx", "SO2", "PM10", "PM2.5", "CO", "NH3", "NMVOC", "BC", "OC"
@@ -111,13 +101,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_INPUT = "Input: ";
     private static final String LABEL_OUTPUT = "Output: ";
     private static final String LABEL_UNITS = "Units: ";
-    private static final String LABEL_TYPE = "Type: ";
-    private static final String LABEL_START_YEAR = "Start Year: ";
-    private static final String LABEL_END_YEAR = "End Year: ";
-    private static final String LABEL_INITIAL_VAL = "Initial Val:   ";
     private static final String LABEL_FINAL_VAL = "Final Val: ";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
-    private static final String LABEL_CONVERT_FROM = "Convert $s from: ";
     private static final String LABEL_GROWTH = "Growth (%):";
     private static final String LABEL_DELTA = "Delta:";
 
@@ -137,11 +121,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final ScrollPane scrollPaneLeft = new ScrollPane();
     private final GridPane gridPaneLeft = new GridPane();
     private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final VBox vBoxRight = new VBox();
-    private final HBox hBoxHeaderRight = new HBox();
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // === UI Controls ===
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
@@ -160,24 +139,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final Label labelTextFieldOutput2 = createLabel("", LABEL_WIDTH);
     private final Label labelTextFieldUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelTextFieldUnits2 = createLabel("", LABEL_WIDTH);
-    private final Label labelModificationType = createLabel(LABEL_TYPE, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
-    private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = createTextField();
-    private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = createTextField();
-    private final Label labelInitialAmount = createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = createTextField();
-    private final Label labelGrowth = createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldGrowth = createTextField();
-    private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = createTextField();
-    private final Label labelConvertFrom = createLabel(LABEL_CONVERT_FROM, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxConvertFrom = createComboBoxString();
-    private final Button buttonPopulate = createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = createButton("Import", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = createButton("Clear", styles.getBigButtonWidth(), null);
     private final Label labelValue = createLabel(LABEL_VALUES);
 
     // === Data ===
@@ -298,17 +259,13 @@ public class TabTechParam extends PolicyTab implements Runnable {
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
         hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter);
         vBoxCenter.setStyle(styles.getStyle2());
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
         gridPaneLeft.setPrefWidth(325);
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(gridPanePresetModification);
         this.setContent(tabLayout);
@@ -428,6 +385,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Updates the input and output unit labels based on the selected technologies.
+     * Sets labelTextFieldInput2 and labelTextFieldOutput2 based on checked technologies.
      */
     private void updateInputOutputUnits() {
         ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
@@ -468,6 +426,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Populates the sector combo box based on available technology info and filter.
+     * Adds sectors to comboBoxSector, optionally filtered by textFieldFilter.
      */
     private void setupComboBoxSector() {
         comboBoxSector.getItems().clear();
@@ -513,6 +472,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Updates the technology check combo box based on the selected sector and filter.
+     * Populates the checkComboBoxTech with technologies matching the selected sector and filter.
      */
     private void updateCheckComboTechs() {
         String sector = comboBoxSector.getValue();
@@ -575,6 +535,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Loads content from a list of strings (typically from a file) and populates the UI fields accordingly.
+     * Parses each line for sector, technologies, parameter, regions, and table data.
      *
      * @param content The list of content lines to load
      */
@@ -617,6 +578,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Performs a quick QA check to ensure required fields for populating values are filled.
+     * Checks that start year, end year, initial amount, and growth fields are not empty.
      *
      * @return true if all required fields are filled, false otherwise
      */
@@ -656,7 +618,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
      *
      * @param comboBox The combo box to add items to
      * @param techInfo The technology info array
-     * @param row The row index
+     * @param row The row index to use for item
      * @param prefix The prefix array to match
      */
     public void addNonDuplicatesToComboBox(ComboBox<String> comboBox, String[][] techInfo, int row, String[] prefix) {
@@ -674,7 +636,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
      *
      * @param checkComboBox The check combo box to add items to
      * @param techInfo The technology info array
-     * @param row The row index
+     * @param row The row index to use for item
      * @param prefix The prefix array to match
      */
     public void addNonDuplicatesToCheckComboBox(CheckComboBox<String> checkComboBox, String[][] techInfo, int row, String[] prefix) {
@@ -690,8 +652,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Checks if the given item array matches the prefix array.
      *
-     * @param item The item array
-     * @param prefix The prefix array
+     * @param item The item array to check
+     * @param prefix The prefix array to match against
      * @return true if the prefix matches, false otherwise
      */
     public boolean doesPrefixMatch(String[] item, String[] prefix) {
@@ -703,23 +665,77 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
     /**
-     * Calculates the values for the policy based on user input and selected calculation type.
+     * Returns the units string for the selected technologies.
+     * If multiple technologies are selected and their units do not match, returns "No match".
+     * If no technologies are selected, returns an empty string.
      *
-     * @return 2D array of calculated values
+     * @return The units string, or "No match" if units are inconsistent
      */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(this.textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(this.textFieldPeriodLength.getText());
-        double factor = 1.0;
-        String convertYear = this.comboBoxConvertFrom.getValue();
-        if (!"None".equals(convertYear)) {
-            factor = utils.getConversionFactor(convertYear, "1975$s");
+    public String getUnits() {
+        ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
+        String unit = "";
+        for (String line : techList) {
+            try {
+                String item = line.substring(line.lastIndexOf(":") + 1).trim();
+                if (unit.isEmpty()) {
+                    unit = item;
+                } else if (!unit.equals(item)) {
+                    unit = "No match";
+                }
+            } catch (Exception e) {
+                // ignore
+            }
         }
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength, factor);
+        if (unit.equals(SELECT_ONE_OR_MORE)) unit = "";
+        return unit;
+    }
+
+    /**
+     * Sets the units label based on the selected technologies and parameter.
+     * Updates the labelTextFieldUnits2 with the appropriate units or warning.
+     */
+    public void setUnitsLabel() {
+        String s = getUnits();
+        String label = "";
+        String selectedParam = this.comboBoxParam.getSelectionModel().getSelectedItem();
+        if (this.checkComboBoxTech.getCheckModel().getCheckedIndices().size() > 0) {
+            switch (selectedParam) {
+                case "Levelized Non-Energy Cost":
+                    if (s.equals("No match")) {
+                        label = WARNING_UNITS_MISMATCH;
+                    } else if (s.equals("million pass-km")) {
+                        label = "1990$ per veh-km";
+                    } else if (s.equals("million ton-km")) {
+                    	label = "1990$ per veh-km";
+                    } else if (s.equals("")) {
+                        label = "";
+                    } else {
+                        String s2 = "GJ";
+                        if (s.equals("EJ")) s2 = "GJ";
+                        if (s.equals("petalumen-hours")) s2 = "megalumen-hours";
+                        if (s.equals("million km3")) s2 = "million m3";
+                        if (s.equals("billion cycles")) s2 = "cycle";
+                        if (s.equals("Mt")) s2 = "kg";
+                        if (s.equals("km^3")) s2 = "m^3";
+                        label = "1975$s per " + s2;
+                    }
+                    break;
+                case "Capacity Factor":
+                    label = UNIT_UNITLESS_CAPACITY;
+                    break;
+                case "Fixed Output":
+                    String s2 = this.labelTextFieldOutput2.getText();
+                    label = utils.getParentheticString(s2);
+                    break;
+                case "Lifetime":
+                case "Halflife":
+                    label = UNIT_YEARS;
+                    break;
+                default:
+                    label = UNIT_UNITLESS;
+            }
+        }
+        labelTextFieldUnits2.setText(label);
     }
 
     /**
@@ -883,76 +899,5 @@ public class TabTechParam extends PolicyTab implements Runnable {
             }
         }
         return errorCount == 0;
-    }
-
-    /**
-     * Sets the units label based on the selected technologies and parameter.
-     */
-    public void setUnitsLabel() {
-        String s = getUnits();
-        String label = "";
-        String selectedParam = this.comboBoxParam.getSelectionModel().getSelectedItem();
-        if (this.checkComboBoxTech.getCheckModel().getCheckedIndices().size() > 0) {
-            switch (selectedParam) {
-                case "Levelized Non-Energy Cost":
-                    if (s.equals("No match")) {
-                        label = WARNING_UNITS_MISMATCH;
-                    } else if (s.equals("million pass-km")) {
-                        label = "1990$ per veh-km";
-                    } else if (s.equals("million ton-km")) {
-                    	label = "1990$ per veh-km";
-                    } else if (s.equals("")) {
-                        label = "";
-                    } else {
-                        String s2 = "GJ";
-                        if (s.equals("EJ")) s2 = "GJ";
-                        if (s.equals("petalumen-hours")) s2 = "megalumen-hours";
-                        if (s.equals("million km3")) s2 = "million m3";
-                        if (s.equals("billion cycles")) s2 = "cycle";
-                        if (s.equals("Mt")) s2 = "kg";
-                        if (s.equals("km^3")) s2 = "m^3";
-                        label = "1975$s per " + s2;
-                    }
-                    break;
-                case "Capacity Factor":
-                    label = UNIT_UNITLESS_CAPACITY;
-                    break;
-                case "Fixed Output":
-                    String s2 = this.labelTextFieldOutput2.getText();
-                    label = utils.getParentheticString(s2);
-                    break;
-                case "Lifetime":
-                case "Halflife":
-                    label = UNIT_YEARS;
-                    break;
-                default:
-                    label = UNIT_UNITLESS;
-            }
-        }
-        labelTextFieldUnits2.setText(label);
-    }
-
-    /**
-     * Gets the units string for the selected technologies.
-     *
-     * @return The units string, or "No match" if units are inconsistent
-     */
-    public String getUnits() {
-        ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
-        String unit = "";
-        for (String line : techList) {
-            try {
-                String item = line.substring(line.lastIndexOf(":") + 1).trim();
-                if (unit.isEmpty()) {
-                    unit = item;
-                } else if (!unit.equals(item)) {
-                    unit = "No match";
-                }
-            } catch (Exception e) {
-                // ignore
-            }
-        }
-        if (unit.equals(SELECT_ONE_OR_MORE)) unit = "";
-        return unit;
     }
 }

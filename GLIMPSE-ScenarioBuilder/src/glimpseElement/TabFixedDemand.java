@@ -48,7 +48,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -86,18 +85,10 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     // === Constants for UI Strings and Options ===
     private static final String LABEL_SECTOR = "Sector: ";
     private static final String LABEL_UNITS = "Units: ";
-    private static final String LABEL_TYPE = "Type: ";
-    private static final String LABEL_START_YEAR = "Start Year: ";
-    private static final String LABEL_END_YEAR = "End Year: ";
-    private static final String LABEL_INITIAL = "Initial: ";
     private static final String LABEL_FINAL = "Final: ";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
     private static final String LABEL_VALUES = "Values: ";
     private static final String LABEL_SPECIFICATION = "Specification:";
     private static final String LABEL_POPULATE = "Populate:";
-    private static final String BUTTON_POPULATE = "Populate";
-    private static final String BUTTON_DELETE = "Delete";
-    private static final String BUTTON_CLEAR = "Clear";
     private static final String MOD_TYPE_INITIAL_FINAL = "Initial and Final";
     private static final String MOD_TYPE_GROWTH_YR = "Initial w/% Growth/yr";
     private static final String MOD_TYPE_GROWTH_PD = "Initial w/% Growth/pd";
@@ -109,12 +100,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final String SECTOR_OTHER = "Other";
     private static final String SECTOR_SELECT_ONE = "Select One";
     private static final double MAX_WIDTH = 195;
-    private static final double MIN_WIDTH = 105;
     private static final double PREF_WIDTH = 195;
-    private static final int DEFAULT_START_YEAR = 2025;
-    private static final int DEFAULT_END_YEAR = 2050;
-    private static final String DEFAULT_PERIOD_LENGTH = "5";
-    
+
     // === Utility singletons ===
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
@@ -132,35 +119,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final ComboBox<String> comboBoxSector = createComboBoxString();
     private final Label labelUnits = createLabel(LABEL_UNITS, 125);
     private final Label labelUnitsValue = createLabel("", 125);
-    private final Label labelModificationType = createLabel(LABEL_TYPE, 125);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
-    private final Label labelStartYear = createLabel(LABEL_START_YEAR, 125);
-    private final TextField textFieldStartYear = createTextField();
-    // Set default value after creation
-    {
-        textFieldStartYear.setText(String.valueOf(DEFAULT_START_YEAR));
-    }
-    private final Label labelEndYear = createLabel(LABEL_END_YEAR, 125);
-    private final TextField textFieldEndYear = createTextField();
-    {
-        textFieldEndYear.setText(String.valueOf(DEFAULT_END_YEAR));
-    }
-    private final Label labelInitialAmount = createLabel(LABEL_INITIAL, 125);
-    private final TextField textFieldInitialAmount = createTextField();
-    private final Label labelGrowth = createLabel(LABEL_FINAL, 125);
-    private final TextField textFieldGrowth = createTextField();
-    private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, 125);
-    private final TextField textFieldPeriodLength = createTextField();
-    {
-        textFieldPeriodLength.setText(DEFAULT_PERIOD_LENGTH);
-    }
     private final Label labelValue = createLabel(LABEL_VALUES, 125);
-    private final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
-    private final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
-
+    
     // === Data ===
     private final String[][] sectorInfo;
 
@@ -318,20 +278,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     }
 
     /**
-     * Calculates the values matrix for the demand table based on user input and modification type.
-     * @return 2D array of calculated values for each year/period
-     */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength);
-    }
-
-    /**
      * Runnable implementation: triggers saving the scenario component.
      */
     @Override
@@ -395,7 +341,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     }
 
     /**
-     * Returns metadata content for the scenario component file, including sector, regions, and table data.
+     * Returns the metadata content for the scenario component file, including sector, regions, and table data.
+     *
      * @param tree TreeView of selected regions
      * @param market Market name (not used)
      * @param policy Policy name (not used)
@@ -421,6 +368,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Loads content into the tab from a list of strings (e.g., when editing a component).
      * Populates sector, regions, and table data from file content.
+     *
      * @param content List of file lines to load
      */
     @Override
@@ -449,6 +397,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Checks if all required fields for populating values are filled.
+     *
      * @return true if all required fields are filled, false otherwise
      */
     public boolean qaPopulate() {
@@ -460,6 +409,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Helper method to validate table data years against allowable policy years.
+     *
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -473,11 +423,12 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             }
         }
         return false;
-    }   
-    
+    }
+
     /**
      * Validates all required inputs before saving the scenario component.
      * Checks for at least one region, at least one table entry, and sector selection.
+     *
      * @return true if all inputs are valid, false otherwise
      */
     protected boolean qaInputs() {
@@ -525,6 +476,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     
     /**
      * Registers an event handler for a ComboBox's ActionEvent.
+     *
      * @param comboBox the ComboBox to register the event for
      * @param handler the event handler
      */
@@ -533,6 +485,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     }
     /**
      * Registers an event handler for a Button's ActionEvent.
+     *
      * @param button the Button to register the event for
      * @param handler the event handler
      */

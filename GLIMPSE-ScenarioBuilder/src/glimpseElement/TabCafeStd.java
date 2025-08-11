@@ -38,10 +38,6 @@ package glimpseElement;
 import java.util.ArrayList;
 import java.util.List;
 import org.controlsfx.control.CheckComboBox;
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,31 +57,11 @@ import javafx.stage.Stage;
  * </p>
  */
 public class TabCafeStd extends PolicyTab implements Runnable {
-    // === Constants for UI Texts and Options ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double FIELD_WIDTH = 175;
-    private static final double MAX_WIDTH = 175;
-    private static final double MIN_WIDTH = 105;
-    private static final double PREF_WIDTH = 175;
     private static final String LABEL_SPECIFICATION = "Specification:";
     private static final String LABEL_POPULATE = "Populate:";
-    private static final String LABEL_POLICY = "Policy: ";
-    private static final String LABEL_MARKET = "Market: ";
-    private static final String LABEL_NAMES = "Names: ";
-    private static final String LABEL_TYPE = "Type: ";
-    private static final String LABEL_START_YEAR = "Start Year: ";
-    private static final String LABEL_END_YEAR = "End Year: ";
-    private static final String LABEL_INITIAL_VAL = "Initial Val:   ";
     private static final String LABEL_FINAL_VAL = "Final Val: ";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
     private static final String LABEL_TECHS = "Tech(s): ";
     private static final String LABEL_UNITS = "Units? ";
-    private static final String LABEL_VALUES = "Values: ";
-    private static final String BUTTON_POPULATE = "Populate";
-    private static final String BUTTON_IMPORT = "Import";
-    private static final String BUTTON_DELETE = "Delete";
-    private static final String BUTTON_CLEAR = "Clear";
-    private static final String CHECKBOX_AUTO = "Auto?";
     private static final String[] SUBSECTOR_OPTIONS = {"Select One", "Car", "Large Car and Truck", "Light Truck", "Medium Truck", "Heavy Truck"};
     private static final String[] TECH_OPTIONS = {"BEV", "FCEV", "Hybrid Liquids", "Liquids", "NG"};
     private static final String[] UNITS_OPTIONS = {"Select One", "MPG", "MJ/vkt"};
@@ -105,9 +81,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private static final String TECHNOLOGY = "Tech";
     private static final String TREATMENT = "--";
     private static final String MARKET_SUFFIX = "_Mkt";
-    private static final String DEFAULT_START_YEAR = "2025";
-    private static final String DEFAULT_END_YEAR = "2050";
-    private static final String DEFAULT_PERIOD_LENGTH = "5";
 
     // === UI Components ===
     private final GridPane gridPanePresetModification = new GridPane();
@@ -119,39 +92,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
     private final Label labelWhichUnits = utils.createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final ComboBox<String> comboBoxWhichUnits = utils.createComboBoxString();
-    private final Label labelPolicyName = utils.createLabel(LABEL_POLICY, LABEL_WIDTH);
-    private final TextField textFieldPolicyName = new TextField("");
-    private final Label labelMarketName = utils.createLabel(LABEL_MARKET, LABEL_WIDTH);
-    private final TextField textFieldMarketName = new TextField("");
-    private final Label labelUseAutoNames = utils.createLabel(LABEL_NAMES, LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = utils.createCheckBox(CHECKBOX_AUTO);
-    private final Label labelModificationType = utils.createLabel(LABEL_TYPE, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
-    private final Label labelStartYear = utils.createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
-    private final Label labelEndYear = utils.createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
-    private final Label labelInitialAmount = utils.createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final Label labelValue = utils.createLabel(LABEL_VALUES);
-    private final Button buttonPopulate = utils.createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
-    private final Button buttonImport = utils.createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = utils.createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
-    private final Button buttonClear = utils.createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final HBox hBoxHeaderRight = new HBox();
-    private final VBox vBoxRight = new VBox();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
-
-    private String selectedSector = "";
-    private String selectedSubsector = "";
-
+    
     /**
      * Constructs a new TabCafeStd instance and initializes the UI components for the CAFE Standard tab.
      * Sets up event handlers and populates controls with available data.
@@ -353,21 +294,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 }
             }
         });
-    }
-
-    /**
-     * Calculates the values for the policy based on user input and selected calculation type.
-     *
-     * @return 2D array of calculated values
-     */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength);
     }
 
     /**
@@ -643,7 +569,8 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     }
 
     /**
-     * Gets the units string for the selected technologies.
+     * Returns the units string for the selected technologies in the tech combo box.
+     * If units are inconsistent, returns "No match".
      *
      * @return The units string, or "No match" if units are inconsistent
      */

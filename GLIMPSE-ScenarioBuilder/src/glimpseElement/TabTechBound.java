@@ -42,10 +42,6 @@ import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
 
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -55,13 +51,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -79,33 +72,14 @@ import javafx.stage.Stage;
  * </p>
  */
 public class TabTechBound extends PolicyTab implements Runnable {
-    // === Constants for UI text and options ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double LABEL_UNITS2_WIDTH = 225.0;
-    private static final double MAX_WIDTH = 175;
-    private static final double MIN_WIDTH = 105;
-    private static final double PREF_WIDTH = 175;
     private static final String LABEL_FILTER = "Filter:";
     private static final String LABEL_SECTOR = "Sector: ";
     private static final String LABEL_TECHS = "Tech(s): ";
     private static final String LABEL_CONSTRAINT = "Constraint: ";
     private static final String LABEL_TREATMENT = "Treatment: ";
-    private static final String LABEL_POLICY = "Policy: ";
-    private static final String LABEL_MARKET = "Market: ";
-    private static final String LABEL_NAMES = "Names: ";
-    private static final String LABEL_TYPE = "Type: ";
     private static final String LABEL_UNITS = "Units: ";
-    private static final String LABEL_START_YEAR = "Start Year: ";
-    private static final String LABEL_END_YEAR = "End Year: ";
-    private static final String LABEL_INITIAL_VAL = "Initial Val:   ";
     private static final String LABEL_FINAL_VAL = "Final Val: ";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length: ";
-    private static final String LABEL_VALUES = "Values: ";
     private static final String LABEL_POPULATE = "Populate:";
-    private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
-    //private static final String UNIT_UNITLESS = "unitless";
-    //private static final String UNIT_YEARS = "years";
-    //private static final String UNIT_UNITLESS_CAPACITY = "Unitless";
     private static final String SELECT_ONE = "Select One";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String ALL = "All";
@@ -114,20 +88,8 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private static final String CONSTRAINT_FIXED = "Fixed Bound";
     private static final String[] CONSTRAINT_OPTIONS = {CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
     private static final String[] TREATMENT_OPTIONS = {"Each Selected Region", "Across Selected Regions"};
-    //private static final String[] POLICY_OPTIONS = {"Policy1", "Policy2"};
-    //private static final String[] MARKET_OPTIONS = {"Market1", "Market2"};
-    //private static final String[] TYPE_OPTIONS = {"Type1", "Type2"};
-    //private static final String[] UNITS_OPTIONS = {"unitless", "EJ", "GJ", "kg"};
-	private static final String UNITS_DEFAULT = "";
-    private static final String[] MODIFICATION_TYPE_OPTIONS = {
-            "Initial w/% Growth/yr", "Initial w/% Growth/pd",
-            "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
-    };
-    
+    private static final String UNITS_DEFAULT = "";
     // === UI Components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
     private final TextField textFieldFilter = createTextField();
     private final Label labelComboBoxSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
@@ -138,35 +100,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private final ComboBox<String> comboBoxConstraint = createComboBoxString();
     private final Label labelTreatment = createLabel(LABEL_TREATMENT, LABEL_WIDTH);
     private final ComboBox<String> comboBoxTreatment = createComboBoxString();
-    private final Label labelPolicyName = createLabel(LABEL_POLICY, LABEL_WIDTH);
-    private final TextField textFieldPolicyName = createTextField();
-    private final Label labelMarketName = createLabel(LABEL_MARKET, LABEL_WIDTH);
-    private final TextField textFieldMarketName = createTextField();
-    private final Label labelUseAutoNames = createLabel(LABEL_NAMES, LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = createCheckBox("Auto?");
-    private final Label labelModificationType = createLabel(LABEL_TYPE, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString();
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
-    private final Label labelUnits2 = createLabel(UNITS_DEFAULT, LABEL_UNITS2_WIDTH);
-    private final Label labelStartYear = createLabel(LABEL_START_YEAR, LABEL_WIDTH);
-    private final TextField textFieldStartYear = createTextField();
-    private final Label labelEndYear = createLabel(LABEL_END_YEAR, LABEL_WIDTH);
-    private final TextField textFieldEndYear = createTextField();
-    private final Label labelInitialAmount = createLabel(LABEL_INITIAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = createTextField();
-    private final Label labelGrowth = createLabel(LABEL_FINAL_VAL, LABEL_WIDTH);
-    private final TextField textFieldGrowth = createTextField();
-    private final Label labelPeriodLength = createLabel(LABEL_PERIOD_LENGTH, LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = createTextField();
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final Label labelValue = createLabel(LABEL_VALUES);
-    private final Button buttonPopulate = createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = createButton("Clear", styles.getBigButtonWidth(), null);
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final VBox vBoxRight = new VBox();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     /**
      * Constructs a new TabTechBound instance and initializes the UI components for the technology bound tab.
@@ -489,21 +423,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
     }
 
     /**
-     * Calculates the values for the policy based on the selected modification type and input fields.
-     *
-     * @return a 2D array of calculated values for the policy
-     */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength);
-    }
-
-    /**
      * Runs background tasks or updates for this tab. Implementation of Runnable interface.
      */
     @Override
@@ -764,8 +683,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
      */
     @Override
     public void loadContent(ArrayList<String> content) {
-        // Enhanced for-loop for content
-        int i = 0;
         for (String line : content) {
             int pos = line.indexOf(":");
             if (line.startsWith("#") && (pos > -1)) {
@@ -814,7 +731,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     }
                 }
             }
-            i++;
         }
         this.setUnitsLabel();
         this.paneForComponentDetails.updateTable();
@@ -938,6 +854,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Utility method to set an event handler for a control (Button, ComboBox, CheckBox, TextField).
+     *
+     * @param control The control to set the event handler for
+     * @param handler The event handler to assign
+     * @param <T> The type of the control
      */
     private <T extends javafx.scene.Node> void setEventHandler(T control, EventHandler<ActionEvent> handler) {
         if (control instanceof Button) {

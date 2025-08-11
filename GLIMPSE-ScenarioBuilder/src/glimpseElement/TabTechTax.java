@@ -39,17 +39,11 @@ import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
 
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -67,12 +61,6 @@ import javafx.stage.Stage;
  * </p>
  */
 public class TabTechTax extends PolicyTab implements Runnable {
-    // === Constants for UI Texts and Options ===
-    private static final double LABEL_WIDTH = 125;
-    private static final double MAX_WIDTH = 175;
-    private static final double MIN_WIDTH = 105;
-    private static final double PREF_WIDTH = 175;
-    private static final String LABEL_UNITS_DEFAULT = "1975$s per GJ";
     private static final String LABEL_UNITS_WARNING = "Warning - Units do not match!";
     private static final String LABEL_UNITS_PASSKM = "1990$ per veh-km";
     private static final String SELECT_ONE = "Select One";
@@ -80,53 +68,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
     private static final String ALL = "All";
     private static final String TAX = "Tax";
     private static final String SUBSIDY = "Subsidy";
-    private static final String NONE = "None";
     private static final String[] TAX_OR_SUBSIDY_OPTIONS = {SELECT_ONE, TAX, SUBSIDY};
-    private static final String[] MODIFICATION_TYPE_OPTIONS = {
-            "Initial w/% Growth/yr", "Initial w/% Growth/pd",
-            "Initial w/Delta/yr", "Initial w/Delta/pd", "Initial and Final"
-    };
-    private static final String[] CONVERT_FROM_OPTIONS = {
-            NONE, "2023$s", "2020$s", "2015$s", "2010$s", "2005$s", "2000$s"
-    };
-
-    // --- Labels and Strings ---
-    private static final String LABEL_POLICY = "Policy:";
-    private static final String LABEL_MARKET = "Market:";
-    private static final String LABEL_TECHS = "Tech(s): ";
-    private static final String LABEL_SECTOR = "Sector:";
-    private static final String LABEL_FILTER = "Filter:";
-    private static final String LABEL_TYPE = "Type:";
-    private static final String LABEL_START_YEAR = "Start Year:";
-    private static final String LABEL_END_YEAR = "End Year:";
-    private static final String LABEL_INITIAL_VAL = "Initial Val:";
-    private static final String LABEL_FINAL_VAL = "Final Val:";
-    private static final String LABEL_PERIOD_LENGTH = "Period Length:";
-    private static final String LABEL_VALUES = "Values:";
-    private static final String LABEL_POPULATE = "Populate:";
-    private static final String LABEL_UNITS = "Units:";
-    private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
-    private static final String UNIT_UNITLESS = "unitless";
-    private static final String UNIT_YEARS = "years";
-    private static final String UNIT_UNITLESS_CAPACITY = "Unitless";
-    private static final String DEFAULT_START_YEAR = "2025";
-    private static final String DEFAULT_END_YEAR = "2050";
-    private static final String DEFAULT_PERIOD_LENGTH = "5";
-    
-    // === Static Fields ===
-    public static String descriptionText = "";
-    public static String runQueueStr = "Queue is empty.";
-
-    // === UI Components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final VBox vBoxRight = new VBox();
-    private final HBox hBoxHeaderRight = new HBox();
-    private final PaneForComponentDetails paneForComponentDetails = new PaneForComponentDetails();
-    private final PaneForCountryStateTree paneForCountryStateTree = new PaneForCountryStateTree();
 
     // --- Left Column Components ---
     private final Label labelComboBoxSector = utils.createLabel("Sector: ", LABEL_WIDTH);
@@ -137,33 +79,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
     private final Label labelComboBoxTaxOrSubsidy = utils.createLabel("Type: ", LABEL_WIDTH);
     private final ComboBox<String> comboBoxTaxOrSubsidy = utils.createComboBoxString();
-    private final Label labelPolicyName = utils.createLabel("Policy: ", LABEL_WIDTH);
-    private final TextField textFieldPolicyName = new TextField("");
-    private final Label labelMarketName = utils.createLabel("Market: ", LABEL_WIDTH);
-    private final TextField textFieldMarketName = new TextField("");
-    private final Label labelUseAutoNames = utils.createLabel("Names: ", LABEL_WIDTH);
-    private final CheckBox checkBoxUseAutoNames = utils.createCheckBox("Auto?");
-    private final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
     private final Label labelUnits = utils.createLabel("Units: ", LABEL_WIDTH);
-    private final Label labelUnits2 = utils.createLabel(LABEL_UNITS_DEFAULT, 225.);
-    private final Label labelStartYear = utils.createLabel("Start Year: ", LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField(DEFAULT_START_YEAR);
-    private final Label labelEndYear = utils.createLabel("End Year: ", LABEL_WIDTH);
-    private final TextField textFieldEndYear = new TextField(DEFAULT_END_YEAR);
-    private final Label labelInitialAmount = utils.createLabel("Initial Val:   ", LABEL_WIDTH);
-    private final TextField textFieldInitialAmount = utils.createTextField();
-    private final Label labelGrowth = utils.createLabel("Growth (%): ", LABEL_WIDTH);
-    private final TextField textFieldGrowth = utils.createTextField();
-    private final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
-    private final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
-    private final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
-    private final Label labelValue = utils.createLabel("Values: ");
-    private final Button buttonPopulate = utils.createButton("Populate", styles.getBigButtonWidth(), null);
-    private final Button buttonImport = utils.createButton("Import", styles.getBigButtonWidth(), null);
-    private final Button buttonDelete = utils.createButton("Delete", styles.getBigButtonWidth(), null);
-    private final Button buttonClear = utils.createButton("Clear", styles.getBigButtonWidth(), null);
 
     /**
      * Constructs the TabTechTax UI and logic.
@@ -207,21 +123,25 @@ public class TabTechTax extends PolicyTab implements Runnable {
     }
 
     // === UI Setup Methods ===
+    /**
+     * Sets up the left column of the UI, adding labels and controls to the grid pane.
+     */
     private void setupLeftColumn() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxSector, labelCheckComboBoxTech, labelComboBoxTaxOrSubsidy,
-                new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName,
-                labelMarketName, new Label(), new Separator(), utils.createLabel("Populate:"), labelModificationType,
+                new Label(), labelUnits, new Label(), new Separator(), labelModificationType,
                 labelStartYear, labelEndYear, labelInitialAmount, labelGrowth, labelConvertFrom);
         gridPaneLeft.addColumn(1, textFieldFilter, comboBoxSector, checkComboBoxTech, comboBoxTaxOrSubsidy, new Label(),
-                labelUnits2, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
-                textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
-                textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+                labelUnits2, new Label(), new Separator(), textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
+                new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
         scrollPaneLeft.setContent(gridPaneLeft);
     }
 
+    /**
+     * Sets up the center column of the UI, adding header buttons and component details pane.
+     */
     private void setupCenterColumn() {
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
@@ -230,11 +150,17 @@ public class TabTechTax extends PolicyTab implements Runnable {
         vBoxCenter.setStyle(styles.getStyle2());
     }
 
+    /**
+     * Sets up the right column of the UI, adding the country/state tree pane.
+     */
     private void setupRightColumn() {
         vBoxRight.getChildren().addAll(paneForCountryStateTree);
         vBoxRight.setStyle(styles.getStyle2());
     }
 
+    /**
+     * Arranges the layout of the tab by adding columns and setting preferred widths.
+     */
     private void setupLayout() {
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
@@ -245,12 +171,19 @@ public class TabTechTax extends PolicyTab implements Runnable {
         vBoxRight.setPrefWidth(300);
     }
 
+    /**
+     * Sets the sizing for UI components in the tab.
+     */
     private void setupSizing() {
         setComponentWidths(comboBoxSector, checkComboBoxTech, comboBoxTaxOrSubsidy, comboBoxConvertFrom,
                 textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength,
                 textFieldFilter, textFieldPolicyName, textFieldMarketName);
     }
 
+    /**
+     * Sets the width properties for the provided controls.
+     * @param controls Controls to set width for
+     */
     private void setComponentWidths(Control... controls) {
         for (Control c : controls) {
             c.setMaxWidth(MAX_WIDTH);
@@ -259,6 +192,9 @@ public class TabTechTax extends PolicyTab implements Runnable {
         }
     }
 
+    /**
+     * Sets up event handlers for UI components in the tab.
+     */
     private void setupEventHandlers() {
         // Wrap all UI updates in Platform.runLater
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
@@ -442,28 +378,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
                 System.out.println("Cannot auto-name market. Continuing.");
             }
         }
-    }
-
-    /**
-     * Calculates the values for the policy based on user input and conversion factors.
-     *
-     * @return a 2D array of calculated values
-     */
-    private double[][] calculateValues() {
-        String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-        int startYear = Integer.parseInt(textFieldStartYear.getText());
-        int endYear = Integer.parseInt(textFieldEndYear.getText());
-        double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
-        double growth = Double.parseDouble(textFieldGrowth.getText());
-        int periodLength = Integer.parseInt(textFieldPeriodLength.getText());
-        double factor = 1.0;
-        String convertYear = comboBoxConvertFrom.getValue();
-        String tempUnitsVal = labelUnits2.getText();
-        String toYear = tempUnitsVal.contains("1990") ? "1990$s" : "1975$s";
-        if (!NONE.equals(convertYear)) {
-            factor = utils.getConversionFactor(convertYear, toYear);
-        }
-        return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength, factor);
     }
 
     /**

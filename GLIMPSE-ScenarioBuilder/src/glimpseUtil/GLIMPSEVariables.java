@@ -73,6 +73,7 @@ public class GLIMPSEVariables {
     private static final String DEFAULT_DEBUG_REGION = "USA";
     private static final boolean DEFAULT_SHOW_SPLASH = true;
     private static final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
+    private static final int DEFAULT_PERIOD_INCREMENT = 5; // Default period increment for GCAM
 
     private static final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
 
@@ -94,6 +95,7 @@ public class GLIMPSEVariables {
     private List<Integer> allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS_LIST;
     private List<Integer> allYears = DEFAULT_ALL_YEARS_LIST;
     private Integer calibrationYear = DEFAULT_CALIBRATION_YEAR;
+    private int periodIncrement = DEFAULT_PERIOD_INCREMENT;
     private String preferredFontSize = DEFAULT_PREFERRED_FONT_SIZE;
     private String useIcons = DEFAULT_USE_ICONS;
     private String debugRegion = DEFAULT_DEBUG_REGION;
@@ -2165,6 +2167,8 @@ public class GLIMPSEVariables {
 		return maxDatabaseSizeGB;
 	}
     
+	public int getPeriodIncrement() { return this.periodIncrement; }
+	
     // Optional-returning getters for nullable fields
     public Optional<String> getAboutTextFilenameOptional() { return Optional.ofNullable(aboutTextFilename); }
     public Optional<String> getPresetRegionListFilenameOptional() { return Optional.ofNullable(presetRegionListFilename); }
@@ -2206,5 +2210,6 @@ public class GLIMPSEVariables {
     public Optional<String> getXmlHeaderFilenameOptional() { return Optional.ofNullable(xmlHeaderFilename); }
     public Optional<String> getUnitConversionsFilenameOptional() { return Optional.ofNullable(unitConversionsFilename); }
     public Optional<String> getMonetaryConversionsFilenameOptional() { return Optional.ofNullable(monetaryConversionsFilename); }
+
 
 }
