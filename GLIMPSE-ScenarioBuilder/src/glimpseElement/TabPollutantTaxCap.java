@@ -122,6 +122,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	public static String descriptionText = "";
 	public static String runQueueStr = "Queue is empty.";
 
+	// Add flag to prevent recursion in category check listener
+	private boolean isAdjustingCategoryChecks = false;
+
 	// === UI Controls ===
 	private final Label labelComboBoxMeasure = createLabel(LABEL_MEASURE, LABEL_WIDTH);
 	private final ComboBox<String> comboBoxMeasure = createComboBoxString();
@@ -150,10 +153,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
 				utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
 				labelGrowth, labelConvertFrom);
-		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant, checkComboBoxCategory, new Label(), new Separator(),
-				checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
-				new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
-				textFieldGrowth, comboBoxConvertFrom);
+		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant, checkComboBoxCategory, new Label(),
+				new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
+				new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
+				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
 		gridPaneLeft.setVgap(3.);
 		gridPaneLeft.setStyle(styles.getStyle2());
 
@@ -196,11 +199,36 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		}
 		comboBoxMeasure.getSelectionModel().selectFirst();
 		comboBoxPollutant.getSelectionModel().selectFirst();
-		
+
 		checkComboBoxCategory.getCheckModel().clearChecks();
-		//checkComboBoxCategory.getItems().add(ALL);
 		checkComboBoxCategory.getCheckModel().check(ALL);
 		checkComboBoxCategory.setDisable(true);
+
+		// Ensure only one box is checked at a time
+		checkComboBoxCategory.getCheckModel().getCheckedItems().addListener((javafx.collections.ListChangeListener<String>) change -> {
+			if (isAdjustingCategoryChecks) return;
+			if (checkComboBoxCategory.isDisabled()) return;
+			if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() > 1) {
+				isAdjustingCategoryChecks = true;
+				String lastChecked = null;
+				while (change.next()) {
+					if (change.wasAdded() && !change.getAddedSubList().isEmpty()) {
+						lastChecked = change.getAddedSubList().get(change.getAddedSubList().size() - 1);
+					}
+				}
+				// Uncheck all except lastChecked
+				if (lastChecked.equals(ALL)) {
+				  for (String item : new ArrayList<>(checkComboBoxCategory.getCheckModel().getCheckedItems())) {
+					if (!item.equals(lastChecked)) {
+						checkComboBoxCategory.getCheckModel().clearCheck(item);
+					}
+				  }
+				} else {
+				   checkComboBoxCategory.getCheckModel().clearCheck(ALL);
+				}
+				isAdjustingCategoryChecks = false;
+			}
+		});
 		
 		comboBoxModificationType.getSelectionModel().selectFirst();
 		comboBoxConvertFrom.getSelectionModel().selectFirst();
@@ -235,12 +263,13 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		});
 		// Uncomment and standardize these as needed:
 		// setOnAction(checkComboBoxCategory, e -> setPolicyAndMarketNames());
-		// EventHandler<TreeModificationEvent> ev = new EventHandler<TreeModificationEvent>() {
-		// 	@Override
-		// 	public void handle(TreeModificationEvent ae) {
-		// 		ae.consume();
-		// 		setPolicyAndMarketNames();
-		// 	}
+		// EventHandler<TreeModificationEvent> ev = new
+		// EventHandler<TreeModificationEvent>() {
+		// @Override
+		// public void handle(TreeModificationEvent ae) {
+		// ae.consume();
+		// setPolicyAndMarketNames();
+		// }
 		// };
 		// paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
 		setOnAction(checkBoxUseAutoNames, e -> {
@@ -290,66 +319,66 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBox.setMinWidth(MIN_WIDTH);
 		comboBox.setPrefWidth(PREF_WIDTH);
 	}
+
 	/**
-     * Sets the widths for a CheckComboBox for consistency.
-     *
-     * @param comboBox CheckComboBox to set widths for
-     */
-    private void setComboBoxWidths(CheckComboBox<String> comboBox) {
-        comboBox.setMaxWidth(MAX_WIDTH);
-        comboBox.setMinWidth(MIN_WIDTH);
-        comboBox.setPrefWidth(PREF_WIDTH);
-    }
+	 * Sets the widths for a CheckComboBox for consistency.
+	 *
+	 * @param comboBox CheckComboBox to set widths for
+	 */
+	private void setComboBoxWidths(CheckComboBox<String> comboBox) {
+		comboBox.setMaxWidth(MAX_WIDTH);
+		comboBox.setMinWidth(MIN_WIDTH);
+		comboBox.setPrefWidth(PREF_WIDTH);
+	}
 
 	/**
 	 * Automatically sets the policy and market names based on current selections
 	 * and options. If auto-naming is enabled, updates the text fields accordingly.
 	 */
 	private void setPolicyAndMarketNames() {
-	    Platform.runLater(() -> {
-	        if (checkBoxUseAutoNames.isSelected()) {
-	            String policy_type = "--";
-	            String pollutant = "--";
-	            String category = "--";
-	            String state = "--";
-	            try {
-	                String s = comboBoxMeasure.getValue();
-	                if (s != null && s.contains("Tax"))
-	                    policy_type = "Tax";
-	                if (s != null && s.contains("Cap"))
-	                    policy_type = "Cap";
-	                int cats = checkComboBoxCategory.getCheckModel().getCheckedItems().size();
-	                if (cats == 0) {
-	                    category = "All";
-	                } else if (cats == 1) {
-	                    category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
-	                } else {
-	                    category = "Mult";
-	                }
-	                s = comboBoxPollutant.getValue();
-	                if (s != null && !s.equals("Select One")) {
-	                    pollutant = utils.splitString(s, " ")[0];
-	                }
-	                String[] listOfSelectedRegions = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
-	                if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
-	                    listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
-	                    String state_str = utils.returnAppendedString(listOfSelectedRegions).replace(",", "");
-	                    if (state_str.length() < 9) {
-	                        state = state_str;
-	                    } else {
-	                        state = "Reg";
-	                    }
-	                }
-	                String name = policy_type + "_" + category + "_" + pollutant + "_" + state;
-	                textFieldMarketName.setText(name + "_Mkt");
-	                textFieldPolicyName.setText(name);
-	            } catch (Exception e) {
-	                System.out.println("Error trying to auto-name market");
-	            }
-	        }
-	    });
+		Platform.runLater(() -> {
+			if (checkBoxUseAutoNames.isSelected()) {
+				String policy_type = "--";
+				String pollutant = "--";
+				String category = "--";
+				String state = "--";
+				try {
+					String s = comboBoxMeasure.getValue();
+					if (s != null && s.contains("Tax"))
+						policy_type = "Tax";
+					if (s != null && s.contains("Cap"))
+						policy_type = "Cap";
+					int cats = checkComboBoxCategory.getCheckModel().getCheckedItems().size();
+					if (cats == 0) {
+						category = "All";
+					} else if (cats == 1) {
+						category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0).replaceAll(" ", "_");
+					} else {
+						category = "Mult";
+					}
+					s = comboBoxPollutant.getValue();
+					if (s != null && !s.equals("Select One")) {
+						pollutant = utils.splitString(s, " ")[0];
+					}
+					String[] listOfSelectedRegions = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+					if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
+						listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
+						String state_str = utils.returnAppendedString(listOfSelectedRegions).replace(",", "");
+						if (state_str.length() < 9) {
+							state = state_str;
+						} else {
+							state = "Reg";
+						}
+					}
+					String name = policy_type + "_" + category + "_" + pollutant + "_" + state;
+					textFieldMarketName.setText(name + "_Mkt");
+					textFieldPolicyName.setText(name);
+				} catch (Exception e) {
+					System.out.println("Error trying to auto-name market");
+				}
+			}
+		});
 	}
-
 
 	/**
 	 * Runnable implementation: triggers saving the scenario component. Calls
@@ -357,8 +386,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 */
 	@Override
 	public void run() {
-        Platform.runLater(() -> saveScenarioComponent());
-    }
+		Platform.runLater(() -> saveScenarioComponent());
+	}
 
 	/**
 	 * Saves the scenario component by generating metadata and CSV content. Uses
@@ -376,49 +405,50 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param tree TreeView of selected regions
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
-	    if (!qaInputs()) {
-	        Thread.currentThread().destroy();
-	        return;
-	    }
+		if (!qaInputs()) {
+			Thread.currentThread().destroy();
+			return;
+		}
 
-	    String[] listOfSelectedRegions = utils.getAllSelectedRegions(tree);
-	    listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
+		String[] listOfSelectedRegions = utils.getAllSelectedRegions(tree);
+		listOfSelectedRegions = utils.removeUSADuplicate(listOfSelectedRegions);
 
-	    String ID = utils.getUniqueString();
-	    String policy_name = textFieldPolicyName.getText() + ID;
-	    String market_name = textFieldMarketName.getText() + ID;
-	    filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+		String ID = utils.getUniqueString();
+		String policy_name = textFieldPolicyName.getText() + ID;
+		String market_name = textFieldMarketName.getText() + ID;
+		filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
 
-	    String category = null;
-	    List<String> cats = checkComboBoxCategory.getCheckModel().getCheckedItems();
-	    if (cats.size() == 0) {
-	        category = ALL;
-	    } else if (cats.size() == 1) {
-	        category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
-	    }
+		String category = null;
+		List<String> cats = checkComboBoxCategory.getCheckModel().getCheckedItems();
+		if (cats.size() == 0) {
+			category = ALL;
+		} else if (cats.size() == 1) {
+			category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0);
+		}
 
-	    String measure = comboBoxMeasure.getValue();
-	    measure = measure.contains(CAP) ? CAP : TAX;
+		String measure = comboBoxMeasure.getValue();
+		measure = measure.contains(CAP) ? CAP : TAX;
 
-	    String pol_selection = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
-	    String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
+		String pol_selection = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
+		String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
 
-	    fileContent = getMetaDataContent(tree, market_name, policy_name);
+		fileContent = getMetaDataContent(tree, market_name, policy_name);
 
-	    if (pol.startsWith(CO2) && ALL.equals(category) && CAP.equals(measure)) {
-	        saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol_selection, market_name, policy_name);
-	        return;
-	    } else if (!pol.startsWith(GHG)) {
-	        saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name, policy_name);
-	        return;
-	    } else if (pol_selection.startsWith(GHG)) {
-	        saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
-	        return;
-	    } else {
-	        System.out.println("Cap or tax type not supported!");
-	    }
+		if (pol.startsWith(CO2) && ALL.equals(category) && CAP.equals(measure)) {
+			saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol_selection, market_name, policy_name);
+			return;
+		} else if (!pol.startsWith(GHG)) {
+			saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name,
+					policy_name,ID);
+			return;
+		} else if (pol_selection.startsWith(GHG)) {
+			saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
+			return;
+		} else {
+			System.out.println("Cap or tax type not supported!");
+		}
 	}
-			
+
 	/**
 	 * Special implementation for CO2 cap policies, generating robust scenario files
 	 * for complex scenarios.
@@ -431,162 +461,161 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
-	private void saveScenarioComponentFlexTaxOrCap(String[] listOfSelectedRegions, String measure, String category, List<String> categories, String pol,
-			String market_name, String policy_name) {	
-			
-		        String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
-		        
-		        File test = new File(tempDirName);
-		        if (!test.exists())
-		            test.mkdir();
-		        String tempFilename0 = "temp_policy_file0.txt";
-		        String tempFilename1 = "temp_policy_file1.txt";
-		        String tempFilename2 = "temp_policy_file2.txt";
+	private void saveScenarioComponentFlexTaxOrCap(String[] listOfSelectedRegions, String measure, String category,
+			List<String> categories, String pol, String market_name, String policy_name,String ID) {
+
+		String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
+
+		File test = new File(tempDirName);
+		if (!test.exists())
+			test.mkdir();
+		String tempFilename0 = "temp_policy_file0.txt";
+		String tempFilename1 = "temp_policy_file1.txt";
+		String tempFilename2 = "temp_policy_file2.txt";
+
+		String temp_file0 = tempDirName + File.separator + tempFilename0;
+		String temp_file1 = tempDirName + File.separator + tempFilename1;
+		String temp_file2 = tempDirName + File.separator + tempFilename2;
+
+		BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
+		BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
+		BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
+
+		String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
+		files.deleteFile(temp_file);
+
+		ArrayList<String> tempfiles = new ArrayList<String>();
+
+		ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
+
+		files.writeToBufferedFile(bw0, fileContent);
+		fileContent = "use temp file";
+
+		//where cap or tax is being applied to a specific category, provides category-specific naming
+		if (!ALL.equals(category)) pol=pol+"_"+ID;
 		
-		        BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
-		        BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
-		        BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
-			
-				ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
-				
-				//if (!"All".equals(category)) {
-				//	pol = market_name;
-				//}
-				pol+="_Pol";
-				
-				files.writeToBufferedFile(bw0, fileContent);
-		        fileContent = "use temp file";
-		        
-				//files.writeToBufferedFile(bw0,vars.getEol());
-				files.writeToBufferedFile(bw0,INPUT_TABLE + vars.getEol());
-				files.writeToBufferedFile(bw0,VARIABLE_ID + vars.getEol());
-				if (CAP.equals(measure)) {
-					files.writeToBufferedFile(bw0,GLIMPSE_EMISSION_CAP + vars.getEol() + vars.getEol());
-					files.writeToBufferedFile(bw0,"region,pollutant,market,year,cap" + vars.getEol());
-				} else if (TAX.equals(measure)) {
-					files.writeToBufferedFile(bw0,GLIMPSE_EMISSION_TAX + vars.getEol() + vars.getEol());
-					files.writeToBufferedFile(bw0,"region,pollutant,market,year,tax" + vars.getEol());
-				}
-				if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
-					String state = listOfSelectedRegions[0];
+		files.writeToBufferedFile(bw0, INPUT_TABLE + vars.getEol());
+		files.writeToBufferedFile(bw0, VARIABLE_ID + vars.getEol());
+		if (CAP.equals(measure)) {
+			files.writeToBufferedFile(bw0, GLIMPSE_EMISSION_CAP + vars.getEol() + vars.getEol());
+			files.writeToBufferedFile(bw0, "region,pollutant,market,year,cap" + vars.getEol());
+		} else if (TAX.equals(measure)) {
+			files.writeToBufferedFile(bw0, GLIMPSE_EMISSION_TAX + vars.getEol() + vars.getEol());
+			files.writeToBufferedFile(bw0, "region,pollutant,market,year,tax" + vars.getEol());
+		}
+		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
+			String state = listOfSelectedRegions[0];
 
-					for (String data_str : data) {
-						data_str = data_str.replaceAll(" ", "");
-						files.writeToBufferedFile(bw0,state + "," + pol + "," + market_name + "," + data_str + vars.getEol());
-					}
-				}
-				if (listOfSelectedRegions != null && listOfSelectedRegions.length > 1) {
-					files.writeToBufferedFile(bw0,vars.getEol());
-					files.writeToBufferedFile(bw0,INPUT_TABLE + vars.getEol());
-					files.writeToBufferedFile(bw0,VARIABLE_ID + vars.getEol());
-					files.writeToBufferedFile(bw0,GLIMPSE_EMISSION_MARKET + vars.getEol());
-					files.writeToBufferedFile(bw0,vars.getEol());
-					files.writeToBufferedFile(bw0,"region,pollutant,market" + vars.getEol());
-					for (int s = 1; s < listOfSelectedRegions.length; s++) {
-						files.writeToBufferedFile(bw0,listOfSelectedRegions[s] + "," + pol + "," + market_name + vars.getEol());
-						double progress = (double) s / (listOfSelectedRegions.length - 1);
-						updateProgressBar(progress);
-					}
-				}
-				
-				// for CO2, specific categories may be selected. This code builds the relevant markets
-				
-				int start_year = 2015;
-				
-				if (!ALL.equals(category)) {
+			for (String data_str : data) {
+				data_str = data_str.replaceAll(" ", "");
+				files.writeToBufferedFile(bw0, state + "," + pol + "," + market_name + "," + data_str + vars.getEol());
+			}
+		}
+		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 1) {
+			files.writeToBufferedFile(bw0, vars.getEol());
+			files.writeToBufferedFile(bw0, INPUT_TABLE + vars.getEol());
+			files.writeToBufferedFile(bw0, VARIABLE_ID + vars.getEol());
+			files.writeToBufferedFile(bw0, GLIMPSE_EMISSION_MARKET + vars.getEol());
+			files.writeToBufferedFile(bw0, vars.getEol());
+			files.writeToBufferedFile(bw0, "region,pollutant,market" + vars.getEol());
+			for (int s = 1; s < listOfSelectedRegions.length; s++) {
+				files.writeToBufferedFile(bw0,
+						listOfSelectedRegions[s] + "," + pol + "," + market_name + vars.getEol());
+				double progress = (double) s / (listOfSelectedRegions.length - 1);
+				updateProgressBar(progress);
+			}
+		}
 
-					files.writeToBufferedFile(bw1,vars.getEol());
-					files.writeToBufferedFile(bw1,INPUT_TABLE + vars.getEol());
-					files.writeToBufferedFile(bw1,VARIABLE_ID + vars.getEol());
-					files.writeToBufferedFile(bw1,GLIMPSE_ADD_CO2_SUBSPECIES_NEST + vars.getEol());
-					files.writeToBufferedFile(bw1,vars.getEol());
-					files.writeToBufferedFile(bw1,"region,supplysector,nesting-subsector,subsector,technology,year,pollutant"
-							+ vars.getEol());
-					
-					int nest_count = 0;
-					files.writeToBufferedFile(bw2,vars.getEol());
-					files.writeToBufferedFile(bw2,INPUT_TABLE + vars.getEol());
-					files.writeToBufferedFile(bw2,VARIABLE_ID + vars.getEol());
-					files.writeToBufferedFile(bw2,GLIMPSE_ADD_CO2_SUBSPECIES + vars.getEol());
-					files.writeToBufferedFile(bw2,vars.getEol());
-					files.writeToBufferedFile(bw2,"region,supplysector,subsector,technology,year,pollutant" + vars.getEol());
-					int nonest_count = 0;
-					int max_year = 0;
-					for (String d : data) {
-						int year = Integer.parseInt(d.split(",")[0].trim());
-						if (year > max_year)
-							max_year = year;
-					}
-					//DHL: todo - need to loop around selected categories
-					if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
-						for (String region : listOfSelectedRegions) {
-							String[][] tech_list = vars.getTechInfo();
-							int cols = tech_list[0].length;
-							int rows = tech_list.length;
-							for (int y = start_year; y <= max_year; y += 5) {
-							for (String cat : categories) {
+		files.closeBufferedFile(bw0);
+		tempfiles.add(temp_file0);
 
-								String cat_lwc = cat.toLowerCase();
-								for (int r = 0; r < rows; r++) {
-									String sector_r = tech_list[r][0];
-									String subsector_r = tech_list[r][1];
-									String tech_r = tech_list[r][2];
-									String cat_r = tech_list[r][cols - 1];
-									// DHL: todo - modify to operate on year list as opposed to 5-year increments
+		int start_year = 2015;
 
-										// DHL: added PV and wind check to avoid issue where these didn't have inputs, resulting in severe error
-										if ((!tech_r.contains("PV")) && (!tech_r.contains("wind")) && (!tech_r.contains("CSP"))) {
-											String cat_r_lwc = cat_r.toLowerCase();
-											if ((cat_lwc.equals(cat_r_lwc))) {
-												String line = region + "," + sector_r + "," + subsector_r + ","
-														+ tech_r.replace("=>", ",") + "," + y + "," + pol + vars.getEol();
-												if (tech_r.contains("=>")) {
-													files.writeToBufferedFile(bw1,line);
-													nest_count++;
-												} else {
-													files.writeToBufferedFile(bw2,line);
-													nonest_count++;
-												}
-											}
+		if (!ALL.equals(category)) {
+
+			files.writeToBufferedFile(bw1, vars.getEol());
+			files.writeToBufferedFile(bw1, INPUT_TABLE + vars.getEol());
+			files.writeToBufferedFile(bw1, VARIABLE_ID + vars.getEol());
+			files.writeToBufferedFile(bw1, GLIMPSE_ADD_CO2_SUBSPECIES_NEST + vars.getEol());
+			files.writeToBufferedFile(bw1, vars.getEol());
+			files.writeToBufferedFile(bw1,
+					"region,supplysector,nesting-subsector,subsector,technology,year,pollutant" + vars.getEol());
+
+			int nest_count = 0;
+			files.writeToBufferedFile(bw2, vars.getEol());
+			files.writeToBufferedFile(bw2, INPUT_TABLE + vars.getEol());
+			files.writeToBufferedFile(bw2, VARIABLE_ID + vars.getEol());
+			files.writeToBufferedFile(bw2, GLIMPSE_ADD_CO2_SUBSPECIES + vars.getEol());
+			files.writeToBufferedFile(bw2, vars.getEol());
+			files.writeToBufferedFile(bw2, "region,supplysector,subsector,technology,year,pollutant" + vars.getEol());
+			int nonest_count = 0;
+			int max_year = 0;
+			for (String d : data) {
+				int year = Integer.parseInt(d.split(",")[0].trim());
+				if (year > max_year)
+					max_year = year;
+			}
+			// DHL: todo - need to loop around selected categories
+			int l = 0;
+			if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
+				l++;
+				for (String region : listOfSelectedRegions) {
+					String[][] tech_list = vars.getTechInfo();
+					int cols = tech_list[0].length;
+					int rows = tech_list.length;
+					for (int y = start_year; y <= max_year; y += 5) {
+						for (String cat : categories) {
+
+							String cat_lwc = cat.toLowerCase();
+							for (int r = 0; r < rows; r++) {
+								String sector_r = tech_list[r][0];
+								String subsector_r = tech_list[r][1];
+								String tech_r = tech_list[r][2];
+								String cat_r = tech_list[r][cols - 1];
+								// DHL: todo - modify to operate on year list as opposed to 5-year increments
+
+								// DHL: added PV and wind check to avoid issue where these didn't have inputs,
+								// resulting in severe error
+								if ((!tech_r.contains("PV")) && (!tech_r.contains("wind"))
+										&& (!tech_r.contains("CSP"))) {
+									String cat_r_lwc = cat_r.toLowerCase();
+									if ((cat_lwc.equals(cat_r_lwc))) {
+										String line = region + "," + sector_r + "," + subsector_r + ","
+												+ tech_r.replace("=>", ",") + "," + y + "," + pol + vars.getEol();
+										if (tech_r.contains("=>")) {
+											files.writeToBufferedFile(bw1, line);
+											nest_count++;
+										} else {
+											files.writeToBufferedFile(bw2, line);
+											nonest_count++;
 										}
 									}
 								}
-
 							}
 						}
-						double progress = (double) 1 / (listOfSelectedRegions.length - 1);
-						updateProgressBar(progress);
-						
+
 					}
-		            files.closeBufferedFile(bw0);
-		            files.closeBufferedFile(bw1);
-		            files.closeBufferedFile(bw2);
-
-		            String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
-
-		            files.deleteFile(tempDirName);
-
-		            String temp_file0 = tempDirName + File.separator + tempFilename0;
-		            String temp_file1 = tempDirName + File.separator + tempFilename1;
-		            String temp_file2 = tempDirName + File.separator + tempFilename2;
-
-		            ArrayList<String> tempfiles = new ArrayList<String>();
-		            tempfiles.add(temp_file0);
-
-		            if (nest_count > 0)
-		                tempfiles.add(temp_file1);
-		            if (nonest_count > 0)
-		                tempfiles.add(temp_file2);
-
-		            files.concatDestSources(temp_file, tempfiles);
-
-		            System.out.println("Done");
 				}
-	} 
-	
+				double progress = (double) l / (listOfSelectedRegions.length - 1);
+				updateProgressBar(progress);
+
+			}
+			files.closeBufferedFile(bw1);
+			files.closeBufferedFile(bw2);
+
+			if (nest_count > 0)
+				tempfiles.add(temp_file1);
+			if (nonest_count > 0)
+				tempfiles.add(temp_file2);
+		}
+
+		files.concatDestSources(temp_file, tempfiles);
+
+	}
 
 	/**
-	 * Special implementation for GHG tax/cap policies, generating scenario files for GHG policies.
+	 * Special implementation for GHG tax/cap policies, generating scenario files
+	 * for GHG policies.
 	 *
 	 * @param listOfSelectedRegions Array of selected region names
 	 * @param measure               Measure type (Tax/Cap)
@@ -609,7 +638,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			fileContent += vars.getEol();
 			fileContent += "region,GHG-Policy,GHG-Market,year,tax" + vars.getEol();
 		}
-		
+
 		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
 			String state = listOfSelectedRegions[0];
 			ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
@@ -641,22 +670,22 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				+ vars.getEol();
 		String[] GHGs = { "CO2", "CH4", "N2O", "C2F6", "CF4", "HFC125", "HFC134a", "HRC245fa", "SF6", "CH4_AWB",
 				"CH4_AGR", "N2O_AWB", "N2O_AGR" };
-		String[] price_adjust = { "1", "5.728", "84.55", "0", "0", "0", "0", "0", "0", "5.727", "5.727",
-				"84.55", "84.55" };
-		String[] demand_adjust = { "3.667", "21", "310", "9.2", "6.5", "2.8", "1.3", "1.03", "23.9", "21", "21",
-				"310", "310" };
+		String[] price_adjust = { "1", "5.728", "84.55", "0", "0", "0", "0", "0", "0", "5.727", "5.727", "84.55",
+				"84.55" };
+		String[] demand_adjust = { "3.667", "21", "310", "9.2", "6.5", "2.8", "1.3", "1.03", "23.9", "21", "21", "310",
+				"310" };
 		String[] price_unit = { "1990$/tC", "1990$/GgCH4", "1990$/GgN2O", "1990$/MgC2F6", "1990$/MgCF4",
-				"1990$/MgHFC125", "1990$/MgHFC13a", "1990$/MgHFC245fa", "1990$/MgSF6", "1990$/GgCH4",
-				"1990$/GgCH4", "1990$/GgN2O", "1990$/GgN2O" };
-		String[] output_unit = { "MtC", "TgCH4", "TgN2O", "GgC2F6", "GgCF4", "GgHFC125", "GgHFC134a",
-				"GgHFC245fa", "GgSF6", "TgCH4", "TgCH4", "TgN2O", "TgN2O" };
+				"1990$/MgHFC125", "1990$/MgHFC13a", "1990$/MgHFC245fa", "1990$/MgSF6", "1990$/GgCH4", "1990$/GgCH4",
+				"1990$/GgN2O", "1990$/GgN2O" };
+		String[] output_unit = { "MtC", "TgCH4", "TgN2O", "GgC2F6", "GgCF4", "GgHFC125", "GgHFC134a", "GgHFC245fa",
+				"GgSF6", "TgCH4", "TgCH4", "TgN2O", "TgN2O" };
 		if (listOfSelectedRegions != null) {
 			for (String state : listOfSelectedRegions) {
 				for (int i = 0; i < GHGs.length; i++) {
 					if ((pol.equals("GHG")) || ((pol.equals("CO2")) && (GHGs[i].equals("CO2")))) {
 						fileContent2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name + ","
-								+ price_adjust[i] + "," + demand_adjust[i] + "," + price_unit[i] + ","
-								+ output_unit[i] + vars.getEol();
+								+ price_adjust[i] + "," + demand_adjust[i] + "," + price_unit[i] + "," + output_unit[i]
+								+ vars.getEol();
 					}
 				}
 			}
@@ -672,30 +701,29 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				for (int i = 0; i < GHGs.length; i++) {
 					if ((pol.equals("GHG")) || ((pol.equals("CO2")) && (GHGs[i].equals("CO2")))) {
 						String state = listOfSelectedRegions[s];
-						fileContent2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name
-								+ vars.getEol();
+						fileContent2 += state + "," + GHGs[i] + "," + market_name + "," + policy_name + vars.getEol();
 					}
 				}
 				double progress = (double) s / (listOfSelectedRegions.length - 1);
 				updateProgressBar(progress);
 			}
 		}
-	
+
 		if (fileContent2.length() > 0)
 			fileContent += fileContent2;
 	}
-	
-	
+
 	/**
-	 * Special implementation for robust CO2 cap policies, generating scenario files for complex CO2 cap scenarios.
+	 * Special implementation for robust CO2 cap policies, generating scenario files
+	 * for complex CO2 cap scenarios.
 	 *
 	 * @param listOfSelectedRegions Array of selected region names
 	 * @param pol                   Pollutant string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
-	private void saveScenarioComponentRobustCO2Cap(String[] listOfSelectedRegions, String pol,
-			String market_name, String policy_name) {
+	private void saveScenarioComponentRobustCO2Cap(String[] listOfSelectedRegions, String pol, String market_name,
+			String policy_name) {
 
 		fileContent += INPUT_TABLE + vars.getEol();
 		fileContent += VARIABLE_ID + vars.getEol();
@@ -746,7 +774,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		rtn_str.append("#Scenario component type: Pollutant Tax/Cap").append(vars.getEol());
 		rtn_str.append("#Measure: ").append(comboBoxMeasure.getValue()).append(vars.getEol());
 		rtn_str.append("#Pollutant: ").append(comboBoxPollutant.getValue()).append(vars.getEol());
-		rtn_str.append("#Categories: ").append(utils.getStringFromList(checkComboBoxCategory.getCheckModel().getCheckedItems(),",")).append(vars.getEol());
+		rtn_str.append("#Categories: ")
+				.append(utils.getStringFromList(checkComboBoxCategory.getCheckModel().getCheckedItems(), ","))
+				.append(vars.getEol());
 		if (policy == null)
 			market = textFieldPolicyName.getText();
 		rtn_str.append("#Policy name: ").append(policy).append(vars.getEol());
@@ -790,7 +820,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					break;
 				case "categories":
 					checkComboBoxCategory.getCheckModel().clearChecks();
-					String[] items=utils.splitString(value, ",");
+					String[] items = utils.splitString(value, ",");
 					for (String item : items) {
 						if (item.equals(ALL)) {
 							checkComboBoxCategory.getCheckModel().check(ALL);
@@ -833,23 +863,26 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				&& !textFieldInitialAmount.getText().isEmpty() && !textFieldGrowth.getText().isEmpty();
 	}
 
-    /**
-     * Helper method to validate table data years against allowable policy years.
-     * @return true if at least one year matches allowable years, false otherwise
-     */
-    private boolean validateTableDataYears() {
-        List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
-        ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems() : null;
-        if (data == null) return false;
-        for (DataPoint dp : data) {
-            Integer year = Integer.parseInt(dp.getYear().trim());
-            if (listOfAllowableYears.contains(year)) {
-                return true;
-            }
-        }
-        return false;
-    }
-	
+	/**
+	 * Helper method to validate table data years against allowable policy years.
+	 * 
+	 * @return true if at least one year matches allowable years, false otherwise
+	 */
+	private boolean validateTableDataYears() {
+		List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
+		ObservableList<DataPoint> data = paneForComponentDetails != null ? this.paneForComponentDetails.table.getItems()
+				: null;
+		if (data == null)
+			return false;
+		for (DataPoint dp : data) {
+			Integer year = Integer.parseInt(dp.getYear().trim());
+			if (listOfAllowableYears.contains(year)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Validates all required inputs before saving the scenario component. Checks
 	 * for at least one region, at least one table entry, and required selections.
@@ -861,21 +894,22 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		int error_count = 0;
 		StringBuilder message = new StringBuilder();
 		try {
-			
+
 			if (utils.getAllSelectedRegions(tree).length < 1) {
 				message.append("Must select at least one region from tree").append(vars.getEol());
 				error_count++;
 			}
-            if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
-                message.append("Data table must have at least one entry").append(vars.getEol());
-                error_count++;
-            } else {
-                boolean match = validateTableDataYears();
-                if (!match) {
-                    message.append("Years specified in table must match allowable policy years (").append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
-                    error_count++;
-                }
-            }
+			if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
+				message.append("Data table must have at least one entry").append(vars.getEol());
+				error_count++;
+			} else {
+				boolean match = validateTableDataYears();
+				if (!match) {
+					message.append("Years specified in table must match allowable policy years (")
+							.append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
+					error_count++;
+				}
+			}
 			if (comboBoxMeasure.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
 				message.append("Action comboBox must have a selection").append(vars.getEol());
 				error_count++;
@@ -906,12 +940,13 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		return error_count == 0;
 	}
 
+	
 	/**
 	 * Updates the progress bar in a thread-safe way.
 	 *
 	 * @param progress Progress value between 0.0 and 1.0
 	 */
 	private void updateProgressBar(double progress) {
-        Platform.runLater(() -> progressBar.setProgress(progress));
-    }
+		Platform.runLater(() -> progressBar.setProgress(progress));
+	}
 }
