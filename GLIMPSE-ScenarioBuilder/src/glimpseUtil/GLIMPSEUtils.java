@@ -1949,6 +1949,7 @@ public class GLIMPSEUtils {
 
 	public boolean isState(String name) {
 		boolean return_val = false;
+		if (states == null) states=STATE_CODES;
 		for (String state : states) {
 			if (name.equals(state)) {
 				return_val = true;
@@ -2439,4 +2440,30 @@ public class GLIMPSEUtils {
     private boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
+
+	public ComboBox<String> createComboBoxString(String[] convertFromOptions) {
+		ComboBox<String> comboBox = new ComboBox<>();
+		if (convertFromOptions != null) {
+			for (String option : convertFromOptions) {
+				if (!isNullOrEmpty(option)) {
+					comboBox.getItems().add(option);
+				}
+			}
+		}
+		return comboBox;
+	}
+
+	public String getStringFromList(ArrayList<String> ol, String separator) {
+        if (ol == null || separator == null || vars == null) return "";
+        StringBuilder rtn_str = new StringBuilder();
+        for (String o : ol) {
+            rtn_str.append(o).append(separator);
+        }
+        return rtn_str.toString();
+	}
+
+	public ComboBox<String> createComboBox() {
+		ComboBox<String> comboBox = new ComboBox<>();
+		return comboBox;
+	}
 }

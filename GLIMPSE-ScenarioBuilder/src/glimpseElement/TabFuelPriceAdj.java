@@ -45,6 +45,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+//xxx Do I need to apply to all technologies, or just to the ones that are passthroughs for fuels?
+
 
 /**
  * TabFuelPriceAdj provides the UI and logic for creating/editing fuel price adjustment policies.
@@ -57,14 +59,31 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     // === UI constants ===
 
     private static final String LABEL_FUEL = "Fuel: ";
+    private static final String LABEL_TECH = "Application: ";
+    //private static final String LABEL_CAT = "Category: ";
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_UNITS_VALUE = "1975$s per GJ";
     
     // === UI components ===
     private final Label labelFuel = createLabel(LABEL_FUEL, LABEL_WIDTH);
-    private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxFuel = utils.createComboBox();
+
+    //private final Label labelCat = createLabel(LABEL_CAT, LABEL_WIDTH);
+    //private final CheckComboBox<String> checkComboBoxCat = createCheckComboBox();
+
+    private final Label labelTech = createLabel(LABEL_TECH, LABEL_WIDTH);
+    private final CheckComboBox<String> checkComboBoxTech = createCheckComboBox();
+    
+    // Add flag to prevent recursion in category check listener
+	private boolean isAdjustingCategoryChecks = false;    
+    
+	private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelUnitsValue = createLabel(LABEL_UNITS_VALUE, 225.);
-    private final CheckComboBox<String> comboBoxFuel = createCheckComboBox();
+    
+    private ArrayList<String> fuelList = new ArrayList<>();
+    private ArrayList<String> techList = new ArrayList<>();
+    private ArrayList<String> catList = new ArrayList<>();
+    
     
     /**
      * Constructs a new TabFuelPriceAdj instance and initializes the UI components for the Fuel Price Adjustment tab.
@@ -74,7 +93,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * @param stageX The JavaFX stage
      */
     public TabFuelPriceAdj(String title, Stage stageX) {
-        // --- Set up region tree and tab title ---
+    	
+    	// --- Set up region tree and tab title ---
         TreeItem<String> ti = paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null ? paneForCountryStateTree.getTree().getRoot() : null;
         if (ti != null) ti.setExpanded(true);
         this.setText(title);
@@ -91,11 +111,11 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
         // --- Layout: Left column (specification and populate controls) ---
         gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(),
+        gridPaneLeft.addColumn(0, labelFuel, labelTech, /*labelCat,*/ new Label(), labelUnits, new Label(),
                 new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
                 createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
                 labelGrowth, labelConvertFrom);
-        gridPaneLeft.addColumn(1, comboBoxFuel, new Label(), labelUnitsValue, new Label(), 
+        gridPaneLeft.addColumn(1, comboBoxFuel, checkComboBoxTech, /*checkComboBoxCat,*/ new Label(), labelUnitsValue, new Label(), 
         		new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
                 new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
                 textFieldGrowth, comboBoxConvertFrom);
@@ -126,6 +146,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         // --- Set default sizing for controls ---
         double max_wid = 180, min_wid = 100, pref_wid = 180;
         comboBoxFuel.setMaxWidth(max_wid); comboBoxFuel.setMinWidth(min_wid); comboBoxFuel.setPrefWidth(pref_wid);
+		checkComboBoxTech.setMaxWidth(max_wid); checkComboBoxTech.setMinWidth(min_wid); checkComboBoxTech.setPrefWidth(pref_wid);
         textFieldStartYear.setMaxWidth(max_wid); textFieldStartYear.setMinWidth(min_wid); textFieldStartYear.setPrefWidth(pref_wid);
         textFieldEndYear.setMaxWidth(max_wid); textFieldEndYear.setMinWidth(min_wid); textFieldEndYear.setPrefWidth(pref_wid);
         textFieldInitialAmount.setMaxWidth(max_wid); textFieldInitialAmount.setMinWidth(min_wid); textFieldInitialAmount.setPrefWidth(pref_wid);
@@ -137,15 +158,20 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
         // --- Populate fuel and modification type options ---
         String[][] tech_list = vars.getTechInfo();
-        ArrayList<String> fuelList = extractFuelsFromTechList(tech_list);
+        extractInfoFromTechList(tech_list);
         if (comboBoxFuel != null && fuelList != null) comboBoxFuel.getItems().addAll(fuelList);
+        checkComboBoxTech.setDisable(true);
+        
         if (comboBoxModificationType != null) {
             comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
             comboBoxModificationType.getSelectionModel().selectFirst();
         }
 
         // --- Event handlers for UI controls ---
-        registerCheckComboBoxEvent(comboBoxFuel, () -> setPolicyAndMarketNames());
+        registerComboBoxEvent(comboBoxFuel, e -> {
+        	setPolicyAndMarketNames();
+        	loadTechList();
+        });
         registerComboBoxEvent(comboBoxModificationType, e -> {
             if (comboBoxModificationType.getSelectionModel().getSelectedItem() == null) return;
             switch (comboBoxModificationType.getSelectionModel().getSelectedItem()) {
@@ -187,24 +213,43 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         this.setContent(tabLayout);
     }
 
-    /**
-     * Extracts a list of unique fuel strings from the technology list.
-     *
-     * @param tech_list The 2D array of technology information
-     * @return ArrayList of unique fuel strings
-     */
-    private ArrayList<String> extractFuelsFromTechList(String[][] tech_list) {
-        ArrayList<String> fuels = new ArrayList<>();
+    private void loadTechList() {
+		if (comboBoxFuel.getSelectionModel().getSelectedItem() == null) { 
+			checkComboBoxTech.getItems().clear();
+			checkComboBoxTech.setDisable(true);
+			return;
+		}
+		String selectedFuel = comboBoxFuel.getSelectionModel().getSelectedItem();
+		checkComboBoxTech.getItems().clear();
+		for (String tech : techList) {
+			if (tech.contains(selectedFuel)) {
+				checkComboBoxTech.getItems().add(tech);
+			}
+		}
+		checkComboBoxTech.setDisable(checkComboBoxTech.getItems().isEmpty());
+	}
+
+ 
+    private void extractInfoFromTechList(String[][] tech_list) {
+
         for (int row = 0; row < tech_list.length; row++) {
-            String str_col0 = tech_list[row][0];
-            // Only add relevant fuel types
-            if ((str_col0.startsWith("regional ")) || (str_col0.contains("wholesale")) || (str_col0.contains("delivered")) || (str_col0.contains("elect_td"))) {
-                String str = tech_list[row][0] + "," + tech_list[row][1] + "," + tech_list[row][2];
-                fuels.add(str);
+            String str_inp = tech_list[row][3].trim();
+            String str_inp_unit = tech_list[row][4].trim();
+            String str_out = tech_list[row][5].trim();
+            String str_out_unit = tech_list[row][6].trim();
+            String str_cat = tech_list[row][7].trim();
+            String str_sector = tech_list[row][0].trim();
+            String str_subsector = tech_list[row][1].trim();
+            String str_tech = tech_list[row][2].trim();
+            
+            if (str_cat.equals("Energy-Carrier")) {
+            	fuelList.add(str_inp);
+            	String str = str_sector + "," + str_subsector + "," + str_tech + "," + str_inp;
+            	techList.add(str);
             }
         }
-        fuels = utils.getUniqueItemsFromStringArrayList(fuels);
-        return fuels;
+        fuelList = utils.getUniqueItemsFromStringArrayList(fuelList);
+        techList = utils.getUniqueItemsFromStringArrayList(techList);
     }
     
     /**
@@ -219,20 +264,17 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             String state = "--";
             try {
                 // Determine selected fuel(s)
-                int no_selected_fuels = (comboBoxFuel != null) ? comboBoxFuel.getCheckModel().getCheckedItems().size() : 0;
-                if (no_selected_fuels == 1 && comboBoxFuel != null) {
-                    ObservableList<String> selected_items = comboBoxFuel.getCheckModel().getCheckedItems();
-                    fuel = selected_items.get(0);
+                if (comboBoxFuel.getSelectionModel().getSelectedItem() != null) {
+                    fuel = comboBoxFuel.getSelectionModel().getSelectedItem().toLowerCase();
                     // Simplify fuel name for auto-naming
                     if (fuel.contains("gas")) fuel = "gas";
                     else if (fuel.contains("oil")) fuel = "oil";
+                    else if (fuel.contains("refined liquids")) fuel = "refined liquids";
                     else if (fuel.contains("unconv")) fuel = "uncvoil";
                     else if (fuel.contains("coal")) fuel = "coal";
                     else if (fuel.contains("bio")) fuel = "bio";
                     else if (fuel.contains("corn")) fuel = "corn";
                     else fuel = "oth";
-                } else if (no_selected_fuels > 1) {
-                    fuel = "mult";
                 }
                 // Determine selected region(s)
                 String[] listOfSelectedLeaves = (paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null) ? utils.getAllSelectedRegions(paneForCountryStateTree.getTree()) : new String[0];
@@ -286,45 +328,59 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
             filenameSuggestion = "";
 
-            ObservableList<String> fuelList = comboBoxFuel.getCheckModel().getCheckedItems();
             String ID = utils.getUniqueString();
+            
             filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
             String policyName = textFieldPolicyName.getText() + ID;
             String marketName = textFieldMarketName.getText() + ID;
 
             StringBuilder fileContentBuilder = new StringBuilder();
             fileContentBuilder.append(getMetaDataContent(tree, marketName, policyName));
+            boolean firstitem = true;
+            
+            String fuel = this.comboBoxFuel.getSelectionModel().getSelectedItem();
+            List<String> selectedTechs = checkComboBoxTech.getCheckModel().getCheckedItems();
+  
+            for (String tech : selectedTechs) {
 
-            for (String fuelLine : fuelList) {
-                ArrayList<String> temp = utils.createArrayListFromString(fuelLine, ",");
-                String sector = temp.get(0);
-                String subsector = temp.get(1);
-                String tech = temp.get(2);
+            		for (String t : techList) {
+            			
+            			if (t.contains(tech)) {
+            				
+						String[] temp = utils.splitString(tech, ",");
+						String sector = temp[0].trim();
+						String subsector = temp[1].trim();
+						String technology = temp[2].trim();
+						
+							if (!firstitem) {
+								fileContentBuilder.append(vars.getEol());
+							}	
+							firstitem = false;
 
-                if (fileContentBuilder.length() > 0) {
-                    fileContentBuilder.append(vars.getEol());
-                }
+							String header = "GLIMPSEFuelPriceAdj";
+							
+							fileContentBuilder.append("INPUT_TABLE").append(vars.getEol())
+								.append("Variable ID").append(vars.getEol())
+								.append(header).append(vars.getEol()).append(vars.getEol())
+								.append("region,supplysector,subsector,technology,param,year,adjustment").append(vars.getEol());
 
-                String header = "GLIMPSEFuelPriceAdj";
-                fileContentBuilder.append("INPUT_TABLE").append(vars.getEol())
-                    .append("Variable ID").append(vars.getEol())
-                    .append(header).append(vars.getEol()).append(vars.getEol())
-                    .append("region,supplysector,subsector,technology,param,year,adjustment").append(vars.getEol());
-
-                for (String state : listOfSelectedLeaves) {
-                    ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
-                    for (String dataStr : data) {
-                        String[] splitData = utils.splitString(dataStr, ",");
-                        String year = splitData[0];
-                        String val = splitData[1];
-                        fileContentBuilder.append(state).append(",")
-                            .append(sector).append(",")
-                            .append(subsector).append(",")
-                            .append(tech).append(",")
-                            .append(year).append(",regional price adjustment,")
-                            .append(val).append(vars.getEol());
-                    }
-                }
+							for (String state : listOfSelectedLeaves) {
+								ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
+								for (String dataStr : data) {
+									String[] splitData = utils.splitString(dataStr, ",");
+									String year = splitData[0];
+									String val = splitData[1];
+									fileContentBuilder.append(state).append(",")
+										.append(sector).append(",")
+										.append(subsector).append(",")
+										.append(technology).append(",")
+										.append(year).append(",regional price adjustment,")
+										.append(val).append(vars.getEol());
+								}
+							}
+						}
+					}
+            		
             }
 
             fileContent = fileContentBuilder.toString();
@@ -343,9 +399,10 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         String rtn_str = "";
         rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
         rtn_str += "#Scenario component type: Fuel Price Adj" + vars.getEol();
-        ObservableList<String> fuel_list = comboBoxFuel != null ? comboBoxFuel.getCheckModel().getCheckedItems() : null;
-        String fuel = fuel_list != null ? utils.getStringFromList(fuel_list, ";") : "";
+        String fuel = fuelList != null ? utils.getStringFromList(fuelList, ";") : "";
         rtn_str += "#Fuel: " + fuel + vars.getEol();
+        String tech = techList != null ? utils.getStringFromList(catList, ";") : "";
+        rtn_str += "#Application: " + tech + vars.getEol();
         rtn_str += "#Units: " + (labelUnitsValue != null ? labelUnitsValue.getText() : "") + vars.getEol();
         if (policy == null && textFieldPolicyName != null) market = textFieldPolicyName.getText();
         rtn_str += "#Policy name: " + policy + vars.getEol();
@@ -381,8 +438,16 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                     String[] set = utils.splitString(value, ";");
                     for (int j = 0; j < set.length; j++) {
                         String item = set[j].trim();
-                        comboBoxFuel.getCheckModel().check(item);
-                        comboBoxFuel.fireEvent(new ActionEvent());
+                        comboBoxFuel.getSelectionModel().select(item);
+                        //checkComboBoxFuel.fireEvent(new ActionEvent());
+                    }
+                }
+                if (param.equals("application") && checkComboBoxTech != null) {
+                    String[] set = utils.splitString(value, ";");
+                    for (int j = 0; j < set.length; j++) {
+                        String item = set[j].trim();
+                        checkComboBoxTech.getCheckModel().check(item);
+                        //checkComboBoxTech.fireEvent(new ActionEvent());
                     }
                 }
                 if (param.equals("units") && labelUnitsValue != null) {
@@ -480,9 +545,12 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                     error_count++;
                 }
             }
-            if (comboBoxFuel != null && (comboBoxFuel.getCheckModel().getItemCount() == 1)
-                    && (comboBoxFuel.getCheckModel().isChecked("Select One or More"))) {
-                message += "Fuel checkComboBox must have at least one selection" + vars.getEol();
+            if (comboBoxFuel != null && (comboBoxFuel.getSelectionModel().isEmpty())){
+                message += "Fuel comboBox must have at least one selection" + vars.getEol();
+                error_count++;
+            }
+            if (checkComboBoxTech != null && (checkComboBoxTech.getCheckModel().getItemCount() == 0)){
+                message += "Application checkComboBox must have at least one selection" + vars.getEol();
                 error_count++;
             }
             if (textFieldPolicyName == null || textFieldPolicyName.getText().equals("")) {
@@ -491,20 +559,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             }
             if (textFieldMarketName == null || textFieldMarketName.getText().equals("")) {
                 message += "A market name must be provided" + vars.getEol();
-            }
-            if (vars.isGcamUSA()) {
-                String[] selected_leaves = tree != null ? utils.getAllSelectedRegions(tree) : new String[0];
-                boolean applied_to_a_state = false;
-                boolean is_usa_selected = false;
-                for (int s = 0; s < selected_leaves.length; s++) {
-                    String region = selected_leaves[s];
-                    if (utils.isState(region)) applied_to_a_state = true;
-                    else if (region.equals("USA")) is_usa_selected = true;
-                }
-                if (applied_to_a_state && is_usa_selected) {
-                    message += "Cannot apply policy to both individual states and the entire USA. Please select one." + vars.getEol();
-                    error_count++;
-                }
             }
 
         } catch (Exception e1) {

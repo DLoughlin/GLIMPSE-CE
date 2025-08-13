@@ -406,7 +406,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 				protected void succeeded() {
 					super.succeeded();
 					Platform.runLater(() -> {
-						System.out.println("Done!");
+						//System.out.println("Done!");
 						saveComponentFile(currentTab);
 					});
 				}

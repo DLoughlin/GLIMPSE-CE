@@ -139,9 +139,9 @@ public abstract class PolicyTab extends Tab {
     protected final Label labelPeriodLength = utils.createLabel("Period Length: ", LABEL_WIDTH);
     protected final TextField textFieldPeriodLength = new TextField(DEFAULT_PERIOD_LENGTH);
     protected final Label labelConvertFrom = utils.createLabel("Convert $s from: ", LABEL_WIDTH);
-    protected final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString();
+    protected final ComboBox<String> comboBoxConvertFrom = utils.createComboBoxString(CONVERT_FROM_OPTIONS);	
     protected final Label labelModificationType = utils.createLabel("Type: ", LABEL_WIDTH);
-    protected final ComboBox<String> comboBoxModificationType = utils.createComboBoxString();
+    protected final ComboBox<String> comboBoxModificationType = utils.createComboBoxString(MODIFICATION_TYPE_OPTIONS);
     protected final Label labelUnits2 = utils.createLabel(LABEL_UNITS_DEFAULT, 225.);
 
     protected  final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);

@@ -259,13 +259,17 @@ public class TabTechParam extends PolicyTab implements Runnable {
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
         hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter);
+        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
         vBoxCenter.setStyle(styles.getStyle2());
+        vBoxRight.getChildren().addAll(paneForCountryStateTree);
+        vBoxRight.setStyle(styles.getStyle2());
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
+        gridPanePresetModification.addColumn(2, vBoxRight);
         gridPaneLeft.setPrefWidth(325);
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
+        vBoxRight.setPrefWidth(300);
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(gridPanePresetModification);
         this.setContent(tabLayout);
