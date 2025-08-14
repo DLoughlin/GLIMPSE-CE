@@ -103,9 +103,10 @@ public class PaneForCountryStateTree extends VBox {
 
 		this.getChildren().addAll(labelAppliedTo, tree,hbox);
 		this.setStyle(styles.getStyle2());
-		
+
 	}
-	
+
+
 	public void checkPresetRegions() {
 		String selection=comboBoxPresetRegions.getSelectionModel().getSelectedItem();
 		for (int i=0;i<preset_region_list.size();i++) {

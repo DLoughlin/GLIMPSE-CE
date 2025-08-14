@@ -260,6 +260,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				}
 			}
 			setPolicyAndMarketNames();
+
 		});
 		// Uncomment and standardize these as needed:
 		// setOnAction(checkComboBoxCategory, e -> setPolicyAndMarketNames());
@@ -307,6 +308,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		VBox tabLayout = new VBox();
 		tabLayout.getChildren().addAll(gridPanePresetModification);
 		this.setContent(tabLayout);
+		
+		
+        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+			setPolicyAndMarketNames();
+		});
 	}
 
 	/**

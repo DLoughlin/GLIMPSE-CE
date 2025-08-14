@@ -273,6 +273,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(gridPanePresetModification);
         this.setContent(tabLayout);
+        
+
     }
 
     /**
@@ -298,7 +300,9 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * Sets up event handlers for UI controls.
      */
     private void setupEventHandlers() {
-        registerTextFieldEvent(textFieldFilter, e -> Platform.runLater(() -> setupComboBoxSector()));
+
+
+    	registerTextFieldEvent(textFieldFilter, e -> Platform.runLater(() -> setupComboBoxSector()));
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);

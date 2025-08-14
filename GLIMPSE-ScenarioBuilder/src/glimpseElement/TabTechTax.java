@@ -196,7 +196,12 @@ public class TabTechTax extends PolicyTab implements Runnable {
      * Sets up event handlers for UI components in the tab.
      */
     private void setupEventHandlers() {
-        // Wrap all UI updates in Platform.runLater
+	
+    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+    		setPolicyAndMarketNames();
+    	});
+    	
+    	// Wrap all UI updates in Platform.runLater
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);

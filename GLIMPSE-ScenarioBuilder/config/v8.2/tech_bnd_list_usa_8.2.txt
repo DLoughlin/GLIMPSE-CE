@@ -358,12 +358,12 @@ elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (
 elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (once through) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
 elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (recirculating) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
 elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (seawater) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
-elect_td_bld : elect_td_bld : elect_td_bld : electricity domestic supply : EJ : elect_td_bld : EJ : Electricity-TD
-elect_td_bld : rooftop_pv : rooftop_pv=>rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Electricity-TD
-elect_td_bld : rooftop_pv : rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Electricity-TD
-elect_td_ind : elect_td_ind : elect_td_ind : electricity domestic supply : EJ : elect_td_ind : EJ : Electricity-TD
-elect_td_trn : elect_td_trn : elect_td_trn : electricity domestic supply : EJ : elect_td_trn : EJ : Electricity-TD
-electricity_net_ownuse : electricity_net_ownuse : electricity_net_ownuse : electricity : EJ : electricity_net_ownuse : EJ : Electricity-TD
+elect_td_bld : elect_td_bld : elect_td_bld : electricity domestic supply : EJ : elect_td_bld : EJ : Energy-Carrier
+elect_td_bld : rooftop_pv : rooftop_pv=>rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Energy-Carrier
+elect_td_bld : rooftop_pv : rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Energy-Carrier
+elect_td_ind : elect_td_ind : elect_td_ind : electricity domestic supply : EJ : elect_td_ind : EJ : Energy-Carrier
+elect_td_trn : elect_td_trn : elect_td_trn : electricity domestic supply : EJ : elect_td_trn : EJ : Energy-Carrier
+electricity_net_ownuse : electricity_net_ownuse : electricity_net_ownuse : electricity : EJ : electricity_net_ownuse : EJ : Energy-Carrier
 refining : biomass liquids : biodiesel : regional biomassOil : EJ : refining : EJ : Industry-Fuels
 refining : biomass liquids : biodiesel : wholesale gas : EJ : refining : EJ : Industry-Fuels
 refining : biomass liquids : BTL with hydrogen : H2 industrial : EJ : refining : EJ : Industry-Fuels
@@ -958,3 +958,27 @@ electricity : solar : PV_storage : global solar resource : EJ : electricity : EJ
 electricity : wind : wind : onshore wind resource : EJ : electricity : EJ : EGU
 electricity : wind : wind_offshore : offshore wind resource : EJ : electricity : EJ : EGU
 electricity : wind : wind_storage : onshore wind resource : EJ : electricity : EJ : EGU
+delivered biomass : delivered biomass : delivered biomass : regional biomass : EJ : regional biomass : EJ : Energy-Carrier
+delivered coal : delivered coal : delivered coal : regional coal : EJ : regional coal : EJ : Energy-Carrier
+delivered gas : delivered gas : delivered gas : delivered gas : EJ : delivered gas : EJ : Energy-Carrier
+refined liquids enduse : refined liquids enduse : refined liquids enduse : refining : EJ : refined liquids enduse : EJ : Energy-Carrier
+refined liquids industrial : refined liquids industrial : refined liquids industrial : refining : EJ : refined liquids industrial : EJ : Energy-Carrier
+regional coal : domestic coal : domestic coal : coal : EJ : regional coal : EJ : Energy-Carrier
+regional coal : imported coal : imported coal : traded coal :EJ : regional coal : EJ : Energy-Carrier
+regional natural gas : domestic natural gas : domestic natural gas : natural gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported LNG : traded natural gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded Afr_MidE pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded LA pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded PAC pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded N.Amer pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded RUS pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+regional natural gas : imported natural gas : imported pipeline gas : traded EUR pipeline gas : EJ : regional natural gas : EJ : Energy-Carrier
+wholesale gas : wholesale gas : wholesale gas : gas pipeline : EJ : regional natural gas : EJ : Energy-Carrier
+regional oil : domestic crude oil : domestic crude oil : crude oil : EJ : regional oil : EJ : Energy-Carrier
+regional oil : imported crude oil : imported crude oil : traded oil : EJ : regional oil : EJ : Energy-Carrier
+regional biomassOil : regional biomassOil : Soybean : regional soybean : EJ : regional biomassOil : EJ : Energy-Carrier 
+regional biomassOil : regional biomassOil : OilCrop : regional oilcrop : EJ : regional biomassOil : EJ : Energy-Carrier 
+regional biomassOil : regional biomassOil : OilPalm : regional oilpalm : EJ : regional biomassOil : EJ : Energy-Carrier 
+regional corn for ethanol : regional corn for ethanol : regional corn for ethanol : regional corn : EJ : regional corn for ethanol : EJ : Energy-Carrier 
+regional sugar for ethanol : regional sugar for ethanol : regional sugar for ethanol : regional sugar for ethanol : EJ : regional sugar for ethanol : EJ : Energy-Carrier
+regional woodpulp for energy : regional woodpulp for energy : regional woodpulp for energy : woodpulp_energy : EJ : regional woodpulp for energy : EJ : Energy-Carrier
