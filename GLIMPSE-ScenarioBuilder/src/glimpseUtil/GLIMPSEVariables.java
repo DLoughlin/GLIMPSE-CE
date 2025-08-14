@@ -1186,7 +1186,7 @@ public class GLIMPSEVariables {
     private String get(String param) {
         String returnVal = "";
 
-        param = param.toLowerCase();
+        param = param.toLowerCase().trim();
 
         switch (param) {
         case "allowablepolicyyears":
@@ -1392,7 +1392,7 @@ public class GLIMPSEVariables {
      */
     private void set(String param, String val) {
 
-        param = param.toLowerCase();
+        param = param.toLowerCase().trim();
         if (val.indexOf("#") > -1){
             val = fixDir(val);
         }
@@ -1596,14 +1596,11 @@ public class GLIMPSEVariables {
         case "startyearforshare":
             setStartYearForShare(val);
             break;    
-        case "allYears":
-            setStartYearForShare(val);
-            break;   
-        case "allowablePolicyYears":
-            setStartYearForShare(val);
-            break;   
-        case "calibrationYear":
-            setStartYearForShare(val);
+        case "allyears":
+            setAllYears(val);
+            break;      
+        case "calibrationyear":
+            setCalibrationYear(val);
             break;   
         }
 
@@ -2228,6 +2225,18 @@ public class GLIMPSEVariables {
 
 	public void setAllYears(List<Integer> allYears) {
 		this.allYears = allYears;
+	}
+	
+	public void setAllYears(String allYearsStr) {
+		this.allYears = new ArrayList<>();
+		try {
+			String[] s=allYearsStr.split(",");
+			for (int i=0;i<s.length;i++) {
+				this.allYears.add(Integer.parseInt(s[i].trim()));
+			}
+		} catch(Exception e) {
+			utils.warningMessage("Problem parsing allYears string: "+allYearsStr);
+		}
 	}
 
 	public int getSimulationYearIncrement() {

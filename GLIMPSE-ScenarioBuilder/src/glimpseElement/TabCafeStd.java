@@ -130,6 +130,10 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(gridPanePresetModification);
         this.setContent(tabLayout);
+        
+        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+			setPolicyAndMarketNames();
+		});
     }
 
     /**

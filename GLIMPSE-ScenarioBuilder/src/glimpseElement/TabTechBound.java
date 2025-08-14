@@ -158,6 +158,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
         vBoxRight.setPrefWidth(300);
+
     }
 
     /**
@@ -207,7 +208,25 @@ public class TabTechBound extends PolicyTab implements Runnable {
      * Sets up event handlers for UI components.
      */
     private void setupEventHandlers() {
-        labelCheckComboBoxTech.setOnMouseClicked(e -> {
+		
+    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+    			setPolicyAndMarketNames();
+    	});
+		setEventHandler(textFieldFilter, e -> {
+			String filterText = textFieldFilter.getText().trim();
+			if (filterText.isEmpty()) {
+				checkComboBoxTech.getItems().clear();
+				checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
+				checkComboBoxTech.getCheckModel().check(0);
+				checkComboBoxTech.setDisable(true);
+			} else {
+				checkComboBoxTech.setDisable(false);
+				updateCheckComboBoxTech();
+			}
+		});
+		setEventHandler(checkComboBoxTech, e -> setPolicyAndMarketNames());
+    	
+    	labelCheckComboBoxTech.setOnMouseClicked(e -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
                 if (e.getClickCount() == 2) {
