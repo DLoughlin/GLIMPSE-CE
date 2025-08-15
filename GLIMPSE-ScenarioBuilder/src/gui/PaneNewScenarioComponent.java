@@ -63,6 +63,7 @@ import glimpseElement.TabTechTax;
 import glimpseUtil.FileChooserPlus;
 import glimpseElement.TabTechAvailable;
 import glimpseElement.TabTechBound;
+import glimpseElement.TabTechBound2;
 import glimpseElement.TabTechParam;
 import glimpseElement.TabFixedDemand;
 import javafx.application.Platform;
@@ -90,6 +91,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	private static final String TAB_FLEX_SHARE = "Flex Share";
 	private static final String TAB_MPG_TARGET = "MPG Target";
 	private static final String TAB_TECH_BOUND = "Tech Bound";
+	private static final String TAB_TECH_BOUND2 = "Tech Bound2";
 	private static final String TAB_TECH_AVAIL = "Tech Avail";
 	private static final String TAB_TECH_PARAM = "Tech Param";
 	private static final String TAB_TECH_TAX = "Tech Tax/Subsidy";
@@ -134,6 +136,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	private TabPollutantTaxCap pollTaxCapTab;
 	private TabMarketShare techMarketShareTab;
 	private TabTechBound techBoundTab;
+	private TabTechBound2 techBound2Tab;
 	private TabTechAvailable techAvailTab;
 	private TabFixedDemand fixedDemandTab;
 	private TabTechParam techParamTab;
@@ -337,6 +340,8 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		techMarketShareTab.setClosable(false);
 		techBoundTab = new TabTechBound(TAB_TECH_BOUND, stageWithTabs);
 		techBoundTab.setClosable(false);
+		techBound2Tab = new TabTechBound2(TAB_TECH_BOUND2, stageWithTabs);
+		techBound2Tab.setClosable(false);
 		cafeStdTab = new TabCafeStd(TAB_MPG_TARGET, stageWithTabs);
 		cafeStdTab.setClosable(false);
 		techAvailTab = new TabTechAvailable(TAB_TECH_AVAIL, stageWithTabs);
@@ -349,7 +354,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		fixedDemandTab.setClosable(false);
 
 		TabPane addComponentTabPane = new TabPane();
-		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, techBoundTab,
+		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, techBoundTab, techBound2Tab,
 				techTaxTab, cafeStdTab, techParamTab, fuelPriceAdjTab, fixedDemandTab);
 		addComponentTabPane.setStyle(styles.getStyle1b());
 		addComponentTabPane.setPrefHeight(dialogHeight - 25);
@@ -466,6 +471,8 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 				return cafeStdTab;
 			case TAB_TECH_BOUND:
 				return techBoundTab;
+			case TAB_TECH_BOUND2:
+				return techBound2Tab;
 			case TAB_TECH_AVAIL:
 				return techAvailTab;
 			case TAB_TECH_PARAM:
