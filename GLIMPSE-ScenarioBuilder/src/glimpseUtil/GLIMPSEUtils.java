@@ -2466,4 +2466,5 @@ public class GLIMPSEUtils {
 		ComboBox<String> comboBox = new ComboBox<>();
 		return comboBox;
 	}
+
 }
