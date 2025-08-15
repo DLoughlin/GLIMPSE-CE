@@ -84,7 +84,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			"LED lights", "Heat pumps", "Biofuels", "Other", "Sector:EGU", "Sector:Industry", "Sector:Industry-fuels",
 			"Sector:Buildings", "Sector:Trn-Onroad", "Sector:Trn-ALM", "Sector:Other" };
 	private static final String[] APPLIED_TO_OPTIONS = { SELECT_ONE, "All Stock", "New Purchases" };
-	private static final String[] CONSTRAINT_OPTIONS = { "Lower", "Fixed" };
+	private static final String[] CONSTRAINT_OPTIONS = { SELECT_ONE, "Lower", "Fixed" };
 	private static final String[] TREATMENT_OPTIONS = { SELECT_ONE, "Each Selected Region", "Across Selected Regions" };
 	private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial and Final %", "Initial w/% Growth/yr",
 			"Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
@@ -1306,25 +1306,18 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				message += "Data table must have at least one entry" + vars.getEol();
 				error_count++;
 			} else {
-
-				if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
-					message += "Data table must have at least one entry" + vars.getEol();
-					error_count++;
-				} else {
 					boolean match = validateTableDataYears();
 					if (!match) {
 						message += "Years specified in table must match allowable policy years ("
 								+ vars.getAllowablePolicyYears() + ")" + vars.getEol();
 						error_count++;
 					}
-				}
 			}
 			if ((checkComboBoxSubset.getCheckModel().getItemCount() == 1)
 					&& (checkComboBoxSubset.getCheckModel().isChecked("Select One or More"))) {
 				message += "Subset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
-			}
-			if (checkComboBoxSubset.getCheckModel().getItemCount() == 0) {
+			} else if (checkComboBoxSubset.getCheckModel().getItemCount() == 0) {
 				message += "Subset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			}
@@ -1332,8 +1325,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					&& (checkComboBoxSuperset.getCheckModel().isChecked("Select One or More"))) {
 				message += "Superset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
-			}
-			if (checkComboBoxSuperset.getCheckModel().getItemCount() == 0) {
+			} else if (checkComboBoxSuperset.getCheckModel().getItemCount() == 0) {
 				message += "Superset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			}

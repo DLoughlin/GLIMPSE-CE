@@ -86,8 +86,8 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     private static final String CONSTRAINT_UPPER = "Upper Bound";
     private static final String CONSTRAINT_LOWER = "Lower Bound";
     private static final String CONSTRAINT_FIXED = "Fixed Bound";
-    private static final String[] CONSTRAINT_OPTIONS = {CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
-    private static final String[] TREATMENT_OPTIONS = {"Each Selected Region", "Across Selected Regions"};
+    private static final String[] CONSTRAINT_OPTIONS = {SELECT_ONE, CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
+    private static final String[] TREATMENT_OPTIONS = { SELECT_ONE, "Each Selected Region", "Across Selected Regions"};
     private static final String UNITS_DEFAULT = "";
     // === UI Components ===
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
@@ -208,7 +208,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
      * Sets up event handlers for UI components.
      */
     private void setupEventHandlers() {
-		
+
     	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
     			setPolicyAndMarketNames();
     	});

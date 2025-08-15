@@ -253,7 +253,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             for (String[] sector : sectorInfo) {
                 comboBoxSector.getItems().add(sector[0]);
             }
-            comboBoxSector.getItems().add(SECTOR_OTHER);
+            comboBoxSector.getItems().add(SECTOR_SELECT_ONE);
+            comboBoxSector.getSelectionModel().select(SECTOR_SELECT_ONE);
         } catch (Exception e) {
             utils.warningMessage("Problem reading sector list.");
             System.out.println("  ---> " + e);
@@ -436,24 +437,21 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         int errorCount = 0;
         StringBuilder message = new StringBuilder();
         try {
-            if (paneForComponentDetails.table.getItems().isEmpty()) {
-                message.append("Data table must have at least one entry").append(vars.getEol());
-                errorCount++;
-            } else {
-                boolean match = validateTableDataYears();
-                if (!match) {
-                    message.append("Years specified in table must match allowable policy years").append(vars.getEol());
-                    errorCount++;
-                }
-            }
-        	if (utils.getAllSelectedRegions(tree).length < 1) {
-                message.append("Must select at least one region from tree").append(vars.getEol());
-                errorCount++;
-            }
-            if (paneForComponentDetails.table.getItems().size() == 0) {
-                message.append("Data table must have at least one entry").append(vars.getEol());
-                errorCount++;
-            }
+			if (utils.getAllSelectedRegions(tree).length < 1) {
+				message.append("Must select at least one region from tree").append(vars.getEol());
+				errorCount++;
+			}
+			if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
+				message.append("Data table must have at least one entry").append(vars.getEol());
+				errorCount++;
+			} else {
+				boolean match = validateTableDataYears();
+				if (!match) {
+					message.append("Years specified in table must match allowable policy years (")
+							.append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
+					errorCount++;
+				}
+			}
             String selected = comboBoxSector.getSelectionModel().getSelectedItem();
             if (selected == null || selected.equals(SECTOR_SELECT_ONE)) {
                 message.append("Sector comboBox must have a selection").append(vars.getEol());

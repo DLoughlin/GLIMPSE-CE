@@ -80,11 +80,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String ALL = "All";
     private static final String[] PARAM_OPTIONS = {
-            "Shareweight", "Subsector Shareweight", "Nested-Subsector Shareweight", "Levelized Non-Energy Cost",
+    		SELECT_ONE , "Shareweight", "Subsector Shareweight", "Nested-Subsector Shareweight", "Levelized Non-Energy Cost",
             "Capacity Factor", "Fixed Output", "Lifetime", "Halflife"
     };
     private static final String[] EMISSION_OPTIONS = {
-            "Select One", "NOx", "SO2", "PM10", "PM2.5", "CO", "NH3", "NMVOC", "BC", "OC"
+    		SELECT_ONE, "NOx", "SO2", "PM10", "PM2.5", "CO", "NH3", "NMVOC", "BC", "OC"
     };
     private static final String WARNING_UNITS_MISMATCH = "Warning - Units do not match!";
     private static final String UNIT_UNITLESS = "unitless";
@@ -104,6 +104,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_FINAL_VAL = "Final Val: ";
     private static final String LABEL_GROWTH = "Growth (%):";
     private static final String LABEL_DELTA = "Delta:";
+    private static final double PREF_WIDTH = LABEL_WIDTH;
 
     // === Constants for Metadata ===
     private static final String SCENARIO_COMPONENT_TYPE = "Tech Param";
@@ -883,6 +884,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
             }
             if (comboBoxSector.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
                 message.append("Sector comboBox must have a selection").append(vars.getEol());
+                errorCount++;
+            }
+            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getItemCount() == 0) || (checkComboBoxTech.getCheckModel().isChecked("Select One or More")))) {
+                message.append("Tech checkComboBox must have at least one selection").append(vars.getEol());
                 errorCount++;
             }
             if (comboBoxParam.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {

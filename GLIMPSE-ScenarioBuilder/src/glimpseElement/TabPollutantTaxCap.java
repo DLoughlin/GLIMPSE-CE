@@ -88,8 +88,8 @@ import javafx.stage.Stage;
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	// === Constants for UI Texts and Options ===
 	private static final double MAX_WIDTH = 225;
-	private static final double MIN_WIDTH = 115;
-	private static final double PREF_WIDTH = 225;
+	private static final double MIN_WIDTH = 175;
+	private static final double PREF_WIDTH = LABEL_WIDTH;
 	private static final String[] MEASURE_OPTIONS = { "Select One", "Emission Cap (Mt)", "Emission Tax ($/t)" };
 	private static final String[] POLLUTANT_OPTIONS = { "Select One", "CO2 (MT C)", "CO2 (MT CO2)", "GHG (MT CO2E)",
 			"NOx (Tg)", "SO2 (Tg)", "PM2.5 (Tg)", "NMVOC (Tg)", "CO (Tg)", "NH3 (Tg)", "CH4 (Tg)", "N2O (Tg)" };
@@ -159,7 +159,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
 		gridPaneLeft.setVgap(3.);
 		gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
 
+		
 		// center column
 		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
 		hBoxHeaderCenter.setSpacing(2.);
@@ -171,11 +173,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		vBoxRight.getChildren().addAll(paneForCountryStateTree);
 		vBoxRight.setStyle(styles.getStyle2());
 
-		gridPanePresetModification.addColumn(0, gridPaneLeft);
+		gridPanePresetModification.addColumn(0, scrollPaneLeft);
 		gridPanePresetModification.addColumn(1, vBoxCenter);
 		gridPanePresetModification.addColumn(2, vBoxRight);
-		gridPaneLeft.setPrefWidth(370);
-		gridPaneLeft.setMinWidth(370);
+		gridPaneLeft.setPrefWidth(325);
+		gridPaneLeft.setMinWidth(325);
 		vBoxCenter.setPrefWidth(300);
 		vBoxRight.setPrefWidth(300);
 
@@ -940,7 +942,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			if (error_count == 1) {
 				utils.warningMessage(message.toString());
 			} else if (error_count > 1) {
-				utils.displayString(message.toString(), "Parsing Errors");
+				utils.displayString(message.toString(), "Errors while developing component");
 			}
 		}
 		return error_count == 0;

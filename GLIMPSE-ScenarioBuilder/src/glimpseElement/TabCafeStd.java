@@ -528,8 +528,8 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 message.append("Sector comboBox must have a selection").append(vars.getEol());
                 errorCount++;
             }
-            if (checkComboBoxTech.getCheckModel().getCheckedItems().isEmpty()) {
-                message.append("Tech checkComboBox must have a selection").append(vars.getEol());
+            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getItemCount() == 0) || (checkComboBoxTech.getCheckModel().isChecked("Select One or More")))) {
+                message.append("Tech checkComboBox must have at least one selection").append(vars.getEol());
                 errorCount++;
             }
             if (comboBoxWhichUnits.getSelectionModel().getSelectedItem().equals(SELECT_ONE)) {
