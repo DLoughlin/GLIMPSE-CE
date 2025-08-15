@@ -2152,6 +2152,8 @@ public class GLIMPSEVariables {
         for (int i=0;i<tech_info.length;i++) {
             utils.addToArrayListIfUnique(result,tech_info[i][tech_info[0].length-1]);
         }
+        
+        result=utils.getUniqueItemsFromStringArrayList(result);
         return result;
     }
 

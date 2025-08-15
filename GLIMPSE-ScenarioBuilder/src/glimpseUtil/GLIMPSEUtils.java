@@ -43,6 +43,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -944,6 +945,19 @@ public class GLIMPSEUtils {
                 }
             }
             if (!match) resultList.add(str1.trim());
+        }
+        if (resultList.contains("Select One")) {
+        	resultList.remove("Select One");
+        	Collections.sort(resultList);
+        	resultList.add(0, "Select One");
+        } else if (resultList.contains("Select One")) {
+        	resultList.remove("Select One or More");
+        	Collections.sort(resultList);
+        	resultList.add(0, "Select One or More");
+        } else if (resultList.contains("All")) {
+        	resultList.remove("All");
+        	Collections.sort(resultList);
+        	resultList.add(0, "All");       	
         }
         return resultList;
     }
