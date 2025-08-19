@@ -60,6 +60,47 @@ import javafx.application.Platform;
  * <p>
  * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
  * </p>
+ *
+ * <p>
+ * <b>Responsibilities:</b>
+ * <ul>
+ *   <li>Display and manage a list of XML files used as scenario components.</li>
+ *   <li>Allow users to add, remove, clear, and reorder XML files in the list.</li>
+ *   <li>Provide file chooser dialogs for selecting XML files from the file system.</li>
+ *   <li>Load and save the XML file list to and from scenario files.</li>
+ *   <li>Integrate with the broader scenario builder UI and data model.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>UI Elements:</b>
+ * <ul>
+ *   <li>TableView for displaying the list of XML files.</li>
+ *   <li>Buttons for Add, Delete, Clear, Move Up, and Move Down actions.</li>
+ *   <li>Label for section header.</li>
+ *   <li>Custom pane for displaying and editing XML file details.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Integration:</b>
+ * <ul>
+ *   <li>Works with {@link ComponentLibraryTable} for file list management.</li>
+ *   <li>Uses {@link PaneForComponentDetails} for displaying file details.</li>
+ *   <li>Relies on utility classes for UI styling and file path handling.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Example:</b>
+ * <pre>
+ * TabXMLList xmlListTab = new TabXMLList("XML List", stage, tableComponents);
+ * scenarioTabPane.getTabs().add(xmlListTab);
+ * </pre>
+ * </p>
+ *
+ * @author US EPA
+ * @version 1.0
  */
 public class TabXMLList extends PolicyTab {
     // === Constants ===
@@ -95,27 +136,58 @@ public class TabXMLList extends PolicyTab {
      * Sets up event handlers and populates controls with available data.
      *
      * @param title The title of the tab
-     * @param stageX The JavaFX stage
-     * @param tableComponents The table of scenario components
+     * @param stageX The JavaFX stage used for file dialogs
+     * @param tableComponents The table of scenario components (not used directly here)
      */
     public TabXMLList(String title, Stage stageX, TableView<ComponentRow> tableComponents) {
         // Set tab title and style
         this.setText(title);
         this.setStyle(styles.getFontStyle());
 
+        setupUIControls();
+        setComponentWidths();
+        setupUILayout();
+        setupButtonActions(stageX);
+    }
+
+    /**
+     * Sets up UI controls, including the XML list pane and header buttons.
+     * This method is called during construction to initialize the main UI elements.
+     */
+    private void setupUIControls() {
         setupPaneForXMLList();
         setupHeaderButtons();
+    }
+
+    /**
+     * Sets preferred, min, and max widths for UI components such as buttons.
+     * Adjusts widths to maintain consistent UI appearance.
+     */
+    private void setComponentWidths() {
+        // Set preferred widths for all main action buttons
+        buttonAdd.setPrefWidth(styles.getBigButtonWidth());
+        buttonDelete.setPrefWidth(styles.getBigButtonWidth());
+        buttonClear.setPrefWidth(styles.getBigButtonWidth());
+        buttonMoveUp.setPrefWidth(styles.getBigButtonWidth());
+        buttonMoveDown.setPrefWidth(styles.getBigButtonWidth());
+        // Add more width settings for other controls if needed
+    }
+
+    /**
+     * Sets up the overall layout of the tab, including the main pane and center VBox.
+     * Assembles the UI hierarchy for display in the tab.
+     */
+    private void setupUILayout() {
         setupVBoxCenter();
         setupMainPane();
-        setupButtonActions(stageX);
-
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(paneIncludeXMLList);
         this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the pane for XML list details.
+     * Configures the pane for displaying and editing the XML file list.
+     * Sets column names, disables add-item button, and applies column formatting.
      */
     private void setupPaneForXMLList() {
         paneForXMLList.setColumnNames(null, COLUMN_XML_FILENAME);
@@ -124,7 +196,8 @@ public class TabXMLList extends PolicyTab {
     }
 
     /**
-     * Sets up the header buttons for the tab.
+     * Sets up the header buttons (Add, Move Up, Move Down, Delete, Clear) and their layout.
+     * Arranges buttons in a horizontal box with spacing and style.
      */
     private void setupHeaderButtons() {
         hBoxHeaderCenter.getChildren().addAll(buttonAdd, buttonMoveUp, buttonMoveDown, buttonDelete, buttonClear);
@@ -133,7 +206,8 @@ public class TabXMLList extends PolicyTab {
     }
 
     /**
-     * Sets up the center VBox layout.
+     * Sets up the center VBox layout, including the label, header buttons, and XML list pane.
+     * Applies style and fill width properties.
      */
     private void setupVBoxCenter() {
         vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForXMLList);
@@ -142,28 +216,35 @@ public class TabXMLList extends PolicyTab {
     }
 
     /**
-     * Adds the center VBox to the main pane.
+     * Adds the center VBox to the main pane for the tab.
+     * This is the main container for the tab's content.
      */
     private void setupMainPane() {
         paneIncludeXMLList.getChildren().addAll(vBoxCenter);
     }
 
     /**
-     * Sets up button actions for the tab.
-     * @param stageX The JavaFX stage
+     * Sets up button actions for the tab, including event handlers for Add, Delete, Clear, Move Up, and Move Down.
+     * Handles file selection, error handling, and updates to the XML list.
+     *
+     * @param stageX The JavaFX stage used for file chooser dialogs
      */
     private void setupButtonActions(Stage stageX) {
+        // Clear the XML list when Clear button is pressed
         buttonClear.setOnAction(e -> Platform.runLater(() -> paneForXMLList.clearTable()));
+        // Add XML files to the list when Add button is pressed
         buttonAdd.setOnAction(e -> Platform.runLater(() -> {
             File initialDir = new File(vars.getXmlLibrary());
             FileChooser fileChooser = new FileChooser();
             try {
+                // Set initial directory for file chooser
                 if (initialDir != null && initialDir.exists() && initialDir.isDirectory()) {
                     fileChooser.setInitialDirectory(initialDir);
                 } else {
                     throw new Exception("Initial directory is invalid");
                 }
             } catch (Exception e1) {
+                // Fallback to GCAM executable directory if xmlLibrary is not found
                 utils.warningMessage("Could not find xmlLibrary.");
                 System.out.println("Could not find xmlLibrary " + vars.getXmlLibrary() + ". Defaulting to " + vars.getgCamExecutableDir());
                 File fallbackDir = new File(vars.getgCamExecutableDir());
@@ -171,13 +252,16 @@ public class TabXMLList extends PolicyTab {
                     fileChooser.setInitialDirectory(fallbackDir);
                 }
             }
+            // Set file extension filter for XML files
             FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter(XML_FILE_DESCRIPTION, XML_FILE_EXTENSION);
             fileChooser.setSelectedExtensionFilter(filter);
             fileChooser.setTitle(FILECHOOSER_TITLE);
+            // Show file chooser dialog for multiple file selection
             List<File> filesSelected = fileChooser.showOpenMultipleDialog(stageX);
             if (filesSelected != null && !filesSelected.isEmpty()) {
                 for (File file : filesSelected) {
                     if (file != null && file.toString() != null) {
+                        // Convert absolute path to relative path for storage
                         String relPath = files.getRelativePath(vars.getgCamExecutableDir(), file.toString().trim());
                         if (relPath != null) {
                             paneForXMLList.addItem(relPath);
@@ -186,15 +270,19 @@ public class TabXMLList extends PolicyTab {
                 }
             }
         }));
+        // Delete selected XML files from the list
         buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForXMLList.deleteItemsFromTable()));
+        // Move selected XML file up in the list
         buttonMoveUp.setOnAction(e -> Platform.runLater(() -> paneForXMLList.moveItemUpInTable()));
+        // Move selected XML file down in the list
         buttonMoveDown.setOnAction(e -> Platform.runLater(() -> paneForXMLList.moveItemDownInTable()));
     }
 
     /**
      * Loads content into the tab from the provided list of strings.
+     * Each string represents an XML file path. Lines starting with '@' are ignored.
      *
-     * @param content List of content lines to load
+     * @param content List of content lines to load (typically file paths)
      */
     @Override
     public void loadContent(ArrayList<String> content) {
@@ -204,9 +292,11 @@ public class TabXMLList extends PolicyTab {
             if (line != null && !line.startsWith("@")) {
                 String str = String.valueOf(i);
                 i++;
+                // Add each XML file path to the details pane
                 paneForXMLList.addItem(str, line);
             }
         }
+        // Refresh the component table if available
         if (ComponentLibraryTable.getTableComponents() != null) {
             ComponentLibraryTable.getTableComponents().refresh();
         }
@@ -223,6 +313,7 @@ public class TabXMLList extends PolicyTab {
      */
     public void loadInfoFromFile(String filename, String typeString) {
         if (filename == null || typeString == null) return;
+        // Load file list from file using utility method
         ArrayList<String> fileList = files.loadFileListFromFile(filename, typeString);
         if (fileList != null) {
             loadContent(fileList);
@@ -234,6 +325,7 @@ public class TabXMLList extends PolicyTab {
      *
      * This method triggers saving the current scenario component, including generating
      * the filename suggestion and file content for the XML list.
+     * Typically called when the user saves the scenario or switches tabs.
      */
     public void run() {
         saveScenarioComponent();
@@ -241,6 +333,10 @@ public class TabXMLList extends PolicyTab {
 
     /**
      * Saves the scenario component by generating the filename suggestion and file content.
+     *
+     * The XML file list is serialized to a string, with each file path on a new line,
+     * and a type header at the top. The result is stored in the fileContent field.
+     * This method is called by the scenario builder when saving the scenario.
      */
     @Override
     public void saveScenarioComponent() {

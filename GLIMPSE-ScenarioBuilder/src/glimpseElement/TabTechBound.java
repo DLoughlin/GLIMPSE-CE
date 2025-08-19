@@ -112,26 +112,51 @@ public class TabTechBound extends PolicyTab implements Runnable {
     public TabTechBound(String title, Stage stageX) {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
-        checkBoxUseAutoNames.setSelected(true);
-        textFieldPolicyName.setDisable(true);
-        textFieldMarketName.setDisable(true);
-        setupLeftColumn();
+        setupUIControls();
+        setComponentWidths();
+        setupUILayout();
         setupComboBoxSector();
         setupTechComboBox();
         setupComboBoxOptions();
-        setupSizing();
         setupEventHandlers();
         setPolicyAndMarketNames();
         setUnitsLabel();
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the left column UI layout.
+     * Sets up UI controls with options and default values.
      */
-    private void setupLeftColumn() {
+    private void setupUIControls() {
+        checkBoxUseAutoNames.setSelected(true);
+        textFieldPolicyName.setDisable(true);
+        textFieldMarketName.setDisable(true);
+    }
+
+    /**
+     * Sets preferred, min, and max widths for UI components.
+     */
+    private void setComponentWidths() {
+        ComboBox<?>[] comboBoxes = {comboBoxSector, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
+        for (ComboBox<?> cb : comboBoxes) {
+            cb.setMaxWidth(MAX_WIDTH);
+            cb.setMinWidth(MIN_WIDTH);
+            cb.setPrefWidth(PREF_WIDTH);
+        }
+        checkComboBoxTech.setMaxWidth(MAX_WIDTH);
+        checkComboBoxTech.setMinWidth(MIN_WIDTH);
+        checkComboBoxTech.setPrefWidth(PREF_WIDTH);
+        TextField[] textFields = {textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength, textFieldPolicyName, textFieldMarketName, textFieldFilter};
+        for (TextField tf : textFields) {
+            tf.setMaxWidth(MAX_WIDTH);
+            tf.setMinWidth(MIN_WIDTH);
+            tf.setPrefWidth(PREF_WIDTH);
+        }
+    }
+
+    /**
+     * Sets up the layout of the tab.
+     */
+    private void setupUILayout() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxSector, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
@@ -158,7 +183,9 @@ public class TabTechBound extends PolicyTab implements Runnable {
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
         vBoxRight.setPrefWidth(300);
-
+        VBox tabLayout = new VBox();
+        tabLayout.getChildren().addAll(gridPanePresetModification);
+        this.setContent(tabLayout);
     }
 
     /**
@@ -181,27 +208,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
         comboBoxSector.getSelectionModel().selectFirst();
         comboBoxConstraint.getSelectionModel().selectFirst();
         comboBoxModificationType.getSelectionModel().selectFirst();
-    }
-
-    /**
-     * Sets up sizing for UI components.
-     */
-    private void setupSizing() {
-        ComboBox<?>[] comboBoxes = {comboBoxSector, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
-        for (ComboBox<?> cb : comboBoxes) {
-            cb.setMaxWidth(MAX_WIDTH);
-            cb.setMinWidth(MIN_WIDTH);
-            cb.setPrefWidth(PREF_WIDTH);
-        }
-        checkComboBoxTech.setMaxWidth(MAX_WIDTH);
-        checkComboBoxTech.setMinWidth(MIN_WIDTH);
-        checkComboBoxTech.setPrefWidth(PREF_WIDTH);
-        TextField[] textFields = {textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength, textFieldPolicyName, textFieldMarketName, textFieldFilter};
-        for (TextField tf : textFields) {
-            tf.setMaxWidth(MAX_WIDTH);
-            tf.setMinWidth(MIN_WIDTH);
-            tf.setPrefWidth(PREF_WIDTH);
-        }
     }
 
     /**

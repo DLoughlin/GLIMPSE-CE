@@ -362,6 +362,18 @@ public abstract class PolicyTab extends Tab {
     protected ComboBox<String> createComboBoxString() {
         return utils.createComboBoxString();
     }
+    
+    /**
+     * Create a ComboBox for String values.
+     * @return A new ComboBox<String>
+     */
+    protected ComboBox<String> createComboBoxString(String seedTxt, double width) {
+    	ComboBox<String> comboBox = utils.createComboBoxString();
+    	comboBox.getItems().add(seedTxt);
+    	comboBox.setPrefWidth(width);
+        return comboBox;
+    }
+    
     /**
      * Create a CheckComboBox for String values.
      * @return A new CheckComboBox<String>

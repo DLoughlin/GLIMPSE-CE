@@ -46,14 +46,36 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
- * TabFuelPriceAdj provides the UI and logic for creating/editing fuel price
- * adjustment policies.
+ * TabFuelPriceAdj provides the user interface and logic for creating and editing
+ * fuel price adjustment policies in the GLIMPSE Scenario Builder. This class manages
+ * the UI controls, user input validation, and the generation of scenario component files
+ * for downstream processing. It supports loading and saving of policy data, auto-naming,
+ * and dynamic UI updates based on user selections. All UI updates must be performed on
+ * the JavaFX Application Thread.
  * <p>
- * This class manages the user interface for specifying, editing, and saving
- * fuel price adjustment policies in the GLIMPSE Scenario Builder. It handles
- * user input, validation, and the generation of scenario component files for
- * downstream processing. UI updates must be performed on the JavaFX Application
- * Thread.
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Allows users to specify, edit, and save fuel price adjustment policies.</li>
+ *   <li>Supports selection of fuels, regions, and adjustment types.</li>
+ *   <li>Auto-generates policy and market names based on user selections.</li>
+ *   <li>Validates user input and provides feedback for missing or invalid data.</li>
+ *   <li>Generates scenario component files with metadata and adjustment values.</li>
+ *   <li>Supports loading of existing policy files and populating the UI accordingly.</li>
+ * </ul>
+ *
+ * <b>Usage:</b>
+ * <ul>
+ *   <li>Instantiate with a tab title and JavaFX stage.</li>
+ *   <li>Interact with the UI to select fuels, regions, and adjustment parameters.</li>
+ *   <li>Use the Populate, Delete, and Clear buttons to manage adjustment values.</li>
+ *   <li>Save the scenario component to generate the output file.</li>
+ * </ul>
+ *
+ * <b>Threading:</b> Implements Runnable for background save operations. UI updates must be wrapped in Platform.runLater.
+ *
+ * <b>Dependencies:</b> Requires JavaFX, ControlsFX, and GLIMPSE utility classes.
+ *
+ * @author US EPA, GLIMPSE-CE contributors
  */
 public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     // === UI constants ===
@@ -67,6 +89,9 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelUnitsValue = createLabel(LABEL_UNITS_VALUE, 225.);
 
+    /**
+     * List of available fuel types for selection, populated from technology info.
+     */
     private ArrayList<String> fuelList = new ArrayList<>();
 
     /**
@@ -78,10 +103,24 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * @param stageX The JavaFX stage
      */
     public TabFuelPriceAdj(String title, Stage stageX) {
-    	checkComboBoxFuel.getItems().add("Select One or More");
-    	checkComboBoxFuel.getCheckModel().check(0);
-    	
-    	// --- Set up region tree and tab title ---
+        setupUIControls(title, stageX);
+        setComponentWidths();
+        setupUILayout();
+    }
+
+    /**
+     * Initializes and configures all UI controls and event handlers for the tab.
+     * Populates combo boxes, sets up listeners, and prepares the region tree.
+     *
+     * @param title  The tab title
+     * @param stageX The JavaFX stage
+     */
+    private void setupUIControls(String title, Stage stageX) {
+        // Add default option to fuel selection
+        checkComboBoxFuel.getItems().add("Select One or More");
+        checkComboBoxFuel.getCheckModel().check(0);
+
+        // Set up region tree and tab title
         TreeItem<String> ti = paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null
                 ? paneForCountryStateTree.getTree().getRoot()
                 : null;
@@ -91,7 +130,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         if (styles != null)
             this.setStyle(styles.getFontStyle());
 
-        // --- Set up initial state of check box and text fields ---
+        // Set up initial state of check box and text fields
         if (checkBoxUseAutoNames != null)
             checkBoxUseAutoNames.setSelected(true);
         if (textFieldPolicyName != null)
@@ -103,41 +142,70 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             comboBoxConvertFrom.getSelectionModel().selectFirst();
         }
 
-        // --- Layout: Left column (specification and populate controls) ---
-        gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(), new Separator(),
-                labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
-                createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
-                labelGrowth, labelConvertFrom);
-        gridPaneLeft.addColumn(1, checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
-                new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
-                new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
-                textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
-        gridPaneLeft.setVgap(3.);
-        gridPaneLeft.setStyle(styles.getStyle2());
-        scrollPaneLeft.setContent(gridPaneLeft);
+        // Populate fuel and modification type options
+        String[][] tech_list = vars.getTechInfo();
+        extractInfoFromTechList(tech_list);
+        if (checkComboBoxFuel != null && fuelList != null)
+            checkComboBoxFuel.getItems().addAll(fuelList);
 
-        // --- Layout: Center column (table and buttons) ---
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
+        if (comboBoxModificationType != null) {
+            comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
+            comboBoxModificationType.getSelectionModel().selectFirst();
+        }
 
-        // --- Layout: Right column (region tree) ---
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
+        // Event handlers for UI controls
+        checkComboBoxFuel.getCheckModel().getCheckedItems()
+                .addListener((javafx.collections.ListChangeListener<String>) change -> {
+                    setPolicyAndMarketNames();
+        });
+        registerComboBoxEvent(comboBoxModificationType, e -> {
+            if (comboBoxModificationType.getSelectionModel().getSelectedItem() == null)
+                return;
+            // Update label for growth/delta/final value based on modification type
+            switch (comboBoxModificationType.getSelectionModel().getSelectedItem()) {
+                case "Initial w/% Growth/yr":
+                case "Initial w/% Growth/pd":
+                    labelGrowth.setText("Growth (%):");
+                    break;
+                case "Initial w/Delta/yr":
+                case "Initial w/Delta/pd":
+                    labelGrowth.setText("Delta:");
+                    break;
+                case "Initial and Final":
+                    labelGrowth.setText("Final Val:");
+                    break;
+            }
+        });
+        registerCheckBoxEvent(checkBoxUseAutoNames, e -> {
+            // Enable/disable manual name entry based on auto-naming
+            if (!checkBoxUseAutoNames.isSelected()) {
+                textFieldPolicyName.setDisable(false);
+                textFieldMarketName.setDisable(false);
+            } else {
+                textFieldMarketName.setDisable(true);
+                textFieldPolicyName.setDisable(true);
+            }
+        });
+        registerButtonEvent(buttonClear, e -> paneForComponentDetails.clearTable());
+        registerButtonEvent(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
+        registerButtonEvent(buttonPopulate, e -> {
+            // Populate table with calculated values if QA passes
+            if (qaPopulate() && paneForComponentDetails != null) {
+                double[][] values = calculateValues();
+                paneForComponentDetails.setValues(values);
+            }
+        });
+        // Update names when region selection changes
+        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+            setPolicyAndMarketNames();
+        });
+    }
 
-        // --- Add columns to main grid ---
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-
-        // --- Set default sizing for controls ---
+    /**
+     * Sets min, max, and preferred widths for controls in the tab.
+     * Ensures consistent UI layout.
+     */
+    private void setComponentWidths() {
         double max_wid = 180, min_wid = 100, pref_wid = 180;
         checkComboBoxFuel.setMaxWidth(max_wid);
         checkComboBoxFuel.setMinWidth(min_wid);
@@ -166,71 +234,60 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         comboBoxConvertFrom.setMaxWidth(max_wid);
         comboBoxConvertFrom.setMinWidth(min_wid);
         comboBoxConvertFrom.setPrefWidth(min_wid);
+    }
 
-        // --- Populate fuel and modification type options ---
-        String[][] tech_list = vars.getTechInfo();
-        extractInfoFromTechList(tech_list);
-        if (checkComboBoxFuel != null && fuelList != null)
-            checkComboBoxFuel.getItems().addAll(fuelList);
+    /**
+     * Arranges controls in the layout (GridPane, VBox, etc.) for the tab.
+     * Sets up left, center, and right columns and finalizes the layout.
+     */
+    private void setupUILayout() {
+        // Layout: Left column (specification and populate controls)
+        gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(), new Separator(),
+                labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
+                createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
+                labelGrowth, labelConvertFrom);
+        gridPaneLeft.addColumn(1, checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
+                new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
+                new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
+                textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
 
-        if (comboBoxModificationType != null) {
-            comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
-            comboBoxModificationType.getSelectionModel().selectFirst();
-        }
+        // Layout: Center column (table and buttons)
+        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+        hBoxHeaderCenter.setSpacing(2.);
+        hBoxHeaderCenter.setStyle(styles.getStyle3());
+        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+        vBoxCenter.setStyle(styles.getStyle2());
 
-        // --- Event handlers for UI controls ---
-        checkComboBoxFuel.getCheckModel().getCheckedItems()
-                .addListener((javafx.collections.ListChangeListener<String>) change -> {
-                    setPolicyAndMarketNames();
-        });
-        
-        registerComboBoxEvent(comboBoxModificationType, e -> {
-            if (comboBoxModificationType.getSelectionModel().getSelectedItem() == null)
-                return;
-            switch (comboBoxModificationType.getSelectionModel().getSelectedItem()) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText("Final Val:");
-                    break;
-            }
-        });
-        registerCheckBoxEvent(checkBoxUseAutoNames, e -> {
-            if (!checkBoxUseAutoNames.isSelected()) {
-                textFieldPolicyName.setDisable(false);
-                textFieldMarketName.setDisable(false);
-            } else {
-                textFieldMarketName.setDisable(true);
-                textFieldPolicyName.setDisable(true);
-            }
-        });
-        registerButtonEvent(buttonClear, e -> paneForComponentDetails.clearTable());
-        registerButtonEvent(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-        registerButtonEvent(buttonPopulate, e -> {
-            if (qaPopulate() && paneForComponentDetails != null) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        });
-        
-        
-        // --- Finalize layout ---
+        // Layout: Right column (region tree)
+        vBoxRight.getChildren().addAll(paneForCountryStateTree);
+        vBoxRight.setStyle(styles.getStyle2());
+
+        // Add columns to main grid
+        gridPanePresetModification.addColumn(0, scrollPaneLeft);
+        gridPanePresetModification.addColumn(1, vBoxCenter);
+        gridPanePresetModification.addColumn(2, vBoxRight);
+        gridPaneLeft.setPrefWidth(325);
+        gridPaneLeft.setMinWidth(325);
+        vBoxCenter.setPrefWidth(300);
+        vBoxRight.setPrefWidth(300);
+
+        // Finalize layout
         setPolicyAndMarketNames();
         VBox tabLayout = new VBox();
         tabLayout.getChildren().addAll(gridPanePresetModification);
         this.setContent(tabLayout);
-        
-        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-			setPolicyAndMarketNames();
-		});
     }
 
+    /**
+     * Extracts fuel technology names from the technology list and populates fuelList.
+     * Only technologies categorized as "Energy-Carrier" are included.
+     *
+     * @param tech_list 2D array of technology information
+     */
     private void extractInfoFromTechList(String[][] tech_list) {
         for (int row = 0; row < tech_list.length; row++) {
             String str_cat = tech_list[row][7].trim();
@@ -239,6 +296,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 fuelList.add(str_tech);
             }
         }
+        // Remove duplicates
         fuelList = utils.getUniqueItemsFromStringArrayList(fuelList);
     }
 
@@ -246,6 +304,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * Sets the policy and market names automatically based on selected fuels and
      * regions. If auto-naming is enabled, updates the text fields accordingly. This
      * method should be called on the JavaFX Application Thread.
+     * <p>
+     * Naming convention: FuelPriceAdj-<fuel>-<region>
      */
     private void setPolicyAndMarketNames() {
         if (checkBoxUseAutoNames != null && checkBoxUseAutoNames.isSelected()) {
@@ -306,12 +366,15 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Saves the scenario component for the specified tree of regions.
+     * Saves the scenario component for the specified tree of regions. Performs QA
+     * checks, generates unique IDs, and builds the output file content including
+     * metadata and adjustment values for each selected fuel and region.
      *
      * @param tree The TreeView of regions
      */
     private void saveScenarioComponent(TreeView<String> tree) {
         if (!qaInputs()) {
+            // If QA fails, terminate the current thread
             Thread.currentThread().destroy();
         } else {
             String[][] tech_list = vars.getTechInfo();
@@ -333,6 +396,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
             List<String> selectedFuels = checkComboBoxFuel.getCheckModel().getCheckedItems();
 
+            // For each selected fuel, find matching technologies and build adjustment rows
             for (String fuel : selectedFuels) {
                 for (int t = 0; t < tech_list.length; t++) {
                     String cat = tech_list[t][7].trim();
@@ -412,7 +476,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Loads content from a list of strings (typically from a file) and populates
-     * the UI fields accordingly.
+     * the UI fields accordingly. Parses metadata and table data, and updates UI controls.
      *
      * @param content The list of content lines to load
      */
@@ -424,7 +488,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             if (line.startsWith("#") && (pos > -1)) {
                 String param = line.substring(1, pos).trim().toLowerCase();
                 String value = line.substring(pos + 1).trim();
-                // --- Populate UI fields based on metadata ---
+                // Populate UI fields based on metadata
                 if (param.equals("fuel") && checkComboBoxFuel != null) {
                     String[] set = utils.splitString(value, ";");
                     for (int j = 0; j < set.length; j++) {
@@ -458,7 +522,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Helper method to parse table data from a string and add to the component
-     * details.
+     * details. Expects a comma-separated string with year and value.
      *
      * @param value The string containing year and value, comma-separated
      */
@@ -471,7 +535,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Helper method to validate table data years against allowable policy years.
-     * 
+     * Returns true if at least one year matches allowable years, false otherwise.
+     *
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -491,7 +556,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Performs a quick QA check to ensure required fields for populating values are
-     * filled.
+     * filled. Checks for non-empty start year, end year, initial amount, and growth fields.
      *
      * @return true if all required fields are filled, false otherwise
      */
@@ -510,7 +575,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Performs QA checks on the current UI state to ensure all required inputs are
-     * valid. Displays warnings or error messages as needed.
+     * valid. Displays warnings or error messages as needed. Checks for region selection,
+     * table data, valid years, fuel selection, and policy/market names.
      *
      * @return true if all inputs are valid, false otherwise
      */
@@ -566,6 +632,11 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Helper method to set min, max, and preferred widths for multiple Controls.
+     *
+     * @param controls Array of controls to set widths for
+     * @param min      Minimum width
+     * @param max      Maximum width
+     * @param pref     Preferred width
      */
     private void setWidths(Control[] controls, double min, double max, double pref) {
         for (Control c : controls) {

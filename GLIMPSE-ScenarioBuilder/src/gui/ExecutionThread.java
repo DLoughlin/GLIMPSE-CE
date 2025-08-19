@@ -46,16 +46,32 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import glimpseUtil.StatusChecker;
 
 /**
- * ExecutionThread manages the execution of background tasks using an ExecutorService and tracks their status.
+ * ExecutionThread manages the execution of background tasks (commands, runnables, callables) using an ExecutorService and tracks their status for the GLIMPSE Scenario Builder.
  * <p>
- * Thread-safe for job submission and status checking. Provides methods to submit commands, runnables, and callables,
- * as well as to manage the executor's lifecycle. All access to the jobs list is synchronized for thread safety.
- * </p>
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Supports both single-threaded and multi-threaded execution modes for background jobs.</li>
+ *   <li>Allows submission of command-line jobs, Runnable, and Callable tasks, with or without working directories.</li>
+ *   <li>Tracks all submitted jobs and provides methods to check completion, clean up finished jobs, and retrieve job status.</li>
+ *   <li>Integrates with a StatusChecker to monitor and report job progress.</li>
+ *   <li>Provides thread-safe methods for job submission, status checking, and shutdown operations.</li>
+ *   <li>Implements AutoCloseable for use in try-with-resources blocks.</li>
+ *   <li>Includes deprecated methods for backward compatibility with legacy code.</li>
+ * </ul>
+ * <p>
+ * <b>Usage:</b> Instantiate and start the executor using {@link #startUpExecutorSingle()} or {@link #startUpExecutorMulti()}, then submit jobs using the provided methods. Call {@link #shutdown()} or use try-with-resources to ensure proper cleanup.
+ * <p>
+ * <b>Thread Safety:</b> All public methods are thread-safe unless otherwise noted. The jobs list is synchronized for all access.
+ *
+ * @author US EPA, Dr. Dan Loughlin
+ * @version 8.2
+ * @since 7.0
  */
 public class ExecutionThread implements AutoCloseable {
     private ExecutorService executorService = null;
     /**
      * List of submitted jobs. All iteration over this list must be synchronized on the list.
+     * Each Future represents a submitted background task (Runnable, Callable, or command).
      */
     private final List<Future<?>> jobs = Collections.synchronizedList(new ArrayList<>());
     private final StatusChecker status = new StatusChecker();
@@ -65,8 +81,10 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Checks if the number of completed jobs has changed since the last check.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Iterates over the jobs list and counts the number of jobs that are done. If the count has changed
+     * since the last invocation, updates the internal counter and returns true.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
      * @return true if the number of completed jobs has changed, false otherwise.
      */
@@ -90,10 +108,11 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Adds an array of command strings as RunnableCmds to the execution queue.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Each command string is wrapped in a RunnableCmd and submitted to the executor.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param commands Array of command strings.
+     * @param commands Array of command strings to execute as background jobs.
      */
     public void submitCommands(String[] commands) {
         try {
@@ -106,8 +125,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Starts a single-threaded executor if not already started.
      * <p>
-     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
+     * This method should be called during initialization if only one background job should run at a time.
      * </p>
+     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
      */
     public void startUpExecutorSingle() {
         if (executorService == null) {
@@ -120,8 +140,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Starts a cached thread pool executor if not already started.
      * <p>
-     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
+     * This method should be called during initialization if multiple background jobs may run concurrently.
      * </p>
+     * <b>Thread safety:</b> This method is not thread-safe and should be called during initialization.
      */
     public void startUpExecutorMulti() {
         if (executorService == null) {
@@ -134,10 +155,11 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits an array of Runnable tasks to the executor.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Each Runnable is submitted as a separate job. Useful for batch job submission.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param runnables Array of Runnable tasks.
+     * @param runnables Array of Runnable tasks to execute.
      */
     public void executeRunnables(Runnable[] runnables) {
         for (Runnable runnable : runnables) {
@@ -148,10 +170,11 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits a single Runnable task to the executor.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * The Runnable is submitted as a background job and tracked in the jobs list.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param runnable The Runnable task.
+     * @param runnable The Runnable task to execute.
      */
     public void executeRunnable(Runnable runnable) {
         if (executorService == null) {
@@ -166,10 +189,11 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits an array of command strings as RunnableCmds to the executor.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Each command string is wrapped in a RunnableCmd and submitted as a background job.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param commands Array of command strings.
+     * @param commands Array of command strings to execute.
      * @throws InterruptedException if interrupted while submitting tasks.
      */
     public void submitCommandTasks(String[] commands) throws InterruptedException {
@@ -181,10 +205,11 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits a single command string as a RunnableCmd to the executor.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * The command is wrapped in a RunnableCmd and submitted as a background job.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param command The command string.
+     * @param command The command string to execute.
      * @return Future representing the submitted task.
      */
     public Future<?> submitCommand(String command) {
@@ -203,13 +228,14 @@ public class ExecutionThread implements AutoCloseable {
     }
 
     /**
-     * Submits an array of command strings as RunnableCmds to the executor, specifying a working directory.
+     * Submits an array of command strings as RunnableCmds to the executor, specifying a working directory for each.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Each command is wrapped in a RunnableCmd and submitted as a background job with the specified working directory.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param commands Array of command strings.
-     * @param directory The working directory.
+     * @param commands Array of command strings to execute.
+     * @param directory The working directory for all commands.
      * @throws InterruptedException if interrupted while submitting tasks.
      */
     public void submitCommandsWithDirectory(String[] commands, String directory) throws InterruptedException {
@@ -221,11 +247,12 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits a single command string as a RunnableCmd to the executor, specifying a working directory.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * The command is wrapped in a RunnableCmd and submitted as a background job with the specified working directory.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
-     * @param command The command string.
-     * @param directory The working directory.
+     * @param command The command string to execute.
+     * @param directory The working directory for the command.
      * @return Future representing the submitted task.
      */
     public Future<?> submitCommandWithDirectory(String command, String directory) {
@@ -245,11 +272,12 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Submits a Callable task to the executor.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * The Callable is submitted as a background job and tracked in the jobs list. Useful for tasks that return a result.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      *
      * @param <V> The result type returned by the Callable.
-     * @param callable The Callable task.
+     * @param callable The Callable task to execute.
      */
     public <V> void executeCallableCmd(Callable<V> callable) {
         if (executorService == null) {
@@ -266,8 +294,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Removes completed jobs from the jobs list to prevent memory leaks in long-running applications.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
+     * Iterates over the jobs list and removes any jobs that are done.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list.
      */
     public void cleanupCompletedJobs() {
         synchronized (jobs) {
@@ -277,10 +306,10 @@ public class ExecutionThread implements AutoCloseable {
 
     /**
      * Shuts down the executor service gracefully and terminates the status checker.
-     * Logs any tasks that did not complete.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * Waits for all running tasks to complete or times out after 30 seconds. Logs any tasks that did not complete.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
      */
     @Override
     public void close() {
@@ -289,10 +318,10 @@ public class ExecutionThread implements AutoCloseable {
 
     /**
      * Shuts down the executor service gracefully and terminates the status checker.
-     * Logs any tasks that did not complete.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * Waits for all running tasks to complete or times out after 30 seconds. Logs any tasks that did not complete.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
      */
     public void shutdown() {
         try {
@@ -326,10 +355,10 @@ public class ExecutionThread implements AutoCloseable {
 
     /**
      * Shuts down the executor service immediately and terminates the status checker.
-     * Attempts to interrupt running tasks and logs any tasks that did not start.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
+     * Attempts to interrupt running tasks and logs any tasks that did not start.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It synchronizes on the jobs list and executor state.
      */
     public void shutdownNow() {
         System.out.println("Attempting to shut down all model threads.");
@@ -358,8 +387,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Checks if the executor service is currently executing tasks.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * Returns true if the executor is not shut down. Also prints the current execution and termination state.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
      *
      * @return true if executing, false otherwise.
      */
@@ -378,8 +408,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Returns a string representation of the executor service queue.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * Useful for debugging and logging the state of the executor.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
      *
      * @return String representation of the executor service.
      */
@@ -390,8 +421,9 @@ public class ExecutionThread implements AutoCloseable {
     /**
      * Returns the list of jobs. All iteration over this list must be synchronized on the list.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe. It returns a copy of the jobs list within a synchronized block.
+     * Returns a copy of the jobs list to avoid concurrent modification exceptions.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe. It returns a copy of the jobs list within a synchronized block.
      *
      * @return List of Future jobs.
      */
@@ -402,10 +434,11 @@ public class ExecutionThread implements AutoCloseable {
     }
 
     /**
-     * Returns the status checker instance.
+     * Returns the status checker instance used to monitor job progress.
      * <p>
-     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
+     * The StatusChecker is started automatically when jobs are submitted.
      * </p>
+     * <b>Thread safety:</b> This method is thread-safe for concurrent reads.
      *
      * @return StatusChecker instance.
      */
@@ -415,6 +448,9 @@ public class ExecutionThread implements AutoCloseable {
 
     /**
      * Helper method to start the status checker if not already started.
+     * <p>
+     * Uses an AtomicBoolean to ensure the status checker is only started once.
+     * </p>
      * This method is thread-safe.
      */
     private void startStatusCheckerIfNeeded() {
@@ -445,7 +481,5 @@ public class ExecutionThread implements AutoCloseable {
     public Future<?> executeRunnableCmd(String arg) {
         return submitCommand(arg);
     }
-    
-
-    
 }
+    

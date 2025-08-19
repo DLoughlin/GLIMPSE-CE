@@ -67,11 +67,36 @@ import javafx.stage.Stage;
  * and configure input/output values for scenario components.
  *
  * <p>
+ * <b>Overview:</b> TabTechParam is a JavaFX-based tab for the GLIMPSE Scenario Builder that enables users to define technology parameter policies for scenario components. It provides controls for sector and technology selection, parameter specification, region selection, and value entry. The class manages the UI layout, event handling, data validation, and serialization of scenario component metadata.
+ * </p>
+ *
+ * <p>
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Sector and technology filtering and selection</li>
+ *   <li>Parameter and sub-parameter (emission) selection</li>
+ *   <li>Input/output unit display and validation</li>
+ *   <li>Region selection via a tree view</li>
+ *   <li>Data entry for policy years and values</li>
+ *   <li>Metadata and CSV content generation for scenario saving</li>
+ *   <li>Comprehensive QA checks for user input</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
  * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
  * </p>
  *
  * <p>
  * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
+ * </p>
+ *
+ * <p>
+ * <b>Dependencies:</b> Relies on GLIMPSE utility classes, ControlsFX CheckComboBox, and JavaFX controls.
+ * </p>
+ *
+ * <p>
+ * <b>Author:</b> GLIMPSE Team, US EPA, and contributors
  * </p>
  */
 public class TabTechParam extends PolicyTab implements Runnable {
@@ -104,7 +129,9 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_FINAL_VAL = "Final Val: ";
     private static final String LABEL_GROWTH = "Growth (%):";
     private static final String LABEL_DELTA = "Delta:";
-    private static final double PREF_WIDTH = LABEL_WIDTH;
+    private static final double LABEL_WIDTH = 125.0;
+    private static final double MAX_WIDTH = 195.0;
+    private static final double PREF_WIDTH = 195.0;
 
     // === Constants for Metadata ===
     private static final String SCENARIO_COMPONENT_TYPE = "Tech Param";
@@ -153,15 +180,15 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @param stageX The JavaFX stage
      */
     public TabTechParam(String title, Stage stageX) {
-        // sets tab title
+        // sets tab title and style
         this.setText(title);
         this.setStyle(styles.getFontStyle());
 
-        setupUIControls();
-        setupUILayout();
-        setupEventHandlers();
-        techInfo = vars.getTechInfo();
-        setupComboBoxSector();
+        setupUIControls(); // Initialize UI controls and their options
+        setupUILayout();   // Arrange UI components in the tab
+        setupEventHandlers(); // Register event handlers for user interaction
+        techInfo = vars.getTechInfo(); // Load technology info data
+        setupComboBoxSector(); // Populate sector combo box
         comboBoxSector.getItems().add(SELECT_ONE);
         comboBoxSector.getSelectionModel().select(0);
         checkComboBoxTech.setDisable(true);
@@ -169,6 +196,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Sets up UI controls with options and default values.
+     * Initializes combo boxes, check combo boxes, and disables/enables controls as needed.
      */
     private void setupUIControls() {
         checkComboBoxTech.getItems().clear();
@@ -199,6 +227,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Sets preferred, min, and max widths for UI components.
+     * Ensures consistent sizing for all controls in the tab.
      */
     private void setComponentWidths() {
         // Set widths for all relevant UI components
@@ -207,10 +236,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
             if (label != null) {
                 label.setMaxWidth(MAX_WIDTH);
                 label.setMinWidth(MIN_WIDTH);
-                label.setPrefWidth(PREF_WIDTH);
+                label.setPrefWidth(LABEL_WIDTH);
             }
         }
-        ComboBox<?>[] comboBoxes = { comboBoxModificationType, comboBoxParam, comboBoxParam2 };
+        ComboBox<?>[] comboBoxes = { comboBoxModificationType, comboBoxParam, comboBoxParam2, comboBoxSector, comboBoxConvertFrom };
         for (ComboBox<?> comboBox : comboBoxes) {
             if (comboBox != null) {
                 comboBox.setMaxWidth(MAX_WIDTH);
@@ -242,7 +271,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets up the layout of the tab.
+     * Sets up the layout of the tab, arranging all UI components in their respective containers.
+     * Uses GridPane, VBox, and HBox for layout management.
      */
     private void setupUILayout() {
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
@@ -280,18 +310,24 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Registers an event handler for a Button's ActionEvent.
+     * @param button The button to register the handler for
+     * @param handler The event handler
      */
     private void registerButtonEvent(Button button, javafx.event.EventHandler<ActionEvent> handler) {
         button.setOnAction(handler);
     }
     /**
      * Registers an event handler for a ComboBox's ActionEvent.
+     * @param comboBox The combo box to register the handler for
+     * @param handler The event handler
      */
     private void registerComboBoxEvent(ComboBox<String> comboBox, javafx.event.EventHandler<ActionEvent> handler) {
         comboBox.setOnAction(handler);
     }
     /**
      * Registers an event handler for a TextField's ActionEvent.
+     * @param textField The text field to register the handler for
+     * @param handler The event handler
      */
     private void registerTextFieldEvent(TextField textField, javafx.event.EventHandler<ActionEvent> handler) {
         textField.setOnAction(handler);
@@ -299,6 +335,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Sets up event handlers for UI controls.
+     * Handles user interactions such as filtering, sector/technology/parameter selection, and button actions.
      */
     private void setupEventHandlers() {
 
@@ -395,6 +432,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Updates the input and output unit labels based on the selected technologies.
      * Sets labelTextFieldInput2 and labelTextFieldOutput2 based on checked technologies.
+     * Handles cases where multiple technologies are selected and units may differ.
      */
     private void updateInputOutputUnits() {
         ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
@@ -436,6 +474,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Populates the sector combo box based on available technology info and filter.
      * Adds sectors to comboBoxSector, optionally filtered by textFieldFilter.
+     * Handles errors in reading technology info.
      */
     private void setupComboBoxSector() {
         comboBoxSector.getItems().clear();
@@ -482,6 +521,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Updates the technology check combo box based on the selected sector and filter.
      * Populates the checkComboBoxTech with technologies matching the selected sector and filter.
+     * Handles errors in reading technology info.
      */
     private void updateCheckComboTechs() {
         String sector = comboBoxSector.getValue();
@@ -702,6 +742,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Sets the units label based on the selected technologies and parameter.
      * Updates the labelTextFieldUnits2 with the appropriate units or warning.
+     * Handles special cases for certain parameters.
      */
     public void setUnitsLabel() {
         String s = getUnits();
@@ -749,6 +790,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+     * Typically triggers saving of the scenario component.
      */
     @Override
     public void run() {
@@ -757,6 +799,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Saves the scenario component using the current UI state and selected regions.
+     * Performs QA checks before saving. Generates metadata and CSV content for the scenario component.
      */
     @Override
     public void saveScenarioComponent() {
@@ -765,6 +808,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Saves the scenario component for the specified tree of regions.
+     * Performs QA checks and generates file content and filename suggestion.
      *
      * @param tree The TreeView of regions
      */
@@ -786,6 +830,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Loads data from the GUI for saving to file.
+     * Serializes selected technologies, regions, parameters, and table data into a list of strings.
      *
      * @param tree The TreeView of regions
      * @return ArrayList of data strings
@@ -827,6 +872,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Gets a comma-separated string of selected leaves (regions) from the tree.
+     * Handles special case for USA regions if GCAM-USA is enabled.
      *
      * @param tree The TreeView of regions
      * @return Comma-separated string of selected regions
@@ -842,6 +888,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Helper method to validate table data years against allowable policy years.
+     * Checks that at least one year in the table matches allowable years.
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -860,6 +907,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Performs QA checks on the current UI state to ensure all required inputs are valid.
      * Displays warnings or error messages as needed.
+     * Checks for region selection, data table entries, sector/technology/parameter selection, and year validity.
      *
      * @return true if all inputs are valid, false otherwise
      */

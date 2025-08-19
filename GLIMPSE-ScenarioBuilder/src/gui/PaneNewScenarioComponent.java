@@ -82,7 +82,35 @@ import javafx.stage.WindowEvent;
 
 /**
  * PaneNewScenarioComponent generates the top-left pane for scenario component management in the GLIMPSE Scenario Builder.
- * It provides UI and logic for creating, editing, deleting, and saving scenario components.
+ * <p>
+ * This class provides the user interface and logic for creating, editing, deleting, and saving scenario components.
+ * It manages the component library table, handles user actions, and coordinates the display and persistence of scenario component files.
+ * <p>
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Displays a table of available scenario components, allowing users to browse, refresh, and manage components.</li>
+ *   <li>Supports creation of new scenario components via a dialog with multiple specialized tabs (e.g., Market Share, Tech Bound, XML List, etc.).</li>
+ *   <li>Allows editing of existing components, with logic to determine the correct editor based on file type and content.</li>
+ *   <li>Enables deletion of components, with safeguards to prevent deletion if a component is in use by a scenario.</li>
+ *   <li>Handles file operations for saving, moving, and loading scenario component files.</li>
+ *   <li>Integrates with the GLIMPSE Scenario Builder's main application window and utilities.</li>
+ * </ul>
+ * <p>
+ * <b>Usage:</b>
+ * <ul>
+ *   <li>Instantiate this class to provide the scenario component management pane in the Scenario Builder UI.</li>
+ *   <li>Interact with the provided VBox via {@link #getvBox()} to embed in the main application layout.</li>
+ * </ul>
+ * <p>
+ * <b>Dependencies:</b>
+ * <ul>
+ *   <li>Relies on various GLIMPSE custom classes for tabs, file utilities, and data models (e.g., {@link ComponentLibraryTable}, {@link PolicyTab}, {@link TabTechAvailable}).</li>
+ *   <li>Uses JavaFX for UI components and event handling.</li>
+ * </ul>
+ *
+ * @author Dan Loughlin
+ * @version 1.0
+ * @since 2025-08-19
  */
 public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
@@ -153,7 +181,10 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd: HH:mm", Locale.ENGLISH);
 
 	/**
-	 * Constructor for PaneNewScenarioComponent. Initializes UI components and event handlers.
+	 * Constructs a new PaneNewScenarioComponent.
+	 * <p>
+	 * Initializes the main UI components, sets up event handlers, and loads the component library table.
+	 * The pane is styled and sized to fit within the Scenario Builder's main window.
 	 */
 	public PaneNewScenarioComponent() {
 		mainVBox.setStyle(styles.getFontStyle());
@@ -165,6 +196,10 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	}
 
 	// === Initialization Methods ===
+	/**
+	 * Initializes the main action buttons for component management (New, Edit, Browse, Delete, Refresh).
+	 * Sets tooltips, icons, and disables buttons as appropriate.
+	 */
 	private void initializeButtons() {
 		Client.buttonNewComponent = utils.createButton(BUTTON_LABEL_NEW, styles.getBigButtonWidth(),
 				"New: Open dialog to create new scenario component", "add");
@@ -180,6 +215,10 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 				"Refresh: Reload list of candidate scenario components", "refresh");
 	}
 
+	/**
+	 * Loads and refreshes the component library table from the scenario components directory.
+	 * Handles exceptions and displays warnings if loading fails.
+	 */
 	private void initializeComponentLibraryTable() {
 		try {
 			refreshComponentLibraryTable();
@@ -192,6 +231,10 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		}
 	}
 
+	/**
+	 * Sets up event handlers for table selection and button actions (New, Edit, Browse, Delete, Refresh).
+	 * Ensures correct enabling/disabling of buttons based on selection state.
+	 */
 	private void setupEventHandlers() {
 		ComponentLibraryTable.getTableComponents().setOnMouseClicked(event -> setArrowAndButtonStatus());
 		Client.buttonDeleteComponent.setDisable(true);
@@ -205,6 +248,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	// === Event Handlers ===
 	/**
 	 * Handles the logic for editing a scenario component.
+	 * <p>
 	 * - Only allows editing if exactly one component is selected.
 	 * - If the selected file is an XML, it opens in the XML editor.
 	 * - Otherwise, attempts to determine the component type from the file's contents
@@ -241,6 +285,10 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		}
 	}
 
+	/**
+	 * Handles the action of browsing the scenario component library folder in the system file explorer.
+	 * Displays errors and exits on exception.
+	 */
 	private void handleBrowseComponentLibrary() {
 		try {
 			String scenarioComponentsDirectory = vars.getScenarioComponentsDir();
@@ -251,6 +299,13 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		}
 	}
 
+	/**
+	 * Handles the deletion of selected scenario components.
+	 * <p>
+	 * - Checks if any selected component is used in a scenario and prevents deletion if so.
+	 * - Moves deleted files to the trash directory.
+	 * - Updates the component library table after deletion.
+	 */
 	private void handleDeleteComponent() {
 		ObservableList<ComponentRow> selectedComponentRows = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
 		if (selectedComponentRows == null) return;
@@ -282,6 +337,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Checks if any of the selected scenario components are used in existing scenarios.
+	 *
 	 * @param selectedFiles List of selected ComponentRow objects
 	 * @return true if any component is used, false otherwise
 	 */
@@ -303,6 +359,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Shows the dialog for creating or editing a scenario component.
+	 * <p>
 	 * - Sets up the dialog UI, initializes all tab panes, and binds event handlers for save and close actions.
 	 * - Handles the logic for saving the component file and updating the component library table.
 	 * - Manages the dialog's lifecycle and ensures proper cleanup on close or cancel.
@@ -354,7 +411,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		fixedDemandTab.setClosable(false);
 
 		TabPane addComponentTabPane = new TabPane();
-		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, techBoundTab, techBound2Tab,
+		addComponentTabPane.getTabs().addAll(xmlListTab, pollTaxCapTab, techAvailTab, techMarketShareTab, /*techBoundTab,*/ techBound2Tab,
 				techTaxTab, cafeStdTab, techParamTab, fuelPriceAdjTab, fixedDemandTab);
 		addComponentTabPane.setStyle(styles.getStyle1b());
 		addComponentTabPane.setPrefHeight(dialogHeight - 25);
@@ -459,6 +516,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Returns the PolicyTab instance corresponding to the given tab name.
+	 *
 	 * @param tabName The name of the tab
 	 * @return The PolicyTab instance, or null if not found
 	 */
@@ -494,6 +552,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Loads content into the specified PolicyTab and selects it in the TabPane.
+	 *
 	 * @param whichTab The tab name
 	 * @param contentToLoad The content to load
 	 * @param tp The TabPane containing the tabs
@@ -512,6 +571,11 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Saves the scenario component file using the provided PolicyTab's content and filename suggestion.
+	 * <p>
+	 * - Determines the correct file extension and filter based on content.
+	 * - Handles saving to a temporary file if required.
+	 * - Updates the component library table after saving.
+	 *
 	 * @param tab The PolicyTab containing the file content and filename suggestion
 	 */
 	public void saveComponentFile(PolicyTab tab) {
@@ -566,6 +630,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Disables the Save and Close buttons in the component dialog.
+	 * Used to prevent user interaction during save operations.
 	 */
 	public void disableButtons() {
 		if (buttonSaveComponent != null) buttonSaveComponent.setDisable(true);
@@ -574,6 +639,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Enables the Save and Close buttons in the component dialog.
+	 * Used to restore user interaction after save operations.
 	 */
 	public void enableButtons() {
 		if (buttonSaveComponent != null) buttonSaveComponent.setDisable(false);
@@ -582,6 +648,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Refreshes the scenario component library table by scanning the components directory.
+	 * Updates the table with the latest files found.
 	 */
 	public void refreshComponentLibraryTable() {
 		File folder = new File(vars.getScenarioComponentsDir());
@@ -599,6 +666,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Recursively builds a list of files from the given directory path.
+	 *
 	 * @param path The root directory path
 	 * @return ArrayList of File objects found in the directory and subdirectories
 	 */
@@ -619,6 +687,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Loads the given list of files into the component library table.
+	 *
 	 * @param file List of File objects to load
 	 */
 	public void loadFile(List<File> file) {
@@ -635,28 +704,51 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 
 	/**
 	 * Returns the VBox containing the component library table.
+	 *
 	 * @return VBox with the component library table
 	 */
 	public VBox getvBox() {
 		return mainVBox;
 	}
 
+	/**
+	 * Creates and returns a styled VBox for the main pane.
+	 *
+	 * @return A new VBox instance
+	 */
 	private VBox createMainVBox() {
 		VBox vbox = new VBox(1);
 		vbox.setStyle(styles.getFontStyle());
 		return vbox;
 	}
 
+	/**
+	 * Creates and returns a new HBox for button layout.
+	 *
+	 * @return A new HBox instance
+	 */
 	private HBox createButtonHBox() {
 		return new HBox(1);
 	}
 
+	/**
+	 * Creates and returns a ProgressBar with the specified width.
+	 *
+	 * @param width The preferred width of the progress bar
+	 * @return A new ProgressBar instance
+	 */
 	private ProgressBar createProgressBar(double width) {
 		ProgressBar bar = new ProgressBar(0.0);
 		bar.setPrefWidth(width);
 		return bar;
 	}
 
+	/**
+	 * Creates and returns an HBox containing the given ProgressBar, centered.
+	 *
+	 * @param bar The ProgressBar to add
+	 * @return A new HBox instance
+	 */
 	private HBox createProgressHBox(ProgressBar bar) {
 		HBox hbox = new HBox();
 		hbox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -664,6 +756,12 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		return hbox;
 	}
 
+	/**
+	 * Creates and returns a dialog button with the specified text and default style.
+	 *
+	 * @param text The button label
+	 * @return A new Button instance
+	 */
 	private Button createDialogButton(String text) {
 		return utils.createButton(text, styles.getBigButtonWidth(), null);
 	}

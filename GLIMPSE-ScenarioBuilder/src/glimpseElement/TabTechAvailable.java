@@ -157,10 +157,21 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      */
     public TabTechAvailable(String title, Stage stageX) {
         this.setStyle(styles.getFontStyle());
+        setupUIControls();
+        setComponentWidths();
+        setupUILayout(title);
+    }
+
+    /**
+     * Sets up UI controls and event handlers for the tab.
+     */
+    private void setupUIControls() {
         firstYrTextField.setText(DEFAULT_FIRST_YEAR);
-        firstYrTextField.setPrefWidth(styles.getBigButtonWidth());
         lastYrTextField.setText(DEFAULT_LAST_YEAR);
-        lastYrTextField.setPrefWidth(styles.getBigButtonWidth());
+
+        setOnAction(setFirstLastYrsButton, e -> updateFirstAndLastYears(firstYrTextField.getText(), lastYrTextField.getText()));
+        setOnAction(selectAllButton, e -> selectAllVisibleItems());
+        setOnAction(selectRangeButton, e -> selectRangeVisibleItems());
 
         TableColumn<TechBound, Boolean> isBoundAll = new TableColumn<>(BUTTON_SELECT_ALL + "?");
         TableColumn<TechBound, Boolean> isBoundRange = new TableColumn<>(BUTTON_SELECT_RANGE + "?");
@@ -168,22 +179,16 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         TableColumn<TechBound, String> firstYearCol = new TableColumn<>("First");
         TableColumn<TechBound, String> lastYearCol = new TableColumn<>("Last");
 
+        tableTechBounds.getColumns().clear();
         tableTechBounds.getColumns().addAll(isBoundAll, isBoundRange, firstYearCol, lastYearCol, techNameCol);
-
-        setOnAction(setFirstLastYrsButton, e -> updateFirstAndLastYears(firstYrTextField.getText(), lastYrTextField.getText()));
-        setOnAction(selectAllButton, e -> selectAllVisibleItems());
-        setOnAction(selectRangeButton, e -> selectRangeVisibleItems());
 
         setupBooleanColumn(isBoundAll, true);
         setupBooleanColumn(isBoundRange, false);
-
         tableTechBounds.setEditable(true);
         isBoundAll.setEditable(true);
 
         techNameCol.setCellValueFactory(new PropertyValueFactory<>("techName"));
         techNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        techNameCol.setMinWidth(410);
-        techNameCol.setPrefWidth(500);
         techNameCol.setEditable(false);
 
         setupYearColumn(firstYearCol, true);
@@ -194,7 +199,25 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         tableTechBounds.setItems(list2);
         tableList = tableTechBounds.getItems();
         addFiltering();
+        setupComboBoxType();
+    }
 
+    /**
+     * Sets preferred widths for UI components.
+     */
+    private void setComponentWidths() {
+        firstYrTextField.setPrefWidth(styles.getBigButtonWidth());
+        lastYrTextField.setPrefWidth(styles.getBigButtonWidth());
+        tableTechBounds.setMinWidth(500);
+        tableTechBounds.setPrefWidth(700);
+        paneForCountryStateTree.setMinWidth(275.);
+    }
+
+    /**
+     * Sets up the layout of the tab using HBox and VBox.
+     * @param title The title of the tab
+     */
+    private void setupUILayout(String title) {
         this.setText(title);
         HBox tabLayout = new HBox();
         tabLayout.autosize();
@@ -204,13 +227,11 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         HBox filterLayout = new HBox();
         filterLayout.setPadding(new Insets(10, 10, 10, 10));
         filterLayout.getChildren().addAll(filterByCategoryLabel, comboBoxCategoryFilter, filterByTextLabel, filterTextField);
-        setupComboBoxType();
         HBox resetYrLayout = new HBox();
         resetYrLayout.setPadding(new Insets(5, 5, 5, 5));
         resetYrLayout.setSpacing(5.);
         resetYrLayout.getChildren().addAll(selectLabel, selectAllButton, selectRangeButton, firstYrLabel, firstYrTextField, lastYrLabel, lastYrTextField, setFirstLastYrsButton);
         leftPanel.getChildren().addAll(filterLayout, tableTechBounds, resetYrLayout);
-        paneForCountryStateTree.setMinWidth(275.);
         tabLayout.getChildren().addAll(leftPanel, paneForCountryStateTree);
         this.setContent(tabLayout);
     }
