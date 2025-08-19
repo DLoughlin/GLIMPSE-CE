@@ -58,8 +58,7 @@ import javafx.stage.Stage;
  * <p>
  * <b>Main responsibilities:</b>
  * <ul>
- * <li>Allow users to select measure type (tax or cap), pollutant, and
- * sector</li>
+ * <li>Allow users to select measure type (tax or cap), pollutant, and sector</li>
  * <li>Configure policy and market names (auto/manual)</li>
  * <li>Specify and populate cap/tax values over time</li>
  * <li>Validate, import, and export scenario component data as CSV</li>
@@ -84,6 +83,35 @@ import javafx.stage.Stage;
  *
  * <b>Thread Safety:</b> This class is not thread-safe and should be used only
  * on the JavaFX Application Thread.
+ *
+ * <b>Class Details:</b>
+ * <ul>
+ * <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
+ * <li>Handles UI setup, event listeners, and scenario file generation for pollutant tax/cap policies.</li>
+ * <li>Supports robust CO2 cap, GHG tax/cap, and flexible tax/cap for other pollutants.</li>
+ * <li>Provides methods for loading, validating, and saving scenario component data.</li>
+ * </ul>
+ *
+ * <b>Key Methods:</b>
+ * <ul>
+ * <li>{@link #TabPollutantTaxCap(String, Stage)} - Constructor, sets up UI and listeners.</li>
+ * <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
+ * <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
+ * <li>{@link #saveScenarioComponentFlexTaxOrCap(String[], String, String, List, String, String, String, String)} - Handles flexible tax/cap file generation.</li>
+ * <li>{@link #saveScenarioComponentGHGTaxOrCap(String[], String, String, String, String)} - Handles GHG tax/cap file generation.</li>
+ * <li>{@link #saveScenarioComponentRobustCO2Cap(String[], String, String, String)} - Handles robust CO2 cap file generation.</li>
+ * <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
+ * <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
+ * <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ * </ul>
+ *
+ * <b>See Also:</b>
+ * <ul>
+ * <li>{@link PolicyTab}</li>
+ * <li>{@link DataPoint}</li>
+ * <li>{@link PaneForComponentDetails}</li>
+ * <li>{@link Utils}</li>
+ * </ul>
  */
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	// === Constants for UI Texts and Options ===
@@ -136,7 +164,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Constructs a TabPollutantTaxCap for the given title and stage. Sets up all UI
 	 * controls, listeners, and default values for the pollutant tax/cap policy tab.
-	 * 
+	 *
 	 * @param title  Tab title
 	 * @param stageX JavaFX Stage (not used directly)
 	 */
@@ -147,46 +175,20 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		textFieldPolicyName.setDisable(true);
 		textFieldMarketName.setDisable(true);
 
-		// left column
-		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-		gridPaneLeft.addColumn(0, labelComboBoxMeasure, labelComboBoxPollutant, labelCheckComboBoxCategory, new Label(),
-				new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
-				utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
-				labelGrowth, labelConvertFrom);
-		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant, checkComboBoxCategory, new Label(),
-				new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
-				new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
-				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
-		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.getStyle2());
-        scrollPaneLeft.setContent(gridPaneLeft);
+		setupUIControls();
+		setComponentWidths();
+		setupUILayout();
+	}
 
-		
-		// center column
-		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.getStyle3());
-		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.getStyle2());
-
-		// right column
-		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.getStyle2());
-
-		gridPanePresetModification.addColumn(0, scrollPaneLeft);
-		gridPanePresetModification.addColumn(1, vBoxCenter);
-		gridPanePresetModification.addColumn(2, vBoxRight);
-		gridPaneLeft.setPrefWidth(325);
-		gridPaneLeft.setMinWidth(325);
-		vBoxCenter.setPrefWidth(300);
-		vBoxRight.setPrefWidth(300);
-
-		// default sizing
-		setComboBoxWidths(checkComboBoxCategory);
-		setComboBoxWidths(comboBoxMeasure);
-		setComboBoxWidths(comboBoxModificationType);
-		setComboBoxWidths(comboBoxPollutant);
-
+	/**
+	 * Sets up all UI controls, listeners, and default values for the pollutant tax/cap policy tab.
+	 * <p>
+	 * This includes populating combo boxes, setting up listeners for user actions,
+	 * and configuring the initial state of the UI. Listeners handle dynamic UI changes
+	 * such as enabling/disabling controls and updating names based on selections.
+	 */
+	private void setupUIControls() {
+		// Populate measure, pollutant, category, and conversion options
 		for (String option : MEASURE_OPTIONS) {
 			comboBoxMeasure.getItems().add(option);
 		}
@@ -201,12 +203,16 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		}
 		comboBoxMeasure.getSelectionModel().selectFirst();
 		comboBoxPollutant.getSelectionModel().selectFirst();
-
 		checkComboBoxCategory.getCheckModel().clearChecks();
 		checkComboBoxCategory.getCheckModel().check(ALL);
 		checkComboBoxCategory.setDisable(true);
+		comboBoxModificationType.getSelectionModel().selectFirst();
+		comboBoxConvertFrom.getSelectionModel().selectFirst();
+		comboBoxPollutant.setDisable(false);
+		labelConvertFrom.setVisible(false);
+		comboBoxConvertFrom.setVisible(false);
 
-		// Ensure only one box is checked at a time
+		// Listeners and actions
 		checkComboBoxCategory.getCheckModel().getCheckedItems().addListener((javafx.collections.ListChangeListener<String>) change -> {
 			if (isAdjustingCategoryChecks) return;
 			if (checkComboBoxCategory.isDisabled()) return;
@@ -231,16 +237,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				isAdjustingCategoryChecks = false;
 			}
 		});
-		
-		comboBoxModificationType.getSelectionModel().selectFirst();
-		comboBoxConvertFrom.getSelectionModel().selectFirst();
-		comboBoxPollutant.setDisable(false);
 
-		labelConvertFrom.setVisible(false);
-		comboBoxConvertFrom.setVisible(false);
-
-		// Action
 		setOnAction(comboBoxMeasure, e -> {
+			// Show/hide conversion controls based on measure type
 			if (comboBoxMeasure.getSelectionModel().getSelectedItem().startsWith(EMISSION_TAX)) {
 				labelConvertFrom.setVisible(true);
 				comboBoxConvertFrom.setVisible(true);
@@ -262,19 +261,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				}
 			}
 			setPolicyAndMarketNames();
-
 		});
-		// Uncomment and standardize these as needed:
-		// setOnAction(checkComboBoxCategory, e -> setPolicyAndMarketNames());
-		// EventHandler<TreeModificationEvent> ev = new
-		// EventHandler<TreeModificationEvent>() {
-		// @Override
-		// public void handle(TreeModificationEvent ae) {
-		// ae.consume();
-		// setPolicyAndMarketNames();
-		// }
-		// };
-		// paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
 		setOnAction(checkBoxUseAutoNames, e -> {
 			boolean selected = checkBoxUseAutoNames.isSelected();
 			textFieldPolicyName.setDisable(selected);
@@ -306,15 +293,65 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				paneForComponentDetails.setValues(values);
 			}
 		});
-		setPolicyAndMarketNames();
+		paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+			setPolicyAndMarketNames();
+		});
+	}
+
+	/**
+	 * Sets the widths for all ComboBox and CheckComboBox components for consistency.
+	 * Ensures a uniform look and feel for the UI.
+	 */
+	private void setComponentWidths() {
+		setComboBoxWidths(checkComboBoxCategory);
+		setComboBoxWidths(comboBoxMeasure);
+		setComboBoxWidths(comboBoxModificationType);
+		setComboBoxWidths(comboBoxPollutant);
+	}
+
+	/**
+	 * Sets up the layout and arrangement of UI elements in the tab.
+	 * <p>
+	 * Arranges controls into left, center, and right columns, and sets up the main tab content.
+	 */
+	private void setupUILayout() {
+		// left column
+		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
+		gridPaneLeft.addColumn(0, labelComboBoxMeasure, labelComboBoxPollutant, labelCheckComboBoxCategory, new Label(),
+				new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
+				utils.createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
+				labelGrowth, labelConvertFrom);
+		gridPaneLeft.addColumn(1, comboBoxMeasure, comboBoxPollutant, checkComboBoxCategory, new Label(),
+				new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
+				new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
+				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+		gridPaneLeft.setVgap(3.);
+		gridPaneLeft.setStyle(styles.getStyle2());
+		scrollPaneLeft.setContent(gridPaneLeft);
+
+		// center column
+		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+		hBoxHeaderCenter.setSpacing(2.);
+		hBoxHeaderCenter.setStyle(styles.getStyle3());
+		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+		vBoxCenter.setStyle(styles.getStyle2());
+
+		// right column
+		vBoxRight.getChildren().addAll(paneForCountryStateTree);
+		vBoxRight.setStyle(styles.getStyle2());
+
+		gridPanePresetModification.addColumn(0, scrollPaneLeft);
+		gridPanePresetModification.addColumn(1, vBoxCenter);
+		gridPanePresetModification.addColumn(2, vBoxRight);
+		gridPaneLeft.setPrefWidth(325);
+		gridPaneLeft.setMinWidth(325);
+		vBoxCenter.setPrefWidth(300);
+		vBoxRight.setPrefWidth(300);
+
 		VBox tabLayout = new VBox();
 		tabLayout.getChildren().addAll(gridPanePresetModification);
 		this.setContent(tabLayout);
-		
-		
-        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-			setPolicyAndMarketNames();
-		});
+		setPolicyAndMarketNames();
 	}
 
 	/**
@@ -342,6 +379,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Automatically sets the policy and market names based on current selections
 	 * and options. If auto-naming is enabled, updates the text fields accordingly.
+	 * <p>
+	 * Uses selected measure, pollutant, category, and region to generate unique names.
+	 * Handles edge cases for multiple categories or regions.
 	 */
 	private void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
@@ -400,6 +440,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	/**
 	 * Saves the scenario component by generating metadata and CSV content. Uses
 	 * selected regions, pollutant, sector, and cap/tax values.
+	 * <p>
+	 * This is the main entry point for saving the scenario component. Calls the overloaded
+	 * saveScenarioComponent(TreeView) method with the current region tree.
 	 */
 	@Override
 	public void saveScenarioComponent() {
@@ -442,12 +485,13 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 		fileContent = getMetaDataContent(tree, market_name, policy_name);
 
+		// Route to appropriate file generation method based on pollutant and measure
 		if (pol.startsWith(CO2) && ALL.equals(category) && CAP.equals(measure)) {
 			saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol_selection, market_name, policy_name);
 			return;
 		} else if (!pol.startsWith(GHG)) {
 			saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name,
-					policy_name,ID);
+				policy_name,ID);
 			return;
 		} else if (pol_selection.startsWith(GHG)) {
 			saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
@@ -468,6 +512,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param pol                   Pollutant string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
+	 * @param ID                    Unique identifier for this policy instance
 	 */
 	private void saveScenarioComponentFlexTaxOrCap(String[] listOfSelectedRegions, String measure, String category,
 			List<String> categories, String pol, String market_name, String policy_name,String ID) {
@@ -601,12 +646,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 								}
 							}
 						}
-
 					}
-				}
-				double progress = (double) l / (listOfSelectedRegions.length - 1);
-				updateProgressBar(progress);
+					double progress = (double) l / (listOfSelectedRegions.length - 1);
+					updateProgressBar(progress);
 
+				}
 			}
 			files.closeBufferedFile(bw1);
 			files.closeBufferedFile(bw2);
@@ -948,7 +992,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		return error_count == 0;
 	}
 
-	
 	/**
 	 * Updates the progress bar in a thread-safe way.
 	 *

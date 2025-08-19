@@ -72,6 +72,49 @@ import javafx.stage.Stage;
  * <b>Thread Safety:</b> This class is not thread-safe and should be used on the
  * JavaFX Application Thread.
  * </p>
+ *
+ * <p>
+ * <b>Functionality:</b>
+ * <ul>
+ *   <li>Allows the user to define market share policies by selecting technology subsets and supersets.</li>
+ *   <li>Supports filtering of available technologies for subset and superset selection.</li>
+ *   <li>Provides options for policy type, application, constraint, and treatment.</li>
+ *   <li>Handles population of policy data tables and validation of user input.</li>
+ *   <li>Generates scenario component metadata and writes policy files for use in GLIMPSE.</li>
+ *   <li>Supports loading and saving of scenario component configurations.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Key UI Elements:</b>
+ * <ul>
+ *   <li>ComboBoxes for policy type, application, constraint, and treatment.</li>
+ *   <li>CheckComboBoxes for subset and superset technology selection.</li>
+ *   <li>TextFields for filtering, policy/market names, and year/value entry.</li>
+ *   <li>Buttons for populating, clearing, and deleting table entries.</li>
+ *   <li>TreeView for region selection.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * <b>Typical Workflow:</b>
+ * <ol>
+ *   <li>User selects a policy type and filters available technologies.</li>
+ *   <li>User selects subset and superset technologies for the policy.</li>
+ *   <li>User specifies application, constraint, and treatment options.</li>
+ *   <li>User enters year/value data and populates the table.</li>
+ *   <li>User saves the scenario component, which generates the necessary files and metadata.</li>
+ * </ol>
+ * </p>
+ *
+ * <p>
+ * <b>Dependencies:</b>
+ * <ul>
+ *   <li>JavaFX for UI components and threading.</li>
+ *   <li>ControlsFX for CheckComboBox controls.</li>
+ *   <li>GLIMPSE utility classes for file and data handling.</li>
+ * </ul>
+ * </p>
  */
 public class TabMarketShare extends PolicyTab implements Runnable {
 	// === Constants for UI text and options ===
@@ -124,7 +167,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Constructs a TabMarketShare instance for the given scenario builder tab.
-	 * 
+	 *
 	 * @param title  The tab title.
 	 * @param stageX The JavaFX stage.
 	 * @param pane   The parent pane.
@@ -132,8 +175,88 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	public TabMarketShare(String title, Stage stageX, PaneNewScenarioComponent pane) {
 		this.setText(title);
 		this.setStyle(styles.getFontStyle());
-		initializeUI();
+		setupUIControls();
+		setComponentWidths();
+		setupUILayout();
 		setPolicyAndMarketNames();
+	}
+
+	/**
+	 * Sets up all UI controls, listeners, and default values for the market share policy tab.
+	 * This includes ComboBox and CheckComboBox options, widget actions, and event handlers.
+	 */
+	private void setupUIControls() {
+		// Set up initial state for auto-naming and text fields
+		checkBoxUseAutoNames.setSelected(true);
+		textFieldPolicyName.setDisable(true);
+		textFieldMarketName.setDisable(true);
+		// Populate ComboBox options
+		comboBoxPolicyType.getItems().addAll(POLICY_TYPE_OPTIONS);
+		comboBoxPolicyType.getSelectionModel().select(0);
+		checkComboBoxSubset.getItems().addAll(SELECT_ONE_OR_MORE);
+		checkComboBoxSuperset.getItems().addAll(SELECT_ONE_OR_MORE);
+		checkComboBoxSubset.getCheckModel().check(0);
+		checkComboBoxSuperset.getCheckModel().check(0);
+		checkComboBoxSubset.setPrefWidth(70);
+		checkComboBoxSuperset.setPrefWidth(70);
+		checkComboBoxSubset.setMaxWidth(70);
+		checkComboBoxSuperset.setMaxWidth(70);
+		comboBoxAppliedTo.getItems().addAll(APPLIED_TO_OPTIONS);
+		comboBoxAppliedTo.getSelectionModel().select("All Stock");
+		comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
+		comboBoxConstraint.getSelectionModel().selectFirst();
+		comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
+		comboBoxTreatment.getSelectionModel().selectFirst();
+		comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
+		comboBoxModificationType.getSelectionModel().selectFirst();
+		// Widget actions and event handlers
+		setupWidgetActions();
+
+		// Update policy and market names when region tree changes
+		paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+			setPolicyAndMarketNames();
+		});
+		
+		// Set default selections for modification type, treatment, and applied to
+		this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
+		this.comboBoxTreatment.getSelectionModel().select("Select One");
+		this.comboBoxAppliedTo.getSelectionModel().select("Select One");
+	}
+
+	/**
+	 * Sets the min and max widths for all ComboBoxes and CheckComboBoxes in the tab.
+	 * Ensures consistent sizing for UI elements.
+	 */
+	private void setComponentWidths() {
+		Object[] comboBoxes = { comboBoxPolicyType, checkComboBoxSubset, checkComboBoxSuperset, comboBoxAppliedTo,
+				comboBoxModificationType, comboBoxConstraint, comboBoxTreatment };
+		for (Object cb : comboBoxes) {
+			if (cb instanceof ComboBox) {
+				((ComboBox<?>) cb).setMaxWidth(MAX_WIDTH);
+				((ComboBox<?>) cb).setMinWidth(MIN_WIDTH);
+			} else if (cb instanceof CheckComboBox) {
+				((CheckComboBox<?>) cb).setMaxWidth(MAX_WIDTH);
+				((CheckComboBox<?>) cb).setMinWidth(MIN_WIDTH);
+			}
+		}
+	}
+
+	/**
+	 * Sets up the layout and arrangement of UI elements in the tab.
+	 * Organizes the left, center, and right columns and adds them to the main layout.
+	 */
+	private void setupUILayout() {
+		// UI Layout for left, center, and right columns
+		setupLeftColumn();
+		setupCenterColumn();
+		setupRightColumn();
+		gridPanePresetModification.addColumn(0, scrollPaneLeft);
+		gridPanePresetModification.addColumn(1, vBoxCenter);
+		gridPanePresetModification.addColumn(2, vBoxRight);
+		gridPaneLeft.setPrefWidth(325);
+		gridPaneLeft.setMinWidth(325);
+		vBoxCenter.setPrefWidth(300);
+		vBoxRight.setPrefWidth(300);
 		VBox tabLayout = new VBox();
 		tabLayout.getChildren().addAll(gridPanePresetModification);
 		this.setContent(tabLayout);
@@ -141,6 +264,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Initializes the UI components and layout for the tab.
+	 * (Legacy method, not used in current workflow.)
 	 */
 	private void initializeUI() {
 		// Set up initial state
@@ -193,6 +317,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets the min and max widths for all ComboBoxes.
+	 * (Legacy method, not used in current workflow.)
 	 */
 	private void setComboBoxWidths() {
 		Object[] comboBoxes = { comboBoxPolicyType, checkComboBoxSubset, checkComboBoxSuperset, comboBoxAppliedTo,
@@ -211,6 +336,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Sets up the left column of the UI with labels and input controls for policy
 	 * specification and population.
+	 * Arranges all relevant controls for user input.
 	 */
 	private void setupLeftColumn() {
 		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
@@ -231,6 +357,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets up the center column of the UI with value controls and action buttons.
+	 * Includes table population, deletion, and clearing.
 	 */
 	private void setupCenterColumn() {
 		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
@@ -241,7 +368,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets up the right column of the UI with the country/state tree.
+	 * Sets up the right column of the UI with the country/state tree for region selection.
 	 */
 	private void setupRightColumn() {
 		vBoxRight.getChildren().addAll(paneForCountryStateTree);
@@ -250,6 +377,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets up widget actions and event handlers for UI controls.
+	 * Handles double-click, selection, and action events for all major controls.
 	 */
 	private void setupWidgetActions() {
 		setOnMouseClicked(labelSubset, e -> {
@@ -296,7 +424,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				if ((selectedItem.contains("RPS")) || (selectedItem.contains("CES"))) {
 					//showInfo("For RPS and CES options:\nTechnology selections chosen automatically. Modify as needed.",
 					//		"Information");
-					utils.warningMessage("For RPS and CES options:\nTechnology selections chosen automatically. Modify as needed.");	
+					utils.warningMessage("For RPS and CES options:\nTechnology selections chosen automatically. Modify as needed");	
 					this.comboBoxAppliedTo.getSelectionModel().select("All Stock");
 					this.comboBoxTreatment.getSelectionModel().select("Across Selected Regions");
 					this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
@@ -358,7 +486,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets up the subset and superset check combo boxes based on the selected
-	 * policy type and filters.
+	 * policy type and filters. Calls overloaded method with selected item.
 	 */
 	private void setupCheckComboBoxes() {
 		String item = comboBoxPolicyType.getSelectionModel().getSelectedItem();
@@ -367,7 +495,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets up the subset and superset check combo boxes for a given policy type.
-	 * 
+	 * Filters and populates the available technology options for subset and superset.
+	 *
 	 * @param selectedItem The selected policy type.
 	 */
 	private void setupCheckComboBoxes(String selectedItem) {
@@ -752,7 +881,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets the policy and market names automatically based on current selections if
-	 * auto-naming is enabled.
+	 * auto-naming is enabled. Uses selected policy type, application, treatment, and regions.
 	 */
 	private void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
@@ -798,7 +927,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Runs background tasks or updates for this tab. Implementation of Runnable
-	 * interface.
+	 * interface. Triggers saveScenarioComponent on the JavaFX Application Thread.
 	 */
 	@Override
 	public void run() {
@@ -807,7 +936,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Saves the scenario component using the selected regions from the
-	 * country/state tree.
+	 * country/state tree. Calls overloaded saveScenarioComponent(TreeView).
 	 */
 	@Override
 	public void saveScenarioComponent() {
@@ -816,7 +945,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Saves the scenario component using the provided tree of selected regions.
-	 * 
+	 * Writes all necessary files and metadata for the market share policy.
+	 *
 	 * @param tree The TreeView containing selected regions.
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
@@ -1140,8 +1270,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Generates the metadata content for the scenario component, including selected
-	 * options and table data.
-	 * 
+	 * options and table data. Used for file output and documentation.
+	 *
 	 * @param tree   The TreeView containing selected regions.
 	 * @param market The market name.
 	 * @param policy The policy name.
@@ -1181,8 +1311,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Loads the content of a scenario component from a list of strings, updating
-	 * the UI accordingly.
-	 * 
+	 * the UI accordingly. Used for loading saved scenario configurations.
+	 *
 	 * @param content The content to load.
 	 */
 	@Override
@@ -1244,8 +1374,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Performs QA checks to ensure all required fields for populating the table are
-	 * filled.
-	 * 
+	 * filled. Checks for year, initial/final values, and growth fields.
+	 *
 	 * @return true if all required fields are filled, false otherwise.
 	 */
 	public boolean qaPopulate() {
@@ -1265,7 +1395,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Helper method to validate table data years against allowable policy years.
-	 * 
+	 * Ensures that at least one year in the table matches allowable years.
+	 *
 	 * @return true if at least one year matches allowable years, false otherwise
 	 */
 	private boolean validateTableDataYears() {
@@ -1285,8 +1416,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Performs QA checks to ensure all required inputs for saving the scenario
-	 * component are valid.
-	 * 
+	 * component are valid. Checks region selection, table data, subset/superset selections,
+	 * combo box selections, and unit consistency.
+	 *
 	 * @return true if all required inputs are valid, false otherwise.
 	 */
 	protected boolean qaInputs() {
@@ -1401,7 +1533,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Returns the suggested filename for the scenario component file. This is used
 	 * when saving the scenario component to disk.
-	 * 
+	 *
 	 * @return The suggested filename as a String.
 	 */
 	@Override
@@ -1421,7 +1553,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Returns the file content for the scenario component. This is used when saving
 	 * the scenario component to disk.
-	 * 
+	 *
 	 * @return The file content as a String.
 	 */
 	@Override
@@ -1440,7 +1572,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Updates the progress bar on the JavaFX Application Thread.
-	 * 
+	 *
 	 * @param progress The progress value to set (between 0.0 and 1.0).
 	 */
 	private void updateProgressBar(double progress) {

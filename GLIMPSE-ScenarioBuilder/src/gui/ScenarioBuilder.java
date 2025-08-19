@@ -69,11 +69,28 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * Builds the main user interface for the Scenario Builder application.
- * This class sets up all the primary JavaFX panes, tables, buttons, and event handlers.
+ * ScenarioBuilder is responsible for constructing the main user interface and core logic for the GLIMPSE Scenario Builder application.
+ * <p>
+ * This class initializes and manages all primary JavaFX panes, tables, buttons, and event handlers required for scenario creation, editing, and management.
+ * It follows the singleton pattern to ensure a single instance throughout the application lifecycle.
+ * <p>
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Initializes and lays out the component library, scenario creation, and scenario library panes.</li>
+ *   <li>Configures and manages all major UI controls, including search fields, tables, and action buttons.</li>
+ *   <li>Implements event handlers for adding/removing components, editing scenarios, and updating UI state.</li>
+ *   <li>Integrates with GLIMPSE utility classes for consistent styling, file management, and variable access.</li>
+ *   <li>Supports filtering and sorting of components and scenarios using JavaFX's observable collections.</li>
+ *   <li>Provides utility methods for file type detection and dynamic UI resizing.</li>
+ * </ul>
+ * <p>
+ * <b>Usage:</b> Call {@link #build()} to initialize and display the main panes and controls. Use the provided getters to access the main layout containers for embedding in the application scene.
+ * <p>
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used only on the JavaFX Application Thread.
  *
- * This version has been updated to reflect Java 8+ best practices, including
- * the use of lambda expressions, method references, and the Streams API.
+ * @author US EPA, Dr. Dan Loughlin
+ * @version 8.2
+ * @since 7.0
  */
 public class ScenarioBuilder {
 
@@ -116,14 +133,26 @@ public class ScenarioBuilder {
 	protected final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 	protected final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
+	/**
+	 * Returns the singleton instance of ScenarioBuilder.
+	 *
+	 * @return the singleton ScenarioBuilder instance
+	 */
 	public static ScenarioBuilder getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Private constructor for singleton pattern. Prevents external instantiation.
+	 */
 	public ScenarioBuilder() {
 		// Private constructor for singleton pattern
 	}
 
+	/**
+	 * Initializes and builds all main UI panes, tables, and controls for the Scenario Builder.
+	 * This method should be called once during application startup.
+	 */
 	public void build() {
 		vars.init(utils, vars, styles, files);
 		files.init(utils, vars, styles, files);
@@ -137,6 +166,10 @@ public class ScenarioBuilder {
 		resizeLabels();
 	}
 
+	/**
+	 * Creates and configures the main tables for the component library, scenario creation, and scenario library.
+	 * Sets up tooltips and filtering for the component library table.
+	 */
 	private void createTables() {
 		new SetupTableComponentLibrary().setup();
 		ComponentLibraryTable.getFilterComponentsTextField().setTooltip(new Tooltip(TOOLTIP_FILTER));
@@ -145,6 +178,10 @@ public class ScenarioBuilder {
 		new SetupTableScenariosLibrary().setup();
 	}
 
+	/**
+	 * Builds the component library pane, including the label, search field, and action buttons.
+	 * Assembles the layout using HBox and VBox containers.
+	 */
 	private void createComponentLibraryPane() {
 		labelComponentLibrary = utils.createLabel(LABEL_COMPONENT_LIBRARY, 1.7 * styles.getBigButtonWidth());
 		labelSearchComponentLibrary = utils.createLabel(LABEL_SEARCH, styles.getBigButtonWidth());
@@ -152,6 +189,7 @@ public class ScenarioBuilder {
 		HBox paneObjects = new HBox();
 		Client.paneCandidateComponents = new PaneNewScenarioComponent();
 
+		// Add all relevant controls to the component library pane
 		paneObjects.getChildren().addAll(
 			labelComponentLibrary, utils.getSeparator(Orientation.VERTICAL, 15, false),
 			labelSearchComponentLibrary, ComponentLibraryTable.getFilterComponentsTextField(),
@@ -166,6 +204,10 @@ public class ScenarioBuilder {
 		vBoxComponentLibrary.setStyle(styles.getStyle1());
 	}
 
+	/**
+	 * Builds the scenario creation pane, including the scenario name label and scenario creation controls.
+	 * Uses VBox for vertical layout.
+	 */
 	private void createCreateScenarioPane() {
 		labelScenarioName = utils.createLabel(LABEL_CREATE_SCENARIO, 2 * styles.getBigButtonWidth());
 		Client.paneCreateScenario = new PaneCreateScenario(Client.primaryStage);
@@ -175,6 +217,10 @@ public class ScenarioBuilder {
 		vBoxCreateScenario.setStyle(styles.getStyle1());
 	}
 
+	/**
+	 * Builds the scenario library pane, including the scenario library label, search field, and action buttons.
+	 * Configures filtering and sorting for the scenario table.
+	 */
 	private void createScenarioLibraryPane() {
 		labelScenarioLibrary = utils.createLabel(LABEL_SCENARIO_LIBRARY, styles.getBigButtonWidth() * 1.75);
 
@@ -183,6 +229,7 @@ public class ScenarioBuilder {
 		filterScenarioTextField.setPrefWidth(styles.getBigButtonWidth() * 1.75);
 		filterScenarioTextField.setTooltip(new Tooltip(TOOLTIP_FILTER));
 
+		// Set up filtered and sorted lists for scenario table
 		ScenarioTable.filteredScenarios = new FilteredList<>(ScenarioTable.tableScenariosLibrary.getItems(), p -> true);
 
 		filterScenarioTextField.textProperty().addListener((observable, oldValue, newValue) ->
@@ -206,6 +253,7 @@ public class ScenarioBuilder {
 		labelSearchScenarios = utils.createLabel(LABEL_SEARCH, styles.getBigButtonWidth());
 		labelSearchScenarios.setTextAlignment(TextAlignment.LEFT);
 
+		// Add all relevant controls to the scenario library pane
 		buttonHBox.getChildren().addAll(
 			labelSearchScenarios, filterScenarioTextField,
 			utils.getSeparator(Orientation.VERTICAL, 6, false), Client.buttonEditScenario,
@@ -224,6 +272,10 @@ public class ScenarioBuilder {
 		vBoxRun = new VBox(5, bottomPane, Client.paneWorkingScenarios.gethBox());
 	}
 
+	/**
+	 * Creates and configures the arrow buttons for moving components between lists and editing scenarios.
+	 * Sets up tooltips, disables by default, and assigns event handlers.
+	 */
 	private void createArrowButtons() {
 		Client.buttonLeftArrow = utils.createButton(null, styles.getBigButtonWidth(), TOOLTIP_REMOVE_SELECTED_COMPONENTS, "leftArrow7");
 		Client.buttonLeftArrow.setDisable(true);
@@ -248,24 +300,49 @@ public class ScenarioBuilder {
 
 	// --- Event Handlers for Buttons ---
 
+	/**
+	 * Removes the selected components from the scenario creation list.
+	 * Updates the status of arrow and action buttons.
+	 *
+	 * @param event the ActionEvent triggered by the button
+	 */
 	private void removeSelectedComponents(ActionEvent event) {
 		ObservableList<ComponentRow> selectedItems = ComponentLibraryTable.getTableCreateScenario().getSelectionModel().getSelectedItems();
 		ComponentLibraryTable.removeFromListOfFilesCreatePolicyScenario(selectedItems);
 		setArrowAndButtonStatus();
 	}
 
+	/**
+	 * Removes all components from the scenario creation list.
+	 * Updates the status of arrow and action buttons.
+	 *
+	 * @param event the ActionEvent triggered by the button
+	 */
 	private void removeAllComponents(ActionEvent event) {
 		ObservableList<ComponentRow> allItems = ComponentLibraryTable.getTableCreateScenario().getItems();
 		ComponentLibraryTable.removeFromListOfFilesCreatePolicyScenario(allItems);
 		setArrowAndButtonStatus();
 	}
 
+	/**
+	 * Adds the selected components from the component library to the scenario creation list.
+	 * Updates the status of arrow and action buttons.
+	 *
+	 * @param event the ActionEvent triggered by the button
+	 */
 	private void addSelectedComponents(ActionEvent event) {
 		ObservableList<ComponentRow> selectedItems = ComponentLibraryTable.getTableComponents().getSelectionModel().getSelectedItems();
 		ComponentLibraryTable.addToListOfFilesCreatePolicyScenario(selectedItems);
 		setArrowAndButtonStatus();
 	}
 
+	/**
+	 * Loads the selected scenario from the scenario library for editing in the scenario creation pane.
+	 * If the scenario was created externally, editing is not allowed.
+	 * Updates the scenario name and component list in the creation pane.
+	 *
+	 * @param event the ActionEvent triggered by the button
+	 */
 	private void loadSelectedScenarioForEditing(ActionEvent event) {
 		ObservableList<ScenarioRow> selectedScenarios = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
 		if (selectedScenarios.size() != 1) {
@@ -290,6 +367,7 @@ public class ScenarioBuilder {
 
 		ComponentRow[] componentRows = new ComponentRow[0];
 		if (!components.isEmpty()) {
+			// Split the components string and create ComponentRow objects for each filename
 			componentRows = Arrays.stream(components.split(";"))
 				.map(String::trim)
 				.filter(name -> !name.isEmpty())
@@ -308,6 +386,12 @@ public class ScenarioBuilder {
 		setArrowAndButtonStatus();
 	}
 
+	/**
+	 * Creates a ComponentRow object from a given filename, using the scenario components directory and file's last modified date.
+	 *
+	 * @param filename the name of the component file
+	 * @return a new ComponentRow representing the file
+	 */
 	private ComponentRow createComponentRowFromFilename(String filename) {
 		String fullFilename = vars.getScenarioComponentsDir() + File.separator + filename;
 		File file = new File(fullFilename);
@@ -315,6 +399,9 @@ public class ScenarioBuilder {
 		return new ComponentRow(filename, fullFilename, lastModified);
 	}
 
+	/**
+	 * Resizes all main labels in the UI to fit their content and style requirements.
+	 */
 	private void resizeLabels() {
 		labelComponentLibrary = utils.resizeLabelText(labelComponentLibrary);
 		labelSearchComponentLibrary = utils.resizeLabelText(labelSearchComponentLibrary);
@@ -323,6 +410,14 @@ public class ScenarioBuilder {
 		labelScenarioName = utils.resizeLabelText(labelScenarioName);
 	}
 
+	/**
+	 * Determines the file type of a given filename by checking its extension and content.
+	 * If the file ends with .xml, returns "xml". Otherwise, scans the file for a type string or input table marker.
+	 *
+	 * @param filename   the file to check
+	 * @param typeString the string to search for in the file
+	 * @return the file type as a string (e.g., "xml", "preset", or "INPUT_TABLE")
+	 */
 	protected String getFileType(String filename, String typeString) {
 		if (filename.endsWith(".xml")) {
 			return FILE_TYPE_XML;
@@ -353,6 +448,10 @@ public class ScenarioBuilder {
 		return FILE_TYPE_PRESET;
 	}
 
+	/**
+	 * Updates the enabled/disabled status of all major arrow and action buttons based on current selection state.
+	 * This method should be called after any change in selection or list contents.
+	 */
 	protected void setArrowAndButtonStatus() {
 		int numSelectedScenarios = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems().size();
 		int numSelectedCreate = ComponentLibraryTable.getTableCreateScenario().getSelectionModel().getSelectedItems().size();
@@ -390,18 +489,38 @@ public class ScenarioBuilder {
 
 	// --- Getters for main layout panes ---
 
+	/**
+	 * Returns the VBox containing the component library pane.
+	 *
+	 * @return VBox for the component library
+	 */
 	public VBox getvBoxComponentLibrary() {
 		return vBoxComponentLibrary;
 	}
 
+	/**
+	 * Returns the VBox containing the scenario creation pane.
+	 *
+	 * @return VBox for scenario creation
+	 */
 	public VBox getvBoxCreateScenario() {
 		return vBoxCreateScenario;
 	}
 
+	/**
+	 * Returns the VBox containing the arrow buttons for moving components.
+	 *
+	 * @return VBox for arrow buttons
+	 */
 	public VBox getvBoxButton() {
 		return vBoxButton;
 	}
 
+	/**
+	 * Returns the VBox containing the scenario library pane and controls.
+	 *
+	 * @return VBox for scenario library and controls
+	 */
 	public VBox getvBoxRun() {
 		return vBoxRun;
 	}

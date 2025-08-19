@@ -64,6 +64,41 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.StatusBar;
 
+/**
+ * The main entry point and controller for the GLIMPSE Scenario Builder GUI application.
+ * <p>
+ * <b>Responsibilities:</b>
+ * <ul>
+ *   <li>Initializes and launches the JavaFX-based Scenario Builder application.</li>
+ *   <li>Handles application startup, shutdown, and splash screen display.</li>
+ *   <li>Manages the main window, menu bar, and layout of all major GUI panels.</li>
+ *   <li>Initializes and provides access to all major scenario and component panes, buttons, and execution threads.</li>
+ *   <li>Processes command-line arguments and loads user options.</li>
+ *   <li>Coordinates the setup of execution threads for GCAM and post-processing.</li>
+ *   <li>Provides static accessors for key UI elements and threads for use throughout the application.</li>
+ * </ul>
+ *
+ * <b>Usage:</b> This class is launched as a JavaFX application. It is responsible for the lifecycle of the Scenario Builder GUI.
+ *
+ * <b>Thread Safety:</b> Most methods must be called on the JavaFX Application Thread. Static accessors are provided for UI integration.
+ *
+ * <b>Integration:</b>
+ * <ul>
+ *   <li>Works with {@link ScenarioBuilder} for building and managing the main UI panels.</li>
+ *   <li>Uses {@link GLIMPSEVariables}, {@link GLIMPSEFiles}, {@link GLIMPSEStyles}, and {@link glimpseUtil.GLIMPSEUtils} for configuration and utility functions.</li>
+ *   <li>Integrates with menu setup classes (e.g., {@link SetupMenuFile}, {@link SetupMenuEdit}, etc.).</li>
+ *   <li>Provides access to execution threads for running GCAM and post-processing tasks.</li>
+ * </ul>
+ *
+ * <b>Example:</b>
+ * <pre>
+ * // Launch the Scenario Builder application
+ * Client.main(new String[] {"-options", "options_GCAM-global-8.2.txt"});
+ * </pre>
+ *
+ * @author US EPA
+ * @version 1.0
+ */
 public class Client extends Application {
 
 	// version
@@ -145,7 +180,9 @@ public class Client extends Application {
     /**
      * The entry point of the application. Sets up JavaFX and launches the GUI.
      *
-     * @param args Command line arguments passed to the application.
+     * <p>Handles command-line arguments and starts the JavaFX application lifecycle.</p>
+     *
+     * @param args Command line arguments passed to the application. Supports an options file via -options flag or as a single argument.
      */
     public static void main(String[] args) {
         // Added following line to address issue on VMs that caused JavaFX to shutdown when WM_ENDSESSION was called.
@@ -155,6 +192,8 @@ public class Client extends Application {
 
     /**
      * Initializes the application. Loads settings, options, and data files, and sets up utility references.
+     *
+     * <p>Initializes all singleton utility classes and loads user options and data files. Also logs system information.</p>
      *
      * @throws Exception if initialization fails
      */
@@ -188,6 +227,8 @@ public class Client extends Application {
 
     /**
      * Starts the JavaFX application and sets up the main window and GUI components.
+     *
+     * <p>Initializes the main window, sets up event handlers for shutdown, builds all panels, and configures the application icon.</p>
      *
      * @param primaryStage The primary stage for this application.
      */
@@ -225,6 +266,8 @@ public class Client extends Application {
     /**
      * Processes command-line arguments to extract the options filename if provided.
      * Supports both single argument and -options flag.
+     *
+     * <p>Sets the static optionsFilename field if an options file is specified.</p>
      */
     private void processArgs() {
         final Parameters params = getParameters();
@@ -248,6 +291,8 @@ public class Client extends Application {
 
     /**
      * Creates the main menu bar for the application, including File, Edit, Tools, View, and Help menus.
+     *
+     * <p>Each menu is set up using its corresponding setup class.</p>
      *
      * @return MenuBar the constructed menu bar
      */
@@ -282,6 +327,8 @@ public class Client extends Application {
     /**
      * Combines all main GUI elements into a single GridPane for the main window layout.
      *
+     * <p>Adds the component library, button panel, create scenario panel, and run panel to the main layout.</p>
+     *
      * @return GridPane containing all main UI elements
      */
     private GridPane combineAllElementsIntoOnePane() {
@@ -303,6 +350,8 @@ public class Client extends Application {
 
     /**
      * Sets up the main application window with the provided layout and menu bar.
+     *
+     * <p>Configures the root layout, scene, window size, and optionally displays the splash screen.</p>
      *
      * @param mainGridPane The main content pane
      * @param menuBar The menu bar
@@ -329,6 +378,8 @@ public class Client extends Application {
     /**
      * Sets up the execution threads for GCAM and the model interface.
      * GCAM uses a single-threaded executor, while the model interface uses a multi-threaded executor.
+     *
+     * <p>Initializes and starts the execution queues for both GCAM and post-processing.</p>
      */
     private void setupExecutionThreads() {
         // Starting separate execution queues for GCAM and post-processor.
@@ -341,6 +392,8 @@ public class Client extends Application {
 
     /**
      * Loads and displays the splash screen with fade-in and fade-out effects.
+     *
+     * <p>Shows a splash image on startup if enabled in user options. Handles errors gracefully if the image is missing.</p>
      *
      * @return true if splash screen loaded successfully, false otherwise
      */
@@ -400,6 +453,8 @@ public class Client extends Application {
     /**
      * Sets the text of the status bar at the bottom of the application window.
      * If called from a background thread, wraps the update in Platform.runLater.
+     *
+     * <p>Used throughout the application to provide user feedback and status updates.</p>
      *
      * @param text The text to display in the status bar
      */

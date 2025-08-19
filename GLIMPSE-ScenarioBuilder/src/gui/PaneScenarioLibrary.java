@@ -1,25 +1,25 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
  * SUPPORT
  * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
  * For the GLIMPSE project, GCAM development, data processing, and support for 
@@ -31,7 +31,6 @@
  * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
  * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
  * Laboratory contract.
-* 
 */
 package gui;
 
@@ -67,9 +66,49 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * PaneScenarioLibrary is responsible for managing the lower pane of the application
- * where historical run records are displayed and scenario-related actions are handled.
- * It provides UI controls for scenario management and status updates.
+ * PaneScenarioLibrary manages the lower pane of the GLIMPSE Scenario Builder application,
+ * displaying historical run records and providing scenario-related actions. It is responsible for:
+ * <ul>
+ *   <li>Displaying a table of all scenario runs, including their status, creation, and completion dates.</li>
+ *   <li>Providing UI controls for scenario management, such as running, archiving, deleting, importing, and viewing scenarios.</li>
+ *   <li>Handling user interactions for scenario operations, including confirmation dialogs and file operations.</li>
+ *   <li>Updating scenario status based on log files and execution results.</li>
+ *   <li>Generating reports on scenario execution, errors, and queue status.</li>
+ *   <li>Integrating with external tools such as ModelInterface and file diff utilities.</li>
+ * </ul>
+ * <p>
+ * This class is central to the workflow of scenario management, providing both the UI and the logic
+ * for all scenario-related actions in the application. It interacts with the file system, background
+ * execution threads, and various utility classes to ensure robust scenario handling.
+ * </p>
+ *
+ * <b>Key Features:</b>
+ * <ul>
+ *   <li>Scenario queue management and reporting</li>
+ *   <li>Scenario archiving and restoration</li>
+ *   <li>Scenario import/export and configuration editing</li>
+ *   <li>Log and error report generation</li>
+ *   <li>Integration with ModelInterface for results viewing</li>
+ *   <li>Support for diffing scenario configuration files</li>
+ * </ul>
+ *
+ * <b>Usage:</b>
+ * <pre>
+ *     PaneScenarioLibrary pane = new PaneScenarioLibrary(stage);
+ *     HBox scenarioPane = pane.gethBox();
+ *     // Add scenarioPane to your application's layout
+ * </pre>
+ *
+ * <b>Dependencies:</b>
+ * <ul>
+ *   <li>glimpseElement.ScenarioRow, ScenarioTable</li>
+ *   <li>glimpseUtil.FileChooserPlus, GLIMPSEFiles, GLIMPSEStyles, GLIMPSEUtils, GLIMPSEVariables</li>
+ *   <li>JavaFX (Platform, ObservableList, HBox, Stage, etc.)</li>
+ * </ul>
+ *
+ * @author US EPA, PNNL, and contributors
+ * @version 1.0
+ * @since 2025-08-19
  */
 class PaneScenarioLibrary extends ScenarioBuilder {
 
@@ -121,8 +160,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
     private final HBox scenarioLibraryHBox = new HBox(1);
 
     /**
-     * Constructs the scenario library pane and sets up UI controls and event handlers.
-     * @param stage the main application stage
+     * Constructs the scenario library pane, sets up UI controls, event handlers, and initializes the scenario table.
+     * Binds table size to the main application stage and triggers initial status update.
+     *
+     * @param stage the main application stage for binding UI components
      */
     PaneScenarioLibrary(Stage stage) {
         scenarioLibraryHBox.setStyle(styles.getFontStyle());
@@ -137,10 +178,16 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         updateRunStatus();
     }
 
+    /**
+     * Default constructor for PaneScenarioLibrary. Used for testing or non-UI instantiation.
+     */
     PaneScenarioLibrary() {}
 
     /**
-     * Sets up scenario library buttons and their event handlers.
+     * Sets up scenario library buttons, their tooltips, icons, and event handlers.
+     * Initializes button states and visibility based on application logic.
+     *
+     * <p>Buttons include: Diff, Refresh, Results, Play, Delete, Config, Log, ExeError, Errors, ExeLog, Browse, Import, Queue, Archive, Report.</p>
      */
     private void createScenarioLibraryButtons() {
         // Creating buttons on the bottom pane
@@ -229,7 +276,10 @@ class PaneScenarioLibrary extends ScenarioBuilder {
     // --- UI Event Handlers ---
     /**
      * Handles archiving of selected scenarios. Moves configuration and related files to an archive folder.
-     * Prompts user if archive already exists.
+     * Prompts user if archive already exists. Updates scenario configuration to reference archived files.
+     *
+     * <p>For each selected scenario, creates an archive subfolder, copies referenced files, updates the configuration,
+     * and zips the archive. If an archive already exists, prompts the user for overwrite.</p>
      */
     private void handleArchiveScenario() {
         if (!utils.confirmArchiveScenario()) return;
@@ -246,7 +296,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Handles deletion of selected scenarios. Moves scenario folders to trash.
-     * Prompts user for confirmation.
+     * Prompts user for confirmation. Removes scenarios from the scenario table.
      */
     private void handleDeleteScenario() {
         if (!utils.confirmDelete()) return;
@@ -277,6 +327,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Handles opening ModelInterface for all scenarios. Warns if executable directory is not set.
+     * Launches ModelInterface in a background thread.
      */
     private void handleResults() {
         if (vars.getgCamExecutableDir().isEmpty()) {
@@ -293,6 +344,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Handles opening ModelInterface for a selected scenario. Warns if executable directory is not set.
+     * Launches ModelInterface for the selected scenario's output database.
      */
     private void handleResultsForSelected() {
         if (vars.getgCamExecutableDir().isEmpty()) {
@@ -318,6 +370,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Opens the file explorer for the selected scenario folders.
+     * Uses the system's file explorer to show the scenario directory.
      */
     private void handleBrowseScenarioFolder() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -330,6 +383,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Handles importing a scenario configuration file. Prompts for overwrite if scenario exists.
+     * Adds the imported scenario to the scenario table and creates its folder.
      */
     private void handleImportScenario() {
         File newConfigFile = FileChooserPlus.showOpenDialog(null, "Select scenario configuration file", new File(vars.getgCamExecutableDir()), FileChooserPlus.createExtensionFilter(XML_FILE_FILTER_LABEL, XML_FILE_FILTER_EXT));
@@ -357,6 +411,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Opens the configuration file for the selected scenarios in a text editor.
+     * Uses the system's default text editor.
      */
     private void handleViewConfig() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -369,6 +424,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Opens the main log file for the selected scenarios in a text editor.
+     * Uses the system's default text editor.
      */
     private void handleViewLog() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -381,6 +437,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Opens the main log file in the executable logs directory in a text editor.
+     * Uses the system's default text editor.
      */
     private void handleViewExeLog() {
         String filename = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator + "main_log.txt";
@@ -389,6 +446,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Compares the configuration files of two selected scenarios using a diff tool.
+     * Only works if exactly two scenarios are selected.
      */
     private void handleDiffFiles() {
         ObservableList<ScenarioRow> selectedFiles = ScenarioTable.tableScenariosLibrary.getSelectionModel().getSelectedItems();
@@ -403,6 +461,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Displays the current run queue in a popup window.
+     * Shows scenarios added to the queue and completed runs for the session.
      */
     private void handleShowRunQueue() {
         ArrayList<String> txtArray = createSimpleQueueRpt();
@@ -410,8 +469,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
     }
 
     /**
-     * Returns the HBox containing the scenario library table.
-     * @return the HBox
+     * Returns the HBox containing the scenario library table and controls.
+     *
+     * @return the HBox containing the scenario library UI
      */
     public HBox gethBox() {
         return scenarioLibraryHBox;
@@ -419,7 +479,8 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Returns a simple report of the run queue and completed runs.
-     * @return ArrayList of report lines
+     *
+     * @return ArrayList of report lines for the run queue
      */
     protected ArrayList<String> createSimpleQueueRpt() {
         ArrayList<String> rtnArray = new ArrayList<>();
@@ -439,8 +500,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Returns a detailed report of the run queue, completed, and not completed runs.
+     *
      * @param runQueue the run queue
-     * @return ArrayList of report lines
+     * @return ArrayList of report lines with completion status
      */
     protected ArrayList<String> createFancyQueueRpt(ArrayList<String> runQueue) {
         ArrayList<String> rtnArray = new ArrayList<>();
@@ -490,7 +552,8 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Removes a scenario from the scenario library by name.
-     * @param nameToDelete the scenario name
+     *
+     * @param nameToDelete the scenario name to remove
      */
     void deleteItemFromScenarioLibrary(String nameToDelete) {
         ObservableList<ScenarioRow> allScenariosList = ScenarioTable.tableScenariosLibrary.getItems();
@@ -505,6 +568,8 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Updates the run status for all scenarios and refreshes the table.
+     * Reads log files and updates scenario status, runtime, and unsolved markets.
+     * Also updates the UI with computer stats and logs status changes.
      */
     public void updateRunStatus() {
         String currentMainLogName = vars.getgCamExecutableDir() + File.separator + "logs" + File.separator + "main_log.txt";
@@ -665,8 +730,9 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Reads scenario components from a configuration file.
+     *
      * @param file the configuration file
-     * @return the components string
+     * @return the components string, or a default if not found
      */
     private String getComponentsFromConfig(File file) {
         String rtnStr = "";
@@ -834,7 +900,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Runs the ModelInterface Java application with the current output database and optional arguments.
-     * Handles both Windows and Unix-like systems.
+     * Handles both Windows and Unix-like systems. Launches ModelInterface in a background thread.
      *
      * @throws IOException if process execution fails
      */
@@ -880,6 +946,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Runs the ModelInterface Java application for a specific database.
+     * Handles both Windows and Unix-like systems. Launches ModelInterface in a background thread.
      *
      * @param database_name Path to the database file
      * @throws IOException if process execution fails
@@ -926,7 +993,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Archives scenario files by copying them to an archive folder and zipping the result.
-     * Prompts user if archive already exists.
+     * Prompts user if archive already exists. Updates configuration file paths to point to archived files.
      *
      * @param exeDir Path to the GCAM executable directory
      * @param workingDir Path to the scenario working directory
@@ -1001,6 +1068,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Generates and displays an error report for the selected scenarios using the executable log.
+     * Aggregates error lines and displays them in a popup window.
      */
     private void generateExeErrorReport() {
         ArrayList<String> report = new ArrayList<String>();
@@ -1026,6 +1094,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
 
     /**
      * Generates and displays an error report for the selected scenarios using the scenario log.
+     * Aggregates error lines and displays them in a popup window.
      */
     private void generateErrorReport() {
         ArrayList<String> report = new ArrayList<String>();
@@ -1111,6 +1180,12 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         utils.showPopupTableOfCSVData("Scenario Run Report", report, 910, 600);
     }
 
+    /**
+     * Retrieves the scenario components string from the scenario table for a given scenario name.
+     *
+     * @param scenName the scenario name
+     * @return the components string
+     */
     private String getComponentsFromTable(String scenName) {
         String str = "";
         for (ScenarioRow sr : ScenarioTable.listOfScenarioRuns) {

@@ -48,6 +48,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -58,7 +59,7 @@ import javafx.stage.Stage;
  * TabFixedDemand provides the user interface and logic for creating or editing
  * Fixed Demand scenario components in the GLIMPSE Scenario Builder.
  * <p>
- * This tab allows users to specify demand for a sector in selected regions over a time period,
+ * This tab allows users to specify fixed demand for a sector in selected regions over a time period,
  * using various modification types (e.g., initial/final, growth rates, deltas).
  * Users can populate, edit, and clear demand values, and save the scenario component as a CSV file.
  * </p>
@@ -80,6 +81,32 @@ import javafx.stage.Stage;
  *
  * <h2>Thread Safety</h2>
  * <p>This class is not thread-safe and should be used only on the JavaFX Application Thread.</p>
+ *
+ * <h2>UI Layout</h2>
+ * <ul>
+ *   <li>Left: Sector and modification type selection, input fields for years and values</li>
+ *   <li>Center: Table of demand values, with populate/clear/delete buttons</li>
+ *   <li>Right: Region selection tree</li>
+ * </ul>
+ *
+ * <h2>Component Details</h2>
+ * <ul>
+ *   <li>Supports multiple modification types for demand (initial/final, growth, delta)</li>
+ *   <li>Validates user input for sector, region, and year/value data</li>
+ *   <li>Exports scenario component as a CSV file with metadata</li>
+ *   <li>Supports loading and editing of existing scenario components</li>
+ * </ul>
+ *
+ * <h2>Dependencies</h2>
+ * <ul>
+ *   <li>GLIMPSEVariables, GLIMPSEStyles, GLIMPSEUtils for shared data and utilities</li>
+ *   <li>JavaFX controls and layout classes</li>
+ * </ul>
+ *
+ * <h2>Author</h2>
+ * <ul>
+ *   <li>Dan Loughlin (USEPA, ARA)</li>
+ * </ul>
  */
 public class TabFixedDemand extends PolicyTab implements Runnable {
     // === Constants for UI Strings and Options ===
@@ -89,6 +116,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final String LABEL_VALUES = "Values: ";
     private static final String LABEL_SPECIFICATION = "Specification:";
     private static final String LABEL_POPULATE = "Populate:";
+    private static final double LABEL_WIDTH = 125;
     private static final String MOD_TYPE_INITIAL_FINAL = "Initial and Final";
     private static final String MOD_TYPE_GROWTH_YR = "Initial w/% Growth/yr";
     private static final String MOD_TYPE_GROWTH_PD = "Initial w/% Growth/pd";
@@ -101,6 +129,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final String SECTOR_SELECT_ONE = "Select One";
     private static final double MAX_WIDTH = 195;
     private static final double PREF_WIDTH = 195;
+    // Minimum width for combo boxes (for layout consistency)
+    private static final double MIN_WIDTH = 125;
 
     // === Utility singletons ===
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
@@ -115,11 +145,24 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final VBox vBoxRight = new VBox();
 
     // === UI controls ===
-    private final Label labelSector = createLabel(LABEL_SECTOR, 125);
-    private final ComboBox<String> comboBoxSector = createComboBoxString();
-    private final Label labelUnits = createLabel(LABEL_UNITS, 125);
-    private final Label labelUnitsValue = createLabel("", 125);
-    private final Label labelValue = createLabel(LABEL_VALUES, 125);
+    private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxSector = createComboBoxString(SECTOR_SELECT_ONE, PREF_WIDTH);
+    private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
+    private final Label labelUnitsValue = createLabel("", LABEL_WIDTH);
+    private final Label labelValue = createLabel(LABEL_VALUES, LABEL_WIDTH);
+    private final Label labelModificationType = createLabel("Modification Type:", LABEL_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = createComboBoxString("", PREF_WIDTH);
+    private final Label labelStartYear = createLabel("Start Year:", LABEL_WIDTH);
+    private final Label labelEndYear = createLabel("End Year:", LABEL_WIDTH);
+    private final Label labelInitialAmount = createLabel("Initial Amount:", LABEL_WIDTH);
+    private final Label labelGrowth = createLabel("Growth (%):", LABEL_WIDTH);
+    private final TextField textFieldStartYear = new TextField();
+    private final TextField textFieldEndYear = new TextField();
+    private final TextField textFieldInitialAmount = new TextField();
+    private final TextField textFieldGrowth = new TextField();
+    private final Button buttonPopulate = new Button("Populate");
+    private final Button buttonClear = new Button("Clear");
+    private final Button buttonDelete = new Button("Delete");
     
     // === Data ===
     private final String[][] sectorInfo;
@@ -135,24 +178,57 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Constructs a TabFixedDemand for the given title and stage.
-     * @param title Tab title
-     * @param stageX JavaFX Stage (not used directly)
+     * Initializes UI controls, layout, and event handlers for the Fixed Demand tab.
+     *
+     * @param title Tab title to display
+     * @param stageX JavaFX Stage (not used directly, but may be used for dialogs)
      */
     public TabFixedDemand(String title, Stage stageX) {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
         sectorInfo = vars.getSectorInfo();
-        setupLayout();
+        setupUIControls();
+        setComponentWidths();
+        setupUILayout();
         setupActions();
         VBox tabLayout = new VBox(gridPanePresetModification);
         this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the layout of the tab UI, arranging controls in left, center, and right columns.
+     * Initializes and creates all UI controls for the tab.
+     * Place all control instantiations here if not already at field declaration.
+     * This method is a placeholder for future expansion if more controls are created dynamically.
      */
-    private void setupLayout() {
-        // Left column
+    private void setupUIControls() {
+        // All UI control instantiations should be here if not already at field declaration.
+        // This method is a placeholder for future expansion if more controls are created dynamically.
+    }
+
+    /**
+     * Sets the widths and sizing for all UI components for layout consistency.
+     * Adjusts preferred, minimum, and maximum widths for controls.
+     */
+    private void setComponentWidths() {
+        gridPaneLeft.setPrefWidth(325);
+        gridPaneLeft.setMinWidth(325);
+        vBoxCenter.setPrefWidth(300);
+        vBoxRight.setPrefWidth(300);
+        comboBoxSector.setMaxWidth(MAX_WIDTH);
+        comboBoxModificationType.setMaxWidth(MAX_WIDTH);
+        comboBoxSector.setMinWidth(MIN_WIDTH);
+        comboBoxModificationType.setMinWidth(MIN_WIDTH);
+        comboBoxSector.setPrefWidth(PREF_WIDTH);
+        comboBoxModificationType.setPrefWidth(PREF_WIDTH);
+    }
+
+    /**
+     * Arranges all UI controls in the layout containers for the tab.
+     * Organizes controls into left (inputs), center (table), and right (region tree) columns.
+     */
+    private void setupUILayout() {
+        // Left column: sector, units, modification type, input fields
+        gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelSector, new Label(), labelUnits, new Separator(),
                 utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth);
@@ -161,23 +237,23 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
 
-        // Center column
+        // Center column: value table and action buttons
+        hBoxHeaderCenter.getChildren().clear();
         hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
         hBoxHeaderCenter.setSpacing(2.);
         hBoxHeaderCenter.setStyle(styles.getStyle3());
+        vBoxCenter.getChildren().clear();
         vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
         vBoxCenter.setStyle(styles.getStyle2());
-        vBoxCenter.setPrefWidth(300);
 
-        // Right column
+        // Right column: region selection tree
+        vBoxRight.getChildren().clear();
         vBoxRight.getChildren().addAll(paneForCountryStateTree);
         vBoxRight.setStyle(styles.getStyle2());
-        vBoxRight.setPrefWidth(300);
 
         // Add columns to main grid
+        gridPanePresetModification.getChildren().clear();
         gridPanePresetModification.addColumn(0, gridPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
         gridPanePresetModification.addColumn(2, vBoxRight);
@@ -186,31 +262,31 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Sets up actions and listeners for UI controls (combo boxes, buttons).
      * Uses Platform.runLater for thread safety if called off JavaFX thread.
+     * Handles sector selection, modification type changes, and table actions.
      */
     private void setupActions() {
         setupComboBoxSector();
         comboBoxSector.getSelectionModel().selectFirst();
         comboBoxModificationType.getItems().addAll(MODIFICATION_TYPES);
         comboBoxModificationType.getSelectionModel().selectFirst();
-        comboBoxSector.setMaxWidth(MAX_WIDTH);
-        comboBoxModificationType.setMaxWidth(MAX_WIDTH);
-        comboBoxSector.setMinWidth(MIN_WIDTH);
-        comboBoxModificationType.setMinWidth(MIN_WIDTH);
-        comboBoxSector.setPrefWidth(PREF_WIDTH);
-        comboBoxModificationType.setPrefWidth(PREF_WIDTH);
+        // Sector selection event: update units or show custom sector input
         registerComboBoxEvent(comboBoxSector, e -> {
             String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
             if (selectedItem == null) return;
             if (SECTOR_OTHER.equals(selectedItem)) {
-                // set other sector box to visible and enable
+                // set other sector box to visible and enable (not implemented)
             } else {
                 updateSectorOutputAndUnits();
             }
         });
         comboBoxSector.fireEvent(new ActionEvent());
+        // Modification type selection event: update growth/final label
         registerComboBoxEvent(comboBoxModificationType, e -> updateGrowthLabel());
+        // Table clear button event
         registerButtonEvent(buttonClear, e -> paneForComponentDetails.clearTable());
+        // Table delete button event
         registerButtonEvent(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
+        // Populate button event: validate and calculate values
         registerButtonEvent(buttonPopulate, e -> {
             if (qaPopulate()) {
                 double[][] values = calculateValues();
@@ -221,7 +297,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Updates the label for the growth/final value based on modification type selection.
-     * E.g., switches between "Final", "Growth (%)", or "Delta".
+     * Switches between "Final", "Growth (%)", or "Delta" as appropriate.
+     * Uses Platform.runLater for thread safety.
      */
     private void updateGrowthLabel() {
         Platform.runLater(() -> {
@@ -247,6 +324,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Populates the sector combo box with available sectors from sectorInfo.
      * Adds an "Other" option for custom sectors.
+     * Handles exceptions and displays a warning if sector list cannot be read.
      */
     private void setupComboBoxSector() {
         try {
@@ -264,6 +342,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Updates the units label based on the selected sector.
      * Looks up units in sectorInfo and displays them next to the sector.
+     * Uses Platform.runLater for thread safety.
      */
     private void updateSectorOutputAndUnits() {
         Platform.runLater(() -> {
@@ -280,6 +359,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Runnable implementation: triggers saving the scenario component.
+     * Calls saveScenarioComponent() on the JavaFX Application Thread.
      */
     @Override
     public void run() {
@@ -289,6 +369,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Saves the scenario component by generating metadata and CSV content.
      * Uses selected regions, sector, and demand values.
+     * Calls overloaded saveScenarioComponent(TreeView) with the region tree.
      */
     @Override
     public void saveScenarioComponent() {
@@ -298,21 +379,25 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Saves the scenario component using the provided region tree.
      * Validates inputs, generates metadata and CSV, and sets fileContent/filenameSuggestion.
+     *
      * @param tree TreeView of selected regions
      */
     private void saveScenarioComponent(TreeView<String> tree) {
         if (qaInputs()) {
             StringBuilder fileContentBuilder = new StringBuilder();
+            // Append metadata header
             fileContentBuilder.append(getMetaDataContent(tree, "", ""));
             fileContentBuilder.append("INPUT_TABLE").append(vars.getEol())
                 .append("Variable ID").append(vars.getEol())
                 .append("GLIMPSEFixedDemand").append(vars.getEol()).append(vars.getEol());
 
+            // Get selected regions (leaves only, no duplicates)
             String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedRegions(tree));
             String sectorName = comboBoxSector.getSelectionModel().getSelectedItem();
             if (sectorName != null) sectorName = sectorName.trim();
             filenameSuggestion = sectorName + "fxDMD";
 
+            // Get year/value data from table
             List<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();
             List<String> yearList = new ArrayList<>();
             List<String> valueList = new ArrayList<>();
@@ -325,6 +410,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
                 }
             }
 
+            // Write CSV header and data rows
             fileContentBuilder.append("region,sector,sector,year,value").append(vars.getEol());
             for (String region : listOfSelectedLeaves) {
                 for (int i = 0; i < yearList.size(); i++) {
@@ -398,6 +484,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Checks if all required fields for populating values are filled.
+     * Ensures that start year, end year, initial amount, and growth/delta fields are not empty.
      *
      * @return true if all required fields are filled, false otherwise
      */
@@ -410,6 +497,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 
     /**
      * Helper method to validate table data years against allowable policy years.
+     * Checks that at least one year in the table matches an allowable policy year.
      *
      * @return true if at least one year matches allowable years, false otherwise
      */
@@ -429,6 +517,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     /**
      * Validates all required inputs before saving the scenario component.
      * Checks for at least one region, at least one table entry, and sector selection.
+     * Also checks that table years match allowable policy years.
+     * Displays warnings for any missing or invalid input.
      *
      * @return true if all inputs are valid, false otherwise
      */
@@ -448,7 +538,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
 				boolean match = validateTableDataYears();
 				if (!match) {
 					message.append("Years specified in table must match allowable policy years (")
-							.append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
+						.append(vars.getAllowablePolicyYears()).append(")").append(vars.getEol());
 					errorCount++;
 				}
 			}

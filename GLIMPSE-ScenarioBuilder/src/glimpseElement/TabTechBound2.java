@@ -59,17 +59,61 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * TabTechBound provides the user interface and logic for creating and editing technology bound policies
- * in the GLIMPSE Scenario Builder. This tab allows users to select sectors, filter technologies, specify constraints,
- * and configure policy details for scenario components.
- *
+ * TabTechBound2 provides the user interface and logic for creating and editing technology bound policies
+ * in the GLIMPSE Scenario Builder.
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
- * </p>
+ * <b>Main responsibilities:</b>
+ * <ul>
+ *   <li>Allow users to select sector/category, filter and select technologies, and specify constraint type</li>
+ *   <li>Configure policy and market names (auto/manual) and treatment (per region or across regions)</li>
+ *   <li>Specify and populate constraint values over time</li>
+ *   <li>Validate, import, and export scenario component data as CSV</li>
+ * </ul>
  *
- * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
- * </p>
+ * <b>Features:</b>
+ * <ul>
+ *   <li>Support for filtering and selecting multiple technologies</li>
+ *   <li>Automatic and manual naming for policy and market</li>
+ *   <li>Dynamic enabling/disabling of UI controls based on selections</li>
+ *   <li>Validation of user input and units</li>
+ *   <li>Progress tracking for file generation</li>
+ * </ul>
+ *
+ * <b>Usage:</b>
+ * <pre>
+ * TabTechBound2 tab = new TabTechBound2("Tech Bound", stage);
+ * // Add to TabPane, interact via UI
+ * </pre>
+ *
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used only
+ * on the JavaFX Application Thread.
+ *
+ * <b>Class Details:</b>
+ * <ul>
+ *   <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
+ *   <li>Handles UI setup, event listeners, and scenario file generation for technology bound policies.</li>
+ *   <li>Supports upper, lower, and fixed bounds, and flexible treatment across/within regions.</li>
+ *   <li>Provides methods for loading, validating, and saving scenario component data.</li>
+ * </ul>
+ *
+ * <b>Key Methods:</b>
+ * <ul>
+ *   <li>{@link #TabTechBound2(String, Stage)} - Constructor, sets up UI and listeners.</li>
+ *   <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
+ *   <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
+ *   <li>{@link #saveScenarioComponent(TreeView)} - Handles file generation for tech bound policies.</li>
+ *   <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
+ *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ * </ul>
+ *
+ * <b>See Also:</b>
+ * <ul>
+ *   {@link PolicyTab}
+ *   {@link DataPoint}
+ *   {@link PaneForComponentDetails}
+ *   {@link Utils}
+ * </ul>
  */
 public class TabTechBound2 extends PolicyTab implements Runnable {
     private static final String LABEL_FILTER = "Filter:";
@@ -103,35 +147,64 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
 
     /**
-     * Constructs a new TabTechBound instance and initializes the UI components for the technology bound tab.
+     * Constructs a new TabTechBound2 instance and initializes the UI components for the technology bound tab.
      * Sets up event handlers and populates controls with available data.
      *
      * @param title The title of the tab
-     * @param stageX The JavaFX stage
+     * @param stageX The JavaFX stage (not used directly)
      */
     public TabTechBound2(String title, Stage stageX) {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
-        checkBoxUseAutoNames.setSelected(true);
-        textFieldPolicyName.setDisable(true);
-        textFieldMarketName.setDisable(true);
-        setupLeftColumn();
+        setupUIControls();
+        setComponentWidths();
+        setupUILayout();
         setupComboBoxCategory();
         setupTechComboBox();
         setupComboBoxOptions();
-        setupSizing();
         setupEventHandlers();
         setPolicyAndMarketNames();
         setUnitsLabel();
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the left column UI layout.
+     * Sets up UI controls with options and default values.
+     * <p>
+     * Initializes checkboxes, disables manual name fields if auto-naming is enabled.
      */
-    private void setupLeftColumn() {
+    private void setupUIControls() {
+        checkBoxUseAutoNames.setSelected(true);
+        textFieldPolicyName.setDisable(true);
+        textFieldMarketName.setDisable(true);
+    }
+
+    /**
+     * Sets preferred, min, and max widths for UI components for consistent layout.
+     */
+    private void setComponentWidths() {
+        ComboBox<?>[] comboBoxes = {comboBoxCategory, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
+        for (ComboBox<?> cb : comboBoxes) {
+            cb.setMaxWidth(MAX_WIDTH);
+            cb.setMinWidth(MIN_WIDTH);
+            cb.setPrefWidth(PREF_WIDTH);
+        }
+        checkComboBoxTech.setMaxWidth(MAX_WIDTH);
+        checkComboBoxTech.setMinWidth(MIN_WIDTH);
+        checkComboBoxTech.setPrefWidth(PREF_WIDTH);
+        TextField[] textFields = {textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength, textFieldPolicyName, textFieldMarketName, textFieldFilter};
+        for (TextField tf : textFields) {
+            tf.setMaxWidth(MAX_WIDTH);
+            tf.setMinWidth(MIN_WIDTH);
+            tf.setPrefWidth(PREF_WIDTH);
+        }
+    }
+
+    /**
+     * Sets up the layout of the tab, arranging controls into left, center, and right columns.
+     * <p>
+     * Arranges controls for specification, population, and region selection.
+     */
+    private void setupUILayout() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxCategory, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
@@ -158,11 +231,13 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
         vBoxRight.setPrefWidth(300);
-
+        VBox tabLayout = new VBox();
+        tabLayout.getChildren().addAll(gridPanePresetModification);
+        this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the technology combo box with default values.
+     * Sets up the technology combo box with default values and disables it until a filter or category is selected.
      */
     private void setupTechComboBox() {
         checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
@@ -172,6 +247,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Sets up combo box options for treatment, constraint, and modification type.
+     * Populates combo boxes with available options and selects defaults.
      */
     private void setupComboBoxOptions() {
         comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
@@ -184,28 +260,9 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets up sizing for UI components.
-     */
-    private void setupSizing() {
-        ComboBox<?>[] comboBoxes = {comboBoxCategory, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
-        for (ComboBox<?> cb : comboBoxes) {
-            cb.setMaxWidth(MAX_WIDTH);
-            cb.setMinWidth(MIN_WIDTH);
-            cb.setPrefWidth(PREF_WIDTH);
-        }
-        checkComboBoxTech.setMaxWidth(MAX_WIDTH);
-        checkComboBoxTech.setMinWidth(MIN_WIDTH);
-        checkComboBoxTech.setPrefWidth(PREF_WIDTH);
-        TextField[] textFields = {textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength, textFieldPolicyName, textFieldMarketName, textFieldFilter};
-        for (TextField tf : textFields) {
-            tf.setMaxWidth(MAX_WIDTH);
-            tf.setMinWidth(MIN_WIDTH);
-            tf.setPrefWidth(PREF_WIDTH);
-        }
-    }
-
-    /**
-     * Sets up event handlers for UI components.
+     * Sets up event handlers for UI components, including listeners for filter, category, technology, and other controls.
+     * <p>
+     * Handles dynamic UI changes and triggers auto-naming and validation as needed.
      */
     private void setupEventHandlers() {
 
@@ -301,6 +358,8 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     /**
      * Populates the sector combo box based on the technology info and filter text.
      * Handles filtering and ensures no duplicate sectors are added.
+     * <p>
+     * If a filter is applied, only categories matching the filter are shown.
      */
     private void setupComboBoxCategory() {
         comboBoxCategory.getItems().clear();
@@ -355,6 +414,8 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     /**
      * Updates the technology check combo box based on the selected sector and filter text.
      * Only technologies matching the filter and sector are shown.
+     * <p>
+     * Called when the filter or category changes.
      */
     private void updateCheckComboBoxTech() {
         Platform.runLater(() -> {
@@ -399,6 +460,9 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Automatically sets the policy and market names based on the current selections and auto-naming rules.
+     * <p>
+     * Uses selected constraint, category, treatment, and region to generate unique names.
+     * Handles edge cases for multiple regions.
      */
     private void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
@@ -444,7 +508,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     }
 
     /**
-     * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+     * Runnable implementation: triggers saving the scenario component. Calls saveScenarioComponent().
      */
     @Override
     public void run() {
@@ -453,6 +517,8 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Saves the scenario component using the current region tree.
+     * <p>
+     * Main entry point for saving the scenario component. Calls the overloaded saveScenarioComponent(TreeView) method.
      */
     @Override
     public void saveScenarioComponent() {
@@ -699,6 +765,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Loads content into the tab from the provided list of strings.
+     * Populates category, technologies, constraint, treatment, policy/market names, regions, and table data.
      *
      * @param content List of content lines to load
      */
@@ -779,6 +846,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Helper method to validate table data years against allowable policy years.
+     *
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -796,6 +864,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
     
     /**
      * Validates that all required inputs for saving the scenario component are present and correct.
+     * Checks for at least one region, at least one table entry, and required selections.
      *
      * @return true if all required inputs are valid, false otherwise
      */
@@ -889,6 +958,8 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
 
     /**
      * Updates the units label based on the selected technologies.
+     * <p>
+     * If available, extracts units from the selected technology string.
      */
     private void setUnitsLabel() {
         ObservableList<String> selectedTechs = checkComboBoxTech.getCheckModel().getCheckedItems();

@@ -75,7 +75,37 @@ import javafx.stage.Stage;
 
 /**
  * Pane for creating a scenario in the GLIMPSE Scenario Builder.
- * Handles UI and logic for scenario creation, including component selection and configuration.
+ * <p>
+ * This class provides the user interface and logic for constructing new scenarios
+ * in the GLIMPSE Scenario Builder application. It allows users to specify scenario
+ * names, select and order scenario components, configure scenario options, and
+ * generate scenario configuration files. The pane includes controls for moving
+ * components up and down, entering scenario metadata, and setting advanced options
+ * such as debug output, processor usage, and files to save. The scenario creation
+ * process includes validation, file management, and XML configuration generation.
+ * </p>
+ * <p>
+ * <b>Main Features:</b>
+ * <ul>
+ *   <li>Scenario name entry and validation (no special characters allowed)</li>
+ *   <li>Component selection and ordering (move up/down)</li>
+ *   <li>Scenario configuration dialog for metadata and advanced options</li>
+ *   <li>Support for CSV, XML, and list-based scenario components</li>
+ *   <li>Automatic creation and population of scenario configuration XML files</li>
+ *   <li>Database size checking and warning</li>
+ *   <li>Debug and parallelism options</li>
+ *   <li>File management for scenario folders and logs</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <b>Usage:</b> Instantiate this pane and add it to a JavaFX stage. The pane will
+ * handle all user interactions for scenario creation.
+ * </p>
+ *
+ * @author US EPA, GLIMPSE-CE contributors
+ * @see ScenarioBuilder
+ * @see ComponentLibraryTable
+ * @see ScenarioTable
  */
 class PaneCreateScenario extends ScenarioBuilder {
     // UI Constants
@@ -114,8 +144,10 @@ class PaneCreateScenario extends ScenarioBuilder {
     private Label labelScenarioName;
 
     /**
-     * Constructs the scenario creation pane.
-     * @param stage The JavaFX stage.
+     * Constructs the scenario creation pane and initializes all UI components.
+     * Sets up the scenario name field, component table, and action buttons.
+     *
+     * @param stage The JavaFX stage to which this pane is bound.
      */
     PaneCreateScenario(Stage stage) {
         vBox = new VBox(1);
@@ -140,7 +172,8 @@ class PaneCreateScenario extends ScenarioBuilder {
     }
 
     /**
-     * Sets up the main action buttons and their event handlers.
+     * Sets up the main action buttons (Create, Move Up, Move Down) and their event handlers.
+     * Handles enabling/disabling buttons based on selection and scenario name validity.
      */
     private void setupButtons() {
         Client.buttonMoveComponentUp = utils.createButton(null, styles.getSmallButtonWidth(), BUTTON_MOVE_UP, BUTTON_ICON_UP);
@@ -163,6 +196,8 @@ class PaneCreateScenario extends ScenarioBuilder {
 
     /**
      * Moves the selected component up or down in the list.
+     * Swaps the selected row with the adjacent row in the specified direction.
+     *
      * @param direction -1 for up, 1 for down
      */
     private void moveComponent(int direction) {
@@ -184,7 +219,8 @@ class PaneCreateScenario extends ScenarioBuilder {
 
     /**
      * Sets the scenario name in the text field.
-     * @param scenarioName The scenario name.
+     *
+     * @param scenarioName The scenario name to set in the text field.
      */
     public void setScenarioName(String scenarioName) {
         if (textFieldScenarioName != null && scenarioName != null) {
@@ -194,6 +230,8 @@ class PaneCreateScenario extends ScenarioBuilder {
 
     /**
      * Processes the scenario component list and creates the scenario configuration.
+     * Validates the scenario name, copies the component list, and calls processScenario.
+     *
      * @param stage The JavaFX stage.
      * @param b Whether to execute the scenario after creation.
      */
@@ -220,12 +258,14 @@ class PaneCreateScenario extends ScenarioBuilder {
     }
 
     /**
-     * Processes the files in the table to create a scenario.
-     * @param scenName Scenario name
-     * @param list List of component rows
-     * @param list1 Duplicate list of component rows
-     * @param runName Run name
-     * @param scenarioName Scenario name
+     * Processes the files in the table to create a scenario configuration and supporting files.
+     * Handles file type detection, CSV-to-XML conversion, XML configuration updates, and file management.
+     *
+     * @param scenName Scenario name (used for folder and file naming)
+     * @param list List of component rows (primary)
+     * @param list1 Duplicate list of component rows (for backup or additional processing)
+     * @param runName Run name (used in configuration)
+     * @param scenarioName Scenario name (used in configuration)
      * @param execute Whether to execute after creation
      * @throws IOException if file operations fail
      */
@@ -233,6 +273,7 @@ class PaneCreateScenario extends ScenarioBuilder {
     protected void processScenario(String scenName, ObservableList<ComponentRow> list, ObservableList<ComponentRow> list1,
                                    String runName, String scenarioName, boolean execute) throws IOException {
         String message = "";
+        // Check if scenario already exists and prompt for overwrite
         if (checkInList(scenName, ScenarioTable.tableScenariosLibrary)) {
             String s = SCENARIO_OVERWRITE_PROMPT + scenName + "?";
             boolean overwrite = utils.confirmAction(s);
@@ -240,8 +281,10 @@ class PaneCreateScenario extends ScenarioBuilder {
                 return;
             }
         }
+        // Create scenario dialog and collect metadata
         message = createScenarioDialog(scenarioName);
         if (message == null) return;
+        // Delete old log and XML files if scenario is being overwritten
         if (checkInList(scenName, ScenarioTable.tableScenariosLibrary)) {
             String mainLogFile = vars.getScenarioDir() + File.separator + scenName + File.separator + "main_log.txt";
             files.deleteFile(mainLogFile);
@@ -280,8 +323,10 @@ class PaneCreateScenario extends ScenarioBuilder {
         Document xmlDoc = XMLModifier.openXmlDocument(savedConfigFileAddress);
         Date now = null;
         Path gcamexepath = Paths.get(vars.getgCamExecutableDir());
+        // Process each component in the list
         for (ComponentRow f : list) {
             String fileType = getFileType(f.getAddress(), "@type");
+            // Handle CSV and table-based components
             if ((fileType.equals("preset")) || (fileType.equals("techbound")) || (fileType.equals("techparam")) || (fileType.equals("INPUT_TABLE"))) {
                 String xmlFileAddress = workingDir + File.separator + f.getFileName().substring(0, f.getFileName().lastIndexOf('.')) + ".xml";
                 System.out.println("---" + vars.getEol() + "Creating new xml file:\n  " + xmlFileAddress);
@@ -290,6 +335,7 @@ class PaneCreateScenario extends ScenarioBuilder {
                 String xmlFileAddressForConfig = relativePath.toString() + File.separator + f.getFileName().substring(0, f.getFileName().lastIndexOf('.')) + ".xml";
                 if (fileType.equals("INPUT_TABLE")) {
                     try {
+                        // Convert CSV to XML using header file
                         String[] s = { f.getAddress(), vars.getXmlHeaderFilename(), xmlFileAddress };
                         s = utils.getRidOfTrailingCommasInStringArray(s);
                         System.out.println("csv to xml conversion commencing:");
@@ -314,12 +360,14 @@ class PaneCreateScenario extends ScenarioBuilder {
                         System.out.println("Attempting to continue, but conversion unsuccessful.");
                     }
                 } else {
+                    // Only CSV-type and XML-list-type scenario components are supported
                     utils.warningMessage(ERROR_UNSUPPORTED_COMPONENT);
                     System.out.println(ERROR_UNSUPPORTED_COMPONENT);
                 }
-                System.out.println("Adding new xml file (" + f.getFileName() + ") to configuration file");
+                // Add new XML file to configuration
                 XMLModifier.addElement(xmlDoc, "ScenarioComponents", "Value", f.getFileName(), xmlFileAddressForConfig);
             } else if ((fileType.equals("xmllist")) || (fileType.equals("list"))) {
+                // Handle list of XML files
                 System.out.println("adding files from list...");
                 ArrayList<String> fileList = files.loadFileListFromFile(f.getAddress(), "@type");
                 int num = 0;
@@ -332,32 +380,39 @@ class PaneCreateScenario extends ScenarioBuilder {
                     XMLModifier.addElement(xmlDoc, "ScenarioComponents", "Value", identifier, relativePathname);
                 }
             } else if (fileType.equals("xml")) {
+                // Handle direct XML component
                 String filename = vars.getScenarioComponentsDir() + File.separator + f.getFileName();
                 String relativePathname = files.getRelativePath(gcamexepath.toString(), filename);
                 XMLModifier.addElement(xmlDoc, "ScenarioComponents", "Value", f.getFileName(), relativePathname);
             } else {
+                // Unsupported component type
                 utils.warningMessage(ERROR_PROCESS_COMPONENT + f.getFileName());
             }
         }
+        // Update scenario name and stop year in configuration
         XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "scenarioName", scenarioName);
         if (vars.getStopYear() != null) XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "stop-year", vars.getStopYear());
-        
+        // Set parallelism option if not using all processors
         boolean useAllProcessors = vars.getUseAllAvailableProcessors();
         if (!useAllProcessors) {
             XMLModifier.updateElementValue(xmlDoc, "Ints", "Value", "max-parallelism", "1");
         }
+        // Set debug region and debug file options
         if (vars.getDebugRegion() != null)
             XMLModifier.updateElementValue(xmlDoc, "Strings", "Value", "debug-region", vars.getDebugRegion());
         if (vars.getDebugCreate() != null)
             XMLModifier.updateAttributeValue(xmlDoc, "Files", "Value", "xmlDebugFileName", "write-output", vars.getDebugCreate());
         if (vars.getDebugRename() != null)
             XMLModifier.updateAttributeValue(xmlDoc, "Files", "Value", "xmlDebugFileName", "append-scenario-name", vars.getDebugRename());
+        // Set solver and database paths in configuration
         if (vars.getgCamSolver() != null) {
             try {
+                // Set solver path as relative to GCAM executable directory
                 File solverFile = new File(vars.getgCamSolver());
                 Path solverPath = Paths.get(solverFile.getPath());
                 XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", gcamexepath.relativize(solverPath).toString());
             } catch (Exception e) {
+                // Fallback to full path if relative path fails
                 System.out.println("Could not set solver path in config file. Using full path.");
                 System.out.println("  error: " + e);
                 XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", vars.getgCamSolver());
@@ -365,22 +420,27 @@ class PaneCreateScenario extends ScenarioBuilder {
         }
         if (vars.getgCamOutputDatabase() != null) {
             try {
+                // Set database path as relative to GCAM executable directory
                 File databaseDir = new File(vars.getgCamOutputDatabase());
                 Path databasePath = Paths.get(databaseDir.getPath());
                 XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", gcamexepath.relativize(databasePath).toString());
             } catch (Exception e) {
+                // Fallback to full path if relative path fails
                 System.out.println("Could not set relative database path in config file. Using full path.");
                 System.out.println("  error: " + e);
                 XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", vars.getgCamOutputDatabase());
             }
         }
+        // Write the updated XML document to file
         XMLModifier.writeXmlDocument(xmlDoc, savedConfigFileAddress);
     }
 
     /**
      * Checks if a scenario name exists in the scenario table.
-     * @param name Scenario name
-     * @param table Scenario table
+     * Iterates through the table rows and compares scenario names.
+     *
+     * @param name Scenario name to check
+     * @param table Scenario table to search
      * @return true if found, false otherwise
      */
     public boolean checkInList(String name, TableView<ScenarioRow> table) {
@@ -395,7 +455,8 @@ class PaneCreateScenario extends ScenarioBuilder {
     }
 
     /**
-     * Gets the scenario name text field.
+     * Gets the scenario name text field for direct access or testing.
+     *
      * @return The scenario name text field.
      */
     public TextField getTextFieldScenarioName() {
@@ -403,8 +464,9 @@ class PaneCreateScenario extends ScenarioBuilder {
     }
 
     /**
-     * Gets the VBox containing the UI.
-     * @return The VBox.
+     * Gets the VBox containing the UI for this pane.
+     *
+     * @return The VBox containing all UI elements.
      */
     public VBox getvBox() {
         return vBox;
@@ -412,7 +474,10 @@ class PaneCreateScenario extends ScenarioBuilder {
 
     /**
      * Creates the scenario dialog and returns the scenario meta data as a string.
-     * @param scenName Scenario name
+     * Presents a dialog for the user to enter scenario metadata, select options, and add comments.
+     * Handles database size warnings, debug and processor options, and files to save.
+     *
+     * @param scenName Scenario name to display in the dialog
      * @return Scenario meta data string, or null if cancelled
      */
     public String createScenarioDialog(String scenName) {
@@ -549,7 +614,9 @@ class PaneCreateScenario extends ScenarioBuilder {
     }
 
     /**
-     * Adjusts the files to save string based on user selections.
+     * Adjusts the files to save string based on user selections in the dialog.
+     * Adds or removes calibration, solver, and debug log files as needed.
+     *
      * @param saveCalibLog Save calibration log
      * @param saveSolverLog Save solver log
      * @param saveDebugFile Save debug file
