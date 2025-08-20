@@ -88,9 +88,6 @@ import java.util.stream.Stream;
  * <p>
  * <b>Thread Safety:</b> This class is not thread-safe and should be used only on the JavaFX Application Thread.
  *
- * @author US EPA, Dr. Dan Loughlin
- * @version 8.2
- * @since 7.0
  */
 public class ScenarioBuilder {
 

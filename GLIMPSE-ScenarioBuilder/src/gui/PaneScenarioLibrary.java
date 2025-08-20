@@ -106,9 +106,6 @@ import javafx.stage.Stage;
  *   <li>JavaFX (Platform, ObservableList, HBox, Stage, etc.)</li>
  * </ul>
  *
- * @author US EPA, PNNL, and contributors
- * @version 1.0
- * @since 2025-08-19
  */
 class PaneScenarioLibrary extends ScenarioBuilder {
 

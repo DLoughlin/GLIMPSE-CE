@@ -73,7 +73,8 @@ public class GLIMPSEVariables {
     private static final boolean DEFAULT_SHOW_SPLASH = true;
     private static final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
     private static final int DEFAULT_PERIOD_INCREMENT = 5; // Default period increment for GCAM
-
+    private static final List<String> DEFAULT_REGION_LIST = new ArrayList<>(Arrays.asList("USA", "Canada", "EU-15", "Europe_Non_EU", "European Free Trade Association", "Japan", "Australia_NZ", "Central Asia", "Russia", "China", "Middle East", "Africa_Eastern", "Africa_Northern", "Africa_Southern", "Africa_Western", "South Africa", "Brazil", "Central America and Caribbean", "Mexico", "South America_Northern", "South America_Southern", "Argentina", "Colombia", "Indonesia", "Pakistan", "South Asia", "Southeast Asia", "Taiwan", "Europe_Eastern", "EU-12", "South Korea", "India", "Ukraine"));
+    private static final List<String> DEFAULT_SUBREGION_LIST = new ArrayList<>(Arrays.asList("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"));
     private static final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
 
     // --- Fields ---
@@ -144,6 +145,8 @@ public class GLIMPSEVariables {
     private String unitConversionsFilename = null;
     private String monetaryConversionsFilename = null;
     private String aboutTextFilename = null;
+    private List<String> regionList = DEFAULT_REGION_LIST;
+    private List<String> subRegionList = DEFAULT_SUBREGION_LIST;
 
     /**
      * Private constructor for singleton pattern.
@@ -1450,7 +1453,6 @@ public class GLIMPSEVariables {
         case "gcamsolver":
             gCamSolver = fixDir(val);
             break;
-
         case "gcamexecutable":
             gCamExecutable = fixDir(val);
             break;
@@ -1601,7 +1603,12 @@ public class GLIMPSEVariables {
             break;      
         case "calibrationyear":
             setCalibrationYear(val);
-            break;   
+            break;
+        case "regionlist":
+			setRegionList(val);
+			break;
+        case "subregionlist":
+        	setSubRegionList(val);
         }
 
         if (param.indexOf("dir") > 0) {
@@ -1611,7 +1618,15 @@ public class GLIMPSEVariables {
         return;
     }
 
-    /**
+    private void setRegionList(String val) {
+		regionList = utils.getStringListFromString(val,",");	
+	}
+
+    private void setSubRegionList(String val) {
+		subRegionList = utils.getStringListFromString(val,",");	
+	}
+    
+	/**
      * Fixes directory paths in the options file for backward compatibility.
      * @param filename Original filename
      * @return Fixed filename
@@ -2247,6 +2262,22 @@ public class GLIMPSEVariables {
 
 	public void setSimulationYearIncrement(int simulationYearIncrement) {
 		this.simulationYearIncrement = simulationYearIncrement;
+	}
+
+	public List<String> getRegionList() {
+		return regionList;
+	}
+
+	public void setRegionList(List<String> regionList) {
+		this.regionList = regionList;
+	}
+
+	public List<String> getSubRegionList() {
+		return subRegionList;
+	}
+
+	public void setSubRegionList(List<String> stateList) {
+		this.subRegionList = stateList;
 	}
 
 

@@ -74,8 +74,6 @@ import javafx.stage.Stage;
  * <b>Threading:</b> Implements Runnable for background save operations. UI updates must be wrapped in Platform.runLater.
  *
  * <b>Dependencies:</b> Requires JavaFX, ControlsFX, and GLIMPSE utility classes.
- *
- * @author US EPA, GLIMPSE-CE contributors
  */
 public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     // === UI constants ===

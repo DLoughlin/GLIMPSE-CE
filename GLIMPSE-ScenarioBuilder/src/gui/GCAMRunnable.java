@@ -58,7 +58,6 @@ import java.io.OutputStream;
  *   new Thread(rc).start();
  * </pre>
  *
- * @author US EPA, GLIMPSE-CE contributors
  */
 class RunnableCmd implements Runnable {
 

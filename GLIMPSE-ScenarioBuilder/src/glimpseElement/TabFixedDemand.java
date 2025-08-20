@@ -103,10 +103,6 @@ import javafx.stage.Stage;
  *   <li>JavaFX controls and layout classes</li>
  * </ul>
  *
- * <h2>Author</h2>
- * <ul>
- *   <li>Dan Loughlin (USEPA, ARA)</li>
- * </ul>
  */
 public class TabFixedDemand extends PolicyTab implements Runnable {
     // === Constants for UI Strings and Options ===
@@ -151,7 +147,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final Label labelUnitsValue = createLabel("", LABEL_WIDTH);
     private final Label labelValue = createLabel(LABEL_VALUES, LABEL_WIDTH);
     private final Label labelModificationType = createLabel("Modification Type:", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString("", PREF_WIDTH);
+    private final ComboBox<String> comboBoxModificationType = createComboBoxString(MODIFICATION_TYPES, PREF_WIDTH);
     private final Label labelStartYear = createLabel("Start Year:", LABEL_WIDTH);
     private final Label labelEndYear = createLabel("End Year:", LABEL_WIDTH);
     private final Label labelInitialAmount = createLabel("Initial Amount:", LABEL_WIDTH);
@@ -195,7 +191,16 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         this.setContent(tabLayout);
     }
 
-    /**
+    private ComboBox<String> createComboBoxString(String[] modificationTypes, double prefWidth) {
+		ComboBox<String> comboBox = new ComboBox<>();
+		comboBox.setPrefWidth(prefWidth);
+		for (String type : modificationTypes) {
+			comboBox.getItems().add(type);
+		}
+		return comboBox;
+	}
+
+	/**
      * Initializes and creates all UI controls for the tab.
      * Place all control instantiations here if not already at field declaration.
      * This method is a placeholder for future expansion if more controls are created dynamically.

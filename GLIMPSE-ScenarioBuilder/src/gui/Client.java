@@ -96,8 +96,6 @@ import org.controlsfx.control.StatusBar;
  * Client.main(new String[] {"-options", "options_GCAM-global-8.2.txt"});
  * </pre>
  *
- * @author US EPA
- * @version 1.0
  */
 public class Client extends Application {
 

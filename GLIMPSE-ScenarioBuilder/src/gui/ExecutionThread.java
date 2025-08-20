@@ -63,9 +63,6 @@ import glimpseUtil.StatusChecker;
  * <p>
  * <b>Thread Safety:</b> All public methods are thread-safe unless otherwise noted. The jobs list is synchronized for all access.
  *
- * @author US EPA, Dr. Dan Loughlin
- * @version 8.2
- * @since 7.0
  */
 public class ExecutionThread implements AutoCloseable {
     private ExecutorService executorService = null;

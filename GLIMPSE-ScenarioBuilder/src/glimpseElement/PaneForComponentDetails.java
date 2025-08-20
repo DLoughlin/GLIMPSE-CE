@@ -60,349 +60,480 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+/**
+ * PaneForComponentDetails is a custom JavaFX VBox that provides a table interface for editing and displaying
+ * pairs of data points (typically year and value) for GLIMPSE scenario components. It supports adding, editing,
+ * deleting, and reordering rows, as well as copy-paste and drag selection. The table can be configured to enforce
+ * year-value pairs, hide columns, and set custom column names and styles. This class is used throughout the
+ * scenario builder to allow users to input and manipulate time series or paired data for scenario elements.
+ * <p>
+ * <b>Features:</b>
+ * <ul>
+ *   <li>Editable TableView for DataPoint objects (year-value pairs)</li>
+ *   <li>Customizable column names and styles</li>
+ *   <li>Support for adding, deleting, and reordering rows</li>
+ *   <li>Copy-paste and drag selection support</li>
+ *   <li>Configurable enforcement of year-value pair input</li>
+ *   <li>Utility methods for extracting and setting data</li>
+ * </ul>
+ * <b>Usage:</b> Instantiate and add to a JavaFX scene. Use provided methods to manipulate table contents.
+ *
+ * @author Dan Loughlin
+ * @version 1.0
+ */
 public class PaneForComponentDetails extends VBox {
-	private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
-	private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
-	private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
-	public TableView<DataPoint> table = new TableView<DataPoint>();
-	public ObservableList<DataPoint> data = FXCollections.observableArrayList();
-	HBox inputHBox = new HBox();
-	TextField textFieldCol0 = utils.createTextField();
-	TextField textFieldCol1 = utils.createTextField();
-	Button buttonAdd = utils.createButton("Add", styles.getBigButtonWidth(), null);
-	boolean enforceYrValPair = true;
-//
-	TableColumn<DataPoint,String> col0;
-	TableColumn<DataPoint,String> col1;
-
-	public PaneForComponentDetails() {
-
-		this.setStyle(styles.getFontStyle());
-
-		col0 = new TableColumn<DataPoint, String>("Year");
-		col1 = new TableColumn<DataPoint, String>("Value");
-		
-		table.getColumns().addAll(col0, col1);
-		table.setEditable(true);
-		
-		col0.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("year"));
-		col0.setCellFactory(TextFieldTableCell.forTableColumn());
-		col0.prefWidthProperty().bind(table.widthProperty().divide(8. / 3.)); 
-		col0.setStyle(styles.getStyle5());
-		col0.setEditable(true);
-
-
-		
-		col1.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("value"));
-		col1.setCellFactory(TextFieldTableCell.forTableColumn());
-		col1.prefWidthProperty().bind(table.widthProperty().divide(8. / 5.));
-		col1.setStyle(styles.getStyle5());
-		col1.setEditable(true);
-
-
-		col0.setOnEditCommit(new EventHandler<CellEditEvent<DataPoint, String>>() {
-			@Override
-			public void handle(CellEditEvent<DataPoint, String> t) {
-				t.getTableView().getItems().get(t.getTablePosition().getRow()).setYear(t.getNewValue());
-			}
-		});
-		col1.setOnEditCommit(new EventHandler<CellEditEvent<DataPoint, String>>() {
-			@Override
-			public void handle(CellEditEvent<DataPoint, String> t) {
-				t.getTableView().getItems().get(t.getTablePosition().getRow()).setValue(t.getNewValue());
-			}
-		});
-
-
-		table.setItems(data);
-		
-		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(table);
-
-		textFieldCol0.prefWidthProperty().bind(table.widthProperty().divide(8. / 2.75));
-		textFieldCol1.prefWidthProperty().bind(table.widthProperty().divide(8. / 3.75));
-		
-		inputHBox.getChildren().addAll(textFieldCol0, textFieldCol1, buttonAdd);
-		inputHBox.setSpacing(3.);
-		inputHBox.setPadding(new Insets(3., 0., 0., 0.));
-
-		// Action
-		buttonAdd.setOnAction(e -> {
-			DataPoint dp = new DataPoint(textFieldCol0.getText(), textFieldCol1.getText());
-			if (dp.qaDataPoint(enforceYrValPair))
-				data.add(dp);
-		});
-
-
-		this.getChildren().addAll(table, inputHBox);
-
-		// echoData("end of constructor");
-	}
-
-	public void addItem(String name1) {
-		DataPoint dp = new DataPoint(null, name1);
-		data.add(dp);
-	}
-
-	public void addItem(String name0, String name1) {
-		DataPoint dp = new DataPoint(name0, name1);
-		data.add(dp);
-	}
-
-	public void setColumnFormatting(String s0, String s1) {
-		col0.setStyle(s0);
-		col1.setStyle(s1);
-	}
-
-	public void setColumnNames(String name0, String name1) {
-		if (name0 != null) {
-			col0.setText(name0);
-			if (name1 == null) {
-				col0.prefWidthProperty().bind(table.widthProperty().divide(1.));
-				hideValColumn();
-			}
-
-		}
-		if (name1 != null) {
-			col1.setText(name1);
-			if (name0 == null) {
-				col1.prefWidthProperty().bind(table.widthProperty().divide(1.));
-				hideYrColumn();
-			}
-		}
-	}
-
-	public void hideYrColumn() {
-		col0.setVisible(false);
-	}
-
-	public void hideValColumn() {
-		col1.setVisible(false);
-	}
-
-	public void setAddItemVisible(boolean b) {
-		inputHBox.setVisible(b);
-	}
-
-	public void setEnforceYrValPair(boolean b) {
-		enforceYrValPair = b;
-	}
-
-	public DataPoint createDataPoint(String year, String value) {
-		DataPoint dp = new DataPoint(year, value);
-		return dp;
-	}
-
-	public boolean isEmpty() {
-		boolean empty = true;
-		if (table.getItems().size() > 0)
-			empty = false;
-		return empty;
-	}
-
-	public void deleteItemsFromTable() {
-
-		if (!utils.confirmDelete())
-			return;
-
-		ObservableList<DataPoint> selectedDataPoints = table.getSelectionModel().getSelectedItems();
-
-		for (DataPoint i : selectedDataPoints) {
-			data.remove(i);
-		}
-
-	}
-
-	public void moveItemUpInTable() {
-		ObservableList<DataPoint> allItems = table.getItems();
-
-		ObservableList<DataPoint> selectedItems = table.getSelectionModel().getSelectedItems();
-		if (selectedItems.size() == 1) {
-			int n = table.getSelectionModel().getSelectedIndex();
-			if (n - 1 >= 0) {
-				DataPoint dataA = allItems.get(n);
-				DataPoint dataB = allItems.get(n - 1);
-				allItems.set(n - 1, dataA);
-				allItems.set(n, dataB);
-				table.setItems(allItems);
-			}
-		}
-	}
-
-	public void moveItemDownInTable() {
-		ObservableList<DataPoint> allItems = table.getItems();
-
-		ObservableList<DataPoint> selectedItems = table.getSelectionModel().getSelectedItems();
-		if (selectedItems.size() == 1) {
-			int n = table.getSelectionModel().getSelectedIndex();
-			if (n < allItems.size() - 1) {
-				DataPoint dataA = allItems.get(n);
-				DataPoint dataB = allItems.get(n + 1);
-				allItems.set(n + 1, dataA);
-				allItems.set(n, dataB);
-				table.setItems(allItems);
-			}
-		}
-	}
-
-	public String dataOutput() {
-		String str_data = "";
-
-		ObservableList<DataPoint> tableData = table.getItems();
-
-		for (int i = 0; i < tableData.size(); i++) {
-			str_data += "Item " + i + " = " + tableData.get(i).getYear() + " , " + tableData.get(i).getValue()
-					+ vars.getEol();
-		}
-
-		return str_data;
-	}
-	
-
-	public ArrayList<String> getDataYrValsArrayList() {
-		String str_data = "";
-
-		ArrayList<String> data = new ArrayList<String>();
-		
-		ObservableList<DataPoint> tableData = table.getItems();
-
-		for (int i = 0; i < tableData.size(); i++) {
-			str_data = tableData.get(i).getYear() + " , " + tableData.get(i).getValue();
-			data.add(str_data);
-		}
-
-		return data;
-	}
-
-	public ArrayList<String> getValues() {
-		ArrayList<String> column = new ArrayList<String>();
-		ObservableList<DataPoint> tableData = table.getItems();
-
-		for (int i = 0; i < tableData.size(); i++) {
-			String s = tableData.get(i).getValue().trim();
-
-			if (s != null)
-				column.add(s);
-
-		}
-
-		return column;
-	}
-
-	public void clearTable() {
-		data.clear();
-	}
-
-	public void updateTable() {
-		table.setItems(data);
-
-		//echoData("end of updateTable");
-	}
-
-	public void echoData(String str) {
-		System.out.println(str);
-		for (int i = 0; i < data.size(); i++) {
-			System.out.println(" i: " + i + " " + data.get(i).getYear() + " " + data.get(i).getValue());
-		}
-	}
-
-	public void setValues(double[][] values) {
-		data.clear();
-
-		for (int i = 0; i < values[0].length; i++) {
-			int yr = (int) values[0][i];
-			double val = values[1][i];
-			data.add(new DataPoint(yr, val));
-		}
-		updateTable();
-	}
-
-	public void setValues(String[][] values) {
-		data.clear();
-		for (int i = 0; i < values[0].length; i++) {
-			String col0 = values[0][i];
-			String col1 = values[1][i];
-			data.add(new DataPoint(col0, col1));
-		}
-		updateTable();
-	}
-
-	public class DragSelectionCellFactory implements
-			Callback<TableColumn<DataPoint, String>, TableCell<DataPoint, String>> {
-
-		@Override
-		public TableCell<DataPoint, String> call(final TableColumn<DataPoint, String> col) {
-			return new DragSelectionCell();
-		}
-
-	}
-
-	public class DragSelectionCell extends TextFieldTableCell<DataPoint, String> {
-
-		private TextField textField;
-
-		public DragSelectionCell() {
-			setOnDragDetected(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					startFullDrag();
-					getTableColumn().getTableView().getSelectionModel().select(getIndex(), getTableColumn());
-				}
-			});
-			setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-
-				@Override
-				public void handle(MouseDragEvent event) {
-					getTableColumn().getTableView().getSelectionModel().select(getIndex(), getTableColumn());
-				}
-
-			});
-
-		}
-
-		@Override
-		public void startEdit() {
-			if (!isEmpty()) {
-				super.startEdit();
-				TextField textField=utils.createTextField();
-				setText(null);
-				setGraphic(textField);
-				textField.selectAll();
-			}
-		}
-
-		@Override
-		public void cancelEdit() {
-			super.cancelEdit();
-
-			setText(getItem());
-			setGraphic(null);
-		}
-
-		@Override
-		public void updateItem(String item, boolean empty) {
-			super.updateItem(item, empty);
-
-			if (empty) {
-				setText(null);
-				setGraphic(null);
-			} else {
-				if (isEditing()) {
-					if (textField != null) {
-						textField.setText(getString());
-					}
-					setText(null);
-					setGraphic(textField);
-				} else {
-					setText(getString());
-					setGraphic(null);
-				}
-			}
-		}
-
-		private String getString() {
-			return getItem() == null ? "" : getItem().toString();
-		}
-
-	}
+    // Singleton utility and style instances
+    private GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    private GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
+    private GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
+
+    /**
+     * The main TableView for displaying DataPoint objects.
+     */
+    public TableView<DataPoint> table = new TableView<DataPoint>();
+    /**
+     * The observable list backing the table's data.
+     */
+    public ObservableList<DataPoint> data = FXCollections.observableArrayList();
+    
+    // HBox containing input fields and add button
+    HBox inputHBox = new HBox();
+    // Input fields for year and value
+    TextField textFieldYear = utils.createTextField();
+    TextField textFieldValue = utils.createTextField();
+    // Button to add new data point
+    Button buttonAdd = utils.createButton("Add", styles.getBigButtonWidth(), null);
+    // Flag to enforce year-value pair input
+    boolean enforceYrValPair = true;
+
+    // Table columns for year and value
+    TableColumn<DataPoint,String> colYear;
+    TableColumn<DataPoint,String> colValue;
+
+    /**
+     * Constructs a PaneForComponentDetails with default settings and UI components.
+     * Sets up the table, columns, input fields, and event handlers.
+     */
+    public PaneForComponentDetails() {
+        this.setStyle(styles.getFontStyle());
+
+        // Initialize columns
+        colYear = new TableColumn<DataPoint, String>("Year");
+        colValue = new TableColumn<DataPoint, String>("Value");
+        
+        table.getColumns().addAll(colYear, colValue);
+        table.setEditable(true);
+        
+        // Set up cell value factories and cell factories for editing
+        colYear.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("year"));
+        colYear.setCellFactory(TextFieldTableCell.forTableColumn());
+        colYear.prefWidthProperty().bind(table.widthProperty().divide(8. / 3.)); 
+        colYear.setStyle(styles.getStyle5());
+        colYear.setEditable(true);
+
+        colValue.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("value"));
+        colValue.setCellFactory(TextFieldTableCell.forTableColumn());
+        colValue.prefWidthProperty().bind(table.widthProperty().divide(8. / 5.));
+        colValue.setStyle(styles.getStyle5());
+        colValue.setEditable(true);
+
+        // Commit handlers for editing cells
+        colYear.setOnEditCommit(new EventHandler<CellEditEvent<DataPoint, String>>() {
+            @Override
+            public void handle(CellEditEvent<DataPoint, String> t) {
+                // Update year value in DataPoint
+                t.getTableView().getItems().get(t.getTablePosition().getRow()).setYear(t.getNewValue());
+            }
+        });
+        colValue.setOnEditCommit(new EventHandler<CellEditEvent<DataPoint, String>>() {
+            @Override
+            public void handle(CellEditEvent<DataPoint, String> t) {
+                // Update value in DataPoint
+                t.getTableView().getItems().get(t.getTablePosition().getRow()).setValue(t.getNewValue());
+            }
+        });
+
+        table.setItems(data);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        TableUtils.installCopyPasteHandler(table);
+
+        // Bind input field widths to table width
+        textFieldYear.prefWidthProperty().bind(table.widthProperty().divide(8. / 2.75));
+        textFieldValue.prefWidthProperty().bind(table.widthProperty().divide(8. / 3.75));
+        
+        inputHBox.getChildren().addAll(textFieldYear, textFieldValue, buttonAdd);
+        inputHBox.setSpacing(3.);
+        inputHBox.setPadding(new Insets(3., 0., 0., 0.));
+
+        // Add button action: add new DataPoint if valid
+        buttonAdd.setOnAction(e -> {
+            DataPoint dp = new DataPoint(textFieldYear.getText(), textFieldValue.getText());
+            if (dp.qaDataPoint(enforceYrValPair))
+                data.add(dp);
+        });
+
+        this.getChildren().addAll(table, inputHBox);
+        // echoData("end of constructor");
+    }
+
+    /**
+     * Adds a new DataPoint with only a value (year is null).
+     * @param name1 Value for the DataPoint
+     */
+    public void addItem(String name1) {
+        DataPoint dp = new DataPoint(null, name1);
+        data.add(dp);
+    }
+
+    /**
+     * Adds a new DataPoint with year and value.
+     * @param name0 Year for the DataPoint
+     * @param name1 Value for the DataPoint
+     */
+    public void addItem(String name0, String name1) {
+        DataPoint dp = new DataPoint(name0, name1);
+        data.add(dp);
+    }
+
+    /**
+     * Sets the style for each column.
+     * @param s0 Style string for year column
+     * @param s1 Style string for value column
+     */
+    public void setColumnFormatting(String s0, String s1) {
+        colYear.setStyle(s0);
+        colValue.setStyle(s1);
+    }
+
+    /**
+     * Sets the column names and optionally hides columns if one is null.
+     * @param name0 Name for year column (null to hide)
+     * @param name1 Name for value column (null to hide)
+     */
+    public void setColumnNames(String name0, String name1) {
+        if (name0 != null) {
+            colYear.setText(name0);
+            if (name1 == null) {
+                colYear.prefWidthProperty().bind(table.widthProperty().divide(1.));
+                hideValColumn();
+            }
+        }
+        if (name1 != null) {
+            colValue.setText(name1);
+            if (name0 == null) {
+                colValue.prefWidthProperty().bind(table.widthProperty().divide(1.));
+                hideYrColumn();
+            }
+        }
+    }
+
+    /**
+     * Hides the year column.
+     */
+    public void hideYrColumn() {
+        colYear.setVisible(false);
+    }
+
+    /**
+     * Hides the value column.
+     */
+    public void hideValColumn() {
+        colValue.setVisible(false);
+    }
+
+    /**
+     * Sets the visibility of the add item input fields and button.
+     * @param b true to show, false to hide
+     */
+    public void setAddItemVisible(boolean b) {
+        inputHBox.setVisible(b);
+    }
+
+    /**
+     * Sets whether to enforce year-value pair input validation.
+     * @param b true to enforce, false to allow any input
+     */
+    public void setEnforceYrValPair(boolean b) {
+        enforceYrValPair = b;
+    }
+
+    /**
+     * Creates a new DataPoint with the given year and value.
+     * @param year Year string
+     * @param value Value string
+     * @return New DataPoint instance
+     */
+    public DataPoint createDataPoint(String year, String value) {
+        DataPoint dp = new DataPoint(year, value);
+        return dp;
+    }
+
+    /**
+     * Checks if the table is empty.
+     * @return true if table has no items, false otherwise
+     */
+    public boolean isEmpty() {
+        boolean empty = true;
+        if (table.getItems().size() > 0)
+            empty = false;
+        return empty;
+    }
+
+    /**
+     * Deletes selected items from the table after user confirmation.
+     */
+    public void deleteItemsFromTable() {
+
+        if (!utils.confirmDelete())
+            return;
+
+        ObservableList<DataPoint> selectedDataPoints = table.getSelectionModel().getSelectedItems();
+
+        // Remove each selected DataPoint from the data list
+        for (DataPoint i : selectedDataPoints) {
+            data.remove(i);
+        }
+    }
+
+    /**
+     * Moves the selected item up in the table, if possible.
+     */
+    public void moveItemUpInTable() {
+        ObservableList<DataPoint> allItems = table.getItems();
+
+        ObservableList<DataPoint> selectedItems = table.getSelectionModel().getSelectedItems();
+        if (selectedItems.size() == 1) {
+            int n = table.getSelectionModel().getSelectedIndex();
+            if (n - 1 >= 0) {
+                DataPoint dataA = allItems.get(n);
+                DataPoint dataB = allItems.get(n - 1);
+                allItems.set(n - 1, dataA);
+                allItems.set(n, dataB);
+                table.setItems(allItems);
+            }
+        }
+    }
+
+    /**
+     * Moves the selected item down in the table, if possible.
+     */
+    public void moveItemDownInTable() {
+        ObservableList<DataPoint> allItems = table.getItems();
+
+        ObservableList<DataPoint> selectedItems = table.getSelectionModel().getSelectedItems();
+        if (selectedItems.size() == 1) {
+            int n = table.getSelectionModel().getSelectedIndex();
+            if (n < allItems.size() - 1) {
+                DataPoint dataA = allItems.get(n);
+                DataPoint dataB = allItems.get(n + 1);
+                allItems.set(n + 1, dataA);
+                allItems.set(n, dataB);
+                table.setItems(allItems);
+            }
+        }
+    }
+
+    /**
+     * Returns a string representation of the table data for debugging or export.
+     * @return String with each item as "Item i = year , value"
+     */
+    public String dataOutput() {
+        String str_data = "";
+
+        ObservableList<DataPoint> tableData = table.getItems();
+
+        for (int i = 0; i < tableData.size(); i++) {
+            str_data += "Item " + i + " = " + tableData.get(i).getYear() + " , " + tableData.get(i).getValue()
+                    + vars.getEol();
+        }
+
+        return str_data;
+    }
+    
+
+    /**
+     * Returns the table data as an ArrayList of strings, each formatted as "year , value".
+     * @return ArrayList of year-value strings
+     */
+    public ArrayList<String> getDataYrValsArrayList() {
+        String str_data = "";
+
+        ArrayList<String> data = new ArrayList<String>();
+        
+        ObservableList<DataPoint> tableData = table.getItems();
+
+        for (int i = 0; i < tableData.size(); i++) {
+            str_data = tableData.get(i).getYear() + " , " + tableData.get(i).getValue();
+            data.add(str_data);
+        }
+
+        return data;
+    }
+
+    /**
+     * Returns all values in the value column as an ArrayList.
+     * @return ArrayList of value strings
+     */
+    public ArrayList<String> getValues() {
+        ArrayList<String> column = new ArrayList<String>();
+        ObservableList<DataPoint> tableData = table.getItems();
+
+        for (int i = 0; i < tableData.size(); i++) {
+            String s = tableData.get(i).getValue().trim();
+
+            if (s != null)
+                column.add(s);
+
+        }
+
+        return column;
+    }
+
+    /**
+     * Clears all data from the table.
+     */
+    public void clearTable() {
+        data.clear();
+    }
+
+    /**
+     * Updates the table view to reflect the current data list.
+     */
+    public void updateTable() {
+        table.setItems(data);
+
+        //echoData("end of updateTable");
+    }
+
+    /**
+     * Prints the current data to the console for debugging.
+     * @param str Message to print before data
+     */
+    public void echoData(String str) {
+        System.out.println(str);
+        for (int i = 0; i < data.size(); i++) {
+            System.out.println(" i: " + i + " " + data.get(i).getYear() + " " + data.get(i).getValue());
+        }
+    }
+
+    /**
+     * Sets the table data from a 2D array of doubles (first row: years, second row: values).
+     * @param values 2D array [2][n] with years and values
+     */
+    public void setValues(double[][] values) {
+        data.clear();
+
+        for (int i = 0; i < values[0].length; i++) {
+            int yr = (int) values[0][i];
+            double val = values[1][i];
+            data.add(new DataPoint(yr, val));
+        }
+        updateTable();
+    }
+
+    /**
+     * Sets the table data from a 2D array of strings (first row: years, second row: values).
+     * @param values 2D array [2][n] with years and values as strings
+     */
+    public void setValues(String[][] values) {
+        data.clear();
+        for (int i = 0; i < values[0].length; i++) {
+            String col0 = values[0][i];
+            String col1 = values[1][i];
+            data.add(new DataPoint(col0, col1));
+        }
+        updateTable();
+    }
+
+    /**
+     * Cell factory for enabling drag selection in the table.
+     */
+    public class DragSelectionCellFactory implements
+            Callback<TableColumn<DataPoint, String>, TableCell<DataPoint, String>> {
+
+        @Override
+        public TableCell<DataPoint, String> call(final TableColumn<DataPoint, String> col) {
+            return new DragSelectionCell();
+        }
+
+    }
+
+    /**
+     * Custom TableCell that supports drag selection and editing for DataPoint table cells.
+     */
+    public class DragSelectionCell extends TextFieldTableCell<DataPoint, String> {
+
+        private TextField textField;
+
+        public DragSelectionCell() {
+            // Start full drag and select cell on drag detected
+            setOnDragDetected(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    startFullDrag();
+                    getTableColumn().getTableView().getSelectionModel().select(getIndex(), getTableColumn());
+                }
+            });
+            // Select cell on mouse drag enter
+            setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+
+                @Override
+                public void handle(MouseDragEvent event) {
+                    getTableColumn().getTableView().getSelectionModel().select(getIndex(), getTableColumn());
+                }
+
+            });
+
+        }
+
+        @Override
+        public void startEdit() {
+            if (!isEmpty()) {
+                super.startEdit();
+                // Create a new text field for editing
+                TextField textField=utils.createTextField();
+                setText(null);
+                setGraphic(textField);
+                textField.selectAll();
+            }
+        }
+
+        @Override
+        public void cancelEdit() {
+            super.cancelEdit();
+
+            setText(getItem());
+            setGraphic(null);
+        }
+
+        @Override
+        public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                if (isEditing()) {
+                    if (textField != null) {
+                        textField.setText(getString());
+                    }
+                    setText(null);
+                    setGraphic(textField);
+                } else {
+                    setText(getString());
+                    setGraphic(null);
+                }
+            }
+        }
+
+        /**
+         * Returns the string value of the cell item, or empty string if null.
+         * @return String value of cell
+         */
+        private String getString() {
+            return getItem() == null ? "" : getItem().toString();
+        }
+
+    }
 }
