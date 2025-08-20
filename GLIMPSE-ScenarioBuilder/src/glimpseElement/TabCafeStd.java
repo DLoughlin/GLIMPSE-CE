@@ -69,9 +69,6 @@ import javafx.stage.Stage;
  * <b>Usage:</b> Instantiate this class as a tab in the scenario builder UI. The user interacts with the controls to
  * define a CAFE standard policy, and can save or load configurations as needed.
  *
- * @author US EPA, contributors
- * @see PolicyTab
- * @see TabTechAvailable
  */
 public class TabCafeStd extends PolicyTab implements Runnable {
     // === Constants for UI labels and options ===

@@ -95,9 +95,6 @@ import javafx.stage.Stage;
  * <b>Dependencies:</b> Relies on GLIMPSE utility classes, ControlsFX CheckComboBox, and JavaFX controls.
  * </p>
  *
- * <p>
- * <b>Author:</b> GLIMPSE Team, US EPA, and contributors
- * </p>
  */
 public class TabTechParam extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===

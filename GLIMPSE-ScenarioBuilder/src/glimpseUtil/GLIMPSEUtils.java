@@ -1398,83 +1398,113 @@ public class GLIMPSEUtils {
         popupTask.run();
 	}
 
-	private Object getDataAsType(String[] row, Class<?> type, int columnIndex) {
-		try {
-			if (type == Integer.class) {
-				if (columnIndex < row.length) {
-					return Integer.valueOf(row[columnIndex]);
-				} else {
-					return new Integer(0);
-				}
-			} else if (type == Double.class) {
-				if (columnIndex < row.length) {
-					return Double.valueOf(row[columnIndex]);
-				} else {
-					return new Double(0.0);
-				}
-			} else {
-				if (columnIndex < row.length) {
-					return row[columnIndex];
-				} else {
-					return "";
-				}
-			}
-		} catch (Exception e) {
-			return "";
-		}
-	}
+    private Object getDataAsType(String[] row, Class<?> type, int columnIndex) {
+        /**
+         * Converts a value from a row to the specified type for a given column index.
+         * @param row The row of data as a String array
+         * @param type The target type (Integer, Double, or String)
+         * @param columnIndex The index of the column
+         * @return The value converted to the specified type, or a default value if conversion fails
+         */
+        try {
+            if (type == Integer.class) {
+                if (columnIndex < row.length) {
+                    return Integer.valueOf(row[columnIndex]);
+                } else {
+                    return new Integer(0);
+                }
+            } else if (type == Double.class) {
+                if (columnIndex < row.length) {
+                    return Double.valueOf(row[columnIndex]);
+                } else {
+                    return new Double(0.0);
+                }
+            } else {
+                if (columnIndex < row.length) {
+                    return row[columnIndex];
+                } else {
+                    return "";
+                }
+            }
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
-	private TableColumn<List<Object>, String> createColumn(Class<?> type, int index, String name) {
+    private TableColumn<List<Object>, String> createColumn(Class<?> type, int index, String name) {
+        /**
+         * Creates a TableColumn for a TableView with the specified type, index, and name.
+         * @param type The data type of the column
+         * @param index The index of the column
+         * @param name The name of the column
+         * @return TableColumn instance
+         */
         String text = name;
         TableColumn<List<Object>, String> col = new TableColumn<>(text);
         col.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(index).toString()));
         return col;
     }
 
-	private Class<?> deduceColumnType(String[] column) {
-		boolean allInts = true;
-		boolean allDoubles = true;
-		try {
-			for (int i = 1; i < column.length; i++) {
-				String str = column[i];
-				if ((str != null) && (!str.equals(""))) {
-					allInts = allInts && intPattern.matcher(str).matches();
-					allDoubles = allDoubles && doublePattern.matcher(str).matches();
-				}
-			}
-			if (allInts) {
-				return Integer.class;
-			}
-			if (allDoubles) {
-				return Double.class;
-			}
-		} catch (Exception e) {
-			;
-		}
-		return String.class;
-	}
+    private Class<?> deduceColumnType(String[] column) {
+        /**
+         * Deduces the data type of a column based on its values.
+         * @param column The column as a String array
+         * @return The deduced Class type (Integer.class, Double.class, or String.class)
+         */
+        boolean allInts = true;
+        boolean allDoubles = true;
+        try {
+            for (int i = 1; i < column.length; i++) {
+                String str = column[i];
+                if ((str != null) && (!str.equals(""))) {
+                    allInts = allInts && intPattern.matcher(str).matches();
+                    allDoubles = allDoubles && doublePattern.matcher(str).matches();
+                }
+            }
+            if (allInts) {
+                return Integer.class;
+            }
+            if (allDoubles) {
+                return Double.class;
+            }
+        } catch (Exception e) {
+            ;
+        }
+        return String.class;
+    }
 
-	private int computeMaxRowLength(Object[][] array) {
-		int maxLength = Integer.MIN_VALUE;
-		for (int i = 0; i < array.length; i++) {
-			if (array[i].length > maxLength) {
-				maxLength = array[i].length;
-			}
-		}
-		return maxLength;
-	}
+    private int computeMaxRowLength(Object[][] array) {
+        /**
+         * Computes the maximum row length in a 2D array.
+         * @param array The 2D array
+         * @return The maximum row length
+         */
+        int maxLength = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].length > maxLength) {
+                maxLength = array[i].length;
+            }
+        }
+        return maxLength;
+    }
 
-	private String[] extractColumn(String[][] data, int columnIndex) {
-		String[] column = new String[data.length];
-		for (int i = 0; i < data.length; i++) {
-			if (columnIndex < data[i].length) {
-				column[i] = data[i][columnIndex];
-			} else {
-				column[i] = "";
-			}
-		}
-		return column;
-	}
+    private String[] extractColumn(String[][] data, int columnIndex) {
+        /**
+         * Extracts a column from a 2D String array.
+         * @param data The 2D String array
+         * @param columnIndex The index of the column to extract
+         * @return The extracted column as a String array
+         */
+        String[] column = new String[data.length];
+        for (int i = 0; i < data.length; i++) {
+            if (columnIndex < data[i].length) {
+                column[i] = data[i][columnIndex];
+            } else {
+                column[i] = "";
+            }
+        }
+        return column;
+    }
 	
 	public double[][] calculateValues(String type, int start_year, int end_year,
 			double initial_value, double growth, int period_length,double factor) {
@@ -2439,6 +2469,11 @@ public class GLIMPSEUtils {
      * @return true if old format, false otherwise
      */
     private boolean isOldFormatTrnVehInfo(String[][] data) {
+        /**
+         * Checks if the transportation vehicle info data is in old format.
+         * @param data Transportation vehicle info data matrix
+         * @return true if old format, false otherwise
+         */
         boolean old_format = false;
         if ((data[0][0] != null) && (data[0][0].toLowerCase().trim().startsWith("parameter"))) {
             old_format = false;
@@ -2452,10 +2487,20 @@ public class GLIMPSEUtils {
      * @return true if null or empty, false otherwise
      */
     private boolean isNullOrEmpty(String s) {
+        /**
+         * Helper method to check if a string is null or empty.
+         * @param s String to check
+         * @return true if null or empty, false otherwise
+         */
         return s == null || s.trim().isEmpty();
     }
 
-	public ComboBox<String> createComboBoxString(String[] convertFromOptions) {
+	/**
+     * Creates a JavaFX ComboBox<String> and populates it with the provided options.
+     * @param convertFromOptions Array of string options to add to the ComboBox
+     * @return ComboBox<String> instance with the given options
+     */
+    public ComboBox<String> createComboBoxString(String[] convertFromOptions) {
 		ComboBox<String> comboBox = new ComboBox<>();
 		if (convertFromOptions != null) {
 			for (String option : convertFromOptions) {
@@ -2467,18 +2512,57 @@ public class GLIMPSEUtils {
 		return comboBox;
 	}
 
-	public String getStringFromList(ArrayList<String> ol, String separator) {
+	/**
+     * Concatenates elements of an ArrayList<String> into a single string separated by the given separator.
+     * @param ol ArrayList<String> to concatenate
+     * @param separator Separator string
+     * @return Concatenated string
+     */
+    public String getStringFromList(ArrayList<String> ol, String separator) {
         if (ol == null || separator == null || vars == null) return "";
         StringBuilder rtn_str = new StringBuilder();
         for (String o : ol) {
             rtn_str.append(o).append(separator);
         }
         return rtn_str.toString();
-	}
+    }
 
-	public ComboBox<String> createComboBox() {
+	/**
+     * Creates a new JavaFX ComboBox<String> instance.
+     * @return ComboBox<String> instance
+     */
+    public ComboBox<String> createComboBox() {
 		ComboBox<String> comboBox = new ComboBox<>();
 		return comboBox;
 	}
 
+	/**
+     * Converts a list of integers to a string array.
+     * @param allowablePolicyYears List of integers to convert
+     * @return Array of strings representing the integers
+     */
+    public String[] createStringArrayFromListOfIntegers(List<Integer> allowablePolicyYears) {
+		String[] str_array = new String[allowablePolicyYears.size()];
+		for (int i = 0; i < allowablePolicyYears.size(); i++) {
+			str_array[i] = Integer.toString(allowablePolicyYears.get(i));
+		}
+		return str_array;
+	}
+
+	/**
+     * Splits the given string using the specified delimiter and returns the result as a List<String>.
+     *
+     * @param val the input string to split
+     * @param delimeter the delimiter to use for splitting the string
+     * @return a List<String> containing the split elements; empty list if input or delimiter is null
+     */
+    public List<String> getStringListFromString(String val, String delimeter) {
+        List<String> rtn_list = new ArrayList<>();
+        if (val == null || delimeter == null) return rtn_list;
+        String[] parts = val.split(delimeter);
+        for (String part : parts) {
+            rtn_list.add(part);
+        }
+        return rtn_list;
+    }
 }

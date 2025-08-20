@@ -99,8 +99,6 @@ import javafx.application.Platform;
  * </pre>
  * </p>
  *
- * @author US EPA
- * @version 1.0
  */
 public class TabXMLList extends PolicyTab {
     // === Constants ===

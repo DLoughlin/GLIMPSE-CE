@@ -108,9 +108,6 @@ import javafx.stage.WindowEvent;
  *   <li>Uses JavaFX for UI components and event handling.</li>
  * </ul>
  *
- * @author Dan Loughlin
- * @version 1.0
- * @since 2025-08-19
  */
 public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 

@@ -107,9 +107,6 @@ import javafx.stage.Stage;
  * </ul>
  * </p>
  *
- * <p>
- * <b>Author:</b> GLIMPSE Project Team
- * </p>
  */
 public class TabTechAvailable extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===
