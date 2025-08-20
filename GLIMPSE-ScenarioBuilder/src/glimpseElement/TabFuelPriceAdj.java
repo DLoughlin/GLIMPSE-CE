@@ -204,7 +204,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * Ensures consistent UI layout.
      */
     private void setComponentWidths() {
-        double max_wid = 180, min_wid = 100, pref_wid = 180;
+        double max_wid = this.MAX_WIDTH, min_wid = this.MIN_WIDTH, pref_wid = this.PREF_WIDTH;
         checkComboBoxFuel.setMaxWidth(max_wid);
         checkComboBoxFuel.setMinWidth(min_wid);
         checkComboBoxFuel.setPrefWidth(pref_wid);

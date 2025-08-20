@@ -108,6 +108,7 @@ public abstract class PolicyTab extends Tab {
     protected static final String DEFAULT_PERIOD_LENGTH = "5";
     protected static final String LABEL_UNITS_DEFAULT = "1975$s per GJ";
     protected static final String BUTTON_POPULATE = "Populate";
+    protected static final String BUTTON_FILL = "Fill";
     protected static final String BUTTON_IMPORT = "Import";
     protected static final String BUTTON_DELETE = "Delete";
     protected static final String BUTTON_CLEAR = "Clear";
@@ -144,7 +145,8 @@ public abstract class PolicyTab extends Tab {
     protected final ComboBox<String> comboBoxModificationType = utils.createComboBoxString(MODIFICATION_TYPE_OPTIONS);
     protected final Label labelUnits2 = utils.createLabel(LABEL_UNITS_DEFAULT, 225.);
 
-    protected  final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
+    protected final Button buttonPopulate = createButton(BUTTON_POPULATE, styles.getBigButtonWidth(), null);
+	protected final Button buttonFill = createButton(BUTTON_FILL, styles.getBigButtonWidth(), null);
     protected final Button buttonImport = createButton(BUTTON_IMPORT, styles.getBigButtonWidth(), null);
     protected final Button buttonDelete = createButton(BUTTON_DELETE, styles.getBigButtonWidth(), null);
     protected final Button buttonClear = createButton(BUTTON_CLEAR, styles.getBigButtonWidth(), null);
@@ -161,11 +163,11 @@ public abstract class PolicyTab extends Tab {
     protected final HBox hBoxHeaderCenter = new HBox();
     
     protected final Label labelPolicyName = createLabel(LABEL_POLICY_NAME, LABEL_WIDTH);
-    protected final TextField textFieldPolicyName = createTextField();
+    protected final TextField textFieldPolicyName = createTextField(PREF_WIDTH);
     protected final Label labelMarketName = createLabel(LABEL_MARKET_NAME, LABEL_WIDTH);
-    protected final TextField textFieldMarketName = createTextField();
+    protected final TextField textFieldMarketName = createTextField(PREF_WIDTH);
     protected final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
-    protected final CheckBox checkBoxUseAutoNames = createCheckBox(CHECKBOX_AUTO);
+    protected final CheckBox checkBoxUseAutoNames = createCheckBox(CHECKBOX_AUTO,PREF_WIDTH);
     protected final Label labelValue = createLabel(LABEL_VALUES);
     
     
@@ -174,7 +176,38 @@ public abstract class PolicyTab extends Tab {
      */
     public abstract void saveScenarioComponent();
 
+    private TextField createTextField(double width) {
+		TextField textField = utils.createTextField();
+		textField.setPrefWidth(width);
+		return textField;
+	}
+
+	private CheckBox createCheckBox(String checkboxAuto, double width) {
+		CheckBox checkBox = utils.createCheckBox(checkboxAuto);
+		checkBox.setPrefWidth(width);
+		return checkBox;
+	}
+
+	private ComboBox createComboBox(String comboBoxAuto, double width) {
+		ComboBox comboBox = utils.createComboBox();
+		comboBox.getItems().add(comboBoxAuto);
+		comboBox.setPrefWidth(width);
+		return comboBox;
+	}
+
     /**
+     * Creates a new ComboBox<String> with the specified preferred width.
+     *
+     * @param prefWidth the preferred width for the ComboBox
+     * @return a new ComboBox<String> instance with the given preferred width
+     */
+    protected ComboBox<String> createComboBoxString(double prefWidth) {
+		ComboBox<String> comboBox = new ComboBox<>();
+		comboBox.setPrefWidth(prefWidth);
+		return comboBox;
+	}
+	
+	/**
      * Load content into the tab. Implemented by subclasses to define how content is loaded.
      * @param content List of content lines to load (e.g., from a file)
      */

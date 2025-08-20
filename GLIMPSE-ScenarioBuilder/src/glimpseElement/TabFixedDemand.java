@@ -123,10 +123,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     };
     private static final String SECTOR_OTHER = "Other";
     private static final String SECTOR_SELECT_ONE = "Select One";
-    private static final double MAX_WIDTH = 195;
-    private static final double PREF_WIDTH = 195;
-    // Minimum width for combo boxes (for layout consistency)
-    private static final double MIN_WIDTH = 125;
 
     // === Utility singletons ===
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
@@ -146,19 +142,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
     private final Label labelUnitsValue = createLabel("", LABEL_WIDTH);
     private final Label labelValue = createLabel(LABEL_VALUES, LABEL_WIDTH);
-    private final Label labelModificationType = createLabel("Modification Type:", LABEL_WIDTH);
-    private final ComboBox<String> comboBoxModificationType = createComboBoxString(MODIFICATION_TYPES, PREF_WIDTH);
-    private final Label labelStartYear = createLabel("Start Year:", LABEL_WIDTH);
-    private final Label labelEndYear = createLabel("End Year:", LABEL_WIDTH);
-    private final Label labelInitialAmount = createLabel("Initial Amount:", LABEL_WIDTH);
-    private final Label labelGrowth = createLabel("Growth (%):", LABEL_WIDTH);
-    private final TextField textFieldStartYear = new TextField();
-    private final TextField textFieldEndYear = new TextField();
-    private final TextField textFieldInitialAmount = new TextField();
-    private final TextField textFieldGrowth = new TextField();
-    private final Button buttonPopulate = new Button("Populate");
-    private final Button buttonClear = new Button("Clear");
-    private final Button buttonDelete = new Button("Delete");
     
     // === Data ===
     private final String[][] sectorInfo;
