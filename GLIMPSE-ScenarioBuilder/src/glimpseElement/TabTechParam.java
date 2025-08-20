@@ -126,9 +126,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_FINAL_VAL = "Final Val: ";
     private static final String LABEL_GROWTH = "Growth (%):";
     private static final String LABEL_DELTA = "Delta:";
-    private static final double LABEL_WIDTH = 125.0;
-    private static final double MAX_WIDTH = 195.0;
-    private static final double PREF_WIDTH = 195.0;
 
     // === Constants for Metadata ===
     private static final String SCENARIO_COMPONENT_TYPE = "Tech Param";
@@ -149,15 +146,15 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     // === UI Controls ===
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxSector = createComboBoxString();
+    private final ComboBox<String> comboBoxSector = createComboBoxString(PREF_WIDTH);
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
-    private final TextField textFieldFilter = createTextField();
+    private final TextField textFieldFilter = createTextField(PREF_WIDTH);
     private final Label labelCheckComboBoxTech = createLabel(LABEL_TECHS, LABEL_WIDTH);
-    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
+    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox(PREF_WIDTH);
     private final Label labelComboBoxParam = createLabel(LABEL_PARAMETER, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxParam = createComboBoxString();
+    private final ComboBox<String> comboBoxParam = createComboBoxString(PREF_WIDTH);
     private final Label labelComboBoxParam2 = createLabel(LABEL_PARAMETER2, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxParam2 = createComboBoxString();
+    private final ComboBox<String> comboBoxParam2 = createComboBoxString(PREF_WIDTH);
     private final Label labelTextFieldInput = createLabel(LABEL_INPUT, LABEL_WIDTH);
     private final Label labelTextFieldInput2 = createLabel("");
     private final Label labelTextFieldOutput = createLabel(LABEL_OUTPUT, LABEL_WIDTH);
@@ -191,7 +188,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         checkComboBoxTech.setDisable(true);
     }
 
-    /**
+	/**
      * Sets up UI controls with options and default values.
      * Initializes combo boxes, check combo boxes, and disables/enables controls as needed.
      */
@@ -469,6 +466,20 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
     /**
+     * Creates a new TextField with the specified preferred width.
+     *
+     * @param prefWidth the preferred width for the TextField
+     * @return a new TextField instance with the given preferred width
+     */
+    private TextField createTextField(double prefWidth) {
+		TextField textField = new TextField();
+		textField.setPrefWidth(prefWidth);
+		return textField;
+	}
+
+
+    
+    /**
      * Populates the sector combo box based on available technology info and filter.
      * Adds sectors to comboBoxSector, optionally filtered by textFieldFilter.
      * Handles errors in reading technology info.
@@ -743,6 +754,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
      */
     public void setUnitsLabel() {
         String s = getUnits();
+        String s2 = ""; 
         String label = "";
         String selectedParam = this.comboBoxParam.getSelectionModel().getSelectedItem();
         if (this.checkComboBoxTech.getCheckModel().getCheckedIndices().size() > 0) {
@@ -752,26 +764,19 @@ public class TabTechParam extends PolicyTab implements Runnable {
                         label = WARNING_UNITS_MISMATCH;
                     } else if (s.equals("million pass-km")) {
                         label = "1990$ per veh-km";
-                    } else if (s.equals("million ton-km")) {
-                    	label = "1990$ per veh-km";
-                    } else if (s.equals("")) {
-                        label = "";
-                    } else {
-                        String s2 = "GJ";
-                        if (s.equals("EJ")) s2 = "GJ";
-                        if (s.equals("petalumen-hours")) s2 = "megalumen-hours";
-                        if (s.equals("million km3")) s2 = "million m3";
-                        if (s.equals("billion cycles")) s2 = "cycle";
-                        if (s.equals("Mt")) s2 = "kg";
-                        if (s.equals("km^3")) s2 = "m^3";
-                        label = "1975$s per " + s2;
-                    }
+                    } else if (s.equals("million ton-km")) s2 = "GJ";
+                    if (s.equals("petalumen-hours")) s2 = "megalumen-hours";
+                    if (s.equals("million km3")) s2 = "million m3";
+                    if (s.equals("billion cycles")) s2 = "cycle";
+                    if (s.equals("Mt")) s2 = "kg";
+                    if (s.equals("km^3")) s2 = "m^3";
+                    label = "1975$s per " + s2;
                     break;
                 case "Capacity Factor":
                     label = UNIT_UNITLESS_CAPACITY;
                     break;
                 case "Fixed Output":
-                    String s2 = this.labelTextFieldOutput2.getText();
+                    s2 = this.labelTextFieldOutput2.getText();
                     label = utils.getParentheticString(s2);
                     break;
                 case "Lifetime":

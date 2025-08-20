@@ -102,11 +102,11 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private final GridPane gridPaneLeft = new GridPane();
     private final ScrollPane scrollPaneLeft = new ScrollPane();
     private final Label labelComboBoxSubsector = utils.createLabel(LABEL_SPECIFICATION, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxSubsector = utils.createComboBoxString();
+    private final ComboBox<String> comboBoxSubsector = utils.createComboBoxString(PREF_WIDTH);
     private final Label labelCheckComboBoxTech = utils.createLabel(LABEL_TECHS, LABEL_WIDTH);
-    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
+    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox(PREF_WIDTH);
     private final Label labelWhichUnits = utils.createLabel(LABEL_UNITS, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxWhichUnits = utils.createComboBoxString();
+    private final ComboBox<String> comboBoxWhichUnits = utils.createComboBoxString(PREF_WIDTH);
     
     /**
      * Constructs a new TabCafeStd instance and initializes the UI components for the CAFE Standard tab.

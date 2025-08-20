@@ -2565,4 +2565,22 @@ public class GLIMPSEUtils {
         }
         return rtn_list;
     }
+
+	/**
+     * Creates a JavaFX ComboBox<String> with the specified preferred width.
+     *
+     * @param prefWidth the preferred width of the ComboBox
+     * @return a ComboBox<String> instance with the given preferred width
+     */
+    public ComboBox<String> createComboBoxString(double prefWidth) {
+        ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.setPrefWidth(prefWidth);
+        return comboBox;
+    }
+
+	public CheckComboBox<String> createCheckComboBox(double prefWidth) {
+		CheckComboBox<String> checkComboBox = new CheckComboBox<>();
+		checkComboBox.setPrefWidth(prefWidth);
+		return checkComboBox;
+	}
 }
