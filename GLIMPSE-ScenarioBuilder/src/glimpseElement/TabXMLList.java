@@ -175,7 +175,7 @@ public class TabXMLList extends PolicyTab {
      * Sets up the overall layout of the tab, including the main pane and center VBox.
      * Assembles the UI hierarchy for display in the tab.
      */
-    private void setupUILayout() {
+    public void setupUILayout() {
         setupVBoxCenter();
         setupMainPane();
         VBox tabLayout = new VBox();

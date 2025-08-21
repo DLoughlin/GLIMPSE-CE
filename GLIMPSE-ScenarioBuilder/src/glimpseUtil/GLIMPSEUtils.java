@@ -2583,4 +2583,10 @@ public class GLIMPSEUtils {
 		checkComboBox.setPrefWidth(prefWidth);
 		return checkComboBox;
 	}
+
+	public Label createLabel(double labelWidth) {
+		Label label = new Label();
+		label.setPrefWidth(labelWidth);
+		return label;
+	}
 }

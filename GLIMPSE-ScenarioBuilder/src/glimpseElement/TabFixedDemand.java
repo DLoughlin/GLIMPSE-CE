@@ -130,11 +130,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
     // === UI layout containers ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final VBox vBoxCenter = new VBox();
-    private final HBox hBoxHeaderCenter = new HBox();
-    private final VBox vBoxRight = new VBox();
+    //private final GridPane gridPanePresetModification = new GridPane();
+    //private final GridPane gridPaneLeft = new GridPane();
 
     // === UI controls ===
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
@@ -174,6 +171,13 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         this.setContent(tabLayout);
     }
 
+    /**
+     * Creates a ComboBox populated with the given modification types and sets its preferred width.
+     *
+     * @param modificationTypes Array of modification type strings to populate the ComboBox
+     * @param prefWidth Preferred width for the ComboBox
+     * @return A ComboBox<String> with the specified items and width
+     */
     private ComboBox<String> createComboBoxString(String[] modificationTypes, double prefWidth) {
 		ComboBox<String> comboBox = new ComboBox<>();
 		comboBox.setPrefWidth(prefWidth);
@@ -189,8 +193,22 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      * This method is a placeholder for future expansion if more controls are created dynamically.
      */
     private void setupUIControls() {
-        // All UI control instantiations should be here if not already at field declaration.
-        // This method is a placeholder for future expansion if more controls are created dynamically.
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();
+    }
+
+    private void setupLeftColumn() {
+        gridPaneLeft.getChildren().clear();
+        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelSector, new Label(), labelUnits, new Separator(),
+                utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth);
+        gridPaneLeft.addColumn(1, comboBoxSector, new Label(), labelUnitsValue, new Separator(), new Label(),
+                comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
     }
 
     /**
@@ -208,43 +226,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         comboBoxModificationType.setMinWidth(MIN_WIDTH);
         comboBoxSector.setPrefWidth(PREF_WIDTH);
         comboBoxModificationType.setPrefWidth(PREF_WIDTH);
-    }
-
-    /**
-     * Arranges all UI controls in the layout containers for the tab.
-     * Organizes controls into left (inputs), center (table), and right (region tree) columns.
-     */
-    private void setupUILayout() {
-        // Left column: sector, units, modification type, input fields
-        gridPaneLeft.getChildren().clear();
-        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelSector, new Label(), labelUnits, new Separator(),
-                utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount, labelGrowth);
-        gridPaneLeft.addColumn(1, comboBoxSector, new Label(), labelUnitsValue, new Separator(), new Label(),
-                comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
-        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
-        gridPaneLeft.setVgap(3.);
-        gridPaneLeft.setStyle(styles.getStyle2());
-
-        // Center column: value table and action buttons
-        hBoxHeaderCenter.getChildren().clear();
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().clear();
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-
-        // Right column: region selection tree
-        vBoxRight.getChildren().clear();
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-
-        // Add columns to main grid
-        gridPanePresetModification.getChildren().clear();
-        gridPanePresetModification.addColumn(0, gridPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
     }
 
     /**

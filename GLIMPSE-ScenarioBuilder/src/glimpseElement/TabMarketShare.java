@@ -176,6 +176,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		this.setText(title);
 		this.setStyle(styles.getFontStyle());
 		setupUIControls();
+		setupUIComponents();
 		setComponentWidths();
 		setupUILayout();
 		setPolicyAndMarketNames();
@@ -223,6 +224,13 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		this.comboBoxAppliedTo.getSelectionModel().select("Select One");
 	}
 
+
+    public void setupUIComponents() {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();   	
+    }	
+	
 	/**
 	 * Sets the min and max widths for all ComboBoxes and CheckComboBoxes in the tab.
 	 * Ensures consistent sizing for UI elements.
@@ -241,26 +249,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		}
 	}
 
-	/**
-	 * Sets up the layout and arrangement of UI elements in the tab.
-	 * Organizes the left, center, and right columns and adds them to the main layout.
-	 */
-	private void setupUILayout() {
-		// UI Layout for left, center, and right columns
-		setupLeftColumn();
-		setupCenterColumn();
-		setupRightColumn();
-		gridPanePresetModification.addColumn(0, scrollPaneLeft);
-		gridPanePresetModification.addColumn(1, vBoxCenter);
-		gridPanePresetModification.addColumn(2, vBoxRight);
-		gridPaneLeft.setPrefWidth(325);
-		gridPaneLeft.setMinWidth(325);
-		vBoxCenter.setPrefWidth(300);
-		vBoxRight.setPrefWidth(300);
-		VBox tabLayout = new VBox();
-		tabLayout.getChildren().addAll(gridPanePresetModification);
-		this.setContent(tabLayout);
-	}
 
 	/**
 	 * Initializes the UI components and layout for the tab.
@@ -353,26 +341,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		gridPaneLeft.setVgap(3.);
 		gridPaneLeft.setStyle(styles.getStyle2());
 		scrollPaneLeft.setContent(gridPaneLeft);
-	}
-
-	/**
-	 * Sets up the center column of the UI with value controls and action buttons.
-	 * Includes table population, deletion, and clearing.
-	 */
-	private void setupCenterColumn() {
-		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.getStyle3());
-		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.getStyle2());
-	}
-
-	/**
-	 * Sets up the right column of the UI with the country/state tree for region selection.
-	 */
-	private void setupRightColumn() {
-		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.getStyle2());
 	}
 
 	/**
