@@ -260,40 +260,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 			}
 			setPolicyAndMarketNames();
 		});
-		setOnAction(checkBoxUseAutoNames, e -> {
-			boolean selected = checkBoxUseAutoNames.isSelected();
-			textFieldPolicyName.setDisable(selected);
-			textFieldMarketName.setDisable(selected);
-		});
-		setOnAction(comboBoxModificationType, e -> {
-			String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
-			if (selected == null)
-				return;
-			switch (selected) {
-			case "Initial w/% Growth/yr":
-			case "Initial w/% Growth/pd":
-				labelGrowth.setText("Growth (%):");
-				break;
-			case "Initial w/Delta/yr":
-			case "Initial w/Delta/pd":
-				labelGrowth.setText("Delta:");
-				break;
-			case "Initial and Final":
-				labelGrowth.setText("Final Val:");
-				break;
-			}
-		});
-		setOnAction(buttonClear, e -> paneForComponentDetails.clearTable());
-		setOnAction(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-		setOnAction(buttonPopulate, e -> {
-			if (qaPopulate()) {
-				double[][] values = calculateValues();
-				paneForComponentDetails.setValues(values);
-			}
-		});
-		paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-			setPolicyAndMarketNames();
-		});
+
 	}
 
 	private void setupLeftColumn() {
@@ -353,7 +320,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * Handles edge cases for multiple categories or regions.
 	 * </p>
 	 */
-	private void setPolicyAndMarketNames() {
+	protected void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
 			if (checkBoxUseAutoNames.isSelected()) {
 				String policy_type = "--";
@@ -874,16 +841,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		}
 		this.setPolicyAndMarketNames();
 		paneForComponentDetails.updateTable();
-	}
-
-	/**
-	 * Checks if all required fields for populating values are filled.
-	 *
-	 * @return true if all required fields are filled, false otherwise
-	 */
-	public boolean qaPopulate() {
-		return !textFieldStartYear.getText().isEmpty() && !textFieldEndYear.getText().isEmpty()
-				&& !textFieldInitialAmount.getText().isEmpty() && !textFieldGrowth.getText().isEmpty();
 	}
 
 	/**

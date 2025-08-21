@@ -380,33 +380,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 // ignore
             }
         }));
-        registerComboBoxEvent(comboBoxModificationType, e -> Platform.runLater(() -> {
-            String selectedType = comboBoxModificationType.getSelectionModel().getSelectedItem();
-            if (selectedType == null) return;
-            switch (selectedType) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText(LABEL_GROWTH);
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText(LABEL_DELTA);
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText(LABEL_FINAL_VAL);
-                    break;
-                default:
-                    labelGrowth.setText(LABEL_GROWTH);
-            }
-        }));
-        registerButtonEvent(buttonClear, e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
-        registerButtonEvent(buttonDelete, e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
-        registerButtonEvent(buttonPopulate, e -> Platform.runLater(() -> {
-            if (qaPopulate()) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        }));
+
         checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> Platform.runLater(() -> {
             updateInputOutputUnits();
             setUnitsLabel();
@@ -625,16 +599,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
         this.paneForComponentDetails.updateTable();
     }
 
-    /**
-     * Performs a quick QA check to ensure required fields for populating values are filled.
-     * Checks that start year, end year, initial amount, and growth fields are not empty.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        return !(textFieldStartYear.getText().isEmpty() || textFieldEndYear.getText().isEmpty()
-                || textFieldInitialAmount.getText().isEmpty() || textFieldGrowth.getText().isEmpty());
-    }
 
     /**
      * Adds input and output information to the text fields for a given technology row and prefix.

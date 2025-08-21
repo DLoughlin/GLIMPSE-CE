@@ -215,9 +215,9 @@ public class TabTechBound extends PolicyTab implements Runnable {
      */
     private void setupEventHandlers() {
 		
-    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-    			setPolicyAndMarketNames();
-    	});
+//    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+//    			setPolicyAndMarketNames();
+//    	});
 		setEventHandler(textFieldFilter, e -> {
 			String filterText = textFieldFilter.getText().trim();
 			if (filterText.isEmpty()) {
@@ -266,41 +266,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
         });
         setEventHandler(comboBoxConstraint, e -> setPolicyAndMarketNames());
         setEventHandler(comboBoxTreatment, e -> setPolicyAndMarketNames());
-        EventHandler<TreeModificationEvent> ev = ae -> {
-            ae.consume();
-            setPolicyAndMarketNames();
-        };
-        paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-        setEventHandler(checkBoxUseAutoNames, e -> {
-            boolean selected = checkBoxUseAutoNames.isSelected();
-            textFieldPolicyName.setDisable(selected);
-            textFieldMarketName.setDisable(selected);
-        });
-        setEventHandler(buttonClear, e -> paneForComponentDetails.clearTable());
-        setEventHandler(comboBoxModificationType, e -> {
-            String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
-            if (selected == null) return;
-            switch (selected) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText(LABEL_FINAL_VAL);
-                    break;
-            }
-        });
-        setEventHandler(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-        setEventHandler(buttonPopulate, e -> {
-            if (qaPopulate()) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        });
         setEventHandler(textFieldFilter, e -> setupComboBoxSector());
     }
 
@@ -404,7 +369,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     /**
      * Automatically sets the policy and market names based on the current selections and auto-naming rules.
      */
-    private void setPolicyAndMarketNames() {
+    protected void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
             if (checkBoxUseAutoNames.isSelected()) {
                 String policyType = "--";
@@ -759,26 +724,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
         }
         this.setUnitsLabel();
         this.paneForComponentDetails.updateTable();
-    }
-
-    /**
-     * Validates that all required fields for populating values are filled in.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        boolean is_correct = true;
-
-        if (textFieldStartYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldEndYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldInitialAmount.getText().isEmpty())
-            is_correct = false;
-        if (textFieldGrowth.getText().isEmpty())
-            is_correct = false;
-
-        return is_correct;
     }
 
     /**

@@ -243,43 +243,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 setPolicyAndMarketNames();
             }
         };
-        paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-        // Update growth label based on modification type
-        comboBoxModificationType.setOnAction(e -> {
-            String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
-            if (selected == null) return;
-            switch (selected) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText(LABEL_FINAL_VAL);
-                    break;
-                default:
-                    break;
-            }
-        });
-        // Enable/disable policy/market name fields based on auto-naming
-        checkBoxUseAutoNames.setOnAction(e -> {
-            boolean auto = checkBoxUseAutoNames.isSelected();
-            textFieldPolicyName.setDisable(auto);
-            textFieldMarketName.setDisable(auto);
-        });
-        // Clear and delete table actions
-        buttonClear.setOnAction(e -> paneForComponentDetails.clearTable());
-        buttonDelete.setOnAction(e -> paneForComponentDetails.deleteItemsFromTable());
-        // Populate button: calculate and set values if QA passes
-        buttonPopulate.setOnAction(e -> {
-            if (qaPopulate()) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        });
     }
 
     /**
@@ -287,7 +250,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      * If auto-naming is enabled, updates the text fields accordingly.
      * Uses region, sector, and technology selections to build unique names.
      */
-    private void setPolicyAndMarketNames() {
+    protected void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
             if (checkBoxUseAutoNames.isSelected()) {
                 String policyType = POLICY_TYPE;
@@ -500,18 +463,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         }
         setUnitsLabel();
         paneForComponentDetails.updateTable();
-    }
-
-    /**
-     * Performs a quick QA check to ensure required fields for populating values are filled.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        return !(textFieldStartYear.getText().isEmpty() ||
-                textFieldEndYear.getText().isEmpty() ||
-                textFieldInitialAmount.getText().isEmpty() ||
-                textFieldGrowth.getText().isEmpty());
     }
 
     /**

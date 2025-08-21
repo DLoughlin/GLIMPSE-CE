@@ -129,10 +129,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
     private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
-    // === UI layout containers ===
-    //private final GridPane gridPanePresetModification = new GridPane();
-    //private final GridPane gridPaneLeft = new GridPane();
-
     // === UI controls ===
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
     private final ComboBox<String> comboBoxSector = createComboBoxString(SECTOR_SELECT_ONE, PREF_WIDTH);
@@ -249,19 +245,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             }
         });
         comboBoxSector.fireEvent(new ActionEvent());
-        // Modification type selection event: update growth/final label
-        registerComboBoxEvent(comboBoxModificationType, e -> updateGrowthLabel());
-        // Table clear button event
-        registerButtonEvent(buttonClear, e -> paneForComponentDetails.clearTable());
-        // Table delete button event
-        registerButtonEvent(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-        // Populate button event: validate and calculate values
-        registerButtonEvent(buttonPopulate, e -> {
-            if (qaPopulate()) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        });
     }
 
     /**
@@ -449,19 +432,6 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             }
         }
         paneForComponentDetails.updateTable();
-    }
-
-    /**
-     * Checks if all required fields for populating values are filled.
-     * Ensures that start year, end year, initial amount, and growth/delta fields are not empty.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        return !textFieldStartYear.getText().isEmpty() &&
-               !textFieldEndYear.getText().isEmpty() &&
-               !textFieldInitialAmount.getText().isEmpty() &&
-               !textFieldGrowth.getText().isEmpty();
     }
 
     /**
