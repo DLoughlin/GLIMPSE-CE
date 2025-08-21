@@ -251,59 +251,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 
 	/**
-	 * Initializes the UI components and layout for the tab.
-	 * (Legacy method, not used in current workflow.)
-	 */
-	private void initializeUI() {
-		// Set up initial state
-		checkBoxUseAutoNames.setSelected(true);
-		textFieldPolicyName.setDisable(true);
-		textFieldMarketName.setDisable(true);
-		// ComboBox options
-		comboBoxPolicyType.getItems().addAll(POLICY_TYPE_OPTIONS);
-		comboBoxPolicyType.getSelectionModel().select(0);
-		checkComboBoxSubset.getItems().addAll(SELECT_ONE_OR_MORE);
-		checkComboBoxSuperset.getItems().addAll(SELECT_ONE_OR_MORE);
-		checkComboBoxSubset.getCheckModel().check(0);
-		checkComboBoxSuperset.getCheckModel().check(0);
-		checkComboBoxSubset.setPrefWidth(70);
-		checkComboBoxSuperset.setPrefWidth(70);
-		checkComboBoxSubset.setMaxWidth(70);
-		checkComboBoxSuperset.setMaxWidth(70);
-		comboBoxAppliedTo.getItems().addAll(APPLIED_TO_OPTIONS);
-		comboBoxAppliedTo.getSelectionModel().select("All Stock");
-		comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
-		comboBoxConstraint.getSelectionModel().selectFirst();
-		comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
-		comboBoxTreatment.getSelectionModel().selectFirst();
-		comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
-		comboBoxModificationType.getSelectionModel().selectFirst();
-		// Sizing
-		setComboBoxWidths();
-		// UI Layout
-		setupLeftColumn();
-		setupCenterColumn();
-		setupRightColumn();
-		gridPanePresetModification.addColumn(0, scrollPaneLeft);
-		gridPanePresetModification.addColumn(1, vBoxCenter);
-		gridPanePresetModification.addColumn(2, vBoxRight);
-		gridPaneLeft.setPrefWidth(325);
-		gridPaneLeft.setMinWidth(325);
-		vBoxCenter.setPrefWidth(300);
-		vBoxRight.setPrefWidth(300);
-		// Widget actions
-		setupWidgetActions();
-
-		paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-			setPolicyAndMarketNames();
-		});
-		
-		this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
-		this.comboBoxTreatment.getSelectionModel().select("Select One");
-		this.comboBoxAppliedTo.getSelectionModel().select("Select One");
-	}
-
-	/**
 	 * Sets the min and max widths for all ComboBoxes.
 	 * (Legacy method, not used in current workflow.)
 	 */
@@ -409,47 +356,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxTreatment, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxConstraint, e -> setPolicyAndMarketNames());
-		EventHandler<TreeModificationEvent<String>> ev = new EventHandler<TreeModificationEvent<String>>() {
-			@Override
-			public void handle(TreeModificationEvent<String> ae) {
-				ae.consume();
-				setPolicyAndMarketNames();
-			}
-		};
-		paneForCountryStateTree.addEventHandlerToAllLeafs(ev);
-		setOnAction(checkBoxUseAutoNames, e -> {
-			boolean selected = checkBoxUseAutoNames.isSelected();
-			textFieldPolicyName.setDisable(selected);
-			textFieldMarketName.setDisable(selected);
-		});
-		setOnAction(comboBoxModificationType, e -> {
-			String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
-			if (selected == null)
-				return;
-			switch (selected) {
-			case "Initial w/% Growth/yr":
-			case "Initial w/% Growth/pd":
-				labelGrowth.setText("Growth (%):");
-				break;
-			case "Initial w/Delta/yr":
-			case "Initial w/Delta/pd":
-				labelGrowth.setText("Delta:");
-				break;
-			case "Initial and Final %":
-				labelGrowth.setText("Final (%):");
-				break;
-			default:
-				break;
-			}
-		});
-		setOnAction(buttonClear, e -> paneForComponentDetails.clearTable());
-		setOnAction(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-		setOnAction(buttonPopulate, e -> {
-			if (qaPopulate()) {
-				double[][] values = calculateValues();
-				paneForComponentDetails.setValues(values);
-			}
-		});
+
 	}
 
 	/**
@@ -851,7 +758,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	 * Sets the policy and market names automatically based on current selections if
 	 * auto-naming is enabled. Uses selected policy type, application, treatment, and regions.
 	 */
-	private void setPolicyAndMarketNames() {
+	protected void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
 			if (checkBoxUseAutoNames.isSelected()) {
 				String policyType = comboBoxPolicyType.getValue() != null ? comboBoxPolicyType.getValue()
@@ -1338,27 +1245,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			}
 		}
 		this.paneForComponentDetails.updateTable();
-	}
-
-	/**
-	 * Performs QA checks to ensure all required fields for populating the table are
-	 * filled. Checks for year, initial/final values, and growth fields.
-	 *
-	 * @return true if all required fields are filled, false otherwise.
-	 */
-	public boolean qaPopulate() {
-		boolean is_correct = true;
-
-		if (textFieldStartYear.getText().isEmpty())
-			is_correct = false;
-		if (textFieldEndYear.getText().isEmpty())
-			is_correct = false;
-		if (textFieldInitialAmount.getText().isEmpty())
-			is_correct = false;
-		if (textFieldGrowth.getText().isEmpty())
-			is_correct = false;
-
-		return is_correct;
 	}
 
 	/**

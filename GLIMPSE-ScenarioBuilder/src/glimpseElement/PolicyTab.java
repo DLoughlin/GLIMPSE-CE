@@ -44,6 +44,7 @@ import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -200,7 +201,7 @@ public abstract class PolicyTab extends Tab {
      * Organizes controls into left (inputs), center (table), and right (region tree) columns.
      */
     public void setupUILayout() {
-    	System.out.println("Setting up UI layout in PolicyTab");
+    	//System.out.println("Setting up UI layout in PolicyTab");
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
         gridPanePresetModification.addColumn(1, vBoxCenter);
         gridPanePresetModification.addColumn(2, vBoxRight);
@@ -252,7 +253,7 @@ public abstract class PolicyTab extends Tab {
      */
     public void setupCenterColumn() {
     	hBoxHeaderCenter.getChildren().clear();
-    	hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+    	hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonFill, buttonDelete, buttonClear);
     	hBoxHeaderCenter.setSpacing(2.);
     	hBoxHeaderCenter.setStyle(styles.getStyle3());
     	vBoxCenter.getChildren().clear();
@@ -515,5 +516,75 @@ public abstract class PolicyTab extends Tab {
         checkBox.setOnAction(handler);
     }
     
+    protected void setPolicyAndMarketNames() {
+    	//stub to be overridden by subclasses
+    	return;
+	}
+    
+    /**
+     * Sets up event handlers for UI components in the tab.
+     * This includes listeners for combo boxes, checkboxes, buttons, and filter fields.
+     * All UI updates are wrapped in Platform.runLater for thread safety.
+     */
+    private void setupEventHandlers() {
+    	// Add event handler to update policy/market names when region tree changes
+    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
+    		setPolicyAndMarketNames();
+    	});
+   
+        checkBoxUseAutoNames.setOnAction(e -> Platform.runLater(() -> {
+            boolean selected = checkBoxUseAutoNames.isSelected();
+            textFieldPolicyName.setDisable(selected);
+            textFieldMarketName.setDisable(selected);
+        }));
+        comboBoxModificationType.setOnAction(e -> Platform.runLater(() -> {
+            String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
+            if (selected == null) return;
+            switch (selected) {
+                case "Initial w/% Growth/yr":
+                case "Initial w/% Growth/pd":
+                    labelGrowth.setText("Growth (%):");
+                    break;
+                case "Initial w/Delta/yr":
+                case "Initial w/Delta/pd":
+                    labelGrowth.setText("Delta:");
+                    break;
+                case "Initial and Final":
+                    labelGrowth.setText("Final Val:");
+                    break;
+            }
+        }));
+        buttonClear.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
+        buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
+        buttonPopulate.setOnAction(e -> Platform.runLater(() -> {
+            if (qaPopulate()) {
+                double[][] values = calculateValues();
+                paneForComponentDetails.setValues(values);
+            }
+        }));
+        buttonFill.setOnAction(e -> Platform.runLater(() -> {
+                ArrayList<String> values = paneForComponentDetails.getDataYrValsArrayList();
+                if (values.size()==0) { 
+                	return;
+                }
+                for (String val : values) {
+                	System.out.println(val);
+                }
+                
+            
+        }));
+    }
+
+    /**
+     * Performs a quick QA check to ensure required fields for populating values are filled.
+     *
+     * @return true if all required fields are filled, false otherwise
+     */
+    public boolean qaPopulate() {
+        return !(textFieldStartYear.getText().isEmpty() ||
+                textFieldEndYear.getText().isEmpty() ||
+                textFieldInitialAmount.getText().isEmpty() ||
+                textFieldGrowth.getText().isEmpty());
+    }
     
 }

@@ -154,47 +154,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 .addListener((javafx.collections.ListChangeListener<String>) change -> {
                     setPolicyAndMarketNames();
         });
-        registerComboBoxEvent(comboBoxModificationType, e -> {
-            if (comboBoxModificationType.getSelectionModel().getSelectedItem() == null)
-                return;
-            // Update label for growth/delta/final value based on modification type
-            switch (comboBoxModificationType.getSelectionModel().getSelectedItem()) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText("Final Val:");
-                    break;
-            }
-        });
-        registerCheckBoxEvent(checkBoxUseAutoNames, e -> {
-            // Enable/disable manual name entry based on auto-naming
-            if (!checkBoxUseAutoNames.isSelected()) {
-                textFieldPolicyName.setDisable(false);
-                textFieldMarketName.setDisable(false);
-            } else {
-                textFieldMarketName.setDisable(true);
-                textFieldPolicyName.setDisable(true);
-            }
-        });
-        registerButtonEvent(buttonClear, e -> paneForComponentDetails.clearTable());
-        registerButtonEvent(buttonDelete, e -> paneForComponentDetails.deleteItemsFromTable());
-        registerButtonEvent(buttonPopulate, e -> {
-            // Populate table with calculated values if QA passes
-            if (qaPopulate() && paneForComponentDetails != null) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        });
-        // Update names when region selection changes
-        paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-            setPolicyAndMarketNames();
-        });
     }
 
     private void setupLeftColumn() {
@@ -275,7 +234,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * <p>
      * Naming convention: FuelPriceAdj-<fuel>-<region>
      */
-    private void setPolicyAndMarketNames() {
+    protected void setPolicyAndMarketNames() {
         if (checkBoxUseAutoNames != null && checkBoxUseAutoNames.isSelected()) {
             String policy_type = "FuelPriceAdj";
             String fuel = "----";
@@ -520,25 +479,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             }
         }
         return false;
-    }
-
-    /**
-     * Performs a quick QA check to ensure required fields for populating values are
-     * filled. Checks for non-empty start year, end year, initial amount, and growth fields.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        boolean is_correct = true;
-        if (textFieldStartYear == null || textFieldStartYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldEndYear == null || textFieldEndYear.getText().isEmpty())
-            is_correct = false;
-        if (textFieldInitialAmount == null || textFieldInitialAmount.getText().isEmpty())
-            is_correct = false;
-        if (textFieldGrowth == null || textFieldGrowth.getText().isEmpty())
-            is_correct = false;
-        return is_correct;
     }
 
     /**

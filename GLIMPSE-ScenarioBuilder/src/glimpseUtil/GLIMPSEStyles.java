@@ -42,7 +42,7 @@ package glimpseUtil;
 public final class GLIMPSEStyles {
     private static final GLIMPSEStyles INSTANCE = new GLIMPSEStyles();
 
-    private final int bigButtonWidth = 70;
+    private final int bigButtonWidth = 65;
     private final int smallButtonWidth = 35;
 
     private int fontSize = 12;

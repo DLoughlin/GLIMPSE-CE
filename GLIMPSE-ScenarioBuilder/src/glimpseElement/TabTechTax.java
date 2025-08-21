@@ -216,10 +216,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
      * All UI updates are wrapped in Platform.runLater for thread safety.
      */
     private void setupEventHandlers() {
-    	// Add event handler to update policy/market names when region tree changes
-    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-    		setPolicyAndMarketNames();
-    	});
     	
     	// Wrap all UI updates in Platform.runLater
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
@@ -255,36 +251,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
             }
         }));
         comboBoxTaxOrSubsidy.setOnAction(e -> Platform.runLater(() -> setPolicyAndMarketNames()));
-        checkBoxUseAutoNames.setOnAction(e -> Platform.runLater(() -> {
-            boolean selected = checkBoxUseAutoNames.isSelected();
-            textFieldPolicyName.setDisable(selected);
-            textFieldMarketName.setDisable(selected);
-        }));
-        comboBoxModificationType.setOnAction(e -> Platform.runLater(() -> {
-            String selected = comboBoxModificationType.getSelectionModel().getSelectedItem();
-            if (selected == null) return;
-            switch (selected) {
-                case "Initial w/% Growth/yr":
-                case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
-                    break;
-                case "Initial w/Delta/yr":
-                case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
-                    break;
-                case "Initial and Final":
-                    labelGrowth.setText("Final Val:");
-                    break;
-            }
-        }));
-        buttonClear.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
-        buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
-        buttonPopulate.setOnAction(e -> Platform.runLater(() -> {
-            if (qaPopulate()) {
-                double[][] values = calculateValues();
-                paneForComponentDetails.setValues(values);
-            }
-        }));
         textFieldFilter.setOnAction(e -> Platform.runLater(() -> setupComboBoxSector()));
     }
 
@@ -376,7 +342,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
      * Sets the policy and market names automatically based on current selections if auto-naming is enabled.
      * The name is constructed from type, sector, technology, and region selections.
      */
-    private void setPolicyAndMarketNames() {
+    protected void setPolicyAndMarketNames() {
         if (checkBoxUseAutoNames.isSelected()) {
             String policyType = "---";
             String technology = "Tech";
@@ -597,17 +563,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
         this.paneForComponentDetails.updateTable();
     }
 
-    /**
-     * Checks if the required fields for populating values are filled in.
-     *
-     * @return true if all required fields are filled, false otherwise
-     */
-    public boolean qaPopulate() {
-        return !textFieldStartYear.getText().isEmpty() &&
-                !textFieldEndYear.getText().isEmpty() &&
-                !textFieldInitialAmount.getText().isEmpty() &&
-                !textFieldGrowth.getText().isEmpty();
-    }
 
     /**
      * Helper method to validate table data years against allowable policy years.
