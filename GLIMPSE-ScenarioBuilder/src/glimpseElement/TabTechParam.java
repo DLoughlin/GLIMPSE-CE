@@ -49,6 +49,7 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -139,10 +140,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String METADATA_TABLE_DATA = "#Table data:";
 
     // === Layout and UI Components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final VBox vBoxCenter = new VBox();
+    //private final GridPane gridPanePresetModification = new GridPane();
+    //private final ScrollPane scrollPaneLeft = new ScrollPane();
+    //private final GridPane gridPaneLeft = new GridPane();
+    //private final VBox vBoxCenter = new VBox();
 
     // === UI Controls ===
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
@@ -179,12 +180,13 @@ public class TabTechParam extends PolicyTab implements Runnable {
         this.setStyle(styles.getFontStyle());
 
         setupUIControls(); // Initialize UI controls and their options
+        setComponentWidths();
+        setupUIComponents();
         setupUILayout();   // Arrange UI components in the tab
         setupEventHandlers(); // Register event handlers for user interaction
         techInfo = vars.getTechInfo(); // Load technology info data
         setupComboBoxSector(); // Populate sector combo box
-        comboBoxSector.getItems().add(SELECT_ONE);
-        comboBoxSector.getSelectionModel().select(0);
+
         checkComboBoxTech.setDisable(true);
     }
 
@@ -216,7 +218,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
         comboBoxModificationType.getSelectionModel().selectFirst();
 
-        setComponentWidths();
+
     }
 
     /**
@@ -263,12 +265,18 @@ public class TabTechParam extends PolicyTab implements Runnable {
         textFieldPeriodLength.setPrefWidth(PREF_WIDTH);
         textFieldFilter.setPrefWidth(PREF_WIDTH);
     }
+    
+    public void setupUIComponents() {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();   	
+    }
 
     /**
-     * Sets up the layout of the tab, arranging all UI components in their respective containers.
-     * Uses GridPane, VBox, and HBox for layout management.
+     * Sets up the left column UI components and layout.
      */
-    private void setupUILayout() {
+    private void setupLeftColumn() {
+        gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelSector, labelCheckComboBoxTech, labelComboBoxParam, labelComboBoxParam2,
                 labelTextFieldInput, labelTextFieldOutput, labelTextFieldUnits, new Separator(),
@@ -278,28 +286,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 labelTextFieldInput2, labelTextFieldOutput2, labelTextFieldUnits2, new Separator(), new Label(),
                 comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount,
                 textFieldGrowth, comboBoxConvertFrom);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
         scrollPaneLeft.setContent(gridPaneLeft);
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
-        
-
     }
 
     /**
@@ -519,6 +509,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
             for (String sector : sectorList) {
                 comboBoxSector.getItems().add(sector.trim());
             }
+            comboBoxSector.getItems().add(SELECT_ONE);
+            comboBoxSector.getSelectionModel().select(0);
         } catch (Exception e) {
             utils.warningMessage("Problem reading tech list.");
             System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");

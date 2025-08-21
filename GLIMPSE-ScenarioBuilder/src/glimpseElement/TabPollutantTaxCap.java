@@ -45,6 +45,7 @@ import org.controlsfx.control.CheckComboBox;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -178,16 +179,13 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		setupUIControls();
 		setComponentWidths();
 		setupUILayout();
+		setPolicyAndMarketNames();
 	}
 
-	/**
-	 * Sets up all UI controls, listeners, and default values for the pollutant tax/cap policy tab.
-	 * <p>
-	 * This includes populating combo boxes, setting up listeners for user actions,
-	 * and configuring the initial state of the UI. Listeners handle dynamic UI changes
-	 * such as enabling/disabling controls and updating names based on selections.
-	 */
 	private void setupUIControls() {
+		setupLeftColumn();
+		setupCenterColumn();
+		setupRightColumn();
 		// Populate measure, pollutant, category, and conversion options
 		for (String option : MEASURE_OPTIONS) {
 			comboBoxMeasure.getItems().add(option);
@@ -298,24 +296,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		});
 	}
 
-	/**
-	 * Sets the widths for all ComboBox and CheckComboBox components for consistency.
-	 * Ensures a uniform look and feel for the UI.
-	 */
-	private void setComponentWidths() {
-		setComboBoxWidths(checkComboBoxCategory);
-		setComboBoxWidths(comboBoxMeasure);
-		setComboBoxWidths(comboBoxModificationType);
-		setComboBoxWidths(comboBoxPollutant);
-	}
-
-	/**
-	 * Sets up the layout and arrangement of UI elements in the tab.
-	 * <p>
-	 * Arranges controls into left, center, and right columns, and sets up the main tab content.
-	 */
-	private void setupUILayout() {
-		// left column
+	private void setupLeftColumn() {
 		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
 		gridPaneLeft.addColumn(0, labelComboBoxMeasure, labelComboBoxPollutant, labelCheckComboBoxCategory, new Label(),
 				new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
@@ -325,33 +306,21 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
 				new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
 				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
-		gridPaneLeft.setVgap(3.);
-		gridPaneLeft.setStyle(styles.getStyle2());
-		scrollPaneLeft.setContent(gridPaneLeft);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
+	}
 
-		// center column
-		hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-		hBoxHeaderCenter.setSpacing(2.);
-		hBoxHeaderCenter.setStyle(styles.getStyle3());
-		vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-		vBoxCenter.setStyle(styles.getStyle2());
-
-		// right column
-		vBoxRight.getChildren().addAll(paneForCountryStateTree);
-		vBoxRight.setStyle(styles.getStyle2());
-
-		gridPanePresetModification.addColumn(0, scrollPaneLeft);
-		gridPanePresetModification.addColumn(1, vBoxCenter);
-		gridPanePresetModification.addColumn(2, vBoxRight);
-		gridPaneLeft.setPrefWidth(325);
-		gridPaneLeft.setMinWidth(325);
-		vBoxCenter.setPrefWidth(300);
-		vBoxRight.setPrefWidth(300);
-
-		VBox tabLayout = new VBox();
-		tabLayout.getChildren().addAll(gridPanePresetModification);
-		this.setContent(tabLayout);
-		setPolicyAndMarketNames();
+	/**
+	 * Sets the widths for all ComboBox and CheckComboBox components for consistency.
+	 * Ensures a uniform look and feel for the UI.
+	 */
+	private void setComponentWidths() {
+		setComboBoxWidths(checkComboBoxCategory);
+		setComboBoxWidths(comboBoxMeasure);
+		setComboBoxWidths(comboBoxModificationType);
+		setComboBoxWidths(comboBoxPollutant);
 	}
 
 	/**
@@ -382,6 +351,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * <p>
 	 * Uses selected measure, pollutant, category, and region to generate unique names.
 	 * Handles edge cases for multiple categories or regions.
+	 * </p>
 	 */
 	private void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
@@ -443,6 +413,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * <p>
 	 * This is the main entry point for saving the scenario component. Calls the overloaded
 	 * saveScenarioComponent(TreeView) method with the current region tree.
+	 * </p>
 	 */
 	@Override
 	public void saveScenarioComponent() {

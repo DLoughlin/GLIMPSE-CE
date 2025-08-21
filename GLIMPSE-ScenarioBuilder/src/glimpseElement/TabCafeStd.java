@@ -42,6 +42,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.CheckBoxTreeItem.TreeModificationEvent;
 import javafx.scene.layout.*;
@@ -54,7 +55,7 @@ import javafx.stage.Stage;
  * automatic naming of policies and markets, and handles the export of scenario component data in a format
  * compatible with GLIMPSE.
  * <p>
- * <b>Features:</b>
+ * <b>Features:</b> 
  * <ul>
  *   <li>UI controls for subsector, technology, units, and modification type selection</li>
  *   <li>Automatic and manual naming of policy and market</li>
@@ -98,10 +99,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private static final String MARKET_SUFFIX = "_Mkt";
 
     // === UI Components ===
-    private final GridPane gridPanePresetModification = new GridPane();
-    private final GridPane gridPaneLeft = new GridPane();
-    private final ScrollPane scrollPaneLeft = new ScrollPane();
-    private final Label labelComboBoxSubsector = utils.createLabel(LABEL_SPECIFICATION, LABEL_WIDTH);
+    //private final GridPane gridPanePresetModification = new GridPane();
+    //private final GridPane gridPaneLeft = new GridPane();
+    private final Label labelComboBoxSubsector = utils.createLabel(LABEL_WIDTH);
     private final ComboBox<String> comboBoxSubsector = utils.createComboBoxString(PREF_WIDTH);
     private final Label labelCheckComboBoxTech = utils.createLabel(LABEL_TECHS, LABEL_WIDTH);
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox(PREF_WIDTH);
@@ -125,9 +125,11 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         textFieldPolicyName.setDisable(true);
         textFieldMarketName.setDisable(true);
 
-        // Setup UI controls (moved from constructor)
+        // Setup UI controls (now split into column setup methods)
         setupUIControls();
+        setupUIComponents();
         setupUILayout();
+        setComponentWidths();
         setupEventHandlers();
         setPolicyAndMarketNames();
         setUnitsLabel();
@@ -141,9 +143,16 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         });
     }
 
+    public void setupUIComponents() {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();   	
+    }
+    
     /**
      * Sets up the UI controls (combo boxes, check combo boxes, etc.).
      * Populates combo boxes and sets initial selections.
+     * Now delegates to setupLeftColumn, setupCenterColumn, setupRightColumn.
      */
     private void setupUIControls() {
         comboBoxSubsector.getItems().addAll(SUBSECTOR_OPTIONS);
@@ -156,6 +165,25 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         comboBoxWhichUnits.setDisable(true);
         comboBoxModificationType.getItems().addAll(MOD_TYPE_OPTIONS);
         comboBoxModificationType.getSelectionModel().selectFirst();
+    }
+
+    /**
+     * Sets up the left column of the UI, adding labels and controls to the grid pane.
+     */
+    private void setupLeftColumn() {
+        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelComboBoxSubsector, labelCheckComboBoxTech,  
+                labelWhichUnits, new Label(),  new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
+                new Label(), new Separator(), utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear,
+                labelEndYear, labelInitialAmount, labelGrowth);
+        gridPaneLeft.addColumn(1, comboBoxSubsector, checkComboBoxTech,  
+                comboBoxWhichUnits, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
+                textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
+                textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
     }
 
     /**
@@ -178,44 +206,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
             tf.setMinWidth(MIN_WIDTH);
             tf.setPrefWidth(PREF_WIDTH);
         }
-    }
-
-    /**
-     * Sets up the UI layout for the tab.
-     * Arranges controls in left, center, and right columns.
-     */
-    private void setupUILayout() {
-        // Left column: labels and input controls
-        gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelComboBoxSubsector, labelCheckComboBoxTech,  
-                labelWhichUnits, new Label(),  new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
-                new Label(), new Separator(), utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear,
-                labelEndYear, labelInitialAmount, labelGrowth);
-        gridPaneLeft.addColumn(1, comboBoxSubsector, checkComboBoxTech,  
-                comboBoxWhichUnits, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
-                textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
-                textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
-        gridPaneLeft.setVgap(3.);
-        gridPaneLeft.setStyle(styles.getStyle2());
-        scrollPaneLeft.setContent(gridPaneLeft);
-        // Center column: value label, buttons, and details pane
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-        // Right column: region tree
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-        // Sizing
-        setComponentWidths();
     }
 
     /**

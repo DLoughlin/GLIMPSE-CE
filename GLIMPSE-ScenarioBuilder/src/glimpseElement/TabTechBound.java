@@ -156,7 +156,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     /**
      * Sets up the layout of the tab.
      */
-    private void setupUILayout() {
+    public void setupUILayout() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxSector, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,

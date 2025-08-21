@@ -41,6 +41,7 @@ import java.util.List;
 import org.controlsfx.control.CheckComboBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -106,14 +107,11 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         setupUILayout();
     }
 
-    /**
-     * Initializes and configures all UI controls and event handlers for the tab.
-     * Populates combo boxes, sets up listeners, and prepares the region tree.
-     *
-     * @param title  The tab title
-     * @param stageX The JavaFX stage
-     */
     private void setupUIControls(String title, Stage stageX) {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();
+
         // Add default option to fuel selection
         checkComboBoxFuel.getItems().add("Select One or More");
         checkComboBoxFuel.getCheckModel().check(0);
@@ -199,6 +197,23 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         });
     }
 
+    private void setupLeftColumn() {
+        gridPaneLeft.getChildren().clear();
+        gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(), new Separator(),
+                labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
+                createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
+                labelGrowth, labelConvertFrom);
+        gridPaneLeft.addColumn(1, checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
+                new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
+                new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
+                textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+        gridPaneLeft.setVgap(3.);
+        gridPaneLeft.setStyle(styles.getStyle2());
+        scrollPaneLeft.setContent(gridPaneLeft);
+    }
+
     /**
      * Sets min, max, and preferred widths for controls in the tab.
      * Ensures consistent UI layout.
@@ -234,51 +249,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         comboBoxConvertFrom.setPrefWidth(min_wid);
     }
 
-    /**
-     * Arranges controls in the layout (GridPane, VBox, etc.) for the tab.
-     * Sets up left, center, and right columns and finalizes the layout.
-     */
-    private void setupUILayout() {
-        // Layout: Left column (specification and populate controls)
-        gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(), new Separator(),
-                labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
-                createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
-                labelGrowth, labelConvertFrom);
-        gridPaneLeft.addColumn(1, checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
-                new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
-                new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
-                textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
-        gridPaneLeft.setVgap(3.);
-        gridPaneLeft.setStyle(styles.getStyle2());
-        scrollPaneLeft.setContent(gridPaneLeft);
-
-        // Layout: Center column (table and buttons)
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-
-        // Layout: Right column (region tree)
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-
-        // Add columns to main grid
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-
-        // Finalize layout
-        setPolicyAndMarketNames();
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
-    }
 
     /**
      * Extracts fuel technology names from the technology list and populates fuelList.

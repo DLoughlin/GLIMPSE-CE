@@ -169,7 +169,7 @@ public abstract class PolicyTab extends Tab {
     protected final Label labelUseAutoNames = createLabel(LABEL_USE_AUTO_NAMES, LABEL_WIDTH);
     protected final CheckBox checkBoxUseAutoNames = createCheckBox(CHECKBOX_AUTO,PREF_WIDTH);
     protected final Label labelValue = createLabel(LABEL_VALUES);
-    
+
     
     /**
      * Save the scenario component. Implemented by subclasses to define how the component is saved.
@@ -195,6 +195,24 @@ public abstract class PolicyTab extends Tab {
 		return comboBox;
 	}
 
+    /**
+     * Arranges all UI controls in the layout containers for the tab.
+     * Organizes controls into left (inputs), center (table), and right (region tree) columns.
+     */
+    public void setupUILayout() {
+    	System.out.println("Setting up UI layout in PolicyTab");
+        gridPanePresetModification.addColumn(0, scrollPaneLeft);
+        gridPanePresetModification.addColumn(1, vBoxCenter);
+        gridPanePresetModification.addColumn(2, vBoxRight);
+        gridPaneLeft.setPrefWidth(325);
+        gridPaneLeft.setMinWidth(325);
+        vBoxCenter.setPrefWidth(300);
+        vBoxRight.setPrefWidth(300);
+		VBox tabLayout = new VBox();
+		tabLayout.getChildren().addAll(gridPanePresetModification);
+		this.setContent(tabLayout);
+    }
+	
     /**
      * Creates a new ComboBox<String> with the specified preferred width.
      *
@@ -229,6 +247,28 @@ public abstract class PolicyTab extends Tab {
         return filenameSuggestion;
     }
 
+    /**
+     * Sets up the center column UI controls and layout.
+     */
+    public void setupCenterColumn() {
+    	hBoxHeaderCenter.getChildren().clear();
+    	hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
+    	hBoxHeaderCenter.setSpacing(2.);
+    	hBoxHeaderCenter.setStyle(styles.getStyle3());
+    	vBoxCenter.getChildren().clear();
+    	vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
+    	vBoxCenter.setStyle(styles.getStyle2());
+    }
+
+	/**
+	 * Sets up the right column of the UI with the country/state tree for region selection.
+	 */
+	public void setupRightColumn() {
+        vBoxRight.getChildren().clear();
+        vBoxRight.getChildren().addAll(paneForCountryStateTree);
+        vBoxRight.setStyle(styles.getStyle2());
+	}
+    
     /**
      * Get the file content for the scenario component.
      * @return File content string, or null if not set

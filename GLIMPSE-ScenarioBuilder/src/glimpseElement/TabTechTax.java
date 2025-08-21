@@ -43,6 +43,7 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -131,6 +132,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
                 textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, textFieldPeriodLength,
                 textFieldFilter, textFieldPolicyName, textFieldMarketName);
         setupUILayout();
+        setupSizing();
         setupComboBoxSector();
         comboBoxSector.getSelectionModel().selectFirst();
         checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
@@ -166,15 +168,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
         setupRightColumn();
     }
 
-    /**
-     * Arranges the layout of the tab by adding columns and setting preferred widths.
-     * This method calls setupLayout and setupSizing for the main grid and columns.
-     */
-    private void setupUILayout() {
-        setupLayout();
-        setupSizing();
-    }
-
     // === UI Setup Methods ===
     /**
      * Sets up the left column of the UI, adding labels and controls to the grid pane.
@@ -183,49 +176,15 @@ public class TabTechTax extends PolicyTab implements Runnable {
     private void setupLeftColumn() {
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxSector, labelCheckComboBoxTech, labelComboBoxTaxOrSubsidy,
-                new Label(), labelUnits, new Label(), new Separator(), labelModificationType,
+                new Label(), labelUnits, new Label(), new Separator(), this.labelUseAutoNames, this.labelPolicyName, this.labelMarketName , new Label(), new Separator() , labelModificationType,
                 labelStartYear, labelEndYear, labelInitialAmount, labelGrowth, labelConvertFrom);
         gridPaneLeft.addColumn(1, textFieldFilter, comboBoxSector, checkComboBoxTech, comboBoxTaxOrSubsidy, new Label(),
-                labelUnits2, new Label(), new Separator(), textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
-                new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+                labelUnits2, new Label(), new Separator(), this.checkBoxUseAutoNames , textFieldPolicyName, textFieldMarketName, new Label(), new Separator(),
+                comboBoxModificationType, textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
         scrollPaneLeft.setContent(gridPaneLeft);
-    }
-
-    /**
-     * Sets up the center column of the UI, adding header buttons and component details pane.
-     * This includes the value label, populate/delete/clear buttons, and the data entry table.
-     */
-    private void setupCenterColumn() {
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-    }
-
-    /**
-     * Sets up the right column of the UI, adding the country/state tree pane.
-     * This allows region selection for the policy.
-     */
-    private void setupRightColumn() {
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-    }
-
-    /**
-     * Arranges the layout of the tab by adding columns and setting preferred widths.
-     * This method configures the main grid and column widths.
-     */
-    private void setupLayout() {
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
     }
 
     /**

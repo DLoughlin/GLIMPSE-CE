@@ -47,6 +47,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -157,6 +158,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
         setupUIControls();
+        setupUIComponents();
         setComponentWidths();
         setupUILayout();
         setupComboBoxCategory();
@@ -178,6 +180,12 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
         textFieldMarketName.setDisable(true);
     }
 
+    public void setupUIComponents() {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();   	
+    }
+    
     /**
      * Sets preferred, min, and max widths for UI components for consistent layout.
      */
@@ -199,12 +207,12 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
         }
     }
 
+
     /**
-     * Sets up the layout of the tab, arranging controls into left, center, and right columns.
-     * <p>
-     * Arranges controls for specification, population, and region selection.
+     * Sets up the left column UI controls and layout.
      */
-    private void setupUILayout() {
+    private void setupLeftColumn() {
+        gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxCategory, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
@@ -214,26 +222,10 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
                 comboBoxTreatment, new Label(), labelUnits2, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
                 textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
                 textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
         scrollPaneLeft.setContent(gridPaneLeft);
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
     }
 
     /**
