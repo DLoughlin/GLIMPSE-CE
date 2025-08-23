@@ -373,6 +373,7 @@ public abstract class PolicyTab extends Tab {
         String convertYear = comboBoxConvertFrom.getValue();
         String tempUnitsVal = labelUnits2.getText();
         String toYear = tempUnitsVal.contains("1990") ? "1990$s" : "1975$s";
+
         if (!NONE.equals(convertYear)) {
             factor = utils.getConversionFactor(convertYear, toYear);
         }
@@ -526,7 +527,7 @@ public abstract class PolicyTab extends Tab {
      * This includes listeners for combo boxes, checkboxes, buttons, and filter fields.
      * All UI updates are wrapped in Platform.runLater for thread safety.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
     	// Add event handler to update policy/market names when region tree changes
     	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
     		setPolicyAndMarketNames();
@@ -543,35 +544,63 @@ public abstract class PolicyTab extends Tab {
             switch (selected) {
                 case "Initial w/% Growth/yr":
                 case "Initial w/% Growth/pd":
-                    labelGrowth.setText("Growth (%):");
+                	labelInitialAmount.setText("Initial Val:");
+                	labelGrowth.setText("Growth (%):");
                     break;
                 case "Initial w/Delta/yr":
                 case "Initial w/Delta/pd":
-                    labelGrowth.setText("Delta:");
+                	labelInitialAmount.setText("Initial Val:");
+                	labelGrowth.setText("Delta:");
                     break;
                 case "Initial and Final":
+                	labelInitialAmount.setText("Initial Val:");
                     labelGrowth.setText("Final Val:");
+                    break;
+                case "Initial and Final %":
+                	labelInitialAmount.setText("Initial Val (%):");
+                    labelGrowth.setText("Final Val (%):");
                     break;
             }
         }));
         buttonClear.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.clearTable()));
         buttonDelete.setOnAction(e -> Platform.runLater(() -> paneForComponentDetails.deleteItemsFromTable()));
         buttonPopulate.setOnAction(e -> Platform.runLater(() -> {
-            if (qaPopulate()) {
+        	if (qaPopulate()) {
                 double[][] values = calculateValues();
                 paneForComponentDetails.setValues(values);
-            }
+            } else {
+				utils.warningMessage("Please fill in fields at bottom of left column to use populate button.");
+			}
         }));
         buttonFill.setOnAction(e -> Platform.runLater(() -> {
-                ArrayList<String> values = paneForComponentDetails.getDataYrValsArrayList();
+        		//System.out.println("pressed buttonFill");
+        		ArrayList<String> values = paneForComponentDetails.getDataYrValsArrayList();
+        		
+            	int startYear = Integer.parseInt(textFieldStartYear.getText());
+				int endYear = Integer.parseInt(vars.getStopYear());
+				List<Integer> policyYears = vars.getAllowablePolicyYears();
+        		
+        		// case with empty list - fill with zeros for all policy years: Note: ignores endYear field
                 if (values.size()==0) { 
-                	return;
+
+					for (int year : policyYears) {
+						if (year >= startYear) {
+							values.add(year + ",0.0");
+						}
+					}
+                } else {
+					// case with existing values - fill in subsequent years with last value, using list of allowable policy years
+                	int index = values.size()-1;
+                	int finalYear = values.get(index).split(",").length > 1 ? Integer.parseInt(values.get(index).split(",")[0].trim()) : 0;
+					double finalValue = values.get(index).split(",").length > 1 ? Double.parseDouble(values.get(index).split(",")[1].trim()) : 0;
+				
+					for (int year : policyYears) {
+						if (year > finalYear) {
+							values.add(year + "," + finalValue);
+						}
+					}										
                 }
-                for (String val : values) {
-                	System.out.println(val);
-                }
-                
-            
+                paneForComponentDetails.setValues(values);
         }));
     }
 

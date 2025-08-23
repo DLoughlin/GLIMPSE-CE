@@ -1510,8 +1510,11 @@ public class GLIMPSEUtils {
 			double initial_value, double growth, int period_length,double factor) {
 		double[][] array=calculateValues(type,start_year,end_year,initial_value,growth,period_length);
 		
+        boolean isPercent = type.contains("%");
+        double convertToFraction = isPercent ? 0.01 : 1.0;
+		
 		for (int i=0;i<array[0].length;i++) {
-			array[1][i]=array[1][i]*factor;
+			array[1][i]=array[1][i]*factor*convertToFraction;
 		}
 		
 		return array;

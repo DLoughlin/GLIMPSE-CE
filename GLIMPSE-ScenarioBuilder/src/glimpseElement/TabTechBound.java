@@ -213,11 +213,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
     /**
      * Sets up event handlers for UI components.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
 		
-//    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-//    			setPolicyAndMarketNames();
-//    	});
+    	super.setupEventHandlers();
+    	
 		setEventHandler(textFieldFilter, e -> {
 			String filterText = textFieldFilter.getText().trim();
 			if (filterText.isEmpty()) {

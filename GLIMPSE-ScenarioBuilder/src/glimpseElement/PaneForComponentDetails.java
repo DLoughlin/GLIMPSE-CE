@@ -432,6 +432,23 @@ public class PaneForComponentDetails extends VBox {
     }
 
     /**
+     * Sets the table data from an array list of strings in which first row: years, second row: values.
+     * @param values ArrayList of strings formatted as "year,value"
+     */
+	public void setValues(ArrayList<String> values) {
+		data.clear();
+		for (int i = 0; i < values.size(); i++) {
+			String[] parts = values.get(i).split(",");
+			if (parts.length == 2) {
+				String col0 = parts[0].trim();
+				String col1 = parts[1].trim();
+				data.add(new DataPoint(col0, col1));
+			}
+		}
+		updateTable();
+	}
+    
+    /**
      * Sets the table data from a 2D array of strings (first row: years, second row: values).
      * @param values 2D array [2][n] with years and values as strings
      */
@@ -536,4 +553,7 @@ public class PaneForComponentDetails extends VBox {
         }
 
     }
+
+
+		
 }

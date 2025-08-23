@@ -215,7 +215,31 @@ public class TabTechTax extends PolicyTab implements Runnable {
      * This includes listeners for combo boxes, checkboxes, buttons, and filter fields.
      * All UI updates are wrapped in Platform.runLater for thread safety.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
+    	
+    	super.setupEventHandlers();
+		
+		// Set up the filter text field to update the sector combo box
+		textFieldFilter.setPromptText("Filter sectors/technologies");
+		textFieldFilter.setOnAction(e -> Platform.runLater(() -> setupComboBoxSector()));
+
+		// Set up the sector combo box to update the technology check combo box
+		comboBoxSector.setPromptText("Select a sector");
+		comboBoxSector.setOnAction(e -> Platform.runLater(() -> {
+			String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
+			if (selectedItem != null) {
+				if (selectedItem.equals(SELECT_ONE)) {
+					checkComboBoxTech.getItems().clear();
+					checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
+					checkComboBoxTech.getCheckModel().check(0);
+					checkComboBoxTech.setDisable(true);
+				} else {
+					checkComboBoxTech.setDisable(false);
+					updateCheckComboBoxTech();
+				}
+			}
+			setPolicyAndMarketNames();
+		}));
     	
     	// Wrap all UI updates in Platform.runLater
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {

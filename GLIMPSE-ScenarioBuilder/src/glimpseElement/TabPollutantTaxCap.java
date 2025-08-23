@@ -175,7 +175,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		checkBoxUseAutoNames.setSelected(true);
 		textFieldPolicyName.setDisable(true);
 		textFieldMarketName.setDisable(true);
-
+    	super.setupEventHandlers();
 		setupUIControls();
 		setComponentWidths();
 		setupUILayout();

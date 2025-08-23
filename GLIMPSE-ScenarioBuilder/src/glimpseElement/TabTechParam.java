@@ -297,7 +297,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @param button The button to register the handler for
      * @param handler The event handler
      */
-    private void registerButtonEvent(Button button, javafx.event.EventHandler<ActionEvent> handler) {
+    protected void registerButtonEvent(Button button, javafx.event.EventHandler<ActionEvent> handler) {
         button.setOnAction(handler);
     }
     /**
@@ -321,9 +321,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * Sets up event handlers for UI controls.
      * Handles user interactions such as filtering, sector/technology/parameter selection, and button actions.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
 
-
+    	super.setupEventHandlers();
+    	
     	registerTextFieldEvent(textFieldFilter, e -> Platform.runLater(() -> setupComboBoxSector()));
         labelCheckComboBoxTech.setOnMouseClicked(e -> Platform.runLater(() -> {
             if (!checkComboBoxTech.isDisabled()) {

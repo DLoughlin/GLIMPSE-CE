@@ -256,11 +256,10 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
      * <p>
      * Handles dynamic UI changes and triggers auto-naming and validation as needed.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
 
-//    	paneForCountryStateTree.getTree().addEventHandler(ActionEvent.ACTION, e -> {
-//    			setPolicyAndMarketNames();
-//    	});
+    	super.setupEventHandlers();
+    	
 		setEventHandler(textFieldFilter, e -> {
 			String filterText = textFieldFilter.getText().trim();
 			if (filterText.isEmpty()) {
