@@ -189,7 +189,8 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
      * This method is a placeholder for future expansion if more controls are created dynamically.
      */
     private void setupUIControls() {
-        setupLeftColumn();
+    	super.setupEventHandlers();
+    	setupLeftColumn();
         setupCenterColumn();
         setupRightColumn();
     }

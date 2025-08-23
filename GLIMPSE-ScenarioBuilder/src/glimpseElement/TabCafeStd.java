@@ -143,6 +143,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         });
     }
 
+    /**
+     * Sets up all UI components by delegating to column setup methods.
+     */
     public void setupUIComponents() {
         setupLeftColumn();
         setupCenterColumn();
@@ -212,7 +215,8 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      * Sets up event handlers for UI components.
      * Handles user interactions such as combo box changes and button clicks.
      */
-    private void setupEventHandlers() {
+    protected void setupEventHandlers() {
+    	super.setupEventHandlers();
         // Double-click on tech label toggles all tech selections
         labelCheckComboBoxTech.setOnMouseClicked(e -> {
             if (!checkComboBoxTech.isDisabled()) {
@@ -235,14 +239,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
             }
             setPolicyAndMarketNames();
         });
-        // Update policy/market names when region tree changes
-        EventHandler<TreeModificationEvent<String>> ev = new EventHandler<TreeModificationEvent<String>>() {
-            @Override
-            public void handle(TreeModificationEvent<String> ae) {
-                ae.consume();
-                setPolicyAndMarketNames();
-            }
-        };
     }
 
     /**

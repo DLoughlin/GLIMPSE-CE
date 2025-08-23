@@ -175,11 +175,13 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	public TabMarketShare(String title, Stage stageX, PaneNewScenarioComponent pane) {
 		this.setText(title);
 		this.setStyle(styles.getFontStyle());
+    	super.setupEventHandlers();
 		setupUIControls();
 		setupUIComponents();
 		setComponentWidths();
 		setupUILayout();
 		setPolicyAndMarketNames();
+		customize();
 	}
 
 	/**
@@ -218,13 +220,23 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			setPolicyAndMarketNames();
 		});
 		
-		// Set default selections for modification type, treatment, and applied to
-		this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
-		this.comboBoxTreatment.getSelectionModel().select("Select One");
-		this.comboBoxAppliedTo.getSelectionModel().select("Select One");
+
 	}
 
+	/**
+	 * sets default selections for modification type, treatment, and applied to
+	 */
+	public void customize() {
+		// Set default selections for modification type, treatment, and applied to
+		this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
+		this.comboBoxModificationType.fireEvent(new ActionEvent());
+		this.comboBoxTreatment.getSelectionModel().select("Select One");
+		this.comboBoxAppliedTo.getSelectionModel().select("Select One");		
+	}
 
+	/**
+	 * sets up the UI components for the tab, including left, center, and right columns.
+	 */
     public void setupUIComponents() {
         setupLeftColumn();
         setupCenterColumn();

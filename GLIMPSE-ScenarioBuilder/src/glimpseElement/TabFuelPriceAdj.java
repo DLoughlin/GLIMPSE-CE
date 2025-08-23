@@ -102,7 +102,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * @param stageX The JavaFX stage
      */
     public TabFuelPriceAdj(String title, Stage stageX) {
-        setupUIControls(title, stageX);
+    	super.setupEventHandlers();
+    	setupUIControls(title, stageX);
         setComponentWidths();
         setupUILayout();
     }
