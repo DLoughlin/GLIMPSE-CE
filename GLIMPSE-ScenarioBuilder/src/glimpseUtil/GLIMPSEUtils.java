@@ -1508,13 +1508,11 @@ public class GLIMPSEUtils {
 	
 	public double[][] calculateValues(String type, int start_year, int end_year,
 			double initial_value, double growth, int period_length,double factor) {
+
 		double[][] array=calculateValues(type,start_year,end_year,initial_value,growth,period_length);
 		
-        boolean isPercent = type.contains("%");
-        double convertToFraction = isPercent ? 0.01 : 1.0;
-		
 		for (int i=0;i<array[0].length;i++) {
-			array[1][i]=array[1][i]*factor*convertToFraction;
+			array[1][i]=array[1][i]*factor;
 		}
 		
 		return array;
@@ -1532,12 +1530,6 @@ public class GLIMPSEUtils {
 		double val = 0.0;
 		int year = 0;
 		returnMatrix = new double[2][num_periods];
-
-//		if (isPercent) {
-//			initial_value /= 100.0;
-//			if (type.startsWith("Initial and Final"))
-//				growth /= 100.;
-//		}
 
 		for (int t = 0; t < num_periods; t++) {
 			year = init_year + t * period_length;

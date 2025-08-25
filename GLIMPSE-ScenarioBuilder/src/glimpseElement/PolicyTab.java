@@ -159,6 +159,8 @@ public abstract class PolicyTab extends Tab {
     // === UI Components ===
     protected final GridPane gridPanePresetModification = new GridPane();
     protected final ScrollPane scrollPaneLeft = new ScrollPane();
+    protected final ScrollPane scrollPaneCenter= new ScrollPane();
+    protected final ScrollPane scrollPaneRight = new ScrollPane();
     protected final GridPane gridPaneLeft = new GridPane();
     protected final VBox vBoxCenter = new VBox();
     protected final HBox hBoxHeaderCenter = new HBox();
@@ -203,8 +205,8 @@ public abstract class PolicyTab extends Tab {
     public void setupUILayout() {
     	//System.out.println("Setting up UI layout in PolicyTab");
         gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
+        gridPanePresetModification.addColumn(1, scrollPaneCenter);
+        gridPanePresetModification.addColumn(2, scrollPaneRight);
         gridPaneLeft.setPrefWidth(325);
         gridPaneLeft.setMinWidth(325);
         vBoxCenter.setPrefWidth(300);
@@ -259,6 +261,7 @@ public abstract class PolicyTab extends Tab {
     	vBoxCenter.getChildren().clear();
     	vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
     	vBoxCenter.setStyle(styles.getStyle2());
+    	scrollPaneCenter.setContent(vBoxCenter);
     }
 
 	/**
@@ -268,6 +271,7 @@ public abstract class PolicyTab extends Tab {
         vBoxRight.getChildren().clear();
         vBoxRight.getChildren().addAll(paneForCountryStateTree);
         vBoxRight.setStyle(styles.getStyle2());
+        scrollPaneRight.setContent(vBoxRight);
 	}
     
     /**

@@ -163,6 +163,10 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
      * Sets up UI controls and event handlers for the tab.
      */
     private void setupUIControls() {
+    	
+		// Set up the filter text field to update the sector combo box
+		filterTextField.setPromptText("Filter techs");
+    	
         firstYrTextField.setText(DEFAULT_FIRST_YEAR);
         lastYrTextField.setText(DEFAULT_LAST_YEAR);
 

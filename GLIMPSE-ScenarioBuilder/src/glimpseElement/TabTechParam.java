@@ -276,7 +276,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * Sets up the left column UI components and layout.
      */
     private void setupLeftColumn() {
-        gridPaneLeft.getChildren().clear();
+
+		// Set up the filter text field to update the sector combo box
+		textFieldFilter.setPromptText("Filter techs");
+    	
+    	gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelSector, labelCheckComboBoxTech, labelComboBoxParam, labelComboBoxParam2,
                 labelTextFieldInput, labelTextFieldOutput, labelTextFieldUnits, new Separator(),
