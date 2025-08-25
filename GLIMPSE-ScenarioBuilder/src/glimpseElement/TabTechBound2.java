@@ -212,7 +212,11 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
      * Sets up the left column UI controls and layout.
      */
     private void setupLeftColumn() {
-        gridPaneLeft.getChildren().clear();
+
+		// Filter TextField initial text
+		textFieldFilter.setPromptText("Filter techs");
+    	
+    	gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, labelFilter, labelComboBoxCategory, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,

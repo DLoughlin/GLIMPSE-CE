@@ -227,6 +227,11 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	 * sets default selections for modification type, treatment, and applied to
 	 */
 	public void customize() {
+
+		// Set prompt text for subset and superset filter text fields
+		textFieldSubsetFilter.setPromptText("Filter techs in numerator");
+		textFieldSupersetFilter.setPromptText("Filter techs in denominator");
+		
 		// Set default selections for modification type, treatment, and applied to
 		this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
 		this.comboBoxModificationType.fireEvent(new ActionEvent());

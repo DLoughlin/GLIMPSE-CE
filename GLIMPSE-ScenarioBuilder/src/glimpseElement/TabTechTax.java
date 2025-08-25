@@ -220,7 +220,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
     	super.setupEventHandlers();
 		
 		// Set up the filter text field to update the sector combo box
-		textFieldFilter.setPromptText("Filter sectors/technologies");
+		textFieldFilter.setPromptText("Filter techs");
 		textFieldFilter.setOnAction(e -> Platform.runLater(() -> setupComboBoxSector()));
 
 		// Set up the sector combo box to update the technology check combo box

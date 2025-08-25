@@ -223,7 +223,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 					}
 				}
 				// Uncheck all except lastChecked
-				if (lastChecked.equals(ALL)) {
+				if ((lastChecked!=null)&&(lastChecked.equals(ALL))) {
 				  for (String item : new ArrayList<>(checkComboBoxCategory.getCheckModel().getCheckedItems())) {
 					if (!item.equals(lastChecked)) {
 						checkComboBoxCategory.getCheckModel().clearCheck(item);
@@ -232,6 +232,11 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				} else {
 				   checkComboBoxCategory.getCheckModel().clearCheck(ALL);
 				}
+				isAdjustingCategoryChecks = false;
+			}
+			if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() == 0) {
+				isAdjustingCategoryChecks = true;
+				checkComboBoxCategory.getCheckModel().check(ALL);
 				isAdjustingCategoryChecks = false;
 			}
 		});
