@@ -243,6 +243,11 @@ public class GLIMPSEFiles {
         }
         return arrayList;
     }
+    
+	public List<String> getStringListFromFile(String regionListFilename, String commentChar) {
+		ArrayList<String> arrayList = getStringArrayFromFile(regionListFilename, commentChar);		
+		return arrayList;
+	}
 
     /**
      * Load lines from a file that start with a given prefix.
@@ -997,4 +1002,6 @@ public class GLIMPSEFiles {
 	public void setMonetaryConversionsFileContent(ArrayList<String> monetaryConversionsFileContent) {
 		this.monetaryConversionsFileContent = monetaryConversionsFileContent;
 	}
+
+
 }
