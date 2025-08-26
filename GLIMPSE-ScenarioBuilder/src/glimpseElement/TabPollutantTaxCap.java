@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ * 
+ */
 package glimpseElement;
 
 import java.io.BufferedWriter;
@@ -54,64 +54,60 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * TabPollutantTaxCap provides the user interface and logic for creating and
- * editing pollutant tax/cap policies in the GLIMPSE Scenario Builder.
- * <p>
- * <b>Main responsibilities:</b>
- * <ul>
- * <li>Allow users to select measure type (tax or cap), pollutant, and sector</li>
- * <li>Configure policy and market names (auto/manual)</li>
- * <li>Specify and populate cap/tax values over time</li>
- * <li>Validate, import, and export scenario component data as CSV</li>
- * </ul>
- * </p>
+ * TabPollutantTaxCap provides the user interface and logic for creating and editing pollutant tax/cap policies in the GLIMPSE Scenario Builder.
  *
- * <b>Features:</b>
+ * <p><b>Main responsibilities:</b></p>
  * <ul>
- * <li>Support for multiple pollutants (CO2, GHG, NOx, SO2, etc.)</li>
- * <li>Automatic and manual naming for policy and market</li>
- * <li>Dynamic enabling/disabling of UI controls based on selections</li>
- * <li>Validation of user input and units</li>
- * <li>Progress tracking for file generation</li>
+ *   <li>Allow users to select measure type (tax or cap), pollutant, and sector/category</li>
+ *   <li>Configure policy and market names (auto/manual)</li>
+ *   <li>Specify and populate cap/tax values over time</li>
+ *   <li>Validate, import, and export scenario component data as CSV</li>
  * </ul>
  *
- * <b>Usage:</b>
- * 
+ * <p><b>Features:</b></p>
+ * <ul>
+ *   <li>Support for multiple pollutants (CO2, GHG, NOx, SO2, etc.)</li>
+ *   <li>Automatic and manual naming for policy and market</li>
+ *   <li>Dynamic enabling/disabling of UI controls based on selections</li>
+ *   <li>Validation of user input and units</li>
+ *   <li>Progress tracking for file generation</li>
+ * </ul>
+ *
+ * <p><b>Usage:</b></p>
  * <pre>
  * TabPollutantTaxCap tab = new TabPollutantTaxCap("Pollutant Tax/Cap", stage);
  * // Add to TabPane, interact via UI
  * </pre>
  *
- * <b>Thread Safety:</b> This class is not thread-safe and should be used only
- * on the JavaFX Application Thread.
+ * <p><b>Thread Safety:</b> This class is not thread-safe and should be used only on the JavaFX Application Thread.</p>
  *
- * <b>Class Details:</b>
+ * <p><b>Class Details:</b></p>
  * <ul>
- * <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
- * <li>Handles UI setup, event listeners, and scenario file generation for pollutant tax/cap policies.</li>
- * <li>Supports robust CO2 cap, GHG tax/cap, and flexible tax/cap for other pollutants.</li>
- * <li>Provides methods for loading, validating, and saving scenario component data.</li>
+ *   <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
+ *   <li>Handles UI setup, event listeners, and scenario file generation for pollutant tax/cap policies.</li>
+ *   <li>Supports robust CO2 cap, GHG tax/cap, and flexible tax/cap for other pollutants.</li>
+ *   <li>Provides methods for loading, validating, and saving scenario component data.</li>
  * </ul>
  *
- * <b>Key Methods:</b>
+ * <p><b>Key Methods:</b></p>
  * <ul>
- * <li>{@link #TabPollutantTaxCap(String, Stage)} - Constructor, sets up UI and listeners.</li>
- * <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
- * <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
- * <li>{@link #saveScenarioComponentFlexTaxOrCap(String[], String, String, List, String, String, String, String)} - Handles flexible tax/cap file generation.</li>
- * <li>{@link #saveScenarioComponentGHGTaxOrCap(String[], String, String, String, String)} - Handles GHG tax/cap file generation.</li>
- * <li>{@link #saveScenarioComponentRobustCO2Cap(String[], String, String, String)} - Handles robust CO2 cap file generation.</li>
- * <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
- * <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
- * <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ *   <li>{@link #TabPollutantTaxCap(String, Stage)} - Constructor, sets up UI and listeners.</li>
+ *   <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
+ *   <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
+ *   <li>{@link #saveScenarioComponentFlexTaxOrCap(String[], String, String, List, String, String, String, String, String)} - Handles flexible tax/cap file generation.</li>
+ *   <li>{@link #saveScenarioComponentGHGTaxOrCap(String[], String, String, String, String, String)} - Handles GHG tax/cap file generation.</li>
+ *   <li>{@link #saveScenarioComponentRobustCO2Cap(String[], String, String, String, String)} - Handles robust CO2 cap file generation.</li>
+ *   <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
+ *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
  * </ul>
  *
- * <b>See Also:</b>
+ * <p><b>See Also:</b></p>
  * <ul>
- * <li>{@link PolicyTab}</li>
- * <li>{@link DataPoint}</li>
- * <li>{@link PaneForComponentDetails}</li>
- * <li>{@link Utils}</li>
+ *   <li>{@link PolicyTab}</li>
+ *   <li>{@link DataPoint}</li>
+ *   <li>{@link PaneForComponentDetails}</li>
+ *   <li>{@link Utils}</li>
  * </ul>
  */
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
@@ -147,6 +143,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	private static final String GHG = "GHG";
 	private static final String CO2 = "CO2";
 
+
 	// === State ===
 	public static String descriptionText = "";
 	public static String runQueueStr = "Queue is empty.";
@@ -166,7 +163,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * Constructs a TabPollutantTaxCap for the given title and stage. Sets up all UI
 	 * controls, listeners, and default values for the pollutant tax/cap policy tab.
 	 *
-	 * @param title  Tab title
+	 * @param title  the tab title
 	 * @param stageX JavaFX Stage (not used directly)
 	 */
 	public TabPollutantTaxCap(String title, Stage stageX) {
@@ -175,13 +172,16 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		checkBoxUseAutoNames.setSelected(true);
 		textFieldPolicyName.setDisable(true);
 		textFieldMarketName.setDisable(true);
-    	super.setupEventHandlers();
+		super.setupEventHandlers();
 		setupUIControls();
 		setComponentWidths();
 		setupUILayout();
 		setPolicyAndMarketNames();
 	}
 
+	/**
+	 * Initializes and configures all UI controls, populates combo boxes, and sets up listeners for user interaction.
+	 */
 	private void setupUIControls() {
 		setupLeftColumn();
 		setupCenterColumn();
@@ -211,35 +211,39 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBoxConvertFrom.setVisible(false);
 
 		// Listeners and actions
-		checkComboBoxCategory.getCheckModel().getCheckedItems().addListener((javafx.collections.ListChangeListener<String>) change -> {
-			if (isAdjustingCategoryChecks) return;
-			if (checkComboBoxCategory.isDisabled()) return;
-			if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() > 1) {
-				isAdjustingCategoryChecks = true;
-				String lastChecked = null;
-				while (change.next()) {
-					if (change.wasAdded() && !change.getAddedSubList().isEmpty()) {
-						lastChecked = change.getAddedSubList().get(change.getAddedSubList().size() - 1);
+		checkComboBoxCategory.getCheckModel().getCheckedItems()
+				.addListener((javafx.collections.ListChangeListener<String>) change -> {
+					if (isAdjustingCategoryChecks)
+						return;
+					if (checkComboBoxCategory.isDisabled())
+						return;
+					if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() > 1) {
+						isAdjustingCategoryChecks = true;
+						String lastChecked = null;
+						while (change.next()) {
+							if (change.wasAdded() && !change.getAddedSubList().isEmpty()) {
+								lastChecked = change.getAddedSubList().get(change.getAddedSubList().size() - 1);
+							}
+						}
+						// Uncheck all except lastChecked
+						if ((lastChecked != null) && (lastChecked.equals(ALL))) {
+							for (String item : new ArrayList<>(
+									checkComboBoxCategory.getCheckModel().getCheckedItems())) {
+								if (!item.equals(lastChecked)) {
+									checkComboBoxCategory.getCheckModel().clearCheck(item);
+								}
+							}
+						} else {
+							checkComboBoxCategory.getCheckModel().clearCheck(ALL);
+						}
+						isAdjustingCategoryChecks = false;
 					}
-				}
-				// Uncheck all except lastChecked
-				if ((lastChecked!=null)&&(lastChecked.equals(ALL))) {
-				  for (String item : new ArrayList<>(checkComboBoxCategory.getCheckModel().getCheckedItems())) {
-					if (!item.equals(lastChecked)) {
-						checkComboBoxCategory.getCheckModel().clearCheck(item);
+					if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() == 0) {
+						isAdjustingCategoryChecks = true;
+						checkComboBoxCategory.getCheckModel().check(ALL);
+						isAdjustingCategoryChecks = false;
 					}
-				  }
-				} else {
-				   checkComboBoxCategory.getCheckModel().clearCheck(ALL);
-				}
-				isAdjustingCategoryChecks = false;
-			}
-			if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() == 0) {
-				isAdjustingCategoryChecks = true;
-				checkComboBoxCategory.getCheckModel().check(ALL);
-				isAdjustingCategoryChecks = false;
-			}
-		});
+				});
 
 		setOnAction(comboBoxMeasure, e -> {
 			// Show/hide conversion controls based on measure type
@@ -278,15 +282,15 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
 				new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
 				textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
-        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
-        gridPaneLeft.setVgap(3.);
-        gridPaneLeft.setStyle(styles.getStyle2());
-        scrollPaneLeft.setContent(gridPaneLeft);
+		gridPaneLeft.setAlignment(Pos.TOP_LEFT);
+		gridPaneLeft.setVgap(3.);
+		gridPaneLeft.setStyle(styles.getStyle2());
+		scrollPaneLeft.setContent(gridPaneLeft);
 	}
 
 	/**
-	 * Sets the widths for all ComboBox and CheckComboBox components for consistency.
-	 * Ensures a uniform look and feel for the UI.
+	 * Sets the widths for all ComboBox and CheckComboBox components for
+	 * consistency. Ensures a uniform look and feel for the UI.
 	 */
 	private void setComponentWidths() {
 		setComboBoxWidths(checkComboBoxCategory);
@@ -297,7 +301,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets the widths for a ComboBox for consistency.
-	 * 
+	 *
 	 * @param comboBox ComboBox to set widths for
 	 */
 	private void setComboBoxWidths(ComboBox<String> comboBox) {
@@ -318,12 +322,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Automatically sets the policy and market names based on current selections
-	 * and options. If auto-naming is enabled, updates the text fields accordingly.
-	 * <p>
-	 * Uses selected measure, pollutant, category, and region to generate unique names.
-	 * Handles edge cases for multiple categories or regions.
-	 * </p>
+	 * Automatically sets the policy and market names based on current selections and options. If auto-naming is enabled, updates the text fields accordingly.
+	 * Uses selected measure, pollutant, category, and region to generate unique names. Handles edge cases for multiple categories or regions.
 	 */
 	protected void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
@@ -383,8 +383,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * Saves the scenario component by generating metadata and CSV content. Uses
 	 * selected regions, pollutant, sector, and cap/tax values.
 	 * <p>
-	 * This is the main entry point for saving the scenario component. Calls the overloaded
-	 * saveScenarioComponent(TreeView) method with the current region tree.
+	 * This is the main entry point for saving the scenario component. Calls the
+	 * overloaded saveScenarioComponent(TreeView) method with the current region
+	 * tree.
 	 * </p>
 	 */
 	@Override
@@ -423,82 +424,142 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		String measure = comboBoxMeasure.getValue();
 		measure = measure.contains(CAP) ? CAP : TAX;
 
-		String pol_selection = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
-		String pol = pol_selection.substring(0, pol_selection.indexOf(" ")).trim();
+		String pol_menu = comboBoxPollutant.getSelectionModel().getSelectedItem().trim() + " ";
+		String pol = pol_menu.substring(0, pol_menu.indexOf(" ")).trim();
 
 		fileContent = getMetaDataContent(tree, market_name, policy_name);
 
 		// Route to appropriate file generation method based on pollutant and measure
-		if (pol.startsWith(CO2) && ALL.equals(category) && CAP.equals(measure)) {
-			saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol_selection, market_name, policy_name);
-			return;
-		} else if (!pol.startsWith(GHG)) {
-			saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, market_name,
-				policy_name,ID);
-			return;
-		} else if (pol_selection.startsWith(GHG)) {
-			saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, market_name, policy_name);
-			return;
+		
+		// cases:
+		//   Caps:
+		//      1. CO2 cap in MTC on all categories x
+		//      2. CO2 cap in MTCO2 on all categories x
+		//	    3. GHG cap in MTCO2E on all categories x
+		//	    4. CO2 cap in MTC on specific categories
+		//	    5. CO2 cap in MTCO2 on specific categories
+		//	    6. Non-GHG cap in Tg on all categories
+		//   Taxes:
+		//	    7. CO2 tax in $/MTC on all categories
+		//	    8. CO2 tax in $/MTCO2 on all categories
+		//	    9. GHG tax in $/MTCO2E on all categories x
+		//      10. Non-GHG tax in $/Tg on all categories
+		
+		if (measure.equals(CAP)) {
+			if (pol.startsWith("CO2")) {
+				if (category.equals(ALL)) { // cases 1, 2
+					saveScenarioComponentRobustCO2Cap(listOfSelectedRegions, pol, pol_menu, market_name, policy_name);
+					return;
+
+				} else { // cases 4, 5
+					saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, pol_menu,
+							market_name, policy_name, ID);
+					return;
+				}
+			} else if (pol.startsWith(GHG)) { // case 3
+				saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, pol_menu, market_name, policy_name);
+				return;
+			} else { // case 6
+				saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, pol_menu,
+						market_name, policy_name, ID);
+				return;
+			}			
+		} else if (measure.equals(TAX)) {
+			if (pol.startsWith(GHG)) { // case 9
+				saveScenarioComponentGHGTaxOrCap(listOfSelectedRegions, measure, pol, pol_menu, market_name, policy_name);
+				return;
+			} else { // cases 7, 8, 10
+				saveScenarioComponentFlexTaxOrCap(listOfSelectedRegions, measure, category, cats, pol, pol_menu,
+						market_name, policy_name, ID);
+				return;
+			}
 		} else {
 			System.out.println("Cap or tax type not supported!");
+		}
+		
+	}
+	
+	/**
+	 * Special implementation for robust CO2 cap policies, generating scenario files
+	 * for complex CO2 cap scenarios.
+	 *
+	 * @param listOfSelectedRegions Array of selected region names
+	 * @param pol                   Pollutant string
+	 * @param pol_menu              Pollutant menu string
+	 * @param market_name           Market name
+	 * @param policy_name           Policy name
+	 */
+	private void saveScenarioComponentRobustCO2Cap(String[] listOfSelectedRegions, String pol, String pol_menu,
+			String market_name, String policy_name) {
+
+		fileContent += INPUT_TABLE + vars.getEol();
+		fileContent += VARIABLE_ID + vars.getEol();
+		fileContent += GLIMPSE_EMISSION_CAP_PPS_P1 + vars.getEol() + vars.getEol();
+		fileContent += "region,policy,policy-type,min-price,market,year,cap" + vars.getEol();
+		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
+			for (String state : listOfSelectedRegions) {
+				ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
+				for (String data_str : data) {
+					data_str = data_str.replaceAll(" ", "");
+					fileContent += state + "," + policy_name + ",tax,1," + market_name + "," + data_str + vars.getEol();
+				}
+			}
+		}
+		String dmdAdj = "1";
+		if (pol_menu.contains("(MT CO2)"))
+			dmdAdj = "3.667";
+		pol = pol.substring(0, pol.indexOf(" ")).trim();
+		if (listOfSelectedRegions != null && listOfSelectedRegions.length >= 1) {
+			fileContent += vars.getEol();
+			fileContent += INPUT_TABLE + vars.getEol();
+			fileContent += VARIABLE_ID + vars.getEol();
+			fileContent += GLIMPSE_EMISSION_CAP_PPS_P2 + vars.getEol();
+			fileContent += vars.getEol();
+			fileContent += "region,linked-ghg-policy,price-adjust0,demand-adjust0,market,linked-policy,price-unit,output-unit,price-adjust1,demandAdjust1"
+					+ vars.getEol();
+			for (String region : listOfSelectedRegions) {
+				fileContent += region + "," + pol + ",0,0," + market_name + "," + policy_name + ",1990$/Tg,Tg,1,"
+						+ dmdAdj + vars.getEol();
+				double progress = (double) 1 / (listOfSelectedRegions.length - 1);
+				updateProgressBar(progress);
+			}
 		}
 	}
 
 	/**
-	 * Special implementation for CO2 cap policies, generating robust scenario files
-	 * for complex scenarios.
+	 * Special implementation for flexible tax or cap policies, generating scenario files for non-GHG/CO2 pollutants or category-specific policies.
 	 *
 	 * @param listOfSelectedRegions Array of selected region names
 	 * @param measure               Measure type (Tax/Cap)
 	 * @param category              Selected category
 	 * @param categories            List of selected categories
 	 * @param pol                   Pollutant string
+	 * @param pol_menu              Pollutant menu string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 * @param ID                    Unique identifier for this policy instance
 	 */
 	private void saveScenarioComponentFlexTaxOrCap(String[] listOfSelectedRegions, String measure, String category,
-			List<String> categories, String pol, String market_name, String policy_name,String ID) {
-
-		String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
-
-		File test = new File(tempDirName);
-		if (!test.exists())
-			test.mkdir();
-		String tempFilename0 = "temp_policy_file0.txt";
-		String tempFilename1 = "temp_policy_file1.txt";
-		String tempFilename2 = "temp_policy_file2.txt";
-
-		String temp_file0 = tempDirName + File.separator + tempFilename0;
-		String temp_file1 = tempDirName + File.separator + tempFilename1;
-		String temp_file2 = tempDirName + File.separator + tempFilename2;
-
-		BufferedWriter bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
-		BufferedWriter bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
-		BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
-
-		String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
-		files.deleteFile(temp_file);
-
-		ArrayList<String> tempfiles = new ArrayList<String>();
-
-		ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
+			List<String> categories, String pol, String pol_menu, String market_name, String policy_name, String ID) {
 
 		files.writeToBufferedFile(bw0, fileContent);
-		fileContent = "use temp file";
+		initializeTempFiles();
 
-		//where cap or tax is being applied to a specific category, provides category-specific naming
-		if (!ALL.equals(category)) pol=pol+"_"+ID;
+		ArrayList<String> tempfiles = new ArrayList<String>();
+		ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
 		
+		if (!category.equals(ALL)) pol = pol + "_" + ID;
+
 		files.writeToBufferedFile(bw0, INPUT_TABLE + vars.getEol());
 		files.writeToBufferedFile(bw0, VARIABLE_ID + vars.getEol());
-		if (CAP.equals(measure)) {
+		if (measure.equals(CAP)) {
 			files.writeToBufferedFile(bw0, GLIMPSE_EMISSION_CAP + vars.getEol() + vars.getEol());
 			files.writeToBufferedFile(bw0, "region,pollutant,market,year,cap" + vars.getEol());
-		} else if (TAX.equals(measure)) {
+		} else if (measure.equals(TAX)) {
 			files.writeToBufferedFile(bw0, GLIMPSE_EMISSION_TAX + vars.getEol() + vars.getEol());
 			files.writeToBufferedFile(bw0, "region,pollutant,market,year,tax" + vars.getEol());
 		}
+		
 		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
 			String state = listOfSelectedRegions[0];
 
@@ -525,9 +586,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		files.closeBufferedFile(bw0);
 		tempfiles.add(temp_file0);
 
-		int start_year = 2015;
+		int start_year = vars.getCalibrationYear();
+		List<Integer> years = vars.getAllYears();
 
-		if (!ALL.equals(category)) {
+		if (!category.equals(ALL)) { //case where specific categories are selected (CO2 only)
 
 			files.writeToBufferedFile(bw1, vars.getEol());
 			files.writeToBufferedFile(bw1, INPUT_TABLE + vars.getEol());
@@ -551,39 +613,41 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				if (year > max_year)
 					max_year = year;
 			}
-			// DHL: todo - need to loop around selected categories
+
 			int l = 0;
 			if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
 				l++;
-				for (String region : listOfSelectedRegions) {
+				for (String region : listOfSelectedRegions) { //loop over regions
 					String[][] tech_list = vars.getTechInfo();
 					int cols = tech_list[0].length;
 					int rows = tech_list.length;
-					for (int y = start_year; y <= max_year; y += 5) {
-						for (String cat : categories) {
+					for (int y : years) { //loop over years
+						if ((y >= start_year)&&(y <= max_year)) {
 
-							String cat_lwc = cat.toLowerCase();
-							for (int r = 0; r < rows; r++) {
-								String sector_r = tech_list[r][0];
-								String subsector_r = tech_list[r][1];
-								String tech_r = tech_list[r][2];
-								String cat_r = tech_list[r][cols - 1];
-								// DHL: todo - modify to operate on year list as opposed to 5-year increments
+							for (String cat : categories) { //loop over selected categories
 
-								// DHL: added PV and wind check to avoid issue where these didn't have inputs,
-								// resulting in severe error
-								if ((!tech_r.contains("PV")) && (!tech_r.contains("wind"))
-										&& (!tech_r.contains("CSP"))) {
-									String cat_r_lwc = cat_r.toLowerCase();
-									if ((cat_lwc.equals(cat_r_lwc))) {
-										String line = region + "," + sector_r + "," + subsector_r + ","
-												+ tech_r.replace("=>", ",") + "," + y + "," + pol + vars.getEol();
-										if (tech_r.contains("=>")) {
-											files.writeToBufferedFile(bw1, line);
-											nest_count++;
-										} else {
-											files.writeToBufferedFile(bw2, line);
-											nonest_count++;
+								String cat_lwc = cat.toLowerCase();
+								for (int r = 0; r < rows; r++) { //loop over all technologies
+									String sector_r = tech_list[r][0];
+									String subsector_r = tech_list[r][1];
+									String tech_r = tech_list[r][2];
+									String cat_r = tech_list[r][cols - 1];
+
+									// DHL: added PV and wind check to avoid issue where these didn't have inputs,
+									// resulting in severe error
+									if ((!tech_r.contains("PV")) && (!tech_r.contains("wind"))
+											&& (!tech_r.contains("CSP"))) {
+										String cat_r_lwc = cat_r.toLowerCase();
+										if ((cat_lwc.equals(cat_r_lwc))) {
+											String line = region + "," + sector_r + "," + subsector_r + ","
+													+ tech_r.replace("=>", ",") + "," + y + "," + pol + vars.getEol();
+											if (tech_r.contains("=>")) {
+												files.writeToBufferedFile(bw1, line);
+												nest_count++;
+											} else {
+												files.writeToBufferedFile(bw2, line);
+												nonest_count++;
+											}
 										}
 									}
 								}
@@ -608,6 +672,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 	}
 
+	
 	/**
 	 * Special implementation for GHG tax/cap policies, generating scenario files
 	 * for GHG policies.
@@ -615,11 +680,12 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	 * @param listOfSelectedRegions Array of selected region names
 	 * @param measure               Measure type (Tax/Cap)
 	 * @param pol                   Pollutant string
+	 * @param pol_menu              Pollutant menu string
 	 * @param market_name           Market name
 	 * @param policy_name           Policy name
 	 */
 	private void saveScenarioComponentGHGTaxOrCap(String[] listOfSelectedRegions, String measure, String pol,
-			String market_name, String policy_name) {
+			String pol_menu, String market_name, String policy_name) {
 
 		fileContent += INPUT_TABLE + vars.getEol();
 		fileContent += VARIABLE_ID + vars.getEol();
@@ -709,54 +775,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Special implementation for robust CO2 cap policies, generating scenario files
-	 * for complex CO2 cap scenarios.
-	 *
-	 * @param listOfSelectedRegions Array of selected region names
-	 * @param pol                   Pollutant string
-	 * @param market_name           Market name
-	 * @param policy_name           Policy name
-	 */
-	private void saveScenarioComponentRobustCO2Cap(String[] listOfSelectedRegions, String pol, String market_name,
-			String policy_name) {
-
-		fileContent += INPUT_TABLE + vars.getEol();
-		fileContent += VARIABLE_ID + vars.getEol();
-		fileContent += GLIMPSE_EMISSION_CAP_PPS_P1 + vars.getEol() + vars.getEol();
-		fileContent += "region,policy,policy-type,min-price,market,year,cap" + vars.getEol();
-		if (listOfSelectedRegions != null && listOfSelectedRegions.length > 0) {
-			for (String state : listOfSelectedRegions) {
-				ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
-				for (String data_str : data) {
-					data_str = data_str.replaceAll(" ", "");
-					fileContent += state + "," + policy_name + ",tax,1," + market_name + "," + data_str + vars.getEol();
-				}
-			}
-		}
-		String dmdAdj = "1";
-		if (pol.contains("(MT CO2)"))
-			dmdAdj = "3.667";
-		pol = pol.substring(0, pol.indexOf(" ")).trim();
-		if (listOfSelectedRegions != null && listOfSelectedRegions.length >= 1) {
-			fileContent += vars.getEol();
-			fileContent += INPUT_TABLE + vars.getEol();
-			fileContent += VARIABLE_ID + vars.getEol();
-			fileContent += GLIMPSE_EMISSION_CAP_PPS_P2 + vars.getEol();
-			fileContent += vars.getEol();
-			fileContent += "region,linked-ghg-policy,price-adjust0,demand-adjust0,market,linked-policy,price-unit,output-unit,price-adjust1,demandAdjust1"
-					+ vars.getEol();
-			for (String region : listOfSelectedRegions) {
-				fileContent += region + "," + pol + ",0,0," + market_name + "," + policy_name + ",1990$/Tg,Tg,1,"
-						+ dmdAdj + vars.getEol();
-				double progress = (double) 1 / (listOfSelectedRegions.length - 1);
-				updateProgressBar(progress);
-			}
-		}
-	}
-
-	/**
-	 * Returns metadata content for the scenario component file, including measure,
-	 * pollutant, sector, regions, and table data.
+	 * Returns metadata content for the scenario component file, including measure, pollutant, sector, regions, and table data.
 	 *
 	 * @param tree   TreeView of selected regions
 	 * @param market Market name
@@ -850,7 +869,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 
 	/**
 	 * Helper method to validate table data years against allowable policy years.
-	 * 
+	 *
 	 * @return true if at least one year matches allowable years, false otherwise
 	 */
 	private boolean validateTableDataYears() {
@@ -869,8 +888,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Validates all required inputs before saving the scenario component. Checks
-	 * for at least one region, at least one table entry, and required selections.
+	 * Validates all required inputs before saving the scenario component. Checks for at least one region, at least one table entry, and required selections.
 	 *
 	 * @return true if all inputs are valid, false otherwise
 	 */

@@ -900,15 +900,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		
 		List<Integer> years=vars.getAllYears();
 		
-//		String sss = vars.getStartYearForShare();
-//		if (!sss.equals("2010")) {
-//			try {
-//				start_year = Integer.parseInt(sss);
-//			} catch (Exception e1) {
-//				System.out.println(
-//						"Problem converting startYearForShare (" + sss + ") to int. Using default value of 2010.");
-//			}
-//		}
 		ArrayList<String> list_of_policy_sector_combos = new ArrayList<>();
 
 		// 3. Write part 1: constraint fraction targets

@@ -145,8 +145,9 @@ public class GLIMPSEVariables {
     private String unitConversionsFilename = null;
     private String monetaryConversionsFilename = null;
     private String aboutTextFilename = null;
-    private List<String> regionList = DEFAULT_REGION_LIST;
-    private List<String> subRegionList = DEFAULT_SUBREGION_LIST;
+    //TODO: override region lists if files are present
+    private List<String> regionList = null;
+    private List<String> subRegionList = null;
 
     /**
      * Private constructor for singleton pattern.
@@ -1913,40 +1914,6 @@ public class GLIMPSEVariables {
             utils.warningMessage("Problem reading tech list: "+text);
             System.out.println("Error reading tech list from " + get("tchBndListFile") + ":");
             System.out.println("  ---> " + e);
-            /*if (num == 0) {
-                System.out.println("Using defaults...");
-
-                String[][] stringMatrix = {
-                        { "trn_pass_road_LDV_4W", "Compact Car", "BEV", "elect_td_trn" },
-                        { "trn_pass_road_LDV_4W", "Compact Car", "FCEV", "H2 enduse" },
-                        { "trn_pass_road_LDV_4W", "Compact Car", "Hybrid Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Compact Car", "Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Compact Car", "NG", "delivered gas" },
-
-                        { "trn_pass_road_LDV_4W", "Midsize Car", "BEV", "elect_td_trn" },
-                        { "trn_pass_road_LDV_4W", "Midsize Car", "FCEV", "H2 enduse" },
-                        { "trn_pass_road_LDV_4W", "Midsize Car", "Hybrid Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Midsize Car", "Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Midsize Car", "NG", "delivered gas" },
-
-                        { "trn_pass_road_LDV_4W", "Large Car", "BEV", "elect_td_trn" },
-                        { "trn_pass_road_LDV_4W", "Large Car", "FCEV", "H2 enduse" },
-                        { "trn_pass_road_LDV_4W", "Large Car", "Hybrid Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Large Car", "Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Large Car", "NG", "delivered gas" },
-
-                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "BEV", "elect_td_trn" },
-                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "FCEV", "H2 enduse" },
-                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "Hybrid Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "Liquids", "refined liquids enduse" },
-                        { "trn_pass_road_LDV_4W", "Light Truck and SUV", "NG", "delivered gas" }
-
-                };
-                returnStringMatrix = stringMatrix;
-				
-            } else {
-                System.out.println("Stopping with " + num + " read in.");
-            }*/
         }
         return returnStringMatrix;
     }
@@ -2265,6 +2232,21 @@ public class GLIMPSEVariables {
 	}
 
 	public List<String> getRegionList() {
+		if (regionList==null) {
+			regionList=new ArrayList<>();
+			List<String> list = files.getStringListFromFile(getRegionListFilename(), "#");
+			for (int i=0;i<list.size();i++) {
+				String[] s=list.get(i).trim().split(",");
+				for (int j=0;j<s.length;j++) {
+					String s2=s[j].trim();
+					if (s2.contains(":")) {
+						String[] s3=s2.split(":");
+						s2=s3[1].trim();
+					} 
+					if (s2.length()>0) regionList.add(s2);
+				}
+			}
+		}
 		return regionList;
 	}
 
@@ -2273,6 +2255,21 @@ public class GLIMPSEVariables {
 	}
 
 	public List<String> getSubRegionList() {
+		if (subRegionList==null) {
+			subRegionList=new ArrayList<>();
+			List<String> list = files.getStringListFromFile(getSubRegionsFilename(), "#");
+			for (int i=0;i<list.size();i++) {
+				String[] s=list.get(i).trim().split(",");
+				for (int j=0;j<s.length;j++) {
+					String s2=s[j].trim();
+					if (s2.contains(":")) {
+						String[] s3=s2.split(":");
+						s2=s3[1].trim();
+					} 
+					if (s2.length()>0) subRegionList.add(s2);
+				}
+			}
+		}
 		return subRegionList;
 	}
 

@@ -35,6 +35,7 @@
 */
 package glimpseElement;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,18 @@ public abstract class PolicyTab extends Tab {
     protected String fileContent = null;        // Content of the file to be saved
     protected List<String> marketList;          // List of unique market names
 
+	// === temp files used for saving large scenario components that would exceed memory limits ===
+	protected String tempFilename0 = "temp_policy_file0.txt";
+	protected String tempFilename1 = "temp_policy_file1.txt";
+	protected String tempFilename2 = "temp_policy_file2.txt";
+	protected String temp_file0 = null;
+	protected String temp_file1 = null;
+	protected String temp_file2 = null;
+	protected BufferedWriter bw0 = null;
+	protected BufferedWriter bw1 = null;
+	protected BufferedWriter bw2 = null;
+	protected String temp_file = null;
+    
     // === Singleton utility instances for use by subclasses ===
     protected final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     protected final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
@@ -619,5 +632,30 @@ public abstract class PolicyTab extends Tab {
                 textFieldInitialAmount.getText().isEmpty() ||
                 textFieldGrowth.getText().isEmpty());
     }
+    
+	protected void initializeTempFiles() {
+		String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
+
+		File test = new File(tempDirName);
+		if (!test.exists())
+			test.mkdir();
+		tempFilename0 = "temp_policy_file0.txt";
+		tempFilename1 = "temp_policy_file1.txt";
+		tempFilename2 = "temp_policy_file2.txt";
+
+		temp_file0 = tempDirName + File.separator + tempFilename0;
+		temp_file1 = tempDirName + File.separator + tempFilename1;
+		temp_file2 = tempDirName + File.separator + tempFilename2;
+
+		bw0 = files.initializeBufferedFile(tempDirName, tempFilename0);
+		bw1 = files.initializeBufferedFile(tempDirName, tempFilename1);
+		bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
+
+		temp_file = tempDirName + File.separator + "temp_policy_file.txt";
+		files.deleteFile(temp_file);
+		
+		fileContent = "Use temp files";
+	}
+    
     
 }
