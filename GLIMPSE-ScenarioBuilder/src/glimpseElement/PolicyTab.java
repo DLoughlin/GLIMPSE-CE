@@ -189,27 +189,48 @@ public abstract class PolicyTab extends Tab {
     
     /**
      * Save the scenario component. Implemented by subclasses to define how the component is saved.
+     * <p>
+     * This method should be implemented by subclasses to handle the logic for saving the scenario component
+     * represented by the tab. It may involve writing to files, updating UI, or other operations specific to the policy type.
+     * </p>
      */
     public abstract void saveScenarioComponent();
 
     private TextField createTextField(double width) {
-		TextField textField = utils.createTextField();
-		textField.setPrefWidth(width);
-		return textField;
-	}
+        /**
+         * Create a new TextField instance with the specified preferred width.
+         * @param width The preferred width for the TextField
+         * @return A new TextField with the given width
+         */
+        TextField textField = utils.createTextField();
+        textField.setPrefWidth(width);
+        return textField;
+    }
 
-	private CheckBox createCheckBox(String checkboxAuto, double width) {
-		CheckBox checkBox = utils.createCheckBox(checkboxAuto);
-		checkBox.setPrefWidth(width);
-		return checkBox;
-	}
+    private CheckBox createCheckBox(String checkboxAuto, double width) {
+        /**
+         * Create a new CheckBox instance with the specified label and preferred width.
+         * @param checkboxAuto The label for the CheckBox
+         * @param width The preferred width for the CheckBox
+         * @return A new CheckBox with the given label and width
+         */
+        CheckBox checkBox = utils.createCheckBox(checkboxAuto);
+        checkBox.setPrefWidth(width);
+        return checkBox;
+    }
 
-	private ComboBox createComboBox(String comboBoxAuto, double width) {
-		ComboBox comboBox = utils.createComboBox();
-		comboBox.getItems().add(comboBoxAuto);
-		comboBox.setPrefWidth(width);
-		return comboBox;
-	}
+    private ComboBox createComboBox(String comboBoxAuto, double width) {
+        /**
+         * Create a new ComboBox instance with the specified initial item and preferred width.
+         * @param comboBoxAuto The initial item to add to the ComboBox
+         * @param width The preferred width for the ComboBox
+         * @return A new ComboBox with the given item and width
+         */
+        ComboBox comboBox = utils.createComboBox();
+        comboBox.getItems().add(comboBoxAuto);
+        comboBox.setPrefWidth(width);
+        return comboBox;
+    }
 
     /**
      * Arranges all UI controls in the layout containers for the tab.
@@ -243,12 +264,16 @@ public abstract class PolicyTab extends Tab {
 	
 	/**
      * Load content into the tab. Implemented by subclasses to define how content is loaded.
+     * <p>
+     * This method should be implemented by subclasses to handle loading of scenario component data into the tab UI.
      * @param content List of content lines to load (e.g., from a file)
      */
     public abstract void loadContent(ArrayList<String> content);
 
     /**
      * Set the progress bar value for long-running operations.
+     * <p>
+     * This method is thread-safe and will update the progress bar on the JavaFX Application Thread.
      * @param progress Progress value between 0.0 and 1.0
      */
     public void setProgress(double progress) {
@@ -265,6 +290,9 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Sets up the center column UI controls and layout.
+     * <p>
+     * Arranges the header buttons and component details pane in the center VBox and sets the style.
+     * </p>
      */
     public void setupCenterColumn() {
     	hBoxHeaderCenter.getChildren().clear();
@@ -279,6 +307,9 @@ public abstract class PolicyTab extends Tab {
 
 	/**
 	 * Sets up the right column of the UI with the country/state tree for region selection.
+	 * <p>
+	 * Adds the region selection tree to the right VBox and applies styling.
+	 * </p>
 	 */
 	public void setupRightColumn() {
         vBoxRight.getChildren().clear();
@@ -316,6 +347,9 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Reset the progress bar to 0 after an operation completes.
+     * <p>
+     * This method is thread-safe and will update the progress bar on the JavaFX Application Thread.
+     * </p>
      */
     public void resetProgressBar() {
         Platform.runLater(() -> getProgressBar().setProgress(0.0));
@@ -323,7 +357,9 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Protected constructor for subclassing. Prevents direct instantiation.
+     * <p>
      * Subclasses should call this constructor.
+     * </p>
      */
     protected PolicyTab() {
         // No-op constructor for subclassing
@@ -333,7 +369,6 @@ public abstract class PolicyTab extends Tab {
      * Generate a unique market name if the given name already exists in the market list.
      * <p>
      * This method checks the scenario components directory for existing market names and appends a numeric suffix if needed.
-     * </p>
      * @param marketName The original market name
      * @return A unique market name suffix (e.g., "2"), or empty string if not needed
      */
@@ -376,7 +411,9 @@ public abstract class PolicyTab extends Tab {
     
     /**
      * Calculates the values for the policy based on user input and conversion factors.
-     *
+     * <p>
+     * Uses the selected modification type, years, initial value, growth, and conversion factor to compute a 2D array of values.
+     * </p>
      * @return a 2D array of calculated values
      */
     protected double[][] calculateValues() {
@@ -399,6 +436,9 @@ public abstract class PolicyTab extends Tab {
     
     /**
      * Display a warning message to the user (centralized for all tabs).
+     * <p>
+     * Shows a warning dialog with the specified message.
+     * </p>
      * @param message The warning message to display
      */
     public void showWarning(String message) {
@@ -407,6 +447,9 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Display an informational message to the user (centralized for all tabs).
+     * <p>
+     * Shows an informational dialog with the specified message and title.
+     * </p>
      * @param message The info message to display
      * @param title The title for the message dialog
      */
@@ -456,13 +499,15 @@ public abstract class PolicyTab extends Tab {
     }
     
     /**
-     * Create a ComboBox for String values.
+     * Create a ComboBox for String values with a seed text and preferred width.
+     * @param seedTxt The initial item to add
+     * @param width The preferred width
      * @return A new ComboBox<String>
      */
     protected ComboBox<String> createComboBoxString(String seedTxt, double width) {
-    	ComboBox<String> comboBox = utils.createComboBoxString();
-    	comboBox.getItems().add(seedTxt);
-    	comboBox.setPrefWidth(width);
+        ComboBox<String> comboBox = utils.createComboBoxString();
+        comboBox.getItems().add(seedTxt);
+        comboBox.setPrefWidth(width);
         return comboBox;
     }
     
@@ -534,6 +579,12 @@ public abstract class PolicyTab extends Tab {
         checkBox.setOnAction(handler);
     }
     
+    /**
+     * Stub for subclasses to override to set policy and market names based on UI state.
+     * <p>
+     * This method should be overridden by subclasses if they need to update policy/market names dynamically.
+     * </p>
+     */
     protected void setPolicyAndMarketNames() {
     	//stub to be overridden by subclasses
     	return;
@@ -541,8 +592,10 @@ public abstract class PolicyTab extends Tab {
     
     /**
      * Sets up event handlers for UI components in the tab.
+     * <p>
      * This includes listeners for combo boxes, checkboxes, buttons, and filter fields.
      * All UI updates are wrapped in Platform.runLater for thread safety.
+     * </p>
      */
     protected void setupEventHandlers() {
     	// Add event handler to update policy/market names when region tree changes
@@ -623,7 +676,9 @@ public abstract class PolicyTab extends Tab {
 
     /**
      * Performs a quick QA check to ensure required fields for populating values are filled.
-     *
+     * <p>
+     * Checks that all required text fields for populating values are not empty.
+     * </p>
      * @return true if all required fields are filled, false otherwise
      */
     public boolean qaPopulate() {
@@ -634,6 +689,12 @@ public abstract class PolicyTab extends Tab {
     }
     
 	protected void initializeTempFiles() {
+		/**
+		 * Initializes temporary files and writers for saving large scenario components.
+		 * <p>
+		 * Creates temp directory and files, and initializes BufferedWriter instances for each temp file.
+		 * </p>
+		 */
 		String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp"; // vars.getGlimpseDir();
 
 		File test = new File(tempDirName);
@@ -654,7 +715,7 @@ public abstract class PolicyTab extends Tab {
 		temp_file = tempDirName + File.separator + "temp_policy_file.txt";
 		files.deleteFile(temp_file);
 		
-		fileContent = "Use temp files";
+
 	}
     
     

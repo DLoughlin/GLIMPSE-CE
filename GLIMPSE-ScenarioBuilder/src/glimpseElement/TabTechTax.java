@@ -389,7 +389,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     state = stateStr.length() < 9 ? stateStr : "Reg";
                 }
                 String name = policyType + sector + technology + state;
-                name = name.replaceAll(" ", "_").replaceAll("--", "-");
+                name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                 textFieldMarketName.setText(name + "_Mkt");
                 textFieldPolicyName.setText(name);
             } catch (Exception e) {
@@ -435,7 +435,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
             String ID = utils.getUniqueString();
             String policyName = this.textFieldPolicyName.getText() + ID;
             String marketName = this.textFieldMarketName.getText() + ID;
-            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
             fileContent = getMetaDataContent(paneForCountryStateTree.getTree(), marketName, policyName);
             ObservableList<String> techLines = checkComboBoxTech.getCheckModel().getCheckedItems();
             ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();

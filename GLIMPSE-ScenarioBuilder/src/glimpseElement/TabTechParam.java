@@ -266,6 +266,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
         textFieldFilter.setPrefWidth(PREF_WIDTH);
     }
     
+    /**
+     * Sets up the left, center, and right columns of the UI.
+     * Calls helper methods to arrange controls in each column.
+     */
     public void setupUIComponents() {
         setupLeftColumn();
         setupCenterColumn();
@@ -274,6 +278,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Sets up the left column UI components and layout.
+     * Populates the left grid pane with labels and controls for filtering, sector, technology, and parameter selection.
      */
     private void setupLeftColumn() {
 
@@ -787,7 +792,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
             fileContent = getMetaDataContent(tree);
             fileContent += utils.createStringFromArrayList(csvContent);
             filenameSuggestion = "" + utils.getMatch(dataList, "type", ";") + "techParam.csv";
-            filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "_");
+            filenameSuggestion = filenameSuggestion.replaceAll("/", "_").replaceAll(" ", "_");
         }
     }
 

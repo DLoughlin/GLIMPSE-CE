@@ -2204,6 +2204,9 @@ public class GLIMPSEVariables {
 	}
 
 	public List<Integer> getAllYears() {
+		if (allYears==null) {
+				allYears=new ArrayList<>(DEFAULT_ALL_YEARS_LIST);
+		}
 		return allYears;
 	}
 

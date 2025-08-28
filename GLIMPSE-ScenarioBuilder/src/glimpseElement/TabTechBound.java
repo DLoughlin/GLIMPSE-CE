@@ -401,7 +401,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                         }
                     }
                     String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
-                    name = name.replaceAll(" ", "_").replaceAll("--", "-");
+                    name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                     textFieldMarketName.setText(name + "_Mkt");
                     textFieldPolicyName.setText(name);
                 } catch (Exception e) {
@@ -445,7 +445,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             String ID = utils.getUniqueString();
             String policy_name = this.textFieldPolicyName.getText() + ID;
             String market_name = this.textFieldMarketName.getText() + ID;
-            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
 
             String tempDirName = vars.getGlimpseDir() + File.separator + "GLIMPSE-Data" + File.separator + "temp";
             File test = new File(tempDirName);

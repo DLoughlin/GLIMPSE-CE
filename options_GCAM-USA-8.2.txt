@@ -51,7 +51,7 @@ modelInterfaceConfigDir = $modelInterfaceDir$/config
 
 #query file used by the GLIMPSE-ModelIngerface
 queryFilename = $modelInterfaceDir$/config/Main_queries_GLIMPSE-8.2.xml
-favoriteQueryFilename = $modelInterfaceDir$/config/favorite_queries_list.xml
+favoriteQueryFilename = $modelInterfaceDir$/config/favorite_queries_list.txt
 
 #file with all region specifications ... These are also used in the ScenarioBuilder
 regionListFilename = $scenarioBuilderDir$/config/v8.2/region_list_8.2.txt
