@@ -272,7 +272,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                         }
                     }
                     String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
-                    name = name.replaceAll(" ", "_").replaceAll("--", "-").replaceAll("_-_", "-");
+                    name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                     textFieldMarketName.setText(name + MARKET_SUFFIX);
                     textFieldPolicyName.setText(name);
                 } catch (Exception e) {
@@ -315,7 +315,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         String ID = utils.getUniqueString();
         String policyName = textFieldPolicyName.getText() + ID;
         String marketName = textFieldMarketName.getText() + ID;
-        filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+        filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
         fileContent = getMetaDataContent(tree, marketName, policyName);
 
         // Build content for CAFE targets and policy activation tables

@@ -108,6 +108,12 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         setupUILayout();
     }
 
+    /**
+     * Sets up the UI controls and populates them with available data.
+     *
+     * @param title  The title of the tab
+     * @param stageX The JavaFX stage
+     */
     private void setupUIControls(String title, Stage stageX) {
         setupLeftColumn();
         setupCenterColumn();
@@ -157,6 +163,9 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         });
     }
 
+    /**
+     * Configures the left column of the tab UI, including labels and controls.
+     */
     private void setupLeftColumn() {
         gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
@@ -263,7 +272,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 }
                 // Set names
                 String name = policy_type + "-" + fuel + "-" + state;
-                name = name.replaceAll(" ", "_").replaceAll("--", "-");
+                name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                 if (textFieldMarketName != null)
                     textFieldMarketName.setText(name + "_Mkt");
                 if (textFieldPolicyName != null)
@@ -314,7 +323,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
             String ID = utils.getUniqueString();
 
-            filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
+            filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
             String policyName = textFieldPolicyName.getText() + ID;
             String marketName = textFieldMarketName.getText() + ID;
 
