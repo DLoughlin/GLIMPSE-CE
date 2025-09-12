@@ -122,11 +122,12 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	private static final String SELECT_ONE = "Select One";
 	private static final String SELECT_ONE_OR_MORE = "Select One or More";
 	private static final String[] POLICY_TYPE_OPTIONS = { SELECT_ONE, "Renewable Portfolio Standard (RPS)",
-			"Clean Energy Standard (CES)", "EV passenger cars and trucks", "EV passenger cars trucks and MCs",
-			"EV freight light truck", "EV freight medium truck", "EV freight heavy truck", "EV freight all trucks",
-			"LED lights", "Heat pumps", "Biofuels", "Other", "Sector:EGU", "Sector:Industry", "Sector:Industry-fuels",
-			"Sector:Buildings", "Sector:Trn-Onroad", "Sector:Trn-ALM", "Sector:Other" };
-	private static final String[] APPLIED_TO_OPTIONS = { SELECT_ONE, "All Stock", "New Purchases" };
+			"Clean Energy Standard (CES)", "EV passenger cars and trucks (LDV-EV)", "EV passenger cars trucks and MCs (LDV-EV)",
+			"EV freight light truck (HDV-Lt)", "EV freight medium truck (HDV-Med)", "EV freight heavy truck (HDV-Hvy)", 
+			"EV freight all trucks (HDV-EV)","LED lights (LED)", "Heat pumps (HP)", "Biofuels (BioF)", "Other (OTH)", 
+			"Sector:EGU (EGU)", "Sector:Industry (IND)", "Sector:Industry-fuels (Fuels)","Sector:Buildings (BLD)", 
+			"Sector:Trn-Onroad (Onroad)", "Sector:Trn-ALM (ALM)", "Sector:Other (OTH)" };
+	private static final String[] APPLIED_TO_OPTIONS = { SELECT_ONE, "All Stock", "Sales" };
 	private static final String[] CONSTRAINT_OPTIONS = { SELECT_ONE, "Lower", "Fixed" };
 	private static final String[] TREATMENT_OPTIONS = { SELECT_ONE, "Each Selected Region", "Across Selected Regions" };
 	private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial and Final %", "Initial w/% Growth/yr",
@@ -205,7 +206,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		checkComboBoxSubset.setMaxWidth(70);
 		checkComboBoxSuperset.setMaxWidth(70);
 		comboBoxAppliedTo.getItems().addAll(APPLIED_TO_OPTIONS);
-		comboBoxAppliedTo.getSelectionModel().select("All Stock");
+		comboBoxAppliedTo.getSelectionModel().selectFirst();
 		comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
 		comboBoxConstraint.getSelectionModel().selectFirst();
 		comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
@@ -363,7 +364,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					this.comboBoxModificationType.getSelectionModel().select("Initial and Final %");
 					this.comboBoxModificationType.fireEvent(new ActionEvent());
 				} else  {
-					this.comboBoxAppliedTo.getSelectionModel().select("New Purchases");
+					this.comboBoxAppliedTo.getSelectionModel().select("Sales");
 					this.comboBoxTreatment.getSelectionModel().select("Select One");
 				}
 			}
@@ -467,43 +468,43 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			if (policyType.contains("RPS")) {
 				showEgu = true;
 			}
-			if (policyType.equals("EV passenger cars and trucks"))
+			if (policyType.contains("EV passenger cars and trucks"))
 				showLdv4w = true;
-			if (policyType.equals("EV passenger cars trucks and MCs"))
+			if (policyType.contains("EV passenger cars trucks and MCs"))
 				showLdvAll = true;
-			if (policyType.equals("EV freight light truck"))
+			if (policyType.contains("EV freight light truck"))
 				showHdvLight = true;
-			if (policyType.equals("EV freight medium truck"))
+			if (policyType.contains("EV freight medium truck"))
 				showHdvMedium = true;
-			if (policyType.equals("EV freight heavy truck"))
+			if (policyType.contains("EV freight heavy truck"))
 				showHdvHeavy = true;
-			if (policyType.equals("EV freight all trucks"))
+			if (policyType.contains("EV freight all trucks"))
 				showHdvAll = true;
-			if (policyType.equals("LED lights"))
+			if (policyType.contains("LED lights"))
 				showLighting = true;
-			if (policyType.equals("Heat pumps"))
+			if (policyType.contains("Heat pumps"))
 				showHeating = true;
-			if (policyType.equals("Biofuels"))
+			if (policyType.contains("Biofuels"))
 				showRefining = true;
-			if (policyType.equals("Sector:EGU"))
+			if (policyType.contains("Sector:EGU"))
 				showSectorEgu = true;
-			if (policyType.equals("Sector:Buildings"))
+			if (policyType.contains("Sector:Buildings"))
 				showSectorBuildings = true;
-			if (policyType.equals("Sector:Industry"))
+			if (policyType.contains("Sector:Industry"))
 				showSectorIndustry = true;
-			if (policyType.equals("Sector:Industry-fuels"))
+			if (policyType.contains("Sector:Industry-fuels"))
 				showSectorIndustryFuels = true;
-			if (policyType.equals("Sector:Trn-Onroad"))
+			if (policyType.contains("Sector:Trn-Onroad"))
 				showSectorTrnOnroad = true;
-			if (policyType.equals("Sector:Trn-ALM"))
+			if (policyType.contains("Sector:Trn-ALM"))
 				showSectorTrnAlm = true;
-			if (policyType.equals("Sector:Other"))
+			if (policyType.contains("Sector:Other"))
 				showSectorTrnAlm = true;
 			for (String techLine : techListSub) {
 				boolean showTech = false;
 				String techLineLc = techLine.toLowerCase();
 				if (showEgu) {
-					if (techLineLc.startsWith("electricity ")) {
+					if (techLineLc.startsWith("electricity")) {
 						showTech = true;
 					} else if (techLineLc.startsWith("base load")) {
 						showTech = true;
@@ -780,34 +781,53 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		Platform.runLater(() -> {
 			if (checkBoxUseAutoNames.isSelected()) {
 				String policyType = comboBoxPolicyType.getValue() != null ? comboBoxPolicyType.getValue()
-						.replace(" ", "-").replace("(", "-").replace(")", "").replace(":", "") : "--";
-				if (policyType.equals("Other"))
+						.replace(" ", "-").replace(":", "") : "--";
+				if (policyType.contains("Other"))
 					policyType = "Share";
-				if (policyType.equals("SelectOne"))
+				if (policyType.contains("Select"))
 					policyType = "---";
+				if ((policyType.contains("("))&&((policyType.contains(")")))) {
+					policyType = utils.getTextBetweenParen(policyType);
+				}
+				
 				String toWhich = "--";
 				String state = "--";
 				String treatment = "--";
+				String constraint = "--";
+				
 				try {
 					String s = comboBoxAppliedTo.getValue();
-					if (s != null && s.contains("New"))
-						toWhich = "New";
+					if (s != null && s.contains("Sales"))
+						toWhich = "_Sales";
 					if (s != null && s.contains("All"))
-						toWhich = "All";
+						toWhich = "_All";
+					
 					s = comboBoxTreatment.getValue();
 					if (s != null && s.contains("Each"))
 						treatment = "_Ea";
-					if (s != null && s.contains("Across"))
-						treatment = "";
+					if (s != null && s.contains("Acr"))
+						treatment = "_Acr";
+					
+					s = comboBoxConstraint.getValue();
+					if (s != null && s.contains("Lo")) {
+						constraint = "_Lo";
+					}
+					if (s != null && s.contains("Hi")) {
+						constraint = "_Hi";
+					}
+					if (s != null && s.contains("Fix")) {
+						constraint = "_Fx";
+					}
+					
 					String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
 					listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
 					String stateStr = utils.returnAppendedString(listOfSelectedLeaves).replace(",", "");
 					if (stateStr.length() < 9) {
-						state = stateStr;
+						state = "_"+stateStr;
 					} else {
-						state = "Reg";
+						state = "_Reg";
 					}
-					String name = policyType + "_" + toWhich + "_" + state + treatment;
+					String name = policyType + toWhich + constraint + treatment + state ;
 					name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
 					textFieldMarketName.setText(name + "_Mkt");
 					textFieldPolicyName.setText(name);
@@ -930,7 +950,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					use_this_market_name = state + "_" + market_name;
 					use_this_policy_name = state + "_" + policy_name;
 				}
-				if (applied_to.equals("new purchases")) {
+				if (applied_to.equals("sales")) {
 					use_this_market_name += "-" + t;
 					use_this_policy_name += "-" + t;
 				}
@@ -940,7 +960,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				
 				for (int i = 0; i < year_list.length; i++) {
 					if (((t <= Integer.parseInt(year_list[i])) && (applied_to.equals("all stock")))
-							|| ((t == Integer.parseInt(year_list[i])) && (applied_to.equals("new purchases")))) {
+							|| ((t == Integer.parseInt(year_list[i])) && (applied_to.equals("sales")))) {
 						for (int j = 0; j < superset_list.size(); j++) {
 							String temp = superset_list.get(j);
 							if (temp.indexOf(":") >= 0) {
@@ -1026,13 +1046,13 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					use_this_market_name = state + "_" + market_name;
 					use_this_policy_name = state + "_" + policy_name;
 				}
-				if (applied_to.equals("new purchases")) {
+				if (applied_to.equals("sales")) {
 					use_this_market_name += "-" + t;
 					use_this_policy_name += "-" + t;
 				}
 
 				if (((t <= max_year) && (applied_to.equals("all stock")))
-						|| ((t <= max_year) && (t >= min_year) && (applied_to.equals("new purchases")))) {
+						|| ((t <= max_year) && (t >= min_year) && (applied_to.equals("sales")))) {
 					
 					for (int j = 0; j < subset_list.size(); j++) {
 						
@@ -1101,7 +1121,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					use_this_market_name = state + "_" + market_name;
 					use_this_policy_name = state + "_" + policy_name;
 				}
-				if (applied_to.equals("new purchases")) {
+				if (applied_to.equals("sales")) {
 					use_this_market_name += "-" + year_list[i];
 					use_this_policy_name += "-" + year_list[i];
 				}
@@ -1324,12 +1344,16 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				message += "Superset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			}
+			if (comboBoxConstraint.getSelectionModel().getSelectedItem().equals("Select One")) {
+				message += "No selection for Constraint. All comboBoxes must have a selection" + vars.getEol();
+				error_count++;
+			}
 			if (comboBoxAppliedTo.getSelectionModel().getSelectedItem().equals("Select One")) {
-				message += "All comboBoxes must have a selection" + vars.getEol();
+				message += "No selection for Application. All comboBoxes must have a selection" + vars.getEol();
 				error_count++;
 			}
 			if (comboBoxTreatment.getSelectionModel().getSelectedItem().equals("Select One")) {
-				message += "All comboBoxes must have a selection" + vars.getEol();
+				message += "No selection for Treatment. All comboBoxes must have a selection" + vars.getEol();
 				error_count++;
 			}
 			if (textFieldMarketName.getText().equals("")) {

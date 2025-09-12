@@ -367,7 +367,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
      * The name is constructed from type, sector, technology, and region selections.
      */
     protected void setPolicyAndMarketNames() {
-        if (checkBoxUseAutoNames.isSelected()) {
+        Platform.runLater(() -> {
+    	if (checkBoxUseAutoNames.isSelected()) {
             String policyType = "---";
             String technology = "Tech";
             String sector = "---";
@@ -396,6 +397,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
                 System.out.println("Cannot auto-name market. Continuing.");
             }
         }
+        });
     }
 
     /**
