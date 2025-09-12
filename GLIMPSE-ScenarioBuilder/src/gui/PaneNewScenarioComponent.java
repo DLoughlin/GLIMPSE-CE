@@ -63,7 +63,7 @@ import glimpseElement.TabTechTax;
 import glimpseUtil.FileChooserPlus;
 import glimpseElement.TabTechAvailable;
 import glimpseElement.TabTechBound;
-import glimpseElement.TabTechBound2;
+import glimpseElement.TabTechBound;
 import glimpseElement.TabTechParam;
 import glimpseElement.TabFixedDemand;
 import javafx.application.Platform;
@@ -161,7 +161,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 	private TabPollutantTaxCap pollTaxCapTab;
 	private TabMarketShare techMarketShareTab;
 	private TabTechBound techBoundTab;
-	private TabTechBound2 techBound2Tab;
+	private TabTechBound techBound2Tab;
 	private TabTechAvailable techAvailTab;
 	private TabFixedDemand fixedDemandTab;
 	private TabTechParam techParamTab;
@@ -394,7 +394,7 @@ public class PaneNewScenarioComponent extends gui.ScenarioBuilder {
 		techMarketShareTab.setClosable(false);
 		//techBoundTab = new TabTechBound(TAB_TECH_BOUND, stageWithTabs);
 		//techBoundTab.setClosable(false);
-		techBound2Tab = new TabTechBound2(TAB_TECH_BOUND2, stageWithTabs);
+		techBound2Tab = new TabTechBound(TAB_TECH_BOUND2, stageWithTabs);
 		techBound2Tab.setClosable(false);
 		cafeStdTab = new TabCafeStd(TAB_MPG_TARGET, stageWithTabs);
 		cafeStdTab.setClosable(false);
