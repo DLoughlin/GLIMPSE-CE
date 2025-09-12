@@ -94,8 +94,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     private static final String SELECT_ONE = "Select One";
     private static final String REG = "Reg";
     private static final String POLICY_TYPE = "CAFE_--";
-    private static final String TECHNOLOGY = "Tech";
-    private static final String TREATMENT = "--";
     private static final String MARKET_SUFFIX = "_Mkt";
 
     // === UI Components ===
@@ -250,10 +248,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         Platform.runLater(() -> {
             if (checkBoxUseAutoNames.isSelected()) {
                 String policyType = POLICY_TYPE;
-                String technology = TECHNOLOGY;
+
                 String sector = "--";
                 String state = "--";
-                String treatment = TREATMENT;
                 try {
                     String s = comboBoxSubsector.getValue();
                     if (s != null && !s.equals(SELECT_ONE)) {
@@ -271,7 +268,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                             state = REG;
                         }
                     }
-                    String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
+                    String name = policyType + "_" + sector + "_" + state ;
                     name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                     textFieldMarketName.setText(name + MARKET_SUFFIX);
                     textFieldPolicyName.setText(name);

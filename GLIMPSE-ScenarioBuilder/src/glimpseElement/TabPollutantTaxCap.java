@@ -270,6 +270,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 						checkComboBoxCategory.getCheckModel().check(ALL);
 						isAdjustingCategoryChecks = false;
 					}
+					setPolicyAndMarketNames();
 				});
 
 		setOnAction(comboBoxMeasure, e -> {
@@ -360,21 +361,21 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	protected void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
 			if (checkBoxUseAutoNames.isSelected()) {
-				String policy_type = "--";
+				String measure = "--";
 				String pollutant = "--";
 				String category = "--";
 				String state = "--";
 				try {
 					String s = comboBoxMeasure.getValue();
 					if (s != null && s.contains("Tax"))
-						policy_type = "Tax";
+						measure = "Tax";
 					if (s != null && s.contains("Cap"))
-						policy_type = "Cap";
+						measure = "Cap";
 					int cats = checkComboBoxCategory.getCheckModel().getCheckedItems().size();
 					if (cats == 0) {
 						category = "All";
 					} else if (cats == 1) {
-						category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0).replaceAll(" ", "_");
+						category = checkComboBoxCategory.getCheckModel().getCheckedItems().get(0).replaceAll(" ", "_").replaceAll("-", "_");
 					} else {
 						category = "Mult";
 					}
@@ -392,7 +393,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 							state = "Reg";
 						}
 					}
-					String name = policy_type + "_" + category + "_" + pollutant + "_" + state;
+					String name = measure + "_" + category + "_" + pollutant + "_" + state;
 					name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
 					textFieldMarketName.setText(name + "_Mkt");
 					textFieldPolicyName.setText(name);
@@ -543,7 +544,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		String dmdAdj = "1";
 		if (pol_menu.contains("(MT CO2)"))
 			dmdAdj = "3.667";
-		pol = pol.substring(0, pol.indexOf(" ")).trim();
+
 		if (listOfSelectedRegions != null && listOfSelectedRegions.length >= 1) {
 			fileContent += vars.getEol();
 			fileContent += INPUT_TABLE + vars.getEol();

@@ -439,9 +439,9 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
                 String treatment = "--";
                 try {
                     String s = comboBoxConstraint.getValue();
-                    if (s.contains("Upper")) policyType = "Up";
-                    if (s.contains("Lower")) policyType = "Lo";
-                    if (s.contains("Fixed")) policyType = "Fx";
+                    if (s.contains("Upper")) policyType = "_Up";
+                    if (s.contains("Lower")) policyType = "_Lo";
+                    if (s.contains("Fixed")) policyType = "_Fx";
                     s = comboBoxCategory.getValue();
                     if (!s.equals(SELECT_ONE)) {
                         s = s.replace(" ", "_");
@@ -450,7 +450,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
                     }
                     s = comboBoxTreatment.getValue();
                     if (s.contains("Each")) treatment = "_Ea";
-                    if (s.contains("Across")) treatment = "";
+                    if (s.contains("Across")) treatment = "_Acr";
                     String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                     if (listOfSelectedLeaves.length > 0) {
                         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
@@ -461,7 +461,7 @@ public class TabTechBound2 extends PolicyTab implements Runnable {
                             state = "Reg";
                         }
                     }
-                    String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
+                    String name = "tchBnd" + policyType + "_" + sector + treatment + " "+state ;
                     name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                     textFieldMarketName.setText(name + "_Mkt");
                     textFieldPolicyName.setText(name);

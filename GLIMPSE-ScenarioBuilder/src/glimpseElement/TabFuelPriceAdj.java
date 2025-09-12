@@ -155,6 +155,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
             comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
             comboBoxModificationType.getSelectionModel().selectFirst();
         }
+        
+        setPolicyAndMarketNames();
 
         // Event handlers for UI controls
         checkComboBoxFuel.getCheckModel().getCheckedItems()

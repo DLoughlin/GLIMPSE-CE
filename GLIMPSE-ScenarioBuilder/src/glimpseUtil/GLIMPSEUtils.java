@@ -2573,15 +2573,45 @@ public class GLIMPSEUtils {
         return comboBox;
     }
 
-	public CheckComboBox<String> createCheckComboBox(double prefWidth) {
-		CheckComboBox<String> checkComboBox = new CheckComboBox<>();
-		checkComboBox.setPrefWidth(prefWidth);
-		return checkComboBox;
-	}
+	/**
+     * Creates a ControlsFX CheckComboBox<String> with the specified preferred width.
+     *
+     * @param prefWidth the preferred width of the CheckComboBox
+     * @return a CheckComboBox<String> instance with the given preferred width
+     */
+    public CheckComboBox<String> createCheckComboBox(double prefWidth) {
+        CheckComboBox<String> checkComboBox = new CheckComboBox<>();
+        checkComboBox.setPrefWidth(prefWidth);
+        return checkComboBox;
+    }
 
-	public Label createLabel(double labelWidth) {
-		Label label = new Label();
-		label.setPrefWidth(labelWidth);
-		return label;
-	}
+    /**
+     * Creates a JavaFX Label with the specified preferred width.
+     *
+     * @param labelWidth the preferred width of the Label
+     * @return a Label instance with the given preferred width
+     */
+    public Label createLabel(double labelWidth) {
+        Label label = new Label();
+        label.setPrefWidth(labelWidth);
+        return label;
+    }
+	
+	/**
+     * Extracts and returns the text between parentheses in the given string.
+     *
+     * @param policyType the input string containing parentheses
+     * @return the text found between the first '(' and ')', or the original string if not found
+     */
+    public String getTextBetweenParen(String policyType) {
+        if (policyType==null) return null;
+        if ((policyType.indexOf("(")>=0)||(policyType.indexOf(")")>=0)) { 
+            int start=policyType.indexOf("(");
+            int end=policyType.indexOf(")");
+            if (end>start) {
+                policyType = policyType.substring(start+1,end).trim();
+            }
+        }
+        return policyType;
+    }
 }
