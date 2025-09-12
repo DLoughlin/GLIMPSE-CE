@@ -2035,6 +2035,9 @@ public class GLIMPSEVariables {
         String filename=this.getXmlHeaderFilename();
         String s="XML header file: "+filename+" - "+files.doesFileExist(filename);
         report.add(s);
+        filename=this.getCsvColumnFilename();
+        s="CSV column file for Tech Param: "+filename+" - "+files.doesFileExist(filename);
+        report.add(s);
         filename=this.getTchBndListFilename();
         s="Tech Bound file: "+filename+" - "+files.doesFileExist(filename);
         report.add(s);

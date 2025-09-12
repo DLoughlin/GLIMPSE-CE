@@ -47,6 +47,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -60,20 +61,64 @@ import javafx.stage.Stage;
 
 /**
  * TabTechBound provides the user interface and logic for creating and editing technology bound policies
- * in the GLIMPSE Scenario Builder. This tab allows users to select sectors, filter technologies, specify constraints,
- * and configure policy details for scenario components.
- *
+ * in the GLIMPSE Scenario Builder.
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
- * </p>
+ * <b>Main responsibilities:</b>
+ * <ul>
+ *   <li>Allow users to select sector/category, filter and select technologies, and specify constraint type</li>
+ *   <li>Configure policy and market names (auto/manual) and treatment (per region or across regions)</li>
+ *   <li>Specify and populate constraint values over time</li>
+ *   <li>Validate, import, and export scenario component data as CSV</li>
+ * </ul>
  *
- * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
- * </p>
+ * <b>Features:</b>
+ * <ul>
+ *   <li>Support for filtering and selecting multiple technologies</li>
+ *   <li>Automatic and manual naming for policy and market</li>
+ *   <li>Dynamic enabling/disabling of UI controls based on selections</li>
+ *   <li>Validation of user input and units</li>
+ *   <li>Progress tracking for file generation</li>
+ * </ul>
+ *
+ * <b>Usage:</b>
+ * <pre>
+ * TabTechBound tab = new TabTechBound("Tech Bound", stage);
+ * // Add to TabPane, interact via UI
+ * </pre>
+ *
+ * <b>Thread Safety:</b> This class is not thread-safe and should be used only
+ * on the JavaFX Application Thread.
+ *
+ * <b>Class Details:</b>
+ * <ul>
+ *   <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
+ *   <li>Handles UI setup, event listeners, and scenario file generation for technology bound policies.</li>
+ *   <li>Supports upper, lower, and fixed bounds, and flexible treatment across/within regions.</li>
+ *   <li>Provides methods for loading, validating, and saving scenario component data.</li>
+ * </ul>
+ *
+ * <b>Key Methods:</b>
+ * <ul>
+ *   <li>{@link #TabTechBound(String, Stage)} - Constructor, sets up UI and listeners.</li>
+ *   <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
+ *   <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
+ *   <li>{@link #saveScenarioComponent(TreeView)} - Handles file generation for tech bound policies.</li>
+ *   <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
+ *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ * </ul>
+ *
+ * <b>See Also:</b>
+ * <ul>
+ *   {@link PolicyTab}
+ *   {@link DataPoint}
+ *   {@link PaneForComponentDetails}
+ *   {@link Utils}
+ * </ul>
  */
 public class TabTechBound extends PolicyTab implements Runnable {
     private static final String LABEL_FILTER = "Filter:";
-    private static final String LABEL_SECTOR = "Sector: ";
+    private static final String LABEL_CATEGORY = "Category: ";
     private static final String LABEL_TECHS = "Tech(s): ";
     private static final String LABEL_CONSTRAINT = "Constraint: ";
     private static final String LABEL_TREATMENT = "Treatment: ";
@@ -86,14 +131,14 @@ public class TabTechBound extends PolicyTab implements Runnable {
     private static final String CONSTRAINT_UPPER = "Upper Bound";
     private static final String CONSTRAINT_LOWER = "Lower Bound";
     private static final String CONSTRAINT_FIXED = "Fixed Bound";
-    private static final String[] CONSTRAINT_OPTIONS = {CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
-    private static final String[] TREATMENT_OPTIONS = {"Each Selected Region", "Across Selected Regions"};
+    private static final String[] CONSTRAINT_OPTIONS = {SELECT_ONE, CONSTRAINT_UPPER, CONSTRAINT_LOWER, CONSTRAINT_FIXED};
+    private static final String[] TREATMENT_OPTIONS = { SELECT_ONE, "Each Selected Region", "Across Selected Regions"};
     private static final String UNITS_DEFAULT = "";
     // === UI Components ===
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
     private final TextField textFieldFilter = createTextField();
-    private final Label labelComboBoxSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
-    private final ComboBox<String> comboBoxSector = createComboBoxString();
+    private final Label labelComboBoxCategory = createLabel(LABEL_CATEGORY, LABEL_WIDTH);
+    private final ComboBox<String> comboBoxCategory = createComboBoxString();
     private final Label labelCheckComboBoxTech = createLabel(LABEL_TECHS, LABEL_WIDTH);
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
     private final Label labelComboBoxConstraint = createLabel(LABEL_CONSTRAINT, LABEL_WIDTH);
@@ -107,15 +152,16 @@ public class TabTechBound extends PolicyTab implements Runnable {
      * Sets up event handlers and populates controls with available data.
      *
      * @param title The title of the tab
-     * @param stageX The JavaFX stage
+     * @param stageX The JavaFX stage (not used directly)
      */
     public TabTechBound(String title, Stage stageX) {
         this.setText(title);
         this.setStyle(styles.getFontStyle());
         setupUIControls();
+        setupUIComponents();
         setComponentWidths();
         setupUILayout();
-        setupComboBoxSector();
+        setupComboBoxCategory();
         setupTechComboBox();
         setupComboBoxOptions();
         setupEventHandlers();
@@ -125,6 +171,8 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Sets up UI controls with options and default values.
+     * <p>
+     * Initializes checkboxes, disables manual name fields if auto-naming is enabled.
      */
     private void setupUIControls() {
         checkBoxUseAutoNames.setSelected(true);
@@ -133,10 +181,21 @@ public class TabTechBound extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets preferred, min, and max widths for UI components.
+     * Sets up the main UI components for the left, center, and right columns.
+     * Calls setup methods for each column.
+     */
+    public void setupUIComponents() {
+        setupLeftColumn();
+        setupCenterColumn();
+        setupRightColumn();   	
+    }
+    
+    /**
+     * Sets preferred, min, and max widths for UI components for consistent layout.
+     * Iterates over ComboBoxes and TextFields to set their widths.
      */
     private void setComponentWidths() {
-        ComboBox<?>[] comboBoxes = {comboBoxSector, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
+        ComboBox<?>[] comboBoxes = {comboBoxCategory, comboBoxModificationType, comboBoxConstraint, comboBoxTreatment};
         for (ComboBox<?> cb : comboBoxes) {
             cb.setMaxWidth(MAX_WIDTH);
             cb.setMinWidth(MIN_WIDTH);
@@ -154,42 +213,32 @@ public class TabTechBound extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets up the layout of the tab.
+     * Sets up the left column UI controls and layout.
+     * Adds labels and controls to the gridPaneLeft.
      */
-    public void setupUILayout() {
+    private void setupLeftColumn() {
+
+		// Filter TextField initial text
+		textFieldFilter.setPromptText("Filter techs");
+    	
+    	gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFilter, labelComboBoxSector, labelCheckComboBoxTech, labelComboBoxConstraint,
+        gridPaneLeft.addColumn(0, labelFilter, labelComboBoxCategory, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
                 new Label(), new Separator(), utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear,
                 labelEndYear, labelInitialAmount, labelGrowth);
-        gridPaneLeft.addColumn(1, textFieldFilter, comboBoxSector, checkComboBoxTech, comboBoxConstraint,
+        gridPaneLeft.addColumn(1, textFieldFilter, comboBoxCategory, checkComboBoxTech, comboBoxConstraint,
                 comboBoxTreatment, new Label(), labelUnits2, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
                 textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
                 textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
+        gridPaneLeft.setAlignment(Pos.TOP_LEFT);
         gridPaneLeft.setVgap(3.);
         gridPaneLeft.setStyle(styles.getStyle2());
         scrollPaneLeft.setContent(gridPaneLeft);
-        hBoxHeaderCenter.getChildren().addAll(buttonPopulate, buttonDelete, buttonClear);
-        hBoxHeaderCenter.setSpacing(2.);
-        hBoxHeaderCenter.setStyle(styles.getStyle3());
-        vBoxCenter.getChildren().addAll(labelValue, hBoxHeaderCenter, paneForComponentDetails);
-        vBoxCenter.setStyle(styles.getStyle2());
-        vBoxRight.getChildren().addAll(paneForCountryStateTree);
-        vBoxRight.setStyle(styles.getStyle2());
-        gridPanePresetModification.addColumn(0, scrollPaneLeft);
-        gridPanePresetModification.addColumn(1, vBoxCenter);
-        gridPanePresetModification.addColumn(2, vBoxRight);
-        gridPaneLeft.setPrefWidth(325);
-        gridPaneLeft.setMinWidth(325);
-        vBoxCenter.setPrefWidth(300);
-        vBoxRight.setPrefWidth(300);
-        VBox tabLayout = new VBox();
-        tabLayout.getChildren().addAll(gridPanePresetModification);
-        this.setContent(tabLayout);
     }
 
     /**
-     * Sets up the technology combo box with default values.
+     * Sets up the technology combo box with default values and disables it until a filter or category is selected.
      */
     private void setupTechComboBox() {
         checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
@@ -199,22 +248,25 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Sets up combo box options for treatment, constraint, and modification type.
+     * Populates combo boxes with available options and selects defaults.
      */
     private void setupComboBoxOptions() {
         comboBoxTreatment.getItems().addAll(TREATMENT_OPTIONS);
         comboBoxTreatment.getSelectionModel().selectFirst();
         comboBoxConstraint.getItems().addAll(CONSTRAINT_OPTIONS);
         comboBoxModificationType.getItems().addAll(MODIFICATION_TYPE_OPTIONS);
-        comboBoxSector.getSelectionModel().selectFirst();
+        comboBoxCategory.getSelectionModel().selectFirst();
         comboBoxConstraint.getSelectionModel().selectFirst();
         comboBoxModificationType.getSelectionModel().selectFirst();
     }
 
     /**
-     * Sets up event handlers for UI components.
+     * Sets up event handlers for UI components, including listeners for filter, category, technology, and other controls.
+     * <p>
+     * Handles dynamic UI changes and triggers auto-naming and validation as needed.
      */
     protected void setupEventHandlers() {
-		
+
     	super.setupEventHandlers();
     	
 		setEventHandler(textFieldFilter, e -> {
@@ -243,8 +295,8 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 }
             }
         });
-        setEventHandler(comboBoxSector, e -> {
-            String selectedItem = comboBoxSector.getSelectionModel().getSelectedItem();
+        setEventHandler(comboBoxCategory, e -> {
+            String selectedItem = comboBoxCategory.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 if (selectedItem.equals(SELECT_ONE)) {
                     checkComboBoxTech.getItems().clear();
@@ -265,29 +317,32 @@ public class TabTechBound extends PolicyTab implements Runnable {
         });
         setEventHandler(comboBoxConstraint, e -> setPolicyAndMarketNames());
         setEventHandler(comboBoxTreatment, e -> setPolicyAndMarketNames());
-        setEventHandler(textFieldFilter, e -> setupComboBoxSector());
+        setEventHandler(textFieldFilter, e -> setupComboBoxCategory());
     }
 
     /**
      * Populates the sector combo box based on the technology info and filter text.
      * Handles filtering and ensures no duplicate sectors are added.
+     * <p>
+     * If a filter is applied, only categories matching the filter are shown.
      */
-    private void setupComboBoxSector() {
-        comboBoxSector.getItems().clear();
+    private void setupComboBoxCategory() {
+        comboBoxCategory.getItems().clear();
         try {
             String[][] techInfo = vars.getTechInfo();
             if (techInfo == null) return;
-            ArrayList<String> sectorList = new ArrayList<>();
+            ArrayList<String> categoryList = new ArrayList<>();
             String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
             boolean useFilter = !filterText.isEmpty();
-            if (!useFilter) sectorList.add(SELECT_ONE);
-            sectorList.add(ALL);
-            for (String[] techRow : techInfo) {
-                if (techRow == null || techRow.length == 0) continue;
-                String text = techRow[0] != null ? techRow[0].trim() : "";
+            if (!useFilter) categoryList.add(SELECT_ONE);
+            //categoryList.add(ALL);
+ 
+            for (String[] tech : techInfo) {
+                if (tech == null || tech.length == 0) continue;
+                String text = tech[7] != null ? tech[7].trim() : "";
                 boolean match = false;
-                for (String sector : sectorList) {
-                    if (text.equals(sector)) {
+                for (String cat : categoryList) {
+                    if (text.equals(cat)) {
                         match = true;
                         break;
                     }
@@ -296,19 +351,20 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     boolean show = true;
                     if (useFilter) {
                         show = false;
-                        for (String temp : techRow) {
+                        for (String temp : tech) {
                             if (temp != null && temp.contains(filterText)) show = true;
                         }
                     }
                     if (show) {
-                        sectorList.add(text);
+                        categoryList.add(text);
                     }
                 }
             }
-            for (String sector : sectorList) {
-                if (sector != null) comboBoxSector.getItems().add(sector.trim());
+            categoryList = utils.getUniqueItemsFromStringArrayList(categoryList);
+            for (String cat : categoryList) {
+                if (cat != null) comboBoxCategory.getItems().add(cat.trim());
             }
-            comboBoxSector.getSelectionModel().select(0);
+            comboBoxCategory.getSelectionModel().select(0);
         } catch (NullPointerException e) {
             utils.warningMessage("Problem reading tech list: Null value encountered.");
             System.out.println("NullPointerException reading tech list from " + vars.getTchBndListFilename() + ":");
@@ -323,20 +379,22 @@ public class TabTechBound extends PolicyTab implements Runnable {
     /**
      * Updates the technology check combo box based on the selected sector and filter text.
      * Only technologies matching the filter and sector are shown.
+     * <p>
+     * Called when the filter or category changes.
      */
     private void updateCheckComboBoxTech() {
         Platform.runLater(() -> {
-            String sector = comboBoxSector.getValue();
-            if (sector == null) return;
+            String cat = comboBoxCategory.getValue();
+            if (cat == null) return;
             String[][] techInfo = vars.getTechInfo();
             if (techInfo == null) return;
-            boolean isAllSectors = sector.equals(ALL);
+            boolean isAllCat = cat.equals(ALL);
             try {
                 if (!checkComboBoxTech.getItems().isEmpty()) {
                     checkComboBoxTech.getCheckModel().clearChecks();
                     checkComboBoxTech.getItems().clear();
                 }
-                if (sector != null) {
+                if (cat != null) {
                     String lastLine = "";
                     String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
                     for (String[] techRow : techInfo) {
@@ -346,7 +404,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                             if (techRow.length >= 7 && techRow[6] != null) line += " : " + techRow[6];
                             if (!line.equals(lastLine)) {
                                 lastLine = line;
-                                if (isAllSectors || line.startsWith(sector)) {
+                                if (isAllCat || techRow[7].equals(cat)) {
                                     checkComboBoxTech.getItems().add(line);
                                 }
                             }
@@ -367,6 +425,9 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Automatically sets the policy and market names based on the current selections and auto-naming rules.
+     * <p>
+     * Uses selected constraint, category, treatment, and region to generate unique names.
+     * Handles edge cases for multiple regions.
      */
     protected void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
@@ -378,10 +439,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 String treatment = "--";
                 try {
                     String s = comboBoxConstraint.getValue();
-                    if (s.contains("Upper")) policyType = "Up";
-                    if (s.contains("Lower")) policyType = "Lo";
-                    if (s.contains("Fixed")) policyType = "Fx";
-                    s = comboBoxSector.getValue();
+                    if (s.contains("Upper")) policyType = "_Up";
+                    if (s.contains("Lower")) policyType = "_Lo";
+                    if (s.contains("Fixed")) policyType = "_Fx";
+                    s = comboBoxCategory.getValue();
                     if (!s.equals(SELECT_ONE)) {
                         s = s.replace(" ", "_");
                         s = utils.capitalizeOnlyFirstLetterOfString(s);
@@ -389,7 +450,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     }
                     s = comboBoxTreatment.getValue();
                     if (s.contains("Each")) treatment = "_Ea";
-                    if (s.contains("Across")) treatment = "";
+                    if (s.contains("Across")) treatment = "_Acr";
                     String[] listOfSelectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                     if (listOfSelectedLeaves.length > 0) {
                         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
@@ -400,7 +461,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                             state = "Reg";
                         }
                     }
-                    String name = policyType + "_" + sector + "_" + technology + "_" + state + treatment;
+                    String name = "tchBnd" + policyType + "_" + sector + treatment + " "+state ;
                     name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
                     textFieldMarketName.setText(name + "_Mkt");
                     textFieldPolicyName.setText(name);
@@ -412,7 +473,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     }
 
     /**
-     * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+     * Runnable implementation: triggers saving the scenario component. Calls saveScenarioComponent().
      */
     @Override
     public void run() {
@@ -421,12 +482,13 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Saves the scenario component using the current region tree.
+     * <p>
+     * Main entry point for saving the scenario component. Calls the overloaded saveScenarioComponent(TreeView) method.
      */
     @Override
     public void saveScenarioComponent() {
         saveScenarioComponent(paneForCountryStateTree.getTree());
     }
-
 
     /**
      * Saves the scenario component using the provided region tree.
@@ -462,6 +524,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
             BufferedWriter bw2 = files.initializeBufferedFile(tempDirName, tempFilename2);
             BufferedWriter bw3 = files.initializeBufferedFile(tempDirName, tempFilename3);
 
+    		fileContent = "use temp file";
+    		String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
+    		files.deleteFile(temp_file);
+            
             int no_nested = 0;
             int no_non_nested = 0;
 
@@ -595,11 +661,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             files.closeBufferedFile(bw2);
             files.closeBufferedFile(bw3);
 
-            String temp_file = tempDirName + File.separator + "temp_policy_file.txt";
-
-            files.deleteFile(tempDirName);
-
-            String temp_file0 = tempDirName + File.separator + tempFilename0;
+             String temp_file0 = tempDirName + File.separator + tempFilename0;
             String temp_file1 = tempDirName + File.separator + tempFilename1;
             String temp_file2 = tempDirName + File.separator + tempFilename2;
             String temp_file3 = tempDirName + File.separator + tempFilename3;
@@ -635,7 +697,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
         rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
         rtn_str += "#Scenario component type: Tech Bound" + vars.getEol();
-        rtn_str += "#Sector: " + comboBoxSector.getValue() + vars.getEol();
+        rtn_str += "#Category: " + comboBoxCategory.getValue() + vars.getEol();
 
         ObservableList<String> tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
         String techs = utils.getStringFromList(tech_list, ";");
@@ -667,6 +729,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Loads content into the tab from the provided list of strings.
+     * Populates category, technologies, constraint, treatment, policy/market names, regions, and table data.
      *
      * @param content List of content lines to load
      */
@@ -678,9 +741,9 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 String param = line.substring(1, pos).trim().toLowerCase();
                 String value = line.substring(pos + 1).trim();
 
-                if (param.equals("sector")) {
-                    comboBoxSector.setValue(value);
-                    comboBoxSector.fireEvent(new ActionEvent());
+                if (param.equals("category")) {
+                    comboBoxCategory.setValue(value);
+                    comboBoxCategory.fireEvent(new ActionEvent());
                 }
                 if (param.equals("technologies")) {
                     checkComboBoxTech.getCheckModel().clearChecks();
@@ -725,8 +788,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
         this.paneForComponentDetails.updateTable();
     }
 
+
     /**
      * Helper method to validate table data years against allowable policy years.
+     *
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -744,6 +809,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
     
     /**
      * Validates that all required inputs for saving the scenario component are present and correct.
+     * Checks for at least one region, at least one table entry, and required selections.
      *
      * @return true if all required inputs are valid, false otherwise
      */
@@ -764,19 +830,14 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 message += "Data table must have at least one entry" + vars.getEol();
                 error_count++;
             } else {
-                if (paneForComponentDetails == null || paneForComponentDetails.table.getItems().size() == 0) {
-                    message += "Data table must have at least one entry" + vars.getEol();
-                    error_count++;
-                } else {
                     boolean match = validateTableDataYears();
                     if (!match) {
                         message += "Years specified in table must match allowable policy years (" + vars.getAllowablePolicyYears() + ")" + vars.getEol();
                         error_count++;
                     }
-                }
             }
-            if (comboBoxSector.getSelectionModel().getSelectedItem().equals("Select One")) {
-                message += "Sector comboBox must have a selection" + vars.getEol();
+            if (comboBoxCategory.getSelectionModel().getSelectedItem().equals("Select One")) {
+                message += "Category comboBox must have a selection" + vars.getEol();
                 error_count++;
             }
             if (checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0) {
@@ -842,6 +903,8 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
     /**
      * Updates the units label based on the selected technologies.
+     * <p>
+     * If available, extracts units from the selected technology string.
      */
     private void setUnitsLabel() {
         ObservableList<String> selectedTechs = checkComboBoxTech.getCheckModel().getCheckedItems();
