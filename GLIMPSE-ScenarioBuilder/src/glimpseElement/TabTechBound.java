@@ -693,38 +693,29 @@ public class TabTechBound extends PolicyTab implements Runnable {
      * @return Metadata content as a string
      */
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
-        String rtn_str = "";
-
-        rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
-        rtn_str += "#Scenario component type: Tech Bound" + vars.getEol();
-        rtn_str += "#Category: " + comboBoxCategory.getValue() + vars.getEol();
-
-        ObservableList<String> tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
-        String techs = utils.getStringFromList(tech_list, ";");
-        rtn_str += "#Technologies: " + techs + vars.getEol();
-
-        rtn_str += "#Constraint: " + comboBoxConstraint.getValue() + vars.getEol();
-        rtn_str += "#Treatment: " + comboBoxTreatment.getValue() + vars.getEol();
-        if (policy == null)
-            market = textFieldPolicyName.getText();
-        rtn_str += "#Policy name: " + policy + vars.getEol();
-        if (market == null)
-            market = textFieldMarketName.getText();
-        rtn_str += "#Market name: " + market + vars.getEol();
-
+        StringBuilder rtnStr = new StringBuilder();
+        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
+        rtnStr.append("#Category: ").append(this.comboBoxCategory.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
+        String techs = utils.getStringFromList(techList, ";");
+        rtnStr.append("#Technologies: ").append(techs).append(vars.getEol());
+        rtnStr.append("#Constraint: ").append(comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Treatment: ").append(comboBoxTreatment.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        if (policy == null) market = textFieldPolicyName.getText();
+        rtnStr.append("#Policy name: ").append(policy).append(vars.getEol());
+        if (market == null) market = textFieldMarketName.getText();
+        rtnStr.append("#Market name: ").append(market).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtn_str += "#Regions: " + states + vars.getEol();
-
-        ArrayList<String> table_content = this.paneForComponentDetails.getDataYrValsArrayList();
-        // Enhanced for-loop for table_content
-        for (String tableLine : table_content) {
-            rtn_str += "#Table data:" + tableLine + vars.getEol();
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
+        for (String row : tableContent) {
+            rtnStr.append("#Table data:").append(row).append(vars.getEol());
         }
-        rtn_str += "#################################################" + vars.getEol();
-
-        return rtn_str;
+        rtnStr.append("#################################################").append(vars.getEol());
+        return rtnStr.toString();       
     }
 
     /**

@@ -831,7 +831,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
 		StringBuilder rtn_str = new StringBuilder();
 		rtn_str.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-		rtn_str.append("#Scenario component type: Pollutant Tax/Cap").append(vars.getEol());
+		rtn_str.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
 		rtn_str.append("#Measure: ").append(comboBoxMeasure.getValue()).append(vars.getEol());
 		rtn_str.append("#Pollutant: ").append(comboBoxPollutant.getValue()).append(vars.getEol());
 		rtn_str.append("#Categories: ")

@@ -387,30 +387,26 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      * @return Metadata content string
      */
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
-        String rtn_str = "";
-        rtn_str += "########## Scenario Component Metadata ##########" + vars.getEol();
-        rtn_str += "#Scenario component type: Fuel Price Adj" + vars.getEol();
+    	StringBuilder rtnStr = new StringBuilder();
+    	rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
         String fuel = fuelList != null ? utils.getStringFromList(checkComboBoxFuel.getCheckModel().getCheckedItems(), ";") : "";
-        rtn_str += "#Fuel: " + fuel + vars.getEol();
-        rtn_str += "#Units: " + (labelUnitsValue != null ? labelUnitsValue.getText() : "") + vars.getEol();
-        if (policy == null && textFieldPolicyName != null)
-            market = textFieldPolicyName.getText();
-        rtn_str += "#Policy name: " + policy + vars.getEol();
-        if (market == null && textFieldMarketName != null)
-            market = textFieldMarketName.getText();
-        rtn_str += "#Market name: " + market + vars.getEol();
-        String[] listOfSelectedLeaves = tree != null ? utils.getAllSelectedRegions(tree) : new String[0];
+        rtnStr.append("#Fuel: ").append(fuel).append(vars.getEol());
+        rtnStr.append("#Units: ").append(labelUnitsValue.getText()).append(vars.getEol());
+        if (policy == null) market = textFieldPolicyName.getText();
+        rtnStr.append("#Policy name: ").append(policy).append(vars.getEol());
+        if (market == null) market = textFieldMarketName.getText();
+        rtnStr.append("#Market name: ").append(market).append(vars.getEol());
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtn_str += "#Regions: " + states + vars.getEol();
-        ArrayList<String> table_content = paneForComponentDetails != null
-                ? this.paneForComponentDetails.getDataYrValsArrayList()
-                : new ArrayList<>();
-        for (int i = 0; i < table_content.size(); i++) {
-            rtn_str += "#Table data:" + table_content.get(i) + vars.getEol();
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
+        for (String row : tableContent) {
+            rtnStr.append("#Table data:").append(row).append(vars.getEol());
         }
-        rtn_str += "#################################################" + vars.getEol();
-        return rtn_str;
+        rtnStr.append("#################################################").append(vars.getEol());
+        return rtnStr.toString();
     }
 
     /**

@@ -1183,34 +1183,34 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	 */
 	public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
 		String rtn_str = "";
-		rtn_str += METADATA_HEADER + vars.getEol();
-		rtn_str += METADATA_SCENARIO_TYPE + vars.getEol();
-		rtn_str += METADATA_TYPE + comboBoxPolicyType.getValue() + vars.getEol();
-		ObservableList subset_list = checkComboBoxSubset.getCheckModel().getCheckedItems();
+		StringBuilder rtnStr = new StringBuilder();
+		
+		ObservableList<String> subset_list = checkComboBoxSubset.getCheckModel().getCheckedItems();
 		String subset = utils.getStringFromList(subset_list, ";");
-		rtn_str += METADATA_SUBSET + subset + vars.getEol();
-		ObservableList superset_list = checkComboBoxSuperset.getCheckModel().getCheckedItems();
+		ObservableList<String> superset_list = checkComboBoxSuperset.getCheckModel().getCheckedItems();
 		String superset = utils.getStringFromList(superset_list, ";");
-		rtn_str += METADATA_SUPERSET + superset + vars.getEol();
-		rtn_str += METADATA_APPLIED_TO + comboBoxAppliedTo.getValue() + vars.getEol();
-		rtn_str += METADATA_TREATMENT + comboBoxTreatment.getValue() + vars.getEol();
-		rtn_str += METADATA_CONSTRAINT + comboBoxConstraint.getValue() + vars.getEol();
-		if (policy == null)
-			market = textFieldPolicyName.getText();
-		rtn_str += METADATA_POLICY_NAME + policy + vars.getEol();
-		if (market == null)
-			market = textFieldMarketName.getText();
-		rtn_str += METADATA_MARKET_NAME + market + vars.getEol();
-		String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
-		listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-		String states = utils.returnAppendedString(listOfSelectedLeaves);
-		rtn_str += METADATA_REGIONS + states + vars.getEol();
-		ArrayList<String> table_content = this.paneForComponentDetails.getDataYrValsArrayList();
-		for (int i = 0; i < table_content.size(); i++) {
-			rtn_str += METADATA_TABLE_DATA + table_content.get(i) + vars.getEol();
-		}
-		rtn_str += METADATA_FOOTER + vars.getEol();
-		return rtn_str;
+
+        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
+        rtnStr.append("#Type: ").append(this.comboBoxPolicyType.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Subset: ").append(subset).append(vars.getEol());
+        rtnStr.append("#Superset: ").append(superset).append(vars.getEol());
+        rtnStr.append("#AppliedTo: ").append(this.comboBoxAppliedTo.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Treatment: ").append(this.comboBoxTreatment.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Constraint: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Policy name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Market name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Market name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
+        listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
+        String states = utils.returnAppendedString(listOfSelectedLeaves);
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
+        ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
+        for (String row : tableContent) {
+            rtnStr.append("#Table data:").append(row).append(vars.getEol());
+        }
+        rtnStr.append("#################################################").append(vars.getEol());
+        return rtnStr.toString();
 	}
 
 	/**

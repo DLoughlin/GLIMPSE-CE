@@ -629,7 +629,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
         StringBuilder rtnStr = new StringBuilder();
         rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-        rtnStr.append("#Scenario component type: Tech Tax/Subsidy").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
         ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
         String techs = utils.getStringFromList(techList, ";");
         rtnStr.append("#Technologies: ").append(techs).append(vars.getEol());
