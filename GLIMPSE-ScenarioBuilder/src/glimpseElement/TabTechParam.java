@@ -895,11 +895,34 @@ public class TabTechParam extends PolicyTab implements Runnable {
             ArrayList<String> csvContent = cfw.createCsvContent(colList, dataList);
             fileContent = getMetaDataContent(tree);
             fileContent += utils.createStringFromArrayList(csvContent);
-            filenameSuggestion = "" + utils.getMatch(dataList, "type", ";") + "techParam.csv";
-            filenameSuggestion = filenameSuggestion.replaceAll("/", "_").replaceAll(" ", "_");
+            filenameSuggestion = getFilenameSuggestion();
         }
     }
 
+
+    public String getFilenameSuggestion() {
+    	String name="";
+    	
+    	String tech="Multi";
+    	
+    	if (this.checkComboBoxTech.getCheckModel().getCheckedItems().size()==1) {
+			tech = this.checkComboBoxTech.getCheckModel().getCheckedItems().get(0);
+		}
+    	
+    	String param = this.comboBoxParam.getValue();
+
+    	String state = "Reg";
+        String[] selectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+        if (selectedLeaves.length > 0) {
+            selectedLeaves = utils.removeUSADuplicate(selectedLeaves);
+            String stateStr = utils.returnAppendedString(selectedLeaves).replace(",", "");
+            state = stateStr.length() < 9 ? stateStr : "Reg";
+        }
+    	
+        name = ("tchPrm" + "_" + tech + "_" + param + "_" + state).replaceAll("[^a-zA-Z0-9_]", "_").replaceAll("___", "__").replaceAll("__", "_") + ".csv";
+		return name;		
+	}
+    
     /**
      * Loads data from the GUI for saving to file.
      * Serializes selected technologies, regions, parameters, and table data into a list of strings.
@@ -1002,7 +1025,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
                     errorCount++;
                 }
             }            
-            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0) || (checkComboBoxTech.getCheckModel().isChecked(SELECT_ONE_OR_MORE)))) {
+            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0) )) {
                 message.append("Tech checkComboBox must have at least one selection").append(vars.getEol());
                 errorCount++;
             }

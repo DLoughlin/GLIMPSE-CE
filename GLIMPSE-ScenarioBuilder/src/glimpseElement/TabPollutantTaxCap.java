@@ -368,9 +368,9 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				try {
 					String s = comboBoxMeasure.getValue();
 					if (s != null && s.contains("Tax"))
-						measure = "Tax";
+						measure = "polTax";
 					if (s != null && s.contains("Cap"))
-						measure = "Cap";
+						measure = "polCap";
 					int cats = checkComboBoxCategory.getCheckModel().getCheckedItems().size();
 					if (cats == 0) {
 						category = "All";
@@ -445,7 +445,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		String ID = utils.getUniqueString();
 		String policy_name = textFieldPolicyName.getText() + ID;
 		String market_name = textFieldMarketName.getText() + ID;
-		filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
+		filenameSuggestion = textFieldPolicyName.getText().replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
 
 		//String category = null;
 		List<String> cats = checkComboBoxCategory.getCheckModel().getCheckedItems();

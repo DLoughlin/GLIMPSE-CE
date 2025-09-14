@@ -475,17 +475,17 @@ public class TabTechTax extends PolicyTab implements Runnable {
     	if (checkBoxUseAutoNames.isSelected()) {
             String policyType = "---";
             String technology = "Tech";
-            String sector = "---";
+            String category = "---";
             String state = "--";
             try {
                 String s = comboBoxTaxOrSubsidy.getValue();
-                if (s != null && s.contains(TAX)) policyType = TAX;
-                if (s != null && s.contains(SUBSIDY)) policyType = SUBSIDY;
+                if (s != null && s.contains(TAX)) policyType = "tchTax";
+                if (s != null && s.contains(SUBSIDY)) policyType = "tchSub";
                 s = comboBoxCategory.getValue();
                 if (s != null && !s.equals(SELECT_ONE)) {
                     s = s.replace(" ", "_");
                     s = utils.capitalizeOnlyFirstLetterOfString(s);
-                    sector = s;
+                    category = s;
                 }
                 String[] selectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
                 if (selectedLeaves.length > 0) {
@@ -493,8 +493,9 @@ public class TabTechTax extends PolicyTab implements Runnable {
                     String stateStr = utils.returnAppendedString(selectedLeaves).replace(",", "");
                     state = stateStr.length() < 9 ? stateStr : "Reg";
                 }
-                String name = policyType + sector + technology + state;
-                name = name.replaceAll(" ", "_").replaceAll("-", "_").replaceAll("--", "_").replaceAll("_-_", "_").replaceAll("---", "");
+                String name = policyType + "_" + category + "_" + technology + "_" + state;
+                name = name.replaceAll("[^a-zA-Z0-9_]", "_").replaceAll("___", "__").replaceAll("__", "_");
+
                 textFieldMarketName.setText(name + "_Mkt");
                 textFieldPolicyName.setText(name);
             } catch (Exception e) {
@@ -541,7 +542,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
             String ID = utils.getUniqueString();
             String policyName = this.textFieldPolicyName.getText() + ID;
             String marketName = this.textFieldMarketName.getText() + ID;
-            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
+            filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
             fileContent = getMetaDataContent(paneForCountryStateTree.getTree(), marketName, policyName);
             ObservableList<String> techLines = checkComboBoxTech.getCheckModel().getCheckedItems();
             ArrayList<String> data = this.paneForComponentDetails.getDataYrValsArrayList();
