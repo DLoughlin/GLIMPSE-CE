@@ -329,6 +329,31 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         saveScenarioComponent(paneForCountryStateTree.getTree());
     }
 
+	/**
+	 * Generates a suggested filename for the scenario component based on sector and regions.
+	 * Format: [Sector]_fxDMD_[Regions].csv, with special handling for long region lists.
+	 *
+	 * @return Suggested filename string
+	 */
+    public String getFilenameSuggestion() {
+    	String name="";
+    	
+    	String sectorName = comboBoxSector.getSelectionModel().getSelectedItem();
+		if (sectorName != null) sectorName = sectorName.trim();
+		else sectorName = "Unk";
+
+		String[] selectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+		String state = "";
+        if (selectedLeaves.length > 0) {
+            selectedLeaves = utils.removeUSADuplicate(selectedLeaves);
+            String stateStr = utils.returnAppendedString(selectedLeaves).replace(",", "");
+            state = stateStr.length() < 9 ? stateStr : "Reg";
+        }
+        name = ("fxDMD" + "_" + sectorName + "_" + state).replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
+		return name;
+		
+	}
+    
     /**
      * Saves the scenario component using the provided region tree.
      * Validates inputs, generates metadata and CSV, and sets fileContent/filenameSuggestion.
@@ -348,7 +373,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
             String[] listOfSelectedLeaves = utils.removeUSADuplicate(utils.getAllSelectedRegions(tree));
             String sectorName = comboBoxSector.getSelectionModel().getSelectedItem();
             if (sectorName != null) sectorName = sectorName.trim();
-            filenameSuggestion = sectorName + "fxDMD";
+            filenameSuggestion = getFilenameSuggestion();
 
             // Get year/value data from table
             List<String> dataArrayList = paneForComponentDetails.getDataYrValsArrayList();

@@ -248,7 +248,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      */
     protected void setPolicyAndMarketNames() {
         if (checkBoxUseAutoNames != null && checkBoxUseAutoNames.isSelected()) {
-            String policy_type = "FuelPriceAdj";
+            String policy_type = "fuelPrc";
             String fuel = "----";
             String state = "--";
             try {
@@ -325,7 +325,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
             String ID = utils.getUniqueString();
 
-            filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
+            filenameSuggestion = textFieldPolicyName.getText().replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
             String policyName = textFieldPolicyName.getText() + ID;
             String marketName = textFieldMarketName.getText() + ID;
 

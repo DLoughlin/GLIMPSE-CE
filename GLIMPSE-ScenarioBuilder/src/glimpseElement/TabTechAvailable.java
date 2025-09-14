@@ -447,6 +447,27 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         Platform.runLater(this::saveScenarioComponent);
     }
 
+    
+	/**
+	 * Generates a suggested filename for the scenario component based on sector and regions.
+	 * Format: [Sector]_fxDMD_[Regions].csv, with special handling for long region lists.
+	 *
+	 * @return Suggested filename string
+	 */
+    public String getFilenameSuggestion() {
+    	String name="";
+    	
+		String[] selectedLeaves = utils.getAllSelectedRegions(paneForCountryStateTree.getTree());
+		String state = "";
+        if (selectedLeaves.length > 0) {
+            selectedLeaves = utils.removeUSADuplicate(selectedLeaves);
+            String stateStr = utils.returnAppendedString(selectedLeaves).replace(",", "");
+            state = stateStr.length() < 9 ? stateStr : "Reg";
+        }
+        name = ("tchAvl" + "_" + state).replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
+		return name;		
+	}   
+    
     /**
      * Saves the current scenario component to file, including both nested and non-nested technology bounds.
      */
@@ -457,13 +478,8 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
             String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
             listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
             String states = utils.returnAppendedString(listOfSelectedLeaves);
-            filenameSuggestion = "TechAvailBnd";
-            String region = states.replace(",", "");
-            if (region.length() > 6) {
-                region = "Reg";
-            }
-            filenameSuggestion += region;
-            filenameSuggestion = filenameSuggestion.replaceAll("/", "-").replaceAll(" ", "");
+
+            filenameSuggestion = getFilenameSuggestion();
 
             StringBuilder fileContentBuilder = new StringBuilder();
             fileContentBuilder.append(getMetaDataContent(tree));

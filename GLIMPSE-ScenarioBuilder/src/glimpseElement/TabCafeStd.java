@@ -248,7 +248,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     protected void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
             if (checkBoxUseAutoNames.isSelected()) {
-                String policyType = POLICY_TYPE;
+                String policyType = "mpgTgt";
 
                 String sector = "--";
                 String state = "--";
@@ -313,7 +313,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
         String ID = utils.getUniqueString();
         String policyName = textFieldPolicyName.getText() + ID;
         String marketName = textFieldMarketName.getText() + ID;
-        filenameSuggestion = textFieldPolicyName.getText().replaceAll("/", "_").replaceAll(" ", "_") + ".csv";
+        filenameSuggestion = textFieldPolicyName.getText().replaceAll("[^a-zA-Z0-9_]", "_") + ".csv";
         fileContent = getMetaDataContent(tree, marketName, policyName);
 
         // Build content for CAFE targets and policy activation tables
@@ -510,7 +510,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 errorCount++;
             }
             // Check tech selection
-            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0) || (checkComboBoxTech.getCheckModel().isChecked("Select One or More")))) {
+            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0))) {
                 message.append("Tech checkComboBox must have at least one selection").append(vars.getEol());
                 errorCount++;
             }
