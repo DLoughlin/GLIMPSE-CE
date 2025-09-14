@@ -120,8 +120,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         setupRightColumn();
 
         // Add default option to fuel selection
-        checkComboBoxFuel.getItems().add("Select One or More");
-        checkComboBoxFuel.getCheckModel().check(0);
+        //checkComboBoxFuel.getItems().add("Select One or More");
+        //checkComboBoxFuel.getCheckModel().check(0);
 
         // Set up region tree and tab title
         TreeItem<String> ti = paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null
@@ -170,12 +170,12 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      */
     private void setupLeftColumn() {
         gridPaneLeft.getChildren().clear();
-        gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFuel, new Label(), labelUnits, new Label(), new Separator(),
+        //gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
+        gridPaneLeft.addColumn(0, createLabel("Specification:"),labelFuel, new Label(), labelUnits, new Label(), new Separator(),
                 labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
                 createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
                 labelGrowth, labelConvertFrom);
-        gridPaneLeft.addColumn(1, checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
+        gridPaneLeft.addColumn(1, createLabel("Select one or more:"),checkComboBoxFuel, new Label(), labelUnitsValue, new Label(),
                 new Separator(), checkBoxUseAutoNames, textFieldPolicyName, textFieldMarketName, new Label(),
                 new Separator(), new Label(), comboBoxModificationType, textFieldStartYear, textFieldEndYear,
                 textFieldInitialAmount, textFieldGrowth, comboBoxConvertFrom);
@@ -520,7 +520,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                     error_count++;
                 }
             }
-            if (checkComboBoxFuel != null && ((checkComboBoxFuel.getCheckModel().getItemCount() == 0) || (checkComboBoxFuel.getCheckModel().isChecked("Select One or More")))) {
+            if (checkComboBoxFuel != null && (checkComboBoxFuel.getCheckModel().getCheckedItems().size() == 0)) {
                 message += "Fuel checkComboBox must have at least one selection" + vars.getEol();
                 error_count++;
             }

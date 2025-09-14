@@ -74,6 +74,7 @@ import javafx.stage.Stage;
 public class TabCafeStd extends PolicyTab implements Runnable {
     // === Constants for UI labels and options ===
     private static final String LABEL_SPECIFICATION = "Specification:";
+    private static final String LABEL_SUBSECTOR = "Subsector?";
     private static final String LABEL_POPULATE = "Populate:";
     private static final String LABEL_FINAL_VAL = "Final Val: ";
     private static final String LABEL_TECHS = "Tech(s): ";
@@ -99,7 +100,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     // === UI Components ===
     //private final GridPane gridPanePresetModification = new GridPane();
     //private final GridPane gridPaneLeft = new GridPane();
-    private final Label labelComboBoxSubsector = utils.createLabel(LABEL_WIDTH);
+    private final Label labelComboBoxSubsector = utils.createLabel(LABEL_SUBSECTOR,LABEL_WIDTH);
     private final ComboBox<String> comboBoxSubsector = utils.createComboBoxString(PREF_WIDTH);
     private final Label labelCheckComboBoxTech = utils.createLabel(LABEL_TECHS, LABEL_WIDTH);
     private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox(PREF_WIDTH);
@@ -509,7 +510,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
                 errorCount++;
             }
             // Check tech selection
-            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getItemCount() == 0) || (checkComboBoxTech.getCheckModel().isChecked("Select One or More")))) {
+            if (checkComboBoxTech != null && ((checkComboBoxTech.getCheckModel().getCheckedItems().size() == 0) || (checkComboBoxTech.getCheckModel().isChecked("Select One or More")))) {
                 message.append("Tech checkComboBox must have at least one selection").append(vars.getEol());
                 errorCount++;
             }
