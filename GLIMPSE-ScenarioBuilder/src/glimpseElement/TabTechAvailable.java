@@ -561,7 +561,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     public String getMetaDataContent(TreeView<String> tree) {
         StringBuilder rtnStr = new StringBuilder();
         rtnStr.append("############ Scenario Component Meta-Data ############").append(vars.getEol());
-        rtnStr.append("#Scenario component type: Tech Avail").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
         for (TechBound bnd : tableList) {
             if (bnd.isBoundAll() || bnd.isBoundRange()) {
                 rtnStr.append("#Bound:Never>").append(bnd.isBoundAll())

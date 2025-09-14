@@ -74,11 +74,11 @@ import javafx.stage.Stage;
 public class TabCafeStd extends PolicyTab implements Runnable {
     // === Constants for UI labels and options ===
     private static final String LABEL_SPECIFICATION = "Specification:";
-    private static final String LABEL_SUBSECTOR = "Subsector?";
+    private static final String LABEL_SUBSECTOR = "Subsector:";
     private static final String LABEL_POPULATE = "Populate:";
     private static final String LABEL_FINAL_VAL = "Final Val: ";
     private static final String LABEL_TECHS = "Tech(s): ";
-    private static final String LABEL_UNITS = "Units? ";
+    private static final String LABEL_UNITS = "Units:";
     private static final String[] SUBSECTOR_OPTIONS = {"Select One", "Car", "Large Car and Truck", "Light Truck", "Medium Truck", "Heavy Truck"};
     private static final String[] TECH_OPTIONS = {"BEV", "FCEV", "Hybrid Liquids", "Liquids", "NG"};
     private static final String[] UNITS_OPTIONS = {"Select One", "MPG", "MJ/vkt"};
@@ -385,7 +385,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
         StringBuilder rtnStr = new StringBuilder();
         rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-        rtnStr.append("#Scenario component type: CAFE Std").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
         rtnStr.append("#Subsector: ").append(comboBoxSubsector.getValue()).append(vars.getEol());
         ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
         String techs = utils.getStringFromList(techList, ";");

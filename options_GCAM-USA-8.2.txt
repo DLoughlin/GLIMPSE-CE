@@ -76,7 +76,7 @@ tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_7p0.csv
 
 #files include specifications used in generating xml files
 xmlHeaderFilename = $scenarioBuilderDir$/config/v8.2/glimpseXMLHeaders_v8.2.txt
-csvColumnFile = $scenarioBuilderDir$/config/v8.2/glimpseCSVColumnsForTechParam.txt
+csvColumnFilename = $scenarioBuilderDir$/config/v8.2/glimpseCSVColumnsForTechParam.txt
 
 #file with conversion factors to convert to 1990 $ years
 monetaryConversionsFilename = $scenarioBuilderDir$/config/v8.2/monetary_conversions.csv

@@ -416,7 +416,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     public String getMetaDataContent(TreeView<String> tree, String market, String policy) {
         StringBuilder rtnStr = new StringBuilder();
         rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
-        rtnStr.append("#Scenario component type: Fixed Demand").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
         rtnStr.append("#Sector:").append(comboBoxSector.getValue()).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);

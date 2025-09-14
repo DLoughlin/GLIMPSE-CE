@@ -651,22 +651,22 @@ public class TabTechParam extends PolicyTab implements Runnable {
      */
     public String getMetaDataContent(TreeView<String> tree) {
         StringBuilder rtnStr = new StringBuilder();
-        rtnStr.append(METADATA_HEADER).append(vars.getEol());
-        rtnStr.append(METADATA_SCENARIO_TYPE).append(SCENARIO_COMPONENT_TYPE).append(vars.getEol());
-        rtnStr.append(METADATA_CATEGORY).append(comboBoxCategory.getValue()).append(vars.getEol());
+        rtnStr.append("########## Scenario Component Metadata ##########").append(vars.getEol());
+        rtnStr.append("#Scenario component type: ").append(this.getText()).append(vars.getEol());
+        rtnStr.append("#Category: ").append(comboBoxCategory.getValue()).append(vars.getEol());
         ObservableList<String> techList = checkComboBoxTech.getCheckModel().getCheckedItems();
         String techs = utils.getStringFromList(techList, ";");
-        rtnStr.append(METADATA_TECHNOLOGIES).append(techs).append(vars.getEol());
-        rtnStr.append(METADATA_PARAMETER).append(comboBoxParam.getValue()).append(vars.getEol());
+        rtnStr.append("#Technologies: ").append(techs).append(vars.getEol());
+        rtnStr.append("#Parameter: ").append(comboBoxParam.getValue()).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);
-        rtnStr.append(METADATA_REGIONS).append(states).append(vars.getEol());
+        rtnStr.append("#Regions: ").append(states).append(vars.getEol());
         ArrayList<String> tableContent = this.paneForComponentDetails.getDataYrValsArrayList();
-        for (String tableLine : tableContent) {
-            rtnStr.append(METADATA_TABLE_DATA).append(tableLine).append(vars.getEol());
+        for (String row : tableContent) {
+            rtnStr.append("#Table data:").append(row).append(vars.getEol());
         }
-        rtnStr.append(METADATA_FOOTER).append(vars.getEol());
+        rtnStr.append("#################################################").append(vars.getEol());
         return rtnStr.toString();
     }
 
