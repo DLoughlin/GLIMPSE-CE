@@ -59,34 +59,32 @@ import javafx.stage.Stage;
  *
  * <p>
  * <b>Main responsibilities:</b>
- * </p>
  * <ul>
- * <li>Allow users to select measure type (tax or cap), pollutant, and
- * sector/category</li>
- * <li>Configure policy and market names (auto/manual)</li>
- * <li>Specify and populate cap/tax values over time</li>
- * <li>Validate, import, and export scenario component data as CSV</li>
+ *   <li>Allow users to select measure type (tax or cap), pollutant, and sector/category</li>
+ *   <li>Configure policy and market names (auto/manual)</li>
+ *   <li>Specify and populate cap/tax values over time</li>
+ *   <li>Validate, import, and export scenario component data as CSV</li>
  * </ul>
+ * </p>
  *
  * <p>
  * <b>Features:</b>
- * </p>
  * <ul>
- * <li>Support for multiple pollutants (CO2, GHG, NOx, SO2, etc.)</li>
- * <li>Automatic and manual naming for policy and market</li>
- * <li>Dynamic enabling/disabling of UI controls based on selections</li>
- * <li>Validation of user input and units</li>
- * <li>Progress tracking for file generation</li>
+ *   <li>Support for multiple pollutants (CO2, GHG, NOx, SO2, etc.)</li>
+ *   <li>Automatic and manual naming for policy and market</li>
+ *   <li>Dynamic enabling/disabling of UI controls based on selections</li>
+ *   <li>Validation of user input and units</li>
+ *   <li>Progress tracking for file generation</li>
  * </ul>
+ * </p>
  *
  * <p>
  * <b>Usage:</b>
- * </p>
- * 
  * <pre>
  * TabPollutantTaxCap tab = new TabPollutantTaxCap("Pollutant Tax/Cap", stage);
  * // Add to TabPane, interact via UI
  * </pre>
+ * </p>
  *
  * <p>
  * <b>Thread Safety:</b> This class is not thread-safe and should be used only
@@ -95,47 +93,38 @@ import javafx.stage.Stage;
  *
  * <p>
  * <b>Class Details:</b>
- * </p>
  * <ul>
- * <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
- * <li>Handles UI setup, event listeners, and scenario file generation for
- * pollutant tax/cap policies.</li>
- * <li>Supports robust CO2 cap, GHG tax/cap, and flexible tax/cap for other
- * pollutants.</li>
- * <li>Provides methods for loading, validating, and saving scenario component
- * data.</li>
+ *   <li>Extends {@link PolicyTab} and implements {@link Runnable}.</li>
+ *   <li>Handles UI setup, event listeners, and scenario file generation for pollutant tax/cap policies.</li>
+ *   <li>Supports robust CO2 cap, GHG tax/cap, and flexible tax/cap for other pollutants.</li>
+ *   <li>Provides methods for loading, validating, and saving scenario component data.</li>
  * </ul>
+ * </p>
  *
  * <p>
  * <b>Key Methods:</b>
- * </p>
  * <ul>
- * <li>{@link #TabPollutantTaxCap(String, Stage)} - Constructor, sets up UI and
- * listeners.</li>
- * <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
- * <li>{@link #saveScenarioComponent()} - Main entry for saving scenario
- * data.</li>
- * <li>{@link #saveScenarioComponentFlexTaxOrCap(String[], String, String, List, String, String, String, String, String)}
- * - Handles flexible tax/cap file generation.</li>
- * <li>{@link #saveScenarioComponentGHGTaxOrCap(String[], String, String, String, String, String)}
- * - Handles GHG tax/cap file generation.</li>
- * <li>{@link #saveScenarioComponentRobustCO2Cap(String[], String, String, String, String)}
- * - Handles robust CO2 cap file generation.</li>
- * <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates
- * metadata for scenario files.</li>
- * <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
- * <li>{@link #qaInputs()} - Validates user input before saving.</li>
+ *   <li>{@link #TabPollutantTaxCap(String, Stage)} - Constructor, sets up UI and listeners.</li>
+ *   <li>{@link #setupUIControls()} - Initializes UI controls and listeners.</li>
+ *   <li>{@link #saveScenarioComponent()} - Main entry for saving scenario data.</li>
+ *   <li>{@link #saveScenarioComponentFlexTaxOrCap(String[], String, String, List, String, String, String, String, String)} - Handles flexible tax/cap file generation.</li>
+ *   <li>{@link #saveScenarioComponentGHGTaxOrCap(String[], String, String, String, String, String)} - Handles GHG tax/cap file generation.</li>
+ *   <li>{@link #saveScenarioComponentRobustCO2Cap(String[], String, String, String, String)} - Handles robust CO2 cap file generation.</li>
+ *   <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for scenario files.</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads scenario data from file.</li>
+ *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
  * </ul>
+ * </p>
  *
  * <p>
  * <b>See Also:</b>
- * </p>
  * <ul>
- * <li>{@link PolicyTab}</li>
- * <li>{@link DataPoint}</li>
- * <li>{@link PaneForComponentDetails}</li>
- * <li>{@link Utils}</li>
+ *   <li>{@link PolicyTab}</li>
+ *   <li>{@link DataPoint}</li>
+ *   <li>{@link PaneForComponentDetails}</li>
+ *   <li>{@link Utils}</li>
  * </ul>
+ * </p>
  */
 public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	// === Constants for UI Texts and Options ===

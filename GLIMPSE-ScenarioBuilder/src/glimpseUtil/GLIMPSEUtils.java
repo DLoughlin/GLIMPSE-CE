@@ -103,55 +103,66 @@ import com.sun.javafx.tk.Toolkit;
 
 import gui.Client;
 
+/**
+ * Utility class for common operations in GLIMPSE ScenarioBuilder.
+ * <p>
+ * Provides methods for string manipulation, GUI component creation, file operations,
+ * error reporting, and transportation vehicle info processing. Many methods are
+ * designed to support the application's data handling and user interface needs.
+ * </p>
+ */
 public class GLIMPSEUtils {
 
-	public static final GLIMPSEUtils instance = new GLIMPSEUtils();
+    /**
+     * Singleton instance of GLIMPSEUtils.
+     */
+    public static final GLIMPSEUtils instance = new GLIMPSEUtils();
 
-	public GLIMPSEVariables vars;
-	public GLIMPSEStyles styles;
-	public GLIMPSEFiles files;
-	public StatusBar sb;
+    public GLIMPSEVariables vars;
+    public GLIMPSEStyles styles;
+    public GLIMPSEFiles files;
+    public StatusBar sb;
 
-	public String[][] trn_veh_info_table = null;
-	public String[][] ldv2W_table = null;
-	public String[][] ldv4W_table = null;
-	public String[][] hdv_table = null;
-	public String[][] oth_table = null;
+    public String[][] trn_veh_info_table = null;
+    public String[][] ldv2W_table = null;
+    public String[][] ldv4W_table = null;
+    public String[][] hdv_table = null;
+    public String[][] oth_table = null;
 
-	// Constants for label texts, combo box options, and other hardcoded strings
-	public static final String[] STATE_CODES = { "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI",
+    // Constants for label texts, combo box options, and other hardcoded strings
+    public static final String[] STATE_CODES = { "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI",
 			"IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE",
 			"NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA",
 			"WI", "WV", "WY", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL",
 			"IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM",
 			"NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV",
 			"WY" };
-	public static final String DATE_FORMAT_STR = "yyyy MMM dd HH:mm";
-	public static final String LABEL_WARNING = "Warning";
-	public static final String LABEL_CONFIRMATION_DIALOG = "Confirmation Dialog";
-	public static final String LABEL_DELETE_SELECTED_ITEMS = "Delete selected items?";
-	public static final String LABEL_PLEASE_CONFIRM_DELETION = "Please confirm deletion.";
-	public static final String LABEL_CLOSE = "Close";
-	public static final String LABEL_OK = "OK";
-	public static final String LABEL_DISPLAY = "Display";
-	public static final String LABEL_INFORMATION = "Information";
-	public static final String LABEL_ARCHIVE_SCENARIO = "Archive selected scenario(s) by copying all files to scenario folder(s)?";
-	public static final String LABEL_PLEASE_CONFIRM_ARCHIVE = "Please confirm archive.";
-	public static final String LABEL_NOTICE = "Notice";
-	public static final String LABEL_CANNOT_BE_EXECUTED = "Cannot be executed.";
-	public static final String LABEL_RESOURCES = "  Resources... ";
+    public static final String DATE_FORMAT_STR = "yyyy MMM dd HH:mm";
+    public static final String LABEL_WARNING = "Warning";
+    public static final String LABEL_CONFIRMATION_DIALOG = "Confirmation Dialog";
+    public static final String LABEL_DELETE_SELECTED_ITEMS = "Delete selected items?";
+    public static final String LABEL_PLEASE_CONFIRM_DELETION = "Please confirm deletion.";
+    public static final String LABEL_CLOSE = "Close";
+    public static final String LABEL_OK = "OK";
+    public static final String LABEL_DISPLAY = "Display";
+    public static final String LABEL_INFORMATION = "Information";
+    public static final String LABEL_ARCHIVE_SCENARIO = "Archive selected scenario(s) by copying all files to scenario folder(s)?";
+    public static final String LABEL_PLEASE_CONFIRM_ARCHIVE = "Please confirm archive.";
+    public static final String LABEL_NOTICE = "Notice";
+    public static final String LABEL_CANNOT_BE_EXECUTED = "Cannot be executed.";
+    public static final String LABEL_RESOURCES = "  Resources... ";
 
-	public String[] states = STATE_CODES;
-	public String dateFormatStr = DATE_FORMAT_STR;
+    public String[] states = STATE_CODES;
+    public String dateFormatStr = DATE_FORMAT_STR;
 
-	private long orig_date = 0;
+    private long orig_date = 0;
 
-	// Specifies style for GUI tables, such as border width and color
+    // Specifies style for GUI tables, such as border width and color
 
-	public GLIMPSEUtils() {
-	}
+    public GLIMPSEUtils() {
+    }
 
-	/**
+    /**
 	 * Returns the singleton instance of GLIMPSEUtils.
 	 * 
 	 * @return GLIMPSEUtils instance
@@ -176,7 +187,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Checks if a string matches any item in the provided list.
-	 * 
+	 *
 	 * @param str        String to check
 	 * @param marketList List of strings
 	 * @return true if match found, false otherwise
@@ -194,7 +205,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Adds a string to the list if it is not already present.
-	 * 
+	 *
 	 * @param list List of strings
 	 * @param str  String to add
 	 * @return Updated list
@@ -213,7 +224,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Returns the first token containing the specified text from a delimited line.
-	 * 
+	 *
 	 * @param line  Input string
 	 * @param txt   Text to search for
 	 * @param delim Delimiter
@@ -234,7 +245,7 @@ public class GLIMPSEUtils {
 	/**
 	 * Concatenates elements of an ObservableList<String> into a single string
 	 * separated by the given separator.
-	 * 
+	 *
 	 * @param ol        ObservableList<String>
 	 * @param separator Separator string
 	 * @return Concatenated string
@@ -251,7 +262,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Returns the current date as a string in yyyy-MM-dd format.
-	 * 
+	 *
 	 * @return Current date string
 	 */
 	public String getCurrentTimeStamp() {
@@ -263,7 +274,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Parses a date string using the class dateFormatStr.
-	 * 
+	 *
 	 * @param dateStr Date string
 	 * @return Date object, or null if parsing fails
 	 */
@@ -282,7 +293,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Shows a warning message dialog on the JavaFX application thread.
-	 * 
+	 *
 	 * @param msg Message to display
 	 */
 	public void warningMessage(String msg) {
@@ -301,7 +312,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Displays a dialog for text input and returns the entered text.
-	 * 
+	 *
 	 * @param descriptionType Dialog title
 	 * @return Entered text
 	 */
@@ -358,7 +369,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Converts a string to an integer, returns 0 if conversion fails.
-	 * 
+	 *
 	 * @param s String to convert
 	 * @return Integer value
 	 */
@@ -377,7 +388,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Returns the year string for a given period index.
-	 * 
+	 *
 	 * @param period Period index
 	 * @return Year as string
 	 */
@@ -400,7 +411,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Returns the period index for a given year string.
-	 * 
+	 *
 	 * @param year Year as string
 	 * @return Period index as string
 	 */
@@ -420,7 +431,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Removes trailing commas from a string.
-	 * 
+	 *
 	 * @param s Input string
 	 * @return String without trailing commas
 	 */
@@ -435,7 +446,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Removes trailing commas from each string in an array.
-	 * 
+	 *
 	 * @param s Array of strings
 	 * @return Array with trailing commas removed
 	 */
@@ -451,7 +462,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Clears the text in a TextArea.
-	 * 
+	 *
 	 * @param ta TextArea to clear
 	 */
 	public void clearTextArea(TextArea ta) {
@@ -462,7 +473,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Capitalizes only the first letter of a string.
-	 * 
+	 *
 	 * @param input_string Input string
 	 * @return String with only the first letter capitalized
 	 */
@@ -482,7 +493,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Shows a confirmation dialog for deletion.
-	 * 
+	 *
 	 * @return true if user confirms, false otherwise
 	 */
 	public boolean confirmDelete() {
@@ -509,7 +520,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Splits a string by the given delimiter.
-	 * 
+	 *
 	 * @param str   Input string
 	 * @param delim Delimiter
 	 * @return Array of split strings
@@ -523,7 +534,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Splits a string by end-of-line characters.
-	 * 
+	 *
 	 * @param line Input string
 	 * @return Array of lines
 	 */
@@ -543,7 +554,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Creates an ArrayList from a delimited string.
-	 * 
+	 *
 	 * @param line  Input string
 	 * @param delim Delimiter
 	 * @return ArrayList of strings
@@ -561,7 +572,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Creates an ArrayList from a string split by end-of-line.
-	 * 
+	 *
 	 * @param line Input string
 	 * @return ArrayList of strings
 	 */
@@ -577,9 +588,8 @@ public class GLIMPSEUtils {
 	}
 
 	/**
-	 * Concatenates an ArrayList of strings into a single string with EOL
-	 * separators.
-	 * 
+	 * Concatenates an ArrayList of strings into a single string with EOL separators.
+	 *
 	 * @param arrayList ArrayList of strings
 	 * @return Concatenated string
 	 */
@@ -594,9 +604,8 @@ public class GLIMPSEUtils {
 	}
 
 	/**
-	 * Concatenates an ArrayList of strings into a single string with a custom
-	 * delimiter.
-	 * 
+	 * Concatenates an ArrayList of strings into a single string with a custom delimiter.
+	 *
 	 * @param filesToSave ArrayList of strings
 	 * @param delimiter   Delimiter string
 	 * @return Concatenated string
@@ -615,9 +624,8 @@ public class GLIMPSEUtils {
 	}
 
 	/**
-	 * Converts an ObservableList<String> of strings to a string array, appending
-	 * EOL to each.
-	 * 
+	 * Converts an ObservableList<String> of strings to a string array, appending EOL to each.
+	 *
 	 * @param array_str ObservableList<String> of strings
 	 * @return Array of strings
 	 */
@@ -634,7 +642,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Concatenates a string array into a single comma-separated string.
-	 * 
+	 *
 	 * @param str_array Array of strings
 	 * @return Concatenated string
 	 */
@@ -652,7 +660,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Converts an ArrayList of strings to a string array, appending EOL to each.
-	 * 
+	 *
 	 * @param arrayList ArrayList of strings
 	 * @return Array of strings
 	 */
@@ -668,9 +676,8 @@ public class GLIMPSEUtils {
 	}
 
 	/**
-	 * Creates a JavaFX Separator with specified orientation, length, and
-	 * visibility.
-	 * 
+	 * Creates a JavaFX Separator with specified orientation, length, and visibility.
+	 *
 	 * @param orientation Orientation of the separator
 	 * @param length      Minimum width
 	 * @param visible     Visibility flag
@@ -687,7 +694,7 @@ public class GLIMPSEUtils {
 
 	/**
 	 * Retrieves the value for a given key from a list of key-value pairs.
-	 * 
+	 *
 	 * @param keyValuePairs List of key-value string arrays
 	 * @param key           Key to search for
 	 * @return Value string, or null if not found

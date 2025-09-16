@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ * 
+ */
 package glimpseElement;
 
 import java.io.File;
@@ -95,10 +95,10 @@ import javafx.stage.Stage;
  * <p>
  * <b>Dependencies:</b> Relies on GLIMPSE utility classes, ControlsFX CheckComboBox, and JavaFX controls.
  * </p>
- *
  */
 public class TabTechParam extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===
+    // UI text constants for labels, options, and warnings
     private static final String SELECT_ONE = "Select One";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String ALL = "All";
@@ -129,6 +129,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_DELTA = "Delta:";
 
     // === Constants for Metadata ===
+    // Metadata header/footer and keys for scenario component file output
     private static final String SCENARIO_COMPONENT_TYPE = "Tech Param";
     private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
     private static final String METADATA_FOOTER = "#################################################";
@@ -140,12 +141,14 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String METADATA_TABLE_DATA = "#Table data:";
 
     // === Layout and UI Components ===
+    // Layout containers for tab columns and panes
     //private final GridPane gridPanePresetModification = new GridPane();
     //private final ScrollPane scrollPaneLeft = new ScrollPane();
     //private final GridPane gridPaneLeft = new GridPane();
     //private final VBox vBoxCenter = new VBox();
 
     // === UI Controls ===
+    // JavaFX controls for user input and display
     private final Label labelCategory = createLabel(LABEL_CATEGORY, LABEL_WIDTH);
     private final ComboBox<String> comboBoxCategory = createComboBoxString(PREF_WIDTH);
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
@@ -165,6 +168,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final Label labelValue = createLabel(LABEL_VALUES);
 
     // === Data ===
+    // Technology info array loaded from GLIMPSEVariables
     private String[][] techInfo = null;
 
     /**
@@ -643,7 +647,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 //    }
 
     /**
-     * Generates the metadata content string for the scenario component, including selected sector, technologies, parameter, regions, and table data.
+     * Generates the metadata content string for the scenario component, including selected category, technologies, parameter, regions, and table data.
      *
      * @param tree The TreeView of regions
      * @return Metadata content string
@@ -671,7 +675,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
     /**
      * Loads content from a list of strings (typically from a file) and populates the UI fields accordingly.
-     * Parses each line for sector, technologies, parameter, regions, and table data.
+     * Parses each line for category, technologies, parameter, regions, and table data.
      *
      * @param content The list of content lines to load
      */
@@ -899,6 +903,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
     }
 
 
+    /**
+     * Suggests a filename for the scenario component based on selected technologies, parameter, and regions.
+     *
+     * @return Suggested filename string
+     */
     public String getFilenameSuggestion() {
     	String name="";
     	
@@ -1001,7 +1010,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     /**
      * Performs QA checks on the current UI state to ensure all required inputs are valid.
      * Displays warnings or error messages as needed.
-     * Checks for region selection, data table entries, sector/technology/parameter selection, and year validity.
+     * Checks for region selection, data table entries, category/technology/parameter selection, and year validity.
      *
      * @return true if all inputs are valid, false otherwise
      */

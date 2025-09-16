@@ -20,17 +20,17 @@
  *     and that User is not otherwise prohibited
  * under the Export Laws from receiving the Software.
  *
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
  * 
  */
 
@@ -67,11 +67,7 @@ import javafx.stage.Stage;
  * technology bounds and availability for scenario components.
  *
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab} and implements {@link Runnable}.
- * </p>
- *
- * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
+ * <b>Usage:</b> Instantiated as a tab in the scenario builder. Extends {@link PolicyTab} and implements {@link Runnable}.
  * </p>
  *
  * <p>
@@ -88,17 +84,6 @@ import javafx.stage.Stage;
  * </p>
  *
  * <p>
- * <b>Key Methods:</b>
- * <ul>
- *   <li>{@link #TabTechAvailable(String, Stage)} - Constructor, sets up UI and event handlers.</li>
- *   <li>{@link #saveScenarioComponent()} - Saves the current scenario component to file.</li>
- *   <li>{@link #saveScenarioComponentShareweight()} - Saves shareweight scenario data to file.</li>
- *   <li>{@link #loadContent(ArrayList)} - Loads scenario component data from file.</li>
- *   <li>{@link #qaInputs()} - Validates user input before saving.</li>
- * </ul>
- * </p>
- *
- * <p>
  * <b>Dependencies:</b>
  * <ul>
  *   <li>JavaFX for UI components</li>
@@ -107,6 +92,9 @@ import javafx.stage.Stage;
  * </ul>
  * </p>
  *
+ * <p>
+ * <b>Thread Safety:</b> Not thread-safe. Should be used on the JavaFX Application Thread.
+ * </p>
  */
 public class TabTechAvailable extends PolicyTab implements Runnable {
     // === Constants for UI Texts and Options ===
@@ -161,6 +149,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Sets up UI controls and event handlers for the tab.
+     * Includes filter fields, year fields, selection buttons, and table columns.
      */
     private void setupUIControls() {
     	
@@ -312,6 +301,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Gets the matching line from the original technology list for a given line.
+     * Used for mapping displayed tech names to original tech names for export.
      * @param line The line to match
      * @return The matching line from the original list
      */
@@ -368,6 +358,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Selects all visible items in the table.
+     * Sets the 'Never?' bound for all visible technologies.
      */
     private void selectAllVisibleItems() {
         Platform.runLater(() -> {
@@ -385,6 +376,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Selects a range of visible items in the table.
+     * Sets the 'Range?' bound for all visible technologies.
      */
     private void selectRangeVisibleItems() {
         Platform.runLater(() -> {
@@ -402,6 +394,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Adds filtering and sorting to the technology bounds table.
+     * Filters by category and text, and sorts results.
      */
     private void addFiltering() {
         FilteredList<TechBound> filteredComponents = new FilteredList<>(tableTechBounds.getItems(), p -> true);
@@ -441,19 +434,19 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+     * Triggers scenario component save on the JavaFX thread.
      */
     @Override
     public void run() {
         Platform.runLater(this::saveScenarioComponent);
     }
 
-    
-	/**
-	 * Generates a suggested filename for the scenario component based on sector and regions.
-	 * Format: [Sector]_fxDMD_[Regions].csv, with special handling for long region lists.
-	 *
-	 * @return Suggested filename string
-	 */
+    /**
+     * Generates a suggested filename for the scenario component based on sector and regions.
+     * Format: [Sector]_fxDMD_[Regions].csv, with special handling for long region lists.
+     *
+     * @return Suggested filename string
+     */
     public String getFilenameSuggestion() {
     	String name="";
     	
@@ -470,6 +463,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     
     /**
      * Saves the current scenario component to file, including both nested and non-nested technology bounds.
+     * Builds file content and metadata for export.
      */
     @Override
     public void saveScenarioComponent() {
@@ -582,6 +576,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Loads scenario component data from file and updates the UI accordingly.
+     * Parses content lines and updates technology bounds and region selections.
      *
      * @param content the list of content lines to load
      */
@@ -636,6 +631,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Gets the list of technology bounds from the variables.
+     * Reads technology info and builds the initial list for the table.
      * @return ObservableList<TechBound>
      */
     private ObservableList<TechBound> getBoundList() {
@@ -668,6 +664,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
     /**
      * Saves the current scenario component shareweight data to file.
      * This method should be implemented to export shareweight constraints for technologies.
+     * (Not implemented in this version)
      */
     public void saveScenarioComponentShareweight() {
         // Implementation for saving shareweight scenario data
@@ -676,6 +673,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
 
     /**
      * Validates user input before saving the scenario component. Checks for at least one region and one technology bound.
+     * Displays warning messages if validation fails.
      *
      * @return true if all required fields are valid, false otherwise
      */

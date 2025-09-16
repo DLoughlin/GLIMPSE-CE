@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ * 
+ */
 package glimpseElement;
 
 import java.util.ArrayList;
@@ -103,9 +103,14 @@ import javafx.stage.Stage;
  *   <li>JavaFX controls and layout classes</li>
  * </ul>
  *
+ * <h2>Revision History</h2>
+ * <ul>
+ *   <li>2025-09-16: Updated Javadoc and comments for clarity and completeness.</li>
+ * </ul>
  */
 public class TabFixedDemand extends PolicyTab implements Runnable {
     // === Constants for UI Strings and Options ===
+    // UI label strings for sector, units, values, and specification
     private static final String LABEL_SECTOR = "Sector: ";
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_FINAL = "Final: ";
@@ -113,6 +118,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final String LABEL_SPECIFICATION = "Specification:";
     private static final String LABEL_POPULATE = "Populate:";
     private static final double LABEL_WIDTH = 125;
+    // Modification type strings for demand specification
     private static final String MOD_TYPE_INITIAL_FINAL = "Initial and Final";
     private static final String MOD_TYPE_GROWTH_YR = "Initial w/% Growth/yr";
     private static final String MOD_TYPE_GROWTH_PD = "Initial w/% Growth/pd";
@@ -125,11 +131,13 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private static final String SECTOR_SELECT_ONE = "Select One";
 
     // === Utility singletons ===
+    // Shared instances for variables, styles, and utilities
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     private final GLIMPSEStyles styles = GLIMPSEStyles.getInstance();
     private final GLIMPSEUtils utils = GLIMPSEUtils.getInstance();
 
     // === UI controls ===
+    // UI controls for sector selection and units display
     private final Label labelSector = createLabel(LABEL_SECTOR, LABEL_WIDTH);
     private final ComboBox<String> comboBoxSector = createComboBoxString(SECTOR_SELECT_ONE, PREF_WIDTH);
     private final Label labelUnits = createLabel(LABEL_UNITS, LABEL_WIDTH);
@@ -137,6 +145,7 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
     private final Label labelValue = createLabel(LABEL_VALUES, LABEL_WIDTH);
     
     // === Data ===
+    // Sector information array from GLIMPSEVariables
     private final String[][] sectorInfo;
 
     /**
@@ -195,6 +204,9 @@ public class TabFixedDemand extends PolicyTab implements Runnable {
         setupRightColumn();
     }
 
+    /**
+     * Sets up the left column of the UI, including sector selection and input fields.
+     */
     private void setupLeftColumn() {
         gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);

@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract. 
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract. 
+ * 
+ */
 package glimpseElement;
 
 import java.util.ArrayList;
@@ -48,27 +48,23 @@ import javafx.stage.Stage;
 
 /**
  * TabFuelPriceAdj provides the user interface and logic for creating and editing
- * fuel price adjustment policies in the GLIMPSE Scenario Builder. This class manages
- * the UI controls, user input validation, and the generation of scenario component files
- * for downstream processing. It supports loading and saving of policy data, auto-naming,
- * and dynamic UI updates based on user selections. All UI updates must be performed on
- * the JavaFX Application Thread.
+ * fuel price adjustment policies in the GLIMPSE Scenario Builder.
  * <p>
- * <b>Key Features:</b>
+ * <b>Main Features:</b>
  * <ul>
- *   <li>Allows users to specify, edit, and save fuel price adjustment policies.</li>
- *   <li>Supports selection of fuels, regions, and adjustment types.</li>
- *   <li>Auto-generates policy and market names based on user selections.</li>
- *   <li>Validates user input and provides feedback for missing or invalid data.</li>
- *   <li>Generates scenario component files with metadata and adjustment values.</li>
- *   <li>Supports loading of existing policy files and populating the UI accordingly.</li>
+ *   <li>Specify, edit, and save fuel price adjustment policies.</li>
+ *   <li>Select fuels, regions, and adjustment types.</li>
+ *   <li>Auto-generate policy and market names based on selections.</li>
+ *   <li>Validate user input and provide feedback for missing/invalid data.</li>
+ *   <li>Generate scenario component files for downstream processing.</li>
+ *   <li>Load existing policy files and populate the UI.</li>
  * </ul>
  *
  * <b>Usage:</b>
  * <ul>
  *   <li>Instantiate with a tab title and JavaFX stage.</li>
  *   <li>Interact with the UI to select fuels, regions, and adjustment parameters.</li>
- *   <li>Use the Populate, Delete, and Clear buttons to manage adjustment values.</li>
+ *   <li>Use Populate, Delete, and Clear buttons to manage adjustment values.</li>
  *   <li>Save the scenario component to generate the output file.</li>
  * </ul>
  *
@@ -119,10 +115,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         setupCenterColumn();
         setupRightColumn();
 
-        // Add default option to fuel selection
-        //checkComboBoxFuel.getItems().add("Select One or More");
-        //checkComboBoxFuel.getCheckModel().check(0);
-
         // Set up region tree and tab title
         TreeItem<String> ti = paneForCountryStateTree != null && paneForCountryStateTree.getTree() != null
                 ? paneForCountryStateTree.getTree().getRoot()
@@ -170,7 +162,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
      */
     private void setupLeftColumn() {
         gridPaneLeft.getChildren().clear();
-        //gridPaneLeft.add(createLabel("Specification:"), 0, 0, 2, 1);
         gridPaneLeft.addColumn(0, createLabel("Specification:"),labelFuel, new Label(), labelUnits, new Label(), new Separator(),
                 labelUseAutoNames, labelPolicyName, labelMarketName, new Label(), new Separator(),
                 createLabel("Populate:"), labelModificationType, labelStartYear, labelEndYear, labelInitialAmount,
@@ -186,8 +177,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets min, max, and preferred widths for controls in the tab.
-     * Ensures consistent UI layout.
+     * Sets min, max, and preferred widths for controls in the tab for consistent UI layout.
      */
     private void setComponentWidths() {
         double max_wid = this.MAX_WIDTH, min_wid = this.MIN_WIDTH, pref_wid = this.PREF_WIDTH;
@@ -220,7 +210,6 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         comboBoxConvertFrom.setPrefWidth(min_wid);
     }
 
-
     /**
      * Extracts fuel technology names from the technology list and populates fuelList.
      * Only technologies categorized as "Energy-Carrier" are included.
@@ -240,11 +229,9 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Sets the policy and market names automatically based on selected fuels and
-     * regions. If auto-naming is enabled, updates the text fields accordingly. This
-     * method should be called on the JavaFX Application Thread.
-     * <p>
-     * Naming convention: FuelPriceAdj-<fuel>-<region>
+     * Sets the policy and market names automatically based on selected fuels and regions.
+     * If auto-naming is enabled, updates the text fields accordingly.
+     * Naming convention: fuelPrc-<fuel>-<region>
      */
     protected void setPolicyAndMarketNames() {
         if (checkBoxUseAutoNames != null && checkBoxUseAutoNames.isSelected()) {
@@ -286,9 +273,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Runnable implementation. Triggers saving of the scenario component. This
-     * method is intended to be called in a separate thread, but any UI updates must
-     * be wrapped in Platform.runLater.
+     * Runnable implementation. Triggers saving of the scenario component.
+     * Intended to be called in a separate thread; UI updates must be wrapped in Platform.runLater.
      */
     @Override
     public void run() {
@@ -297,7 +283,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
     /**
      * Saves the scenario component using the current UI state and selected regions.
-     * This method delegates to saveScenarioComponent(TreeView<String> tree).
+     * Delegates to saveScenarioComponent(TreeView<String> tree).
      */
     @Override
     public void saveScenarioComponent() {
@@ -456,8 +442,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Helper method to parse table data from a string and add to the component
-     * details. Expects a comma-separated string with year and value.
+     * Helper method to parse table data from a string and add to the component details.
+     * Expects a comma-separated string with year and value.
      *
      * @param value The string containing year and value, comma-separated
      */
@@ -469,10 +455,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Helper method to validate table data years against allowable policy years.
+     * Validates table data years against allowable policy years.
      * Returns true if at least one year matches allowable years, false otherwise.
-     *
-     * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
         List<Integer> listOfAllowableYears = vars.getAllowablePolicyYears();
@@ -490,8 +474,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     }
 
     /**
-     * Performs QA checks on the current UI state to ensure all required inputs are
-     * valid. Displays warnings or error messages as needed. Checks for region selection,
+     * Performs QA checks on the current UI state to ensure all required inputs are valid.
+     * Displays warnings or error messages as needed. Checks for region selection,
      * table data, valid years, fuel selection, and policy/market names.
      *
      * @return true if all inputs are valid, false otherwise

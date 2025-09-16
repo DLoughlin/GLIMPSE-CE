@@ -50,59 +50,36 @@ import javafx.stage.Stage;
 
 /**
  * TabTechTax provides the user interface and logic for creating and editing
- * technology tax or subsidy policies in the GLIMPSE Scenario Builder. This tab
- * allows users to select sectors, filter technologies, specify policy names,
- * and configure market and tax/subsidy details.
- *
+ * technology tax or subsidy policies in the GLIMPSE Scenario Builder.
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It
- * extends {@link PolicyTab} and implements {@link Runnable}.
- * </p>
- *
- * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the
- * JavaFX Application Thread.
- * </p>
- *
- * <p>
- * <b>UI Features:</b>
+ * <b>Main Features:</b>
  * <ul>
- * <li>Sector selection and filtering</li>
- * <li>Technology multi-selection with checkboxes</li>
- * <li>Tax/Subsidy type selection</li>
- * <li>Policy and market name auto-generation</li>
- * <li>Units display and validation</li>
- * <li>Region selection via tree</li>
- * <li>Data entry and validation for policy years and values</li>
- * <li>Support for loading and saving scenario component data</li>
+ *   <li>Sector selection and filtering</li>
+ *   <li>Technology multi-selection with checkboxes</li>
+ *   <li>Tax/Subsidy type selection</li>
+ *   <li>Policy and market name auto-generation</li>
+ *   <li>Units display and validation</li>
+ *   <li>Region selection via tree</li>
+ *   <li>Data entry and validation for policy years and values</li>
+ *   <li>Support for loading and saving scenario component data</li>
  * </ul>
- * </p>
- *
+ * <p>
+ * <b>Usage:</b> Instantiate as a tab in the scenario builder. Extends {@link PolicyTab} and implements {@link Runnable}.
+ * <p>
+ * <b>Thread Safety:</b> Not thread-safe; use only on the JavaFX Application Thread.
  * <p>
  * <b>Key Methods:</b>
  * <ul>
- * <li>{@link #setupUIControls()} - Initializes all UI controls</li>
- * <li>{@link #setupEventHandlers()} - Sets up all event listeners for UI
- * controls</li>
- * <li>{@link #setupComboBoxCategory()} - Populates the sector ComboBox with
- * available sectors</li>
- * <li>{@link #updateCheckComboBoxTech()} - Updates the technology CheckComboBox
- * based on sector/filter</li>
- * <li>{@link #setPolicyAndMarketNames()} - Auto-generates policy and market
- * names</li>
- * <li>{@link #saveScenarioComponent()} - Saves the scenario component to
- * fileContent</li>
- * <li>{@link #qaInputs()} - Validates all user inputs before saving</li>
- * <li>{@link #setUnitsLabel()} - Updates the units label based on selected
- * technologies</li>
- * <li>{@link #getUnits()} - Gets the units for the selected technologies</li>
+ *   <li>{@link #setupUIControls()} - Initializes UI controls</li>
+ *   <li>{@link #setupEventHandlers()} - Sets up event listeners</li>
+ *   <li>{@link #setupComboBoxCategory()} - Populates sector ComboBox</li>
+ *   <li>{@link #updateCheckComboBoxTech()} - Updates technology CheckComboBox</li>
+ *   <li>{@link #setPolicyAndMarketNames()} - Auto-generates policy/market names</li>
+ *   <li>{@link #saveScenarioComponent()} - Saves scenario component</li>
+ *   <li>{@link #qaInputs()} - Validates user inputs</li>
+ *   <li>{@link #setUnitsLabel()} - Updates units label</li>
+ *   <li>{@link #getUnits()} - Gets units for selected technologies</li>
  * </ul>
- * </p>
- *
- * <p>
- * <b>Dependencies:</b> Relies on utility classes for UI creation, string
- * manipulation, and data validation.
- * </p>
  */
 public class TabTechTax extends PolicyTab implements Runnable {
 	private static final String LABEL_UNITS_WARNING = "Warning - Units do not match!";
@@ -127,7 +104,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	/**
 	 * Constructs the TabTechTax UI and logic.
-	 *
 	 * @param title  Tab title to display
 	 * @param stageX JavaFX stage reference
 	 */
@@ -169,8 +145,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets up all UI controls for the tab (labels, combo boxes, etc.). This method
-	 * initializes the left, center, and right columns of the UI.
+	 * Initializes all UI controls for the tab (labels, combo boxes, etc.).
+	 * Sets up left, center, and right columns of the UI.
 	 */
 	private void setupUIControls() {
 		setupLeftColumn();
@@ -180,9 +156,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	// === UI Setup Methods ===
 	/**
-	 * Sets up the left column of the UI, adding labels and controls to the grid
-	 * pane. This includes filter, sector, technology, type, units, and other input
-	 * fields.
+	 * Sets up the left column of the UI, adding labels and controls to the grid pane.
+	 * Includes filter, sector, technology, type, units, and other input fields.
 	 */
 	private void setupLeftColumn() {
 		gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
@@ -212,7 +187,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets the width properties for the provided controls.
-	 *
 	 * @param controls Controls to set width for
 	 */
 	private void setComponentWidths(Control... controls) {
@@ -224,9 +198,9 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets up event handlers for UI components in the tab. This includes listeners
-	 * for combo boxes, checkboxes, buttons, and filter fields. All UI updates are
-	 * wrapped in Platform.runLater for thread safety.
+	 * Sets up event handlers for UI components in the tab.
+	 * Includes listeners for combo boxes, checkboxes, buttons, and filter fields.
+	 * All UI updates are wrapped in Platform.runLater for thread safety.
 	 */
 	protected void setupEventHandlers() {
 
@@ -293,9 +267,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Populates the sector combo box based on the technology info and filter text.
+	 * Populates the sector combo box based on technology info and filter text.
 	 * Handles filtering and ensures no duplicate sectors are added.
-	 * <p>
 	 * If a filter is applied, only categories matching the filter are shown.
 	 */
 	private void setupComboBoxCategory() {
@@ -353,9 +326,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets up the sector ComboBox with available sectors, applying any filter
-	 * entered by the user. This method reads technology info and populates the
-	 * sector list, including 'All' and filter support.
+	 * Deprecated: Sets up the sector ComboBox with available sectors, applying any filter entered by the user.
+	 * Reads technology info and populates the sector list, including 'All' and filter support.
 	 */
 	private void setupComboBoxSector() { // Deprecated method, replaced by setupComboBoxCategory
 		comboBoxCategory.getItems().clear();
@@ -403,9 +375,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Updates the technology check combo box based on the selected sector and
-	 * filter text. Only technologies matching the filter and sector are shown.
-	 * <p>
+	 * Updates the technology check combo box based on selected sector and filter text.
+	 * Only technologies matching the filter and sector are shown.
 	 * Called when the filter or category changes.
 	 */
 	private void updateCheckComboBoxTech() {
@@ -456,9 +427,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Updates the technology CheckComboBox based on the selected sector and filter.
-	 * This method clears and repopulates the technology list for the selected
-	 * sector.
+	 * Deprecated: Updates the technology CheckComboBox based on selected sector and filter.
+	 * Clears and repopulates the technology list for the selected sector.
 	 */
 	private void updateCheckComboBoxTechBySector() { // deprecated; replaced by updatedCheckComboBoxTech()
 		String sector = comboBoxCategory.getValue();
@@ -495,9 +465,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets the policy and market names automatically based on current selections if
-	 * auto-naming is enabled. The name is constructed from type, sector,
-	 * technology, and region selections.
+	 * Sets the policy and market names automatically based on current selections if auto-naming is enabled.
+	 * Name is constructed from type, sector, technology, and region selections.
 	 */
 	protected void setPolicyAndMarketNames() {
 		Platform.runLater(() -> {
@@ -537,8 +506,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Runs background tasks or updates for this tab. Implementation of Runnable
-	 * interface. This method triggers saving the scenario component.
+	 * Runs background tasks or updates for this tab. Implementation of Runnable interface.
+	 * Triggers saving the scenario component.
 	 */
 	@Override
 	public void run() {
@@ -547,7 +516,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	/**
 	 * Saves the scenario component using the current country/state tree selection.
-	 * This method delegates to saveScenarioComponent(TreeView).
+	 * Delegates to saveScenarioComponent(TreeView).
 	 */
 	@Override
 	public void saveScenarioComponent() {
@@ -556,7 +525,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	/**
 	 * Saves the scenario component using the provided tree.
-	 *
 	 * @param tree the TreeView containing region selections
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
@@ -656,9 +624,7 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Generates metadata content for the scenario component, including selected
-	 * technologies, type, policy, market, regions, and table data.
-	 *
+	 * Generates metadata content for the scenario component, including selected technologies, type, policy, market, regions, and table data.
 	 * @param tree   the TreeView containing region selections
 	 * @param market the market name
 	 * @param policy the policy name
@@ -693,10 +659,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Loads content from a list of strings into the tab, updating UI components
-	 * accordingly. This method parses the content and sets the UI state for sector,
-	 * technologies, type, regions, and table data.
-	 *
+	 * Loads content from a list of strings into the tab, updating UI components accordingly.
+	 * Parses the content and sets the UI state for sector, technologies, type, regions, and table data.
 	 * @param content the list of content lines to load
 	 */
 	@Override
@@ -743,7 +707,6 @@ public class TabTechTax extends PolicyTab implements Runnable {
 
 	/**
 	 * Helper method to validate table data years against allowable policy years.
-	 *
 	 * @return true if at least one year matches allowable years, false otherwise
 	 */
 	private boolean validateTableDataYears() {
@@ -762,10 +725,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Performs quality assurance checks on user inputs and displays warnings if any
-	 * issues are found. This method checks for region, data, sector, technology,
-	 * type, and name validity.
-	 *
+	 * Performs quality assurance checks on user inputs and displays warnings if any issues are found.
+	 * Checks for region, data, sector, technology, type, and name validity.
 	 * @return true if all inputs are valid, false otherwise
 	 */
 	protected boolean qaInputs() {
@@ -823,8 +784,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Sets the units label based on the selected technologies and their units. This
-	 * method updates the labelUnits2 control with the correct units or warning.
+	 * Sets the units label based on selected technologies and their units.
+	 * Updates the labelUnits2 control with the correct units or warning.
 	 */
 	public void setUnitsLabel() {
 		String s = getUnits();
@@ -860,9 +821,8 @@ public class TabTechTax extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Gets the units for the currently selected technologies. If multiple units are
-	 * found, returns "No match".
-	 *
+	 * Gets the units for the currently selected technologies.
+	 * If multiple units are found, returns "No match".
 	 * @return the units as a String, or "No match" if units differ
 	 */
 	public String getUnits() {

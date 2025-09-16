@@ -1,38 +1,37 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ */
 package glimpseElement;
 
 import java.io.File;
@@ -54,11 +53,11 @@ import javafx.application.Platform;
  * XML scenario components, and view or edit their details.
  *
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It extends {@link PolicyTab}.
+ * <b>Usage:</b> Instantiated as a tab in the scenario builder, extending {@link PolicyTab}.
  * </p>
  *
  * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the JavaFX Application Thread.
+ * <b>Thread Safety:</b> Not thread-safe; use only on the JavaFX Application Thread.
  * </p>
  *
  * <p>
@@ -98,7 +97,6 @@ import javafx.application.Platform;
  * scenarioTabPane.getTabs().add(xmlListTab);
  * </pre>
  * </p>
- *
  */
 public class TabXMLList extends PolicyTab {
     // === Constants ===
@@ -149,8 +147,7 @@ public class TabXMLList extends PolicyTab {
     }
 
     /**
-     * Sets up UI controls, including the XML list pane and header buttons.
-     * This method is called during construction to initialize the main UI elements.
+     * Initializes UI controls, including the XML list pane and header buttons.
      */
     private void setupUIControls() {
         setupPaneForXMLList();
@@ -162,7 +159,6 @@ public class TabXMLList extends PolicyTab {
      * Adjusts widths to maintain consistent UI appearance.
      */
     private void setComponentWidths() {
-        // Set preferred widths for all main action buttons
         buttonAdd.setPrefWidth(styles.getBigButtonWidth());
         buttonDelete.setPrefWidth(styles.getBigButtonWidth());
         buttonClear.setPrefWidth(styles.getBigButtonWidth());
