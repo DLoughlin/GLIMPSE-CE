@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ * 
+ */
 
 package glimpseElement;
 
@@ -59,54 +59,34 @@ import javafx.stage.Stage;
 
 /**
  * TabMarketShare provides the user interface and logic for creating and editing
- * market share policies in the GLIMPSE Scenario Builder. This tab allows users
- * to select subsets and supersets, filter options, and configure market share
- * policy details for scenario components.
- *
+ * market share policies in the GLIMPSE Scenario Builder.
  * <p>
- * <b>Usage:</b> This class is instantiated as a tab in the scenario builder. It
- * extends {@link PolicyTab} and implements {@link Runnable}.
- * </p>
- *
- * <p>
- * <b>Thread Safety:</b> This class is not thread-safe and should be used on the
- * JavaFX Application Thread.
- * </p>
- *
- * <p>
- * <b>Functionality:</b>
+ * <b>Features:</b>
  * <ul>
- *   <li>Allows the user to define market share policies by selecting technology subsets and supersets.</li>
- *   <li>Supports filtering of available technologies for subset and superset selection.</li>
- *   <li>Provides options for policy type, application, constraint, and treatment.</li>
- *   <li>Handles population of policy data tables and validation of user input.</li>
- *   <li>Generates scenario component metadata and writes policy files for use in GLIMPSE.</li>
+ *   <li>Allows selection and filtering of technology subsets and supersets for market share policies.</li>
+ *   <li>Supports configuration of policy type, application, constraint, and treatment options.</li>
+ *   <li>Handles population and validation of policy data tables.</li>
+ *   <li>Generates scenario component metadata and writes policy files for GLIMPSE.</li>
  *   <li>Supports loading and saving of scenario component configurations.</li>
  * </ul>
- * </p>
- *
  * <p>
- * <b>Key UI Elements:</b>
+ * <b>UI Elements:</b>
  * <ul>
- *   <li>ComboBoxes for policy type, application, constraint, and treatment.</li>
+ *   <li>ComboBoxes for policy type, application, constraint, treatment, and modification type.</li>
  *   <li>CheckComboBoxes for subset and superset technology selection.</li>
  *   <li>TextFields for filtering, policy/market names, and year/value entry.</li>
  *   <li>Buttons for populating, clearing, and deleting table entries.</li>
  *   <li>TreeView for region selection.</li>
  * </ul>
- * </p>
- *
  * <p>
- * <b>Typical Workflow:</b>
+ * <b>Workflow:</b>
  * <ol>
- *   <li>User selects a policy type and filters available technologies.</li>
- *   <li>User selects subset and superset technologies for the policy.</li>
- *   <li>User specifies application, constraint, and treatment options.</li>
+ *   <li>User selects policy type and filters technologies.</li>
+ *   <li>User selects subset and superset technologies.</li>
+ *   <li>User configures application, constraint, and treatment.</li>
  *   <li>User enters year/value data and populates the table.</li>
- *   <li>User saves the scenario component, which generates the necessary files and metadata.</li>
+ *   <li>User saves the scenario component, generating files and metadata.</li>
  * </ol>
- * </p>
- *
  * <p>
  * <b>Dependencies:</b>
  * <ul>
@@ -114,7 +94,8 @@ import javafx.stage.Stage;
  *   <li>ControlsFX for CheckComboBox controls.</li>
  *   <li>GLIMPSE utility classes for file and data handling.</li>
  * </ul>
- * </p>
+ * <p>
+ * <b>Thread Safety:</b> Not thread-safe; use only on JavaFX Application Thread.
  */
 public class TabMarketShare extends PolicyTab implements Runnable {
 	// === Constants for UI text and options ===
@@ -168,7 +149,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Constructs a TabMarketShare instance for the given scenario builder tab.
-	 *
 	 * @param title  The tab title.
 	 * @param stageX The JavaFX stage.
 	 * @param pane   The parent pane.
@@ -187,7 +167,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Sets up all UI controls, listeners, and default values for the market share policy tab.
-	 * This includes ComboBox and CheckComboBox options, widget actions, and event handlers.
+	 * Includes ComboBox and CheckComboBox options, widget actions, and event handlers.
 	 */
 	private void setupUIControls() {
 		// Set up initial state for auto-naming and text fields
@@ -390,7 +370,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Sets up the subset and superset check combo boxes for a given policy type.
 	 * Filters and populates the available technology options for subset and superset.
-	 *
 	 * @param selectedItem The selected policy type.
 	 */
 	private void setupCheckComboBoxes(String selectedItem) {
@@ -859,7 +838,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Saves the scenario component using the provided tree of selected regions.
 	 * Writes all necessary files and metadata for the market share policy.
-	 *
 	 * @param tree The TreeView containing selected regions.
 	 */
 	private void saveScenarioComponent(TreeView<String> tree) {
@@ -1175,7 +1153,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Generates the metadata content for the scenario component, including selected
 	 * options and table data. Used for file output and documentation.
-	 *
 	 * @param tree   The TreeView containing selected regions.
 	 * @param market The market name.
 	 * @param policy The policy name.
@@ -1214,9 +1191,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Loads the content of a scenario component from a list of strings, updating
-	 * the UI accordingly. Used for loading saved scenario configurations.
-	 *
+	 * Loads the content of a scenario component from a list of strings, updating the UI accordingly.
+	 * Used for loading saved scenario configurations.
 	 * @param content The content to load.
 	 */
 	@Override
@@ -1279,7 +1255,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	/**
 	 * Helper method to validate table data years against allowable policy years.
 	 * Ensures that at least one year in the table matches allowable years.
-	 *
 	 * @return true if at least one year matches allowable years, false otherwise
 	 */
 	private boolean validateTableDataYears() {
@@ -1298,10 +1273,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Performs QA checks to ensure all required inputs for saving the scenario
-	 * component are valid. Checks region selection, table data, subset/superset selections,
-	 * combo box selections, and unit consistency.
-	 *
+	 * Performs QA checks to ensure all required inputs for saving the scenario component are valid.
+	 * Checks region selection, table data, subset/superset selections, combo box selections, and unit consistency.
 	 * @return true if all required inputs are valid, false otherwise.
 	 */
 	protected boolean qaInputs() {
@@ -1418,9 +1391,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Returns the suggested filename for the scenario component file. This is used
-	 * when saving the scenario component to disk.
-	 *
+	 * Returns the suggested filename for the scenario component file.
+	 * Used when saving the scenario component to disk.
 	 * @return The suggested filename as a String.
 	 */
 	@Override
@@ -1429,8 +1401,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Resets the filename suggestion to null. This should be called after saving or
-	 * discarding the scenario component.
+	 * Resets the filename suggestion to null. Should be called after saving or discarding the scenario component.
 	 */
 	@Override
 	public void resetFilenameSuggestion() {
@@ -1438,9 +1409,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Returns the file content for the scenario component. This is used when saving
-	 * the scenario component to disk.
-	 *
+	 * Returns the file content for the scenario component. Used when saving the scenario component to disk.
 	 * @return The file content as a String.
 	 */
 	@Override
@@ -1449,8 +1418,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 	}
 
 	/**
-	 * Resets the file content to null. This should be called after saving or
-	 * discarding the scenario component.
+	 * Resets the file content to null. Should be called after saving or discarding the scenario component.
 	 */
 	@Override
 	public void resetFileContent() {
@@ -1459,7 +1427,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 	/**
 	 * Updates the progress bar on the JavaFX Application Thread.
-	 *
 	 * @param progress The progress value to set (between 0.0 and 1.0).
 	 */
 	private void updateProgressBar(double progress) {

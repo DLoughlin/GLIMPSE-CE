@@ -1,38 +1,38 @@
 /*
-* LEGAL NOTICE
-* This computer software was prepared by US EPA.
-* THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
-* LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
-* sentence must appear on any copies of this computer software.
-* 
-* EXPORT CONTROL
-* User agrees that the Software will not be shipped, transferred or
-* exported into any country or used in any manner prohibited by the
-* United States Export Administration Act or any other applicable
-* export laws, restrictions or regulations (collectively the "Export Laws").
-* Export of the Software may require some form of license or other
-* authority from the U.S. Government, and failure to obtain such
-* export control license may result in criminal liability under
-* U.S. laws. In addition, if the Software is identified as export controlled
-* items under the Export Laws, User represents and warrants that User
-* is not a citizen, or otherwise located within, an embargoed nation
-* (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
-*     and that User is not otherwise prohibited
-* under the Export Laws from receiving the Software.
-*
-* SUPPORT
-* GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
-* For the GLIMPSE project, GCAM development, data processing, and support for 
-* policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
-* Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
-* Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
-* Binsted, and Pralit Patel. 
-* The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
-* Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
-* Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
-* Laboratory contract.
-* 
-*/
+ * LEGAL NOTICE
+ * This computer software was prepared by US EPA.
+ * THE GOVERNMENT MAKES NO WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY
+ * LIABILITY FOR THE USE OF THIS SOFTWARE. This notice including this
+ * sentence must appear on any copies of this computer software.
+ * 
+ * EXPORT CONTROL
+ * User agrees that the Software will not be shipped, transferred or
+ * exported into any country or used in any manner prohibited by the
+ * United States Export Administration Act or any other applicable
+ * export laws, restrictions or regulations (collectively the "Export Laws").
+ * Export of the Software may require some form of license or other
+ * authority from the U.S. Government, and failure to obtain such
+ * export control license may result in criminal liability under
+ * U.S. laws. In addition, if the Software is identified as export controlled
+ * items under the Export Laws, User represents and warrants that User
+ * is not a citizen, or otherwise located within, an embargoed nation
+ * (including without limitation Iran, Syria, Sudan, Cuba, and North Korea)
+ *     and that User is not otherwise prohibited
+ * under the Export Laws from receiving the Software.
+ *
+ * SUPPORT
+ * GLIMPSE-CE is a derivative of the open-source USEPA GLIMPSE software.
+ * For the GLIMPSE project, GCAM development, data processing, and support for 
+ * policy implementations has been led by Dr. Steven J. Smith of PNNL, via Interagency 
+ * Agreements 89-92423101 and 89-92549601. Contributors from PNNL include 
+ * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
+ * Binsted, and Pralit Patel. 
+ * The lead GLIMPSE & GLIMPSE- CE developer is Dr. Dan Loughlin (formerly USEPA). 
+ * Contributors include Tai Wu (USEPA), Farid Alborzi (ORISE), and Aaron Parks and 
+ * Yadong Xu of ARA through the EPA Environmental Modeling and Visualization 
+ * Laboratory contract.
+ * 
+ */
 package glimpseElement;
 
 import java.util.ArrayList;
@@ -54,8 +54,8 @@ import javafx.stage.Stage;
  * selecting regions, technologies, and units, and managing policy data tables. It supports both manual and
  * automatic naming of policies and markets, and handles the export of scenario component data in a format
  * compatible with GLIMPSE.
- * <p>
- * <b>Features:</b> 
+ *
+ * <b>Features:</b>
  * <ul>
  *   <li>UI controls for subsector, technology, units, and modification type selection</li>
  *   <li>Automatic and manual naming of policy and market</li>
@@ -66,10 +66,20 @@ import javafx.stage.Stage;
  *   <li>Support for loading and saving policy configurations</li>
  * </ul>
  * <b>Thread Safety:</b> This class is not thread-safe. All UI updates must be performed on the JavaFX Application Thread.
- * <p>
+ *
  * <b>Usage:</b> Instantiate this class as a tab in the scenario builder UI. The user interacts with the controls to
  * define a CAFE standard policy, and can save or load configurations as needed.
  *
+ * <b>Key Methods:</b>
+ * <ul>
+ *   <li>{@link #setupUIComponents()} - Initializes UI components and layout</li>
+ *   <li>{@link #setupEventHandlers()} - Sets up event handlers for user interaction</li>
+ *   <li>{@link #setPolicyAndMarketNames()} - Automatically generates policy and market names</li>
+ *   <li>{@link #saveScenarioComponent()} - Saves the scenario component and exports data</li>
+ *   <li>{@link #getMetaDataContent(TreeView, String, String)} - Generates metadata for export</li>
+ *   <li>{@link #loadContent(ArrayList)} - Loads configuration from file</li>
+ *   <li>{@link #qaInputs()} - Validates user input and table data</li>
+ * </ul>
  */
 public class TabCafeStd extends PolicyTab implements Runnable {
     // === Constants for UI labels and options ===
@@ -144,6 +154,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 
     /**
      * Sets up all UI components by delegating to column setup methods.
+     * Calls setupLeftColumn, setupCenterColumn, and setupRightColumn.
      */
     public void setupUIComponents() {
         setupLeftColumn();
@@ -154,7 +165,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     /**
      * Sets up the UI controls (combo boxes, check combo boxes, etc.).
      * Populates combo boxes and sets initial selections.
-     * Now delegates to setupLeftColumn, setupCenterColumn, setupRightColumn.
+     * Delegates to setupLeftColumn, setupCenterColumn, setupRightColumn.
      */
     private void setupUIControls() {
         comboBoxSubsector.getItems().addAll(SUBSECTOR_OPTIONS);
@@ -171,6 +182,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 
     /**
      * Sets up the left column of the UI, adding labels and controls to the grid pane.
+     * Arranges labels and controls for specification, subsector, technologies, units, and other parameters.
      */
     private void setupLeftColumn() {
         gridPaneLeft.add(utils.createLabel(LABEL_SPECIFICATION), 0, 0, 2, 1);
@@ -213,6 +225,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     /**
      * Sets up event handlers for UI components.
      * Handles user interactions such as combo box changes and button clicks.
+     * Includes double-click toggling for technology selection and subsector-based enabling/disabling.
      */
     protected void setupEventHandlers() {
     	super.setupEventHandlers();
@@ -244,6 +257,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
      * Sets the policy and market names automatically based on selected subsector and regions.
      * If auto-naming is enabled, updates the text fields accordingly.
      * Uses region, sector, and technology selections to build unique names.
+     * Runs on the JavaFX Application Thread.
      */
     protected void setPolicyAndMarketNames() {
         Platform.runLater(() -> {
@@ -462,6 +476,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     /**
      * Helper method to validate table data years against allowable policy years.
      * Checks if at least one year in the table matches allowable years.
+     *
      * @return true if at least one year matches allowable years, false otherwise
      */
     private boolean validateTableDataYears() {
@@ -546,6 +561,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
     /**
      * Sets the units label based on the selected technologies.
      * If units are inconsistent, sets a warning label.
+     * Optionally updates a UI label if needed.
      */
     public void setUnitsLabel() {
         String s = getUnits();
