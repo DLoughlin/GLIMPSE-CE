@@ -372,7 +372,9 @@ class PaneCreateScenario extends ScenarioBuilder {
                         if (headerInFile > 0) {
                             CSVToXMLMain.main(s);
                         } else {
-                            utils.warningMessage(ERROR_HEADER_NOT_FOUND);
+                        	String msg = ERROR_HEADER_NOT_FOUND+vars.getEol()+"Header: " + header + vars.getEol() + "File: " + f.getFileName();
+                            utils.warningMessage(msg);
+                            System.out.println("======================"+vars.getEol()+msg+vars.getEol()+"======================");
                         }
                     } catch (Exception e) {
                         utils.warningMessage(String.format(ERROR_CSV_TO_XML, f.getFileName()));
