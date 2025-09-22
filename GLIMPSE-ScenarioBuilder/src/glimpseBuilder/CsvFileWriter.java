@@ -122,9 +122,14 @@ public class CsvFileWriter {
         String comboText = sectorText + "/" + paramText;
 
         // Special handling for certain sector types
-        if (sectorText.equals("base load generation") || sectorText.equals("peaking generation")
-                || sectorText.equals("intermediate generation"))
+        if ((sectorText.equals("base load generation") || sectorText.equals("peaking generation")
+                || sectorText.equals("intermediate generation"))) {
             comboText = "egu/" + paramText;
+        } else if (sectorText.startsWith("trn")) {
+			comboText = "trn/" + paramText;
+		} else {
+			comboText = "all/" + paramText;
+		}
 
         int no_years = yearsText.length;
         int no_regions = regionsText.length;

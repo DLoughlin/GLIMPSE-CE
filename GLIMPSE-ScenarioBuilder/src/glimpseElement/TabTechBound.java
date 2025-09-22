@@ -381,7 +381,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
      * Called when the filter or category changes.
      */
     private void updateCheckComboBoxTech() {
-        Platform.runLater(() -> {
+        //Platform.runLater(() -> {
             String cat = comboBoxCategory.getValue();
             if (cat == null) return;
             String[][] techInfo = vars.getTechInfo();
@@ -418,7 +418,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
                 System.out.println("  ---> " + e);
             }
-        });
+        //};);
     }
 
     /**
@@ -428,7 +428,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
      * Handles edge cases for multiple regions.
      */
     protected void setPolicyAndMarketNames() {
-        Platform.runLater(() -> {
+        //Platform.runLater(() -> {
             if (checkBoxUseAutoNames.isSelected()) {
                 String policyType = "--";
                 String technology = "Tech";
@@ -467,7 +467,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     System.out.println("Cannot auto-name market. Continuing.");
                 }
             }
-        });
+        //});
     }
 
     /**
@@ -619,7 +619,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             files.writeToBufferedFile(bw1, nestedBuffer.toString());
             files.writeToBufferedFile(bw2, nonNestedBuffer.toString());
 
-            files.writeToBufferedFile(bw3, "INPUT_TABLE" + vars.getEol());
+            files.writeToBufferedFile(bw3, vars.getEol() + "INPUT_TABLE" + vars.getEol());
             files.writeToBufferedFile(bw3, "Variable ID" + vars.getEol());
             files.writeToBufferedFile(bw3, header_part2 + vars.getEol() + vars.getEol());
 
