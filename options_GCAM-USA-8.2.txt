@@ -98,7 +98,7 @@ xmlEditor = C:/Windows/notepad.exe
 #xmlEditor = "C:/Program Files/IDM Computer Solutions/UltraEdit/uedit64.exe"
 
 #-----GCAM executable name and location-----
-gCamExecutable = .\gcam-glimpse.exe
+gCamExecutable = ./gcam-glimpse.exe
 #gCamExecutable = gcam.exe
 gCamExecutableArgs = -C 
 gCamExecutableDir = $gCamHomeDir$/exe
