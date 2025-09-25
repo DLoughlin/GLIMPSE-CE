@@ -7,8 +7,8 @@ set QUERY_FILE=.\config\Main_queries_GLIMPSE-7p0.xml
 set DATABASE=..\..\GCAM-Model\gcam-v7.0\output\database
 set UNITS=.\config\units_rules.csv
 set FAVORITES=.\config\favorite_queries_list.txt
-set REGIONS=.\config\preset_regions_list.txt
-set MAPS=.\map_resources\AllMapInfo
+set REGIONS=.\config\preset_region_list.txt
+set MAPS=.\map_resources
 
 rem Checking JAVA_HOME setup
 if not exist "%JAVA_HOME%"\bin\java.exe (
