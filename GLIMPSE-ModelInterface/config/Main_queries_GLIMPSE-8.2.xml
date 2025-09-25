@@ -7141,30 +7141,23 @@
 					<comments/>
 				</supplyDemandQuery>
 				<supplyDemandQuery title="10.21 Primary outputs by tech and vintage">
-					<axis1 name="output">output</axis1>
+					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
-					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']//*[@type='technology']//output-primary/physical-output/node()</xPath>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']//output-primary/physical-output/node()</xPath>
 					<comments>Outputs from each technology and vintage. Useful for tracking fuel and material flows.</comments>
 					<showAttribute attribute-name="year" level="technology"/>
 				</supplyDemandQuery>
-				<emissionsQueryBuilder title="10.22 Emissions by tech and vintage (excluding resource production)">
-					<axis1 name="technology">technology</axis1>
-					<axis2 name="Year">emissions[@year]</axis2>
-					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
-					<comments/>
-					<showAttribute attribute-name="year" level="technology"/>
-				</emissionsQueryBuilder>
-				<emissionsQueryBuilder title="10.22a Emissions by tech and vintage (excluding resource production)">
-					<axis2 name="technology">technology</axis2>
-					<axis1 name="Year">emissions[@year]</axis1>
-					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
-					<comments/>
-					<showAttribute attribute-name="year" level="technology"/>
-				</emissionsQueryBuilder>
-				<emissionsQueryBuilder title="10.22b Emissions by tech and vintage (excluding resource production)">
+				<emissionsQueryBuilder title="10.22a Emissions by tech and vintage (excluding resource production) - not nested">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions[@year]</axis2>
-					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'technology']//emissions/node()</xPath>
+					<comments/>
+					<showAttribute attribute-name="year" level="technology"/>
+				</emissionsQueryBuilder>
+				<emissionsQueryBuilder title="10.22b Emissions by tech and vintage (excluding resource production) - nested">
+					<axis1 name="GHG">GHG</axis1>
+					<axis2 name="Year">emissions[@year]</axis2>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
 					<comments/>
 					<showAttribute attribute-name="year" level="technology"/>
 				</emissionsQueryBuilder>
