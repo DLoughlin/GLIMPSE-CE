@@ -11,8 +11,8 @@ QUERY_FILE="$SCRIPT_DIR/config/Main_queries_GLIMPSE-7p0.xml"
 DATABASE="$SCRIPT_DIR/../../GCAM-Model/gcam-v7.0/output/database"
 UNITS="$SCRIPT_DIR/config/units_rules.csv"
 FAVORITES="$SCRIPT_DIR/config/favorite_queries_list.txt"
-REGIONS="$SCRIPT_DIR/config/preset_regions_list.txt"
-MAPS="$SCRIPT_DIR/map_resources/AllMapInfo"
+REGIONS="$SCRIPT_DIR/config/preset_region_list.txt"
+MAPS="$SCRIPT_DIR/map_resources"
 
 # Checking JAVA_HOME setup
 if [ ! -f "$JAVA_HOME/bin/java" ]; then

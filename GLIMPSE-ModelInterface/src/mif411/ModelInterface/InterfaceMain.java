@@ -280,18 +280,18 @@ public class InterfaceMain implements ActionListener {
 
 		if (opts.has("o")) {
 			path = (String) opts.valueOf("o");
-			System.out.println("InterfaceMain: DB Path: " + path);
+			System.out.println("InterfaceMain: DB Path: " + path+" exists: "+new File(path).exists());
 		}
 
 		// added by Dan to allow query file to be specified as runtime argument
 		if (opts.has("q")) {
 			queryFilename = (String) opts.valueOf("q");
-			System.out.println("InterfaceMain: Query File Path: " + queryFilename);
+			System.out.println("InterfaceMain: Query File Path: " + queryFilename+" exists: "+new File(queryFilename).exists());
 		}
 
 		if (opts.has("b")) {
 			String filename = (String) opts.valueOf("b");
-			System.out.println("InterfaceMain: batchFile: " + filename);
+			System.out.println("InterfaceMain: batchFile: " + filename+" exists: "+new File(filename).exists());
 
 			System.setProperty("java.awt.headless", "true");
 			System.out.println("Running headless? " + GraphicsEnvironment.isHeadless());
@@ -317,20 +317,25 @@ public class InterfaceMain implements ActionListener {
 			System.setOut(stdout);
 			return;
 		}
+		
 		if (opts.has("u")) {
 			unitFileLocation = (String) opts.valueOf("u");
+			System.out.println("InterfaceMain: unitsFile: " + unitFileLocation+" exists: "+new File(unitFileLocation).exists());
 		} else {
 			// also look in the current directory
 			File f = new File("config"+File.separator+"units_rules.csv");
 			if (f.exists()) {
 				unitFileLocation = f.getAbsolutePath();
 			}
+			System.out.println("    --> attempting to use default unitsFile: " + unitFileLocation+" exists: "+new File(unitFileLocation).exists());
 		}
 
 		// YD added,Feb-2024
 		// For preset regions in ORDModelInterface
 		if (opts.has("p")) {
 			presetRegionListLocation = (String) opts.valueOf("p");
+			System.out.println("InterfaceMain: presetRegionListLocation: " + presetRegionListLocation+" exists: "+new File(presetRegionListLocation).exists());
+
 			//System.out.println("found the preset region list file from the command line: " + presetRegionListLocation);
 		} else {
 			// also look in the current config directory
@@ -340,10 +345,12 @@ public class InterfaceMain implements ActionListener {
 				presetRegionListLocation = f_preset.getAbsolutePath();
 				//System.out.println("found the region list file: " + presetRegionListLocation);
 			}
+			System.out.println("    --> attempting to use default presetRegionListLocation: " + presetRegionListLocation+" exists: "+new File(presetRegionListLocation).exists());
 		}
 		// For favorite queries in ORDModelInterface
 		if (opts.has("f")) {
 			favoriteQueriesFileLocation = (String) opts.valueOf("f");
+			System.out.println("InterfaceMain: favoriteQueriesFileLocation: " + favoriteQueriesFileLocation+" exists: "+new File(favoriteQueriesFileLocation).exists());
 			//System.out.println("found the favorite queries file from the command line: " + favoriteQueriesFileLocation);
 		} else {
 			// also look in the current directory
@@ -352,12 +359,14 @@ public class InterfaceMain implements ActionListener {
 				favoriteQueriesFileLocation = f_favorite.getAbsolutePath();
 				//System.out.println("found the favorite queries file: " + favoriteQueriesFileLocation);
 			}
+			System.out.println("    --> attempting to use default favoriteQueriesFileLocation: " + favoriteQueriesFileLocation+" exists: "+new File(favoriteQueriesFileLocation).exists());
 		}
 		
 		//For mapUS52Compact shape files in ORDModelInterface
 		
 		if (opts.has("m")) {
 			shapeFileLocationPrefix = (String)opts.valueOf("m");
+			System.out.println("InterfaceMain: shapeFileLocationPrefix: " + shapeFileLocationPrefix+" exists: "+new File(shapeFileLocationPrefix).exists());
 			enableMapping=true;
 		}else {
 			//now check the path
@@ -370,6 +379,7 @@ public class InterfaceMain implements ActionListener {
 				System.out.println("Could not find any maps, disabling mapping option");
 				enableMapping = false;
 			}
+			System.out.println("    --> attempting to use default shapeFileLocationPrefix: " + shapeFileLocationPrefix+" exists: "+new File(shapeFileLocationPrefix).exists());
 		}
 		
 		if(enableMapping) {
@@ -405,6 +415,7 @@ public class InterfaceMain implements ActionListener {
 		
 		if(opts.has("legend_bundle")) {
 			legendBundlesLoc=(String)opts.valueOf("legend_bundle");
+			System.out.println("InterfaceMain: legendBundlesLoc: " + legendBundlesLoc+" exists: "+new File(legendBundlesLoc).exists());
 		}
 		File legendBundleFile=null;
 		if(legendBundlesLoc!=null) {
@@ -453,13 +464,7 @@ public class InterfaceMain implements ActionListener {
 	        e1.printStackTrace();
 	    } catch (IllegalAccessException e1) {
 	        e1.printStackTrace();
-	    }
-	    //System.out.println(PackageUtil.getVendor());
-	    //System.out.println(PackageUtil.getVersion());
-	    //System.out.println(PackageUtil.getSpecificationTitle());
-	    
-	    
-	    
+	    }    
 
 	}
 	
