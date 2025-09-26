@@ -122,16 +122,26 @@ class RunnableCmd implements Runnable {
         java.lang.Runtime rt = java.lang.Runtime.getRuntime();
         try {
             java.lang.Process p = null;
+            // Prepare environment variables if needed
+            String javaHome = System.getenv("JAVA_HOME");
+            String path = System.getenv("PATH");
+            String[] envp = null;
+            if (javaHome != null && path != null) {
+                envp = new String[] {
+                    "JAVA_HOME=" + javaHome,
+                    "PATH=" + path
+                };
+            }
             // Determine which command and directory configuration to use
             if (dir == null) {
                 // No working directory specified, execute single string command
                 p = rt.exec(cmd);
             } else if (cmd == null) {
                 // Command array with working directory
-                p = rt.exec(cmdArray, null, dir);
+                p = rt.exec(cmdArray, envp, dir);
             } else {
                 // Single string command with working directory
-                p = rt.exec(cmd, null, dir);
+                p = rt.exec(cmd, envp, dir);
             }
 
             // Read and print the standard output of the process
