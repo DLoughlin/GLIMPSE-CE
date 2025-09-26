@@ -123,15 +123,18 @@ class RunnableCmd implements Runnable {
         try {
             java.lang.Process p = null;
             // Prepare environment variables if needed
-            String javaHome = System.getenv("JAVA_HOME");
-            String path = System.getenv("PATH");
-            String[] envp = null;
-            if (javaHome != null && path != null) {
-                envp = new String[] {
-                    "JAVA_HOME=" + javaHome,
-                    "PATH=" + path
-                };
+            java.util.Map<String, String> envMap = System.getenv();
+            java.util.List<String> envList = new java.util.ArrayList<>();
+            for (java.util.Map.Entry<String, String> entry : envMap.entrySet()) {
+                if ("JAVA_HOME".equals(entry.getKey())) {
+                    envList.add("JAVA_HOME=" + entry.getValue());
+                } else if ("PATH".equals(entry.getKey())) {
+                    envList.add("PATH=" + entry.getValue());
+                } else {
+                    envList.add(entry.getKey() + "=" + entry.getValue());
+                }
             }
+            String[] envp = envList.toArray(new String[0]);
             // Determine which command and directory configuration to use
             if (dir == null) {
                 // No working directory specified, execute single string command
@@ -143,7 +146,6 @@ class RunnableCmd implements Runnable {
                 // Single string command with working directory
                 p = rt.exec(cmd, envp, dir);
             }
-
             // Read and print the standard output of the process
             String line;
             InputStream stdout = p.getInputStream();
