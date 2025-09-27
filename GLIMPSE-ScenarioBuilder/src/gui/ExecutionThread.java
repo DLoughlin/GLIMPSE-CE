@@ -258,6 +258,7 @@ public class ExecutionThread implements AutoCloseable {
         }
         RunnableCmd gr = new RunnableCmd();
         gr.setCmd(command, directory);
+        
         System.out.println("Submitting to queue: " + command + " with dir " + directory);
         Future<?> f = executorService.submit(gr);
         synchronized (jobs) {

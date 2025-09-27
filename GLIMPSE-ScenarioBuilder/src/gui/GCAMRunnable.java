@@ -39,6 +39,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * RunnableCmd is a utility class that implements Runnable to execute system commands
@@ -64,6 +66,7 @@ class RunnableCmd implements Runnable {
     String cmd = null;
     String[] cmdArray = null;
     File dir = null;
+    private Map<String, String> envVars = new HashMap<>();
 
     /**
      * Sets the command to execute as a single string.
@@ -110,6 +113,15 @@ class RunnableCmd implements Runnable {
     }
 
     /**
+     * Allows setting a custom environment variable for the process.
+     * @param key the environment variable name
+     * @param value the environment variable value
+     */
+    public void setEnvVar(String key, String value) {
+        envVars.put(key, value);
+    }
+
+    /**
      * Executes the configured command in a separate thread. Captures and prints
      * the standard output of the process to the console. If a working directory
      * is specified, the command is executed in that directory. Handles both single
@@ -120,32 +132,31 @@ class RunnableCmd implements Runnable {
     public void run() {
         // System.out.println("is dir?" + dir.isDirectory());
         java.lang.Runtime rt = java.lang.Runtime.getRuntime();
+
         try {
             java.lang.Process p = null;
-            // Prepare environment variables if needed
-            java.util.Map<String, String> envMap = System.getenv();
-            java.util.List<String> envList = new java.util.ArrayList<>();
-            for (java.util.Map.Entry<String, String> entry : envMap.entrySet()) {
-                if ("JAVA_HOME".equals(entry.getKey())) {
-                    envList.add("JAVA_HOME=" + entry.getValue());
-                } else if ("PATH".equals(entry.getKey())) {
-                    envList.add("PATH=" + entry.getValue());
-                } else {
-                    envList.add(entry.getKey() + "=" + entry.getValue());
-                }
-            }
-            String[] envp = envList.toArray(new String[0]);
+            // Merge system environment with custom envVars
+            Map<String, String> mergedEnv = new HashMap<>(System.getenv());
+            mergedEnv.putAll(envVars);
+            String[] envArray = mergedEnv.entrySet().stream()
+                .map(e -> e.getKey() + "=" + e.getValue())
+                .toArray(String[]::new);
             // Determine which command and directory configuration to use
             if (dir == null) {
                 // No working directory specified, execute single string command
-                p = rt.exec(cmd);
+                if (cmdArray != null) {
+                    p = rt.exec(cmdArray, envArray);
+                } else {
+                    p = rt.exec(cmd, envArray);
+                }
             } else if (cmd == null) {
                 // Command array with working directory
-                p = rt.exec(cmdArray, envp, dir);
+                p = rt.exec(cmdArray, envArray, dir);
             } else {
                 // Single string command with working directory
-                p = rt.exec(cmd, envp, dir);
+                p = rt.exec(cmd, envArray, dir);
             }
+
             // Read and print the standard output of the process
             String line;
             InputStream stdout = p.getInputStream();
