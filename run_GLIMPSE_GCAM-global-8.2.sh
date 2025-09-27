@@ -2,7 +2,7 @@
 # If the following command does not start the ScenarioBuilder, correct the JAVA_HOME path
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export JAVA_HOME="$SCRIPT_DIR/amazon-corretto-8.442.06.1-windows-x64-jre"
+export JAVA_HOME="$SCRIPT_DIR/amazon-corretto-8.462.08.1-linux-x64"
 
 if [ ! -f "$JAVA_HOME/bin/java" ]; then
   echo "JAVA_HOME setting needs to be fixed"
