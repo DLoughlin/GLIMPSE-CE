@@ -852,7 +852,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
                     ? "cmd.exe /C start ./" + vars.getgCamExecutable() + " " + vars.getgCamExecutableArgs() + " " + scenarioConfigFile
                     : "xterm -e " + vars.getgCamExecutableDir() + File.separator + vars.getgCamExecutable() + " " + vars.getgCamExecutableArgs() + " " + scenarioConfigFile ;
                 Future f = Client.gCAMExecutionThread.submitCommandWithDirectory(cmdStr, vars.getgCamExecutableDir());
-                
+                 
                 Client.gCAMExecutionThread.executeCallableCmd(new Callable<String>() {
                     @Override
                     public String call() throws Exception {
