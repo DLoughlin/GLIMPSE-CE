@@ -905,7 +905,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      */
     private void runModelInterface() throws IOException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        String shell = isWindows ? "cmd.exe /C" : "";///bin/sh -c";
+        String shell = isWindows ? "cmd.exe /C start" : "xterm -e";///bin/sh -c";
         String[] cmd = new String[1];
         String command = shell + " java -jar ./"
                 + vars.getModelInterfaceJar() + " -o "
@@ -952,7 +952,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      */
     private void runModelInterfaceWhich(String database_name) throws IOException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        String shell = isWindows ? "cmd.exe /C" : "";//"/bin/sh -c";
+        String shell = isWindows ? "cmd.exe /C start" : "xterm -e";//"/bin/sh -c";
         String[] cmd = new String[1];
         String command = shell +" java -jar ./"
                 + vars.getModelInterfaceJar() + " -o "

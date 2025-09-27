@@ -397,18 +397,18 @@ public class InterfaceMain implements ActionListener {
 			File preset_reg32_shapefile = new File(shapeFileLocationPrefix+File.separator+"mapGCAMReg32_from_rmap.shp");
 			if (preset_reg32_shapefile.exists()) {
 				gcamReg32ShapeFileLocation = preset_reg32_shapefile.getAbsolutePath();
-			    System.out.println("Found the US52Compact shape file: " + preset_reg32_shapefile.getAbsolutePath());
+			    System.out.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
 		    }else {
-			    System.out.println("Found the US52Compact shape file: " + preset_reg32_shapefile.getAbsolutePath());
+			    System.out.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
 				enableMapping=false;
 		    }
 			
 			File preset_reg32US52_shapefile = new File(shapeFileLocationPrefix+File.separator+"mapGCAMReg32US52_from_rmap.shp");
 			if (preset_reg32US52_shapefile.exists()) {
 				gcamReg32US52ShapeFileLocation = preset_reg32US52_shapefile.getAbsolutePath();
-			    System.out.println("Found the US52Compact shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
+			    System.out.println("Found the global shapefile with US state-level detail shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
 		    }else {
-		        System.out.println("Could not find the reg32US52 shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
+		        System.out.println("Found the global shapefile with US state-level detail shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
 			    
 		    }
 		}
