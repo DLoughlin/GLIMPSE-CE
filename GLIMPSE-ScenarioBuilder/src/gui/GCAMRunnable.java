@@ -145,7 +145,7 @@ class RunnableCmd implements Runnable {
             if (dir == null) {
                 // No working directory specified, execute single string command
                 if (cmdArray != null) {
-                    p = rt.exec(cmdArray, envArray);
+                    p = rt.exec(cmdArray, envArray); 
                 } else {
                     p = rt.exec(cmd, envArray);
                 }
