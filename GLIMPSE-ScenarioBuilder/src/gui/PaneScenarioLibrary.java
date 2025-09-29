@@ -904,43 +904,8 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      * @throws IOException if process execution fails
      */
     private void runModelInterface() throws IOException {
-        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        String shell = isWindows ? "cmd.exe /C start" : "xterm -e";///bin/sh -c";
-        String[] cmd = new String[1];
-        String command = shell + " java -jar ./"
-                + vars.getModelInterfaceJar() + " -o "
-                + vars.getgCamOutputDatabase();
-        //specifying query file
-        String temp = vars.getQueryFilename();
-        if ((temp != null) && (temp != ""))
-            command += " -q " + temp;
-        //specifying unit conversions file
-        temp = vars.getUnitConversionsFilename();
-        if ((temp != null) && (temp != ""))
-            command += " -u " + temp;
-        //specifying preset region list file
-        temp = vars.getPresetRegionListFilename();
-        if ((temp != null) && (temp != ""))
-            command += " -p " + temp;
-        //specifying favorite query file
-        temp = vars.getFavoriteQueryFilename();
-        if ((temp != null) && (temp != ""))
-            command += " -f " + temp;
-        //
-        temp = vars.getModelInterfaceDir() + File.separator + "map_resources";
-        if ((temp != null) && (temp != ""))
-            command += " -m " + temp;
-
-        System.out
-                .println("Starting " + vars.getModelInterfaceJar() + " using database " + vars.getgCamOutputDatabase());
-        System.out.println(">>   cmd:" + command);
-        try {
-            Client.modelInterfaceExecutionThread.submitCommandWithDirectory(command,vars.getModelInterfaceDir());
-        } catch (Exception e) {
-            utils.warningMessage("Problem starting up ModelInterface.");
-            System.out.println("Error in trying to start up ModelInterface:");
-            System.out.println(e);
-        }
+    	String database = vars.getgCamOutputDatabase();
+    	runModelInterfaceWhich(database);
     }
 
     /**
@@ -989,12 +954,6 @@ class PaneScenarioLibrary extends ScenarioBuilder {
             System.out.println(e);
         }
     }
-
-    //approach used for gcam executable (that works)
-    //boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    //String cmd = isWindows ? "cmd.exe /C start" : "/bin/sh -c";
-    //String cmdStr = cmd + " " + vars.getgCamExecutable() + " " + vars.getgCamExecutableArgs() + " " + scenarioConfigFile;
-    //Future f = Client.gCAMExecutionThread.submitCommandWithDirectory(cmdStr, vars.getgCamExecutableDir());
     
     /**
      * Archives scenario files by copying them to an archive folder and zipping the result.
