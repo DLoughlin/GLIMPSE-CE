@@ -106,6 +106,16 @@ import javafx.stage.Stage;
  *   <li>JavaFX (Platform, ObservableList, HBox, Stage, etc.)</li>
  * </ul>
  *
+ * <b>Updated:</b> 2025-09-29
+ * <b>Author:</b> US EPA, GLIMPSE Contributors
+ *
+ * <b>Class Overview:</b>
+ * <ul>
+ *   <li>Handles scenario table UI and all scenario-related actions.</li>
+ *   <li>Provides methods for scenario queueing, archiving, deletion, import/export, and reporting.</li>
+ *   <li>Integrates with ModelInterface and file system utilities.</li>
+ *   <li>Updates scenario status and logs system/computer status.</li>
+ * </ul>
  */
 class PaneScenarioLibrary extends ScenarioBuilder {
 
@@ -163,16 +173,16 @@ class PaneScenarioLibrary extends ScenarioBuilder {
      * @param stage the main application stage for binding UI components
      */
     PaneScenarioLibrary(Stage stage) {
-        scenarioLibraryHBox.setStyle(styles.getFontStyle());
-        scenarioLibraryHBox.setSpacing(10);
-        ScenarioTable.tableScenariosLibrary.setOnMouseClicked(e -> setArrowAndButtonStatus());
-        createScenarioLibraryButtons();
-        ScenarioTable.tableScenariosLibrary.prefWidthProperty().bind(stage.widthProperty().multiply(1.0));
-        ScenarioTable.tableScenariosLibrary.prefHeightProperty().bind(stage.heightProperty().multiply(0.7));
-        scenarioLibraryHBox.getChildren().addAll(ScenarioTable.tableScenariosLibrary);
-        if (startupTime == 0) startupTime = (new Date()).getTime();
+        scenarioLibraryHBox.setStyle(styles.getFontStyle()); // Set font style for the HBox
+        scenarioLibraryHBox.setSpacing(10); // Set spacing between elements
+        ScenarioTable.tableScenariosLibrary.setOnMouseClicked(e -> setArrowAndButtonStatus()); // Update button status on table click
+        createScenarioLibraryButtons(); // Create and configure all scenario library buttons
+        ScenarioTable.tableScenariosLibrary.prefWidthProperty().bind(stage.widthProperty().multiply(1.0)); // Bind table width to stage
+        ScenarioTable.tableScenariosLibrary.prefHeightProperty().bind(stage.heightProperty().multiply(0.7)); // Bind table height to stage
+        scenarioLibraryHBox.getChildren().addAll(ScenarioTable.tableScenariosLibrary); // Add table to HBox
+        if (startupTime == 0) startupTime = (new Date()).getTime(); // Record startup time
         System.out.println("time now=" + (new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(startupTime));
-        updateRunStatus();
+        updateRunStatus(); // Initial update of scenario run status
     }
 
     /**
@@ -206,7 +216,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         Client.buttonReport = utils.createButton(REPORT_LABEL, styles.getBigButtonWidth(), REPORT_TOOLTIP, "report");
 
         // Set initial button status
-        Client.buttonRunScenario.setDisable(true);
+        Client.buttonRunScenario.setDisable(true); // Disabled until a scenario is selected
         Client.buttonBrowseScenarioFolder.setDisable(true);
         Client.buttonImportScenario.setDisable(false);
         Client.buttonArchiveScenario.setDisable(true);
@@ -220,7 +230,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         Client.buttonViewExeLog.setDisable(false);
         Client.buttonReport.setDisable(false);
 
-        // Event handlers
+        // Event handlers for each button
         Client.buttonRefreshScenarioStatus.setOnAction(e -> {
             updateRunStatus();
             ScenarioTable.tableScenariosLibrary.refresh();
@@ -251,7 +261,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         Client.buttonDiffFiles.setOnAction(e -> handleDiffFiles());
         Client.buttonShowRunQueue.setOnAction(e -> handleShowRunQueue());
 
-        // Alignment
+        // Alignment for key buttons
         Client.buttonResults.setAlignment(Pos.CENTER);
         Client.buttonResultsForSelected.setAlignment(Pos.CENTER);
         Client.buttonRunScenario.setAlignment(Pos.CENTER);
@@ -304,12 +314,12 @@ class PaneScenarioLibrary extends ScenarioBuilder {
             String trashDirFolder = vars.getTrashDir() + File.separator + scenName;
             File trashDir = new File(trashDirFolder);
             if (trashDir.exists())
-				try {
-					files.deleteDirectoryStream(trashDir.toPath());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                try {
+                    files.deleteDirectoryStream(trashDir.toPath());
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             if (!trashDir.exists()) trashDir.mkdirs();
             try {
                 Files.move(Paths.get(xmlDir), Paths.get(trashDirFolder), StandardCopyOption.REPLACE_EXISTING);
@@ -608,7 +618,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
                 String configName = scenarioFolder + File.separator + "configuration_" + scenarioName + ".xml";
                 File configFile = new File(configName);
                 if (!configFile.exists()) continue;
-                String components = getComponentsFromConfig(configFile);
+                String components = getComponentsFromConfig(configFile); // Get scenario components from config
                 String mainLogName = scenarioFolder + File.separator + "main_log.txt";
                 File mainLogFile = new File(mainLogName);
                 boolean mainLogExists = mainLogFile.exists();
