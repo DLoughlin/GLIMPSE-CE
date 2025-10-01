@@ -29,6 +29,11 @@
 */
 package ModelInterface.ModelGUI2;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,6 +43,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -536,10 +542,25 @@ public class QueryResultsPanel extends JPanel {
 		String headingFour=null;
 		String valueFour=null;
 		String unitsFileName = InterfaceMain.unitFileLocation;
-		Path myPath = Paths.get(unitsFileName);
-		localInfo=new HashMap<>();
+		Path myPath = null;
+		InputStream unitsStream = null;
 		try {
-			List < String > lines = Files.readAllLines(myPath, StandardCharsets.UTF_8);
+			File unitsFile = new File(unitsFileName);
+			if (unitsFile.exists()) {
+				myPath = unitsFile.toPath();
+			} else {
+				unitsStream = getClass().getClassLoader().getResourceAsStream(unitsFileName);
+				if (unitsStream == null) {
+					throw new FileNotFoundException("Units file not found: " + unitsFileName);
+				}
+			}
+			List<String> lines;
+			if (myPath != null) {
+				lines = Files.readAllLines(myPath, StandardCharsets.UTF_8);
+			} else {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(unitsStream, StandardCharsets.UTF_8));
+				lines = reader.lines().collect(Collectors.toList());
+			}
 			//first line is header
 			for(int curLine=1;curLine<lines.size();curLine++) {
 				if(lines.get(curLine).startsWith("#")) {
@@ -803,4 +824,3 @@ public class QueryResultsPanel extends JPanel {
 	}
 
 }
-
