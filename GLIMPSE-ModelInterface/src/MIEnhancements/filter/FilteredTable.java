@@ -30,6 +30,10 @@
 * Visualization Laboratory contract. 
 * 
 */
+
+//TODO: merge FilteredTable and FilterTable_orig to reduce code redundancy
+//TODO: improve/fix selection of which years put in filter popup and which to check  
+
 package filter;
 
 import java.awt.BorderLayout;
@@ -491,6 +495,13 @@ public class FilteredTable {
 			String[] k = tableColumnDataIndex.keySet().toArray(new String[0]);
 			Var.sectionYRange = k.clone();
 		}
+		
+
+//		String selectedYears = InterfaceMain.getInstance().getProperties().getProperty("allYearList");
+//		if (selectedYears != null && !selectedYears.isEmpty()) {
+//			String[] years = selectedYears.split(";");
+//			Var.sectionYRange = years.clone();
+//		}
 
 		if (!tableColumnDataIndex.isEmpty())
 			tableColumnIndex = tableColumnDataIndex.values().toArray(new Integer[0]);

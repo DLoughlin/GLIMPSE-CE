@@ -369,7 +369,7 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 			DbViewer.selectedYears=new HashMap<>();
 		if(InterfaceMain.getInstance() != null) {InterfaceMain.getInstance().getProperties();
 		       Properties globalProperties = InterfaceMain.getInstance().getProperties();
-		       Object rsp=globalProperties.get("selectedYearsList");
+		       Object rsp=globalProperties.get("selectedYearList");
 		       if(rsp!=null) {
 		       String defaultYearStr=rsp.toString();
 		       System.out.println("DbViewer375: Using selectedYearsStr from properties file: "+defaultYearStr);
@@ -385,9 +385,9 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	       } 
 		
 		if(DbViewer.selectedYears.size()==0) {
-			System.out.println("No selected years found in properties file, using 2015-2100 in 5-year increments.");
+			System.out.println("No selected years found in properties file, using 2015-2100 in 5-year increments, except 2021.");
 			DbViewer.selectedYears.put("2015", "2015");
-	    	DbViewer.selectedYears.put("2020", "2020");
+	    	DbViewer.selectedYears.put("2021", "2021");
 	    	DbViewer.selectedYears.put("2025", "2025");
 	    	DbViewer.selectedYears.put("2030", "2030");
 	    	DbViewer.selectedYears.put("2035", "2035");
