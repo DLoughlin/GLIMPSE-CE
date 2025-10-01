@@ -369,9 +369,10 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 			DbViewer.selectedYears=new HashMap<>();
 		if(InterfaceMain.getInstance() != null) {InterfaceMain.getInstance().getProperties();
 		       Properties globalProperties = InterfaceMain.getInstance().getProperties();
-		       Object rsp=globalProperties.get("selectedYearList");
+		       Object rsp=globalProperties.get("selectedYearsList");
 		       if(rsp!=null) {
 		       String defaultYearStr=rsp.toString();
+		       System.out.println("DbViewer375: Using selectedYearsStr from properties file: "+defaultYearStr);
 		       
 		       String[] yearsArr = defaultYearStr.split(";");
 		       DbViewer.selectedYears = new HashMap<>();
@@ -384,6 +385,7 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	       } 
 		
 		if(DbViewer.selectedYears.size()==0) {
+			System.out.println("No selected years found in properties file, using 2015-2100 in 5-year increments.");
 			DbViewer.selectedYears.put("2015", "2015");
 	    	DbViewer.selectedYears.put("2020", "2020");
 	    	DbViewer.selectedYears.put("2025", "2025");
@@ -392,7 +394,17 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	    	DbViewer.selectedYears.put("2040", "2040");
 	    	DbViewer.selectedYears.put("2045", "2045");
 	    	DbViewer.selectedYears.put("2050", "2050");
-	       }
+			DbViewer.selectedYears.put("2055", "2055");
+	    	DbViewer.selectedYears.put("2060", "2060");
+	    	DbViewer.selectedYears.put("2065", "2065");
+	    	DbViewer.selectedYears.put("2070", "2070");
+	    	DbViewer.selectedYears.put("2075", "2075");
+	    	DbViewer.selectedYears.put("2080", "2080");
+	    	DbViewer.selectedYears.put("2085", "2085");
+	    	DbViewer.selectedYears.put("2090", "2090");
+	    	DbViewer.selectedYears.put("2085", "2095");
+	    	DbViewer.selectedYears.put("2100", "2100");
+		}
 		}
 		return DbViewer.selectedYears;
 		
@@ -401,37 +413,38 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	public static List getAllYearListFromPropFile() {
 	       // the default year list could go in a preference dialog as well
 	       // WARNING: not thread safe
-		 List<String> allYearList=new ArrayList<String>();
+		 List<String> allYearsList=new ArrayList<String>();
 	           if(InterfaceMain.getInstance() != null) {
 			       Properties globalProperties = InterfaceMain.getInstance().getProperties();
 			       
 			       String allYearStr=(String)globalProperties.get("allYearsList");
-			    		  
+			       System.out.println("DbViewer421: Setting allYearStr from properties file: "+allYearStr);
 			       //globalProperties.setProperty("defaultYearList", defaultYearStr = 
 					//       globalProperties.getProperty("defaultYearList", 
 					//	       "1990;2005;2020;2035;2050;2065;2080;2095"));
 			       if(allYearStr!=null) {
 				       String[] yearsArr = allYearStr.split(";");
-				       allYearList = new ArrayList<String>(yearsArr.length);
+				       allYearsList = new ArrayList<String>(yearsArr.length);
 				       if(!(yearsArr.length == 1 && yearsArr[0].equals(""))) {
 					       for(String year : yearsArr ) {
-					    	   allYearList.add(year);
+					    	   allYearsList.add(year);
 					       }
 				      }
 			       }
 		       } 
 	           
-	           if(allYearList.size()==0) {
-		    	   allYearList = new ArrayList<String>();
-		    	   allYearList.add("1990");
+	           if(allYearsList.size()==0) {
+	        	   System.out.println("No allYearsList found in properties file, using 1990 and 2005-2100 in 5-year increments.");
+		    	   allYearsList = new ArrayList<String>();
+		    	   allYearsList.add("1990");
 			       for(int i=2005;i<2101;i+=5) {
-			    	   allYearList.add(String.valueOf(i));
+			    	   allYearsList.add(String.valueOf(i));
 			       }
 		       }
 			       
 			       
 	       
-	       return allYearList;
+	       return allYearsList;
  }
 
 	private JMenuItem makeMenuItem(String title) {
