@@ -774,63 +774,101 @@ public abstract class BaseTableModel extends AbstractTableModel {
 
        public List<String> getSelectedYearList() {
     	   
-    	  List<String> selectedYearsList = new ArrayList<String>();
-    	   		
-	       // the default year list could go in a preference dialog as well
-	       // WARNING: not thread safe	       
-		       if(InterfaceMain.getInstance() != null) {
-		    	   Properties globalProperties = InterfaceMain.getInstance().getProperties();
-					String setYearList=null;;
-					setYearList = globalProperties.getProperty("selectedYearsList");
-					System.out.println("BaseTableModel787: Using selectedYearsList from properties: "+setYearList);
-			       if(setYearList!=null && setYearList.length()>0) {
-						String[] setYearListArr = setYearList.split(";");
+    	  List<String> yearArrayList = new ArrayList<String>();
+    	  String yearList=null;
+    	  
+   	   		if(InterfaceMain.getInstance() != null) {
+   	   	   		   Properties globalProperties = InterfaceMain.getInstance().getProperties();
+
+					yearList = globalProperties.getProperty("selectedYearList");
+					System.out.println("BaseTableModel784: Using selectedYearsList from properties: "+yearList);
+			       if(yearList!=null && yearList.length()>0) {
+						String[] setYearListArr = yearList.split(";");
 				      
 					       for(String year : setYearListArr ) {
-						       selectedYearsList.add(year);
+						       yearArrayList.add(year);
 					       
 				       }
+			       }			       
+			       if((yearArrayList==null)||(yearArrayList.size()==0)) {
+			    	   yearArrayList=getAllYearList();
 			       }
+			       		       		       
+			       if((yearArrayList==null)||(yearArrayList.size()==0)) {
+			    	   yearArrayList.clear();
+			    	   yearArrayList.add("2015");
+			    	   yearArrayList.add("2021");
+			    	   yearArrayList.add("2025");
+			    	   yearArrayList.add("2030");
+			    	   yearArrayList.add("2035");
+			    	   yearArrayList.add("2040");
+			    	   yearArrayList.add("2045");
+			    	   yearArrayList.add("2050");
 			       
-			       
-			       if(selectedYearsList.size()==0) {
-			    	   setYearList = globalProperties.getProperty("allYearsList");
-			    	   System.out.println("BaseTableModel800: Could not find selectedYearsList in properties. Using allYearList: "+setYearList);
-				       if(setYearList!=null && setYearList.length()>0) {
-							String[] setYearListArr = setYearList.split(";");
-					      
-						       for(String year : setYearListArr ) {
-							       selectedYearsList.add(year);
-						       
-					       }
-				       }
+			    	   for (String year : yearArrayList) {
+			    		   yearList = (yearList == null) ? year : yearList + ";" + year;
+			    	   }
+			    	   
+			    	   if(InterfaceMain.getInstance() != null) {
+			    		   InterfaceMain.getInstance().getProperties().setProperty("selectedYearList", yearList);
+			    	   }	
 			       }
-		       } 
-		       		       
-		       //this is very last resort
-		       if(selectedYearsList.isEmpty()) {
-		    	   System.out.println("BaseTableModel816: Using hard coded selected year list");
-			       selectedYearsList = new ArrayList<String>();
-			       selectedYearsList.add("2015");
-			       selectedYearsList.add("2020");
-			       selectedYearsList.add("2025");
-			       selectedYearsList.add("2030");
-			       selectedYearsList.add("2035");
-			       selectedYearsList.add("2040");
-			       selectedYearsList.add("2045");
-			       selectedYearsList.add("2050");
-			       selectedYearsList.add("2055");
-			       selectedYearsList.add("2060");
-			       selectedYearsList.add("2065");
-			       selectedYearsList.add("2070");
-			       selectedYearsList.add("2075");
-			       selectedYearsList.add("2080");
-			       selectedYearsList.add("2085");
-			       selectedYearsList.add("2090");
-			       selectedYearsList.add("2095");
-			       selectedYearsList.add("2100");
 		       }
-	       
-	       return selectedYearsList;
+		       
+	       return yearArrayList;
        }
+       
+       public List<String> getAllYearList() {
+    	   
+    	  List<String> yearArrayList = new ArrayList<String>();
+    	  String yearList=null;
+    	  
+   	   		if(InterfaceMain.getInstance() != null) {
+   	   	   		   Properties globalProperties = InterfaceMain.getInstance().getProperties();
+
+					yearList = globalProperties.getProperty("allYearList");
+					System.out.println("BaseTableModel830: Using allYearList from properties: "+yearList);
+			       if(yearList!=null && yearList.length()>0) {
+						String[] setYearListArr = yearList.split(";");
+				      
+					       for(String year : setYearListArr ) {
+						       yearArrayList.add(year);
+					       
+				       }
+			       }			       
+			       		       		       
+			       if((yearArrayList==null)||(yearArrayList.size()==0)) {
+			    	   yearArrayList.clear();
+			    	   yearArrayList.add("2015");
+			    	   yearArrayList.add("2021");
+			    	   yearArrayList.add("2025");
+			    	   yearArrayList.add("2030");
+			    	   yearArrayList.add("2035");
+			    	   yearArrayList.add("2040");
+			    	   yearArrayList.add("2045");
+			    	   yearArrayList.add("2050");
+			    	   yearArrayList.add("2055");
+			    	   yearArrayList.add("2060");
+			    	   yearArrayList.add("2065");
+			    	   yearArrayList.add("2070");
+			    	   yearArrayList.add("2075");
+			    	   yearArrayList.add("2080");
+			    	   yearArrayList.add("2085");
+			    	   yearArrayList.add("2090");
+			    	   yearArrayList.add("2095");
+			    	   yearArrayList.add("2100");
+
+			    	   for (String year : yearArrayList) {
+			    		   yearList = (yearList == null) ? year : yearList + ";" + year;
+			    	   }
+			    	   
+			    	   if(InterfaceMain.getInstance() != null) {
+			    		   InterfaceMain.getInstance().getProperties().setProperty("allYearList", yearList);
+			    	   }	
+			       }
+		       }
+		       
+	       return yearArrayList;
+       }
+       
 }

@@ -224,7 +224,8 @@ public class FilterTreePane {
 						//	selOptions.put("Year|"+key,"Year|"+key);
 						//}
 						
-						new FilteredTable_orig(selOptions, chartName, unit, path, jtable, sp);
+						//new FilteredTable_orig(selOptions, chartName, unit, path, jtable, sp);
+						new FilteredTable(selOptions, chartName, unit, path, jtable, sp);
 						dialog.dispose();
 					}
 				} else

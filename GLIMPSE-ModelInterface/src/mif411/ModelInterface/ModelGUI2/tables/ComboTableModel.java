@@ -86,6 +86,7 @@ import ModelInterface.ModelGUI2.xmldb.DbProcInterrupt;
 import ModelInterface.ModelGUI2.xmldb.QueryBinding;
 import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
+import javafx.application.Platform;
 
 public class ComboTableModel extends BaseTableModel {
 
@@ -1010,7 +1011,8 @@ public class ComboTableModel extends BaseTableModel {
 			yearLevelAxis.remove("1975");
 		}
 		
-		List<String> years=getSelectedYearList();
+		//List<String> years=getSelectedYearList();
+		List<String> years=getAllYearList();
 		Set<String> yearLevelAxisNew = new TreeSet<String>();
 		for(String key:years) {
 			if(yearLevelAxis.contains(key)) {
@@ -1040,6 +1042,7 @@ public class ComboTableModel extends BaseTableModel {
 		indRow = new Vector(nodeLevelAxis);
 		indCol = new Vector(yearLevelAxis);
 		ind1Name = qg.getAxis1Name();
+
 	}
 
 //	private void buildTableOld(QueryProcessor queryProc, boolean sumAll, boolean isTotal, boolean isGlobal)
