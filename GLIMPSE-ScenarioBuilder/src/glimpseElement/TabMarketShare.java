@@ -1301,16 +1301,16 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 						error_count++;
 					}
 			}
-			if ((checkComboBoxSubset.getCheckModel().getCheckedItems().size() == 1)
-					&& (checkComboBoxSubset.getCheckModel().isChecked("Select One or More"))) {
+			if ((checkComboBoxSubset.getCheckModel().getCheckedItems().size() == 0)
+					) {
 				message += "Subset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			} else if (checkComboBoxSubset.getCheckModel().getCheckedItems().size() == 0) {
 				message += "Subset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			}
-			if ((checkComboBoxSuperset.getCheckModel().getCheckedItems().size() == 1)
-					&& (checkComboBoxSuperset.getCheckModel().isChecked("Select One or More"))) {
+			if ((checkComboBoxSuperset.getCheckModel().getCheckedItems().size() == 0)
+					) {
 				message += "Superset checkCombox must have at least one selection" + vars.getEol();
 				error_count++;
 			} else if (checkComboBoxSuperset.getCheckModel().getCheckedItems().size() == 0) {
