@@ -949,7 +949,7 @@ class PaneScenarioLibrary extends ScenarioBuilder {
         if ((temp != null) && (temp != ""))
             command += " -f " + temp;
         //
-        temp = vars.getModelInterfaceDir() + File.separator + File.separator + "map_resources";
+        temp = vars.getModelInterfaceDir() + File.separator + "map_resources";
         if ((temp != null) && (temp != ""))
             command += " -m " + temp;
 
