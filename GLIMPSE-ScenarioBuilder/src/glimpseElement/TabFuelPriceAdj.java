@@ -133,7 +133,8 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
         if (textFieldMarketName != null)
             textFieldMarketName.setDisable(true);
         if (comboBoxConvertFrom != null) {
-            comboBoxConvertFrom.getItems().addAll(CONVERT_FROM_OPTIONS);
+    		//comboBoxConvertFrom.getItems().clear();
+            //comboBoxConvertFrom.getItems().addAll(CONVERT_FROM_OPTIONS);
             comboBoxConvertFrom.getSelectionModel().selectFirst();
         }
 
