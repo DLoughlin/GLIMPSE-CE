@@ -212,9 +212,10 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		for (String option : vars.getCategoriesFromTechBnd()) {
 			checkComboBoxCategory.getItems().add(option);
 		}
-		for (String option : CONVERT_FROM_OPTIONS) {
-			comboBoxConvertFrom.getItems().add(option);
-		}
+		//comboBoxConvertFrom.getItems().clear();
+		//for (String option : CONVERT_FROM_OPTIONS) {
+		//	comboBoxConvertFrom.getItems().add(option);
+		//}
 		comboBoxMeasure.getSelectionModel().selectFirst();
 		comboBoxPollutant.getSelectionModel().selectFirst();
 		checkComboBoxCategory.getCheckModel().clearChecks();

@@ -221,11 +221,11 @@ public class TabTechBound extends PolicyTab implements Runnable {
     	
     	gridPaneLeft.getChildren().clear();
         gridPaneLeft.add(utils.createLabel("Specification:"), 0, 0, 2, 1);
-        gridPaneLeft.addColumn(0, labelFilter, labelComboBoxCategory, labelCheckComboBoxTech, labelComboBoxConstraint,
+        gridPaneLeft.addColumn(0, labelComboBoxCategory, labelFilter, labelCheckComboBoxTech, labelComboBoxConstraint,
                 labelTreatment, new Label(), labelUnits, new Label(), new Separator(), labelUseAutoNames, labelPolicyName, labelMarketName,
                 new Label(), new Separator(), utils.createLabel(LABEL_POPULATE), labelModificationType, labelStartYear,
                 labelEndYear, labelInitialAmount, labelGrowth);
-        gridPaneLeft.addColumn(1, textFieldFilter, comboBoxCategory, checkComboBoxTech, comboBoxConstraint,
+        gridPaneLeft.addColumn(1, comboBoxCategory, textFieldFilter, checkComboBoxTech, comboBoxConstraint,
                 comboBoxTreatment, new Label(), labelUnits2, new Label(), new Separator(), checkBoxUseAutoNames, textFieldPolicyName,
                 textFieldMarketName, new Label(), new Separator(), new Label(), comboBoxModificationType,
                 textFieldStartYear, textFieldEndYear, textFieldInitialAmount, textFieldGrowth);
@@ -268,17 +268,18 @@ public class TabTechBound extends PolicyTab implements Runnable {
     	super.setupEventHandlers();
     	
 		setEventHandler(textFieldFilter, e -> {
-			String filterText = textFieldFilter.getText().trim();
-			if (filterText.isEmpty()) {
-				checkComboBoxTech.getItems().clear();
-				checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
-				checkComboBoxTech.getCheckModel().check(0);
-				checkComboBoxTech.setDisable(true);
-			} else {
-				checkComboBoxTech.setDisable(false);
+//			String filterText = textFieldFilter.getText().trim();
+//			if (filterText.isEmpty()) {
+//				checkComboBoxTech.getItems().clear();
+//				checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
+//				checkComboBoxTech.getCheckModel().check(0);
+//				checkComboBoxTech.setDisable(true);
+//			} else {
+				//checkComboBoxTech.setDisable(false);
 				updateCheckComboBoxTech();
-			}
+//			}
 		});
+		
 		setEventHandler(checkComboBoxTech, e -> setPolicyAndMarketNames());
     	
     	labelCheckComboBoxTech.setOnMouseClicked(e -> {
@@ -295,18 +296,23 @@ public class TabTechBound extends PolicyTab implements Runnable {
         });
         setEventHandler(comboBoxCategory, e -> {
             String selectedItem = comboBoxCategory.getSelectionModel().getSelectedItem();
-            if (selectedItem != null) {
-                if (selectedItem.equals(SELECT_ONE)) {
-                    checkComboBoxTech.getItems().clear();
-                    checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
-                    checkComboBoxTech.getCheckModel().check(0);
-                    checkComboBoxTech.setDisable(true);
-                } else {
-                    checkComboBoxTech.setDisable(false);
-                    updateCheckComboBoxTech();
-                }
-            }
+            if (selectedItem == null) return;
+            if (selectedItem.equals(SELECT_ONE)) {
+                checkComboBoxTech.getCheckModel().clearChecks();
+                checkComboBoxTech.getItems().clear();
+                checkComboBoxTech.getItems().add(SELECT_ONE_OR_MORE);
+                checkComboBoxTech.getCheckModel().check(0);
+                checkComboBoxTech.setDisable(true);
+                labelUnits2.setText(UNITS_DEFAULT);
+                textFieldFilter.setText("");
+                textFieldFilter.setDisable(true);
+            } else {
+            	updateCheckComboBoxTech();
+                checkComboBoxTech.setDisable(false);
+                textFieldFilter.setDisable(false);
+            }	
             setPolicyAndMarketNames();
+            setUnitsLabel();
         });
         checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> {
             while (c.next()) {
@@ -315,25 +321,22 @@ public class TabTechBound extends PolicyTab implements Runnable {
         });
         setEventHandler(comboBoxConstraint, e -> setPolicyAndMarketNames());
         setEventHandler(comboBoxTreatment, e -> setPolicyAndMarketNames());
-        setEventHandler(textFieldFilter, e -> setupComboBoxCategory());
+
     }
 
     /**
      * Populates the sector combo box based on the technology info and filter text.
      * Handles filtering and ensures no duplicate sectors are added.
      * <p>
-     * If a filter is applied, only categories matching the filter are shown.
      */
     private void setupComboBoxCategory() {
         comboBoxCategory.getItems().clear();
+        comboBoxCategory.getItems().addAll("Select One","All");
+        comboBoxCategory.getSelectionModel().selectFirst();
         try {
             String[][] techInfo = vars.getTechInfo();
             if (techInfo == null) return;
             ArrayList<String> categoryList = new ArrayList<>();
-            String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-            boolean useFilter = !filterText.isEmpty();
-            if (!useFilter) categoryList.add(SELECT_ONE);
-            //categoryList.add(ALL);
  
             for (String[] tech : techInfo) {
                 if (tech == null || tech.length == 0) continue;
@@ -346,23 +349,14 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     }
                 }
                 if (!match) {
-                    boolean show = true;
-                    if (useFilter) {
-                        show = false;
-                        for (String temp : tech) {
-                            if (temp != null && temp.contains(filterText)) show = true;
-                        }
-                    }
-                    if (show) {
                         categoryList.add(text);
-                    }
                 }
             }
             categoryList = utils.getUniqueItemsFromStringArrayList(categoryList);
             for (String cat : categoryList) {
                 if (cat != null) comboBoxCategory.getItems().add(cat.trim());
             }
-            comboBoxCategory.getSelectionModel().select(0);
+
         } catch (NullPointerException e) {
             utils.warningMessage("Problem reading tech list: Null value encountered.");
             System.out.println("NullPointerException reading tech list from " + vars.getTchBndListFilename() + ":");
@@ -373,6 +367,64 @@ public class TabTechBound extends PolicyTab implements Runnable {
             System.out.println("  ---> " + e);
         }
     }
+    
+//    /**
+//     * Populates the sector combo box based on the technology info and filter text.
+//     * Handles filtering and ensures no duplicate sectors are added.
+//     * <p>
+//     * If a filter is applied, only categories matching the filter are shown.
+//     */
+//    private void setupComboBoxCategoryOld() {
+//        comboBoxCategory.getItems().clear();
+//        comboBoxCategory.getItems().add("All");
+//        comboBoxCategory.getSelectionModel().selectFirst();
+//        try {
+//            String[][] techInfo = vars.getTechInfo();
+//            if (techInfo == null) return;
+//            ArrayList<String> categoryList = new ArrayList<>();
+//            String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
+//            boolean useFilter = !filterText.isEmpty();
+//            //if (!useFilter) categoryList.add(SELECT_ONE);
+//            //categoryList.add(ALL);
+// 
+//            for (String[] tech : techInfo) {
+//                if (tech == null || tech.length == 0) continue;
+//                String text = tech[7] != null ? tech[7].trim() : "";
+//                boolean match = false;
+//                for (String cat : categoryList) {
+//                    if (text.equals(cat)) {
+//                        match = true;
+//                        break;
+//                    }
+//                }
+//                if (!match) {
+//                    boolean show = true;
+//                    if (useFilter) {
+//                        show = false;
+//                        for (String temp : tech) {
+//                            if (temp != null && temp.contains(filterText)) show = true;
+//                        }
+//                    }
+//                    if (show) {
+//                        categoryList.add(text);
+//                    }
+//                }
+//            }
+//            categoryList = utils.getUniqueItemsFromStringArrayList(categoryList);
+//            for (String cat : categoryList) {
+//                if (cat != null) comboBoxCategory.getItems().add(cat.trim());
+//            }
+//            comboBoxCategory.getSelectionModel().select(0);
+//        } catch (NullPointerException e) {
+//            utils.warningMessage("Problem reading tech list: Null value encountered.");
+//            System.out.println("NullPointerException reading tech list from " + vars.getTchBndListFilename() + ":");
+//            System.out.println("  ---> " + e);
+//        } catch (Exception e) {
+//            utils.warningMessage("Problem reading tech list.");
+//            System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
+//            System.out.println("  ---> " + e);
+//        }
+//    }
 
     /**
      * Updates the technology check combo box based on the selected sector and filter text.
