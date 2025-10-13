@@ -774,24 +774,24 @@ trn_freight : Domestic Ship : FCEV : H2 wholesale dispensing : EJ : trn_freight 
 trn_freight : Domestic Ship : Hybrid Liquids : refined liquids enduse : EJ : trn_freight : million ton-km : Trn-ALM
 trn_freight : Domestic Ship : Liquids : refined liquids enduse : EJ : trn_freight : million ton-km : Trn-ALM
 trn_freight : Freight Rail : BEV : elect_td_trn : EJ : trn_freight : million ton-km : Trn-ALM
-trn_freight : Freight Rail : Coal : delivered coal : EJ : trn_freight : million ton-km : Trn-ALM
+trn_freight : Freight Rail : Coal : delivered coal : EJ : trn_freight : million ton-km : Trn-ALM 
 trn_freight : Freight Rail : Electric : elect_td_trn : EJ : trn_freight : million ton-km : Trn-ALM
 trn_freight : Freight Rail : FCEV : H2 wholesale dispensing : EJ : trn_freight : million ton-km : Trn-ALM
 trn_freight : Freight Rail : Hybrid Liquids : refined liquids enduse : EJ : trn_freight : million ton-km : Trn-ALM
 trn_freight : Freight Rail : Liquids : refined liquids enduse : EJ : trn_freight : million ton-km : Trn-ALM
-trn_freight_road : Heavy truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Heavy truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Heavy truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Heavy truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Light truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Light truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Light truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Light truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Light truck : NG : delivered gas : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Medium truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Medium truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Medium truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
-trn_freight_road : Medium truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-ALM
+trn_freight_road : Heavy truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Heavy truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Heavy truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Heavy truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Light truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Light truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Light truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Light truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Light truck : NG : delivered gas : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Medium truck : BEV : elect_td_trn : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Medium truck : FCEV : H2 retail dispensing : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Medium truck : Hybrid Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
+trn_freight_road : Medium truck : Liquids : refined liquids enduse : EJ : trn_freight_road : million ton-km : Trn-Onroad
 trn_pass : Cycle : Cycle : renewable : EJ : trn_pass : million pass-km : Trn-Onroad
 trn_pass : Domestic Aviation : BEV : elect_td_trn : EJ : trn_pass : million pass-km : Trn-ALM
 trn_pass : Domestic Aviation : Hydrogen : H2 wholesale dispensing : EJ : trn_pass : million pass-km : Trn-ALM
