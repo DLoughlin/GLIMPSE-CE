@@ -1,4 +1,3 @@
-/Contrib/
 /GLIMPSE-ScenarioBuilder/*.jar
 /GLIMPSE-ModelInterface/*.jar
 **/GLIMPSE*.jar
@@ -13,3 +12,4 @@
 **/GLIMPSE-Data/GCAM*/ScenarioFolders/*
 /amazon-corretto-8.442.06.1-windows-x64-jre/
 **/*log.txt
+**/GCAM-Model/*
