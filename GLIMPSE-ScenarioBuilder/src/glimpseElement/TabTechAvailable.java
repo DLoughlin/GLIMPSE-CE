@@ -559,7 +559,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         for (TechBound bnd : tableList) {
             if (bnd.isBoundAll() || bnd.isBoundRange()) {
                 rtnStr.append("#Bound:Never>").append(bnd.isBoundAll())
-                        .append(",Range>").append(bnd.getLastYear())
+                        .append(",Range>").append(bnd.isBoundRange())
                         .append(",First>").append(bnd.getFirstYear())
                         .append(",Last>").append(bnd.getLastYear())
                         .append(",Tech>").append(bnd.getTechName())
@@ -608,7 +608,7 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
                         } else if (att.equals("last")) {
                             last = val;
                         } else if (att.equals("tech")) {
-                            tech = val.toLowerCase();
+                            tech = val.toLowerCase().trim();
                         }
                     }
                     for (TechBound tb : techList) {
