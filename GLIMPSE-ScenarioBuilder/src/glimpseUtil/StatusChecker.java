@@ -55,8 +55,10 @@ public class StatusChecker extends Thread {
 			count++;
 			try {
 				if ((Client.gCAMExecutionThread.didNumDoneChange()||(count==5))) {
+					
 					Client.buttonRefreshScenarioStatus.fire();
 					count=0;
+					
 				}
 				Thread.sleep(5000L);
 			} catch (InterruptedException e) {

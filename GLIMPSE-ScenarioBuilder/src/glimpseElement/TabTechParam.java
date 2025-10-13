@@ -507,63 +507,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
         }
     }
     
-//    /**
-//     * Populates the sector combo box based on the technology info and filter text.
-//     * Handles filtering and ensures no duplicate sectors are added.
-//     * <p>
-//     * If a filter is applied, only categories matching the filter are shown.
-//     */
-//    private void setupComboBoxCategoryOld() {
-//        comboBoxCategory.getItems().clear();
-//        comboBoxCategory.getItems().add("All");
-//        comboBoxCategory.getSelectionModel().selectFirst();
-//        try {
-//            String[][] techInfo = vars.getTechInfo();
-//            if (techInfo == null) return;
-//            ArrayList<String> categoryList = new ArrayList<>();
-//            String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-//            boolean useFilter = !filterText.isEmpty();
-//            if (!useFilter) categoryList.add(SELECT_ONE);
-//            categoryList.add(ALL);
-// 
-//            for (String[] tech : techInfo) {
-//                if (tech == null || tech.length == 0) continue;
-//                String text = tech[7] != null ? tech[7].trim() : "";
-//                boolean match = false;
-//                for (String cat : categoryList) {
-//                    if (text.equals(cat)) {
-//                        match = true;
-//                        break;
-//                    }
-//                }
-//                if (!match) {
-//                    boolean show = true;
-//                    if (useFilter) {
-//                        show = false;
-//                        for (String temp : tech) {
-//                            if (temp != null && temp.contains(filterText)) show = true;
-//                        }
-//                    }
-//                    if (show) {
-//                        categoryList.add(text);
-//                    }
-//                }
-//            }
-//            categoryList = utils.getUniqueItemsFromStringArrayList(categoryList);
-//            for (String cat : categoryList) {
-//                if (cat != null) comboBoxCategory.getItems().add(cat.trim());
-//            }
-//            comboBoxCategory.getSelectionModel().select(0);
-//        } catch (NullPointerException e) {
-//            utils.warningMessage("Problem reading tech list: Null value encountered.");
-//            System.out.println("NullPointerException reading tech list from " + vars.getTchBndListFilename() + ":");
-//            System.out.println("  ---> " + e);
-//        } catch (Exception e) {
-//            utils.warningMessage("Problem reading tech list.");
-//            System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
-//            System.out.println("  ---> " + e);
-//        }
-//    }
 
     /**
      * Updates the technology check combo box based on the selected sector and filter text.
@@ -610,42 +553,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
             }
     }
     
-//    /**
-//     * Updates the technology check combo box based on the selected sector and filter.
-//     * Populates the checkComboBoxTech with technologies matching the selected sector and filter.
-//     * Handles errors in reading technology info.
-//     */
-//    private void updateCheckComboTechs() {
-//        String sector = comboBoxCategory.getValue();
-//        String[][] techInfoArr = vars.getTechInfo();
-//        boolean isAllSectors = ALL.equals(sector);
-//        try {
-//            if (checkComboBoxTech.getItems().size() > 0) {
-//                checkComboBoxTech.getCheckModel().clearChecks();
-//                checkComboBoxTech.getItems().clear();
-//            }
-//            if (sector != null) {
-//                String lastLine = "";
-//                String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-//                for (String[] tech : techInfoArr) {
-//                    String line = tech[0].trim() + " : " + tech[1] + " : " + tech[2];
-//                    if (filterText.isEmpty() || line.contains(filterText)) {
-//                        if (tech.length >= 7) line += " : " + tech[6];
-//                        if (!line.equals(lastLine)) {
-//                            lastLine = line;
-//                            if (isAllSectors || line.startsWith(sector)) {
-//                                checkComboBoxTech.getItems().add(line);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        } catch (Exception e) {
-//            utils.warningMessage("Problem reading tech list.");
-//            System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
-//            System.out.println("  ---> " + e);
-//        }
-//    }
 
     /**
      * Generates the metadata content string for the scenario component, including selected category, technologies, parameter, regions, and table data.

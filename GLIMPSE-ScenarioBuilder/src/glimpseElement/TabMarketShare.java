@@ -959,9 +959,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								list_of_policy_sector_combos = utils
 										.addToArrayListIfUnique(list_of_policy_sector_combos, ss);
 								BufferedWriter bw = bw1;
-								if (subsector_name.indexOf("=>") > -1) {
+								if (tech_name.indexOf("=>") > -1) {
 									bw = bw2;
-									subsector_name = subsector_name.replace("=>", ",");
+									tech_name = tech_name.replace("=>", ",");
 									no_nested++;
 								} else {
 									no_non_nested++;
@@ -1006,7 +1006,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		files.writeToBufferedFile(bw2, "Variable ID" + vars.getEol());
 		files.writeToBufferedFile(bw2, "GLIMPSEPFStd2ndOut-Nest" + vars.getEol() + vars.getEol());
 		files.writeToBufferedFile(bw2,
-				"region,sector,nested-subsector,subsector,tech,year,policy,output-ratio,pMultiplier" + vars.getEol());
+				"region,sector,subsector,nested-subsector,tech,year,policy,output-ratio,pMultiplier" + vars.getEol());
 
 		for (int s = 0; s < listOfSelectedLeaves.length; s++) {
 			String state = listOfSelectedLeaves[s];
@@ -1041,9 +1041,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 							String tech_name = utils.splitString(temp, ":")[2].trim();
 							BufferedWriter bw = bw1;
 							
-							if (subsector_name.indexOf("=>") > -1) {
+							if (tech_name.indexOf("=>") > -1) {
 								bw = bw2;
-								subsector_name = subsector_name.replace("=>", ",");
+								tech_name = tech_name.replace("=>", ",");
 								no_nested++;
 							} else {
 								no_non_nested++;
@@ -1175,9 +1175,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         rtnStr.append("#AppliedTo: ").append(this.comboBoxAppliedTo.getSelectionModel().getSelectedItem()).append(vars.getEol());
         rtnStr.append("#Treatment: ").append(this.comboBoxTreatment.getSelectionModel().getSelectedItem()).append(vars.getEol());
         rtnStr.append("#Constraint: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
-        rtnStr.append("#Policy name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
-        rtnStr.append("#Market name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
-        rtnStr.append("#Market name: ").append(this.comboBoxConstraint.getSelectionModel().getSelectedItem()).append(vars.getEol());
+        rtnStr.append("#Policy name: ").append(this.textFieldPolicyName.getText()).append(vars.getEol());
+        rtnStr.append("#Market name: ").append(this.textFieldMarketName.getText()).append(vars.getEol());
         String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
         listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
         String states = utils.returnAppendedString(listOfSelectedLeaves);

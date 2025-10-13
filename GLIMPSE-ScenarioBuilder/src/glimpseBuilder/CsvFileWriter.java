@@ -35,6 +35,7 @@
 */
 package glimpseBuilder;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -115,9 +116,10 @@ public class CsvFileWriter {
         String dollarYearText = utils.getMatch(dataList, "dollarYear", ",");
 
         // Convert values to 1990 dollars if required
-        if (paramText.equals("Capital Cost"))
+        if ((paramText.equals("Capital Cost"))||(paramText.equals("Levelized Non-Energy Cost"))) {
             valuesText = utils.convertTo1990Dollars(valuesText, dollarYearText);
-
+        }
+        
         // Compose header key for column lookup
         String comboText = sectorText + "/" + paramText;
 
@@ -198,7 +200,7 @@ public class CsvFileWriter {
                         }
                     }
                     else if (colName.indexOf("/") > 0)
-                        line += (line.isEmpty() ? "" : ",") + colName.substring(colName.indexOf("/") + 1);
+                        ;//line += (line.isEmpty() ? "" : ",") + colName.substring(colName.indexOf("/") + 1);
                     else if (colName.equals("sector"))
                         line += (line.isEmpty() ? "" : ",") + sectorText;
                     else if ((colName.equals("subsector")) || (colName.equals("subsector1")))
