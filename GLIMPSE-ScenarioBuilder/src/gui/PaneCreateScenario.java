@@ -395,7 +395,7 @@ class PaneCreateScenario extends ScenarioBuilder {
                 int num = 0;
                 for (String temp : fileList) {
                     num++;
-                    String filename = temp;
+                    String filename = temp.replace('\\', '/');
                     String relativePathname = files.getRelativePath(gcamexepath.toString(), filename);
                     String identifier = f.getFileName();
                     if (fileList.size() > 1) identifier += "-" + num;
@@ -403,7 +403,7 @@ class PaneCreateScenario extends ScenarioBuilder {
                 }
             } else if (fileType.equals("xml")) {
                 // Handle direct XML component
-                String filename = vars.getScenarioComponentsDir() + File.separator + f.getFileName();
+                String filename = vars.getScenarioComponentsDir() + File.separator + f.getFileName().replace('\\', '/');;
                 String relativePathname = files.getRelativePath(gcamexepath.toString(), filename);
                 XMLModifier.addElement(xmlDoc, "ScenarioComponents", "Value", f.getFileName(), relativePathname);
             } else {
@@ -436,12 +436,12 @@ class PaneCreateScenario extends ScenarioBuilder {
                 // Set solver path as relative to GCAM executable directory
                 File solverFile = new File(vars.getgCamSolver());
                 Path solverPath = Paths.get(solverFile.getPath());
-                XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", gcamexepath.relativize(solverPath).toString());
+                XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", gcamexepath.relativize(solverPath).toString().replace('\\', '/'));
             } catch (Exception e) {
                 // Fallback to full path if relative path fails
                 System.out.println("Could not set solver path in config file. Using full path.");
                 System.out.println("  error: " + e);
-                XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", vars.getgCamSolver());
+                XMLModifier.updateElementValue(xmlDoc, "ScenarioComponents", "Value", "solver", vars.getgCamSolver().replace('\\', '/'));
             }
         }
         if (vars.getgCamOutputDatabase() != null) {
@@ -449,12 +449,12 @@ class PaneCreateScenario extends ScenarioBuilder {
                 // Set database path as relative to GCAM executable directory
                 File databaseDir = new File(vars.getgCamOutputDatabase());
                 Path databasePath = Paths.get(databaseDir.getPath());
-                XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", gcamexepath.relativize(databasePath).toString());
+                XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", gcamexepath.relativize(databasePath).toString().replace('\\', '/'));
             } catch (Exception e) {
                 // Fallback to full path if relative path fails
                 System.out.println("Could not set relative database path in config file. Using full path.");
                 System.out.println("  error: " + e);
-                XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", vars.getgCamOutputDatabase());
+                XMLModifier.updateElementValue(xmlDoc, "Files", "Value", "xmldb-location", vars.getgCamOutputDatabase().replace('\\', '/'));
             }
         }
 
