@@ -307,122 +307,69 @@ peak generation : refined liquids : refined liquids_peak_steam/CT=>refined liqui
 peak generation : solar : CSP_peak=>CSP_peak (dry_hybrid) : CSP_resource : EJ : peak generation : EJ : EGU-USA
 peak generation : solar : CSP_peak=>CSP_peak (recirculating) : CSP_resource : EJ : peak generation : EJ : EGU-USA
 peak generation : solar : PV_peak=>PV_peak : PV_resource : EJ : peak generation : EJ : EGU-USA
-elec_biomass (conv) : biomass (conv) : biomass (conv) (cooling pond) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
-elec_biomass (conv) : biomass (conv) : biomass (conv) (dry cooling) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
-elec_biomass (conv) : biomass (conv) : biomass (conv) (once through) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
-elec_biomass (conv) : biomass (conv) : biomass (conv) (recirculating) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
-elec_biomass (conv) : biomass (conv) : biomass (conv) (seawater) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
-elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (dry cooling) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
-elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (once through) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
-elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (recirculating) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
-elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (seawater) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
-elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (cooling pond) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
-elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (dry cooling) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
-elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (once through) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
-elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (recirculating) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
-elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (seawater) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
-elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (dry cooling) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
-elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (once through) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
-elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (recirculating) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
-elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (seawater) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
-elec_CSP : CSP : CSP (dry_hybrid) : global solar resource : EJ : elec_CSP : EJ : EGU
-elec_CSP : CSP : CSP (recirculating) : global solar resource : EJ : elec_CSP : EJ : EGU
-elec_CSP_storage : CSP_storage : CSP_storage (dry_hybrid) : global solar resource : EJ : elec_CSP_storage : EJ : EGU
-elec_CSP_storage : CSP_storage : CSP_storage (recirculating) : global solar resource : EJ : elec_CSP_storage : EJ : EGU
-elec_gas (CC) : gas (CC) : gas (CC) (cooling pond) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
-elec_gas (CC) : gas (CC) : gas (CC) (dry cooling) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
-elec_gas (CC) : gas (CC) : gas (CC) (once through) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
-elec_gas (CC) : gas (CC) : gas (CC) (recirculating) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
-elec_gas (CC) : gas (CC) : gas (CC) (seawater) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
-elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (cooling pond) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
-elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (dry cooling) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
-elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (once through) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
-elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (recirculating) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
-elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (seawater) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
-elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (cooling pond) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
-elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (once through) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
-elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (recirculating) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
-elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (seawater) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
-elec_Gen_III : Gen_III : Gen_III (cooling pond) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
-elec_Gen_III : Gen_III : Gen_III (once through) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
-elec_Gen_III : Gen_III : Gen_III (recirculating) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
-elec_Gen_III : Gen_III : Gen_III (seawater) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
-elec_geothermal : geothermal : geothermal (dry_hybrid) : geothermal : EJ : elec_geothermal : EJ : EGU
-elec_geothermal : geothermal : geothermal (recirculating) : geothermal : EJ : elec_geothermal : EJ : EGU
-elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (dry cooling) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
-elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (once through) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
-elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (recirculating) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
-elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (seawater) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
-elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (cooling pond) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
-elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (dry cooling) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
-elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (once through) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
-elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (recirculating) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
-elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (seawater) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
 elect_td_bld : elect_td_bld : elect_td_bld : electricity domestic supply : EJ : elect_td_bld : EJ : Energy-Carrier
 elect_td_bld : rooftop_pv : rooftop_pv=>rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Energy-Carrier
 elect_td_bld : rooftop_pv : rooftop_pv : distributed_solar : EJ : elect_td_bld : EJ : Energy-Carrier
 elect_td_ind : elect_td_ind : elect_td_ind : electricity domestic supply : EJ : elect_td_ind : EJ : Energy-Carrier
 elect_td_trn : elect_td_trn : elect_td_trn : electricity domestic supply : EJ : elect_td_trn : EJ : Energy-Carrier
 electricity_net_ownuse : electricity_net_ownuse : electricity_net_ownuse : electricity : EJ : electricity_net_ownuse : EJ : Energy-Carrier
-refining : biomass liquids : biodiesel : regional biomassOil : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : biodiesel : wholesale gas : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : BTL with hydrogen : H2 industrial : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : BTL with hydrogen : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : cellulosic ethanol : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : corn ethanol : elect_td_ind : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : corn ethanol : regional corn for ethanol : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : corn ethanol : wholesale gas : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : FT biofuels : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : sugar cane ethanol : regional sugar for ethanol : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : FT biofuels CCS level 1 : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : FT biofuels CCS level 2 : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : cellulosic ethanol CCS level 1 : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : biomass liquids : cellulosic ethanol CCS level 2 : regional biomass : EJ : refining : EJ : Industry-Fuels
-refining : coal to liquids : coal to liquids : regional coal : EJ : refining : EJ : Industry-Fuels
-refining : coal to liquids : coal to liquids CCS level 1 : regional coal : EJ : refining : EJ : Industry-Fuels
-refining : coal to liquids : coal to liquids CCS level 2 : regional coal : EJ : refining : EJ : Industry-Fuels
-refining : gas to liquids : gas to liquids : regional natural gas : EJ : refining : EJ : Industry-Fuels
-refining : oil refining : oil refining : elect_td_ind : EJ : refining : EJ : Industry-Fuels
-refining : oil refining : oil refining : regional oil : EJ : refining : EJ : Industry-Fuels
-refining : oil refining : oil refining : wholesale gas : EJ : refining : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 : regional biomass : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 CCS : regional biomass : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : biomass : biomass to H2 CCS : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : coal : coal chemical CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : coal : coal chemical CCS : regional coal : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : electricity : electrolysis : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : gas : natural gas steam reforming : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : gas : natural gas steam reforming : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : gas : gas ATR CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : gas : gas ATR CCS : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : nuclear : electrolysis : nuclearFuelGenIII : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : solar : electrolysis : global solar resource : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : solar : electrolysis : PV_resource : EJ : H2 central production : EJ : Industry-Fuels
-H2 central production : wind : electrolysis : onshore wind resource : EJ : H2 central production : EJ : Industry-Fuels
-H2 industrial : H2 delivery : H2 delivery : H2 wholesale delivery : EJ : H2 industrial : EJ : Industry-Fuels
-H2 industrial : onsite production : electrolysis : elect_td_ind : EJ : H2 industrial : EJ : Industry-Fuels
-H2 liquid truck : H2 liquid truck : H2 liquid truck : elect_td_ind : EJ : H2 liquid truck : EJ : Industry-Fuels
-H2 liquid truck : H2 liquid truck : H2 liquid truck : H2 central production : EJ : H2 liquid truck : EJ : Industry-Fuels
-H2 pipeline : H2 pipeline : H2 pipeline : elect_td_ind : EJ : H2 pipeline : EJ : Industry-Fuels
-H2 pipeline : H2 pipeline : H2 pipeline : H2 central production : EJ : H2 pipeline : EJ : Industry-Fuels
-H2 retail delivery : H2 retail delivery : H2 retail delivery : H2 wholesale delivery : EJ : H2 retail delivery : EJ : Industry-Fuels
-H2 retail dispensing : H2 retail dispensing : H2 retail dispensing : H2 wholesale dispensing : EJ : H2 retail dispensing : EJ : Industry-Fuels
-H2 wholesale delivery : H2 liquid truck : H2 liquid truck : H2 liquid truck : EJ : H2 wholesale delivery : EJ : Industry-Fuels
-H2 wholesale delivery : H2 pipeline : H2 pipeline : H2 pipeline : EJ : H2 wholesale delivery : EJ : Industry-Fuels
-H2 wholesale dispensing : forecourt production : electrolysis : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : forecourt production : natural gas steam reforming : delivered gas : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : forecourt production : natural gas steam reforming : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : H2 delivery : H2 liquid truck : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : H2 delivery : H2 liquid truck : H2 liquid truck : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : H2 delivery : H2 pipeline : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-H2 wholesale dispensing : H2 delivery : H2 pipeline : H2 pipeline : EJ : H2 wholesale dispensing : EJ : Industry-Fuels
-gas pipeline : gas pipeline : gas pipeline : gas processing : EJ : gas pipeline : EJ : Industry-Fuels
-gas processing : biomass gasification : biomass gasification : regional biomass : EJ : gas processing : EJ : Industry-Fuels
-gas processing : coal gasification : coal gasification : regional coal : EJ : gas processing : EJ : Industry-Fuels
-gas processing : natural gas : natural gas : regional natural gas : EJ : gas processing : EJ : Industry-Fuels
+coal to liquids : coal to liquids : coal to liquids CCS level 1 : regional coal : EJ : coal to liquids : EJ : Industry-Fuels-USA
+coal to liquids : coal to liquids : coal to liquids CCS level 2 : regional coal : EJ : coal to liquids : EJ : Industry-Fuels-USA
+gas to liquids : gas to liquids : gas to liquids : regional natural gas : EJ : gas to liquids : EJ : Industry-Fuels-USA
+oil refining : oil refining : oil refining : elect_td_ind : EJ : oil refining : EJ : Industry-Fuels-USA
+oil refining : oil refining : oil refining : regional oil : EJ : oil refining : EJ : Industry-Fuels-USA
+oil refining : oil refining : oil refining : wholesale gas : EJ : oil refining : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : biodiesel : regional biomassOil : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : biodiesel : wholesale gas : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : BTL with hydrogen : H2 industrial : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : BTL with hydrogen : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : cellulosic ethanol : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : corn ethanol : elect_td_ind : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : corn ethanol : regional corn for ethanol : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : corn ethanol : wholesale gas : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : FT biofuels : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : FT biofuels CCS level 1 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : FT biofuels CCS level 2 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : cellulosic ethanol CCS level 1 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+biomass liquids : biomass liquids : cellulosic ethanol CCS level 2 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 : regional biomass : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 CCS : regional biomass : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : biomass : biomass to H2 CCS : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : coal : coal chemical CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : coal : coal chemical CCS : regional coal : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : electricity : electrolysis : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : gas : natural gas steam reforming : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : gas : natural gas steam reforming : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : gas : gas ATR CCS : elect_td_ind : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : gas : gas ATR CCS : regional natural gas : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : nuclear : electrolysis : nuclearFuelGenIII : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : solar : electrolysis : global solar resource : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : solar : electrolysis : PV_resource : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 central production : wind : electrolysis : onshore wind resource : EJ : H2 central production : EJ : Industry-Fuels-USA
+H2 industrial : H2 delivery : H2 delivery : H2 wholesale delivery : EJ : H2 industrial : EJ : Industry-Fuels-USA
+H2 industrial : onsite production : electrolysis : elect_td_ind : EJ : H2 industrial : EJ : Industry-Fuels-USA
+H2 liquid truck : H2 liquid truck : H2 liquid truck : elect_td_ind : EJ : H2 liquid truck : EJ : Industry-Fuels-USA
+H2 liquid truck : H2 liquid truck : H2 liquid truck : H2 central production : EJ : H2 liquid truck : EJ : Industry-Fuels-USA
+H2 pipeline : H2 pipeline : H2 pipeline : elect_td_ind : EJ : H2 pipeline : EJ : Industry-Fuels-USA
+H2 pipeline : H2 pipeline : H2 pipeline : H2 central production : EJ : H2 pipeline : EJ : Industry-Fuels-USA
+H2 retail delivery : H2 retail delivery : H2 retail delivery : H2 wholesale delivery : EJ : H2 retail delivery : EJ : Industry-Fuels-USA
+H2 retail dispensing : H2 retail dispensing : H2 retail dispensing : H2 wholesale dispensing : EJ : H2 retail dispensing : EJ : Industry-Fuels-USA
+H2 wholesale delivery : H2 liquid truck : H2 liquid truck : H2 liquid truck : EJ : H2 wholesale delivery : EJ : Industry-Fuels-USA
+H2 wholesale delivery : H2 pipeline : H2 pipeline : H2 pipeline : EJ : H2 wholesale delivery : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : forecourt production : electrolysis : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : forecourt production : natural gas steam reforming : delivered gas : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : forecourt production : natural gas steam reforming : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : H2 delivery : H2 liquid truck : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : H2 delivery : H2 liquid truck : H2 liquid truck : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : H2 delivery : H2 pipeline : elect_td_trn : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+H2 wholesale dispensing : H2 delivery : H2 pipeline : H2 pipeline : EJ : H2 wholesale dispensing : EJ : Industry-Fuels-USA
+gas pipeline : gas pipeline : gas pipeline : gas processing : EJ : gas pipeline : EJ : Industry-Fuels-USA
+gas processing : biomass gasification : biomass gasification : regional biomass : EJ : gas processing : EJ : Industry-Fuels-USA
+gas processing : coal gasification : coal gasification : regional coal : EJ : gas processing : EJ : Industry-Fuels-USA
+gas processing : natural gas : natural gas : regional natural gas : EJ : gas processing : EJ : Industry-Fuels-USA
 agricultural energy use : mobile : electricity : elect_td_ind : EJ : agricultural energy use : EJ : Trn-Nonroad
 agricultural energy use : mobile : hydrogen : H2 wholesale dispensing : EJ : agricultural energy use : EJ : Trn-Nonroad
 agricultural energy use : mobile : refined liquids : refined liquids industrial : EJ : agricultural energy use : EJ : Trn-Nonroad
@@ -828,8 +775,6 @@ trn_shipping_intl : International Ship : BEV : elect_td_trn : EJ : trn_shipping_
 trn_shipping_intl : International Ship : FCEV : H2 wholesale dispensing : EJ : trn_shipping_intl : million ton-km : Trn-ALM
 trn_shipping_intl : International Ship : Hybrid Liquids : refined liquids enduse : EJ : trn_shipping_intl : million ton-km : Trn-ALM
 trn_shipping_intl : International Ship : Liquids : refined liquids enduse : EJ : trn_shipping_intl : million ton-km : Trn-ALM
-coal to liquids : coal to liquids : coal to liquids CCS level 1 : regional coal : EJ : coal to liquids : EJ : Industry-Fuels
-coal to liquids : coal to liquids : coal to liquids CCS level 2 : regional coal : EJ : coal to liquids : EJ : Industry-Fuels
 comm cooking : electricity : electric range : elect_td_bld : EJ : comm cooking : EJ : Buildings-Comm
 comm cooking : electricity : electric range hi-eff : elect_td_bld : EJ : comm cooking : EJ : Buildings-Comm
 comm cooking : gas : gas range : delivered gas : EJ : comm cooking : EJ : Buildings-Comm
@@ -851,10 +796,6 @@ comm refrigeration : electricity : refrigeration : elect_td_bld : EJ : comm refr
 comm refrigeration : electricity : refrigeration hi-eff : elect_td_bld : EJ : comm refrigeration : EJ : Buildings-Comm
 comm ventilation : electricity : ventilation : elect_td_bld : EJ : comm ventilation : million km3 : Buildings-Comm
 comm ventilation : electricity : ventilation hi-eff : elect_td_bld : EJ : comm ventilation : million km3 : Buildings-Comm
-gas to liquids : gas to liquids : gas to liquids : regional natural gas : EJ : gas to liquids : EJ : Industry-Fuels
-oil refining : oil refining : oil refining : elect_td_ind : EJ : oil refining : EJ : Industry-Fuels
-oil refining : oil refining : oil refining : regional oil : EJ : oil refining : EJ : Industry-Fuels
-oil refining : oil refining : oil refining : wholesale gas : EJ : oil refining : EJ : Industry-Fuels
 resid clothes dryers : electricity : clothes dryer : elect_td_bld : EJ : resid clothes dryers : Mt : Buildings-Resid
 resid clothes dryers : electricity : clothes dryer hi-eff : elect_td_bld : EJ : resid clothes dryers : Mt : Buildings-Resid
 resid clothes dryers : gas : clothes dryer : delivered gas : EJ : resid clothes dryers : Mt : Buildings-Resid
@@ -897,19 +838,57 @@ resid other : refined liquids : refined liquids : refined liquids enduse : EJ : 
 resid refrigerators : electricity : refrigerator : elect_td_bld : EJ : resid refrigerators : EJ : Buildings-Resid
 resid refrigerators : electricity : refrigerator hi-eff : elect_td_bld : EJ : resid refrigerators : EJ : Buildings-Resid
 resid televisions : electricity : electricity : elect_td_bld : EJ : resid televisions : EJ : Buildings-Resid
-biomass liquids : biomass liquids : biodiesel : regional biomassOil : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : biodiesel : wholesale gas : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : BTL with hydrogen : H2 industrial : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : BTL with hydrogen : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : cellulosic ethanol : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : corn ethanol : elect_td_ind : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : corn ethanol : regional corn for ethanol : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : corn ethanol : wholesale gas : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : FT biofuels : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : FT biofuels CCS level 1 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : FT biofuels CCS level 2 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : cellulosic ethanol CCS level 1 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
-biomass liquids : biomass liquids : cellulosic ethanol CCS level 2 : regional biomass : EJ : biomass liquids : EJ : Industry-Fuels
+elec_biomass (conv) : biomass (conv) : biomass (conv) (cooling pond) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
+elec_biomass (conv) : biomass (conv) : biomass (conv) (dry cooling) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
+elec_biomass (conv) : biomass (conv) : biomass (conv) (once through) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
+elec_biomass (conv) : biomass (conv) : biomass (conv) (recirculating) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
+elec_biomass (conv) : biomass (conv) : biomass (conv) (seawater) : regional biomass : EJ : elec_biomass (conv) : EJ : EGU
+elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (dry cooling) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
+elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (once through) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
+elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (recirculating) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
+elec_biomass (IGCC) : biomass (IGCC) : biomass (IGCC) (seawater) : regional biomass : EJ : elec_biomass (IGCC) : EJ : EGU
+elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (cooling pond) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
+elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (dry cooling) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
+elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (once through) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
+elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (recirculating) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
+elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (seawater) : regional coal : EJ : elec_coal (conv pul) : EJ : EGU
+elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (dry cooling) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
+elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (once through) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
+elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (recirculating) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
+elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (seawater) : regional coal : EJ : elec_coal (IGCC) : EJ : EGU
+elec_CSP : CSP : CSP (dry_hybrid) : global solar resource : EJ : elec_CSP : EJ : EGU
+elec_CSP : CSP : CSP (recirculating) : global solar resource : EJ : elec_CSP : EJ : EGU
+elec_CSP_storage : CSP_storage : CSP_storage (dry_hybrid) : global solar resource : EJ : elec_CSP_storage : EJ : EGU
+elec_CSP_storage : CSP_storage : CSP_storage (recirculating) : global solar resource : EJ : elec_CSP_storage : EJ : EGU
+elec_gas (CC) : gas (CC) : gas (CC) (cooling pond) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
+elec_gas (CC) : gas (CC) : gas (CC) (dry cooling) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
+elec_gas (CC) : gas (CC) : gas (CC) (once through) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
+elec_gas (CC) : gas (CC) : gas (CC) (recirculating) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
+elec_gas (CC) : gas (CC) : gas (CC) (seawater) : wholesale gas : EJ : elec_gas (CC) : EJ : EGU
+elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (cooling pond) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
+elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (dry cooling) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
+elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (once through) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
+elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (recirculating) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
+elec_gas (steam/CT) : gas (steam/CT) : gas (steam/CT) (seawater) : wholesale gas : EJ : elec_gas (steam/CT) : EJ : EGU
+elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (cooling pond) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
+elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (once through) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
+elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (recirculating) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
+elec_Gen_II_LWR : Gen_II_LWR : Gen_II_LWR (seawater) : nuclearFuelGenII : EJ : elec_Gen_II_LWR : EJ : EGU
+elec_Gen_III : Gen_III : Gen_III (cooling pond) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
+elec_Gen_III : Gen_III : Gen_III (once through) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
+elec_Gen_III : Gen_III : Gen_III (recirculating) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
+elec_Gen_III : Gen_III : Gen_III (seawater) : nuclearFuelGenIII : EJ : elec_Gen_III : EJ : EGU
+elec_geothermal : geothermal : geothermal (dry_hybrid) : geothermal : EJ : elec_geothermal : EJ : EGU
+elec_geothermal : geothermal : geothermal (recirculating) : geothermal : EJ : elec_geothermal : EJ : EGU
+elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (dry cooling) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
+elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (once through) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
+elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (recirculating) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
+elec_refined liquids (CC) : refined liquids (CC) : refined liquids (CC) (seawater) : refined liquids industrial : EJ : elec_refined liquids (CC) : EJ : EGU
+elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (cooling pond) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
+elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (dry cooling) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
+elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (once through) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
+elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (recirculating) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
+elec_refined liquids (steam/CT) : refined liquids (steam/CT) : refined liquids (steam/CT) (seawater) : refined liquids industrial : EJ : elec_refined liquids (steam/CT) : EJ : EGU
 elec_biomass (IGCC CCS) : biomass (IGCC CCS) : biomass (IGCC CCS) (dry cooling) : regional biomass : EJ : elec_biomass (IGCC CCS) : EJ : EGU
 elec_biomass (IGCC CCS) : biomass (IGCC CCS) : biomass (IGCC CCS) (once through) : regional biomass : EJ : elec_biomass (IGCC CCS) : EJ : EGU
 elec_biomass (IGCC CCS) : biomass (IGCC CCS) : biomass (IGCC CCS) (recirculating) : regional biomass : EJ : elec_biomass (IGCC CCS) : EJ : EGU
@@ -958,6 +937,27 @@ electricity : solar : PV_storage : global solar resource : EJ : electricity : EJ
 electricity : wind : wind : onshore wind resource : EJ : electricity : EJ : EGU
 electricity : wind : wind_offshore : offshore wind resource : EJ : electricity : EJ : EGU
 electricity : wind : wind_storage : onshore wind resource : EJ : electricity : EJ : EGU
+refining : biomass liquids : biodiesel : regional biomassOil : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : biodiesel : wholesale gas : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : BTL with hydrogen : H2 industrial : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : BTL with hydrogen : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : cellulosic ethanol : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : corn ethanol : elect_td_ind : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : corn ethanol : regional corn for ethanol : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : corn ethanol : wholesale gas : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : FT biofuels : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : sugar cane ethanol : regional sugar for ethanol : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : FT biofuels CCS level 1 : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : FT biofuels CCS level 2 : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : cellulosic ethanol CCS level 1 : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : biomass liquids : cellulosic ethanol CCS level 2 : regional biomass : EJ : refining : EJ : Industry-Fuels
+refining : coal to liquids : coal to liquids : regional coal : EJ : refining : EJ : Industry-Fuels
+refining : coal to liquids : coal to liquids CCS level 1 : regional coal : EJ : refining : EJ : Industry-Fuels
+refining : coal to liquids : coal to liquids CCS level 2 : regional coal : EJ : refining : EJ : Industry-Fuels
+refining : gas to liquids : gas to liquids : regional natural gas : EJ : refining : EJ : Industry-Fuels
+refining : oil refining : oil refining : elect_td_ind : EJ : refining : EJ : Industry-Fuels
+refining : oil refining : oil refining : regional oil : EJ : refining : EJ : Industry-Fuels
+refining : oil refining : oil refining : wholesale gas : EJ : refining : EJ : Industry-Fuels
 delivered biomass : delivered biomass : delivered biomass : regional biomass : EJ : regional biomass : EJ : Energy-Carrier
 delivered coal : delivered coal : delivered coal : regional coal : EJ : regional coal : EJ : Energy-Carrier
 delivered gas : delivered gas : delivered gas : delivered gas : EJ : delivered gas : EJ : Energy-Carrier
