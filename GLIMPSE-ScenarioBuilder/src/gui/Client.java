@@ -100,7 +100,7 @@ import org.controlsfx.control.StatusBar;
 public class Client extends Application {
 
 	// version
-	private static final String VERSION = "GLIMPSE-CE v1.0-alpha ScenarioBuilder";
+	private static final String VERSION = "GLIMPSE-CE v1.0-beta ScenarioBuilder";
 	
     // region Constants
     private static final double MIN_WINDOW_HEIGHT = 650;
@@ -257,7 +257,7 @@ public class Client extends Application {
         setupExecutionThreads();
 
         // Set application icon
-        final String iconFile = "file:" + vars.getGlimpseResourceDir() + File.separator + "GLIMPSE_icon.png";
+        final String iconFile = "file:" + vars.getGlimpseResourceDir() + File.separator + "GLIMPSE_icon_large.png";
         primaryStage.getIcons().add(new Image(iconFile));
     }
 

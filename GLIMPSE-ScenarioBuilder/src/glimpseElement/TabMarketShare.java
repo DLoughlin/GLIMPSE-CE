@@ -1029,7 +1029,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					use_this_policy_name += "-" + t;
 				}
 
-				if (((t <= max_year) && (applied_to.equals("all stock")))
+				if (((t <= max_year) && (applied_to.equals("all stock")) && ( t >= start_year))
 						|| ((t <= max_year) && (t >= min_year) && (applied_to.equals("sales")))) {
 					
 					for (int j = 0; j < subset_list.size(); j++) {
