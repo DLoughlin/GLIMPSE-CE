@@ -830,7 +830,10 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 				BXDoc doc = new BXDoc(temp.parent());
 				String docName = "";
 				try {
-					docName = new File(new URI(doc.getDocumentURI())).getName();
+					//docName = new File(new URI(doc.getDocumentURI())).getName();
+					URI uri = new URI(doc.getDocumentURI());
+					String path = uri.getPath();
+					docName = path.substring(path.lastIndexOf('/') + 1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
