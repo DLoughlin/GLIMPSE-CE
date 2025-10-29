@@ -72,7 +72,7 @@ tchBndListFilename = $scenarioBuilderDir$/config/v8.2/tech_bnd_list_USA_8.2.txt
 
 #table with load factors for transportation technologies
 #TODO: Need to update for 8.2
-tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_7p0.csv
+tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_8p2.csv
 
 #files include specifications used in generating xml files
 xmlHeaderFilename = $scenarioBuilderDir$/config/v8.2/glimpseXMLHeaders_v8.2.txt
@@ -83,7 +83,7 @@ monetaryConversionsFilename = $scenarioBuilderDir$/config/v8.2/monetary_conversi
 
 #allowable years for populating scenario builder
 allYearList = 1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
-allowablePolicyYearList = 2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
+allowablePolicyYears = 2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
 calibrationYear = 2021
 
 
@@ -112,7 +112,7 @@ isGcamUSA = true
 #thresholds for warnings
 maxDatabaseSizeGB = 38
 
-allowablePolicyYears = "2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100"
+
 
 #These values are inserted into the scenario-specific configuration file when it created. Comment with # to use default
 stop-year = 2050

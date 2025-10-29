@@ -60,7 +60,7 @@ public class GLIMPSEVariables {
     private GLIMPSEStyles styles;
 
     // --- Constants ---
-    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v2.0";
+    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.0-beta";
     public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
     public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
     private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
@@ -1196,6 +1196,9 @@ public class GLIMPSEVariables {
         case "allowablepolicyyears":
             returnVal = ""+allowablePolicyYears;
             break;
+        case "allyears":
+            returnVal = ""+allYears;
+            break;
         case "useallavailableprocessors":
             returnVal = ""+useAllAvailableProcessors;
             break;
@@ -1439,9 +1442,7 @@ public class GLIMPSEVariables {
         case "executecmd":
             executeCmd = val;
             break;
-        case "allowablepolicyyears":
-            setAllowablePolicyYears(val);
-            break;
+
         case "glimpsedocdir":
             glimpseDocDir = fixDir(val);
             break;
@@ -1558,6 +1559,21 @@ public class GLIMPSEVariables {
         case "stop-year":
             this.setStopYear(val);
             break;
+        case "allowablepolicyyears":
+            setAllowablePolicyYears(val);
+            break;
+        case "allowablepolicyyearlist":
+            setAllowablePolicyYears(val);
+            break;
+        case "startyearforshare":
+            setStartYearForShare(val);
+            break;    
+        case "allyears":
+            setAllYears(val);
+            break;      
+        case "allyearslist":
+            setAllYears(val);
+            break; 
         case "runqueuestr":
             runQueueStr = fixDir(val);
             break;
@@ -1596,12 +1612,6 @@ public class GLIMPSEVariables {
         case "debugrename":
             setDebugRename(val);
             break;    
-        case "startyearforshare":
-            setStartYearForShare(val);
-            break;    
-        case "allyears":
-            setAllYears(val);
-            break;      
         case "calibrationyear":
             setCalibrationYear(val);
             break;

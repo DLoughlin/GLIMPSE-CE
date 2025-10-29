@@ -201,6 +201,12 @@ public class XMLDB {
         // BaseX is particular about valid container names and will change them without warning
         // so we check explicitly.
         String containerNameUnmodified = dbLocationFile.getName();
+        
+        System.out.println("Container name="+containerNameUnmodified);
+        
+        //workaround
+        //contName = containerNameUnmodified;
+        //Dan: This code seems to be generating false warnings, commenting out for now
         contName = IO.get( containerNameUnmodified ).dbName();
         if( !containerNameUnmodified.equals( contName ) ) {
             System.out.println( "WARNING: "+containerNameUnmodified+" contains invalid characters, it has been changed to: "+contName );
@@ -243,9 +249,9 @@ public class XMLDB {
         } else {
         	warningMessage="The specified directory does not exist, would you like to initialize a new database?";
         }
+      
         
-        
-        //System.out.println("Does database directory exist?"+doesDbDirectoryExist);
+        System.out.println("Database exists? "+DbDirectoryExists);
         
         if (DbDirectoryExists && oneFileHasBasexExt) {
         	try {

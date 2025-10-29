@@ -100,7 +100,7 @@ import org.controlsfx.control.StatusBar;
 public class Client extends Application {
 
 	// version
-	private static final String VERSION = "GLIMPSE-CE v1.0-beta ScenarioBuilder";
+	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder";
 	
     // region Constants
     private static final double MIN_WINDOW_HEIGHT = 650;
