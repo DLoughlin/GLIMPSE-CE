@@ -291,6 +291,7 @@ public class GLIMPSEUtils {
 		return formattedDate;
 	}
 
+
 	/**
 	 * Shows a warning message dialog on the JavaFX application thread.
 	 *
@@ -299,17 +300,24 @@ public class GLIMPSEUtils {
 	public void warningMessage(String msg) {
 		if (msg == null)
 			return;
-		Platform.runLater(() -> {
-			Alert alert = new Alert(AlertType.WARNING);
+		if (Platform.isFxApplicationThread()) {
+			Alert alert = new Alert(AlertType.WARNING); 
 			alert.setTitle(LABEL_WARNING);
 			alert.setHeaderText(LABEL_WARNING);
 			alert.setContentText(msg);
-
 			alert.showAndWait();
-		});
-
+		} else {
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle(LABEL_WARNING);
+				alert.setHeaderText(LABEL_WARNING);
+				alert.setContentText(msg);
+				alert.showAndWait();
+			});
+		}
+		return;
 	}
-
+	
 	/**
 	 * Displays a dialog for text input and returns the entered text.
 	 *
@@ -2822,4 +2830,24 @@ public class GLIMPSEUtils {
 		}
 		return policyType;
 	}
+
+	/**
+     * Removes duplicate entries from the provided ArrayList of strings.
+     * <p>
+     * This method returns a new ArrayList containing only the first occurrence of each string
+     * from the input list, preserving the original order. If the input list is null, null is returned.
+     *
+     * @param stringList the ArrayList of strings from which to remove duplicates
+     * @return a new ArrayList with duplicates removed, or null if the input is null
+     */
+    public ArrayList<String> removeDuplicateStringsFromArrayList(ArrayList<String> stringList) {
+        if (stringList == null) return null;
+        ArrayList<String> resultList = new ArrayList<>();
+        for (String str : stringList) {
+            if (!resultList.contains(str)) {
+                resultList.add(str);
+            }
+        }
+        return resultList;
+    }
 }

@@ -500,7 +500,7 @@ public class InterfaceMain implements ActionListener {
 		}
 		String lastHeight = main.savedProperties.getProperty("lastHeight", "600");
 		String lastWidth = main.savedProperties.getProperty("lastWidth", "800");
-		String enableMapping=main.savedProperties.getProperty("enableMapping", "false");
+		String enableMapping=main.savedProperties.getProperty("enableMapping", "true");
 		if(enableMapping!=null) {
 			try {
 				boolean enableMaps=Boolean.parseBoolean(enableMapping);
@@ -509,7 +509,7 @@ public class InterfaceMain implements ActionListener {
 				System.out.println("Couldn't parse enableMaps: "+enableMapping);
 			}
 		}
-		String enableSankey=main.savedProperties.getProperty("enableSankey", "false");
+		String enableSankey=main.savedProperties.getProperty("enableSankey", "true");
 		if(enableSankey!=null) {
 			try {
 				boolean enableSankeys=Boolean.parseBoolean(enableSankey);

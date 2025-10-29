@@ -368,63 +368,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
         }
     }
     
-//    /**
-//     * Populates the sector combo box based on the technology info and filter text.
-//     * Handles filtering and ensures no duplicate sectors are added.
-//     * <p>
-//     * If a filter is applied, only categories matching the filter are shown.
-//     */
-//    private void setupComboBoxCategoryOld() {
-//        comboBoxCategory.getItems().clear();
-//        comboBoxCategory.getItems().add("All");
-//        comboBoxCategory.getSelectionModel().selectFirst();
-//        try {
-//            String[][] techInfo = vars.getTechInfo();
-//            if (techInfo == null) return;
-//            ArrayList<String> categoryList = new ArrayList<>();
-//            String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-//            boolean useFilter = !filterText.isEmpty();
-//            //if (!useFilter) categoryList.add(SELECT_ONE);
-//            //categoryList.add(ALL);
-// 
-//            for (String[] tech : techInfo) {
-//                if (tech == null || tech.length == 0) continue;
-//                String text = tech[7] != null ? tech[7].trim() : "";
-//                boolean match = false;
-//                for (String cat : categoryList) {
-//                    if (text.equals(cat)) {
-//                        match = true;
-//                        break;
-//                    }
-//                }
-//                if (!match) {
-//                    boolean show = true;
-//                    if (useFilter) {
-//                        show = false;
-//                        for (String temp : tech) {
-//                            if (temp != null && temp.contains(filterText)) show = true;
-//                        }
-//                    }
-//                    if (show) {
-//                        categoryList.add(text);
-//                    }
-//                }
-//            }
-//            categoryList = utils.getUniqueItemsFromStringArrayList(categoryList);
-//            for (String cat : categoryList) {
-//                if (cat != null) comboBoxCategory.getItems().add(cat.trim());
-//            }
-//            comboBoxCategory.getSelectionModel().select(0);
-//        } catch (NullPointerException e) {
-//            utils.warningMessage("Problem reading tech list: Null value encountered.");
-//            System.out.println("NullPointerException reading tech list from " + vars.getTchBndListFilename() + ":");
-//            System.out.println("  ---> " + e);
-//        } catch (Exception e) {
-//            utils.warningMessage("Problem reading tech list.");
-//            System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
-//            System.out.println("  ---> " + e);
-//        }
-//    }
 
     /**
      * Updates the technology check combo box based on the selected sector and filter text.
@@ -590,13 +533,15 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
             String header_part1 = "GLIMPSEPFStdTechUpBoundP1";
             String header_part2 = "GLIMPSEPFStdTechUpBoundP2";
-            if (bound_type.equals("fixed")) {
+            
+            if (bound_type.equals("fixed bound")) {
                 header_part2 = "GLIMPSEPFStdTechFxBoundP2";
-            }
-
-            if (bound_type.equals("lower")) {
+            } else if (bound_type.equals("lower bound")) {
                 header_part1 = "GLIMPSEPFStdTechLoBoundP1";
                 header_part2 = "GLIMPSEPFStdTechLoBoundP2";
+            } else if (bound_type.equals("upper bound")) {
+                header_part1 = "GLIMPSEPFStdTechUpBoundP1";
+                header_part2 = "GLIMPSEPFStdTechUpBoundP2";
             }
 
             ObservableList<String> tech_list = checkComboBoxTech.getCheckModel().getCheckedItems();
@@ -623,27 +568,44 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 valuef_list[i] = Double.parseDouble(value_list[i]);
             }
 
-            int start_year = 2010;
+            int start_year = Integer.parseInt(year_list[0]);
+            int calib_year = vars.getCalibrationYear();
             int last_year = Integer.parseInt(year_list[year_list.length - 1]);
-            String sss = vars.getStartYearForShare();
-            if (!sss.equals("2010")) {
-                try {
-                    start_year = Integer.parseInt(sss);
-                } catch (Exception e1) {
-                    System.out.println("Problem converting startYearForShare (" + sss + ") to int. Using default value of 2010.");
-                }
-            }
+
 
             StringBuilder nestedBuffer = new StringBuilder();
             StringBuilder nonNestedBuffer = new StringBuilder();
 
+            boolean isTransportation = false;
+            boolean isMultiSubsector = false;
+            String prev_subsector="";
+            double loadFactor = 1.0;
+            String sector="";
+            String subsector="";
+            String tech="";
+            
+            ArrayList<String> loadFactorList = new ArrayList<>();
+            
+            //Dan: only allow one transportation tech at a time because of different load factors 
+            
             for (String techItem : tech_list) {
                 String[] temp = utils.splitString(techItem.trim(), ":");
 
-                String sector = temp[0].trim();
-                String subsector = temp[1].trim();
-                String tech = temp[2].trim();
+                sector = temp[0].trim();
+                subsector = temp[1].trim();
+                tech = temp[2].trim();
 
+                if (prev_subsector.equals("")) {
+				 	prev_subsector=subsector;
+				} else if (subsector!=prev_subsector) {
+                	prev_subsector=subsector;
+                	isMultiSubsector=true;
+                }
+                
+                if (sector.toLowerCase().startsWith("trn")) {
+					isTransportation = true;
+				} 
+                
                 boolean is_nested = subsector.contains("=>");
                 if (is_nested) {
                     no_nested++;
@@ -653,19 +615,43 @@ public class TabTechBound extends PolicyTab implements Runnable {
                 }
 
                 for (String state : listOfSelectedLeaves) {
+                	
                     String use_this_policy_name = policy_name;
                     if (treatment.equals("each selected region") && listOfSelectedLeaves.length >= 2) {
                         use_this_policy_name = state + "_" + policy_name;
                     }
-
-                    for (int y = start_year; y <= last_year; y += 5) {
-                        if (is_nested) {
-                            nestedBuffer.append(state).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(y).append(",").append(use_this_policy_name).append(vars.getEol());
-                        } else {
-                            nonNestedBuffer.append(state).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(y).append(",").append(use_this_policy_name).append(vars.getEol());
-                        }
+                    state = state.trim();
+                   
+                    for (String yr : year_list) {   
+                    	
+                    	if (sector.toLowerCase().startsWith("trn")) {
+                    		String loadStr = utils.getTrnVehInfo("load", state, sector, subsector, tech, yr);
+                    		loadFactorList.add(state+","+sector+","+subsector+","+yr+","+loadStr);
+                    	}
+                    	
+                    	int y = Integer.parseInt(yr);
+						if (((y > calib_year) && (y >= start_year) && (y <= last_year))) { //only apply bound to legit years 
+	                        if (is_nested) {
+	                            nestedBuffer.append(state).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(y).append(",").append(use_this_policy_name).append(vars.getEol());
+	                        } else {
+	                            nonNestedBuffer.append(state).append(",").append(sector).append(",").append(subsector).append(",").append(tech).append(",").append(y).append(",").append(use_this_policy_name).append(vars.getEol());
+	                        }
+						}
                     }
-                }
+                    	
+                 }
+            }
+            
+            if (loadFactorList.size()>0) loadFactorList = utils.removeDuplicateStringsFromArrayList(loadFactorList);
+            
+            if ((isTransportation)&&(isMultiSubsector)) {
+            	String msg = "You have selected transportation technologies from multiple subsectors.\n" +
+						"This can be problematic since different subsectors typically have different load factors.\n" +
+            			"Please consider creating separate technology bound scenario components for each subsector.";
+            	//utils.warningMessage("You have selected transportation technologies from multiple subsectors.\n" +
+            	//		"This can be problematic since different subsectors typically have different load factors.\n" +
+				//		"Please consider creating separate technology bound scenario components for each subsector.");
+            	System.out.println(msg);
             }
 
             files.writeToBufferedFile(bw1, nestedBuffer.toString());
@@ -675,7 +661,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             files.writeToBufferedFile(bw3, "Variable ID" + vars.getEol());
             files.writeToBufferedFile(bw3, header_part2 + vars.getEol() + vars.getEol());
 
-            if (bound_type.equals("fixed")) {
+            if (bound_type.equals("fixed bound")) {
                 files.writeToBufferedFile(bw3, "region,policy-name,market,type,constraint-yr,constraint-val,min-price-yr,min-price-val" + vars.getEol());
             } else {
                 files.writeToBufferedFile(bw3, "region,policy-name,market,type,constraint-yr,constraint-val" + vars.getEol());
@@ -695,11 +681,36 @@ public class TabTechBound extends PolicyTab implements Runnable {
                     String data_str = data.replace(" ", "");
                     String year = utils.splitString(data_str, ",")[0];
                     String val = utils.splitString(data_str, ",")[1];
+                    
+                    String textStr = state+","+sector+","+subsector+","+year;
+                    loadFactor = 1.0;
+                    
+                    if (loadFactorList.size()>0) {
+                      for (String lfStr : loadFactorList) {
+						if (lfStr.startsWith(textStr)) {
+							String[] temp = utils.splitString(lfStr, ",");
+							try {
+								loadFactor = Double.parseDouble(temp[4]);
+							} catch (Exception e) {
+								loadFactor = 1.0;
+							}
+							break;
+						}
+					  }
+                    }
+                                       
+                    if (isTransportation) {
+                    	Double valf = Double.parseDouble(val);
+                    	valf=valf/(1.0e9*loadFactor); // convert from $/quads to $/EJ
+                        val = ""+valf;                    	
+                    }
 
-                    if (!bound_type.equals("fixed")) {
-                        constraintBuffer.append(state).append(",").append(use_this_policy_name).append(",").append(use_this_market_name).append(",tax,").append(year).append(",").append(val).append(vars.getEol());
-                    } else {
+                    if (bound_type.equals("fixed bound")) {
                         constraintBuffer.append(state).append(",").append(use_this_policy_name).append(",").append(use_this_market_name).append(",tax,").append(year).append(",").append(val).append(",").append(year).append(",-100").append(vars.getEol());
+					} else if (bound_type.equals("upper bound")) {
+                    	constraintBuffer.append(state).append(",").append(use_this_policy_name).append(",").append(use_this_market_name).append(",tax,").append(year).append(",").append(val).append(vars.getEol());
+                    } else if (bound_type.equals("lower bound")) {
+						constraintBuffer.append(state).append(",").append(use_this_policy_name).append(",").append(use_this_market_name).append(",subsidy,").append(year).append(",").append(val).append(vars.getEol());
                     }
                 }
             }
@@ -711,7 +722,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
             files.closeBufferedFile(bw2);
             files.closeBufferedFile(bw3);
 
-             String temp_file0 = tempDirName + File.separator + tempFilename0;
+            String temp_file0 = tempDirName + File.separator + tempFilename0;
             String temp_file1 = tempDirName + File.separator + tempFilename1;
             String temp_file2 = tempDirName + File.separator + tempFilename2;
             String temp_file3 = tempDirName + File.separator + tempFilename3;

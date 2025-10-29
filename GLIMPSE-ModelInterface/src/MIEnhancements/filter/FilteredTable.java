@@ -308,10 +308,10 @@ public class FilteredTable {
 		//YD added,Apr-2024
 		jb = new JButton("Mapping");
 		jb.setBackground(LegendUtil.getRGB(-8205574));
-		jb.setToolTipText("Beta feature: Map regional data");
+		jb.setToolTipText("Map regional data");
 		Font f=jb.getFont();
-		Font f1=new Font(f.getFontName(),Font.ITALIC,f.getSize());
-		jb.setFont(f1);
+		//Font f1=new Font(f.getFontName(),Font.ITALIC,f.getSize());
+		jb.setFont(f);
 
 		
 		//jb.setEnabled(InterfaceMain.enableMapping);
@@ -367,8 +367,8 @@ public class FilteredTable {
 		//YD added,September-2024
 		jb = new JButton("Sankey");
 		jb.setBackground(LegendUtil.getRGB(-8205574));
-		jb.setToolTipText("Beta feature: Plot data to Sankey Diagram");
-		jb.setFont(f1);
+		jb.setToolTipText("Plot data to Sankey Diagram");
+		jb.setFont(f);
 		
 		java.awt.event.MouseListener mlSankey = new MouseAdapter() {
 
