@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="CA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+            <constraint year="2025">199.6241831</constraint>
+            <constraint year="2030">151.7754541</constraint>
+            <constraint year="2035">117.8066611</constraint>
+            <constraint year="2040">85.25997976</constraint>
+            <constraint year="2045">52.71329841</constraint>
+            <constraint year="2050">20.16661707</constraint>
+         </ghgpolicy>
+      </region>
+      <region name="CO">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="MI">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="MN">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="MT">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="NM">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="OR">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+      <region name="WA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt7</market>
+         </ghgpolicy>
+      </region>
+   </world>
+</scenario>

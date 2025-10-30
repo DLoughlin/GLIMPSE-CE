@@ -256,7 +256,13 @@ public class MapOptionsUtil {
 				//then keep this row 
 				if (theSame) {
 					String regionStr = (String) jtable.getValueAt(i, regionIdx);
-					double valForYear = Double.parseDouble((String) jtable.getValueAt(i, yearIdx));
+					double valForYear = 0;
+					try {
+						valForYear = Double.parseDouble((String) jtable.getValueAt(i, yearIdx));
+					} catch (Exception e) {
+						//catch the exception when the cell is empty or N/A
+						valForYear = 0;
+					}
 					dataForState.put(regionStr, valForYear);
 				}
 			}

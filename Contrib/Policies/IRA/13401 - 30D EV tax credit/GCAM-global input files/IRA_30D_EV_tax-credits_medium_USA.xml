@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="trn_pass_road_LDV_4W">
+                <tranSubsector name="Car">
+                    <stub-technology name="BEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.007599</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.015199</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FCEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.007599</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.015199</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+                <tranSubsector name="Large Car and Truck">
+                    <stub-technology name="BEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.007599</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.015199</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FCEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.007599</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>-0.015199</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_30D_EV_tax-credit_medium">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

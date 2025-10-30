@@ -1,0 +1,6400 @@
+<scenario>
+	<world>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		<region name="ME">
+			<supplysector name="regional biomass" nocreate="1">
+				<subsector name="regional biomass" nocreate="1">
+					<technology name="regional biomass" nocreate="1"><market>NATL</market>
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional corn for ethanol">
+				<subsector name="regional corn for ethanol">
+					<technology name="regional corn for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional sugar for ethanol">
+				<subsector name="regional sugar for ethanol">
+					<technology name="regional sugar for ethanol">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+			<supplysector name="regional biomassOil" nocreate="1">
+				<subsector name="regional biomassOil" nocreate="1">
+					<technology name="OilCrop" nocreate="1">
+						<period year="2020">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2025">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2030">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2035">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2040">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2045">
+							<input-tax name="bio-constraint"/>
+						</period>
+						<period year="2050">
+							<input-tax name="bio-constraint"/>
+						</period>
+					</technology>
+				</subsector>
+			</supplysector>
+		</region>
+		
+		
+		
+		
+			<policy-portfolio-standard name="bio-constraint">
+				<market>NATL</market>
+				<policyType>tax</policyType>
+				<constraint year="2020" >0.1</constraint>
+				<constraint year="2025" >0.1</constraint>
+				<constraint year="2030" >0.1</constraint>
+				<constraint year="2035" >0.1</constraint>
+				<constraint year="2040" >0.1</constraint>
+				<constraint year="2045" >0.1</constraint>
+				<constraint year="2050" >0.1</constraint>
+			</policy-portfolio-standard>
+		
+	</world>
+</scenario>

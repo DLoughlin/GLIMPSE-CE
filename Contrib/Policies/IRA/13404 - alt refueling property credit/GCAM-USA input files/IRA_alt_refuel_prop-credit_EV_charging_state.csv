@@ -1,0 +1,1229 @@
+INPUT_TABLE,,,,,,
+Variable ID,,,,,,
+StubTranTechCost,,,,,,
+,,,,,,
+region,supplysector,tranSubsector,stub-technology,year,minicam.non.energy.input,input-cost
+AK,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_alt_refuel_prop-credit_EV_charging,-0.000793
+AK,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_alt_refuel_prop-credit_EV_charging,0

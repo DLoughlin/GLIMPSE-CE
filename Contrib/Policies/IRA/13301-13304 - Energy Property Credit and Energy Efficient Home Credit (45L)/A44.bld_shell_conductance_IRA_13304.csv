@@ -1,0 +1,8 @@
+# File: A44.bld_shell_conductance.csv,,,,,,,,,
+# Title: Assumed USA shell efficiency trajectories,,,,,,,,,
+# Units: Unitless,,,,,,,,,
+# Comment: updated to AEO2022 Alternative Policies - Extended Credit scenario Table 21 https://www.eia.gov/outlooks/aeo/data/browser/#/?id=30-AEO2022&region=0-0&cases=extendcred_i~sunsetcred_i&start=2020&end=2050&f=Q&linechart=extendcred_i-d012822a.4-30-AEO2022~sunsetcred_i-d012822a.4-30-AEO2022~~~~~~~~sunsetcred_i-d012822a.75-30-AEO2022&ctype=linechart&sourcekey=0,,,,,,,,,
+# Column types: cnnnnnnnnn ,,,,,,,,,
+# ----------,,,,,,,,,
+gcam.consumer,1971,2010,2015,2020,2025,2030,2035,2040,2100
+resid,1,0.99,0.96,0.89,0.86,0.83,0.8,0.78,0.75

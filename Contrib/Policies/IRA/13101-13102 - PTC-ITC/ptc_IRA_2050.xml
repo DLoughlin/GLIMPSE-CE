@@ -1,0 +1,1937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <global-technology-database>
+         <location-info sector-name="base load generation" subsector-name="biomass_base_conv">
+            <technology name="biomass (conv) (cooling pond)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (dry cooling)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="biomass_base_IGCC">
+            <technology name="biomass (IGCC) (dry cooling)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="biomass_int_conv">
+            <technology name="biomass (conv) (cooling pond)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (dry cooling)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="biomass_int_IGCC">
+            <technology name="biomass (IGCC) (dry cooling)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.85</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.79</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.67</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="CSP_base_storage">
+            <technology name="CSP_base_storage">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="geo_base">
+            <technology name="geothermal (dry_hybrid)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.71</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="geothermal (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.71</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="nuc_base_Gen II">
+            <technology name="Gen_II_LWR (cooling pond)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="nuc_base_Gen III">
+            <technology name="Gen_III (cooling pond)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_III (once through)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_III (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+            <technology name="Gen_III (seawater)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.98</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-0.39</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="PV_base_storage">
+            <technology name="PV_base_storage">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="wind_base_storage">
+            <technology name="wind_base_storage">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.16</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="CSP_int">
+            <intermittent-technology name="CSP_int (dry_hybrid)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_int (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="peak generation" subsector-name="CSP_peak">
+            <intermittent-technology name="CSP_peak (dry_hybrid)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_peak (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="subpeak generation" subsector-name="CSP_subpeak">
+            <intermittent-technology name="CSP_subpeak (dry_hybrid)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_subpeak (recirculating)">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="PV_int">
+            <intermittent-technology name="PV_int">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="peak generation" subsector-name="PV_peak">
+            <intermittent-technology name="PV_peak">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="subpeak generation" subsector-name="PV_subpeak">
+            <intermittent-technology name="PV_subpeak">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="wind_base">
+            <intermittent-technology name="wind_base">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.16</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="wind_int">
+            <intermittent-technology name="wind_int">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.16</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="subpeak generation" subsector-name="wind_subpeak">
+            <intermittent-technology name="wind_subpeak">
+               <period year="2020">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.16</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2025">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2030">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.58</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2035">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>-1.34</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2040">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2045">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+               <period year="2050">
+                  <minicam-non-energy-input name="tax credit">
+                     <input-cost>0</input-cost>
+                  </minicam-non-energy-input>
+                  <CO2 name="CO2"/>
+               </period>
+            </intermittent-technology>
+         </location-info>
+      </global-technology-database>
+   </world>
+</scenario>

@@ -1,0 +1,313 @@
+﻿INPUT_TABLE
+Variable ID
+12
+
+sector,subsector,subsector2,technology,year,pollutant
+base load generation,biomass,biomass_base_conv,biomass (conv) (cooling pond),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv,biomass (conv) (dry cooling),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv,biomass (conv) (once through),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv,biomass (conv) (recirculating),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv,biomass (conv) (seawater),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv_CCS,biomass (conv CCS) (dry cooling),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv_CCS,biomass (conv CCS) (recirculating),2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv_CCS,biomass (conv CCS) (seawater),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC,biomass (IGCC) (dry cooling),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC,biomass (IGCC) (recirculating),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC,biomass (IGCC) (seawater),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC_CCS,biomass (IGCC CCS) (dry cooling),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC_CCS,biomass (IGCC CCS) (recirculating),2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC_CCS,biomass (IGCC CCS) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1951-1955,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1951-1955,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1951-1955,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1951-1955,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1986-1990,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1986-1990,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1986-1990,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1986-1990,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1996-2000,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1996-2000,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1996-2000,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1996-2000,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2001-2005,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2001-2005,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2001-2005,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2001-2005,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2006-2010,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2006-2010,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2006-2010,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2006-2010,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2011-2015,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2011-2015,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2011-2015,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2011-2015,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul before 1950,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul before 1950,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul before 1950,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_CCS,coal (conv pul CCS) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_CCS,coal (conv pul CCS) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_CCS,coal (conv pul CCS) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,coal (conv pul) (cooling pond),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,coal (conv pul) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,coal (conv pul) (once through),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,coal (conv pul) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,coal (conv pul) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC,coal (IGCC) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC,coal (IGCC) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC,coal (IGCC) (seawater),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC_CCS,coal (IGCC CCS) (dry cooling),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC_CCS,coal (IGCC CCS) (recirculating),2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC_CCS,coal (IGCC CCS) (seawater),2015,CO2_ELEC
+base load generation,gas,gas_base_CC,gas (CC) (cooling pond),2015,CO2_ELEC
+base load generation,gas,gas_base_CC,gas (CC) (dry cooling),2015,CO2_ELEC
+base load generation,gas,gas_base_CC,gas (CC) (once through),2015,CO2_ELEC
+base load generation,gas,gas_base_CC,gas (CC) (recirculating),2015,CO2_ELEC
+base load generation,gas,gas_base_CC,gas (CC) (seawater),2015,CO2_ELEC
+base load generation,gas,gas_base_CC_CCS,gas (CC CCS) (dry cooling),2015,CO2_ELEC
+base load generation,gas,gas_base_CC_CCS,gas (CC CCS) (recirculating),2015,CO2_ELEC
+base load generation,gas,gas_base_CC_CCS,gas (CC CCS) (seawater),2015,CO2_ELEC
+base load generation,geothermal,geo_base,geothermal (dry_hybrid),2015,CO2_ELEC
+base load generation,geothermal,geo_base,geothermal (recirculating),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (cooling pond),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (once through),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (recirculating),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen II,Gen_II_LWR (seawater),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen III,Gen_III (cooling pond),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen III,Gen_III (recirculating),2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen III,Gen_III (seawater),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC,refined liquids (CC) (dry cooling),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC,refined liquids (CC) (recirculating),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC,refined liquids (CC) (seawater),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC_CCS,refined liquids (CC CCS) (dry cooling),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC_CCS,refined liquids (CC CCS) (recirculating),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC_CCS,refined liquids (CC CCS) (seawater),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,refined liquids (steam/CT) (cooling pond),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,refined liquids (steam/CT) (dry cooling),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,refined liquids (steam/CT) (once through),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,refined liquids (steam/CT) (recirculating),2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,refined liquids (steam/CT) (seawater),2015,CO2_ELEC
+base load generation,solar,CSP_base_storage,CSP_base_storage,2015,CO2_ELEC
+base load generation,solar,PV_base_storage,PV_base_storage,2015,CO2_ELEC
+base load generation,wind,wind_base,wind_base,2015,CO2_ELEC
+base load generation,wind,wind_base_offshore,wind_base_offshore,2015,CO2_ELEC
+base load generation,wind,wind_base_storage,wind_base_storage,2015,CO2_ELEC
+electricity,biomass,N/A,biomass (conv CCS),2015,CO2_ELEC
+electricity,biomass,N/A,biomass (conv),2015,CO2_ELEC
+electricity,biomass,N/A,biomass (IGCC CCS),2015,CO2_ELEC
+electricity,biomass,N/A,biomass (IGCC),2015,CO2_ELEC
+electricity,coal,N/A,coal (conv pul CCS),2015,CO2_ELEC
+electricity,coal,N/A,coal (conv pul),2015,CO2_ELEC
+electricity,coal,N/A,coal (IGCC CCS),2015,CO2_ELEC
+electricity,coal,N/A,coal (IGCC),2015,CO2_ELEC
+electricity,gas,N/A,gas (CC CCS),2015,CO2_ELEC
+electricity,gas,N/A,gas (CC),2015,CO2_ELEC
+electricity,gas,N/A,gas (steam/CT),2015,CO2_ELEC
+electricity,geothermal,N/A,geothermal,2015,CO2_ELEC
+electricity,nuclear,N/A,Gen_II_LWR,2015,CO2_ELEC
+electricity,nuclear,N/A,Gen_III,2015,CO2_ELEC
+electricity,refined liquids,N/A,refined liquids (CC CCS),2015,CO2_ELEC
+electricity,refined liquids,N/A,refined liquids (CC),2015,CO2_ELEC
+electricity,refined liquids,N/A,refined liquids (steam/CT),2015,CO2_ELEC
+electricity,solar,N/A,CSP,2015,CO2_ELEC
+electricity,solar,N/A,CSP_storage,2015,CO2_ELEC
+electricity,solar,N/A,PV,2015,CO2_ELEC
+electricity,solar,N/A,PV_storage,2015,CO2_ELEC
+electricity,wind,N/A,wind,2015,CO2_ELEC
+electricity,wind,N/A,wind_offshore,2015,CO2_ELEC
+electricity,wind,N/A,wind_storage,2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,biomass (conv) (cooling pond),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,biomass (conv) (dry cooling),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,biomass (conv) (once through),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,biomass (conv) (recirculating),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,biomass (conv) (seawater),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv_CCS,biomass (conv CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv_CCS,biomass (conv CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv_CCS,biomass (conv CCS) (seawater),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC,biomass (IGCC) (dry cooling),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC,biomass (IGCC) (recirculating),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC,biomass (IGCC) (seawater),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC_CCS,biomass (IGCC CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC_CCS,biomass (IGCC CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC_CCS,biomass (IGCC CCS) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1951-1955,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1951-1955,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1951-1955,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1951-1955,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1986-1990,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1986-1990,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1986-1990,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1986-1990,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1996-2000,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1996-2000,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1996-2000,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1996-2000,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2001-2005,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2001-2005,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2001-2005,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2001-2005,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2006-2010,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2006-2010,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2006-2010,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2006-2010,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2011-2015,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2011-2015,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2011-2015,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2011-2015,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul before 1950,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul before 1950,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul before 1950,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_CCS,coal (conv pul CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_CCS,coal (conv pul CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_CCS,coal (conv pul CCS) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,coal (conv pul) (cooling pond),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,coal (conv pul) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,coal (conv pul) (once through),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,coal (conv pul) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,coal (conv pul) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC,coal (IGCC) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC,coal (IGCC) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC,coal (IGCC) (seawater),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC_CCS,coal (IGCC CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC_CCS,coal (IGCC CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC_CCS,coal (IGCC CCS) (seawater),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,gas (CC) (cooling pond),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,gas (CC) (dry cooling),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,gas (CC) (once through),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,gas (CC) (recirculating),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,gas (CC) (seawater),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC_CCS,gas (CC CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC_CCS,gas (CC CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC_CCS,gas (CC CCS) (seawater),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC,refined liquids (CC) (dry cooling),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC,refined liquids (CC) (recirculating),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC,refined liquids (CC) (seawater),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC_CCS,refined liquids (CC CCS) (dry cooling),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC_CCS,refined liquids (CC CCS) (recirculating),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC_CCS,refined liquids (CC CCS) (seawater),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,refined liquids (steam/CT) (cooling pond),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,refined liquids (steam/CT) (dry cooling),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,refined liquids (steam/CT) (once through),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,refined liquids (steam/CT) (recirculating),2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,refined liquids (steam/CT) (seawater),2015,CO2_ELEC
+intermediate generation,solar,CSP_int,CSP_int (dry_hybrid),2015,CO2_ELEC
+intermediate generation,solar,CSP_int,CSP_int (recirculating),2015,CO2_ELEC
+intermediate generation,solar,PV_int,PV_int,2015,CO2_ELEC
+intermediate generation,wind,wind_int,wind_int,2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,coal (conv pul) (cooling pond),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,coal (conv pul) (dry cooling),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,coal (conv pul) (once through),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,coal (conv pul) (recirculating),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,coal (conv pul) (seawater),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,coal (conv pul) (cooling pond),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,coal (conv pul) (dry cooling),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,coal (conv pul) (once through),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,coal (conv pul) (recirculating),2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,coal (conv pul) (seawater),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,gas (CC) (cooling pond),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,gas (CC) (dry cooling),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,gas (CC) (once through),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,gas (CC) (recirculating),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,gas (CC) (seawater),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC_CCS,gas (CC CCS) (dry cooling),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC_CCS,gas (CC CCS) (recirculating),2015,CO2_ELEC
+peak generation,gas,gas_peak_CC_CCS,gas (CC CCS) (seawater),2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,gas (steam/CT) (cooling pond),2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,gas (steam/CT) (dry cooling),2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,gas (steam/CT) (once through),2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,gas (steam/CT) (recirculating),2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,gas (steam/CT) (seawater),2015,CO2_ELEC
+peak generation,grid_storage,battery,grid_storage,2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC,refined liquids (CC) (dry cooling),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC,refined liquids (CC) (recirculating),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC,refined liquids (CC) (seawater),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC_CCS,refined liquids (CC CCS) (dry cooling),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC_CCS,refined liquids (CC CCS) (recirculating),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC_CCS,refined liquids (CC CCS) (seawater),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,refined liquids (steam/CT) (cooling pond),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,refined liquids (steam/CT) (dry cooling),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,refined liquids (steam/CT) (once through),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,refined liquids (steam/CT) (recirculating),2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,refined liquids (steam/CT) (seawater),2015,CO2_ELEC
+peak generation,solar,CSP_peak,CSP_peak (dry_hybrid),2015,CO2_ELEC
+peak generation,solar,CSP_peak,CSP_peak (recirculating),2015,CO2_ELEC
+peak generation,solar,PV_peak,PV_peak,2015,CO2_ELEC

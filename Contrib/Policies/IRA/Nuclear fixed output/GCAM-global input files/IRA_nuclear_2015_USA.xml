@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

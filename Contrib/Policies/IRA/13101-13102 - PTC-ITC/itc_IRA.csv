@@ -1,0 +1,55 @@
+﻿INPUT_TABLE,,,,,
+Variable ID,,,,,
+GlobalIntTechFCROnly,,,,,
+,,,,,
+sector.name,subsector.name,intermittent-technology,year,input.capital,fixed.charge.rate
+base load generation,wind,wind_base_offshore,2020,capital,0.091
+base load generation,wind,wind_base_offshore,2025,capital,0.094
+base load generation,wind,wind_base_offshore,2030,capital,0.094
+base load generation,wind,wind_base_offshore,2035,capital,0.099
+elect_td_bld,rooftop_pv,rooftop_pv,2020,capital,0.07
+elect_td_bld,rooftop_pv,rooftop_pv,2025,capital,0.072
+elect_td_bld,rooftop_pv,rooftop_pv,2030,capital,0.072
+elect_td_bld,rooftop_pv,rooftop_pv,2035,capital,0.076
+intermediate generation,solar,CSP_int,2020,capital,0.091
+intermediate generation,solar,PV_int,2020,capital,0.091
+peak generation,solar,CSP_peak,2020,capital,0.091
+peak generation,solar,PV_peak,2020,capital,0.091
+subpeak generation,solar,CSP_subpeak,2020,capital,0.091
+subpeak generation,solar,PV_subpeak,2020,capital,0.091
+peak generation,grid_storage,battery,2025,capital,0.094
+peak generation,grid_storage,battery,2030,capital,0.094
+peak generation,grid_storage,battery,2035,capital,0.099
+,,,,,
+,,,,,
+INPUT_TABLE,,,,,
+Variable ID,,,,,
+GlobalTechFCROnly,,,,,
+,,,,,
+sector.name,subsector.name,technology,year,input.capital,fixed.charge.rate
+base load generation,solar,CSP_base_storage,2020,capital,0.091
+base load generation,solar,PV_base_storage,2020,capital,0.091
+,,,,,
+,,,,,
+INPUT_TABLE,,,,,
+Variable ID,,,,,
+GlobalIntTechFCROnly,,,,,
+,,,,,
+sector.name,subsector.name,intermittent-technology,year,input.capital,fixed.charge.rate
+base load generation,wind,wind_base_offshore,2020,capital,0.091
+base load generation,wind,wind_base_offshore,2025,capital,0.094
+base load generation,wind,wind_base_offshore,2030,capital,0.094
+base load generation,wind,wind_base_offshore,2035,capital,0.099
+elect_td_bld,rooftop_pv,rooftop_pv,2020,capital,0.07
+elect_td_bld,rooftop_pv,rooftop_pv,2025,capital,0.072
+elect_td_bld,rooftop_pv,rooftop_pv,2030,capital,0.072
+elect_td_bld,rooftop_pv,rooftop_pv,2035,capital,0.076
+intermediate generation,solar,CSP_int,2020,capital,0.091
+intermediate generation,solar,PV_int,2020,capital,0.091
+peak generation,solar,CSP_peak,2020,capital,0.091
+peak generation,solar,PV_peak,2020,capital,0.091
+subpeak generation,solar,CSP_subpeak,2020,capital,0.091
+subpeak generation,solar,PV_subpeak,2020,capital,0.091
+peak generation,grid_storage,battery,2025,capital,0.094
+peak generation,grid_storage,battery,2030,capital,0.094
+peak generation,grid_storage,battery,2035,capital,0.099

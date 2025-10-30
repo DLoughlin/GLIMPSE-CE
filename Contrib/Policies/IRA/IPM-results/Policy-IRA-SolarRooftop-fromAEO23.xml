@@ -1,0 +1,2449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="AK">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AL">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AR">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="AZ">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CO">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="CT">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="DC">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="DE">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="FL">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="GA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="HI">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ID">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IL">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="IN">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="KS">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="KY">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="LA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MD">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ME">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MI">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MN">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MO">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MS">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MT">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NC">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ND">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NE">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NH">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NJ">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NM">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NV">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NY">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OH">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OK">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="OR">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="PA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="RI">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="SC">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="SD">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="TN">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="TX">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="UT">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VT">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WI">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WV">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="WY">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="USA">
+         <supplysector name="elect_td_bld" nocreate="1">
+            <nesting-subsector name="rooftop_pv" nocreate="1">
+               <subsector name="rooftop_pv" nocreate="1">
+                  <stub-technology name="rooftop_pv" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2040">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2045">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                     <period year="2050">
+                        <input-subsidy name="Lo_All_Tech_Reg2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_Reg2">
+            <market>Lo_All_Tech_Reg_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">1.55</constraint>
+            <constraint year="2030">2.01</constraint>
+            <constraint year="2035">2.52</constraint>
+            <constraint year="2040">3.03</constraint>
+            <constraint year="2045">3.44</constraint>
+            <constraint year="2050">3.79</constraint>
+         </policy-portfolio-standard>
+      </region>
+   </world>
+</scenario>

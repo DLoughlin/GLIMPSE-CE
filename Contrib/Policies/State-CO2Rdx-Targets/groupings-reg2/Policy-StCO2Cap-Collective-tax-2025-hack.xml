@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="CA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+            <fixedTax year="2025">100</fixedTax>
+         </ghgpolicy>
+      </region>
+      <region name="CO">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="DE">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="LA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="MA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="MD">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="ME">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="MI">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="MN">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="MT">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="NC">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="NH">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="NJ">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="NM">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="NY">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="OR">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="PA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="RI">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="VA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="VT">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+      <region name="WA">
+         <ghgpolicy name="CO2">
+            <market>Tax_All_CO2_Reg_Mkt5</market>
+         </ghgpolicy>
+      </region>
+   </world>
+</scenario>

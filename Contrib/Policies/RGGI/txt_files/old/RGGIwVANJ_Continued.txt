@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario name="RGGI_Cap">
+	<world>
+		<region name="CT">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			<!-- Constraint without NJ and VA -->
+			<constraint year="2015">21.95</constraint>			<constraint year="2020">19.34</constraint>
+			<!-- Constraints including NJ and VA -->
+			<constraint year="2025">26.01</constraint>
+			<constraint year="2030">21.50</constraint>
+			<constraint year="2035">16.98</constraint>
+			<constraint year="2040">12.46</constraint>
+			<constraint year="2045">7.95</constraint>
+			<constraint year="2050">3.43</constraint>
+			</ghgpolicy>
+		</region>
+		<region name="DE">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="ME">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MD">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MA">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NH">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NY">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="RI">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="VT">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+
+		<region name="VA">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NJ">
+			<ghgpolicy name="RGGIwVANJ_CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+	</world>
+</scenario>

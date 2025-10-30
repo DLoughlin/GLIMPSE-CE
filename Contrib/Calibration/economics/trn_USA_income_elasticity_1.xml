@@ -1,0 +1,2147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+	<world>
+		<region name="AL">
+			<energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+		</region>
+        <region name="AK">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="AZ">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="AR">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="CA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="CO">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="CT">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="DE">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="DC">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="FL">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="GA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="HI">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="ID">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="IL">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="IN">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="IA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="KS">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="KY">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="LA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="ME">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MD">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MI">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MN">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MS">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MO">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="MT">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NE">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NV">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NH">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NJ">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NM">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NY">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="NC">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="ND">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="OH">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="OK">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="OR">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="PA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="RI">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="SC">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="SD">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="TN">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="TX">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="UT">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="VT">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="VA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="WA">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="WV">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="WI">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+        <region name="WY">
+            <energy-final-demand name="trn_pass">
+                <perCapitaBased>1</perCapitaBased>
+                <final-energy-consumer/>
+                <income-elasticity year="2020">0.75</income-elasticity>
+                <income-elasticity year="2025">0.75</income-elasticity>
+                <income-elasticity year="2030">0.75</income-elasticity>
+                <income-elasticity year="2035">0.75</income-elasticity>
+                <income-elasticity year="2040">0.75</income-elasticity>
+                <income-elasticity year="2045">0.75</income-elasticity>
+                <income-elasticity year="2050">0.75</income-elasticity>
+                <income-elasticity year="2055">0.75</income-elasticity>
+                <income-elasticity year="2060">0.75</income-elasticity>
+                <income-elasticity year="2065">0.75</income-elasticity>
+                <income-elasticity year="2070">0.75</income-elasticity>
+                <income-elasticity year="2075">0.75</income-elasticity>
+                <income-elasticity year="2080">0.75</income-elasticity>
+                <income-elasticity year="2085">0.75</income-elasticity>
+                <income-elasticity year="2090">0.75</income-elasticity>
+                <income-elasticity year="2095">0.75</income-elasticity>
+                <income-elasticity year="2100">0.75</income-elasticity>
+            </energy-final-demand>
+            <energy-final-demand name="trn_freight">
+                <income-elasticity year="2020">0.50</income-elasticity>
+                <income-elasticity year="2025">0.50</income-elasticity>
+                <income-elasticity year="2030">0.50</income-elasticity>
+                <income-elasticity year="2035">0.50</income-elasticity>
+                <income-elasticity year="2040">0.50</income-elasticity>
+                <income-elasticity year="2045">0.50</income-elasticity>
+                <income-elasticity year="2050">0.50</income-elasticity>
+                <income-elasticity year="2055">0.50</income-elasticity>
+                <income-elasticity year="2060">0.50</income-elasticity>
+                <income-elasticity year="2065">0.50</income-elasticity>
+                <income-elasticity year="2070">0.50</income-elasticity>
+                <income-elasticity year="2075">0.50</income-elasticity>
+                <income-elasticity year="2080">0.50</income-elasticity>
+                <income-elasticity year="2085">0.50</income-elasticity>
+                <income-elasticity year="2090">0.50</income-elasticity>
+                <income-elasticity year="2095">0.50</income-elasticity>
+                <income-elasticity year="2100">0.50</income-elasticity>
+            </energy-final-demand>
+        </region>
+	</world>
+</scenario>

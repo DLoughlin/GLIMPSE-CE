@@ -308,7 +308,7 @@ public class FilteredTable {
 		//YD added,Apr-2024
 		jb = new JButton("Mapping");
 		jb.setBackground(LegendUtil.getRGB(-8205574));
-		jb.setToolTipText("Map regional data");
+		jb.setToolTipText("Beta: Map regional data");
 		Font f=jb.getFont();
 		//Font f1=new Font(f.getFontName(),Font.ITALIC,f.getSize());
 		jb.setFont(f);
@@ -367,7 +367,7 @@ public class FilteredTable {
 		//YD added,September-2024
 		jb = new JButton("Sankey");
 		jb.setBackground(LegendUtil.getRGB(-8205574));
-		jb.setToolTipText("Plot data to Sankey Diagram");
+		jb.setToolTipText("Beta: Plot data to Sankey Diagram");
 		jb.setFont(f);
 		
 		java.awt.event.MouseListener mlSankey = new MouseAdapter() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario name="CCSP450">
+    <!-- based on the rectangular approach, the C price of 26.5 19904/Tc times the cumulative CH4 reductions in MAC -->
+    <!-- corresponds to the IRA fund allocated to livestock CH4 reduction per year (8.5/9) -->
+
+    
+    <world>
+        <region name="USA">
+            <ghgpolicy name="CH4_livestock">
+                <market>USA</market>
+                <fixedTax year="2025">26.5</fixedTax>
+                <fixedTax year="2030">26.5</fixedTax>
+            </ghgpolicy>
+        </region>
+    </world>
+</scenario>

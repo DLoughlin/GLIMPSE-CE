@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <global-technology-database>
+            <location-info sector-name="biomass liquids" subsector-name="biomass liquids">
+                <technology name="biodiesel">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-1.639</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="cellulosic ethanol">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-1.8906</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="FT biofuels">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-2.0849</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="cellulosic ethanol CCS level 1">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-1.8906</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="cellulosic ethanol CCS level 2">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-1.8906</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="FT biofuels CCS level 1">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-2.9188</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+                <technology name="FT biofuels CCS level 2">
+                    <period year="2025">
+                        <minicam-non-energy-input name="IRA subsidy">
+                            <input-cost>-2.9188</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+        </global-technology-database>
+    </world>
+</scenario>

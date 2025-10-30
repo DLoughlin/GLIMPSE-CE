@@ -1,0 +1,145 @@
+INPUT_TABLE,,,,,
+Variable ID,,,,,
+GlobalIntTechPriceAdj,,,,,
+,,,,,
+sector.name,subsector.name,intermittent.technology,year,minicam.non.energy.input,input.cost
+intermediate generation,solar,CSP_int,2020,tax credit,0
+intermediate generation,solar,CSP_int,2025,tax credit,-1.58
+intermediate generation,solar,CSP_int,2030,tax credit,-1.58
+intermediate generation,solar,CSP_int,2035,tax credit,-1.33
+intermediate generation,solar,CSP_int,2040,tax credit,0
+intermediate generation,solar,CSP_int,2045,tax credit,0
+intermediate generation,solar,CSP_int,2050,tax credit,0
+peak generation,solar,CSP_peak,2020,tax credit,0
+peak generation,solar,CSP_peak,2025,tax credit,-1.58
+peak generation,solar,CSP_peak,2030,tax credit,-1.58
+peak generation,solar,CSP_peak,2035,tax credit,-1.33
+peak generation,solar,CSP_peak,2040,tax credit,0
+peak generation,solar,CSP_peak,2045,tax credit,0
+peak generation,solar,CSP_peak,2050,tax credit,0
+subpeak generation,solar,CSP_subpeak,2020,tax credit,0
+subpeak generation,solar,CSP_subpeak,2025,tax credit,-1.58
+subpeak generation,solar,CSP_subpeak,2030,tax credit,-1.58
+subpeak generation,solar,CSP_subpeak,2035,tax credit,-1.33
+subpeak generation,solar,CSP_subpeak,2040,tax credit,0
+subpeak generation,solar,CSP_subpeak,2045,tax credit,0
+subpeak generation,solar,CSP_subpeak,2050,tax credit,0
+intermediate generation,solar,PV_int,2020,tax credit,0
+intermediate generation,solar,PV_int,2025,tax credit,-1.58
+intermediate generation,solar,PV_int,2030,tax credit,-1.58
+intermediate generation,solar,PV_int,2035,tax credit,-1.33
+intermediate generation,solar,PV_int,2040,tax credit,0
+intermediate generation,solar,PV_int,2045,tax credit,0
+intermediate generation,solar,PV_int,2050,tax credit,0
+peak generation,solar,PV_peak,2020,tax credit,0
+peak generation,solar,PV_peak,2025,tax credit,-1.58
+peak generation,solar,PV_peak,2030,tax credit,-1.58
+peak generation,solar,PV_peak,2035,tax credit,-1.33
+peak generation,solar,PV_peak,2040,tax credit,0
+peak generation,solar,PV_peak,2045,tax credit,0
+peak generation,solar,PV_peak,2050,tax credit,0
+subpeak generation,solar,PV_subpeak,2020,tax credit,0
+subpeak generation,solar,PV_subpeak,2025,tax credit,-1.58
+subpeak generation,solar,PV_subpeak,2030,tax credit,-1.58
+subpeak generation,solar,PV_subpeak,2035,tax credit,-1.33
+subpeak generation,solar,PV_subpeak,2040,tax credit,0
+subpeak generation,solar,PV_subpeak,2045,tax credit,0
+subpeak generation,solar,PV_subpeak,2050,tax credit,0
+base load generation,wind,wind_base,2020,tax credit,-1.16
+base load generation,wind,wind_base,2025,tax credit,-1.58
+base load generation,wind,wind_base,2030,tax credit,-1.58
+base load generation,wind,wind_base,2035,tax credit,-1.33
+base load generation,wind,wind_base,2040,tax credit,0
+base load generation,wind,wind_base,2045,tax credit,0
+base load generation,wind,wind_base,2050,tax credit,0
+intermediate generation,wind,wind_int,2020,tax credit,-1.16
+intermediate generation,wind,wind_int,2025,tax credit,-1.58
+intermediate generation,wind,wind_int,2030,tax credit,-1.58
+intermediate generation,wind,wind_int,2035,tax credit,-1.33
+intermediate generation,wind,wind_int,2040,tax credit,0
+intermediate generation,wind,wind_int,2045,tax credit,0
+intermediate generation,wind,wind_int,2050,tax credit,0
+subpeak generation,wind,wind_subpeak,2020,tax credit,-1.16
+subpeak generation,wind,wind_subpeak,2025,tax credit,-1.58
+subpeak generation,wind,wind_subpeak,2030,tax credit,-1.58
+subpeak generation,wind,wind_subpeak,2035,tax credit,-1.33
+subpeak generation,wind,wind_subpeak,2040,tax credit,0
+subpeak generation,wind,wind_subpeak,2045,tax credit,0
+subpeak generation,wind,wind_subpeak,2050,tax credit,0
+,,,,,
+,,,,,
+INPUT_TABLE,,,,,
+Variable ID,,,,,
+GlobalTechPriceAdj,,,,,
+,,,,,
+sector.name,subsector.name,technology,year,minicam.non.energy.input,input.cost
+base load generation,biomass,biomass_base_conv,2020,tax credit,-0.86
+base load generation,biomass,biomass_base_conv,2025,tax credit,-0.79
+base load generation,biomass,biomass_base_conv,2030,tax credit,-0.79
+base load generation,biomass,biomass_base_conv,2035,tax credit,-0.67
+base load generation,biomass,biomass_base_conv,2040,tax credit,0
+base load generation,biomass,biomass_base_conv,2045,tax credit,0
+base load generation,biomass,biomass_base_conv,2050,tax credit,0
+base load generation,biomass,biomass_base_IGCC,2020,tax credit,-0.86
+base load generation,biomass,biomass_base_IGCC,2025,tax credit,-0.79
+base load generation,biomass,biomass_base_IGCC,2030,tax credit,-0.79
+base load generation,biomass,biomass_base_IGCC,2035,tax credit,-0.67
+base load generation,biomass,biomass_base_IGCC,2040,tax credit,0
+base load generation,biomass,biomass_base_IGCC,2045,tax credit,0
+base load generation,biomass,biomass_base_IGCC,2050,tax credit,0
+intermediate generation,biomass,biomass_int_conv,2020,tax credit,-0.86
+intermediate generation,biomass,biomass_int_conv,2025,tax credit,-0.79
+intermediate generation,biomass,biomass_int_conv,2030,tax credit,-0.79
+intermediate generation,biomass,biomass_int_conv,2035,tax credit,-0.67
+intermediate generation,biomass,biomass_int_conv,2040,tax credit,0
+intermediate generation,biomass,biomass_int_conv,2045,tax credit,0
+intermediate generation,biomass,biomass_int_conv,2050,tax credit,0
+intermediate generation,biomass,biomass_int_IGCC,2020,tax credit,-0.86
+intermediate generation,biomass,biomass_int_IGCC,2025,tax credit,-0.79
+intermediate generation,biomass,biomass_int_IGCC,2030,tax credit,-0.79
+intermediate generation,biomass,biomass_int_IGCC,2035,tax credit,-0.67
+intermediate generation,biomass,biomass_int_IGCC,2040,tax credit,0
+intermediate generation,biomass,biomass_int_IGCC,2045,tax credit,0
+intermediate generation,biomass,biomass_int_IGCC,2050,tax credit,0
+base load generation,solar,CSP_base_storage,2020,tax credit,0
+base load generation,solar,CSP_base_storage,2025,tax credit,-1.58
+base load generation,solar,CSP_base_storage,2030,tax credit,-1.58
+base load generation,solar,CSP_base_storage,2035,tax credit,-1.33
+base load generation,solar,CSP_base_storage,2040,tax credit,0
+base load generation,solar,CSP_base_storage,2045,tax credit,0
+base load generation,solar,CSP_base_storage,2050,tax credit,0
+base load generation,geothermal,geo_base,2020,tax credit,-1.71
+base load generation,geothermal,geo_base,2025,tax credit,-1.58
+base load generation,geothermal,geo_base,2030,tax credit,-1.58
+base load generation,geothermal,geo_base,2035,tax credit,-1.33
+base load generation,geothermal,geo_base,2040,tax credit,0
+base load generation,geothermal,geo_base,2045,tax credit,0
+base load generation,geothermal,geo_base,2050,tax credit,0
+base load generation,nuclear,nuc_base_Gen II,2020,tax credit,0
+base load generation,nuclear,nuc_base_Gen II,2025,tax credit,-0.98
+base load generation,nuclear,nuc_base_Gen II,2030,tax credit,-0.98
+base load generation,nuclear,nuc_base_Gen II,2035,tax credit,-0.39
+base load generation,nuclear,nuc_base_Gen II,2040,tax credit,0
+base load generation,nuclear,nuc_base_Gen II,2045,tax credit,0
+base load generation,nuclear,nuc_base_Gen II,2050,tax credit,0
+base load generation,nuclear,nuc_base_Gen III,2020,tax credit,0
+base load generation,nuclear,nuc_base_Gen III,2025,tax credit,-0.98
+base load generation,nuclear,nuc_base_Gen III,2030,tax credit,-0.98
+base load generation,nuclear,nuc_base_Gen III,2035,tax credit,-0.39
+base load generation,nuclear,nuc_base_Gen III,2040,tax credit,0
+base load generation,nuclear,nuc_base_Gen III,2045,tax credit,0
+base load generation,nuclear,nuc_base_Gen III,2050,tax credit,0
+base load generation,solar,PV_base_storage,2020,tax credit,0
+base load generation,solar,PV_base_storage,2025,tax credit,-1.58
+base load generation,solar,PV_base_storage,2030,tax credit,-1.58
+base load generation,solar,PV_base_storage,2035,tax credit,-1.33
+base load generation,solar,PV_base_storage,2040,tax credit,0
+base load generation,solar,PV_base_storage,2045,tax credit,0
+base load generation,solar,PV_base_storage,2050,tax credit,0
+base load generation,wind,wind_base_storage,2020,tax credit,-1.16
+base load generation,wind,wind_base_storage,2025,tax credit,-1.58
+base load generation,wind,wind_base_storage,2030,tax credit,-1.58
+base load generation,wind,wind_base_storage,2035,tax credit,-1.33
+base load generation,wind,wind_base_storage,2040,tax credit,0
+base load generation,wind,wind_base_storage,2045,tax credit,0
+base load generation,wind,wind_base_storage,2050,tax credit,0

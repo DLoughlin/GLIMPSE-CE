@@ -1,0 +1,5 @@
+Calib_CoalEGU_2020only_state.xml places a constraint on state-level electricity production from conventional coal plants to be no more than historic 2021 levels. This constraint is intended to force retirement. This constraint does not work correctly post-2020, however, as coal use rebounds considerably. 
+
+Calib_CoalEGU_2020_state_v2.xml also places a constraint on state-level electricity production from conventional coal plants. However, this representation also constraints output at that level through 2050 for most states. For those states that expect to eliminate conventional coal by 2025 or 2030, those expectations are reflected in the constraints for those states. 
+
+In general, the second formulation is the one to use, however it can result in some solution problems as the model seeks prices to retire the required amount of coal. 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="CT">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+            <constraint year="2025">171.0621091</constraint>
+            <constraint year="2030">144.8776278</constraint>
+            <constraint year="2035">122.1186028</constraint>
+            <constraint year="2040">99.57561682</constraint>
+            <constraint year="2045">77.03263085</constraint>
+            <constraint year="2050">54.48964487</constraint>
+         </ghgpolicy>
+      </region>
+      <region name="DE">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="MA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="MD">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="ME">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="NH">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="NJ">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="NY">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="PA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="RI">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="VT">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+   </world>
+</scenario>

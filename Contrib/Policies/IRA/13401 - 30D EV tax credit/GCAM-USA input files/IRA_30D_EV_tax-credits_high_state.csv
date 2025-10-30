@@ -1,0 +1,1229 @@
+INPUT_TABLE,,,,,,
+Variable ID,,,,,,
+StubTranTechCost,,,,,,
+,,,,,,
+region,supplysector,tranSubsector,stub-technology,year,minicam.non.energy.input,input-cost
+AK,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AR,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AZ,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CO,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DE,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+FL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+GA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+HI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ID,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IL,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KS,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+LA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MD,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ME,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MO,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MS,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ND,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NE,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NH,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NJ,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NM,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NV,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OH,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OK,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OR,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+PA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+RI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SC,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SD,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TN,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TX,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+UT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VT,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WA,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WI,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WV,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WY,trn_pass_road_LDV_4W,Car,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AK,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AR,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CO,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DE,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+FL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+GA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+HI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ID,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IL,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KS,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+LA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MD,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ME,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MO,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MS,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ND,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NE,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NH,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NM,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NV,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OH,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OK,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OR,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+PA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+RI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SC,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SD,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TN,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TX,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+UT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VT,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WA,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WI,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WV,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WY,trn_pass_road_LDV_4W,Car,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2025,IRA_30D_EV_tax-credit_high,-0.015199
+AK,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AR,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AZ,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CO,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DE,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+FL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+GA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+HI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ID,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IL,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KS,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+LA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MD,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ME,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MO,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MS,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ND,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NE,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NH,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NJ,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NM,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NV,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OH,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OK,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OR,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+PA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+RI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SC,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SD,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TN,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TX,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+UT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VT,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WA,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WI,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WV,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WY,trn_pass_road_LDV_4W,Car,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AK,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AR,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CO,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DE,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+FL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+GA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+HI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ID,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IL,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KS,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+LA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MD,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ME,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MO,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MS,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ND,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NE,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NH,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NM,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NV,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OH,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OK,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OR,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+PA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+RI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SC,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SD,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TN,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TX,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+UT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VT,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WA,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WI,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WV,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WY,trn_pass_road_LDV_4W,Car,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2030,IRA_30D_EV_tax-credit_high,-0.030397
+AK,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2035,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2035,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2040,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2040,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2045,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2045,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Car,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,BEV,2050,IRA_30D_EV_tax-credit_high,0
+AK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+AZ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+CT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+DC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+DE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+FL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+GA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+HI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ID,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IL,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+IN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+KS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+KY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+LA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ME,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MO,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MS,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+MT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+ND,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NE,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NJ,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NM,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+NY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OH,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OK,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+OR,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+PA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+RI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+SC,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+SD,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+TN,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+TX,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+UT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+VA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+VT,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WA,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WI,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WV,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0
+WY,trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2050,IRA_30D_EV_tax-credit_high,0

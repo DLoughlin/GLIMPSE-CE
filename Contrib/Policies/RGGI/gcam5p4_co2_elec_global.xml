@@ -1,0 +1,1719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <global-technology-database>
+         <location-info nesting-subsector-name="biomass_base_conv" sector-name="base load generation" subsector-name="biomass">
+            <technology name="biomass (conv) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_base_conv_CCS" sector-name="base load generation" subsector-name="biomass">
+            <technology name="biomass (conv CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_base_IGCC" sector-name="base load generation" subsector-name="biomass">
+            <technology name="biomass (IGCC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_base_IGCC_CCS" sector-name="base load generation" subsector-name="biomass">
+            <technology name="biomass (IGCC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1951-1955" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1956-1960" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1961-1965" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1966-1970" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1971-1975" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1976-1980" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1981-1985" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1986-1990" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1991-1995" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 1996-2000" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 2001-2005" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 2006-2010" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul 2011-2015" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul before 1950" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul_CCS" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_conv pul_retire_2020" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_IGCC" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (IGCC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_base_IGCC_CCS" sector-name="base load generation" subsector-name="coal">
+            <technology name="coal (IGCC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_base_CC" sector-name="base load generation" subsector-name="gas">
+            <technology name="gas (CC) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_base_CC_CCS" sector-name="base load generation" subsector-name="gas">
+            <technology name="gas (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="geo_base" sector-name="base load generation" subsector-name="geothermal">
+            <technology name="geothermal (dry_hybrid)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="geothermal (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="nuc_base_Gen II" sector-name="base load generation" subsector-name="nuclear">
+            <technology name="Gen_II_LWR (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_II_LWR (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="nuc_base_Gen III" sector-name="base load generation" subsector-name="nuclear">
+            <technology name="Gen_III (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_III (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_III (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_base_CC" sector-name="base load generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_base_CC_CCS" sector-name="base load generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_base_steam/CT" sector-name="base load generation" subsector-name="refined liquids">
+            <technology name="refined liquids (steam/CT) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="CSP_base_storage" sector-name="base load generation" subsector-name="solar">
+            <technology name="CSP_base_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="PV_base_storage" sector-name="base load generation" subsector-name="solar">
+            <technology name="PV_base_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="wind_base" sector-name="base load generation" subsector-name="wind">
+            <technology name="wind_base">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="wind_base_offshore" sector-name="base load generation" subsector-name="wind">
+            <technology name="wind_base_offshore">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="wind_base_storage" sector-name="base load generation" subsector-name="wind">
+            <technology name="wind_base_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="biomass">
+            <technology name="biomass (conv CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="coal">
+            <technology name="coal (conv pul CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="gas">
+            <technology name="gas (CC CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (steam/CT)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="geothermal">
+            <technology name="geothermal">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="nuclear">
+            <technology name="Gen_II_LWR">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="Gen_III">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="refined liquids">
+            <technology name="refined liquids (CC CCS)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="solar">
+            <technology name="CSP">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="CSP_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="PV">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="PV_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="N/A" sector-name="electricity" subsector-name="wind">
+            <technology name="wind">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="wind_offshore">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="wind_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_int_conv" sector-name="intermediate generation" subsector-name="biomass">
+            <technology name="biomass (conv) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_int_conv_CCS" sector-name="intermediate generation" subsector-name="biomass">
+            <technology name="biomass (conv CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (conv CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_int_IGCC" sector-name="intermediate generation" subsector-name="biomass">
+            <technology name="biomass (IGCC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="biomass_int_IGCC_CCS" sector-name="intermediate generation" subsector-name="biomass">
+            <technology name="biomass (IGCC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="biomass (IGCC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1951-1955" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1956-1960" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1961-1965" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1966-1970" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1971-1975" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1976-1980" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1981-1985" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1986-1990" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1991-1995" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 1996-2000" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 2001-2005" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 2006-2010" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul 2011-2015" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul before 1950" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul_CCS" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_conv pul_retire_2020" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_IGCC" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (IGCC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_int_IGCC_CCS" sector-name="intermediate generation" subsector-name="coal">
+            <technology name="coal (IGCC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (IGCC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_int_CC" sector-name="intermediate generation" subsector-name="gas">
+            <technology name="gas (CC) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_int_CC_CCS" sector-name="intermediate generation" subsector-name="gas">
+            <technology name="gas (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_int_CC" sector-name="intermediate generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_int_CC_CCS" sector-name="intermediate generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_int_steam/CT" sector-name="intermediate generation" subsector-name="refined liquids">
+            <technology name="refined liquids (steam/CT) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="CSP_int" sector-name="intermediate generation" subsector-name="solar">
+            <technology name="CSP_int (dry_hybrid)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="CSP_int (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="PV_int" sector-name="intermediate generation" subsector-name="solar">
+            <technology name="PV_int">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="wind_int" sector-name="intermediate generation" subsector-name="wind">
+            <technology name="wind_int">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_peak_conv pul" sector-name="peak generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="coal_peak_conv pul_retire_2020" sector-name="peak generation" subsector-name="coal">
+            <technology name="coal (conv pul) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="coal (conv pul) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_peak_CC" sector-name="peak generation" subsector-name="gas">
+            <technology name="gas (CC) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_peak_CC_CCS" sector-name="peak generation" subsector-name="gas">
+            <technology name="gas (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="gas_peak_steam/CT" sector-name="peak generation" subsector-name="gas">
+            <technology name="gas (steam/CT) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (steam/CT) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (steam/CT) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (steam/CT) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="gas (steam/CT) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="battery" sector-name="peak generation" subsector-name="grid_storage">
+            <technology name="grid_storage">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_peak_CC" sector-name="peak generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_peak_CC_CCS" sector-name="peak generation" subsector-name="refined liquids">
+            <technology name="refined liquids (CC CCS) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (CC CCS) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="refined liquids_peak_steam/CT" sector-name="peak generation" subsector-name="refined liquids">
+            <technology name="refined liquids (steam/CT) (cooling pond)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (dry cooling)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (once through)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="refined liquids (steam/CT) (seawater)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="CSP_peak" sector-name="peak generation" subsector-name="solar">
+            <technology name="CSP_peak (dry_hybrid)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+            <technology name="CSP_peak (recirculating)">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+         <location-info nesting-subsector-name="PV_peak" sector-name="peak generation" subsector-name="solar">
+            <technology name="PV_peak">
+               <period year="2015">
+                  <CO2 name="CO2_ELEC"/>
+               </period>
+            </technology>
+         </location-info>
+      </global-technology-database>
+   </world>
+</scenario>

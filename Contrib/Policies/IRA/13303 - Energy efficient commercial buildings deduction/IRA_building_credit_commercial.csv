@@ -1,0 +1,5 @@
+sector.name,subsector.name,technology,input.cost.subsidy.percent
+comm cooling,electricity,air conditioning hi-eff,0.03
+comm heating,electricity,electric heat pump,0.03
+comm lighting,electricity,solid state,0.03
+comm ventilation,electricity,ventilation hi-eff,0.03

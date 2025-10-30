@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario>
+	<world>
+		<region name="CT">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+
+			<!-- Constraints including VANJ -->
+			<constraint year="2025">26.01</constraint>
+			<constraint year="2030">21.50</constraint>
+			<constraint year="2035">16.98</constraint>
+			<constraint year="2040">12.46</constraint>
+			<constraint year="2045">7.95</constraint>
+			<constraint year="2050">3.43</constraint>
+			</ghgpolicy>
+		</region>
+		<region name="DE">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="ME">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MD">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MA">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NH">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NY">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="RI">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="VT">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+
+		<region name="VA">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NJ">
+			<ghgpolicy name="CO2_ELEC2">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+	</world>
+</scenario>

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="AL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AR">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AZ">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CT">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="FL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="GA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KS">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="LA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MD">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ME">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MI">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MN">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MO">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MS">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NC">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NE">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NH">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NJ">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NY">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OH">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OR">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="PA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SC">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TN">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TX">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VT">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WI">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2015">
+                            <lifetime>-1</lifetime>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

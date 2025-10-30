@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="trn_freight_road">
+                <tranSubsector name="Heavy truck">
+                    <stub-technology name="BEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>-0.048775</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>-0.048775</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_45W_heavy-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+                <tranSubsector name="Medium truck">
+                    <stub-technology name="BEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>-0.030801</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>-0.030801</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_45W_medium-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+                <tranSubsector name="Light truck">
+                    <stub-technology name="BEV">
+                        <period year="2025">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>-0.03352</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2030">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>-0.03352</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2035">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2040">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2045">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                        <period year="2050">
+                            <minicam-non-energy-input name="IRA_45W_light-truck_tax-credit">
+                                <input-cost>0</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </tranSubsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

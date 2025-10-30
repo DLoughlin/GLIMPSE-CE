@@ -1,0 +1,7 @@
+INPUT_TABLE,,,,,
+Variable ID,,,,,
+StubTechCoalRet,,,,,
+,,,,,
+region,supplysector,subsector,stub.technology,year,lifetime
+USA,base load generation,nuclear,nuc_base_Gen II,2015,-1
+USA,base load generation,nuclear,nuc_base_Gen III,2015,-1
