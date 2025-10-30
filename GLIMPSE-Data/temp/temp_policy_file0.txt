@@ -1,42 +1,16 @@
 ########## Scenario Component Metadata ##########
-#Scenario component type: Pollutant Tax/Cap
-#Measure: Emission Cap (Mt)
-#Pollutant: CO2 (MT C)
-#Categories: EGU-USA,
-#Policy name: Cap_EGU-USA_CO2_Reg2075656
-#Market name: Cap_EGU-USA_CO2_Reg_Mkt2075656
-#Regions: CT,DE,MA,MD,ME,NH,NJ,NY,PA,RI,VT
-#Table data:2025    ,    28.36
-#Table data:2030    ,    28.63
-#Table data:2035    ,    20.45
-#Table data:2040    , 20.45
-#Table data:2045    , 20.45
-#Table data:2050    , 20.45
+#Scenario component type: Tech Bound
+#Category: EGU
+#Technologies: elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (cooling pond) : EJ;elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (dry cooling) : EJ;elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (once through) : EJ;elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (recirculating) : EJ;elec_coal (conv pul) : coal (conv pul) : coal (conv pul) (seawater) : EJ;elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (dry cooling) : EJ;elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (once through) : EJ;elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (recirculating) : EJ;elec_coal (IGCC) : coal (IGCC) : coal (IGCC) (seawater) : EJ;elec_coal (IGCC CCS) : coal (IGCC CCS) : coal (IGCC CCS) (dry cooling) : EJ;elec_coal (IGCC CCS) : coal (IGCC CCS) : coal (IGCC CCS) (once through) : EJ;elec_coal (IGCC CCS) : coal (IGCC CCS) : coal (IGCC CCS) (recirculating) : EJ;elec_coal (IGCC CCS) : coal (IGCC CCS) : coal (IGCC CCS) (seawater) : EJ;elec_coal (conv pul CCS) : coal (conv pul CCS) : coal (conv pul CCS) (dry cooling) : EJ;elec_coal (conv pul CCS) : coal (conv pul CCS) : coal (conv pul CCS) (once through) : EJ;elec_coal (conv pul CCS) : coal (conv pul CCS) : coal (conv pul CCS) (recirculating) : EJ;elec_coal (conv pul CCS) : coal (conv pul CCS) : coal (conv pul CCS) (seawater) : EJ;
+#Constraint: Upper Bound
+#Treatment: Across Selected Regions
+#Policy name: tchBnd_Up_Egu_Acr_Reg89920899072658907200090726609158463
+#Market name: tchBnd_Up_Egu_Acr_Reg_Mkt89920899072658907200090726609158463
+#Regions: USA,Africa_Eastern,Africa_Northern,Africa_Southern,Africa_Western,Australia_NZ,Argentina,Brazil,Canada,Central America and Caribbean,Central Asia,China,Colombia,EU-12,EU-15,Ukraine,Europe_Non_EU,European Free Trade Association,India,Indonesia,Japan,Mexico,Middle East,Pakistan,Russia,South Africa,South America_Northern,South America_Southern,South Asia,Southeast Asia,Taiwan
+#Table data:2025     ,     41.0
+#Table data:2030     ,     32.8
+#Table data:2035     ,     24.6
+#Table data:2040     ,     16.4
+#Table data:2045     ,     8.20
+#Table data:2050     ,     0.00
 #################################################
-INPUT_TABLE
-Variable ID
-GLIMPSEEmissionCap
-
-region,pollutant,market,year,cap
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2025,28.36
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2030,28.63
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2035,20.45
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2040,20.45
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2045,20.45
-CT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656,2050,20.45
-
-INPUT_TABLE
-Variable ID
-GLIMPSEEmissionMarket
-
-region,pollutant,market
-DE,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-MA,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-MD,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-ME,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-NH,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-NJ,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-NY,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-PA,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-RI,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656
-VT,CO2_Pol,Cap_EGU-USA_CO2_Reg_Mkt2075656

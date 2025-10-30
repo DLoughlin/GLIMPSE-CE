@@ -1,0 +1,2351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="AK">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="AL">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.227</share-weight>
+               <share-weight fillout="1" year="2025">0.1816</share-weight>
+               <share-weight fillout="1" year="2030">0.1135</share-weight>
+               <share-weight fillout="1" year="2035">0.0908</share-weight>
+               <share-weight fillout="1" year="2040">0.0908</share-weight>
+               <share-weight fillout="1" year="2045">0.0908</share-weight>
+               <share-weight fillout="1" year="2050">0.0908</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.2975</share-weight>
+               <share-weight fillout="1" year="2025">0.238</share-weight>
+               <share-weight fillout="1" year="2030">0.14875</share-weight>
+               <share-weight fillout="1" year="2035">0.119</share-weight>
+               <share-weight fillout="1" year="2040">0.119</share-weight>
+               <share-weight fillout="1" year="2045">0.119</share-weight>
+               <share-weight fillout="1" year="2050">0.119</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="AR">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.3375</share-weight>
+               <share-weight fillout="1" year="2025">0.27</share-weight>
+               <share-weight fillout="1" year="2030">0.16875</share-weight>
+               <share-weight fillout="1" year="2035">0.135</share-weight>
+               <share-weight fillout="1" year="2040">0.135</share-weight>
+               <share-weight fillout="1" year="2045">0.135</share-weight>
+               <share-weight fillout="1" year="2050">0.135</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5125</share-weight>
+               <share-weight fillout="1" year="2025">0.41</share-weight>
+               <share-weight fillout="1" year="2030">0.25625</share-weight>
+               <share-weight fillout="1" year="2035">0.205</share-weight>
+               <share-weight fillout="1" year="2040">0.205</share-weight>
+               <share-weight fillout="1" year="2045">0.205</share-weight>
+               <share-weight fillout="1" year="2050">0.205</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="AZ">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="CA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="CO">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="CT">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.4525</share-weight>
+               <share-weight fillout="1" year="2025">0.362</share-weight>
+               <share-weight fillout="1" year="2030">0.22625</share-weight>
+               <share-weight fillout="1" year="2035">0.181</share-weight>
+               <share-weight fillout="1" year="2040">0.181</share-weight>
+               <share-weight fillout="1" year="2045">0.181</share-weight>
+               <share-weight fillout="1" year="2050">0.181</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="DC">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="DE">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.595</share-weight>
+               <share-weight fillout="1" year="2025">0.476</share-weight>
+               <share-weight fillout="1" year="2030">0.2975</share-weight>
+               <share-weight fillout="1" year="2035">0.238</share-weight>
+               <share-weight fillout="1" year="2040">0.238</share-weight>
+               <share-weight fillout="1" year="2045">0.238</share-weight>
+               <share-weight fillout="1" year="2050">0.238</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="FL">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.03375</share-weight>
+               <share-weight fillout="1" year="2025">0.027</share-weight>
+               <share-weight fillout="1" year="2030">0.016875</share-weight>
+               <share-weight fillout="1" year="2035">0.0135</share-weight>
+               <share-weight fillout="1" year="2040">0.0135</share-weight>
+               <share-weight fillout="1" year="2045">0.0135</share-weight>
+               <share-weight fillout="1" year="2050">0.0135</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.073</share-weight>
+               <share-weight fillout="1" year="2025">0.0584</share-weight>
+               <share-weight fillout="1" year="2030">0.0365</share-weight>
+               <share-weight fillout="1" year="2035">0.0292</share-weight>
+               <share-weight fillout="1" year="2040">0.0292</share-weight>
+               <share-weight fillout="1" year="2045">0.0292</share-weight>
+               <share-weight fillout="1" year="2050">0.0292</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="GA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.775</share-weight>
+               <share-weight fillout="1" year="2025">0.62</share-weight>
+               <share-weight fillout="1" year="2030">0.3875</share-weight>
+               <share-weight fillout="1" year="2035">0.31</share-weight>
+               <share-weight fillout="1" year="2040">0.31</share-weight>
+               <share-weight fillout="1" year="2045">0.31</share-weight>
+               <share-weight fillout="1" year="2050">0.31</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="HI">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.345</share-weight>
+               <share-weight fillout="1" year="2025">0.276</share-weight>
+               <share-weight fillout="1" year="2030">0.1725</share-weight>
+               <share-weight fillout="1" year="2035">0.138</share-weight>
+               <share-weight fillout="1" year="2040">0.138</share-weight>
+               <share-weight fillout="1" year="2045">0.138</share-weight>
+               <share-weight fillout="1" year="2050">0.138</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.144</share-weight>
+               <share-weight fillout="1" year="2025">0.1152</share-weight>
+               <share-weight fillout="1" year="2030">0.072</share-weight>
+               <share-weight fillout="1" year="2035">0.0576</share-weight>
+               <share-weight fillout="1" year="2040">0.0576</share-weight>
+               <share-weight fillout="1" year="2045">0.0576</share-weight>
+               <share-weight fillout="1" year="2050">0.0576</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.1125</share-weight>
+               <share-weight fillout="1" year="2025">0.09</share-weight>
+               <share-weight fillout="1" year="2030">0.05625</share-weight>
+               <share-weight fillout="1" year="2035">0.045</share-weight>
+               <share-weight fillout="1" year="2040">0.045</share-weight>
+               <share-weight fillout="1" year="2045">0.045</share-weight>
+               <share-weight fillout="1" year="2050">0.045</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="IA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="ID">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="IL">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="IN">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="KS">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="KY">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.285</share-weight>
+               <share-weight fillout="1" year="2025">0.228</share-weight>
+               <share-weight fillout="1" year="2030">0.1425</share-weight>
+               <share-weight fillout="1" year="2035">0.114</share-weight>
+               <share-weight fillout="1" year="2040">0.114</share-weight>
+               <share-weight fillout="1" year="2045">0.114</share-weight>
+               <share-weight fillout="1" year="2050">0.114</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.355</share-weight>
+               <share-weight fillout="1" year="2025">0.284</share-weight>
+               <share-weight fillout="1" year="2030">0.1775</share-weight>
+               <share-weight fillout="1" year="2035">0.142</share-weight>
+               <share-weight fillout="1" year="2040">0.142</share-weight>
+               <share-weight fillout="1" year="2045">0.142</share-weight>
+               <share-weight fillout="1" year="2050">0.142</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="LA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.355</share-weight>
+               <share-weight fillout="1" year="2025">0.284</share-weight>
+               <share-weight fillout="1" year="2030">0.1775</share-weight>
+               <share-weight fillout="1" year="2035">0.142</share-weight>
+               <share-weight fillout="1" year="2040">0.142</share-weight>
+               <share-weight fillout="1" year="2045">0.142</share-weight>
+               <share-weight fillout="1" year="2050">0.142</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5375</share-weight>
+               <share-weight fillout="1" year="2025">0.43</share-weight>
+               <share-weight fillout="1" year="2030">0.26875</share-weight>
+               <share-weight fillout="1" year="2035">0.215</share-weight>
+               <share-weight fillout="1" year="2040">0.215</share-weight>
+               <share-weight fillout="1" year="2045">0.215</share-weight>
+               <share-weight fillout="1" year="2050">0.215</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MD">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.795</share-weight>
+               <share-weight fillout="1" year="2025">0.636</share-weight>
+               <share-weight fillout="1" year="2030">0.3975</share-weight>
+               <share-weight fillout="1" year="2035">0.318</share-weight>
+               <share-weight fillout="1" year="2040">0.318</share-weight>
+               <share-weight fillout="1" year="2045">0.318</share-weight>
+               <share-weight fillout="1" year="2050">0.318</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="ME">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5</share-weight>
+               <share-weight fillout="1" year="2025">0.4</share-weight>
+               <share-weight fillout="1" year="2030">0.25</share-weight>
+               <share-weight fillout="1" year="2035">0.2</share-weight>
+               <share-weight fillout="1" year="2040">0.2</share-weight>
+               <share-weight fillout="1" year="2045">0.2</share-weight>
+               <share-weight fillout="1" year="2050">0.2</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.0445</share-weight>
+               <share-weight fillout="1" year="2025">0.0356</share-weight>
+               <share-weight fillout="1" year="2030">0.02225</share-weight>
+               <share-weight fillout="1" year="2035">0.0178</share-weight>
+               <share-weight fillout="1" year="2040">0.0178</share-weight>
+               <share-weight fillout="1" year="2045">0.0178</share-weight>
+               <share-weight fillout="1" year="2050">0.0178</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.1935</share-weight>
+               <share-weight fillout="1" year="2025">0.1548</share-weight>
+               <share-weight fillout="1" year="2030">0.09675</share-weight>
+               <share-weight fillout="1" year="2035">0.0774</share-weight>
+               <share-weight fillout="1" year="2040">0.0774</share-weight>
+               <share-weight fillout="1" year="2045">0.0774</share-weight>
+               <share-weight fillout="1" year="2050">0.0774</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MI">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MN">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MO">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MS">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.2875</share-weight>
+               <share-weight fillout="1" year="2025">0.23</share-weight>
+               <share-weight fillout="1" year="2030">0.14375</share-weight>
+               <share-weight fillout="1" year="2035">0.115</share-weight>
+               <share-weight fillout="1" year="2040">0.115</share-weight>
+               <share-weight fillout="1" year="2045">0.115</share-weight>
+               <share-weight fillout="1" year="2050">0.115</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.375</share-weight>
+               <share-weight fillout="1" year="2025">0.3</share-weight>
+               <share-weight fillout="1" year="2030">0.1875</share-weight>
+               <share-weight fillout="1" year="2035">0.15</share-weight>
+               <share-weight fillout="1" year="2040">0.15</share-weight>
+               <share-weight fillout="1" year="2045">0.15</share-weight>
+               <share-weight fillout="1" year="2050">0.15</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="MT">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NC">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.2355</share-weight>
+               <share-weight fillout="1" year="2025">0.1884</share-weight>
+               <share-weight fillout="1" year="2030">0.11775</share-weight>
+               <share-weight fillout="1" year="2035">0.0942</share-weight>
+               <share-weight fillout="1" year="2040">0.0942</share-weight>
+               <share-weight fillout="1" year="2045">0.0942</share-weight>
+               <share-weight fillout="1" year="2050">0.0942</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.34</share-weight>
+               <share-weight fillout="1" year="2025">0.272</share-weight>
+               <share-weight fillout="1" year="2030">0.17</share-weight>
+               <share-weight fillout="1" year="2035">0.136</share-weight>
+               <share-weight fillout="1" year="2040">0.136</share-weight>
+               <share-weight fillout="1" year="2045">0.136</share-weight>
+               <share-weight fillout="1" year="2050">0.136</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="ND">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.6325</share-weight>
+               <share-weight fillout="1" year="2025">0.506</share-weight>
+               <share-weight fillout="1" year="2030">0.31625</share-weight>
+               <share-weight fillout="1" year="2035">0.253</share-weight>
+               <share-weight fillout="1" year="2040">0.253</share-weight>
+               <share-weight fillout="1" year="2045">0.253</share-weight>
+               <share-weight fillout="1" year="2050">0.253</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NE">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NH">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.6025</share-weight>
+               <share-weight fillout="1" year="2025">0.482</share-weight>
+               <share-weight fillout="1" year="2030">0.30125</share-weight>
+               <share-weight fillout="1" year="2035">0.241</share-weight>
+               <share-weight fillout="1" year="2040">0.241</share-weight>
+               <share-weight fillout="1" year="2045">0.241</share-weight>
+               <share-weight fillout="1" year="2050">0.241</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.1545</share-weight>
+               <share-weight fillout="1" year="2025">0.1236</share-weight>
+               <share-weight fillout="1" year="2030">0.07725</share-weight>
+               <share-weight fillout="1" year="2035">0.0618</share-weight>
+               <share-weight fillout="1" year="2040">0.0618</share-weight>
+               <share-weight fillout="1" year="2045">0.0618</share-weight>
+               <share-weight fillout="1" year="2050">0.0618</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.63</share-weight>
+               <share-weight fillout="1" year="2025">0.504</share-weight>
+               <share-weight fillout="1" year="2030">0.315</share-weight>
+               <share-weight fillout="1" year="2035">0.252</share-weight>
+               <share-weight fillout="1" year="2040">0.252</share-weight>
+               <share-weight fillout="1" year="2045">0.252</share-weight>
+               <share-weight fillout="1" year="2050">0.252</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NJ">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NM">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NV">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="NY">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="OH">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="OK">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">1.205</share-weight>
+               <share-weight fillout="1" year="2025">0.964</share-weight>
+               <share-weight fillout="1" year="2030">0.6025</share-weight>
+               <share-weight fillout="1" year="2035">0.482</share-weight>
+               <share-weight fillout="1" year="2040">0.482</share-weight>
+               <share-weight fillout="1" year="2045">0.482</share-weight>
+               <share-weight fillout="1" year="2050">0.482</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="OR">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.39</share-weight>
+               <share-weight fillout="1" year="2025">0.312</share-weight>
+               <share-weight fillout="1" year="2030">0.195</share-weight>
+               <share-weight fillout="1" year="2035">0.156</share-weight>
+               <share-weight fillout="1" year="2040">0.156</share-weight>
+               <share-weight fillout="1" year="2045">0.156</share-weight>
+               <share-weight fillout="1" year="2050">0.156</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5825</share-weight>
+               <share-weight fillout="1" year="2025">0.466</share-weight>
+               <share-weight fillout="1" year="2030">0.29125</share-weight>
+               <share-weight fillout="1" year="2035">0.233</share-weight>
+               <share-weight fillout="1" year="2040">0.233</share-weight>
+               <share-weight fillout="1" year="2045">0.233</share-weight>
+               <share-weight fillout="1" year="2050">0.233</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="PA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="RI">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="SC">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.242</share-weight>
+               <share-weight fillout="1" year="2025">0.1936</share-weight>
+               <share-weight fillout="1" year="2030">0.121</share-weight>
+               <share-weight fillout="1" year="2035">0.0968</share-weight>
+               <share-weight fillout="1" year="2040">0.0968</share-weight>
+               <share-weight fillout="1" year="2045">0.0968</share-weight>
+               <share-weight fillout="1" year="2050">0.0968</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.35</share-weight>
+               <share-weight fillout="1" year="2025">0.28</share-weight>
+               <share-weight fillout="1" year="2030">0.175</share-weight>
+               <share-weight fillout="1" year="2035">0.14</share-weight>
+               <share-weight fillout="1" year="2040">0.14</share-weight>
+               <share-weight fillout="1" year="2045">0.14</share-weight>
+               <share-weight fillout="1" year="2050">0.14</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="SD">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.8475</share-weight>
+               <share-weight fillout="1" year="2025">0.678</share-weight>
+               <share-weight fillout="1" year="2030">0.42375</share-weight>
+               <share-weight fillout="1" year="2035">0.339</share-weight>
+               <share-weight fillout="1" year="2040">0.339</share-weight>
+               <share-weight fillout="1" year="2045">0.339</share-weight>
+               <share-weight fillout="1" year="2050">0.339</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="TN">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.27</share-weight>
+               <share-weight fillout="1" year="2025">0.216</share-weight>
+               <share-weight fillout="1" year="2030">0.135</share-weight>
+               <share-weight fillout="1" year="2035">0.108</share-weight>
+               <share-weight fillout="1" year="2040">0.108</share-weight>
+               <share-weight fillout="1" year="2045">0.108</share-weight>
+               <share-weight fillout="1" year="2050">0.108</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.3525</share-weight>
+               <share-weight fillout="1" year="2025">0.282</share-weight>
+               <share-weight fillout="1" year="2030">0.17625</share-weight>
+               <share-weight fillout="1" year="2035">0.141</share-weight>
+               <share-weight fillout="1" year="2040">0.141</share-weight>
+               <share-weight fillout="1" year="2045">0.141</share-weight>
+               <share-weight fillout="1" year="2050">0.141</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="TX">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.38</share-weight>
+               <share-weight fillout="1" year="2025">0.304</share-weight>
+               <share-weight fillout="1" year="2030">0.19</share-weight>
+               <share-weight fillout="1" year="2035">0.152</share-weight>
+               <share-weight fillout="1" year="2040">0.152</share-weight>
+               <share-weight fillout="1" year="2045">0.152</share-weight>
+               <share-weight fillout="1" year="2050">0.152</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.9475</share-weight>
+               <share-weight fillout="1" year="2025">0.758</share-weight>
+               <share-weight fillout="1" year="2030">0.47375</share-weight>
+               <share-weight fillout="1" year="2035">0.379</share-weight>
+               <share-weight fillout="1" year="2040">0.379</share-weight>
+               <share-weight fillout="1" year="2045">0.379</share-weight>
+               <share-weight fillout="1" year="2050">0.379</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="UT">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="VA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.3475</share-weight>
+               <share-weight fillout="1" year="2025">0.278</share-weight>
+               <share-weight fillout="1" year="2030">0.17375</share-weight>
+               <share-weight fillout="1" year="2035">0.139</share-weight>
+               <share-weight fillout="1" year="2040">0.139</share-weight>
+               <share-weight fillout="1" year="2045">0.139</share-weight>
+               <share-weight fillout="1" year="2050">0.139</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5025</share-weight>
+               <share-weight fillout="1" year="2025">0.402</share-weight>
+               <share-weight fillout="1" year="2030">0.25125</share-weight>
+               <share-weight fillout="1" year="2035">0.201</share-weight>
+               <share-weight fillout="1" year="2040">0.201</share-weight>
+               <share-weight fillout="1" year="2045">0.201</share-weight>
+               <share-weight fillout="1" year="2050">0.201</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="VT">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.535</share-weight>
+               <share-weight fillout="1" year="2025">0.428</share-weight>
+               <share-weight fillout="1" year="2030">0.2675</share-weight>
+               <share-weight fillout="1" year="2035">0.214</share-weight>
+               <share-weight fillout="1" year="2040">0.214</share-weight>
+               <share-weight fillout="1" year="2045">0.214</share-weight>
+               <share-weight fillout="1" year="2050">0.214</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.14675</share-weight>
+               <share-weight fillout="1" year="2025">0.1174</share-weight>
+               <share-weight fillout="1" year="2030">0.073375</share-weight>
+               <share-weight fillout="1" year="2035">0.0587</share-weight>
+               <share-weight fillout="1" year="2040">0.0587</share-weight>
+               <share-weight fillout="1" year="2045">0.0587</share-weight>
+               <share-weight fillout="1" year="2050">0.0587</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.5675</share-weight>
+               <share-weight fillout="1" year="2025">0.454</share-weight>
+               <share-weight fillout="1" year="2030">0.28375</share-weight>
+               <share-weight fillout="1" year="2035">0.227</share-weight>
+               <share-weight fillout="1" year="2040">0.227</share-weight>
+               <share-weight fillout="1" year="2045">0.227</share-weight>
+               <share-weight fillout="1" year="2050">0.227</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="WA">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.4125</share-weight>
+               <share-weight fillout="1" year="2025">0.33</share-weight>
+               <share-weight fillout="1" year="2030">0.20625</share-weight>
+               <share-weight fillout="1" year="2035">0.165</share-weight>
+               <share-weight fillout="1" year="2040">0.165</share-weight>
+               <share-weight fillout="1" year="2045">0.165</share-weight>
+               <share-weight fillout="1" year="2050">0.165</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.6175</share-weight>
+               <share-weight fillout="1" year="2025">0.494</share-weight>
+               <share-weight fillout="1" year="2030">0.30875</share-weight>
+               <share-weight fillout="1" year="2035">0.247</share-weight>
+               <share-weight fillout="1" year="2040">0.247</share-weight>
+               <share-weight fillout="1" year="2045">0.247</share-weight>
+               <share-weight fillout="1" year="2050">0.247</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="WI">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="WV">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.3575</share-weight>
+               <share-weight fillout="1" year="2025">0.286</share-weight>
+               <share-weight fillout="1" year="2030">0.17875</share-weight>
+               <share-weight fillout="1" year="2035">0.143</share-weight>
+               <share-weight fillout="1" year="2040">0.143</share-weight>
+               <share-weight fillout="1" year="2045">0.143</share-weight>
+               <share-weight fillout="1" year="2050">0.143</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">0.4925</share-weight>
+               <share-weight fillout="1" year="2025">0.394</share-weight>
+               <share-weight fillout="1" year="2030">0.24625</share-weight>
+               <share-weight fillout="1" year="2035">0.197</share-weight>
+               <share-weight fillout="1" year="2040">0.197</share-weight>
+               <share-weight fillout="1" year="2045">0.197</share-weight>
+               <share-weight fillout="1" year="2050">0.197</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+      <region name="WY">
+         <supplysector name="comm heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="comm hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid heating" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+         <supplysector name="resid hot water" nocreate="1">
+            <subsector name="gas" nocreate="1"><interpolation-rule apply-to="share-weight" delete="1" from-year="2015" to-year="2100" ><interpolation-function name="fixed"/><overwrite-policy warn="0">NEVER</overwrite-policy></interpolation-rule>
+               <share-weight fillout="1" year="2020">2.5</share-weight>
+               <share-weight fillout="1" year="2025">2</share-weight>
+               <share-weight fillout="1" year="2030">1.25</share-weight>
+               <share-weight fillout="1" year="2035">1</share-weight>
+               <share-weight fillout="1" year="2040">1</share-weight>
+               <share-weight fillout="1" year="2045">1</share-weight>
+               <share-weight fillout="1" year="2050">1</share-weight>
+            </subsector>
+         </supplysector>
+      </region>
+   </world>
+</scenario>

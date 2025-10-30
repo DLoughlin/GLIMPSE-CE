@@ -1,0 +1,19 @@
+INPUT_TABLE,,,,,,
+Variable ID,,,,,,
+StubTechCoalRet2,,,,,,
+,,,,,,
+region,supplysector,subsector,stub.technology,year,lifetime,fixedOutput
+USA,base load generation,nuclear,nuc_base_Gen II,2020,-1,2.850336205
+USA,base load generation,nuclear,nuc_base_Gen II,2025,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen II,2030,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen II,2035,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen II,2040,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen II,2045,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen II,2050,-1,2.816243129
+USA,base load generation,nuclear,nuc_base_Gen III,2020,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2025,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2030,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2035,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2040,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2045,-1,0
+USA,base load generation,nuclear,nuc_base_Gen III,2050,-1,0

@@ -1,0 +1,105 @@
+﻿INPUT_TABLE
+Variable ID
+4
+
+sector,subsector,technology,Year,Name
+base load generation,biomass,biomass_base_conv,2015,CO2_ELEC
+base load generation,biomass,biomass_base_conv_CCS,2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC,2015,CO2_ELEC
+base load generation,biomass,biomass_base_IGCC_CCS,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1951-1955,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1956-1960,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1961-1965,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1966-1970,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1971-1975,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1976-1980,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1981-1985,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1986-1990,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1991-1995,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 1996-2000,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2001-2005,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2006-2010,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul 2011-2015,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul before 1950,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_CCS,2015,CO2_ELEC
+base load generation,coal,coal_base_conv pul_retire_2020,2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC,2015,CO2_ELEC
+base load generation,coal,coal_base_IGCC_CCS,2015,CO2_ELEC
+base load generation,gas,gas_base_CC,2015,CO2_ELEC
+base load generation,gas,gas_base_CC_CCS,2015,CO2_ELEC
+base load generation,geothermal,geo_base,2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen II,2015,CO2_ELEC
+base load generation,nuclear,nuc_base_Gen III,2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC,2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_CC_CCS,2015,CO2_ELEC
+base load generation,refined liquids,refined liquids_base_steam/CT,2015,CO2_ELEC
+base load generation,solar,CSP_base_storage,2015,CO2_ELEC
+base load generation,solar,PV_base_storage,2015,CO2_ELEC
+base load generation,wind,wind_base,2015,CO2_ELEC
+base load generation,wind,wind_base_offshore,2015,CO2_ELEC
+base load generation,wind,wind_base_storage,2015,CO2_ELEC
+elect_td_bld,rooftop_pv,N/A,2015,CO2_ELEC
+elect_td_bld,rooftop_pv,rooftop_pv,2015,CO2_ELEC
+electricity,biomass,N/A,2015,CO2_ELEC
+electricity,coal,N/A,2015,CO2_ELEC
+electricity,gas,N/A,2015,CO2_ELEC
+electricity,geothermal,N/A,2015,CO2_ELEC
+electricity,nuclear,N/A,2015,CO2_ELEC
+electricity,refined liquids,N/A,2015,CO2_ELEC
+electricity,solar,N/A,2015,CO2_ELEC
+electricity,wind,N/A,2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv,2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_conv_CCS,2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC,2015,CO2_ELEC
+intermediate generation,biomass,biomass_int_IGCC_CCS,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1951-1955,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1956-1960,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1961-1965,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1966-1970,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1971-1975,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1976-1980,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1981-1985,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1986-1990,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1991-1995,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 1996-2000,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2001-2005,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2006-2010,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul 2011-2015,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul before 1950,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_CCS,2015,CO2_ELEC
+intermediate generation,coal,coal_int_conv pul_retire_2020,2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC,2015,CO2_ELEC
+intermediate generation,coal,coal_int_IGCC_CCS,2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC,2015,CO2_ELEC
+intermediate generation,gas,gas_int_CC_CCS,2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC,2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_CC_CCS,2015,CO2_ELEC
+intermediate generation,refined liquids,refined liquids_int_steam/CT,2015,CO2_ELEC
+intermediate generation,solar,CSP_int,2015,CO2_ELEC
+intermediate generation,solar,PV_int,2015,CO2_ELEC
+intermediate generation,wind,wind_int,2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul,2015,CO2_ELEC
+peak generation,coal,coal_peak_conv pul_retire_2020,2015,CO2_ELEC
+peak generation,gas,gas_peak_CC,2015,CO2_ELEC
+peak generation,gas,gas_peak_CC_CCS,2015,CO2_ELEC
+peak generation,gas,gas_peak_steam/CT,2015,CO2_ELEC
+peak generation,grid_storage,battery,2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC,2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_CC_CCS,2015,CO2_ELEC
+peak generation,refined liquids,refined liquids_peak_steam/CT,2015,CO2_ELEC
+peak generation,solar,CSP_peak,2015,CO2_ELEC
+peak generation,solar,PV_peak,2015,CO2_ELEC
+subpeak generation,coal,coal_subpeak_conv pul,2015,CO2_ELEC
+subpeak generation,coal,coal_subpeak_conv pul_retire_2020,2015,CO2_ELEC
+subpeak generation,gas,gas_subpeak_CC,2015,CO2_ELEC
+subpeak generation,gas,gas_subpeak_CC_CCS,2015,CO2_ELEC
+subpeak generation,gas,gas_subpeak_steam/CT,2015,CO2_ELEC
+subpeak generation,refined liquids,refined liquids_subpeak_CC,2015,CO2_ELEC
+subpeak generation,refined liquids,refined liquids_subpeak_CC_CCS,2015,CO2_ELEC
+subpeak generation,refined liquids,refined liquids_subpeak_steam/CT,2015,CO2_ELEC
+subpeak generation,solar,CSP_subpeak,2015,CO2_ELEC
+subpeak generation,solar,PV_subpeak,2015,CO2_ELEC
+subpeak generation,wind,wind_subpeak,2015,CO2_ELEC
+,,,2015,CO2_ELEC

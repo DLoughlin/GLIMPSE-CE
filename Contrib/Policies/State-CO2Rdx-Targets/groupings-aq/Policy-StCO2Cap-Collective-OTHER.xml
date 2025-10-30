@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="LA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_LAMIMN_Mkt</market>
+            <constraint year="2030">80.39841424</constraint>
+            <constraint year="2035">61.68708726</constraint>
+            <constraint year="2040">42.97576027</constraint>
+            <constraint year="2045">24.26443329</constraint>
+            <constraint year="2050">5.553106313</constraint>
+         </ghgpolicy>
+      </region>
+      <region name="MI">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_LAMIMN_Mkt</market>
+         </ghgpolicy>
+      </region>
+      <region name="MN">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_LAMIMN_Mkt</market>
+         </ghgpolicy>
+      </region>
+   </world>
+</scenario>

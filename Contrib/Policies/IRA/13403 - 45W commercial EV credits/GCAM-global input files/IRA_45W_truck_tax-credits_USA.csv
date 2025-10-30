@@ -1,0 +1,29 @@
+INPUT_TABLE,,,,,,
+Variable ID,,,,,,
+StubTranTechCost,,,,,,
+,,,,,,
+region,supplysector,tranSubsector,stub-technology,year,minicam.non.energy.input,input-cost
+USA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+USA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+USA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+USA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+USA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+USA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+USA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+USA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+USA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+USA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+USA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+USA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+USA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+USA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+USA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+USA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+USA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+USA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+USA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+USA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+USA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+USA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+USA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+USA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0

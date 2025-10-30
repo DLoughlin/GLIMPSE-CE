@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <global-technology-database>
+            <location-info sector-name="resid clothes dryers" subsector-name="electricity">
+                <technology name="clothes dryer hi-eff">
+                    <period year="2025">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-0.0132</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-0.0132</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="resid cooking" subsector-name="electricity">
+                <technology name="electric oven">
+                    <period year="2025">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-14.1834</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-14.1834</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="resid cooling" subsector-name="electricity">
+                <technology name="air conditioning hi-eff">
+                    <period year="2025">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-2.2836</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-2.2836</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="resid heating" subsector-name="electricity">
+                <technology name="electric heat pump">
+                    <period year="2025">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-2.5806</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-2.5806</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="resid hot water" subsector-name="electricity">
+                <technology name="electric heat pump water heater">
+                    <period year="2025">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-8.4942</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="subsidy">
+                            <input-cost>-8.4942</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+        </global-technology-database>
+    </world>
+</scenario>

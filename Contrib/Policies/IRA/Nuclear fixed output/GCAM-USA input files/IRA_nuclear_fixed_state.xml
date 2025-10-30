@@ -1,0 +1,2183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <world>
+        <region name="AL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.142066177</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AR">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.045794945</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AZ">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.111950132</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065568668</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CT">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.060773371</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="FL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105524456</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="GA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.123705634</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.185625634</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.017623436</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IL">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.353165497</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KS">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.03300584</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="LA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.061749295</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MD">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.053956552</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ME">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MI">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.109723298</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.090081914</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MN">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.052564784</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MO">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.038359004</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MS">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.024910092</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NC">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.151477016</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NE">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.020275704</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NH">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036222106</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NJ">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.102390448</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NY">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.15450844</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.095760184</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OH">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.065934025</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OR">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="PA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.274083127</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SC">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.189779288</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TN">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.130234975</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TX">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.14826866</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.105306005</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VT">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WA">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.034950388</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WI">
+            <supplysector name="base load generation">
+                <subsector name="nuclear">
+                    <stub-technology name="nuc_base_Gen II">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0.036464839</fixedOutput>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="nuc_base_Gen III">
+                        <period year="2020">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2025">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2030">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2035">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2040">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2045">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                        <period year="2050">
+                            <lifetime>-1</lifetime>
+                            <fixedOutput>0</fixedOutput>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

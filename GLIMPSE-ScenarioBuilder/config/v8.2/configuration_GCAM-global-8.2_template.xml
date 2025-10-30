@@ -104,11 +104,14 @@
 		<Value name = "bio_feedstock_limit">../input/gcamdata/xml/liquids_limits.xml</Value>
 		<Value name = "bio_elec_w_feed_limit">../input/gcamdata/xml/water_elec_liquids_limits.xml</Value>
 		<Value name = "bio_externality">../input/gcamdata/xml/bio_externality.xml</Value>
-        <Value name = "gas_trade">../input/gcamdata/xml/gas_trade.xml</Value>
+        	<Value name = "gas_trade">../input/gcamdata/xml/gas_trade.xml</Value>
 
-        <Value name = "prune_ag">../input/gcamdata/xml/prune_empty_ag.xml</Value>
+        	<Value name = "prune_ag">../input/gcamdata/xml/prune_empty_ag.xml</Value>
 
 		<Value name = "solver">../input/solution/cal_broyden_config.xml</Value>
+		<Value name="solver-config-8.2.txt">../../../Contrib/Miscl/solver/cal_broyden_config-epa-8.2.xml</Value>
+
+		<!-- Add-on files go beneath this -->
 		
 	</ScenarioComponents>
 	<Strings>

@@ -1,0 +1,13 @@
+# File: A23.itc_USA.csv,,
+# Title: Investment tax credit (% of overnight capital cost),,
+# Units: unitless ratio,,
+# Comments: modified itc to reflect IRA13302,,
+# ----------,,
+year,GCAM.technology,itc
+2020,rooftop_pv,0.26
+2025,rooftop_pv,0.3
+2030,rooftop_pv,0.3
+2035,rooftop_pv,0.22
+2040,rooftop_pv,0.1
+2045,rooftop_pv,0.1
+2050,rooftop_pv,0.1

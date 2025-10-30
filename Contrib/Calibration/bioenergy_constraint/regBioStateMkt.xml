@@ -1,0 +1,3166 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="AK">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AL">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AR">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AZ">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CO">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CT">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="DC">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="DE">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="FL">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="GA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="HI">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ID">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IL">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IN">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KS">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KY">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="LA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MD">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ME">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MI">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MN">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MO">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MS">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MT">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NC">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ND">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NE">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NH">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NJ">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NM">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NV">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NY">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OH">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OK">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OR">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="PA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="RI">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SC">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SD">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TN">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TX">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="UT">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VT">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WA">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WI">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WV">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WY">
+            <supplysector name="regional biomass" nocreate="1">
+                <subsector name="regional biomass" nocreate="1">
+                    <technology name="regional biomass" nocreate="1">
+                        <period year="2015">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2020">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2025">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2030">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2035">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2040">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2045">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2050">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2055">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2060">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2065">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2070">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2075">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2080">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2085">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2090">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2095">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                        <period year="2100">
+                            <input-tax name="bio-ceiling"/>
+                        </period>
+                    </technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

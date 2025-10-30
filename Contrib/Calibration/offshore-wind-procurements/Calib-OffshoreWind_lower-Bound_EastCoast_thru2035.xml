@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="CT">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MA">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="MD">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="ME">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NH">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NJ">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="NY">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="RI">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VA">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+      <region name="VT">
+         <supplysector name="base load generation" nocreate="1">
+            <nesting-subsector name="wind" nocreate="1">
+               <subsector name="wind_base_offshore" nocreate="1">
+                  <stub-technology name="wind_base_offshore" nocreate="1">
+                     <period year="2010">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2015">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2020">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2025">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2030">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                     <period year="2035">
+                        <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                     </period>
+                  </stub-technology>
+               </subsector>
+            </nesting-subsector>
+         </supplysector>
+         <supplysector name="electricity" nocreate="1">
+            <subsector name="wind" nocreate="1">
+               <stub-technology name="wind_offshore" nocreate="1">
+                  <period year="2010">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2015">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2020">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2025">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2030">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+                  <period year="2035">
+                     <input-subsidy name="Lo_All_Tech_OSW-NE2"/>
+                  </period>
+               </stub-technology>
+            </subsector>
+         </supplysector>
+         <policy-portfolio-standard name="Lo_All_Tech_OSW-NE2">
+            <market>Lo_All_Tech_OSW-NE_Mkt2</market>
+            <policyType>subsidy</policyType>
+            <constraint year="2025">0.118</constraint>
+            <constraint year="2030">0.228</constraint>
+            <constraint year="2035">0.497</constraint>
+         </policy-portfolio-standard>
+      </region>
+   </world>
+</scenario>

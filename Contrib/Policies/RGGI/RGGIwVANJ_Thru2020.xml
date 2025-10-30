@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario>
+	<world>
+		<region name="CT">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			<!-- Constraint without VA -->			<constraint year="2020">19.34</constraint>
+			</ghgpolicy>
+		</region>
+		<region name="DE">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="ME">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MD">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="MA">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NH">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="NY">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="RI">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+		<region name="VT">
+			<ghgpolicy name="CO2_ELEC">
+				<market>RGGI_Market_for_Cap</market>
+			 
+			</ghgpolicy>
+		</region>
+
+	</world>
+</scenario>

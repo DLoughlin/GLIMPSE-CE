@@ -1,0 +1,130 @@
+#Notes: It a line is blank or starts with a #, it is not parsed
+#       The glimpseDir, gCamHomeDir, and scenarioBuilderDir specifications filter through the rest of the options, 
+#            replacing $glimpseDir$, $gCamHomeDir$, and $gCamGUIDir$, respectively 
+#       It is important that these be specified at the top of the file
+
+#=============================== Major options ================================
+#-----set glimpseDir so GLIMPSE knows where your distribution is located-----
+glimpseDir = .
+
+#-----set gCamHomeDir so GLIMPSE knows the location of your gcam installation-----
+gCamHomeDir = $glimpseDir$/GCAM-Model/gcam-v7.0
+
+#-----set scenarioBuilderDir so GLIMPSE knows where to find the ScenarioBuilder executable and related files
+scenarioBuilderDir = $glimpseDir$/GLIMPSE-ScenarioBuilder
+
+#============================= Other Major Options =========================================
+
+#-----set modelInterfaceDir so GLIMPSE knows where to find the ModelInterface executable and related files
+modelInterfaceDir = $glimpseDir$/GLIMPSE-ModelInterface
+
+#----Major options-----
+#This is where you specify which database will be used for new GCAM results
+gCamOutputDatabase = $gCamHomeDir$/output/database-cop-v4
+
+#Specify the pathname for this options file. Used to access/edit the file from GLIMPSE
+optionsFilename = $glimpseDir$/options_GCAM-USA-7.0.txt
+
+
+#===========================================================================================
+
+#-----Locations where GLIMPSE components and documentation are stored-----
+glimpseResourceDir = $glimpseDir$/resources
+glimpseDocDir = $glimpseDir$/Docs
+scenarioComponentsDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-7.0/ScenarioComponents
+scenarioDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-7.0/ScenarioFolders
+glimpseLogDir = $glimpseDir$/GLIMPSE-Data/logs
+trashDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-7.0/trash
+resourceDir = $glimpseDir$/resources 
+
+#-----Locations where ScenarioBuilder components and documentation are stored-----
+scenarioBuilderJar = GLIMPSE-ScenarioBuilder.jar 
+scenarioBuilderJarDir = $scenarioBuilderDir$
+scenarioBuilderConfigDir = $scenarioBuilderDir$/config/v7.0
+
+#-----ModelInterface name and location (may need to update version)-----
+modelInterfaceJar = GLIMPSE-ModelInterface.jar
+modelInterfaceJarDir = $modelInterfaceDir$
+modelInterfaceConfigDir = $modelInterfaceDir$/config
+
+========================== modelInterface options ==========================================
+
+#query file used by the GLIMPSE-ModelIngerface
+queryFilename = $modelInterfaceDir$/config/Main_queries_GLIMPSE-7.0.xml
+favoriteQueryFilename = $modelInterfaceDir$/config/favorite_queries_list.txt
+
+#file with all region specifications ... These are also used in the ScenarioBuilder
+regionListFilename = $scenarioBuilderDir$/config/v7.0/region_list_7.0.txt
+subRegionListFilename = $scenarioBuilderDir$/config/v7.0/subregion_list_7.0.txt
+presetRegionListFilename = $scenarioBuilderDir$/config/v7.0/preset_region_list_7.0.txt
+
+#file unit conversion file for ModelInterface
+unitConversionsFilename = $modelInterfaceDir$/config/units_rules.csv
+
+========================== scenarioBuilder options ==========================================
+#-----Files for tailoring GLIMPSE to a particular version of GCAM-----
+
+#Template configuration file. This file is modified to create a scenario-specific configuration file
+configurationTemplateFilename = $scenarioBuilderDir$/config/v7.0/configuration_GCAM-USA-7.0_template.xml
+
+#list of technologies to include in the tech bound scenario component dialog
+tchBndListFilename = $scenarioBuilderDir$/config/v7.0/tech_bnd_list_USA_7.0.txt
+
+#table with load factors for transportation technologies
+#TODO: Need to update for 7.0
+tranLoadFactorsFilename = $scenarioBuilderDir$/config/v7.0/trn_veh_info_7p0.csv
+
+#files include specifications used in generating xml files
+xmlHeaderFilename = $scenarioBuilderDir$/config/v7.0/glimpseXMLHeaders_v7.0.txt
+csvColumnFilename = $scenarioBuilderDir$/config/v7.0/glimpseCSVColumnsForTechParam.txt
+
+#file with conversion factors to convert to 1990 $ years
+monetaryConversionsFilename = $scenarioBuilderDir$/config/v7.0/monetary_conversions.csv
+
+#allowable years for populating scenario builder
+allYearList = 1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
+allowablePolicyYearList = 2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
+calibrationYear = 2021
+
+
+===========================================================================================
+
+#-----Editors that are automatically invoked when you double click on a txt or xml file
+textEditor = C:/Windows/notepad.exe
+xmlEditor = C:/Windows/notepad.exe
+#textEditor = C:/Program Files/Notepad++/notepad++.exe
+#xmlEditor = C:/Program Files/Notepad++/notepad++.exe
+#textEditor = "C:/Program Files/IDM Computer Solutions/UltraEdit/uedit64.exe"
+#xmlEditor = "C:/Program Files/IDM Computer Solutions/UltraEdit/uedit64.exe"
+
+#-----GCAM executable name and location-----
+gCamExecutable = ./gcam-glimpse.exe
+#gCamExecutable = gcam.exe
+gCamExecutableArgs = -C 
+gCamExecutableDir = $gCamHomeDir$/exe
+gCamDataDir = $gCamHomeDir$/input/gcamdata
+xmlLibrary = $gCamHomeDir$/input
+
+#-----Miscl GUI setup options-----
+#Are you using GCAM-USA? If so, indicate "true". This enables state-level items in tree
+isGcamUSA = true
+
+#thresholds for warnings
+maxDatabaseSizeGB = 38
+
+allowablePolicyYears = "2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100"
+
+#These values are inserted into the scenario-specific configuration file when it created. Comment with # to use default
+stop-year = 2050
+solver = $gCamHomeDir$/input/solution/cal_broyden_config.xml
+debugRegion = USA
+debugCreate = 1
+debugRename = 0
+
+gCamOutputToSave = $gCamHomeDir$/exe/logs/main_log.txt;$gCamHomeDir$/exe/debug.xml
+#gCamOutputToSave = $gCamHomeDir$/exe/logs/main_log.txt;$gCamHomeDir$/exe/logs/calibration_log.txt;$gCamHomeDir$/exe/logs/solver_log.csv;$gCamHomeDir$/exe/debug.xml
+
+#----GUI Appearance-----
+preferredFontSize = 11
+useIcons = true
+showSplash = false

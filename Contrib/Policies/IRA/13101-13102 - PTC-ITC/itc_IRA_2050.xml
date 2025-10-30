@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <global-technology-database>
+         <location-info sector-name="base load generation" subsector-name="CSP_base_storage">
+            <technology name="CSP_base_storage">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="PV_base_storage">
+            <technology name="PV_base_storage">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </technology>
+         </location-info>
+         <location-info sector-name="base load generation" subsector-name="wind_base_offshore">
+            <intermittent-technology name="wind_base_offshore">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2025">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.094</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2030">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.094</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2035">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2040">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2045">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2050">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="elect_td_bld" subsector-name="rooftop_pv">
+            <intermittent-technology name="rooftop_pv">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.07</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2025">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.072</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2030">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.072</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2035">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.076</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2040">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.076</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2045">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.076</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2050">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.076</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="CSP_int">
+            <intermittent-technology name="CSP_int (dry_hybrid)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_int (recirculating)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="intermediate generation" subsector-name="PV_int">
+            <intermittent-technology name="PV_int">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="peak generation" subsector-name="CSP_peak">
+            <intermittent-technology name="CSP_peak (dry_hybrid)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_peak (recirculating)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="peak generation" subsector-name="PV_peak">
+            <intermittent-technology name="PV_peak">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="subpeak generation" subsector-name="CSP_subpeak">
+            <intermittent-technology name="CSP_subpeak (dry_hybrid)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+            <intermittent-technology name="CSP_subpeak (recirculating)">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="subpeak generation" subsector-name="PV_subpeak">
+            <intermittent-technology name="PV_subpeak">
+               <period year="2020">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.091</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+         <location-info sector-name="peak generation" subsector-name="grid_storage">
+            <intermittent-technology name="battery">
+               <period year="2025">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.094</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2030">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.094</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2035">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2040">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2045">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+               <period year="2050">
+                  <input-capital name="capital">
+                     <fixed-charge-rate>0.099</fixed-charge-rate>
+                  </input-capital>
+               </period>
+            </intermittent-technology>
+         </location-info>
+      </global-technology-database>
+   </world>
+</scenario>

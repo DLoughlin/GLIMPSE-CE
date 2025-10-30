@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+	<world>
+		<region name="CT">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="DE">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="ME">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="MD">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="MA">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="NH">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="NY">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="RI">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="VT">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="VA">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="1"
+            					year="1975">0</price-adjust>
+				<price-adjust year="2010">0</price-adjust>
+				<price-adjust year="2015">0</price-adjust>
+				<price-adjust year="2020">0</price-adjust>
+				<price-adjust year="2025">1</price-adjust>
+				<price-adjust year="2030">1</price-adjust>
+				<price-adjust year="2035">1</price-adjust>
+				<price-adjust year="2040">1</price-adjust>
+				<price-adjust year="2045">1</price-adjust>
+				<price-adjust year="2050">1</price-adjust>
+				<demand-adjust fillout="1"
+             					year="1975">0</demand-adjust>
+				<demand-adjust year="2010">0</demand-adjust>
+				<demand-adjust year="2015">0</demand-adjust>
+				<demand-adjust year="2020">0</demand-adjust>
+				<demand-adjust year="2025">1</demand-adjust>
+				<demand-adjust year="2030">1</demand-adjust>
+				<demand-adjust year="2035">1</demand-adjust>
+				<demand-adjust year="2040">1</demand-adjust>
+				<demand-adjust year="2045">1</demand-adjust>
+				<demand-adjust year="2050">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+		<region name="NJ">
+			<linked-ghg-policy name="CO2_ELEC">
+				<price-adjust fillout="0"
+            					year="1975">0</price-adjust>
+				<price-adjust year="2010">0</price-adjust>
+				<price-adjust year="2015">0</price-adjust>
+				<price-adjust year="2020">0</price-adjust>
+				<price-adjust year="2025">1</price-adjust>
+				<price-adjust year="2030">1</price-adjust>
+				<price-adjust year="2035">1</price-adjust>
+				<price-adjust year="2040">1</price-adjust>
+				<price-adjust year="2045">1</price-adjust>
+				<price-adjust year="2050">1</price-adjust>
+				<demand-adjust fillout="0"
+             					year="1975">0</demand-adjust>
+				<demand-adjust year="2010">0</demand-adjust>
+				<demand-adjust year="2015">0</demand-adjust>
+				<demand-adjust year="2020">0</demand-adjust>
+				<demand-adjust year="2025">1</demand-adjust>
+				<demand-adjust year="2030">1</demand-adjust>
+				<demand-adjust year="2035">1</demand-adjust>
+				<demand-adjust year="2040">1</demand-adjust>
+				<demand-adjust year="2045">1</demand-adjust>
+				<demand-adjust year="2050">1</demand-adjust>
+				<market>RGGI_Market_for_Cap</market>
+				<linked-policy>RGGIwVANJ_CO2_ELEC</linked-policy>
+				<price-unit>1990$/tC</price-unit>
+				<output-unit>MtC</output-unit>
+			</linked-ghg-policy>
+		</region>
+	</world>
+</scenario>

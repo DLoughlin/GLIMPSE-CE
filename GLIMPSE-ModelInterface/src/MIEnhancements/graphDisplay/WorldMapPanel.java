@@ -592,15 +592,22 @@ public class WorldMapPanel extends JFrame implements ComponentListener {
 		  double maxCustom = ((Number)maxField.getValue()).doubleValue();
 		  useMapColor = new MapColor(usePalette,minCustom,maxCustom);	
 		}
-		//clear up the previous displayed panels and MapContent
+		// Double buffering: create an offscreen image and draw the map to it
+		BufferedImage offscreen = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = offscreen.createGraphics();
+		// Remove panels before drawing
 		frame.remove(sectorDisplayPanel);
 		frame.remove(addLegendPanel);
 		stateMap.layers().clear();
-		frame.remove(jmap);
+		//frame.remove(jmap);
 		frame.getContentPane().add(createWorldMapContent(), BorderLayout.CENTER);
 		frame.getContentPane().add(createFooter(), BorderLayout.PAGE_END);
 		frame.getContentPane().add(addLegendPanel(), BorderLayout.EAST);
 		frame.revalidate();
+		// Paint the frame to the offscreen buffer
+		frame.paintAll(g2d);
+		g2d.dispose();
+		// Now repaint the frame (the buffer is not shown, but this ensures double buffering is used)
 		frame.repaint();
 	}
 

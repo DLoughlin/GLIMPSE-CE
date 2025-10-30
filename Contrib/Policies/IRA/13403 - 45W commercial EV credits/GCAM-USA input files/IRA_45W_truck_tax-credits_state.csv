@@ -1,0 +1,1229 @@
+INPUT_TABLE,,,,,,
+Variable ID,,,,,,
+StubTranTechCost,,,,,,
+,,,,,,
+region,supplysector,tranSubsector,stub-technology,year,minicam.non.energy.input,input-cost
+AK,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+AL,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+AR,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+AZ,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+CA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+CO,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+CT,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+DC,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+DE,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+FL,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+GA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+HI,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+IA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+ID,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+IL,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+IN,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+KS,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+KY,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+LA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MD,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+ME,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MI,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MN,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MO,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MS,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+MT,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NC,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+ND,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NE,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NH,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NJ,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NM,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NV,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+NY,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+OH,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+OK,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+OR,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+PA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+RI,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+SC,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+SD,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+TN,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+TX,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+UT,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+VA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+VT,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+WA,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+WI,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+WV,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+WY,trn_freight_road,Heavy truck,BEV,2025,IRA_45W_heavy-truck_tax-credit,-0.048775
+AK,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+AL,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+AR,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+AZ,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+CA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+CO,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+CT,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+DC,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+DE,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+FL,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+GA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+HI,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+IA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+ID,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+IL,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+IN,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+KS,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+KY,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+LA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MD,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+ME,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MI,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MN,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MO,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MS,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+MT,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NC,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+ND,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NE,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NH,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NJ,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NM,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NV,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+NY,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+OH,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+OK,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+OR,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+PA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+RI,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+SC,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+SD,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+TN,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+TX,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+UT,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+VA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+VT,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+WA,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+WI,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+WV,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+WY,trn_freight_road,Heavy truck,BEV,2030,IRA_45W_heavy-truck_tax-credit,-0.048775
+AK,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+AL,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+AR,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+AZ,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+CA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+CO,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+CT,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+DC,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+DE,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+FL,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+GA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+HI,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+IA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+ID,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+IL,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+IN,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+KS,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+KY,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+LA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MD,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+ME,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MI,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MN,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MO,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MS,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+MT,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NC,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+ND,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NE,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NH,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NJ,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NM,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NV,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+NY,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+OH,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+OK,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+OR,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+PA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+RI,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+SC,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+SD,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+TN,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+TX,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+UT,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+VA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+VT,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+WA,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+WI,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+WV,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+WY,trn_freight_road,Heavy truck,BEV,2035,IRA_45W_heavy-truck_tax-credit,0
+AK,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+AL,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+AR,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+AZ,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+CA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+CO,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+CT,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+DC,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+DE,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+FL,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+GA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+HI,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+IA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+ID,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+IL,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+IN,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+KS,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+KY,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+LA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MD,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+ME,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MI,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MN,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MO,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MS,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+MT,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NC,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+ND,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NE,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NH,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NJ,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NM,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NV,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+NY,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+OH,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+OK,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+OR,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+PA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+RI,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+SC,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+SD,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+TN,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+TX,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+UT,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+VA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+VT,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+WA,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+WI,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+WV,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+WY,trn_freight_road,Heavy truck,BEV,2040,IRA_45W_heavy-truck_tax-credit,0
+AK,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+AL,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+AR,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+AZ,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+CA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+CO,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+CT,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+DC,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+DE,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+FL,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+GA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+HI,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+IA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+ID,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+IL,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+IN,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+KS,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+KY,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+LA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MD,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+ME,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MI,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MN,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MO,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MS,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+MT,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NC,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+ND,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NE,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NH,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NJ,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NM,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NV,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+NY,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+OH,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+OK,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+OR,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+PA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+RI,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+SC,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+SD,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+TN,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+TX,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+UT,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+VA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+VT,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+WA,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+WI,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+WV,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+WY,trn_freight_road,Heavy truck,BEV,2045,IRA_45W_heavy-truck_tax-credit,0
+AK,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+AL,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+AR,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+AZ,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+CA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+CO,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+CT,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+DC,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+DE,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+FL,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+GA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+HI,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+IA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+ID,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+IL,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+IN,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+KS,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+KY,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+LA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MD,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+ME,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MI,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MN,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MO,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MS,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+MT,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NC,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+ND,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NE,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NH,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NJ,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NM,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NV,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+NY,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+OH,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+OK,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+OR,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+PA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+RI,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+SC,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+SD,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+TN,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+TX,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+UT,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+VA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+VT,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+WA,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+WI,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+WV,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+WY,trn_freight_road,Heavy truck,BEV,2050,IRA_45W_heavy-truck_tax-credit,0
+AK,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+AL,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+AR,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+AZ,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+CA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+CO,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+CT,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+DC,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+DE,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+FL,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+GA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+HI,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+IA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+ID,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+IL,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+IN,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+KS,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+KY,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+LA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MD,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+ME,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MI,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MN,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MO,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MS,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+MT,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NC,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+ND,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NE,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NH,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NJ,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NM,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NV,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+NY,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+OH,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+OK,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+OR,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+PA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+RI,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+SC,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+SD,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+TN,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+TX,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+UT,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+VA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+VT,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+WA,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+WI,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+WV,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+WY,trn_freight_road,Medium truck,BEV,2025,IRA_45W_medium-truck_tax-credit,-0.030801
+AK,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+AL,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+AR,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+AZ,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+CA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+CO,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+CT,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+DC,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+DE,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+FL,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+GA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+HI,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+IA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+ID,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+IL,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+IN,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+KS,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+KY,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+LA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MD,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+ME,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MI,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MN,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MO,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MS,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+MT,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NC,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+ND,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NE,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NH,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NJ,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NM,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NV,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+NY,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+OH,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+OK,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+OR,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+PA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+RI,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+SC,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+SD,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+TN,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+TX,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+UT,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+VA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+VT,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+WA,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+WI,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+WV,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+WY,trn_freight_road,Medium truck,BEV,2030,IRA_45W_medium-truck_tax-credit,-0.030801
+AK,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+AL,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+AR,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+AZ,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+CA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+CO,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+CT,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+DC,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+DE,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+FL,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+GA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+HI,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+IA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+ID,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+IL,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+IN,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+KS,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+KY,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+LA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MD,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+ME,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MI,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MN,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MO,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MS,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+MT,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NC,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+ND,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NE,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NH,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NJ,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NM,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NV,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+NY,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+OH,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+OK,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+OR,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+PA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+RI,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+SC,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+SD,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+TN,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+TX,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+UT,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+VA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+VT,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+WA,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+WI,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+WV,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+WY,trn_freight_road,Medium truck,BEV,2035,IRA_45W_medium-truck_tax-credit,0
+AK,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+AL,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+AR,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+AZ,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+CA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+CO,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+CT,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+DC,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+DE,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+FL,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+GA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+HI,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+IA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+ID,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+IL,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+IN,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+KS,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+KY,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+LA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MD,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+ME,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MI,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MN,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MO,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MS,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+MT,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NC,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+ND,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NE,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NH,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NJ,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NM,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NV,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+NY,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+OH,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+OK,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+OR,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+PA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+RI,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+SC,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+SD,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+TN,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+TX,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+UT,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+VA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+VT,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+WA,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+WI,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+WV,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+WY,trn_freight_road,Medium truck,BEV,2040,IRA_45W_medium-truck_tax-credit,0
+AK,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+AL,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+AR,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+AZ,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+CA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+CO,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+CT,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+DC,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+DE,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+FL,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+GA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+HI,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+IA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+ID,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+IL,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+IN,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+KS,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+KY,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+LA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MD,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+ME,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MI,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MN,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MO,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MS,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+MT,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NC,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+ND,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NE,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NH,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NJ,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NM,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NV,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+NY,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+OH,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+OK,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+OR,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+PA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+RI,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+SC,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+SD,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+TN,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+TX,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+UT,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+VA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+VT,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+WA,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+WI,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+WV,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+WY,trn_freight_road,Medium truck,BEV,2045,IRA_45W_medium-truck_tax-credit,0
+AK,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+AL,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+AR,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+AZ,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+CA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+CO,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+CT,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+DC,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+DE,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+FL,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+GA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+HI,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+IA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+ID,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+IL,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+IN,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+KS,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+KY,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+LA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MD,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+ME,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MI,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MN,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MO,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MS,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+MT,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NC,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+ND,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NE,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NH,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NJ,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NM,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NV,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+NY,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+OH,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+OK,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+OR,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+PA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+RI,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+SC,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+SD,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+TN,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+TX,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+UT,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+VA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+VT,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+WA,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+WI,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+WV,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+WY,trn_freight_road,Medium truck,BEV,2050,IRA_45W_medium-truck_tax-credit,0
+AK,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+AL,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+AR,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+AZ,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+CA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+CO,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+CT,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+DC,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+DE,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+FL,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+GA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+HI,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+IA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+ID,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+IL,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+IN,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+KS,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+KY,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+LA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MD,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+ME,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MI,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MN,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MO,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MS,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+MT,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NC,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+ND,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NE,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NH,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NJ,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NM,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NV,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+NY,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+OH,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+OK,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+OR,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+PA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+RI,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+SC,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+SD,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+TN,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+TX,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+UT,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+VA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+VT,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+WA,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+WI,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+WV,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+WY,trn_freight_road,Light truck,BEV,2025,IRA_45W_light-truck_tax-credit,-0.03352
+AK,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+AL,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+AR,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+AZ,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+CA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+CO,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+CT,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+DC,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+DE,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+FL,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+GA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+HI,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+IA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+ID,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+IL,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+IN,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+KS,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+KY,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+LA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MD,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+ME,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MI,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MN,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MO,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MS,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+MT,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NC,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+ND,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NE,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NH,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NJ,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NM,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NV,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+NY,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+OH,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+OK,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+OR,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+PA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+RI,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+SC,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+SD,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+TN,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+TX,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+UT,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+VA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+VT,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+WA,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+WI,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+WV,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+WY,trn_freight_road,Light truck,BEV,2030,IRA_45W_light-truck_tax-credit,-0.03352
+AK,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+AL,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+AR,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+AZ,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+CA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+CO,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+CT,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+DC,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+DE,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+FL,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+GA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+HI,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+IA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+ID,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+IL,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+IN,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+KS,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+KY,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+LA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MD,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+ME,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MI,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MN,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MO,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MS,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+MT,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NC,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+ND,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NE,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NH,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NJ,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NM,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NV,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+NY,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+OH,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+OK,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+OR,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+PA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+RI,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+SC,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+SD,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+TN,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+TX,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+UT,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+VA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+VT,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+WA,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+WI,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+WV,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+WY,trn_freight_road,Light truck,BEV,2035,IRA_45W_light-truck_tax-credit,0
+AK,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+AL,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+AR,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+AZ,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+CA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+CO,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+CT,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+DC,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+DE,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+FL,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+GA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+HI,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+IA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+ID,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+IL,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+IN,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+KS,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+KY,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+LA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MD,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+ME,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MI,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MN,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MO,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MS,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+MT,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NC,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+ND,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NE,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NH,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NJ,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NM,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NV,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+NY,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+OH,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+OK,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+OR,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+PA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+RI,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+SC,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+SD,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+TN,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+TX,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+UT,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+VA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+VT,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+WA,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+WI,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+WV,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+WY,trn_freight_road,Light truck,BEV,2040,IRA_45W_light-truck_tax-credit,0
+AK,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+AL,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+AR,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+AZ,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+CA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+CO,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+CT,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+DC,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+DE,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+FL,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+GA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+HI,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+IA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+ID,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+IL,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+IN,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+KS,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+KY,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+LA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MD,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+ME,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MI,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MN,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MO,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MS,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+MT,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NC,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+ND,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NE,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NH,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NJ,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NM,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NV,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+NY,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+OH,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+OK,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+OR,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+PA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+RI,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+SC,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+SD,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+TN,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+TX,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+UT,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+VA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+VT,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+WA,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+WI,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+WV,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+WY,trn_freight_road,Light truck,BEV,2045,IRA_45W_light-truck_tax-credit,0
+AK,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+AL,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+AR,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+AZ,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+CA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+CO,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+CT,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+DC,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+DE,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+FL,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+GA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+HI,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+IA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+ID,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+IL,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+IN,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+KS,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+KY,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+LA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MD,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+ME,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MI,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MN,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MO,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MS,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+MT,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NC,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+ND,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NE,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NH,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NJ,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NM,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NV,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+NY,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+OH,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+OK,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+OR,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+PA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+RI,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+SC,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+SD,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+TN,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+TX,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+UT,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+VA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+VT,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+WA,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+WI,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+WV,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+WY,trn_freight_road,Light truck,BEV,2050,IRA_45W_light-truck_tax-credit,0
+AK,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+AL,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+AR,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+AZ,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+CA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+CO,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+CT,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+DC,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+DE,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+FL,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+GA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+HI,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+IA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+ID,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+IL,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+IN,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+KS,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+KY,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+LA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MD,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+ME,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MI,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MN,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MO,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MS,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+MT,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NC,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+ND,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NE,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NH,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NJ,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NM,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NV,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+NY,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+OH,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+OK,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+OR,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+PA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+RI,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+SC,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+SD,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+TN,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+TX,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+UT,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+VA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+VT,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+WA,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+WI,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+WV,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+WY,trn_pass_road,Bus,BEV,2025,IRA_45W_bus_tax-credit,-0.067676764
+AK,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+AL,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+AR,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+AZ,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+CA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+CO,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+CT,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+DC,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+DE,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+FL,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+GA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+HI,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+IA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+ID,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+IL,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+IN,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+KS,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+KY,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+LA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MD,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+ME,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MI,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MN,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MO,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MS,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+MT,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NC,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+ND,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NE,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NH,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NJ,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NM,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NV,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+NY,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+OH,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+OK,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+OR,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+PA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+RI,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+SC,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+SD,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+TN,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+TX,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+UT,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+VA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+VT,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+WA,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+WI,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+WV,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+WY,trn_pass_road,Bus,BEV,2030,IRA_45W_bus_tax-credit,-0.067676764
+AK,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+AL,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+AR,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+AZ,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+CA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+CO,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+CT,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+DC,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+DE,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+FL,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+GA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+HI,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+IA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+ID,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+IL,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+IN,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+KS,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+KY,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+LA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MD,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+ME,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MI,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MN,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MO,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MS,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+MT,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NC,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+ND,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NE,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NH,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NJ,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NM,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NV,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+NY,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+OH,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+OK,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+OR,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+PA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+RI,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+SC,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+SD,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+TN,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+TX,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+UT,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+VA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+VT,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+WA,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+WI,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+WV,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+WY,trn_pass_road,Bus,BEV,2035,IRA_45W_bus_tax-credit,0
+AK,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+AL,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+AR,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+AZ,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+CA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+CO,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+CT,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+DC,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+DE,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+FL,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+GA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+HI,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+IA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+ID,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+IL,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+IN,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+KS,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+KY,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+LA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MD,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+ME,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MI,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MN,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MO,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MS,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+MT,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NC,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+ND,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NE,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NH,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NJ,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NM,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NV,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+NY,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+OH,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+OK,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+OR,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+PA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+RI,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+SC,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+SD,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+TN,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+TX,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+UT,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+VA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+VT,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+WA,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+WI,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+WV,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+WY,trn_pass_road,Bus,BEV,2040,IRA_45W_bus_tax-credit,0
+AK,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+AL,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+AR,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+AZ,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+CA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+CO,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+CT,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+DC,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+DE,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+FL,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+GA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+HI,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+IA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+ID,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+IL,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+IN,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+KS,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+KY,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+LA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MD,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+ME,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MI,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MN,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MO,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MS,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+MT,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NC,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+ND,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NE,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NH,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NJ,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NM,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NV,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+NY,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+OH,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+OK,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+OR,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+PA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+RI,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+SC,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+SD,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+TN,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+TX,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+UT,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+VA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+VT,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+WA,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+WI,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+WV,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+WY,trn_pass_road,Bus,BEV,2045,IRA_45W_bus_tax-credit,0
+AK,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+AL,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+AR,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+AZ,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+CA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+CO,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+CT,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+DC,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+DE,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+FL,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+GA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+HI,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+IA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+ID,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+IL,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+IN,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+KS,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+KY,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+LA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MD,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+ME,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MI,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MN,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MO,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MS,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+MT,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NC,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+ND,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NE,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NH,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NJ,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NM,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NV,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+NY,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+OH,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+OK,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+OR,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+PA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+RI,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+SC,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+SD,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+TN,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+TX,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+UT,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+VA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+VT,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+WA,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+WI,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+WV,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0
+WY,trn_pass_road,Bus,BEV,2050,IRA_45W_bus_tax-credit,0

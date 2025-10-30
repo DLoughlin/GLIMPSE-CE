@@ -162,7 +162,14 @@
 		<Value name = "ghg_usa">../input/gcamdata/xml/ind_urb_proc_ghg_emissions_USA.xml</Value>
 	
 		<Value name = "solver">../input/solution/cal_broyden_config.xml</Value>
-		
+
+		<!-- GLIMPSE-CE additions included in all scenarios-->
+		<Value name="epa-solver-configuration-8.2.txt">../../../Contrib/Miscl/solver/cal_broyden_config-epa-8.2.xml</Value>
+		<Value name="baseline-LDV-BEV-shareweights.xml">../../../Contrib/TechUpdates/transportation/ShareweightUpdates/baseline-LDV-BEV-shareweights.xml</Value>	
+		<Value name="baseline-HDV-BEV-shareweights.xml">../../../Contrib/TechUpdates/transportation/ShareweightUpdates/baseline-HDV-BEV-shareweights.xml</Value>
+
+		<!-- Add-in files go after this -->
+	
 
 	</ScenarioComponents>
 	<Strings>

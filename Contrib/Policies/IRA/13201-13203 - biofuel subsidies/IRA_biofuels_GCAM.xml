@@ -1,0 +1,2754 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="AK">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AL">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AR">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="AZ">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CO">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="CT">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="DE">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="FL">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="GA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="HI">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ID">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IL">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="IN">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KS">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="KY">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="LA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MD">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ME">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MI">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MN">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MO">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MS">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="MT">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NC">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="ND">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NE">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NH">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NJ">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NM">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NV">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="NY">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OH">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OK">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="OR">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="PA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="RI">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SC">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="SD">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TN">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="TX">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="UT">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="VT">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WA">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WI">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WV">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+        <region name="WY">
+            <supplysector nocreate="1" name="refining">
+                <subsector nocreate="1" name="biomass liquids">
+                    <stub-technology nocreate="1" name="biodiesel">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.639</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.0849</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="cellulosic ethanol CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-1.8906</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 1">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                    <stub-technology nocreate="1" name="FT biofuels CCS level 2">
+                        <period year="2025">
+                            <minicam-non-energy-input nocreate="1" name="IRA subsidy">
+                                <input-cost>-2.9188</input-cost>
+                            </minicam-non-energy-input>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

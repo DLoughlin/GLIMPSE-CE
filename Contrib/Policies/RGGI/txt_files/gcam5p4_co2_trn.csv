@@ -1,0 +1,52 @@
+﻿INPUT_TABLE
+Variable ID
+4
+
+sector,subsector,technology,year,name
+trn_aviation_intl,International Aviation,Liquids,2015,CO2_TRN
+trn_freight,Domestic Ship,Liquids,2015,CO2_TRN
+trn_freight,Freight Rail,Electric,2015,CO2_TRN
+trn_freight,Freight Rail,Liquids,2015,CO2_TRN
+trn_freight,Freight Rail,Coal,2015,CO2_TRN
+trn_freight,road,road,2015,CO2_TRN
+trn_freight_road,Heavy truck,BEV,2015,CO2_TRN
+trn_freight_road,Heavy truck,Liquids,2015,CO2_TRN
+trn_freight_road,Heavy truck,NG,2015,CO2_TRN
+trn_freight_road,Light truck,BEV,2015,CO2_TRN
+trn_freight_road,Light truck,Liquids,2015,CO2_TRN
+trn_freight_road,Light truck,NG,2015,CO2_TRN
+trn_freight_road,Medium truck,BEV,2015,CO2_TRN
+trn_freight_road,Medium truck,Liquids,2015,CO2_TRN
+trn_freight_road,Medium truck,NG,2015,CO2_TRN
+trn_pass,Cycle,Cycle,2015,CO2_TRN
+trn_pass,Domestic Aviation,Liquids,2015,CO2_TRN
+trn_pass,HSR,Electric,2015,CO2_TRN
+trn_pass,Passenger Rail,Electric,2015,CO2_TRN
+trn_pass,Passenger Rail,Liquids,2015,CO2_TRN
+trn_pass,road,road,2015,CO2_TRN
+trn_pass,Walk,Walk,2015,CO2_TRN
+trn_pass_road,Bus,BEV,2015,CO2_TRN
+trn_pass_road,Bus,Liquids,2015,CO2_TRN
+trn_pass_road,Bus,NG,2015,CO2_TRN
+trn_pass_road,LDV,LDV,2015,CO2_TRN
+trn_pass_road_LDV,2W and 3W,BEV,2015,CO2_TRN
+trn_pass_road_LDV,2W and 3W,Liquids,2015,CO2_TRN
+trn_pass_road_LDV,2W and 3W,NG,2015,CO2_TRN
+trn_pass_road_LDV,2W and 3W,LA-BEV,2015,CO2_TRN
+trn_pass_road_LDV,4W,4W,2015,CO2_TRN
+trn_pass_road_LDV_4W,Car,BEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Car,FCEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Car,Hybrid Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Car,Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Car,NG,2015,CO2_TRN
+trn_pass_road_LDV_4W,Large Car and Truck,BEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Large Car and Truck,FCEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Large Car and Truck,Hybrid Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Large Car and Truck,Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Large Car and Truck,NG,2015,CO2_TRN
+trn_pass_road_LDV_4W,Mini Car,BEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Mini Car,FCEV,2015,CO2_TRN
+trn_pass_road_LDV_4W,Mini Car,Hybrid Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Mini Car,Liquids,2015,CO2_TRN
+trn_pass_road_LDV_4W,Mini Car,NG,2015,CO2_TRN
+trn_shipping_intl,International Ship,Liquids,2015,CO2_TRN

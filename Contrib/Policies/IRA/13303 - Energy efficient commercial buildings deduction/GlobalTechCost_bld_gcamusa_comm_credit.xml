@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <global-technology-database>
+            <location-info sector-name="comm cooling" subsector-name="electricity">
+                <technology name="air conditioning hi-eff">
+                    <period year="2025">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.122</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.122</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="comm heating" subsector-name="electricity">
+                <technology name="electric heat pump">
+                    <period year="2025">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.205</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.205</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="comm lighting" subsector-name="electricity">
+                <technology name="solid state">
+                    <period year="2025">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.02</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-0.016</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+            <location-info sector-name="comm ventilation" subsector-name="electricity">
+                <technology name="ventilation hi-eff">
+                    <period year="2025">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-2.186</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                    <period year="2030">
+                        <minicam-non-energy-input name="comm credit">
+                            <input-cost>-2.186</input-cost>
+                        </minicam-non-energy-input>
+                        <CO2 name="CO2"/>
+                    </period>
+                </technology>
+            </location-info>
+        </global-technology-database>
+    </world>
+</scenario>

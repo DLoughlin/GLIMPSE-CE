@@ -1,0 +1,2400 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+            <supplysector name="Beef" nocreate="1">
+                <subsector name="Mixed" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+                <subsector name="Pastoral" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+            <supplysector name="Dairy" nocreate="1">
+                <subsector name="Mixed" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+                <subsector name="Pastoral" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+            <supplysector name="Pork" nocreate="1">
+                <subsector name="Mixed" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+            <supplysector name="Poultry" nocreate="1">
+                <subsector name="Mixed" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+            <supplysector name="SheepGoat" nocreate="1">
+                <subsector name="Mixed" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+                <subsector name="Pastoral" nocreate="1">
+                    <technology name="FeedCrops" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <technology name="Scavenging_Other" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_AGR_livestock">
+                                <input-emissions>0</input-emissions>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                    <stub-technology name="FeedCrops" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="FodderHerb_Residue" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Pasture_FodderGrass" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                    <stub-technology name="Scavenging_Other" nocreate="1">
+                        <period year="2020">
+                            <Non-CO2 name="CH4_AGR">
+                                <mac-control delete="1" name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4_AGR" nocreate="1">
+                                <mac-control name="Livestock">
+                                    <mac-reduction tax="0">0.036</mac-reduction>
+                                    <market-name>CH4_livestock</market-name>
+                                    <mac-reduction tax="5">0.041</mac-reduction>
+                                    <mac-reduction tax="10">0.047</mac-reduction>
+                                    <mac-reduction tax="15">0.054</mac-reduction>
+                                    <mac-reduction tax="31">0.075</mac-reduction>
+                                    <mac-reduction tax="65">0.123</mac-reduction>
+                                    <mac-reduction tax="128">0.224</mac-reduction>
+                                    <mac-reduction tax="242">0.287</mac-reduction>
+                                    <mac-reduction tax="484">0.297</mac-reduction>
+                                    <mac-reduction tax="1088">0.304</mac-reduction>
+                                    <mac-reduction tax="2056">0.304</mac-reduction>
+                                    <mac-reduction tax="4838">0.304</mac-reduction>
+                                    <mac-reduction tax="7256">0.304</mac-reduction>
+                                    <mac-reduction tax="12094">0.304</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </stub-technology>
+                </subsector>
+            </supplysector>
+        </region>
+    </world>
+</scenario>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario name="CCSP450">
+    <!-- unit converstion: $2020 USD of $1500 per tonne of CH4 -->
+    <!-- 1500 / 113.648 * 63.631 * 12 / 16 = 1119.79 -->
+    <!-- /113.648 * 63.631 FRED dollar conversion from 2020 USD to 1990 USD  -->
+    <!-- 16 / 12 from per tCH4 to per tC  -->
+    
+    <world>
+        <region name="USA">
+            <ghgpolicy name="CH4_Res">
+                <market>USA</market>
+                <fixedTax year="2025">1119.79</fixedTax>
+                <fixedTax year="2030">1119.79</fixedTax>
+                <fixedTax year="2035">1119.79</fixedTax>
+                <fixedTax year="2040">1119.79</fixedTax>
+                <fixedTax year="2045">1119.79</fixedTax>
+                <fixedTax year="2050">1119.79</fixedTax>
+            </ghgpolicy>
+        </region>
+    </world>
+</scenario>

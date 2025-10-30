@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><scenario>
+    <world>
+        <region name="USA">
+            <resource name="crude oil" nocreate="1">
+                <subresource name="crude oil">
+                    <technology name="crude oil">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4">
+                                <mac-control delete="1" name="Natural Gas and Oil Systems">
+                                    <mac-reduction tax="0">0.188</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.231</mac-reduction>
+                                    <mac-reduction tax="10">0.233</mac-reduction>
+                                    <mac-reduction tax="15">0.235</mac-reduction>
+                                    <mac-reduction tax="31">0.307</mac-reduction>
+                                    <mac-reduction tax="65">0.326</mac-reduction>
+                                    <mac-reduction tax="128">0.372</mac-reduction>
+                                    <mac-reduction tax="242">0.392</mac-reduction>
+                                    <mac-reduction tax="484">0.392</mac-reduction>
+                                    <mac-reduction tax="1088">0.408</mac-reduction>
+                                    <mac-reduction tax="2056">0.426</mac-reduction>
+                                    <mac-reduction tax="4838">0.441</mac-reduction>
+                                    <mac-reduction tax="7256">0.441</mac-reduction>
+                                    <mac-reduction tax="12094">0.441</mac-reduction>
+                                </mac-control>
+                                <mac-control name="Natural Gas and Oil Systems">
+                                    <mac-reduction tax="0">0.09212</mac-reduction>
+                                    <market-name>CH4_Res</market-name>
+                                    <mac-reduction tax="5">0.11319</mac-reduction>
+                                    <mac-reduction tax="10">0.11417</mac-reduction>
+                                    <mac-reduction tax="15">0.11515</mac-reduction>
+                                    <mac-reduction tax="31">0.15043</mac-reduction>
+                                    <mac-reduction tax="65">0.15974</mac-reduction>
+                                    <mac-reduction tax="128">0.18228</mac-reduction>
+                                    <mac-reduction tax="242">0.19208</mac-reduction>
+                                    <mac-reduction tax="484">0.19208</mac-reduction>
+                                    <mac-reduction tax="1088">0.19992</mac-reduction>
+                                    <mac-reduction tax="2056">0.20874</mac-reduction>
+                                    <mac-reduction tax="4838">0.21609</mac-reduction>
+                                    <mac-reduction tax="7256">0.21609</mac-reduction>
+                                    <mac-reduction tax="12094">0.21609</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                </subresource>
+                <subresource name="crude oil" nocreate="1">
+                    <technology name="crude oil" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4" nocreate="1">
+                                <mac-control name="Natural Gas and Oil Systems" nocreate="1">
+                                    <tech-change fillout="1" year="2025">0.0209</tech-change>
+                                    <tech-change fillout="1" year="2030">0.0178</tech-change>
+                                    <tech-change fillout="1" year="2035">0.0149</tech-change>
+                                    <tech-change fillout="1" year="2040">0.0126</tech-change>
+                                    <tech-change fillout="1" year="2045">0.0112</tech-change>
+                                    <tech-change fillout="1" year="2050">0.0097</tech-change>
+                                    <tech-change fillout="1" year="2055">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2060">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2065">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2070">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2075">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2080">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2085">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2090">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2095">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2100">0.0145166666666667</tech-change>
+                                    <mac-phase-in-time>25</mac-phase-in-time>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                </subresource>
+            </resource>
+            <resource name="natural gas" nocreate="1">
+                <subresource name="natural gas">
+                    <technology name="natural gas">
+                        <period year="1975">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                            <Non-CO2 name="CH4">
+                                <mac-control delete="1" name="Natural Gas and Oil Systems">
+                                    <mac-reduction tax="0">0.188</mac-reduction>
+                                    <market-name>CO2</market-name>
+                                    <mac-reduction tax="5">0.231</mac-reduction>
+                                    <mac-reduction tax="10">0.233</mac-reduction>
+                                    <mac-reduction tax="15">0.235</mac-reduction>
+                                    <mac-reduction tax="31">0.307</mac-reduction>
+                                    <mac-reduction tax="65">0.326</mac-reduction>
+                                    <mac-reduction tax="128">0.372</mac-reduction>
+                                    <mac-reduction tax="242">0.392</mac-reduction>
+                                    <mac-reduction tax="484">0.392</mac-reduction>
+                                    <mac-reduction tax="1088">0.408</mac-reduction>
+                                    <mac-reduction tax="2056">0.426</mac-reduction>
+                                    <mac-reduction tax="4838">0.441</mac-reduction>
+                                    <mac-reduction tax="7256">0.441</mac-reduction>
+                                    <mac-reduction tax="12094">0.441</mac-reduction>
+                                </mac-control>
+                                <mac-control name="Natural Gas and Oil Systems">
+                                    <mac-reduction tax="0">0.09212</mac-reduction>
+                                    <market-name>CH4_Res</market-name>
+                                    <mac-reduction tax="5">0.11319</mac-reduction>
+                                    <mac-reduction tax="10">0.11417</mac-reduction>
+                                    <mac-reduction tax="15">0.11515</mac-reduction>
+                                    <mac-reduction tax="31">0.15043</mac-reduction>
+                                    <mac-reduction tax="65">0.15974</mac-reduction>
+                                    <mac-reduction tax="128">0.18228</mac-reduction>
+                                    <mac-reduction tax="242">0.19208</mac-reduction>
+                                    <mac-reduction tax="484">0.19208</mac-reduction>
+                                    <mac-reduction tax="1088">0.19992</mac-reduction>
+                                    <mac-reduction tax="2056">0.20874</mac-reduction>
+                                    <mac-reduction tax="4838">0.21609</mac-reduction>
+                                    <mac-reduction tax="7256">0.21609</mac-reduction>
+                                    <mac-reduction tax="12094">0.21609</mac-reduction>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                        <period year="1990">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2005">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2010">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                        <period year="2015">
+                            <Non-CO2 name="CH4_Res">
+                                <emiss-coef>0</emiss-coef>
+                                <output-driver/>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                </subresource>
+                <subresource name="natural gas" nocreate="1">
+                    <technology name="natural gas" nocreate="1">
+                        <period year="1975">
+                            <Non-CO2 name="CH4" nocreate="1">
+                                <mac-control name="Natural Gas and Oil Systems" nocreate="1">
+                                    <tech-change fillout="1" year="2025">0.0209</tech-change>
+                                    <tech-change fillout="1" year="2030">0.0178</tech-change>
+                                    <tech-change fillout="1" year="2035">0.0149</tech-change>
+                                    <tech-change fillout="1" year="2040">0.0126</tech-change>
+                                    <tech-change fillout="1" year="2045">0.0112</tech-change>
+                                    <tech-change fillout="1" year="2050">0.0097</tech-change>
+                                    <tech-change fillout="1" year="2055">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2060">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2065">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2070">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2075">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2080">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2085">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2090">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2095">0.0145166666666667</tech-change>
+                                    <tech-change fillout="1" year="2100">0.0145166666666667</tech-change>
+                                    <mac-phase-in-time>25</mac-phase-in-time>
+                                </mac-control>
+                            </Non-CO2>
+                        </period>
+                    </technology>
+                </subresource>
+            </resource>
+        </region>
+    </world>
+</scenario>

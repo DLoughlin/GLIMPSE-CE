@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+   <world>
+      <region name="CA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+            <constraint year="2030">104.4202695</constraint>
+            <constraint year="2035">80.90199608</constraint>
+            <constraint year="2040">58.80583431</constraint>
+            <constraint year="2045">36.70967253</constraint>
+            <constraint year="2050">14.61351076</constraint>
+         </ghgpolicy>
+      </region>
+      <region name="CO">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="MT">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="NM">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="OR">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+      <region name="WA">
+         <ghgpolicy name="CO2">
+            <market>Cap_All_CO2_Reg_Mkt8</market>
+         </ghgpolicy>
+      </region>
+   </world>
+</scenario>
