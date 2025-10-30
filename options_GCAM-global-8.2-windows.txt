@@ -1,5 +1,5 @@
 #Notes: It a line is blank or starts with a #, it is not parsed
-#       The glimpseDir, gCamHomeDir, and scenarioBuilderDir specifications filter through the rest of the options, 
+#       The glimpseDir, gCamHomeDir, and gCamGUIDir specifications filter through the rest of the options, 
 #            replacing $glimpseDir$, $gCamHomeDir$, and $gCamGUIDir$, respectively 
 #       It is important that these be specified at the top of the file
 
@@ -20,10 +20,10 @@ modelInterfaceDir = $glimpseDir$/GLIMPSE-ModelInterface
 
 #----Major options-----
 #This is where you specify which database will be used for new GCAM results
-gCamOutputDatabase = $gCamHomeDir$/output/database-cop-v4
+gCamOutputDatabase = $gCamHomeDir$/output/database-global
 
 #Specify the pathname for this options file. Used to access/edit the file from GLIMPSE
-optionsFilename = $glimpseDir$/options_GCAM-USA-8.2.txt
+optionsFilename = $glimpseDir$/options_GCAM-global-8.2-windows.txt
 
 
 #===========================================================================================
@@ -31,10 +31,10 @@ optionsFilename = $glimpseDir$/options_GCAM-USA-8.2.txt
 #-----Locations where GLIMPSE components and documentation are stored-----
 glimpseResourceDir = $glimpseDir$/resources
 glimpseDocDir = $glimpseDir$/Docs
-scenarioComponentsDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-8.2/ScenarioComponents
-scenarioDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-8.2/ScenarioFolders
+scenarioComponentsDir = $glimpseDir$/GLIMPSE-Data/GCAM-global-8.2/ScenarioComponents
+scenarioDir = $glimpseDir$/GLIMPSE-Data/GCAM-global-8.2/ScenarioFolders
 glimpseLogDir = $glimpseDir$/GLIMPSE-Data/logs
-trashDir = $glimpseDir$/GLIMPSE-Data/GCAM-USA-8.2/trash
+trashDir = $glimpseDir$/GLIMPSE-Data/GCAM-global-8.2/trash
 resourceDir = $glimpseDir$/resources 
 
 #-----Locations where ScenarioBuilder components and documentation are stored-----
@@ -65,14 +65,14 @@ unitConversionsFilename = $modelInterfaceDir$/config/units_rules.csv
 #-----Files for tailoring GLIMPSE to a particular version of GCAM-----
 
 #Template configuration file. This file is modified to create a scenario-specific configuration file
-configurationTemplateFilename = $scenarioBuilderDir$/config/v8.2/configuration_GCAM-USA-8.2_template.xml
+configurationTemplateFilename = $scenarioBuilderDir$/config/v8.2/configuration_GCAM-global-8.2_template.xml
 
 #list of technologies to include in the tech bound scenario component dialog
-tchBndListFilename = $scenarioBuilderDir$/config/v8.2/tech_bnd_list_USA_8.2.txt
+tchBndListFilename = $scenarioBuilderDir$/config/v8.2/tech_bnd_list_global_8.2.txt
 
 #table with load factors for transportation technologies
 #TODO: Need to update for 8.2
-tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_8p2.csv
+tranLoadFactorsFilename = $scenarioBuilderDir$/config/v8.2/trn_veh_info_8.2.csv
 
 #files include specifications used in generating xml files
 xmlHeaderFilename = $scenarioBuilderDir$/config/v8.2/glimpseXMLHeaders_v8.2.txt
@@ -86,7 +86,6 @@ allYearList = 1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2
 allowablePolicyYears = 2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2100
 calibrationYear = 2021
 
-
 ===========================================================================================
 
 #-----Editors that are automatically invoked when you double click on a txt or xml file
@@ -98,7 +97,7 @@ xmlEditor = C:/Windows/notepad.exe
 #xmlEditor = "C:/Program Files/IDM Computer Solutions/UltraEdit/uedit64.exe"
 
 #-----GCAM executable name and location-----
-gCamExecutable = ./gcam-glimpse.exe
+gCamExecutable = gcam-glimpse.exe
 #gCamExecutable = gcam.exe
 gCamExecutableArgs = -C 
 gCamExecutableDir = $gCamHomeDir$/exe
@@ -107,15 +106,13 @@ xmlLibrary = $gCamHomeDir$/input
 
 #-----Miscl GUI setup options-----
 #Are you using GCAM-USA? If so, indicate "true". This enables state-level items in tree
-isGcamUSA = true
+isGcamUSA = false
 
 #thresholds for warnings
 maxDatabaseSizeGB = 38
 
-
-
 #These values are inserted into the scenario-specific configuration file when it created. Comment with # to use default
-stop-year = 2050
+stop-period = 11
 solver = $gCamHomeDir$/input/solution/cal_broyden_config.xml
 debugRegion = USA
 debugCreate = 1
