@@ -187,7 +187,9 @@ public class Chart {
 		String[] queryStr = new String[temp.length];
 		tempStr = readLegendItemsFromProperties();
 		queryStr = readQueryInfoFromProperties();
-		String queryNameForChart = (String)"\"" + chart.getTitle().getText()+ "\"" ;
+		//DHL: 2025.11.06: getTitle is not being populated, but the graphName variable is
+		//String queryNameForChart = (String)"\"" + chart.getTitle().getText()+ "\"" ;
+		String queryNameForChart = (String)"\"" + this.graphName+ "\"" ;
 		
 		//System.out.println("Chart::getlegendInfo:legend:check tempStr length vs legends length * " + tempStr.length +":"+legends.length);   
 		// store local
