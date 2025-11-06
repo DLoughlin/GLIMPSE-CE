@@ -33,8 +33,20 @@ Several additional notes for consideration:
 * To start GLIMPSE configured for GCAM-USA X.X, double-click on "run\_GLIMPSE\_GCAM-USA-X.X.bat".
 * To start GLIMPSE configured for global GCAM 7.0, double-click on "run\_GLIMPSE\_GCAM-global-X.X.bat".
 
+### Acknowledgements
+
+Contributors to software development of GLIMPSE include the following:
+EPA - Dan Loughlin (ret'd), Tai Wu (ret'd)
+ORISE - Farid Alborzi
+ARA - Aaron Parks, Yadong Xu
+
+Additionally, the GLIMPSE ModelInterface is derived from the GCAM ModelInterface, for which the lead developer was Pralit Patel of PNNL.
+
+GLIMPSE-CE modifications have been performed by Dan Loughlin in his personal capacity
+
 ### Disclaimer
 
 This code is provided on an "as is" basis and the user assumes responsibility for its use.  EPA has relinquished control of the information and no longer has responsibility to protect the integrity , confidentiality, or availability of the information.  Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by EPA.  The EPA seal and logo shall not be used in any manner to imply endorsement of any commercial product or activity by EPA or the United States Government.
+
 
 
