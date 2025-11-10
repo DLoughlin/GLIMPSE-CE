@@ -125,7 +125,7 @@ public class Chart {
 
 	public Chart(String path, String graphName, String meta, String[] titles, String[] axisName_unit, String legend,
 			String[][] annotationText) {
-
+		//Dan: if path = null, then init line colors?
 		this.legend = legend;
 		init(path, graphName, meta, titles, axisName_unit, annotationText);
 	}
@@ -150,11 +150,15 @@ public class Chart {
 
 	private void init(String path, String graphName, String meta, String[] titles, String[] axisName_unit,
 			String[][] annotationText) {
-
+		//if path is null, then this is a transpose chart
 		this.path = path;
 		try {
-		this.meta = meta.split("\\|")[0];
-		this.metaCol = meta.split("\\|")[1];
+			if (meta.contains("|")) {
+				this.meta = meta.split("\\|")[0];
+				this.metaCol = meta.split("\\|")[1];
+			} else {
+				this.meta = meta;
+			}
 		} catch(Exception e) {
 			System.out.println("error processing meta: "+meta+" in init in Chart.java");
 		}
@@ -188,8 +192,10 @@ public class Chart {
 		tempStr = readLegendItemsFromProperties();
 		queryStr = readQueryInfoFromProperties();
 		//DHL: 2025.11.06: getTitle is not being populated, but the graphName variable is
-		//String queryNameForChart = (String)"\"" + chart.getTitle().getText()+ "\"" ;
-		String queryNameForChart = (String)"\"" + this.graphName+ "\"" ;
+		String queryNameForChart = (String)"\"" + chart.getTitle().getText()+ "\"" ;
+		if (chart.getTitle().getText()==null || chart.getTitle().getText().isEmpty()) { 
+			queryNameForChart = (String)"\"" + this.graphName+ "\"" ;
+		}
 		
 		//System.out.println("Chart::getlegendInfo:legend:check tempStr length vs legends length * " + tempStr.length +":"+legends.length);   
 		// store local

@@ -94,6 +94,7 @@ public class MyChartFactory {
 			String[] axisName_unit, String legend, String column, String[][] annotationText, String[][] data,
 			int relativeColIndex) throws ClassNotFoundException {
 
+		//Note: when creating a transpose chart, path that is input to this method is null
 		Object[] o = { path, graphName, id.trim(), titles, axisName_unit, legend, column, annotationText, data,
 				Integer.valueOf(relativeColIndex) };
 		Class<?> t = Class.forName(className);
