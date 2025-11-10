@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -36,56 +36,88 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 /**
- * The class to handle name fileter for a file selection
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Handles filtering of files by extension and/or name for file selection dialogs.
+ * <p>
+ * Usage example:
+ * <pre>
+ *   File dir = new File("/path/to/dir");
+ *   FilenameFilter filter = new CustFileNameFilter(".txt,.csv", "report,summary");
+ *   File[] files = dir.listFiles(filter);
+ * </pre>
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
+public class CustFileNameFilter implements FilenameFilter {
+    /**
+     * Comma-separated list of file extensions to filter (e.g., ".txt,.csv").
+     */
+    private final String ext;
+    /**
+     * Comma-separated list of substrings to match in file names (optional).
+     */
+    private final String fileName;
 
-public class CustFileNameFilter implements FilenameFilter
-{
-    String ext;
-    String fileName;
-    
+    /**
+     * Constructs a filter for files with specified extensions and/or name substrings.
+     * @param ext Comma-separated extensions (e.g., ".txt,.csv").
+     * @param fileName Comma-separated substrings to match in file names (optional).
+     */
     public CustFileNameFilter(String ext, String fileName) {
-	this.ext = ext;
-	this.fileName = fileName;
+        this.ext = ext;
+        this.fileName = fileName;
     }
-    
+
+    /**
+     * Tests if a specified file should be included in a file list.
+     * @param dir the directory in which the file was found
+     * @param name the name of the file
+     * @return true if the file matches the filter criteria
+     */
+    @Override
     public boolean accept(File dir, String name) {
-	boolean b = false;
-	if (ext != null) {
-	    String[] s = ext.split(",");
-	    for (int i = 0; i < s.length; i++) {
-		boolean me = matchExt(s[0].trim(), name);
-		if (me && fileName != null) {
-		    if (matchFileName(name)) {
-			b = true;
-			break;
-		    }
-		} else if (me) {
-		    b = true;
-		    break;
-		}
-	    }
-	}
-	return b;
+        if (ext == null) {
+            return false;
+        }
+        String[] extensions = ext.split(",");
+        for (String extension : extensions) {
+            if (matchExt(extension.trim(), name)) {
+                // If fileName filter is set, check if name contains any substring
+                if (fileName != null) {
+                    if (matchFileName(name)) {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
-    
-    boolean matchExt(String e, String name) {
-	return name.endsWith(e.trim());
+
+    /**
+     * Checks if the file name ends with the given extension.
+     * @param extension the file extension to check
+     * @param name the file name
+     * @return true if name ends with extension
+     */
+    private boolean matchExt(String extension, String name) {
+        return name.endsWith(extension);
     }
-    
-    boolean matchFileName(String name) {
-	boolean b = false;
-	String[] s = fileName.split(",");
-	for (int i = 0; i < s.length; i++) {
-	    if (name.contains(s[i].trim())) {
-		b = true;
-		break;
-	    }
-	}
-	return b;
+
+    /**
+     * Checks if the file name contains any of the specified substrings.
+     * @param name the file name
+     * @return true if name contains any substring from fileName
+     */
+    private boolean matchFileName(String name) {
+        String[] substrings = fileName.split(",");
+        for (String substring : substrings) {
+            if (name.contains(substring.trim())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

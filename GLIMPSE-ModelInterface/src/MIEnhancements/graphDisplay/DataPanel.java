@@ -63,14 +63,13 @@ import chart.Chart;
 import conversionUtil.ArrayConversion;
 
 /**
- * The class to handle displaying data with functions in display a chart panel.
- * You can subset the chart by selecting data
- * 
+ * DataPanel handles displaying tabular data and chart panels, allowing subsetting
+ * and selection of data for charting. Supports both category and XY datasets.
+ * <p>
  * Author Action Date Flag
- * ======================================================================= 
+ * =======================================================================
  * TWU   created 1/2/2016
  */
-
 public class DataPanel extends JPanel implements ListSelectionListener {
 	private static final long serialVersionUID = 1L;
 	protected DefaultTableModel tableModel;
@@ -93,14 +92,16 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 	}
 
 	public DataPanel(Chart[] charts, int id) {
-		// this.charts = charts;
 		this.id = id;
 		init(charts);
 	}
 
+	/**
+	 * Initialize DataPanel with multiple charts.
+	 * @param charts Array of Chart objects
+	 */
 	private void init(Chart[] charts) {
 		setLayout(new BorderLayout());
-
 		chart = new JFreeChart[charts.length];
 		copyChart = new JFreeChart[charts.length];
 		for (int i = 0; i < charts.length; i++) {
@@ -114,18 +115,21 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 				copyChart = chart;
 			}
 		}
+		// Set legend items depending on plot type
 		if (copyChart[id].getPlot().getPlotType().contains("XY")) {
 			copyLgd = copyChart[id].getXYPlot().getFixedLegendItems();
-		}else {
+		} else {
 			copyLgd = copyChart[id].getCategoryPlot().getFixedLegendItems();
 		}
-		
 		crtTable(chart[id]);
 	}
 
+	/**
+	 * Initialize DataPanel with a single chart.
+	 * @param ch JFreeChart object
+	 */
 	private void init(JFreeChart ch) {
 		setLayout(new BorderLayout());
-
 		chart = new JFreeChart[1];
 		copyChart = new JFreeChart[1];
 		try {
@@ -137,42 +141,32 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 		crtTable(chart[0]);
 	}
 
+	/**
+	 * Create and configure the JTable for displaying data.
+	 * @param chart JFreeChart to associate with the table
+	 */
 	private void crtTable(final JFreeChart chart) {
 		table = new JTable();
 		tableModel = (DefaultTableModel) table.getModel();
 		cmodel = table.getColumnModel();
 		renderer = new DefaultTableCellRenderer();
-		renderer.setHorizontalAlignment(4);
-		//Dan test:
+		renderer.setHorizontalAlignment(4); // Center alignment
 		renderer.setBorder(null);
 		table.getTableHeader().setFont(new Font("Verdana", 0, 15));
 		table.setAutoCreateRowSorter(false);
-		//table.setDragEnabled(true);
 		table.setFont(new Font("Verdana", 0, 14));
-		//Dan test:
-		table.setRowHeight(table.getFont().getSize()+10);
-		
+		table.setRowHeight(table.getFont().getSize() + 10);
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
-		table.setDefaultEditor(Object.class, null);
-		//table.setToolTipText("Select first columns to return full chart");
-		//table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		//java.awt.event.MouseListener ml = new MouseAdapter() {
-		//	public void mouseClicked(MouseEvent e) {
-		//		if (e.getButton() == 3) {
-		//			new DatasetSimpleStatistics(dataValue, table);
-		//		}
-		//	}
-		//};
-		//table.addMouseListener(ml);
-		
-		
-		
+		table.setDefaultEditor(Object.class, null); // Make table non-editable
 		JScrollPane jsp = new JScrollPane(table);
 		jsp.setPreferredSize(new Dimension(700, 100));
 		add(jsp, "Center");
 	}
 
+	/**
+	 * Set custom cell renderer and editor for columns except the first.
+	 */
 	protected void SetColumnModel() {
 		for (int j = 1; j < table.getColumnCount(); j++) {
 			cmodel.getColumn(j).setCellRenderer(renderer);
@@ -180,6 +174,11 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 		}
 	}
 
+	/**
+	 * Populate table with category dataset values, rounding as needed.
+	 * @param cds Array of DefaultCategoryDataset
+	 * @param n Number of digits to round to
+	 */
 	public void setDigit(DefaultCategoryDataset[] cds, int n) {
 		int r = cds[0].getRowCount();
 		int c = cds[0].getColumnCount();
@@ -234,6 +233,7 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 			dataValue = ArrayConversion.arrayDimReverse(tranDataValue);
 		}
 		tableModel.setDataVector(dataValue, tableCol);
+		// Comparator for sorting columns with double values
 		Comparator<String> columnDoubleComparator =
 			    (String v1, String v2) -> {
 
@@ -251,22 +251,23 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
 		table.setRowSorter(sorter);
-		//add custom sorters to columns that are numbers
+		// Add custom sorters to columns that are numbers
 		for(int colC=0;colC<table.getColumnCount();colC++) {
 			String clsName = table.getColumnName(colC);
 			try {
 				Double.parseDouble(clsName);
-				//if we get here it is a numeric col
-				//jtable.getColumnModel().getColumn(colC).setCo
 				sorter.setComparator(colC, columnDoubleComparator);
-				
-				//tc.setCom
 			} catch (Exception e) {
-				;
+				// Not a numeric column, skip
 			}
 		}
 	}
 
+	/**
+	 * Populate table with XY dataset values, rounding as needed.
+	 * @param ds XYDataset
+	 * @param n Number of digits to round to
+	 */
 	public void setDigit(XYDataset ds, int n) {
 		int l = 0;
 		for (int k = 0; k < copyChart[id].getXYPlot().getDatasetCount(); k++) {
@@ -282,12 +283,16 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 		tableModel.setDataVector(dataValue, tableCol);
 	}
 
+	/**
+	 * Handles selection changes in the table, updating selected rows/columns.
+	 * @param e ListSelectionEvent
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		boolean adjust = e.getValueIsAdjusting();
 
 		if (!adjust) {
-			int selectedC[] = (int[]) null;
-			int selectedR[] = (int[]) null;
+			int selectedC[] = null;
+			int selectedR[] = null;
 
 			if (table.getRowSelectionAllowed()) {
 				selectedR = table.getSelectedRows();
@@ -312,7 +317,7 @@ public class DataPanel extends JPanel implements ListSelectionListener {
 					}
 				}
 			}
-/*
+			/*
 			if (selectedC[0] < 0) {
 				if (selectedC.length == 1) {
 					selectedC = new int[table.getColumnCount() - 2];

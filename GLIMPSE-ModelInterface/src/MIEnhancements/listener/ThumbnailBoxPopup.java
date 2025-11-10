@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,11 +34,9 @@ package listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSplitPane;
-
 import chart.Chart;
 import graphDisplay.AChartDisplay;
 import graphDisplay.BoxAndWhiskerChartPane;
@@ -47,70 +45,79 @@ import graphDisplay.SumAcrossChartPane;
 import graphDisplay.Transpose;
 
 /**
- * The class handles Thumbnail Box Popup events. Referenced classes of package
- * listener: JPopupMenuShower
- * 
+ * Handles Thumbnail Box Popup events for chart panels.
+ * Provides menu options for chart operations such as Difference and Transpose.
+ * Each menu item triggers the corresponding chart operation and displays the result.
+ *
  * Author Action Date Flag
  * ======================================================================= 
  * TWU    created 1/2/2016
  */
-
 public class ThumbnailBoxPopup extends JPopupMenu implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
-	private final String data[] = { /*"Sum Across",*/ "Difference", // "Relative",
-																// "Fit Rank",
-			//"Statistics", 
-			"Transpose" };
-	private Chart chart[];
-	private int w;
-	private int gridWidth;
-	private boolean sameScale;
-	private JSplitPane sp;
+    private static final long serialVersionUID = 1L;
+    /** Menu options for chart operations */
+    private final String[] menuOptions = { "Difference", "Transpose" };
+    private Chart[] charts;
+    private int thumbnailWidth;
+    private int gridWidth;
+    private boolean useSameScale;
+    private JSplitPane splitPane;
 
-	public ThumbnailBoxPopup(Chart chart[], int w, int gridWidth, boolean sameScale, JSplitPane sp) {
-		this.chart = chart;// .clone();
-		this.w = w;
-		this.gridWidth = gridWidth;
-		this.sameScale = sameScale;
-		this.sp = sp;
-		crtMenuItem();
-	}
+    /**
+     * Constructs the popup menu for thumbnail chart operations.
+     * @param charts Array of Chart objects
+     * @param thumbnailWidth Width of chart thumbnails
+     * @param gridWidth Number of columns in grid
+     * @param useSameScale Whether to use same scale for all charts
+     * @param splitPane JSplitPane containing chart panel
+     */
+    public ThumbnailBoxPopup(Chart[] charts, int thumbnailWidth, int gridWidth, boolean useSameScale, JSplitPane splitPane) {
+        this.charts = charts;
+        this.thumbnailWidth = thumbnailWidth;
+        this.gridWidth = gridWidth;
+        this.useSameScale = useSameScale;
+        this.splitPane = splitPane;
+        createMenuItems();
+    }
 
-	private void crtMenuItem() {
-		JMenuItem menuItem = null;
-		for (int i = 0; i < data.length; i++) {
-			menuItem = new JMenuItem(data[i]);
-			menuItem.addActionListener(this);
-			this.add(menuItem);
-		}
-	}
+    /**
+     * Creates menu items for each chart operation and adds listeners.
+     */
+    private void createMenuItems() {
+        for (String option : menuOptions) {
+            JMenuItem menuItem = new JMenuItem(option);
+            menuItem.addActionListener(this);
+            this.add(menuItem);
+        }
+    }
 
-	public void actionPerformed(ActionEvent e) {
-		JMenuItem source = (JMenuItem) e.getSource();
-		try {
-			if (chart != null) {
-				if (source.getText().equalsIgnoreCase("Difference"))
-					new AChartDisplay(new DifferenceChartPane(chart).getChart());
-				else if (source.getText().equalsIgnoreCase("Statistics"))
-					new AChartDisplay(new BoxAndWhiskerChartPane(chart).getChart());
-				else if (source.getText().equalsIgnoreCase("Sum Across")) {
-					Chart[] ch = new SumAcrossChartPane(chart).getChart();
-					for (int i = 0; i < ch.length; i++)
-						new AChartDisplay(ch[i]);
-				} else if (source.getText().equalsIgnoreCase("Transpose")) {
-					new Transpose(chart.clone(), w, gridWidth, sameScale, sp);
-				}
-			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (java.lang.NullPointerException e1) {
-			e1.printStackTrace();
-		} catch (Exception e1) {
-			System.out.println("other error!");
-			e1.printStackTrace();
-		}
-		this.setVisible(false);
-	}
+    /**
+     * Handles menu item selection and triggers the corresponding chart operation.
+     * Displays the result in a new chart panel or window.
+     * @param e ActionEvent triggered by menu item selection
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JMenuItem source = (JMenuItem) e.getSource();
+        try {
+            if (charts != null) {
+                String selected = source.getText();
+                if (selected.equalsIgnoreCase("Difference")) {
+                    // Show difference chart
+                    new AChartDisplay(new DifferenceChartPane(charts).getChart());
+                } else if (selected.equalsIgnoreCase("Transpose")) {
+                    // Show transposed chart
+                    new Transpose(charts.clone(), thumbnailWidth, gridWidth, useSameScale, splitPane);
+                }
+            }
+        } catch (ClassNotFoundException | NullPointerException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println("Other error!");
+            ex.printStackTrace();
+        }
+        this.setVisible(false); // Hide popup after action
+    }
 
 }

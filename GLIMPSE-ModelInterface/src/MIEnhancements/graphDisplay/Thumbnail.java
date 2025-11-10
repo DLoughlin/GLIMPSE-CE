@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -35,7 +35,9 @@ package graphDisplay;
 import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -44,65 +46,83 @@ import chart.Chart;
 import conversionUtil.ArrayConversion;
 
 /**
- * The class to handle multiple charts displaying with added on functions
- * 
- * @author TWU
+ * The class to handle multiple charts displaying with added on functions.
+ * Provides thumbnail chart creation and display from table data and metadata.
+ * Handles chart pane setup and unit lookup for enhanced chart display.
  *
+ * @author TWU
  */
 public class Thumbnail {
-	private boolean debug = false;
-	private JPanel jp;
-	private Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-	private Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+    private static final Logger LOGGER = Logger.getLogger(Thumbnail.class.getName());
+    private static final int DEFAULT_CURSOR_TYPE = Cursor.DEFAULT_CURSOR;
+    private static final int WAIT_CURSOR_TYPE = Cursor.WAIT_CURSOR;
+    private boolean debug = false;
+    private JPanel jp;
+    private final Cursor waitCursor = new Cursor(WAIT_CURSOR_TYPE);
+    private final Cursor defaultCursor = new Cursor(DEFAULT_CURSOR_TYPE);
+    private HashMap<String, String> unitLookup;
 
-	/**
-	 * Create thumb nail charts from table data.
-	 *
-	 * @param chartName
-	 *            the name of a JFreeChart ({@code null} not permitted).
-	 * @param unit
-	 *            the unit label of the chart ({@code null} not permitted).
-	 * @param path
-	 *            the legend property file ({@code null} permitted).
-	 * @param jtable
-	 *            table data includes selected meta data, column and row names,
-	 *            the values of column and row. ({@code null} not permitted).
-	 */
+    /**
+     * Constructs a Thumbnail object and creates thumbnail charts from table data.
+     * Sets up the chart pane in the provided JSplitPane.
+     *
+     * @param chartName the name of a JFreeChart (not null)
+     * @param unit the unit label of the chart (not null)
+     * @param path the legend property file (nullable)
+     * @param cnt index for table data extraction
+     * @param jtable table data including meta, column, row names, and values
+     * @param metaMap map of metadata keys to row indices
+     * @param sp JSplitPane for chart pane display
+     * @param unitLookup lookup for units
+     * @throws IllegalArgumentException if required arguments are null
+     */
+    public Thumbnail(String chartName, String[] unit, String path, int cnt, JTable jtable,
+            Map<String, Integer[]> metaMap, JSplitPane sp, HashMap<String, String> unitLookup) {
+        Objects.requireNonNull(chartName, "chartName must not be null");
+        Objects.requireNonNull(unit, "unit must not be null");
+        Objects.requireNonNull(jtable, "jtable must not be null");
+        Objects.requireNonNull(sp, "JSplitPane must not be null");
+        sp.setCursor(waitCursor);
+        this.unitLookup = unitLookup;
+        if (metaMap == null) {
+            metaMap = ModelInterfaceUtil.getMetaIndex2(jtable, cnt);
+        }
+        String metaCol = ArrayConversion.array2String(ModelInterfaceUtil.getColumnFromTable(jtable, cnt, 2));
+        String col = ArrayConversion.array2String(ModelInterfaceUtil.getColumnFromTable(jtable, cnt, 0));
+        Chart[] chart = ThumbnailUtilNew.createChart(chartName, unit,
+                ModelInterfaceUtil.getColDataFromTable(jtable, jtable.getColumnCount() - 1),
+                col,
+                ModelInterfaceUtil.getDataFromTable(jtable, cnt, 0), metaMap,
+                ModelInterfaceUtil.getLegend2(metaMap, ModelInterfaceUtil.getDataFromTable(jtable, cnt, 1)), path,
+                metaCol, unitLookup);
+        int idx = ThumbnailUtilNew.getFirstNonNullChart(chart);
+        if (idx != -1 && chart[idx] != null) {
+            jp = ThumbnailUtilNew.setChartPane(chart, idx, false, true, sp);
+        } else {
+            LOGGER.log(Level.WARNING, "No valid chart found for thumbnail creation.");
+            jp = new JPanel();
+        }
+        sp.setCursor(defaultCursor);
+        logDebugMemory();
+    }
 
-	public Thumbnail(String chartName, String[] unit, String path, int cnt, JTable jtable,
-			Map<String, Integer[]> metaMap, JSplitPane sp, HashMap<String,String> unitLookup) {
+    /**
+     * Returns the JPanel containing the chart thumbnails.
+     * @return JPanel with chart thumbnails
+     */
+    public JPanel getJp() {
+        return jp;
+    }
 
-		sp.setCursor(waitCursor);
-		if (metaMap == null)
-			metaMap = ModelInterfaceUtil.getMetaIndex(jtable, cnt);
-		//ModelInterfaceUtil.getDataFromTable(jtable, 4);
-		String metaCol = ArrayConversion.array2String(ModelInterfaceUtil.getColumnFromTable(jtable, cnt, 2));
-		// create charts for Thumbnail
-		String col = ArrayConversion.array2String(ModelInterfaceUtil.getColumnFromTable(jtable, cnt, 0));
-//		Chart[] chart = ThumbnailUtil.createChart(chartName, unit, col,
-//				ModelInterfaceUtil.getDataFromTable(jtable, cnt, 0), metaMap,
-//				ModelInterfaceUtil.getLegend(metaMap, ModelInterfaceUtil.getDataFromTable(jtable, cnt, 1)), path,
-//				metaCol);
-		//new version that gets 
-		Chart[] chart = ThumbnailUtil2.createChart(chartName, unit, 
-				ModelInterfaceUtil.getColDataFromTable(jtable, jtable.getColumnCount()-1),
-				col,
-				ModelInterfaceUtil.getDataFromTable(jtable, cnt, 0), metaMap,
-				ModelInterfaceUtil.getLegend(metaMap, ModelInterfaceUtil.getDataFromTable(jtable, cnt, 1)), path,
-				metaCol,unitLookup);
-		//Dan: Using modified version (2)
-		int idx = ThumbnailUtil2.getFirstNonNullChart(chart);
-		if (chart[idx] != null)
-			//Dan: Using modified version (2)
-			jp = ThumbnailUtil2.setChartPane(chart, idx, false, true, sp);
-		sp.setCursor(defaultCursor);
-		if (debug)
-			System.out.println("Thumbnail::Thumbnail:max memory " + Runtime.getRuntime().maxMemory() + " total: "
-					+ Runtime.getRuntime().totalMemory() + " free: " + Runtime.getRuntime().freeMemory());
-	}
-
-	public JPanel getJp() {
-		return jp;
-	}
-
+    /**
+     * Logs debug memory information if debug is enabled.
+     */
+    private void logDebugMemory() {
+        if (debug) {
+            LOGGER.log(Level.INFO, String.format("Thumbnail::Thumbnail:max memory %d total: %d free: %d",
+                    Runtime.getRuntime().maxMemory(),
+                    Runtime.getRuntime().totalMemory(),
+                    Runtime.getRuntime().freeMemory()));
+        }
+    }
 }

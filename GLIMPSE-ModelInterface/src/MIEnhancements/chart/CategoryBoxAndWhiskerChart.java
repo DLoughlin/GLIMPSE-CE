@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -41,39 +41,56 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.ui.RectangleEdge;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 
-
 /**
- * The class handle to create a statistics JFreeChart with all properties stored in Chart. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * CategoryBoxAndWhiskerChart creates a JFreeChart box-and-whisker chart with all properties stored in Chart.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class CategoryBoxAndWhiskerChart extends CategoryChart {
-	private DefaultBoxAndWhiskerCategoryDataset dataset;
+    /**
+     * Dataset for the box-and-whisker chart.
+     */
+    private DefaultBoxAndWhiskerCategoryDataset dataset;
 
-	public CategoryBoxAndWhiskerChart(String path, String graphName, String id,
-			String[] titles, String[] axisName_unit, String column,	String legend,		
-			String[][] annotationText, ArrayList<List<String[]>> data) {
-		super(path, graphName, id, titles, axisName_unit, column, null, data, -1);
-		chartClassName = "chart.CategoryBoxAndWhiskerChart";
-		this.legend = legend;
-		dataset = (DefaultBoxAndWhiskerCategoryDataset) new MyDataset()
-				.createBoxAndWhiskerCategoryDataset(data, legend.split(","),
-						column.split(","));
-		crtChart();
-	}
+    /**
+     * Constructs a CategoryBoxAndWhiskerChart.
+     *
+     * @param path              Path for saving the chart
+     * @param graphName         Name of the chart
+     * @param id                Chart identifier
+     * @param titles            Chart titles
+     * @param axisName_unit     Axis names and units
+     * @param column            Data columns
+     * @param legend            Legend string (comma-separated)
+     * @param annotationText    Annotation text for the chart
+     * @param data              Data for the chart
+     */
+    public CategoryBoxAndWhiskerChart(String path, String graphName, String id,
+                                      String[] titles, String[] axisName_unit, String column, String legend,
+                                      String[][] annotationText, ArrayList<List<String[]>> data) {
+        super(path, graphName, id, titles, axisName_unit, column, null, data, -1);
+        chartClassName = "chart.CategoryBoxAndWhiskerChart";
+        this.legend = legend;
+        // Create the dataset using provided data, legend, and columns
+        dataset = (DefaultBoxAndWhiskerCategoryDataset) new MyDataset()
+                .createBoxAndWhiskerCategoryDataset(data, legend.split(","), column.split(","));
+        crtChart();
+    }
 
-	private void crtChart() {
-		chart = ChartFactory.createBoxAndWhiskerChart(titles[0], "", "value",
-				dataset, true);
-		plot = (CategoryPlot) chart.getPlot();
-		plot.setDataset(0, dataset);
-		setPlotProperty();
-		setLegendProperty();
-		setAxisProperty();
-		RendererUtil.setRendererProperty(plot.getRenderer());
-		chart.getLegend().setPosition(RectangleEdge.RIGHT);
-	}
+    /**
+     * Initializes and configures the box-and-whisker chart.
+     */
+    private void crtChart() {
+        // Create the chart with title, empty category axis, and value axis
+        chart = ChartFactory.createBoxAndWhiskerChart(titles[0], "", "value",
+                dataset, true);
+        plot = (CategoryPlot) chart.getPlot();
+        plot.setDataset(0, dataset);
+        setPlotProperty();
+        setLegendProperty();
+        setAxisProperty();
+        RendererUtil.setRendererProperty(plot.getRenderer());
+        chart.getLegend().setPosition(RectangleEdge.RIGHT);
+    }
 }

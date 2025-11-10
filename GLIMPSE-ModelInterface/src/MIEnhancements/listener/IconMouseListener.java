@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -37,42 +37,75 @@ import java.awt.event.MouseEvent;
 
 import chart.Chart;
 import graphDisplay.AChartDisplay;
- 
+
 /**
- * The class handles thumbnail panel event. Referenced classes of package listener:
- *           ThumbnailBoxPopup
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Handles mouse events for chart icons in the thumbnail panel.
+ * When the icon is clicked, displays the chart in a new window.
+ *
+ * <p>Author: TWU
+ * <p>Date: 1/2/2016
  */
-
 public class IconMouseListener extends MouseAdapter {
-	private Chart chart[];
-	private int id;
+    /** Array of Chart objects to display. */
+    private Chart[] chart;
+    /** Index of the chart to display. */
+    private int id;
 
-	public IconMouseListener(Chart chart[], final int id) {
-		this.chart = chart;
-		this.id = id;
-	}
+    /**
+     * Constructs an IconMouseListener for a chart array and chart index.
+     *
+     * @param chart Array of Chart objects
+     * @param id Index of the chart to display
+     */
+    public IconMouseListener(Chart[] chart, final int id) {
+        this.chart = chart;
+        this.id = id;
+    }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			new AChartDisplay(chart, id);
-		}
-	}
+    /**
+     * Invoked when the mouse is clicked on the icon.
+     * If left mouse button is clicked, opens the chart display.
+     *
+     * @param e MouseEvent triggered by the click
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            // Open the chart display window for the selected chart
+            new AChartDisplay(chart, id);
+        }
+    }
 
-	@Override
-	public void mouseExited(MouseEvent mouseevent) {
-	}
+    /**
+     * Invoked when the mouse exits the icon area.
+     * Currently not used.
+     *
+     * @param mouseevent MouseEvent triggered by mouse exit
+     */
+    @Override
+    public void mouseExited(MouseEvent mouseevent) {
+        // No action needed on mouse exit
+    }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
+    /**
+     * Invoked when the mouse button is pressed on the icon.
+     * Currently not used.
+     *
+     * @param e MouseEvent triggered by mouse press
+     */
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // No action needed on mouse press
+    }
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-
+    /**
+     * Invoked when the mouse button is released on the icon.
+     * Currently not used.
+     *
+     * @param e MouseEvent triggered by mouse release
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // No action needed on mouse release
+    }
 }

@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -186,10 +186,10 @@ public class OptionsArea {
 
 	private void setChartPane() {
 		// Dan: Using modified version (2)
-		ThumbnailUtil2.validateChartPane(jp);
-		w = ThumbnailUtil.computeFixGridLayoutViewSize(sp.getSize().width, gridWidth);
+		ThumbnailUtilNew.validateChartPane(jp);
+		w = ThumbnailUtilNew.computeFixGridLayoutViewSize(sp.getSize().width, gridWidth);
 		// Dan: Using modified version (2)
-		JPanel chartPane = ThumbnailUtil2.setChartPane(chart, w, gridWidth, sameScale, false);
+		JPanel chartPane = ThumbnailUtilNew.setChartPane(chart, w, gridWidth, sameScale, false);
 		jp.add(chartPane, BorderLayout.CENTER);
 		jp.updateUI();
 	}
@@ -229,7 +229,7 @@ public class OptionsArea {
 
 		public GraphOptionPane() {
 			// Dan: Using modified version (2)
-			idx = ThumbnailUtil2.getFirstNonNullChart(chart);
+			idx = ThumbnailUtilNew.getFirstNonNullChart(chart);
 			if (idx != -1) {
 				relativeIndex = chart[idx].getRelativeColIndex();
 				cn = chart[idx].getChartClassName();
@@ -245,7 +245,7 @@ public class OptionsArea {
 
 			setName("GraphOptionPane");
 			// Dan: Using modified version (2)
-			setSelectedIndex(getIndex(chart[ThumbnailUtil2.getFirstNonNullChart(chart)]));
+			setSelectedIndex(getIndex(chart[ThumbnailUtilNew.getFirstNonNullChart(chart)]));
 			setFont(new Font("Verdana", 0, 12));
 			setPreferredSize(new Dimension(120, 30));
 			addActionListener(this);
@@ -319,7 +319,7 @@ public class OptionsArea {
 			//if (selectedChartIndex == typeRelativeLineChart)
 			//	index = typeLineChart;
 			cn = graphClassName[index];
-			chart = ThumbnailUtil2.createChart(cn, relativeIndex, chart,selectedValue);
+			chart = ThumbnailUtilNew.createChart(cn, relativeIndex, chart,selectedValue);
 
 			setChartPane();
 

@@ -59,499 +59,589 @@ import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.xy.XYDataset;
 
-
 /**
- * The class handle utility functions for JFreechart. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility functions for JFreeChart operations, including dataset/series lookup, annotation creation,
+ * legend handling, and series painting. Designed for use in GLIMPSE Model Interface enhancements.
+ *
+ * Author: TWU
+ * Created: 1/2/2016
  */
-
 public class ChartUtil {
-	private static boolean debug = false;
+    private static boolean debug = false;
 
-	public static DefaultDrawingSupplier setDrawingSupplier(String className, int color[], int[] ls) {
-		DefaultDrawingSupplier supplier = null;
-		BasicStroke[] s = new BasicStroke[ls.length];
-		Paint paint[] = new Paint[color.length];
-		for (int i = 0; i < paint.length; i++)
-			paint[i] = new Color(color[i]);
-		for (int i = 0; i < s.length; i++) {
-			s[i] = LegendUtil.getLineStroke(ls[i]);
-		}
-		if (className.contains("LineChart")) {
-			supplier = (new DefaultDrawingSupplier(paint,
-					// DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
-					// DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE,
-					s, DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE));
-		} else {
-			supplier = (new DefaultDrawingSupplier(paint,
-					// DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE, s,
-					// DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE));
-		}
-		return supplier;
-	}
+    /**
+     * Creates a DefaultDrawingSupplier with custom colors and line strokes.
+     * @param className Chart class name to determine supplier type
+     * @param color Array of color values
+     * @param ls Array of line stroke types
+     * @return DefaultDrawingSupplier instance
+     */
+    public static DefaultDrawingSupplier setDrawingSupplier(String className, int[] color, int[] ls) {
+        DefaultDrawingSupplier supplier;
+        BasicStroke[] strokes = new BasicStroke[ls.length];
+        Paint[] paints = new Paint[color.length];
+        for (int i = 0; i < paints.length; i++) {
+            paints[i] = new Color(color[i]);
+        }
+        for (int i = 0; i < strokes.length; i++) {
+            strokes[i] = LegendUtil.getLineStroke(ls[i]);
+        }
+        if (className.contains("LineChart")) {
+            supplier = new DefaultDrawingSupplier(
+                paints,
+                DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
+                strokes,
+                DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE,
+                DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE
+            );
+        } else {
+            supplier = new DefaultDrawingSupplier(
+                paints,
+                DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
+                DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE,
+                strokes,
+                DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE
+            );
+        }
+        return supplier;
+    }
 
-	public static Object creatNewInstance(Class<?> t, Object[] param) {
-		Object jc = null;
+    /**
+     * Creates a new instance of a class using reflection and constructor parameters.
+     * @param t Class type
+     * @param param Constructor parameters
+     * @return New instance or null if instantiation fails
+     */
+    public static Object creatNewInstance(Class<?> t, Object[] param) {
+        Object instance = null;
+        Constructor<?>[] constructors = t.getConstructors();
+        for (Constructor<?> constructor : constructors) {
+            Class<?>[] paramTypes = constructor.getParameterTypes();
+            if (paramTypes.length == 0) {
+                try {
+                    instance = constructor.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (paramTypes.length == param.length) {
+                try {
+                    instance = constructor.newInstance(param);
+                } catch (InstantiationException | IllegalAccessException e) {
+                    System.out.println("ChartUtil::creatNewInstance:" + e.getClass().getSimpleName() + ":" + e.getMessage());
+                } catch (InvocationTargetException e) {
+                    System.out.println("ChartUtil::creatNewInstance:InvocationTargetException:" + e.getTargetException().getMessage());
+                }
+                break;
+            }
+        }
+        return instance;
+    }
 
-		Constructor<?>[] con = t.getConstructors();
+    /**
+     * Finds the dataset and series index for a given key in a JFreeChart.
+     * @param chart JFreeChart instance
+     * @param key Series or row key
+     * @return Array [datasetIndex, seriesIndex] or [-1, -1] if not found
+     */
+    public static int[] findDataset(JFreeChart chart, String key) {
+        int[] datasetSeries = { -1, -1 };
+        if (chart.getPlot().getPlotType().contains("XY")) {
+            XYPlot plot = chart.getXYPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                XYDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getSeriesCount(); j++) {
+                    if (dataset.indexOf(key) != -1) {
+                        datasetSeries[0] = i;
+                        datasetSeries[1] = dataset.indexOf(key);
+                        break;
+                    }
+                }
+            }
+        } else if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryPlot plot = chart.getCategoryPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                CategoryDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getRowCount(); j++) {
+                    if ((datasetSeries[1] = dataset.getRowIndex(key.trim())) != -1) {
+                        datasetSeries[0] = i;
+                        break;
+                    }
+                }
+            }
+        }
+        return datasetSeries;
+    }
 
-		for (int i = 0; i < con.length; i++) {
-			Class<?>[] pl = con[i].getParameterTypes();
-			if (pl.length == 0) {
-				try {
-					jc = con[i].newInstance();
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pl.length == param.length) {
-				try {
-					jc = con[i].newInstance(param);
-				} catch (InstantiationException e) {
-					//e.printStackTrace();
-					System.out.println("ChartUtil::creatNewInstance:InstantiationException:"
-							+ e.getMessage());
-				} catch (IllegalAccessException e) {
-					//e.printStackTrace();
-					System.out.println("ChartUtil::creatNewInstance:IllegalAccessException:"
-							+ e.getMessage());
-				} catch (InvocationTargetException e) {
-					//e.printStackTrace();
-					System.out.println("ChartUtil::creatNewInstance:InvocationTargetException:"
-							+ e.getTargetException().getMessage());
-				}
-				break;
-			}
-		}
-		return jc;
-	}
+    /**
+     * Finds the dataset and series index for a key in an array of XYDatasets.
+     */
+    public static int[] findDataset(XYDataset[] dataset, String key) {
+        int[] datasetSeries = { -1, -1 };
+        for (int i = 0; i < dataset.length; i++) {
+            for (int j = 0; j < dataset[i].getSeriesCount(); j++) {
+                if ((datasetSeries[1] = dataset[i].indexOf(key)) != -1) {
+                    datasetSeries[0] = i;
+                    break;
+                }
+            }
+        }
+        return datasetSeries;
+    }
 
-	public static int[] findDataset(JFreeChart chart, String key) {
-		int[] datasetSeries = { -1, -1 };
-		if (chart.getPlot().getPlotType().contains("XY")) {
-			XYPlot plot = chart.getXYPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				XYDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getSeriesCount(); j++) {
-					if (dataset.indexOf(key) != -1) {
-						datasetSeries[0] = i;
-						datasetSeries[1] = dataset.indexOf(key);
-						break;
-					}
-				}
-			}
-		} else if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryPlot plot = chart.getCategoryPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				CategoryDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getRowCount(); j++) {
-					if ((datasetSeries[1] = dataset.getRowIndex(key.trim())) != -1) {
-						datasetSeries[0] = i;
-						break;
-					}
-				}
-			}
-		}
-		return datasetSeries;
-	}
+    /**
+     * Finds the dataset and series index for a key in an array of CategoryDatasets.
+     */
+    public static int[] findDataset(CategoryDataset[] dataset, String key) {
+        int[] datasetSeries = { -1, -1 };
+        for (int i = 0; i < dataset.length; i++) {
+            for (int j = 0; j < dataset[i].getRowCount(); j++) {
+                if ((datasetSeries[1] = dataset[i].getRowIndex(key.trim())) != -1) {
+                    datasetSeries[0] = i;
+                    break;
+                }
+            }
+        }
+        return datasetSeries;
+    }
 
-	public static int[] findDataset(XYDataset[] dataset, String key) {
-		int[] datasetSeries = { -1, -1 };
-		for (int i = 0; i < dataset.length; i++) {
-			for (int j = 0; j < dataset[i].getSeriesCount(); j++) {
-				if ((datasetSeries[1] = dataset[i].indexOf(key)) != -1) {
-					datasetSeries[0] = i;
-					break;
-				}
-			}
-		}
-		return datasetSeries;
-	}
+    /**
+     * Finds the series index for a key in an XYDataset.
+     */
+    public static int findSeries(XYDataset dataset, String key) {
+        int series = 0;
+        for (int j = 0; j < dataset.getSeriesCount(); j++) {
+            if (dataset.indexOf(key) != -1) {
+                series = dataset.indexOf(key);
+                break;
+            }
+        }
+        return series;
+    }
 
-	public static int[] findDataset(CategoryDataset[] dataset, String key) {
-		int[] datasetSeries = { -1, -1 };
-		for (int i = 0; i < dataset.length; i++) {
-			for (int j = 0; j < dataset[i].getRowCount(); j++) {
-				if ((datasetSeries[1] = dataset[i].getRowIndex(key.trim())) != -1) {
-					datasetSeries[0] = i;
-					break;
-				}
-			}
-		}
-		return datasetSeries;
-	}
+    /**
+     * Finds the series index for a key in a CategoryDataset.
+     */
+    public static int findSeries(CategoryDataset dataset, String key) {
+        int series = 0;
+        for (int j = 0; j < dataset.getRowCount(); j++) {
+            if (dataset.getRowIndex(key) != -1) {
+                series = dataset.getRowIndex(key);
+                break;
+            }
+        }
+        return series;
+    }
 
-	public static int findSeries(XYDataset dataset, String key) {
-		int series = 0;
-		for (int j = 0; j < dataset.getSeriesCount(); j++) {
-			if (dataset.indexOf(key) != -1) {
-				series = dataset.indexOf(key);
-				break;
-			}
-		}
-		return series;
-	}
+    /**
+     * Gets the indices of visible dataset series in a chart.
+     * @param chart JFreeChart instance
+     * @return Array of visible series indices
+     */
+    public static Integer[] getVisibleDatasetSeries(JFreeChart chart) {
+        ArrayList<Integer> visibleSeries = new ArrayList<>();
+        if (chart.getPlot().getPlotType().contains("XY")) {
+            XYPlot plot = chart.getXYPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                XYDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getSeriesCount(); j++) {
+                    XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
+                    if (renderer.getItemVisible(j, 0))
+                        visibleSeries.add(j);
+                }
+            }
+        } else if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryPlot plot = chart.getCategoryPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                CategoryDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getRowCount(); j++) {
+                    CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
+                    if (renderer.getItemVisible(j, 0))
+                        visibleSeries.add(j);
+                }
+            }
+        }
+        return visibleSeries.toArray(new Integer[0]);
+    }
 
-	public static int findSeries(CategoryDataset dataset, String key) {
-		int series = 0;
-		for (int j = 0; j < dataset.getRowCount(); j++) {
-			if (dataset.getRowIndex(key) != -1) {
-				series = dataset.getRowIndex(key);
-				break;
-			}
-		}
-		return series;
-	}
+    /**
+     * Sets all visible dataset series in a chart to be visible in the legend.
+     */
+    public static void setVisibleDatasetSeries(JFreeChart chart) {
+        if (chart.getPlot().getPlotType().contains("XY")) {
+            XYPlot plot = chart.getXYPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                XYDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getSeriesCount(); j++) {
+                    XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
+                    if (renderer.getSeriesVisible(j)) {
+                        renderer.setSeriesVisible(j, true);
+                        renderer.setSeriesVisibleInLegend(j, true);
+                    }
+                }
+            }
+        } else if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryPlot plot = chart.getCategoryPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                CategoryDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getRowCount(); j++) {
+                    CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
+                    if (renderer.getSeriesVisible(j)) {
+                        renderer.setSeriesVisible(j, true);
+                        renderer.setSeriesVisibleInLegend(j, true);
+                    }
+                }
+            }
+        }
+    }
 
-	public static Integer[] getVisibleDatasetSeries(JFreeChart chart) {
-		ArrayList<Integer> al = new ArrayList<Integer>();
-		if (chart.getPlot().getPlotType().contains("XY")) {
-			XYPlot plot = chart.getXYPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				XYDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getSeriesCount(); j++) {
-					XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
-					if (renderer.getItemVisible(j, 0))
-						al.add(Integer.valueOf(j));
-				}
-			}
-		} else if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryPlot plot = chart.getCategoryPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				CategoryDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getRowCount(); j++) {
-					CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
-					if (renderer.getItemVisible(j, 0))
-						al.add(Integer.valueOf(j));
-				}
-			}
-		}
-		return al.toArray(new Integer[0]);
-	}
+    /**
+     * Sets all dataset series in a chart to be visible in the legend.
+     */
+    public static void setDatasetSeriesVisible(JFreeChart chart) {
+        if (chart.getPlot().getPlotType().contains("XY")) {
+            XYPlot plot = chart.getXYPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                XYDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getSeriesCount(); j++) {
+                    XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
+                    renderer.setSeriesVisible(j, true);
+                    renderer.setSeriesVisibleInLegend(j, true);
+                }
+            }
+        } else if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryPlot plot = chart.getCategoryPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                CategoryDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getRowCount(); j++) {
+                    CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
+                    renderer.setSeriesVisible(j, true);
+                    renderer.setSeriesVisibleInLegend(j, true);
+                }
+            }
+        }
+    }
 
-	public static void setVisibleDatasetSeries(JFreeChart chart) {
-		if (chart.getPlot().getPlotType().contains("XY")) {
-			XYPlot plot = chart.getXYPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				XYDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getSeriesCount(); j++) {
-					XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
-					if (renderer.getSeriesVisible(j)) {
-						renderer.setSeriesVisible(j, true);
-						renderer.setSeriesVisibleInLegend(j, true);
-					}
-				}
-			}
-		} else if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryPlot plot = chart.getCategoryPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				CategoryDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getRowCount(); j++) {
-					CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
-					if (renderer.getSeriesVisible(j)) {
-						renderer.setSeriesVisible(j, true);
-						renderer.setSeriesVisibleInLegend(j, true);
-					}
-				}
-			}
-		}
-	}
+    /**
+     * Checks if any dataset series in a chart are visible.
+     * @param chart JFreeChart instance
+     * @return true if any series is visible, false otherwise
+     */
+    public static boolean isDatasetSeriesInvisible(JFreeChart chart) {
+        boolean visible = false;
+        if (chart.getPlot().getPlotType().contains("XY")) {
+            XYPlot plot = chart.getXYPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                XYDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getSeriesCount(); j++) {
+                    XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
+                    if (renderer.isSeriesVisible(j)) {
+                        visible = true;
+                        break;
+                    }
+                }
+            }
+        } else if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryPlot plot = chart.getCategoryPlot();
+            for (int i = 0; i < plot.getDatasetCount(); i++) {
+                CategoryDataset dataset = plot.getDataset(i);
+                for (int j = 0; j < dataset.getRowCount(); j++) {
+                    CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
+                    if (renderer.isSeriesVisible(j)) {
+                        visible = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return visible;
+    }
 
-	public static void setDatasetSeriesVisible(JFreeChart chart) {
-		if (chart.getPlot().getPlotType().contains("XY")) {
-			XYPlot plot = chart.getXYPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				XYDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getSeriesCount(); j++) {
-					XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
-					renderer.setSeriesVisible(j, true);
-					renderer.setSeriesVisibleInLegend(j, true);
-				}
-			}
+    /**
+     * Sets the chart title and subtitles.
+     * @param chart JFreeChart instance
+     * @param subTitle Array of subtitle strings
+     */
+    public static void setSubTitle(JFreeChart chart, String[] subTitle) {
+        if (subTitle[0] != null)
+            chart.setTitle(subTitle[0]);
+        for (int i = 1; subTitle != null && i < subTitle.length; i++) {
+            TextTitle title = new TextTitle(subTitle[i], new Font("SansSerif", Font.BOLD, 14));
+            title.visible = true;
+            chart.addSubtitle(i - 1, title);
+        }
+    }
 
-		} else if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryPlot plot = chart.getCategoryPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				CategoryDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getRowCount(); j++) {
-					CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
-					renderer.setSeriesVisible(j, true);
-					renderer.setSeriesVisibleInLegend(j, true);
-				}
-			}
-		}
-	}
+    /**
+     * Removes the chart title and subtitles.
+     * @param chart JFreeChart instance
+     * @param subTitle Array of subtitle strings
+     */
+    public static void removeSubTitle(JFreeChart chart, String[] subTitle) {
+        if (subTitle[0] != null)
+            chart.setTitle("");
+        for (int i = 1; subTitle != null && i < subTitle.length; i++) {
+            TextTitle title = new TextTitle(subTitle[i], new Font("SansSerif", Font.BOLD, 14));
+            chart.removeSubtitle(title);
+        }
+    }
 
-	public static boolean isDatasetSeriesInvisible(JFreeChart chart) {
-		boolean b = false;
-		if (chart.getPlot().getPlotType().contains("XY")) {
-			XYPlot plot = chart.getXYPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				XYDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getSeriesCount(); j++) {
-					XYItemRenderer renderer = chart.getXYPlot().getRenderer(i);
-					if (renderer.isSeriesVisible(j)) {
-						b = true;
-						break;
-					}
-				}
-			}
+    /**
+     * Gets the index of a subtitle in the chart.
+     */
+    public static int getSubTitleIndex(JFreeChart chart, Title subTitle) {
+        return chart.getSubtitles().indexOf(subTitle);
+    }
 
-		} else if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryPlot plot = chart.getCategoryPlot();
-			for (int i = 0; i < plot.getDatasetCount(); i++) {
-				CategoryDataset dataset = plot.getDataset(i);
-				for (int j = 0; j < dataset.getRowCount(); j++) {
-					CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer(i);
-					if (renderer.isSeriesVisible(j)) {
-						b = true;
-						break;
-					}
-				}
-			}
-		}
-		return b;
-	}
+    /**
+     * Creates a CategoryPointerAnnotation for a category chart.
+     * @param text Annotation text
+     * @param column Category column
+     * @param yValue Y value for annotation
+     * @return CategoryPointerAnnotation instance
+     */
+    public static CategoryPointerAnnotation createAnnotation(String text, String column, double yValue) {
+        CategoryPointerAnnotation annotation = null;
+        try {
+            annotation = new CategoryPointerAnnotation(text, column.trim(), yValue, -2.356194490192345);
+            annotation.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            annotation.setTextAnchor(TextAnchor.BOTTOM_LEFT);
+        } catch (IllegalArgumentException e) {
+            System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
+        }
+        return annotation;
+    }
 
-	public static void setSubTitle(JFreeChart chart, String[] subTitle) {
-		if (subTitle[0] != null)
-			chart.setTitle(subTitle[0]);
+    /**
+     * Creates an XYPointerAnnotation for an XY chart.
+     * @param text Annotation text
+     * @param xValue X value
+     * @param yValue Y value
+     * @return XYPointerAnnotation instance
+     */
+    public static XYPointerAnnotation createAnnotation(String text, double xValue, double yValue) {
+        if (debug)
+            System.out.println("x: " + xValue + " y: " + yValue + " text: " + text);
+        XYPointerAnnotation annotation = null;
+        try {
+            annotation = new XYPointerAnnotation(text, xValue, yValue, -0.78539816339744828D);
+            annotation.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            annotation.setTextAnchor(TextAnchor.BOTTOM_LEFT);
+        } catch (IllegalArgumentException e) {
+            System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
+        }
+        return annotation;
+    }
 
-		for (int i = 1; subTitle != null && i < subTitle.length; i++) {
-			TextTitle title = new TextTitle(subTitle[i], new Font("SansSerif", 1, 14));
-			title.visible = true;
-			chart.addSubtitle(i - 1, title);
-		}
-	}
+    /**
+     * Creates CategoryPointerAnnotations for all series in a category chart.
+     */
+    public static CategoryPointerAnnotation[] createAnnotation(String[] text, String[] column, String chartClassName, double[][] data) {
+        CategoryPointerAnnotation[] annotations = new CategoryPointerAnnotation[text.length];
+        double[] y;
+        try {
+            if (chartClassName.contains("Stacked"))
+                y = getAnnotationTextTableLocation(data);
+            else if (chartClassName.contains("Line"))
+                y = getAnnotationTextMaxLocation(data);
+            else {
+                if (chartClassName.contains("3D"))
+                    y = getAnnotationTextLocation(data[0], true);
+                else
+                    y = getAnnotationTextLocation(data[0], false);
+            }
+            for (int i = 0; i < text.length; i++) {
+                Font font = new Font("SansSerif", Font.PLAIN, 9);
+                annotations[i] = new CategoryPointerAnnotation(text[i], column[i].trim(), y[i], -2.356194490192345);
+                annotations[i].setFont(font);
+                annotations[i].setTextAnchor(TextAnchor.TOP_LEFT);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
+        }
+        return annotations;
+    }
 
-	public static void removeSubTitle(JFreeChart chart, String[] subTitle) {
-		TextTitle title = null;
-		if (subTitle[0] != null)
-			chart.setTitle("");
+    /**
+     * Creates XYPointerAnnotations for all series in an XY chart.
+     */
+    public static XYPointerAnnotation[] createAnnotation(String[] text, String[] x, String[] column, String chartClassName, double[][] data) {
+        XYPointerAnnotation[] annotations = new XYPointerAnnotation[text.length];
+        double[] y = getAnnotationTextMaxLocation(data);
+        try {
+            for (int i = 0; i < text.length; i++) {
+                Font font = new Font("SansSerif", Font.PLAIN, 9);
+                if (text[i] == null)
+                    text[i] = "";
+                double temp = Double.parseDouble(x[i].trim());
+                if (debug)
+                    System.out.println("x: " + temp + " y: " + y[i] + " text: " + text);
+                annotations[i] = new XYPointerAnnotation(column[i] + " " + text[i], temp, y[i], -2.356194490192345);
+                annotations[i].setFont(font);
+                annotations[i].setTextAnchor(TextAnchor.TOP_LEFT);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
+        }
+        return annotations;
+    }
 
-		for (int i = 1; subTitle != null && i < subTitle.length; i++) {
-			title = new TextTitle(subTitle[i], new Font("SansSerif", 1, 14));
-			chart.removeSubtitle(title);
-		}
-	}
+    /**
+     * Gets annotation locations for a data array (optionally for 3D line charts).
+     */
+    public static double[] getAnnotationTextLocation(double[] data, boolean line3D) {
+        double[] annotationLoc = new double[data.length];
+        for (int i = 0; i < data.length; i++) {
+            annotationLoc[i] = line3D ? data[i] * 1.1 : data[i];
+        }
+        return annotationLoc;
+    }
 
-	public static int getSubTitleIndex(JFreeChart chart, Title subTitle) {
-		return chart.getSubtitles().indexOf(subTitle);
-	}
+    /**
+     * Gets max value locations for annotation text in a 2D data array.
+     */
+    public static double[] getAnnotationTextMaxLocation(double[][] data) {
+        double[] annotationLoc = new double[data[0].length];
+        for (int i = 0; i < data[0].length; i++) {
+            double temp = 0.0;
+            for (int j = 0; j < data.length; j++)
+                temp = Math.max(temp, data[j][i]);
+            annotationLoc[i] = temp;
+        }
+        return annotationLoc;
+    }
 
-	public static CategoryPointerAnnotation createAnnotation(String text, String column, double yValue) {
-		CategoryPointerAnnotation annotation = null;
-		try {
-			annotation = new CategoryPointerAnnotation(text, column.trim(), yValue, -2.356194490192345); //-0.78539816339744828D);// 
-			Font font = new Font("SansSerif", 0, 10);
-			annotation.setFont(font);
-			annotation.setTextAnchor(TextAnchor.BOTTOM_LEFT);
-		} catch (java.lang.IllegalArgumentException e) {
-			System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
-		}
-		return annotation;
-	}
+    /**
+     * Gets sum value locations for annotation text in a 2D data array.
+     */
+    public static double[] getAnnotationTextTableLocation(double[][] data) {
+        double[] annotationLoc = new double[data[0].length];
+        for (int i = 0; i < data[0].length; i++) {
+            double temp = 0.0;
+            for (int j = 0; j < data.length; j++)
+                temp += data[j][i];
+            annotationLoc[i] = temp;
+        }
+        return annotationLoc;
+    }
 
-	public static XYPointerAnnotation createAnnotation(String text, double xValue, double yValue) {
-		if (debug)
-			System.out.println("x: " + xValue + " y: " + yValue + " text: " + text);
-		XYPointerAnnotation annotation = null;
-		try {
-			annotation = new XYPointerAnnotation(text, xValue, yValue, -0.78539816339744828D);// -2.356194490192345);
-			Font font = new Font("SansSerif", 0, 10);
-			annotation.setFont(font);
-			annotation.setTextAnchor(TextAnchor.BOTTOM_LEFT);
-		} catch (java.lang.IllegalArgumentException e) {
-			System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
-		}
-		return annotation;
-	}
+    /**
+     * Gets sum value locations for annotation text in a 2D data array up to a given level.
+     */
+    public static double[] getAnnotationTextTableLocation(double[][] data, int level) {
+        double[] annotationLoc = new double[data[0].length];
+        for (int i = 0; i < data[0].length; i++) {
+            double temp = 0.0;
+            for (int j = 0; j <= level; j++)
+                temp += data[j][i];
+            annotationLoc[i] = temp;
+        }
+        return annotationLoc;
+    }
 
-	// Followings are Annotation per item for all series
-	public static CategoryPointerAnnotation[] createAnnotation(String[] text, String[] column, String chartClassName,
-			double[][] data) {
-		CategoryPointerAnnotation[] annotation = new CategoryPointerAnnotation[text.length];
-		double[] y = null;
-		try {
-			if (chartClassName.contains("Stacked"))
-				y = getAnnotationTextTableLocation(data);
-			else if (chartClassName.contains("Line"))
-				y = getAnnotationTextMaxLocation(data);
-			else {
-				if (chartClassName.contains("3D"))
-					y = getAnnotationTextLocation(data[0], true);
-				else
-					y = getAnnotationTextLocation(data[0], false);
-			}
-			for (int i = 0; i < text.length; i++) {
-				Font font = new Font("SansSerif", 0, 9);
-				annotation[i] = new CategoryPointerAnnotation(text[i], column[i].trim(), y[i], -2.356194490192345);
-				annotation[i].setFont(font);
-				annotation[i].setTextAnchor(TextAnchor.TOP_LEFT);
-			}
-		} catch (java.lang.IllegalArgumentException e) {
-			System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
-		}
-		return annotation;
-	}
+    /**
+     * Paints all series in a CategoryPlot with the given Paint array.
+     */
+    public static void paintSeries(CategoryPlot plot, Paint[] paint) {
+        if (paint != null) {
+            int k = 0;
+            for (int j = plot.getRendererCount() - 1; j >= 0; j--) {
+                AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer(j);
+                renderer.setAutoPopulateSeriesPaint(false);
+                renderer.setAutoPopulateSeriesFillPaint(false);
+                int count = plot.getDataset(j).getRowCount();
+                for (int i = 0; i < count; i++)
+                    renderer.setSeriesPaint(count - 1 - i, paint[k + i]);
+                k += count;
+            }
+        }
+    }
 
-	public static XYPointerAnnotation[] createAnnotation(String[] text, String[] x, String[] column,
-			String chartClassName, double[][] data) {
-		XYPointerAnnotation[] annotation = new XYPointerAnnotation[text.length];
-		double[] y = getAnnotationTextMaxLocation(data);
-		try {
-			for (int i = 0; i < text.length; i++) {
-				Font font = new Font("SansSerif", 0, 9);
-				if (text[i] == null)
-					text[i] = "";
-				double temp = Double.valueOf(x[i].trim()).doubleValue();
-				if (debug)
-					System.out.println("x: " + temp + " y: " + y[i] + " text: " + text);
-				annotation[i] = new XYPointerAnnotation(
-						column[i]+" "+text[i], temp, y[i],
-						-2.356194490192345);
-				annotation[i].setFont(font);
-				annotation[i].setTextAnchor(TextAnchor.TOP_LEFT);
-			}
-		} catch (java.lang.IllegalArgumentException e) {
-			System.out.println("ChartUtil::CategoryPointerAnnotation:Apply Annotation Failed");
-		}
-		return annotation;
-	}
+    /**
+     * Paints a single series in a renderer.
+     */
+    public static void paintaSeries(AbstractRenderer renderer, int series, Paint paint) {
+        if (paint != null)
+            renderer.setSeriesPaint(series, paint);
+    }
 
-	public static double[] getAnnotationTextLocation(double[] data, boolean line3D) {
-		double[] annotationLoc = new double[data.length];
-		for (int i = 0; i < data.length; i++) {
-			if (line3D) {
-				annotationLoc[i] = new Double(data[i]).doubleValue() * 1.1;
-			} else
-				annotationLoc[i] = new Double(data[i]).doubleValue();
-		}
-		return annotationLoc;
-	}
+    /**
+     * Paints all series in an XYPlot with the given Paint array.
+     */
+    public static void paintSeries(XYPlot plot, Paint[] paint) {
+        if (paint != null) {
+            int k = 0;
+            for (int j = plot.getRendererCount() - 1; j >= 0; j--) {
+                AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer(j);
+                renderer.setAutoPopulateSeriesPaint(false);
+                renderer.setAutoPopulateSeriesFillPaint(false);
+                int count = plot.getDataset(j).getSeriesCount();
+                for (int i = 0; i < count; i++)
+                    renderer.setSeriesPaint(count - 1 - i, paint[k + i]);
+                k += count;
+            }
+        }
+    }
 
-	public static double[] getAnnotationTextMaxLocation(double[][] data) {
-		double[] annotationLoc = new double[data[0].length];
-		for (int i = 0; i < data[0].length; i++) {
-			double temp = 0.0;
-			for (int j = 0; j < data.length; j++)
-				temp = Math.max(temp, new Double(data[j][i]).doubleValue());
-			annotationLoc[i] = temp;
-		}
-		return annotationLoc;
-	}
+    /**
+     * Gets legend items from a chart.
+     * @param chart JFreeChart instance
+     * @return LegendItemCollection
+     */
+    public static LegendItemCollection getLegendItemsFromChart(JFreeChart chart) {
+        if (chart.getPlot().getPlotType().contains("XY"))
+            return chart.getXYPlot().getFixedLegendItems();
+        else
+            return chart.getCategoryPlot().getFixedLegendItems();
+    }
 
-	public static double[] getAnnotationTextTableLocation(double[][] data) {
-		double[] annotationLoc = new double[data[0].length];
-		for (int i = 0; i < data[0].length; i++) {
-			double temp = 0.0;
-			for (int j = 0; j < data.length; j++)
-				temp += new Double(data[j][i]).doubleValue();
-			annotationLoc[i] = temp;
-		}
-		return annotationLoc;
-	}
+    /**
+     * Gets legend values from a LegendItemCollection.
+     * @param graphName Name of the graph
+     * @param legenditemcollection LegendItemCollection
+     * @return ArrayList of legend values
+     */
+    public static ArrayList<Object[]> getLegendValueFromChart(String graphName, LegendItemCollection legenditemcollection) {
+        ArrayList<Object[]> legendValue = new ArrayList<>();
+        if (legenditemcollection != null) {
+            Paint[] paint = new Paint[legenditemcollection.getItemCount()];
+            String[] legend = new String[legenditemcollection.getItemCount()];
+            Integer[] pattern = new Integer[legenditemcollection.getItemCount()];
+            Iterator<?> k = legenditemcollection.iterator();
+            int i = 0;
+            while (k.hasNext()) {
+                LegendItem l = (LegendItem) k.next();
+                legend[i] = l.getLabel();
+                paint[i] = l.getFillPaint();
+                i++;
+            }
+            int[] temp = { 1, 1 };
+            for (int j = 0; j < temp.length; j++)
+                pattern[j] = temp[j];
+            legendValue.add(legend);
+            legendValue.add(paint);
+            legendValue.add(pattern);
+        }
+        return legendValue;
+    }
 
-	public static double[] getAnnotationTextTableLocation(double[][] data, int level) {
-		double[] annotationLoc = new double[data[0].length];
-		for (int i = 0; i < data[0].length; i++) {
-			double temp = 0.0;
-			for (int j = 0; j <= level; j++)
-				temp += new Double(data[j][i]).doubleValue();
-			annotationLoc[i] = temp;
-		}
-		return annotationLoc;
-	}
+    /**
+     * Finds the maximum value for chart range.
+     * @param yAxis ValueAxis
+     * @param curMax Current max value
+     * @return Maximum value
+     */
+    public static double findRangeMaxForCharts(ValueAxis yAxis, double curMax) {
+        return Math.max(yAxis.getUpperBound(), curMax);
+    }
 
-	public static void paintSeries(CategoryPlot plot, Paint[] paint) {
-		if (paint != null) {
-			int k = 0;
-			for (int j = plot.getRendererCount() - 1; j >= 0; j--) {
-				AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer(j);
-				renderer.setAutoPopulateSeriesPaint(false);
-				renderer.setAutoPopulateSeriesFillPaint(false);
-				int count = plot.getDataset(j).getRowCount();
-				for (int i = 0; i < count; i++)
-					renderer.setSeriesPaint(count - 1 - i, paint[k + i]);
-				k += count;
-			}
-		}
-	}
-
-	public static void paintaSeries(AbstractRenderer renderer, int series, Paint paint) {
-		if (paint != null)
-			renderer.setSeriesPaint(series, paint);
-	}
-
-	public static void paintSeries(XYPlot plot, Paint[] paint) {
-		if (paint != null) {
-			int k = 0;
-			for (int j = plot.getRendererCount() - 1; j >= 0; j--) {
-				AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer(j);
-				renderer.setAutoPopulateSeriesPaint(false);
-				renderer.setAutoPopulateSeriesFillPaint(false);
-				int count = plot.getDataset(j).getSeriesCount();
-				for (int i = 0; i < count; i++)
-					renderer.setSeriesPaint(count - 1 - i, paint[k + i]);
-				k += count;
-			}
-		}
-	}
-
-	public static LegendItemCollection getLegendItemsFromChart(JFreeChart chart) {
-		LegendItemCollection legenditemcollection = null;
-		if (chart.getPlot().getPlotType().contains("XY"))
-			legenditemcollection = chart.getXYPlot().getFixedLegendItems();
-		else
-			legenditemcollection = chart.getCategoryPlot().getFixedLegendItems();
-		return legenditemcollection;
-	}
-
-	public static ArrayList<Object[]> getLegendValueFromChart(String graphName,
-			LegendItemCollection legenditemcollection) {
-		ArrayList<Object[]> legendValue = new ArrayList<Object[]>();
-		if (legenditemcollection != null) {
-			Paint[] paint = new Paint[legenditemcollection.getItemCount()];
-			String[] legend = new String[legenditemcollection.getItemCount()];
-			Integer[] pattern = new Integer[legenditemcollection.getItemCount()];
-			Iterator<?> k = legenditemcollection.iterator();
-			int i = 0;
-			while (k.hasNext()) {
-				LegendItem l = (LegendItem) k.next();
-				legend[i] = l.getLabel();
-				paint[i] = l.getFillPaint();
-				i++;
-			}
-			int[] temp = { 1, 1 };
-			for (int j = 0; j < temp.length; j++)
-				pattern[j] = new Integer(temp[j]);
-			legendValue.add(legend);
-			legendValue.add(paint);
-			legendValue.add(pattern);
-		}
-		return legendValue;
-	}
-
-	public static double findRangeMaxForCharts(ValueAxis yAxis, double curMax) {
-		return Math.max(yAxis.getUpperBound(), curMax);
-	}
-
-	public static double findRangeMinForCharts(ValueAxis yAxis, double curMin) {
-		return curMin = Math.min(yAxis.getUpperBound(), curMin);
-	}
-
+    /**
+     * Finds the minimum value for chart range.
+     * @param yAxis ValueAxis
+     * @param curMin Current min value
+     * @return Minimum value
+     */
+    public static double findRangeMinForCharts(ValueAxis yAxis, double curMin) {
+        return Math.min(yAxis.getUpperBound(), curMin);
+    }
 }

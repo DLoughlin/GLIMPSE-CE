@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -50,56 +50,76 @@ import javax.swing.WindowConstants;
 import chart.LegendUtil;
 
 /**
- * The class to handle showing supported legend lists
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Dialog to display supported legend patterns or strokes for chart legends.
+ * <p>
+ * Usage: new LegendHelpList("patternList") or new LegendHelpList("strokeList")
+ * </p>
+ *
+ * <p>
+ * Author: TWU
+ * Created: 1/2/2016
+ * </p>
  */
-
 public class LegendHelpList extends JDialog {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public LegendHelpList(String type) {
-		String[] legendList = null;
-		if (type.trim().equals("patternList"))
-			legendList = LegendUtil.patternList.clone();
-		else if (type.trim().equals("strokeList"))
-			legendList = LegendUtil.strokeList.clone();
+    /**
+     * Constructs and displays a dialog listing legend patterns or strokes.
+     *
+     * @param type "patternList" or "strokeList" to select which legend list to show
+     */
+    public LegendHelpList(String type) {
+        // Determine which legend list to use
+        String[] legendList = null;
+        if (type.trim().equals("patternList")) {
+            legendList = LegendUtil.patternList.clone();
+        } else if (type.trim().equals("strokeList")) {
+            legendList = LegendUtil.strokeList.clone();
+        }
 
-		BufferedImage[] image = new BufferedImage[legendList.length];
-		for (int i = 0; i < legendList.length; i++)
-			if (type.trim().equals("patternList"))
-				image[i] = (BufferedImage) LegendUtil
-						.getTexturePaint(Color.green, Color.darkGray, Integer.valueOf(legendList[i]).intValue(), 0)
-						.getImage();
-			else if (type.trim().equals("strokeList"))
-				image[i] = (BufferedImage) LegendUtil
-						.getTexturePaint(Color.green, Color.darkGray, 11, Integer.valueOf(legendList[i]).intValue())
-						.getImage();
+        // Prepare images for each legend entry
+        BufferedImage[] image = new BufferedImage[legendList.length];
+        for (int i = 0; i < legendList.length; i++) {
+            if (type.trim().equals("patternList")) {
+                image[i] = (BufferedImage) LegendUtil.getTexturePaint(
+                        Color.green, Color.darkGray,
+                        Integer.parseInt(legendList[i]), 0).getImage();
+            } else if (type.trim().equals("strokeList")) {
+                image[i] = (BufferedImage) LegendUtil.getTexturePaint(
+                        Color.green, Color.darkGray,
+                        11, Integer.parseInt(legendList[i])).getImage();
+            }
+        }
 
-		JPanel jp = new JPanel(new GridLayout(legendList.length, 1));
-		jp.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 5));
+        // Create panel to display legend entries
+        JPanel jp = new JPanel(new GridLayout(legendList.length, 1));
+        jp.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 5));
 
-		for (int i = 0; i < legendList.length; i++)
-			jp.add(new JLabel(legendList[i], new ImageIcon(image[i].getScaledInstance(120, 20, Image.SCALE_SMOOTH)),
-					SwingConstants.LEFT));
+        // Add each legend entry as a label with its image
+        for (int i = 0; i < legendList.length; i++) {
+            JLabel label = new JLabel(
+                legendList[i],
+                new ImageIcon(image[i].getScaledInstance(120, 20, Image.SCALE_SMOOTH)),
+                SwingConstants.LEFT
+            );
+            jp.add(label);
+        }
 
-		add(jp);
-		setTitle("Legend Help for " + type);
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		pack();
-		setSize(new Dimension(220, 220));
-		setResizable(false);
-		setVisible(true);
-	}
+        // Set up dialog properties
+        add(jp);
+        setTitle("Legend Help for " + type);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        pack();
+        setSize(new Dimension(220, 220));
+        setResizable(false);
+        setVisible(true);
+    }
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new LegendHelpList("strokeList");
-			}
-		});
-	}
+    /**
+     * Main method for standalone testing of the dialog.
+     * @param args not used
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new LegendHelpList("strokeList"));
+    }
 }

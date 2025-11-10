@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -51,338 +51,457 @@ import javax.swing.filechooser.FileSystemView;
 import conversionUtil.ArrayConversion;
 
 /**
- * The class to handle utility functions for a file.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility class for file operations, including file selection dialogs,
+ * reading, writing, and parsing files.
+ *
+ * Author: TWU
+ * Created: 1/2/2016
  */
-
 public class FileUtil {
-	
-//	public static String getSaveFilePathFromChooser(String desc, String extension) {
-//		FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter(desc, extension);
-//		//FileSystemView fsv = FileSystemView.getFileSystemView();
-//		FileChooser chooser = new FileChooser();
-//		chooser.setTitle("Select a file location");
-//
-//		chooser.setSelectedExtensionFilter(filter);
-//
-//		File selectedFile = chooser.showSaveDialog(null); //testing mod to see if can avoid blocking
-//		
-//		if (selectedFile==null) {
-//			return null;
-//		} else {
-//			return selectedFile.getAbsolutePath();
-//		}
-//	}
-		
-	public static String getSaveFilePathFromChooser(String desc, String extension) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(desc, extension);
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setDialogTitle("Select a file location");
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setFileFilter(filter);
-		//int returnVal = chooser.showSaveDialog(null);
-		int returnVal = chooser.showSaveDialog(chooser); //testing mod to see if can avoid blocking
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
 
-	public static String getSaveFilePathFromChooser() {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setDialogTitle("Select a file location");
-		int returnVal = chooser.showSaveDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
-	
-	public static String getOpenFilePathFromChooser() {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setDialogTitle("Select a file location");
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
+    /**
+     * Opens a save file dialog and returns the selected file path.
+     * @param desc Description for the file filter
+     * @param extension File extension for the filter
+     * @return Absolute path of the selected file or null if cancelled
+     */
+    public static String getSaveFilePathFromChooser(String desc, String extension) {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(desc, extension);
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setDialogTitle("Select a file location");
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showSaveDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static File[] getOpenFileFromChooser() {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setDialogTitle("Select files location");
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFiles();
-		else
-			return null;
-	}
+    /**
+     * Opens a save file dialog and returns the selected file path.
+     * @return Absolute path of the selected file or null if cancelled
+     */
+    public static String getSaveFilePathFromChooser() {
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setDialogTitle("Select a file location");
+        int returnVal = chooser.showSaveDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static String getOpenDirectoryPathFromChooser() {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		chooser.setDialogTitle("Select a directory location");
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
+    /**
+     * Opens a file open dialog and returns the selected file path.
+     * @return Absolute path of the selected file or null if cancelled
+     */
+    public static String getOpenFilePathFromChooser() {
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setDialogTitle("Select a file location");
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static String[] getOpenDirectory(String path) {
-		return (new File(path)).list();
-	}
+    /**
+     * Opens a file open dialog and returns the selected files.
+     * @return Array of selected files or null if cancelled
+     */
+    public static File[] getOpenFileFromChooser() {
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setDialogTitle("Select files location");
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFiles();
+        else
+            return null;
+    }
 
-	public static String getOpenFilePathFromChooser(String nameFilter, String extension) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(nameFilter, extension);
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setDialogTitle("Select a file location");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
+    /**
+     * Opens a directory selection dialog and returns the selected directory path.
+     * @return Absolute path of the selected directory or null if cancelled
+     */
+    public static String getOpenDirectoryPathFromChooser() {
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setDialogTitle("Select a directory location");
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static File[] getOpenFileFromChooser(String nameFilter, String extension) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(nameFilter, extension);
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setDialogTitle("Select a file location");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFiles();
-		else
-			return null;
-	}
+    /**
+     * Lists the files in the specified directory.
+     * @param path Directory path
+     * @return Array of file names in the directory
+     */
+    public static String[] getOpenDirectory(String path) {
+        return (new File(path)).list();
+    }
 
-	public static String getOpenFilePathFromChooser(String desc, String extension[]) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(desc, extension);
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser chooser = new JFileChooser(fsv);
-		chooser.setDialogTitle("Select a file location");
-		chooser.addChoosableFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(chooser);
-		if (returnVal == 0)
-			return chooser.getSelectedFile().getAbsolutePath();
-		else
-			return null;
-	}
+    /**
+     * Opens a file open dialog with a filter and returns the selected file path.
+     * @param nameFilter Description for the file filter
+     * @param extension File extension for the filter
+     * @return Absolute path of the selected file or null if cancelled
+     */
+    public static String getOpenFilePathFromChooser(String nameFilter, String extension) {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(nameFilter, extension);
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setDialogTitle("Select a file location");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static DataInputStream initInFile(String path) {
-		DataInputStream dis = null;
-		FileInputStream fis = null;
+    /**
+     * Opens a file open dialog with a filter and returns the selected files.
+     * @param nameFilter Description for the file filter
+     * @param extension File extension for the filter
+     * @return Array of selected files or null if cancelled
+     */
+    public static File[] getOpenFileFromChooser(String nameFilter, String extension) {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(nameFilter, extension);
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setDialogTitle("Select a file location");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFiles();
+        else
+            return null;
+    }
 
-		try {
-			new File(path).createNewFile();
-			fis = new FileInputStream(path);
-			dis = new DataInputStream(fis);
-		} catch (FileNotFoundException fnf) {
-			System.out.println(fnf.getMessage());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return dis;
-	}
+    /**
+     * Opens a file open dialog with multiple extensions and returns the selected file path.
+     * @param desc Description for the file filter
+     * @param extension Array of file extensions for the filter
+     * @return Absolute path of the selected file or null if cancelled
+     */
+    public static String getOpenFilePathFromChooser(String desc, String[] extension) {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(desc, extension);
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        JFileChooser chooser = new JFileChooser(fsv);
+        chooser.setDialogTitle("Select a file location");
+        chooser.addChoosableFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+            return chooser.getSelectedFile().getAbsolutePath();
+        else
+            return null;
+    }
 
-	public static String[] parseFile2RevArray(LineNumberReader reader) {
-		ArrayList<String> as = new ArrayList<String>();
-		String lineString = null;
-		try {
-			lineString = reader.readLine();
-			while (lineString != null && !lineString.equals("")) {
-				as.add(lineString.trim());
-				lineString = reader.readLine();
-			}
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		return ArrayConversion.array2to1Conversion(ArrayConversion
-				.arrayDimReverse(ArrayConversion.array1to2Conversion(as.toArray(new String[as.size()]))));
-	}
+    /**
+     * Initializes a DataInputStream for the specified file path.
+     * @param path File path
+     * @return DataInputStream or null if file not found
+     */
+    public static DataInputStream initInFile(String path) {
+        DataInputStream dis = null;
+        FileInputStream fis = null;
+        try {
+            new File(path).createNewFile();
+            fis = new FileInputStream(path);
+            dis = new DataInputStream(fis);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dis;
+    }
 
-	public static String[] parseFile2Array(LineNumberReader reader) {
-		ArrayList<String> as = new ArrayList<String>();
-		String lineString = null;
-		try {
-			lineString = reader.readLine();
-			lineString = reader.readLine();
-			for (lineString = reader.readLine(); lineString != null
-					&& !lineString.equals(""); lineString = reader.readLine())
-				as.add(lineString.trim());
+    /**
+     * Parses lines from a file into a reversed array.
+     * @param reader LineNumberReader for the file
+     * @return Reversed array of lines
+     */
+    public static String[] parseFile2RevArray(LineNumberReader reader) {
+        ArrayList<String> as = new ArrayList<>();
+        String lineString = null;
+        try {
+            lineString = reader.readLine();
+            while (lineString != null && !lineString.equals("")) {
+                as.add(lineString.trim());
+                lineString = reader.readLine();
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        // Convert and reverse array dimensions
+        return ArrayConversion.array2to1Conversion(
+            ArrayConversion.arrayDimReverse(
+                ArrayConversion.array1to2Conversion(as.toArray(new String[0]))));
+    }
 
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		return (String[]) as.toArray(new String[as.size()]);
-	}
+    /**
+     * Parses lines from a file into an array, skipping the first two lines.
+     * @param reader LineNumberReader for the file
+     * @return Array of lines
+     */
+    public static String[] parseFile2Array(LineNumberReader reader) {
+        ArrayList<String> as = new ArrayList<>();
+        String lineString = null;
+        try {
+            // Skip first two lines
+            reader.readLine();
+            reader.readLine();
+            for (lineString = reader.readLine(); lineString != null && !lineString.equals(""); lineString = reader.readLine()) {
+                as.add(lineString.trim());
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        return as.toArray(new String[0]);
+    }
 
-	public static String[] parseFile2Array(LineNumberReader reader, int lineSkip) {
-		ArrayList<String> as = new ArrayList<String>();
-		String lineString = null;
-		try {
-			for (int i = 0; i < lineSkip; i++)
-				lineString = reader.readLine();
+    /**
+     * Parses lines from a file into an array, skipping a specified number of lines.
+     * @param reader LineNumberReader for the file
+     * @param lineSkip Number of lines to skip
+     * @return Array of lines
+     */
+    public static String[] parseFile2Array(LineNumberReader reader, int lineSkip) {
+        ArrayList<String> as = new ArrayList<>();
+        String lineString = null;
+        try {
+            for (int i = 0; i < lineSkip; i++)
+                reader.readLine();
+            lineString = reader.readLine();
+            if (lineString != null)
+                as.add(lineString.trim());
+            reader.readLine();
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        return as.toArray(new String[0]);
+    }
 
-			lineString = reader.readLine();
-			as.add(lineString.trim());
-			lineString = reader.readLine();
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		return (String[]) as.toArray(new String[as.size()]);
-	}
+    /**
+     * Parses lines from a file into an array, marking a line and reading up to 50 lines.
+     * @param reader LineNumberReader for the file
+     * @param lineSkip Number of lines to skip (unused)
+     * @param markLine Line to mark
+     * @return Array of lines
+     */
+    public static String[] parseFile2Array(LineNumberReader reader, int lineSkip, int markLine) {
+        ArrayList<String> as = new ArrayList<>();
+        String lineRead = null;
+        try {
+            reader.mark(markLine);
+            for (int k = markLine; (lineRead = reader.readLine()) != null && k >= markLine; k++) {
+                if (k >= markLine + 50)
+                    break;
+                as.add(lineRead.trim());
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        return as.toArray(new String[0]);
+    }
 
-	public static String[] parseFile2Array(LineNumberReader reader, int lineSkip, int markLine) {
-		ArrayList<String> as = new ArrayList<String>();
-		String lineRead = null;
-		try {
-			reader.mark(markLine);
-			for (int k = markLine; (lineRead = reader.readLine()) != null && k >= markLine; k++) {
-				if (k >= markLine + 50)
-					break;
-				as.add(lineRead.trim());
-			}
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		return (String[]) as.toArray(new String[as.size()]);
-	}
+    /**
+     * Marks the current position in the reader.
+     * @param reader LineNumberReader
+     * @param m Number of characters to read ahead
+     * @throws Exception if marking fails
+     */
+    public static void mark(LineNumberReader reader, int m) throws Exception {
+        reader.mark(m);
+    }
 
-	public static void mark(LineNumberReader reader, int m) throws Exception {
-		reader.mark(m);
-	}
+    /**
+     * Parses the header line from a file and returns an array of header values.
+     * @param reader LineNumberReader for the file
+     * @return Array of header values
+     */
+    public static String[] parseFileHeader(LineNumberReader reader) {
+        ArrayList<String> as = new ArrayList<>();
+        String lineString = null;
+        try {
+            lineString = reader.readLine();
+            if (lineString != null) {
+                String[] h = lineString.split(",");
+                System.out.println(h.length + "  " + lineString);
+                for (String value : h) {
+                    as.add(value.trim());
+                }
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        return as.toArray(new String[0]);
+    }
 
-	public static String[] parseFileHeader(LineNumberReader reader) {
-		ArrayList<?> as = new ArrayList<Object>();
-		String lineString = null;
-		try {
-			lineString = reader.readLine();
-			String h[] = lineString.split(",");
-			System.out
-					.println((new StringBuilder(String.valueOf(h.length))).append("  ").append(lineString).toString());
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		return (String[]) as.toArray(new String[as.size()]);
-	}
+    /**
+     * Splits a line into an array using the given expression.
+     * @param line Input line
+     * @param expression Delimiter expression
+     * @return Array of split values
+     */
+    public static String[] parseLine2Array(String line, String expression) {
+        return line.split(expression);
+    }
 
-	public static String[] parseLine2Array(String line, String expression) {
-		return line.split(expression);
-	}
+    /**
+     * Initializes a FileOutputStream for the specified file path.
+     * Deletes the file if it exists.
+     * @param path File path
+     * @return FileOutputStream or null if file not found
+     */
+    public static FileOutputStream initOutFile(String path) {
+        FileOutputStream fos = null;
+        try {
+            File file = new File(path);
+            if (file.exists())
+                file.delete();
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+        }
+        return fos;
+    }
 
-	public static FileOutputStream initOutFile(String path) {
-		FileOutputStream fos = null;
-		try {
-			if ((new File(path)).exists())
-				(new File(path)).delete();
-			fos = new FileOutputStream(path);
-		} catch (FileNotFoundException fnf) {
-			System.out.println(fnf.getMessage());
-		}
-		return fos;
-	}
+    /**
+     * Initializes a FileOutputStream for the specified file.
+     * Deletes the file if it exists.
+     * @param file File object
+     * @return FileOutputStream or null if file not found
+     */
+    public static FileOutputStream initOutFile(File file) {
+        FileOutputStream fos = null;
+        try {
+            if (file.exists())
+                file.delete();
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+        }
+        return fos;
+    }
 
-	public static FileOutputStream initOutFile(File file) {
-		FileOutputStream fos = null;
-		try {
-			if (file.exists())
-				file.delete();
-			fos = new FileOutputStream(file);
-		} catch (FileNotFoundException fnf) {
-			System.out.println(fnf.getMessage());
-		}
-		return fos;
-	}
+    /**
+     * Initializes a FileOutputStream for the specified file path, with append option.
+     * Deletes the file if it exists and append is false.
+     * @param path File path
+     * @param append Whether to append to the file
+     * @return FileOutputStream or null if file not found
+     */
+    public static FileOutputStream initOutFile(String path, boolean append) {
+        FileOutputStream fos = null;
+        try {
+            File file = new File(path);
+            if (file.exists() && !append)
+                file.delete();
+            fos = new FileOutputStream(file, append);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+        }
+        return fos;
+    }
 
-	public static FileOutputStream initOutFile(String path, boolean append) {
-		FileOutputStream fos = null;
-		try {
-			if (new File(path).exists())
-				if (!append)
-					new File(path).delete();
-			fos = new FileOutputStream(path, append);
-		} catch (FileNotFoundException fnf) {
-			System.out.println(fnf.getMessage());
-		}
-		return fos;
-	}
+    /**
+     * Writes a string to a file and closes the stream.
+     * @param fos FileOutputStream
+     * @param writestr String to write
+     */
+    public static void writetofile(FileOutputStream fos, String writestr) {
+        try {
+            fos.write(writestr.getBytes());
+            fos.close();
+        } catch (IOException ioe) {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	public static void writetofile(FileOutputStream fos, String writestr) {
-		try {
-			fos.write(writestr.getBytes());
-			fos.close();
-		} catch (IOException ioe) {
-			try {
-				fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+    /**
+     * Reverses the dimensions of a string array and returns the result.
+     * @param in Input array
+     * @return Reversed array
+     */
+    public static String[] arrayDimReverseWrite(String[] in) {
+        String[][] s1 = ArrayConversion.array1to2Conversion(in);
+        String[] out = new String[in[0].split(",").length];
+        for (int i = 0; i < s1[0].length; i++) {
+            StringBuilder s = new StringBuilder();
+            for (int j = 0; j < s1.length; j++) {
+                s.append(",").append(s1[j][i]);
+            }
+            out[i] = s.substring(1);
+        }
+        return out;
+    }
 
-	public static String[] arrayDimReverseWrite(String[] in) {
-		String[][] s1 = ArrayConversion.array1to2Conversion(in);
-		String[] out = new String[in[0].split(",").length];
+    /**
+     * Writes an array of strings to a file, each on a new line, and closes the stream.
+     * @param fos FileOutputStream
+     * @param writestr Array of strings to write
+     */
+    public static void writetofile(FileOutputStream fos, String[] writestr) {
+        try {
+            for (String str : writestr) {
+                fos.write(str.getBytes());
+                fos.write("\n".getBytes());
+            }
+            fos.flush();
+            fos.close();
+        } catch (IOException ioe) {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-		for (int i = 0; i < s1[0].length; i++) {
-			String s = "";
-			for (int j = 0; j < s1.length; j++) {
-				s = s + "," + s1[j][i];
-			}
-			out[i] = s.substring(1);
-		}
-		return out;
-	}
+    /**
+     * Deletes the file at the specified path.
+     * @param path File path
+     */
+    public static void deleteFile(String path) {
+        File file = new File(path);
+        file.delete();
+    }
 
-	public static void writetofile(FileOutputStream fos, String[] writestr) {
-		try {
-			for (int i = 0; i < writestr.length; i++) {
-				fos.write(writestr[i].getBytes());
-				fos.write("\n".getBytes());
-			}
-			fos.flush();
-			fos.close();
-		} catch (IOException ioe) {
-			try {
-				fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public static void deleteFile(String path) {
-		File file = new File(path);
-		file.delete();
-	}
-
-	public static ImageIcon getIcon(String s) {
-		ImageIcon icon = null;
-		URL imgURL = null;
-		try {
-			imgURL = new URL(s);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		if (imgURL != null)
-			icon = new ImageIcon(imgURL);
-		else
-			System.err.println((new StringBuilder("Couldn't find file: ")).append(s).toString());
-		return icon;
-	}
+    /**
+     * Loads an image icon from a URL string.
+     * @param s URL string
+     * @return ImageIcon or null if not found
+     */
+    public static ImageIcon getIcon(String s) {
+        ImageIcon icon = null;
+        URL imgURL = null;
+        try {
+            imgURL = new URL(s);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        if (imgURL != null)
+            icon = new ImageIcon(imgURL);
+        else
+            System.err.println("Couldn't find file: " + s);
+        return icon;
+    }
 
 }

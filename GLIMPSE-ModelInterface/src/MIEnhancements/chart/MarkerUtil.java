@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -41,98 +41,88 @@ import org.jfree.chart.plot.Marker;
 import org.jfree.chart.ui.RectangleAnchor;
 import org.jfree.chart.ui.TextAnchor;
 
-
 /**
- * The class handle utility functions for JFreeChart Marker. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility class for handling JFreeChart Marker operations.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class MarkerUtil {
-	public static void createMarker(JFreeChart jfchart, Map<String, Marker> markerMap) {
+    /**
+     * Adds markers from the provided map to the given JFreeChart instance.
+     * Handles both CategoryPlot and XYPlot types.
+     *
+     * @param jfchart   the JFreeChart to add markers to
+     * @param markerMap a map of marker names to Marker objects
+     */
+    public static void createMarker(JFreeChart jfchart, Map<String, Marker> markerMap) {
+        Iterator<String> it = markerMap.keySet().iterator();
+        while (it.hasNext()) {
+            Marker m = markerMap.get(it.next());
+            String plotType = jfchart.getPlot().getPlotType();
+            // Handle CategoryPlot markers
+            if (plotType.equalsIgnoreCase("Category Plot")) {
+                if (m instanceof CategoryMarker) {
+                    jfchart.getCategoryPlot().addDomainMarker((CategoryMarker) m);
+                } else if (m instanceof org.jfree.chart.plot.IntervalMarker || m instanceof org.jfree.chart.plot.ValueMarker) {
+                    jfchart.getCategoryPlot().addRangeMarker(m);
+                }
+            // Handle XYPlot markers
+            } else if (plotType.equalsIgnoreCase("XY Plot")) {
+                if (m instanceof CategoryMarker) {
+                    jfchart.getXYPlot().addDomainMarker(m);
+                } else if (m instanceof org.jfree.chart.plot.IntervalMarker || m instanceof org.jfree.chart.plot.ValueMarker) {
+                    jfchart.getXYPlot().addRangeMarker(m);
+                }
+            }
+        }
+    }
 
-		Marker m;
-		Iterator<String> it = markerMap.keySet().iterator();
-		for (;it.hasNext();){
-			m = markerMap.get(it.next());
-			if (jfchart.getPlot().getPlotType()
-				.equalsIgnoreCase("Category Plot")) {				
-				if (m instanceof org.jfree.chart.plot.CategoryMarker)
-					jfchart.getCategoryPlot().addDomainMarker((CategoryMarker) m);
-				else if (m instanceof org.jfree.chart.plot.IntervalMarker)
-					jfchart.getCategoryPlot().addRangeMarker(m);
-				else if (m instanceof org.jfree.chart.plot.ValueMarker)
-					jfchart.getCategoryPlot().addRangeMarker(m);
-			} else if (jfchart.getPlot().getPlotType()
-				.equalsIgnoreCase("XY Plot")) {
-				if (m instanceof org.jfree.chart.plot.CategoryMarker)
-					jfchart.getXYPlot().addDomainMarker(m);
-				else if (m instanceof org.jfree.chart.plot.IntervalMarker)
-					jfchart.getXYPlot().addRangeMarker(m);
-				else if (m instanceof org.jfree.chart.plot.ValueMarker)
-					jfchart.getXYPlot().addRangeMarker(m);
-			}
-		}
-	}
-	
-	public static RectangleAnchor getMarkerLabelPosition(String name){	
-		if (name.equals("Bottom"))
-			return RectangleAnchor.BOTTOM;
-		else if (name.equals("Bottom-Left"))
-			return RectangleAnchor.BOTTOM_LEFT;
-		else if (name.equals("Bottom-Right"))
-			return RectangleAnchor.BOTTOM_RIGHT;
-		else if (name.equals("Center"))
-			return RectangleAnchor.CENTER;
-		else if (name.equals("Left"))
-			return RectangleAnchor.LEFT;
-		else if (name.equals("Right"))
-			return RectangleAnchor.RIGHT;
-		else if (name.equals("Top"))
-			return RectangleAnchor.TOP;		
-		else if (name.equals("Top-Left"))
-			return RectangleAnchor.TOP_LEFT;
-		else if (name.equals("Top-Right"))
-			return RectangleAnchor.TOP_RIGHT;
-		else 
-			return null;
-	}
-	
-	public static TextAnchor getMarkerTextLabelPosition(String name){	
-		if (name.equals("Baseline-Center"))
-			return TextAnchor.BASELINE_CENTER;
-		else if (name.equals("Baseline-Left"))
-			return TextAnchor.BASELINE_LEFT;
-		else if (name.equals("Baseline-Right"))
-			return TextAnchor.BASELINE_RIGHT;
-		else if (name.equals("Bottom-Center"))
-			return TextAnchor.BOTTOM_CENTER;
-		else if (name.equals("Bottom-Left"))
-			return TextAnchor.BOTTOM_LEFT;
-		else if (name.equals("Bottom-Right"))
-			return TextAnchor.BOTTOM_RIGHT;
-		else if (name.equals("Center"))
-			return TextAnchor.CENTER;
-		else if (name.equals("Center-Left"))
-			return TextAnchor.CENTER_LEFT;
-		else if (name.equals("Center-Right"))
-			return TextAnchor.CENTER_RIGHT;
-		else if (name.equals("Top-Center"))
-			return TextAnchor.TOP_CENTER;		
-		else if (name.equals("Top-Left"))
-			return TextAnchor.TOP_LEFT;
-		else if (name.equals("Top-Right"))
-			return TextAnchor.TOP_RIGHT;
-		else if (name.equals("Half-Ascent-Center"))
-			return TextAnchor.HALF_ASCENT_CENTER;		
-		else if (name.equals("Half-Ascent-Left"))
-			return TextAnchor.HALF_ASCENT_LEFT;
-		else if (name.equals("Half-Ascent-Right"))
-			return TextAnchor.HALF_ASCENT_RIGHT;
-		else 
-			return null;
-	}
+    /**
+     * Returns the RectangleAnchor position for marker labels based on the given name.
+     *
+     * @param name the position name (e.g., "Bottom", "Top-Left")
+     * @return the corresponding RectangleAnchor, or null if not found
+     */
+    public static RectangleAnchor getMarkerLabelPosition(String name) {
+        switch (name) {
+            case "Bottom": return RectangleAnchor.BOTTOM;
+            case "Bottom-Left": return RectangleAnchor.BOTTOM_LEFT;
+            case "Bottom-Right": return RectangleAnchor.BOTTOM_RIGHT;
+            case "Center": return RectangleAnchor.CENTER;
+            case "Left": return RectangleAnchor.LEFT;
+            case "Right": return RectangleAnchor.RIGHT;
+            case "Top": return RectangleAnchor.TOP;
+            case "Top-Left": return RectangleAnchor.TOP_LEFT;
+            case "Top-Right": return RectangleAnchor.TOP_RIGHT;
+            default: return null;
+        }
+    }
 
+    /**
+     * Returns the TextAnchor position for marker text labels based on the given name.
+     *
+     * @param name the text anchor name (e.g., "Center", "Top-Right")
+     * @return the corresponding TextAnchor, or null if not found
+     */
+    public static TextAnchor getMarkerTextLabelPosition(String name) {
+        switch (name) {
+            case "Baseline-Center": return TextAnchor.BASELINE_CENTER;
+            case "Baseline-Left": return TextAnchor.BASELINE_LEFT;
+            case "Baseline-Right": return TextAnchor.BASELINE_RIGHT;
+            case "Bottom-Center": return TextAnchor.BOTTOM_CENTER;
+            case "Bottom-Left": return TextAnchor.BOTTOM_LEFT;
+            case "Bottom-Right": return TextAnchor.BOTTOM_RIGHT;
+            case "Center": return TextAnchor.CENTER;
+            case "Center-Left": return TextAnchor.CENTER_LEFT;
+            case "Center-Right": return TextAnchor.CENTER_RIGHT;
+            case "Top-Center": return TextAnchor.TOP_CENTER;
+            case "Top-Left": return TextAnchor.TOP_LEFT;
+            case "Top-Right": return TextAnchor.TOP_RIGHT;
+            case "Half-Ascent-Center": return TextAnchor.HALF_ASCENT_CENTER;
+            case "Half-Ascent-Left": return TextAnchor.HALF_ASCENT_LEFT;
+            case "Half-Ascent-Right": return TextAnchor.HALF_ASCENT_RIGHT;
+            default: return null;
+        }
+    }
 }

@@ -63,405 +63,423 @@ import graphDisplay.GraphDisplayUtil;
 import graphDisplay.ModelInterfaceUtil;
 
 /**
- * The class to handle filter tree pane to build, manage, and display filter
- * tree.
- * 
- * Author Action Date Flag
- * ======================================================================= TWU
- * created 1/2/2016
+ * Handles the filter tree pane to build, manage, and display filter tree.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class FilterTreePane {
-	private static final boolean playWithLineStyle = false;
-	private static final String lineStyle = "Horizontal";
-	private JTree tree;
-	private Map<String, String> selOptions;
-	private boolean existSel = false;
-	private String chartName;
-	private String[] unit;
-	private String path;
-	private JTable jtable;
-	private JSplitPane sp;
-	public JDialog dialog;
-	private boolean debug = false;
+    private static final boolean playWithLineStyle = false;
+    private static final String lineStyle = "Horizontal";
+    private JTree tree;
+    private Map<String, String> selOptions;
+    private boolean existSel = false;
+    private String chartName;
+    private String[] unit;
+    private String path;
+    private JTable jtable;
+    private JSplitPane sp;
+    public JDialog dialog;
+    private boolean debug = false;
 
-	public FilterTreePane(String chartName, String[] unit, String path, JTable jtable, Map<String, String> sel,
-			JSplitPane sp) {
+    /**
+     * Constructs a FilterTreePane and displays the filter dialog.
+     * @param chartName Chart name
+     * @param unit Units array
+     * @param path Path string
+     * @param jtable JTable reference
+     * @param sel Selected options map
+     * @param sp JSplitPane reference
+     */
+    public FilterTreePane(String chartName, String[] unit, String path, JTable jtable, Map<String, String> sel, JSplitPane sp) {
+        if (debug)
+            System.out.println("jtable: " + jtable.getRowCount());
+        try {
+            init(chartName, unit, path, jtable, sel, sp);
+            showFilter();
+        } catch (Exception e) {
+            System.out.println("Error launching filter panel:" + e.toString());
+            dialog.dispose();
+        }
+    }
 
-		if (debug)
-			System.out.println("jtable: " + jtable.getRowCount());
-		try {
-			init(chartName, unit, path, jtable, sel, sp);
-			showFilter();
-		} catch (Exception e) {
-			System.out.println("Error launching filter panel:"+e.toString());
-			dialog.dispose();
-		}
-	}
+    /**
+     * Initializes member variables.
+     */
+    private void init(String chartName, String[] unit, String path, JTable jtable, Map<String, String> sel, JSplitPane sp) {
+        this.chartName = chartName;
+        this.unit = unit.clone();
+        this.path = path;
+        this.jtable = jtable;
+        this.sp = sp;
+        if (sel != null) {
+            this.selOptions = sel;
+            existSel = true;
+        } else {
+            this.selOptions = new LinkedHashMap<String, String>();
+        }
+    }
 
-	private void init(String chartName, String[] unit, String path, JTable jtable, Map<String, String> sel,
-			JSplitPane sp) {
-		this.chartName = chartName;
-		this.unit = unit.clone();
-		this.path = path;
-		this.jtable = jtable;
-		this.selOptions = sel;
-		this.sp = sp;
-		if (sel != null) {
-			this.selOptions = sel;
-			existSel = true;
-		} else
-			this.selOptions = new LinkedHashMap<String, String>();
-	}
+    /**
+     * Builds tree node names from table data.
+     * @param jtable JTable reference
+     * @return Array of node names
+     */
+    private String[] buildTreeName(JTable jtable) {
+        String[] qualifier = ModelInterfaceUtil.getColumnFromTable(jtable, 5);
+        String[][] listData = ArrayConversion.arrayDimReverse(ModelInterfaceUtil.getDataFromTable(jtable, 5));
+        ArrayList<String[]> tableColumnUniqueValues = GraphDisplayUtil.getUniqQualifierData(qualifier, listData);
+        ArrayList<String> al = buildNodesName(qualifier, tableColumnUniqueValues);
+        String[] cn = al.toArray(new String[0]);
+        if (debug)
+            System.out.println("cn: " + Arrays.toString(cn));
+        return cn;
+    }
 
-	private String[] buildTreeName(JTable jtable) {
+    /**
+     * Builds node names for the filter tree.
+     */
+    private ArrayList<String> buildNodesName(String[] qualifier, ArrayList<String[]> tableColumnUniqueValues) {
+        ArrayList<String> al = new ArrayList<String>();
+        int cnt = ModelInterfaceUtil.getDoubleTypeColIndex(jtable);
+        for (int n = cnt; n < jtable.getColumnCount() - 1; n++)
+            al.add("Year|" + jtable.getColumnName(n));
+        for (int k = 0; k < 1; k++) {
+            for (int i = 0; i < qualifier.length; i++) {
+                String q = qualifier[i].trim();
+                String[] temp = tableColumnUniqueValues.get(i);
+                for (int j = 0; j < temp.length; j++) {
+                    String v = q + "|" + temp[j].trim();
+                    al.add(v);
+                    if (debug)
+                        System.out.println("buildNodesName::al: " + Arrays.toString(al.toArray()));
+                }
+            }
+        }
+        return al;
+    }
 
-		String[] qualifier = ModelInterfaceUtil.getColumnFromTable(jtable, 5);
-		String[][] listData = ArrayConversion.arrayDimReverse(ModelInterfaceUtil.getDataFromTable(jtable, 5));
-		ArrayList<String[]> tableColumnUniqueValues = GraphDisplayUtil.getUniqQualifierData(qualifier, listData);
+    /**
+     * Builds the filter tree UI component.
+     * @param cn Node names
+     * @return JScrollPane containing the tree
+     */
+    private JScrollPane buildTree(String cn[]) {
+        try {
+            DefaultMutableTreeNode top = createNode("Filter All", "Root", null);
+            tree = new JTree(top);
+            createNodes(top, cn);
+            if (existSel)
+                setSelBoolean();
+            tree.getSelectionModel().setSelectionMode(4); // Multiple interval selection
+            // Mouse listener for node selection
+            MouseListener ml = new MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
+                    if (selPath != null) {
+                        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) selPath.getLastPathComponent();
+                        if (e.getClickCount() > 0) {
+                            if (((TrNode) selectedNode.getUserObject()).isSelected) {
+                                setNodeBoolean(null, false, selectedNode);
+                            } else {
+                                setNodeBoolean(null, true, selectedNode);
+                            }
+                        }
+                    } else {
+                        tree.addSelectionPath(selPath);
+                        tree.expandPath(selPath);
+                    }
+                }
+            };
+            tree.addMouseListener(ml);
+            tree.setCellRenderer(new TreeSelCellRenderer());
+            tree.setLargeModel(true);
+            tree.setExpandsSelectedPaths(true);
+            // Set font and row height for better scaling
+            tree.setRowHeight(tree.getFont().getSize() + 13);
+            TreeNode root = (TreeNode) tree.getModel().getRoot();
+            TreePath tPath = new TreePath(root);
+            tree.expandPath(tPath);
+            tree.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            tree.setAutoscrolls(true);
+            tree.setScrollsOnExpand(true);
+            tree.setMaximumSize(new Dimension(800, 1000));
+        } catch (Exception e) {
+            // Silent catch
+        }
+        JScrollPane jsp = new JScrollPane(tree);
+        jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        if (playWithLineStyle)
+            tree.putClientProperty("JTree.lineStyle", lineStyle);
+        return jsp;
+    }
 
-		ArrayList<String> al = buildNodesName(qualifier, tableColumnUniqueValues);
-		String[] cn = al.toArray(new String[0]);
-		if (debug)
-			System.out.println("cn: " + Arrays.toString(cn));
-		return cn;
-	}
+    /**
+     * Creates the Ok/Cancel button box for the dialog.
+     * @return Box containing buttons
+     */
+    private Box crtButton() {
+        Box box = Box.createHorizontalBox();
+        JButton jb = new JButton("Ok");
+        jb.setName("Ok");
+        MouseListener ml = new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                JButton but = (JButton) e.getSource();
+                if (but.getName().trim().equals("Ok")) {
+                    // If filter all unchecked give warning message
+                    if (selOptions.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Select filter", "Warning", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        // Apply filter and close dialog
+                        new FilteredTable(selOptions, chartName, unit, path, jtable, sp);
+                        dialog.dispose();
+                    }
+                } else {
+                    dialog.dispose();
+                }
+            }
+        };
+        jb.addMouseListener(ml);
+        box.add(jb);
+        jb = new JButton("Cancel");
+        jb.setName("Cancel");
+        jb.addMouseListener(ml);
+        box.add(jb);
+        return box;
+    }
 
-	private ArrayList<String> buildNodesName(String[] qualifier, ArrayList<String[]> tableColumnUniqueValues) {
-		ArrayList<String> al = new ArrayList<String>();
-		int cnt = ModelInterfaceUtil.getDoubleTypeColIndex(jtable);
-		for (int n = cnt; n < jtable.getColumnCount() - 1; n++)
-			al.add("Year|" + jtable.getColumnName(n));
+    /**
+     * Creates nodes for the filter tree.
+     */
+    private void createNodes(DefaultMutableTreeNode top, String cn[]) {
+        for (int i = 0; i < cn.length; i++) {
+            String temp[] = cn[i].split("\\|");
+            String nodePath[] = new String[temp.length + 1];
+            nodePath[0] = "Filter All";
+            for (int k = 0; k < temp.length; k++)
+                nodePath[k + 1] = temp[k];
+            TreePath p = TreeUtil.findByName(tree, Arrays.copyOfRange(nodePath, 0, 2));
+            DefaultMutableTreeNode node = null;
+            if (p == null)
+                node = createNode(nodePath[1], "filter", top);
+            else
+                node = (DefaultMutableTreeNode) p.getLastPathComponent();
+            createSubNode(temp, 1, "", node);
+        }
+    }
 
-		for (int k = 0; k < 1; k++) {
-			for (int i = 0; i < qualifier.length; i++) {
-				String q = qualifier[i].trim();
-				String[] temp = tableColumnUniqueValues.get(i);
-				for (int j = 0; j < temp.length; j++) {
-					String v = q + "|" + temp[j].trim();
-					al.add(v);
-					if (debug)
-						System.out.println("buildNodesName::al: " + Arrays.toString(al.toArray()));
-				}
-			}
-		}
-		return al;
-	}
+    /**
+     * Recursively creates subnodes for the filter tree.
+     */
+    private void createSubNode(String nodename[], int level, String type, DefaultMutableTreeNode top) {
+        for (int j = level; j < nodename.length; j++) {
+            String temp[] = Arrays.copyOfRange(nodename, 0, j + 1);
+            TreePath p = TreeUtil.findByName(tree, temp);
+            DefaultMutableTreeNode node = null;
+            if (p == null) {
+                if (j == nodename.length - 1) {
+                    node = createNode(nodename[j], "Value", top);
+                    if (debug)
+                        System.out.println("createSubNode:sel: " + Arrays.toString(selOptions.values().toArray()));
+                } else {
+                    node = createNode(nodename[j], "column", top);
+                }
+                top = node;
+            } else {
+                node = (DefaultMutableTreeNode) p.getLastPathComponent();
+                top = node;
+            }
+        }
+    }
 
-	private JScrollPane buildTree(String cn[]) {
-		try {
-			DefaultMutableTreeNode top = createNode("Filter All", "Root", null);
-			tree = new JTree(top);
-			createNodes(top, cn);
-			if (existSel)
-				setSelBoolean();
-			tree.getSelectionModel().setSelectionMode(4);
-			
+    /**
+     * Creates a tree node and adds it to the parent.
+     */
+    private DefaultMutableTreeNode createNode(String nodename, String type, DefaultMutableTreeNode top) {
+        DefaultMutableTreeNode category = null;
+        if (nodename != null) {
+            if (!existSel)
+                category = new DefaultMutableTreeNode(new TrNode(nodename, type, true, top));
+            else
+                category = new DefaultMutableTreeNode(new TrNode(nodename, type, false, top));
+            String k = ((TrNode) category.getUserObject()).keyStr;
+            if (type.equals("Value") && !existSel)
+                selOptions.put(k, k);
+            if (top != null) {
+                top.add(category);
+                if (top.toString().contains("Year") && !Arrays.asList(Var.sectionYRange).contains(nodename.trim())) {
+                    selOptions.remove(k, k);
+                    ((TrNode) category.getUserObject()).isSelected = false;
+                }
+            }
+        }
+        if (debug)
+            System.out.println("nodeName: " + category.toString());
+        return category;
+    }
 
+    /**
+     * Sets selection state for a node and its children.
+     */
+    private void setNodeBoolean(String[] leaf, boolean selected, DefaultMutableTreeNode node) {
+        TreeNode tNode = node;
+        String keyStr = ((TrNode) node.getUserObject()).keyStr;
+        if (!node.isRoot()) {
+            ((TrNode) node.getUserObject()).setSelected(selected);
+            TreePath tpath = new TreePath(tNode);
+            tree.expandPath(new TreePath(tNode));
+            if (!tNode.isLeaf()) {
+                DefaultMutableTreeNode pn = ((DefaultMutableTreeNode) tpath.getLastPathComponent());
+                for (Enumeration<?> e = tNode.children(); e.hasMoreElements();) {
+                    DefaultMutableTreeNode n = (DefaultMutableTreeNode) e.nextElement();
+                    if (n.isLeaf()) {
+                        keyStr = ((TrNode) n.getUserObject()).keyStr;
+                        if (leaf != null)
+                            if (Arrays.asList(leaf).contains(keyStr.trim())) {
+                                selected = true;
+                            } else {
+                                selected = false;
+                            }
+                        if (selected)
+                            selOptions.put(keyStr, keyStr);
+                        else
+                            selOptions.remove(keyStr, keyStr);
+                        ((TrNode) n.getUserObject()).setSelected(selected);
+                    } else {
+                        setNodeBoolean(leaf, selected, n);
+                    }
+                }
+                checkPartial(pn, ((TrNode) pn.getUserObject()).isSelected);
+            } else if (tNode.isLeaf()) {
+                if (leaf != null) {
+                    if (Arrays.asList(leaf).contains(keyStr.trim())) {
+                        selected = true;
+                    } else {
+                        selected = false;
+                    }
+                }
+                if (selected)
+                    selOptions.put(keyStr, keyStr);
+                else
+                    selOptions.remove(keyStr, keyStr);
+                DefaultMutableTreeNode pn = (DefaultMutableTreeNode) node.getParent();
+                checkPartial(pn, ((TrNode) pn.getUserObject()).isSelected);
+            }
+            if (debug)
+                for (String key : selOptions.keySet())
+                    System.out.println("setNodeBoolean:sel: " + selOptions.get(key));
+        } else {
+            selectAllBox(selected);
+        }
+        tree.updateUI();
+    }
 
-			MouseListener ml = new MouseAdapter() {
-				public void mousePressed(MouseEvent e) {
-					TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
-					if (selPath != null) {
-						DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) selPath.getLastPathComponent();
-						if (e.getClickCount() > 0) {
-							if (((TrNode) selectedNode.getUserObject()).isSelected) {
-								setNodeBoolean(null, false, selectedNode);
-							} else {
-								setNodeBoolean(null, true, selectedNode);
-							}
-						}
-					} else {
-						tree.addSelectionPath(selPath);
-						tree.expandPath(selPath);
-					}
-				}
-			};
-			tree.addMouseListener(ml);
-			tree.setCellRenderer(new TreeSelCellRenderer());
-			//Dan: replaced with text below
-			//tree.setRowHeight(18);
-			tree.setLargeModel(true);
-			tree.setExpandsSelectedPaths(true);
-			
-			//Dan: testing some font options to avoid scaling problems; setup below works on EPA VM
-			//tree.setFont(tree.getFont().deriveFont(14F));
-			tree.setRowHeight(tree.getFont().getSize()+13);
+    /**
+     * Selects or deselects all nodes in the tree.
+     */
+    private void selectAllBox(boolean selected) {
+        TreeNode root = (TreeNode) tree.getModel().getRoot();
+        TreePath tPath = new TreePath(root);
+        tree.expandPath(tPath);
+        setPartialParentNode(false, (DefaultMutableTreeNode) root, selected);
+        for (Enumeration<?> e = root.children(); e.hasMoreElements();) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
+            if (selected)
+                setNodeBoolean(null, true, node);
+            else {
+                setNodeBoolean(null, false, node);
+                tree.clearSelection();
+            }
+        }
+    }
 
-			TreeNode root = (TreeNode) tree.getModel().getRoot();
-			TreePath tPath = new TreePath(root);
-			tree.expandPath(tPath);
-			tree.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-			tree.setAutoscrolls(true);
-			tree.setScrollsOnExpand(true);
-			tree.setMaximumSize(new Dimension(800, 1000));
-		} catch (Exception e) {
-		}
-		JScrollPane jsp = new JScrollPane(tree);
-		jsp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+    /**
+     * Checks if parent node is partially selected and updates its state.
+     */
+    private void checkPartial(DefaultMutableTreeNode pNode, boolean selected) {
+        boolean isPartial = false;
+        TreePath tPath = new TreePath(pNode);
+        tree.expandPath(tPath);
+        for (Enumeration<?> e = pNode.children(); e.hasMoreElements();) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
+            if (selected) {
+                if (!((TrNode) node.getUserObject()).isSelected) {
+                    isPartial = true;
+                    break;
+                }
+            } else {
+                if (((TrNode) node.getUserObject()).isSelected) {
+                    isPartial = true;
+                    break;
+                }
+            }
+        }
+        setPartialParentNode(isPartial, pNode, selected);
+        if (pNode.getParent() != null)
+            checkPartial((DefaultMutableTreeNode) pNode.getParent(), selected);
+        tree.setSelectionPath(tPath);
+        tree.updateUI();
+    }
 
-		if (playWithLineStyle)
-			tree.putClientProperty("JTree.lineStyle", lineStyle);
+    /**
+     * Sets partial selection state for parent node.
+     */
+    private void setPartialParentNode(boolean isPartial, DefaultMutableTreeNode pNode, boolean selected) {
+        ((TrNode) pNode.getUserObject()).setSelected(selected);
+        if (!pNode.isLeaf()) {
+            if (isPartial) {
+                ((TrNode) pNode.getUserObject()).setPartialSelectedForParent(true);
+                ((TrNode) pNode.getUserObject()).setSelected(false);
+            } else if (selected) {
+                ((TrNode) pNode.getUserObject()).setPartialSelectedForParent(false);
+                ((TrNode) pNode.getUserObject()).setSelected(true);
+            } else {
+                ((TrNode) pNode.getUserObject()).setPartialSelectedForParent(false);
+                ((TrNode) pNode.getUserObject()).setSelected(false);
+            }
+        }
+    }
 
-		return jsp;
-	}
+    /**
+     * Sets selection state for nodes based on selOptions.
+     */
+    public void setSelBoolean() {
+        String[] leaf = selOptions.keySet().toArray(new String[0]);
+        TreeNode root = (TreeNode) tree.getModel().getRoot();
+        TreePath tPath = new TreePath(root);
+        tree.expandPath(tPath);
+        for (Enumeration<?> e = root.children(); e.hasMoreElements();) {
+            setNodeBoolean(leaf, true, (DefaultMutableTreeNode) e.nextElement());
+        }
+    }
 
-	private Box crtButton() {
-		Box box = Box.createHorizontalBox();
-		JButton jb = new JButton("Ok");
-		jb.setName("Ok");
-		MouseListener ml = new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				JButton but = (JButton) e.getSource();
-				if (but.getName().trim().equals("Ok")) {
-					// if filter all unchecked give warning message
-					if (selOptions.isEmpty())
-						JOptionPane.showMessageDialog(null, "Select filter", "Warning", JOptionPane.WARNING_MESSAGE);
-					else {
-						//add back in years
-						//for(String key:DbViewer.getSelectedYearsFromPropFile().keySet()) {
-						//	selOptions.put("Year|"+key,"Year|"+key);
-						//}
-						
-						//new FilteredTable_orig(selOptions, chartName, unit, path, jtable, sp);
-						new FilteredTable(selOptions, chartName, unit, path, jtable, sp);
-						dialog.dispose();
-					}
-				} else
-					dialog.dispose();
-			}
-		};
-		jb.addMouseListener(ml);
-		box.add(jb);
-		jb = new JButton("Cancel");
-		jb.setName("Cancel");
-		jb.addMouseListener(ml);
-		box.add(jb);
-		return box;
-	}
+    /**
+     * Displays the filter dialog.
+     */
+    public void showFilter() {
+        dialog = new JDialog();
+        dialog.setTitle(chartName + " Filter");
+        dialog.setSize(300, 400);
+        dialog.setLocationRelativeTo(jtable);
+        dialog.getContentPane().setLayout(new BorderLayout());
+        dialog.getContentPane().add(buildTree(buildTreeName(jtable)), BorderLayout.CENTER);
+        dialog.getContentPane().add(crtButton(), BorderLayout.SOUTH);
+        dialog.setVisible(true);
+        DbViewer.openWindows.add(dialog);
+    }
 
-	private void createNodes(DefaultMutableTreeNode top, String cn[]) {
+    /**
+     * Returns the filter tree.
+     */
+    public JTree getTree() {
+        return tree;
+    }
 
-		for (int i = 0; i < cn.length; i++) {
-
-			String temp[] = cn[i].split("\\|");
-			String nodePath[] = new String[temp.length + 1];
-			nodePath[0] = "Filter All";
-
-			for (int k = 0; k < temp.length; k++)
-				nodePath[k + 1] = temp[k];
-
-			TreePath p = TreeUtil.findByName(tree, Arrays.copyOfRange(nodePath, 0, 2));
-			DefaultMutableTreeNode node = null;
-			if (p == null)
-				node = createNode(nodePath[1], "filter", top);
-			else
-				node = (DefaultMutableTreeNode) p.getLastPathComponent();
-
-			createSubNode(temp, 1, "", node);
-		}
-	}
-
-	private void createSubNode(String nodename[], int level, String type, DefaultMutableTreeNode top) {
-		for (int j = level; j < nodename.length; j++) {
-			String temp[] = Arrays.copyOfRange(nodename, 0, j + 1);
-			TreePath p = TreeUtil.findByName(tree, temp);
-			DefaultMutableTreeNode node = null;
-			if (p == null) {
-				if (j == nodename.length - 1) {
-					node = createNode(nodename[j], "Value", top);
-					if (debug)
-						System.out.println("createSubNode:sel: " + Arrays.toString(selOptions.values().toArray()));
-				} else {
-					node = createNode(nodename[j], "column", top);
-				}
-				top = node;
-			} else {
-				node = (DefaultMutableTreeNode) p.getLastPathComponent();
-				top = node;
-			}
-		}
-	}
-
-	private DefaultMutableTreeNode createNode(String nodename, String type, DefaultMutableTreeNode top) {
-		DefaultMutableTreeNode category = null;
-
-		if (nodename != null) {
-			if (!existSel)
-				category = new DefaultMutableTreeNode(new TrNode(nodename, type, true, top));
-			else
-				category = new DefaultMutableTreeNode(new TrNode(nodename, type, false, top));
-
-			String k = ((TrNode) category.getUserObject()).keyStr;// @
-			if (type.equals("Value") && !existSel)
-				selOptions.put(k, k);// @
-
-			if (top != null) {
-				top.add(category);
-				if (top.toString().contains("Year")// @
-						&& !Arrays.asList(Var.sectionYRange).contains(nodename.trim())) {
-					selOptions.remove(k, k);
-					((TrNode) category.getUserObject()).isSelected = false;
-				} // @
-			}
-		}
-
-		if (debug)
-			System.out.println("nodeName: " + category.toString());
-		return category;
-	}
-
-	private void setNodeBoolean(String[] leaf, boolean selected, DefaultMutableTreeNode node) {
-
-		TreeNode tNode = node;
-		String keyStr = ((TrNode) node.getUserObject()).keyStr;
-
-		if (!node.isRoot()) {
-			((TrNode) node.getUserObject()).setSelected(selected);
-			TreePath tpath = new TreePath(tNode);
-			tree.expandPath(new TreePath(tNode));
-			if (!tNode.isLeaf()) {
-				DefaultMutableTreeNode pn = ((DefaultMutableTreeNode) tpath.getLastPathComponent());
-
-				for (Enumeration<?> e = tNode.children(); e.hasMoreElements();) {
-					DefaultMutableTreeNode n = (DefaultMutableTreeNode) e.nextElement();
-					if (n.isLeaf()) {
-						keyStr = ((TrNode) n.getUserObject()).keyStr;
-
-						if (leaf != null)
-							if (Arrays.asList(leaf).contains(keyStr.trim())) { // @1
-								selected = true;
-							} else
-								selected = false;
-
-						if (selected)
-							selOptions.put(keyStr, keyStr);// n.toString()
-						else
-							selOptions.remove(keyStr, keyStr);
-
-						((TrNode) n.getUserObject()).setSelected(selected);
-					} else
-						setNodeBoolean(leaf, selected, n);
-				}
-				checkPartial(pn, ((TrNode) pn.getUserObject()).isSelected);
-			} else if (tNode.isLeaf()) {
-				if (leaf != null) {
-					if (Arrays.asList(leaf).contains(keyStr.trim())) {
-						selected = true;
-					} else
-						selected = false;
-				}
-				if (selected)
-					selOptions.put(keyStr, keyStr);
-				else
-					selOptions.remove(keyStr, keyStr);
-				DefaultMutableTreeNode pn = (DefaultMutableTreeNode) node.getParent();
-				checkPartial(pn, ((TrNode) pn.getUserObject()).isSelected);
-			}
-
-			if (debug)
-				for (String key : selOptions.keySet())
-					System.out.println("setNodeBoolean:sel: " + selOptions.get(key));
-		} else
-			selectAllBox(selected);
-
-		tree.updateUI();
-	}
-
-	private void selectAllBox(boolean selected) {
-		TreeNode root = (TreeNode) tree.getModel().getRoot();
-		TreePath tPath = new TreePath(root);
-		tree.expandPath(tPath);
-		setPartialParentNode(false, (DefaultMutableTreeNode) root, selected);
-		for (Enumeration<?> e = root.children(); e.hasMoreElements();) {
-			DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
-
-			if (selected)
-				setNodeBoolean(null, true, node);
-			else {
-				setNodeBoolean(null, false, node);
-				tree.clearSelection();
-			}
-		}
-	}
-
-	private void checkPartial(DefaultMutableTreeNode pNode, boolean selected) {
-		boolean isPartial = false;
-		TreePath tPath = new TreePath(pNode);
-		tree.expandPath(tPath);
-
-		for (Enumeration<?> e = pNode.children(); e.hasMoreElements();) {
-			DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
-			if (selected) {
-				if (!((TrNode) node.getUserObject()).isSelected) {
-					isPartial = true;
-					break;
-				}
-			} else {
-				if (((TrNode) node.getUserObject()).isSelected) {
-					isPartial = true;
-					break;
-				}
-			}
-		}
-		setPartialParentNode(isPartial, pNode, selected);
-		if (pNode.getParent() != null)
-			checkPartial((DefaultMutableTreeNode) pNode.getParent(), selected);
-		tree.setSelectionPath(tPath);
-		tree.updateUI();
-	}
-
-	private void setPartialParentNode(boolean isPartial, DefaultMutableTreeNode pNode, boolean selected) {
-		((TrNode) pNode.getUserObject()).setSelected(selected);
-		if (!pNode.isLeaf()) {
-			if (isPartial)
-				if (selected) {
-					((TrNode) pNode.getUserObject()).setPartialSelectedForParent(true);
-					((TrNode) pNode.getUserObject()).setSelected(false);
-				} else {
-					((TrNode) pNode.getUserObject()).setPartialSelectedForParent(true);
-					((TrNode) pNode.getUserObject()).setSelected(false);
-				}
-			else if (selected) {
-				((TrNode) pNode.getUserObject()).setPartialSelectedForParent(false);
-				((TrNode) pNode.getUserObject()).setSelected(true);
-			} else {
-				((TrNode) pNode.getUserObject()).setPartialSelectedForParent(false);
-				((TrNode) pNode.getUserObject()).setSelected(false);
-			}
-		}
-	}
-
-	public void setSelBoolean() {
-		String[] leaf = selOptions.keySet().toArray(new String[0]);
-		TreeNode root = (TreeNode) tree.getModel().getRoot();
-		TreePath tPath = new TreePath(root);
-		tree.expandPath(tPath);
-		for (Enumeration<?> e = root.children(); e.hasMoreElements();) {
-			setNodeBoolean(leaf, true, (DefaultMutableTreeNode) e.nextElement());
-		}
-	}
-
-	public void showFilter() {
-		dialog = new JDialog();
-		dialog.setTitle(chartName + " Filter");
-		dialog.setSize(300, 400);
-		dialog.setLocationRelativeTo(jtable);
-		dialog.getContentPane().setLayout(new BorderLayout());
-		dialog.getContentPane().add(buildTree(buildTreeName(jtable)), BorderLayout.CENTER);
-		dialog.getContentPane().add(crtButton(), BorderLayout.SOUTH);
-		//dialog.pack();
-		dialog.setVisible(true);
-		DbViewer.openWindows.add(dialog);
-	}
-
-	public JTree getTree() {
-		return tree;
-	}
-
-	public JDialog getDialog() {
-		return dialog;
-	}
-
+    /**
+     * Returns the filter dialog.
+     */
+    public JDialog getDialog() {
+        return dialog;
+    }
 }

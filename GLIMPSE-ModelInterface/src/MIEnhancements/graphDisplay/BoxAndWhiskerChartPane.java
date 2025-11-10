@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -42,45 +42,67 @@ import chart.Chart;
 import chart.DatasetUtil;
 
 /**
- * The class to handle statistics chart. It can be displayed in subset of series
- * or data range.
- * 
- * Author Action Date Flag
- * ======================================================================= 
- * TWU    created 1/2/2016
+ * Handles the creation and management of a box-and-whisker statistics chart pane.
+ * Supports displaying statistics for a subset of series or data range.
+ *
+ * <p>Author: TWU<br>
+ * Created: 1/2/2016
+ * </p>
  */
-
 public class BoxAndWhiskerChartPane {
 
-	private Chart chart;
+    /**
+     * The chart instance managed by this pane.
+     */
+    private Chart chart;
 
-	public BoxAndWhiskerChartPane(Chart[] charts) throws ClassNotFoundException {
+    /**
+     * Constructs a BoxAndWhiskerChartPane using the provided array of charts.
+     *
+     * @param charts Array of Chart objects to be included in the box-and-whisker chart.
+     * @throws ClassNotFoundException if a required class for chart creation is not found.
+     */
+    public BoxAndWhiskerChartPane(Chart[] charts) throws ClassNotFoundException {
+        // Retrieve statistics data for the provided charts
+        ArrayList<List<String[]>> statisticsData = new ArrayList<>();
+        try {
+            statisticsData = DatasetUtil.getStatisticsData(charts);
+        } catch (java.lang.IndexOutOfBoundsException e1) {
+            statisticsData.clear();
+        }
+        // If no data is available, show an information dialog and exit
+        if (statisticsData.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                "No Support for different number of technologies for each chart",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        // Build chart identifier string from chart metadata
+        StringBuilder idBuilder = new StringBuilder();
+        for (Chart chart : charts) {
+            idBuilder.append(",").append(chart.getMeta()).append("|").append(chart.getMetaCol());
+        }
+        String id = idBuilder.toString();
+        // Create the CategoryBoxAndWhiskerChart using the first chart's properties and the statistics data
+        chart = new CategoryBoxAndWhiskerChart(
+            charts[0].getPath(),
+            "BoxAndWhisker_" + charts[0].getGraphName(),
+            id,
+            charts[0].getTitles(),
+            charts[0].getAxis_name_unit(),
+            charts[0].getChartColumn(),
+            charts[0].getChartRow(),
+            null,
+            statisticsData
+        );
+    }
 
-		ArrayList<List<String[]>> d = new ArrayList<List<String[]>>();
-		try {
-			d = DatasetUtil.getStatisticsData(charts);
-		} catch (java.lang.IndexOutOfBoundsException e1) {
-			d.clear();
-		}
-		if (d.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "No Support for diferent number of technologies for each chart",
-					"Information", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}
-		String id = "";
-		for (int i = 0; i < charts.length; i++)
-			id = "," + id + charts[i].getMeta() + "|" + charts[i].getMetaCol();
-		chart = new CategoryBoxAndWhiskerChart(charts[0].getPath(), "BoxAndWhisker_" + charts[0].getGraphName(), id,
-				charts[0].getTitles(), charts[0].getAxis_name_unit(),
-				// DatasetUtil.getChartColumn(charts[0].getChart()),
-				charts[0].getChartColumn(), charts[0].getChartRow(),
-				// DatasetUtil.getChartRow(charts[0].getChart()),
-				null, d);
-
-	}
-
-	public Chart getChart() {
-		return chart;
-	}
-
+    /**
+     * Returns the chart managed by this pane.
+     *
+     * @return the Chart instance
+     */
+    public Chart getChart() {
+        return chart;
+    }
 }

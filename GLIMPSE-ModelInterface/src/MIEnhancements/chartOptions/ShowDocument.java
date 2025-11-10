@@ -26,57 +26,77 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package chartOptions;
 
 import java.lang.reflect.Method;
-
 import javax.swing.JOptionPane;
 
 /**
- * The class to handle displaying a document.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility class for displaying a document (URL) in the system's default web browser.
+ * <p>
+ * Handles Mac OS, Windows, and Linux/Unix systems.
+ * </p>
+ *
+ * <p>
+ * Author: TWU
+ * Created: 1/2/2016
+ * </p>
  */
-
 public class ShowDocument {
-	private static final String errMsg = "Error attempting to launch web browser";
-	private static boolean debug = false;
+    /** Error message shown if browser launch fails. */
+    private static final String ERR_MSG = "Error attempting to launch web browser";
+    /** Debug flag for logging. */
+    private static final boolean DEBUG = false;
 
-	public ShowDocument() {
-	}
+    /**
+     * Default constructor.
+     */
+    public ShowDocument() {
+        // No initialization required
+    }
 
-	public static void openURL(String url) {
-		String osName = System.getProperty("os.name");
-		if (debug)
-			System.out.println("ShowDocument:url: " + url);
-		try {
-			if (osName.startsWith("Mac OS")) {
-				Class<?> fileMgr = Class.forName("com.apple.eio.FileManager");
-				Method openURL = fileMgr.getDeclaredMethod("openURL", new Class[] { String.class });
-				openURL.invoke(null, new Object[] { url });
-			} else if (osName.startsWith("Windows")) {
-				Runtime.getRuntime()
-						.exec((new StringBuilder("rundll32 url.dll,FileProtocolHandler ")).append(url).toString());
-			} else {
-				String browsers[] = { "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
-				String browser = null;
-				for (int count = 0; count < browsers.length && browser == null; count++)
-					if (Runtime.getRuntime().exec(new String[] { "which", browsers[count] }).waitFor() == 0)
-						browser = browsers[count];
-
-				if (browser == null)
-					throw new Exception("Could not find web browser");
-				Runtime.getRuntime().exec(new String[] { browser, url });
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, errMsg);
-		}
-	}
-
+    /**
+     * Opens the specified URL in the system's default web browser.
+     *
+     * @param url the URL to open
+     */
+    public static void openURL(String url) {
+        String osName = System.getProperty("os.name");
+        if (DEBUG) {
+            System.out.println("ShowDocument:url: " + url);
+        }
+        try {
+            if (osName.startsWith("Mac OS")) {
+                // Mac OS: use reflection to call FileManager.openURL
+                Class<?> fileMgr = Class.forName("com.apple.eio.FileManager");
+                Method openURL = fileMgr.getDeclaredMethod("openURL", String.class);
+                openURL.invoke(null, url);
+            } else if (osName.startsWith("Windows")) {
+                // Windows: use rundll32 to open the URL
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            } else {
+                // Linux/Unix: try common browsers
+                String[] browsers = { "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
+                String browser = null;
+                for (String b : browsers) {
+                    // Check if browser exists using 'which' command
+                    if (Runtime.getRuntime().exec(new String[] { "which", b }).waitFor() == 0) {
+                        browser = b;
+                        break;
+                    }
+                }
+                if (browser == null) {
+                    throw new Exception("Could not find web browser");
+                }
+                Runtime.getRuntime().exec(new String[] { browser, url });
+            }
+        } catch (Exception e) {
+            // Show error dialog if browser launch fails
+            JOptionPane.showMessageDialog(null, ERR_MSG);
+        }
+    }
 }

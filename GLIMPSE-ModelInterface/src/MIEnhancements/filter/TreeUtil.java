@@ -26,57 +26,86 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package filter;
 
 import java.util.Enumeration;
-
 import javax.swing.JTree;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /**
- * The class to handle utility functions for filter package.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility class for tree-related operations in the filter package.
+ * <p>
+ * Provides methods to search for nodes in a JTree by object or by name.
+ * </p>
+ *
+ * @author TWU
+ * @since 1/2/2016
  */
-
 public class TreeUtil {
-	public static TreePath find(JTree tree, Object nodes[]) {
-		TreeNode root = (TreeNode) tree.getModel().getRoot();
-		return find2(tree, new TreePath(root), nodes, 0, false);
-	}
+    /**
+     * Finds a TreePath in the given JTree that matches the specified sequence of nodes.
+     *
+     * @param tree  the JTree to search
+     * @param nodes the sequence of nodes to match
+     * @return the TreePath if found, otherwise null
+     */
+    public static TreePath find(JTree tree, Object[] nodes) {
+        TreeNode root = (TreeNode) tree.getModel().getRoot();
+        return findRecursive(tree, new TreePath(root), nodes, 0, false);
+    }
 
-	public static TreePath findByName(JTree tree, String names[]) {
-		TreeNode root = (TreeNode) tree.getModel().getRoot();
-		return find2(tree, new TreePath(root), names, 0, true);
-	}
+    /**
+     * Finds a TreePath in the given JTree that matches the specified sequence of node names.
+     *
+     * @param tree  the JTree to search
+     * @param names the sequence of node names to match
+     * @return the TreePath if found, otherwise null
+     */
+    public static TreePath findByName(JTree tree, String[] names) {
+        TreeNode root = (TreeNode) tree.getModel().getRoot();
+        return findRecursive(tree, new TreePath(root), names, 0, true);
+    }
 
-	private static TreePath find2(JTree tree, TreePath parent, Object nodes[], int depth, boolean byName) {
-		TreeNode node = (TreeNode) parent.getLastPathComponent();
-		Object o = node;
-		if (byName)
-			o = o.toString();
-		if (o.equals(nodes[depth])) {
-			if (depth == nodes.length - 1)
-				return parent;
-			if (node.getChildCount() >= 0) {
-				for (Enumeration<?> e = node.children(); e.hasMoreElements();) {
-					TreeNode n = (TreeNode) e.nextElement();
-					TreePath path = parent.pathByAddingChild(n);
-					TreePath result = find2(tree, path, nodes, depth + 1, byName);
-					if (result != null)
-						return result;
-				}
-
-			}
-		}
-		return null;
-	}
-
+    /**
+     * Recursively searches for a TreePath matching the given nodes or node names.
+     *
+     * @param tree   the JTree being searched
+     * @param parent the current TreePath
+     * @param nodes  the sequence of nodes or names to match
+     * @param depth  the current depth in the sequence
+     * @param byName true to match by node name, false to match by object
+     * @return the TreePath if found, otherwise null
+     */
+    private static TreePath findRecursive(JTree tree, TreePath parent, Object[] nodes, int depth, boolean byName) {
+        TreeNode node = (TreeNode) parent.getLastPathComponent();
+        Object current = node;
+        if (byName) {
+            current = current.toString(); // Use node's name for comparison
+        }
+        // Check if current node matches the target node or name
+        if (current.equals(nodes[depth])) {
+            // If this is the last node in the sequence, return the path
+            if (depth == nodes.length - 1) {
+                return parent;
+            }
+            // Otherwise, recursively search children
+            if (node.getChildCount() > 0) {
+                for (Enumeration<?> e = node.children(); e.hasMoreElements();) {
+                    TreeNode child = (TreeNode) e.nextElement();
+                    TreePath childPath = parent.pathByAddingChild(child);
+                    TreePath result = findRecursive(tree, childPath, nodes, depth + 1, byName);
+                    if (result != null) {
+                        return result;
+                    }
+                }
+            }
+        }
+        // No match found
+        return null;
+    }
 }

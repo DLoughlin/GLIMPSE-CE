@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -52,165 +52,231 @@ import org.jfree.data.general.PieDataset;
 import conversionUtil.ArrayConversion;
 
 /**
- * The class handle to create a Pie JFreeChart with all properties stored in Chart. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * CategoryPieChart creates a JFreeChart pie chart for categorical data.
+ * <p>
+ * This class extends CategoryChart and provides constructors for initializing
+ * the chart with various data sources and configuration options. It sets up
+ * pie chart types, legend, paint, and custom label/tooltips for a customizable pie chart.
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class CategoryPieChart extends CategoryChart {
-	protected DefaultCategoryDataset dataset;
-	protected PieDataset piedataset;
-	
-	public CategoryPieChart(String path, String graphName, String meta, String title, String[] axis_name_unit, String[] legend, Paint[] paint, TableOrder extract,
-			int selected, PieDataset dataset, String piePlotType) {
-		super(path, graphName, meta, new String[] { title }, axis_name_unit, ArrayConversion.array2String(legend), -1);
-		piedataset = dataset;
-		crtCategoryPieChart(legend, paint, extract,	selected, piePlotType);
-	}
-	
-	public CategoryPieChart(String path, String graphName, String meta, String title, String[] axis_name_unit, String[] legend, Paint[] paint, TableOrder extract,
-			int selected, DefaultCategoryDataset dataset, String piePlotType) {
-		super(path, graphName, meta, new String[] { title }, axis_name_unit, ArrayConversion.array2String(legend), -1);
-		this.dataset = dataset;
-		crtCategoryPieChart(legend, paint, extract,	selected, piePlotType);
-	}
-	
-	
-	public void crtCategoryPieChart(String[] legend, Paint[] paint, TableOrder extract,
-			int selected, String piePlotType) {
-		chartClassName = "chart.CategoryPieChart";
-		TextTitle stitle = null;
+    protected DefaultCategoryDataset dataset;
+    protected PieDataset piedataset;
 
-		if (piePlotType.equals("Multiple 3D Pie Chart")) {
-			if (dataset!=null){
-			MultiplePiePlot plot = new MultiplePiePlot(dataset);
-			plot.setDataExtractOrder(extract);
-			chart = new JFreeChart(titles[0], plot);
-			JFreeChart subchart = plot.getPieChart();
-			PiePlot p = (PiePlot) subchart.getPlot();
-			p.getPieIndex();
-			p.setLabelGenerator(null);
-			chartRow = conversionUtil.ArrayConversion.array2String(ArrayConversion.list2Array(p.getDataset().getKeys()));
-			if (extract == TableOrder.BY_COLUMN) {
-				if (paint != null) {
-					p.setAutoPopulateSectionPaint(false);
-					paintSector(legend, paint, p);
-				}
-				p.setToolTipGenerator(new CustomToolTipGenerator(legend));
-			} else {
-				p.setAutoPopulateSectionPaint(true);
-				p.setToolTipGenerator(new CustomToolTipGenerator(
-						conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys())));
-			}
-			}
-		} else {
-			PiePlot plot = null;
-			if (dataset!=null){
-				CategoryToPieDataset ds = new CategoryToPieDataset(dataset, extract, selected);
-				if (piePlotType.equals("3D Pie Chart")) {
-					plot = new PiePlot3D(ds);
-					((PiePlot3D) plot).setDepthFactor(0.05);
-					plot.setCircular(false);
-					plot.setDirection(Rotation.CLOCKWISE);
-				} else
-					plot = new PiePlot(ds);
-			}else if (piedataset!=null)
-				plot = new PiePlot(piedataset);
-			
-			plot.setStartAngle(290);
-			plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
-			plot.setNoDataMessage("No data available");
-			plot.setCircular(false);
-			plot.setLabelGap(0.02);
-			chartRow = conversionUtil.ArrayConversion.array2String(ArrayConversion.list2Array(plot.getDataset().getKeys()));
-			chart = new JFreeChart(titles[0], plot);
-			if (extract == TableOrder.BY_COLUMN && paint != null) {
-				((PiePlot) chart.getPlot()).setAutoPopulateSectionPaint(false);
-				setPlotProperty(legend, (PiePlot) chart.getPlot());
-				String[] cs = conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys());
-				stitle = new TextTitle(cs[selected], new Font("SansSerif", 1, 14));
-				paintSector(legend, paint, plot);
-			} else {
-				((PiePlot) chart.getPlot()).setAutoPopulateSectionPaint(true);
-				setPlotProperty(conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys()),
-						(PiePlot) chart.getPlot());
-				stitle = new TextTitle(legend[selected], new Font("SansSerif", 1, 14));
-			}
-			stitle.visible = true;
-			chart.addSubtitle(stitle);
-		}
+    /**
+     * Constructor for CategoryPieChart using a PieDataset.
+     * @param path Path for chart output
+     * @param graphName Chart name
+     * @param meta Metadata
+     * @param title Chart title
+     * @param axis_name_unit Axis names and units
+     * @param legend Legend array
+     * @param paint Paint array for sectors
+     * @param extract TableOrder for data extraction
+     * @param selected Selected index
+     * @param dataset PieDataset
+     * @param piePlotType Pie chart type
+     */
+    public CategoryPieChart(String path, String graphName, String meta, String title, String[] axis_name_unit, String[] legend, Paint[] paint, TableOrder extract,
+            int selected, PieDataset dataset, String piePlotType) {
+        super(path, graphName, meta, new String[] { title }, axis_name_unit, ArrayConversion.array2String(legend), -1);
+        piedataset = dataset;
+        crtCategoryPieChart(legend, paint, extract, selected, piePlotType);
+    }
 
-	}
+    /**
+     * Constructor for CategoryPieChart using a DefaultCategoryDataset.
+     * @param path Path for chart output
+     * @param graphName Chart name
+     * @param meta Metadata
+     * @param title Chart title
+     * @param axis_name_unit Axis names and units
+     * @param legend Legend array
+     * @param paint Paint array for sectors
+     * @param extract TableOrder for data extraction
+     * @param selected Selected index
+     * @param dataset DefaultCategoryDataset
+     * @param piePlotType Pie chart type
+     */
+    public CategoryPieChart(String path, String graphName, String meta, String title, String[] axis_name_unit, String[] legend, Paint[] paint, TableOrder extract,
+            int selected, DefaultCategoryDataset dataset, String piePlotType) {
+        super(path, graphName, meta, new String[] { title }, axis_name_unit, ArrayConversion.array2String(legend), -1);
+        this.dataset = dataset;
+        crtCategoryPieChart(legend, paint, extract, selected, piePlotType);
+    }
 
-	@Override
-	public DefaultCategoryDataset getDataset() {
-		return dataset;
-	}
+    /**
+     * Creates and configures the pie chart, including legend, paint, and tooltips.
+     * @param legend Legend array
+     * @param paint Paint array for sectors
+     * @param extract TableOrder for data extraction
+     * @param selected Selected index
+     * @param piePlotType Pie chart type
+     */
+    public void crtCategoryPieChart(String[] legend, Paint[] paint, TableOrder extract,
+            int selected, String piePlotType) {
+        chartClassName = "chart.CategoryPieChart";
+        TextTitle stitle = null;
 
-	public PieDataset getPiedataset() {
-		return piedataset;
-	}
+        // Handle multiple 3D pie chart type
+        if (piePlotType.equals("Multiple 3D Pie Chart")) {
+            if (dataset != null) {
+                MultiplePiePlot plot = new MultiplePiePlot(dataset);
+                plot.setDataExtractOrder(extract);
+                chart = new JFreeChart(titles[0], plot);
+                JFreeChart subchart = plot.getPieChart();
+                PiePlot p = (PiePlot) subchart.getPlot();
+                p.getPieIndex();
+                p.setLabelGenerator(null);
+                chartRow = conversionUtil.ArrayConversion.array2String(ArrayConversion.list2Array(p.getDataset().getKeys()));
+                if (extract == TableOrder.BY_COLUMN) {
+                    if (paint != null) {
+                        p.setAutoPopulateSectionPaint(false);
+                        paintSector(legend, paint, p);
+                    }
+                    p.setToolTipGenerator(new CustomToolTipGenerator(legend));
+                } else {
+                    p.setAutoPopulateSectionPaint(true);
+                    p.setToolTipGenerator(new CustomToolTipGenerator(
+                            conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys())));
+                }
+            }
+        } else {
+            PiePlot plot = null;
+            if (dataset != null) {
+                // Convert category dataset to pie dataset
+                CategoryToPieDataset ds = new CategoryToPieDataset(dataset, extract, selected);
+                if (piePlotType.equals("3D Pie Chart")) {
+                    plot = new PiePlot3D(ds);
+                    ((PiePlot3D) plot).setDepthFactor(0.05);
+                    plot.setCircular(false);
+                    plot.setDirection(Rotation.CLOCKWISE);
+                } else {
+                    plot = new PiePlot(ds);
+                }
+            } else if (piedataset != null) {
+                plot = new PiePlot(piedataset);
+            }
 
-	private void setPlotProperty(String[] s, PiePlot plot) {
-		plot.setLabelGenerator(new CustomLabelGenerator(s));
-		plot.setToolTipGenerator(new CustomToolTipGenerator(s));
-	}
+            // Set plot properties
+            plot.setStartAngle(290);
+            plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+            plot.setNoDataMessage("No data available");
+            plot.setCircular(false);
+            plot.setLabelGap(0.02);
+            chartRow = conversionUtil.ArrayConversion.array2String(ArrayConversion.list2Array(plot.getDataset().getKeys()));
+            chart = new JFreeChart(titles[0], plot);
+            if (extract == TableOrder.BY_COLUMN && paint != null) {
+                ((PiePlot) chart.getPlot()).setAutoPopulateSectionPaint(false);
+                setPlotProperty(legend, (PiePlot) chart.getPlot());
+                String[] cs = conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys());
+                stitle = new TextTitle(cs[selected], new Font("SansSerif", Font.BOLD, 14));
+                paintSector(legend, paint, plot);
+            } else {
+                ((PiePlot) chart.getPlot()).setAutoPopulateSectionPaint(true);
+                setPlotProperty(conversionUtil.ArrayConversion.list2Array(dataset.getColumnKeys()),
+                        (PiePlot) chart.getPlot());
+                stitle = new TextTitle(legend[selected], new Font("SansSerif", Font.BOLD, 14));
+            }
+            stitle.visible = true;
+            chart.addSubtitle(stitle);
+        }
+    }
 
-	private void paintSector(String[] legend, Paint[] paint, PiePlot plot) {
-		for (int i = 0; i < paint.length ; i++) {// plot.getLegendItems().getItemCount()
-			if (plot.getSectionOutlinesVisible())
-				plot.setSectionPaint(legend[i], paint[i]);
-			
-		}
-	}
+    /**
+     * Returns the category dataset.
+     * @return DefaultCategoryDataset
+     */
+    @Override
+    public DefaultCategoryDataset getDataset() {
+        return dataset;
+    }
 
-	protected class CustomLabelGenerator implements PieSectionLabelGenerator {
-		String[] legend;
+    /**
+     * Returns the pie dataset.
+     * @return PieDataset
+     */
+    public PieDataset getPiedataset() {
+        return piedataset;
+    }
 
-		CustomLabelGenerator(String[] legend) {
-			this.legend = legend.clone();
+    /**
+     * Sets custom label and tooltip generators for the pie plot.
+     * @param s Legend array
+     * @param plot PiePlot
+     */
+    private void setPlotProperty(String[] s, PiePlot plot) {
+        plot.setLabelGenerator(new CustomLabelGenerator(s));
+        plot.setToolTipGenerator(new CustomToolTipGenerator(s));
+    }
 
-		}
+    /**
+     * Sets custom paint for each sector in the pie plot.
+     * @param legend Legend array
+     * @param paint Paint array
+     * @param plot PiePlot
+     */
+    private void paintSector(String[] legend, Paint[] paint, PiePlot plot) {
+        for (int i = 0; i < paint.length; i++) {
+            if (plot.getSectionOutlinesVisible()) {
+                plot.setSectionPaint(legend[i], paint[i]);
+            }
+        }
+    }
 
-		@Override
-		public String generateSectionLabel(PieDataset dataset, @SuppressWarnings("rawtypes") Comparable key) {
-			String result = null;
-			if (dataset != null) {
-				result = legend[dataset.getIndex(key)];
-			}
-			return result;
-		}
+    /**
+     * Custom label generator for pie chart sections.
+     */
+    protected class CustomLabelGenerator implements PieSectionLabelGenerator {
+        String[] legend;
 
-		@Override
-		public AttributedString generateAttributedSectionLabel(PieDataset dataset,
-				@SuppressWarnings("rawtypes") Comparable key) {
-			return null;
-		}
+        CustomLabelGenerator(String[] legend) {
+            this.legend = legend.clone();
+        }
 
-	}
+        @Override
+        public String generateSectionLabel(PieDataset dataset, @SuppressWarnings("rawtypes") Comparable key) {
+            String result = null;
+            if (dataset != null) {
+                result = legend[dataset.getIndex(key)];
+            }
+            return result;
+        }
 
-	protected class CustomToolTipGenerator implements PieToolTipGenerator {
-		String[] legend;
+        @Override
+        public AttributedString generateAttributedSectionLabel(PieDataset dataset,
+                @SuppressWarnings("rawtypes") Comparable key) {
+            return null;
+        }
+    }
 
-		CustomToolTipGenerator(String[] legend) {
-			this.legend = legend.clone();
+    /**
+     * Custom tooltip generator for pie chart sections.
+     */
+    protected class CustomToolTipGenerator implements PieToolTipGenerator {
+        String[] legend;
 
-		}
+        CustomToolTipGenerator(String[] legend) {
+            this.legend = legend.clone();
+        }
 
-		@Override
-		public String generateToolTip(PieDataset dataset, @SuppressWarnings("rawtypes") Comparable key) {
-			String result = null;
-			Number tot = 0;
-			for (int i = 0; i < dataset.getItemCount() && dataset.getValue(i) != null; i++)
-				tot = tot.intValue() + dataset.getValue(i).intValue();
-			Number number = dataset.getValue(key);
-			if (dataset != null) {
-				int index = dataset.getIndex(key);
-				result = legend[index] + " = " + number + "(" + (100 * number.byteValue() / tot.doubleValue()) + "%)";
-			}
-			return result;
-		}
-	}
+        @Override
+        public String generateToolTip(PieDataset dataset, @SuppressWarnings("rawtypes") Comparable key) {
+            String result = null;
+            Number tot = 0;
+            // Calculate total value for percentage
+            for (int i = 0; i < dataset.getItemCount() && dataset.getValue(i) != null; i++) {
+                tot = tot.intValue() + dataset.getValue(i).intValue();
+            }
+            Number number = dataset.getValue(key);
+            if (dataset != null) {
+                int index = dataset.getIndex(key);
+                result = legend[index] + " = " + number + " (" + (100 * number.byteValue() / tot.doubleValue()) + "% )";
+            }
+            return result;
+        }
+    }
 }
