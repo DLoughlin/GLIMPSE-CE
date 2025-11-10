@@ -125,13 +125,25 @@ public class LegendUtil {
 
 	public static LegendItemCollection crtLegenditemcollection(String[] legend, Paint[] tp) {
 		LegendItemCollection legenditemcollection = new LegendItemCollection();
-		for (int i = legend.length - 1; i > -1; i--) {
+
+		boolean problem=false;
 		
-			String key = legend[i].trim();
+		for (int i = legend.length - 1; i > -1; i--) {
+			//Dan modified this to address an issue where tp was overflowing on transpose graphics
+			//it is not clear what causes that problem, but it seems to arise when there are very complicated graphics
+			int t=i;
+			if (i>=tp.length) {
+				problem=true;
+				t=0;
+			}
+				
+			String key = legend[t].trim();
 			LegendItem legenditem = new LegendItem(key, "-", null, null, Plot.DEFAULT_LEGEND_ITEM_BOX,
-					tp[i]);
+					tp[t]);
 			legenditemcollection.add(legenditem);
 		}
+		if (problem)
+			System.out.println("Note: Difficulty constructing legend for transposed graphic. Table is potentially too complicated to construct transpose. Using default color for legend items.");
 		return legenditemcollection;
 	}
 

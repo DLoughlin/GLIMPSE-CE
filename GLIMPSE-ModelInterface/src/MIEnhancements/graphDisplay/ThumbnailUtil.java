@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -155,7 +155,7 @@ public class ThumbnailUtil {
 	}
 
 	// transpose
-	public static Chart[] createChart(String chartName, String[] unit, String legend, String column,
+	public static Chart[] createTransposeChart(String chartName, String path, String[] unit, String legend, String column,
 			ArrayList<String[][]> data, String[] keys) {
 
 		// columns selected
@@ -163,11 +163,14 @@ public class ThumbnailUtil {
 			System.out.println(
 					"createChart:legend: " + legend + " key: " + Arrays.toString(keys) + " dl: " + data.size());
 
+		legend=processLegend(legend);
+		
 		ArrayList<Chart> chartL = new ArrayList<Chart>();
-		for (int i = 0; i < data.size(); i++) {// each meta selected
+		for (int i = 0; i < data.size(); i++) {// iterating over scenarios (data.size())
 			try {
+				// Do not want to pass path since want to use default line color assignments; here passing null for second argument
 				chartL.add(MyChartFactory.createChart("chart.CategoryLineChart", null, chartName,
-						keys[i].trim() + "| ", new String[] { chartName, keys[i].trim() }, unit, legend, column, null,
+						keys[i].trim(), new String[] { chartName, keys[i].trim() }, unit, legend, column, null,
 						data.get(i), -1));
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -185,6 +188,38 @@ public class ThumbnailUtil {
 				chart[i] = chartL.get(i);
 		return chart;
 
+	}
+	
+	protected static String processLegend(String legend) {
+		String rtn_legend=legend;
+		//remove depth info from legend
+		String[] legendParts = legend.split(",");
+		boolean duplicates=false;
+		
+		//grabs left part of legend before _date=
+		for (int i=0;i<legendParts.length;i++) {
+			if (legendParts[i].contains("_date=")) {
+				legendParts[i]=legendParts[i].split("_date=")[0];
+			}
+		}
+		
+		//looks to see if the legend includes any duplicate scenario names
+		for (int i=0;i<legendParts.length;i++) {
+			for (int j=0;j<legendParts.length;j++) {
+				if (i!=j) {
+					if (legendParts[i].equals(legendParts[j])) {
+						duplicates=true;
+						break;
+					}
+				}
+			}
+		}
+
+		//if duplicates, then uses full names, if not, then returns shortened names
+		if (!duplicates) {
+			rtn_legend=String.join(",", legendParts);
+		}
+		return rtn_legend;
 	}
 
 	protected static int legendResourceExist(String[] data, String key) {

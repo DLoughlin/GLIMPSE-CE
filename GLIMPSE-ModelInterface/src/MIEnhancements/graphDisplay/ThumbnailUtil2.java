@@ -568,7 +568,7 @@ public class ThumbnailUtil2 {
 	public static JButton buttonIcon(Chart chart, int idx, int w, double max, double min, boolean sameScale,
 			boolean transpose, IconMouseListener iconListener) {
 
-		JButton jb = new JButton();
+		JButton jb = new JButton(); //stop here!!!
 		JFreeChart freeChart = null;
 		boolean category = false;
 		try {

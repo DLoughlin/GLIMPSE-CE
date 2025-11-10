@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -64,33 +64,33 @@ public class Transpose {
 
 	public Transpose(Chart[] chart, int w, int gridWidth, boolean sameScale, JSplitPane sp) {
 		String meta = ArrayConversion.array2String(getMetaArray(chart));
-		ArrayList<String[][]> al = new ArrayList<String[][]>();
+		ArrayList<String[][]> transposedData = new ArrayList<String[][]>();
 		ArrayList<String> master_legend=getMasterLegend(chart);
 		
 		String[] legend=convertArrayListToArray(master_legend);
 		
 		try {
-			//al = getTransposeData(chart, transChart);
-			al = getTransposeData(master_legend,transChart);
-			// al =
-			// getTransposeDataOrig(chart[ThumbnailUtil.getFirstNonNullChart(chart)].getLegend().split(","),
-			// transChart);
+			transposedData = getTransposeData(master_legend,transChart);
 		} catch (java.lang.NullPointerException e1) {
-			al.clear();
+			transposedData.clear();
 		} catch (java.lang.IndexOutOfBoundsException e1) {
-			al.clear();
+			transposedData.clear();
 		}
 
-		if (al.isEmpty()) {
+		if (transposedData.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "No Support for diferent number of technologies for each chart",
 					"Information", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		//Dan: Using modified version (2)
+		//Dan: 2025.11.07 Attempting to see if using ThumbnailUtil2 corrects issue with null pointer on graph name
+		//TODO: merge ThumbnailUtil and ThumbnailUtil2
 		int idx = ThumbnailUtil2.getFirstNonNullChart(chart);
-		Chart[] chart1 = ThumbnailUtil.createChart(chart[idx].getGraphName(), chart[idx].getAxis_name_unit(), meta,
-				chart[idx].getChartColumn(), al, legend);
+		Chart[] chart1 = ThumbnailUtil.createTransposeChart(chart[idx].getGraphName(), chart[idx].getPath(), chart[idx].getAxis_name_unit(), meta,
+				chart[idx].getChartColumn(), transposedData, legend);
 
+		//Chart[] chart1 = ThumbnailUtil2.createChart(chart[idx].getGraphName(), chart[idx].getAxis_name_unit(), legend, meta,
+		//		chart[idx].getChartColumn(), al, legend, null);
+		
 		if (debug)
 			System.out.println("Transpose::Transpose:input " + chart1.length + " trans: " + transChart.length
 					+ " transpose: " + chart1.length);
@@ -206,12 +206,12 @@ public class Transpose {
 
 	private String[] getMetaArray(Chart[] chart) {
 		String[] meta = new String[chart.length];
-		ArrayList<Chart> chartL = new ArrayList<Chart>();
+		ArrayList<Chart> chartList = new ArrayList<Chart>();
 		int k = 0;
 		for (int i = 0; i < chart.length; i++) {
 			if (chart[i].getMeta() != null) {
 				meta[k] = chart[i].getMeta().replace(",", "_");
-				chartL.add(chart[i]);
+				chartList.add(chart[i]);
 				if (debug)
 					System.out.println("Transpose::getMetaArray:i " + i + " : " + " meta: " + meta[k] + " : "
 							+ chart[i].getMeta());
@@ -220,10 +220,10 @@ public class Transpose {
 				System.out
 						.println("Transpose::getMetaArray:i " + i + " k: " + k + " title: " + chart[i].getTitles()[1]);
 		}
-		transChart = new Chart[chartL.size()];
-		if (chartL.size() > 0)
+		transChart = new Chart[chartList.size()];
+		if (chartList.size() > 0)
 			for (int i = 0; i < transChart.length; i++)
-				transChart[i] = chartL.get(i);
+				transChart[i] = chartList.get(i);
 		return Arrays.copyOfRange(meta, 0, k);
 	}
 

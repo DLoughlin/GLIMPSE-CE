@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -96,12 +96,13 @@ public class CategoryChart extends Chart {
 		this.relativeColIndex = relativeColIndex;
 		
 		if (this.legend != null) {
-			if (relativeColIndex > -1)
+			if (relativeColIndex > -1) {
 				dataset = new MyDataset().createCategoryDataset(data,
 						this.legend.split(","), column.split(","), relativeColIndex);
-			else
+			} else {
 				dataset = new MyDataset().createCategoryDataset(data,
 						this.legend.split(","), column.split(","));
+			}
 		} else {
 			System.out.println("chart::CategoryChart:con - Legends are null.");
 		}
