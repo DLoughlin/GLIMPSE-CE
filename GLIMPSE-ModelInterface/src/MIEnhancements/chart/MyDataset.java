@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -75,6 +75,38 @@ public class MyDataset {
 	}
 
 	public DefaultCategoryDataset createCategoryDataset(String[][] data, String[] category, String[] items) {
+		if (data == null)
+			return null;
+
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		try {
+			if (debug)
+				System.out.println("createCategoryDataset::r: " + " d:" + data.length + "  : " + data[0].length
+						+ Arrays.toString(category) + " c: " + Arrays.toString(items));
+
+			for (int i = 0; i < category.length; i++) {
+
+				boolean setVisible=false;
+				
+				for (int j = 0; j < items.length; j++) {
+
+					if (debug)
+						System.out.println(
+								"createCategoryDataset::r: " + category[i] + " c: " + items[j] + " d:" + data[i][j]);
+					// Aggregate function
+					if (data[i].length == 1)
+						dataset.addValue(new Double(data[i][0]).doubleValue(), category[i].trim(), items[j].trim());
+					else
+						dataset.addValue(new Double(data[i][j]).doubleValue(), category[i].trim(), items[j].trim());
+				}
+
+			}
+		} catch (Exception e) {
+		}
+		return dataset;
+	}
+	
+	public DefaultCategoryDataset createCategoryDatasetOld(String[][] data, String[] category, String[] items) {
 		if (data == null)
 			return null;
 

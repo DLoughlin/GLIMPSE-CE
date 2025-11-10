@@ -76,9 +76,9 @@ public class Transpose {
 		} catch (java.lang.IndexOutOfBoundsException e1) {
 			transposedData.clear();
 		}
-
-		if (transposedData.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "No Support for diferent number of technologies for each chart",
+		
+		if (transposedData.isEmpty()||(chart.length>2)) {
+			JOptionPane.showMessageDialog(null, "Transpose is not yet supported on complex datasets.",
 					"Information", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
@@ -97,11 +97,13 @@ public class Transpose {
 
 		//Dan: Using modified version (2)
 		JPanel jp = ThumbnailUtil2.setChartPane(chart1, 0, sameScale, true, sp);
+
 		JDialog dialog = CreateComponent.crtJDialog("Transpose Thumbnails: " + chart1[0].getGraphName());
 		dialog.setContentPane(new JScrollPane(jp));// new JScrollPane(chartPane)
 		dialog.pack();
 		dialog.setSize(new Dimension(705, 805));
 		dialog.setVisible(true);
+		
 
 	}
 	
@@ -188,9 +190,44 @@ public class Transpose {
 			   data[idx] = DatasetUtil.dataset2Data(chart[idx].getChart(),legend_no)[0];
 			}
 		}
-			
-		return Arrays.copyOfRange(data, 0, k);
+		
+		String[][] return_data=Arrays.copyOfRange(data,0,k);
+		//return_data = removeEmptyRows(return_data);
+		return return_data;
 	}
+	
+	//Dan added in attempt to remove empty rows (all zeroes) from transposed data
+//	private String[][] removeEmptyRows(String[][] data) {
+//		int row_count=0;
+//		for (int i=0;i<data.length;i++) {
+//			boolean non_zero_found=false;
+//			for (int j=0;j<data[i].length;j++) {
+//				if (!data[i][j].equals("0.0")) {
+//					non_zero_found=true;
+//					break;
+//				}
+//			}
+//			if (non_zero_found)
+//				row_count++;
+//		}
+//		
+//		String[][] new_data=new String[row_count][data[0].length];
+//		int k=0;
+//		for (int i=0;i<data.length;i++) {
+//			boolean non_zero_found=false;
+//			for (int j=0;j<data[i].length;j++) {
+//				if (!data[i][j].equals("0.0")) {
+//					non_zero_found=true;
+//					break;
+//				}
+//			}
+//			if (non_zero_found) {
+//				new_data[k]=data[i];
+//				k++;
+//			}
+//		}
+//		return new_data;
+//	}
 
 //	private ArrayList<String[][]> getTransposeDataOrig(String[] legend, Chart[] chart) {
 //		ArrayList<String[][]> al = new ArrayList<String[][]>();

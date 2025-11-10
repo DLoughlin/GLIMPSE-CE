@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -122,11 +122,17 @@ public class ChartUtil {
 				try {
 					jc = con[i].newInstance(param);
 				} catch (InstantiationException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					System.out.println("ChartUtil::creatNewInstance:InstantiationException:"
+							+ e.getMessage());
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					System.out.println("ChartUtil::creatNewInstance:IllegalAccessException:"
+							+ e.getMessage());
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					System.out.println("ChartUtil::creatNewInstance:InvocationTargetException:"
+							+ e.getTargetException().getMessage());
 				}
 				break;
 			}

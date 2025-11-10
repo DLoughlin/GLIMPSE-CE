@@ -142,8 +142,10 @@ public class LegendUtil {
 					tp[t]);
 			legenditemcollection.add(legenditem);
 		}
-		if (problem)
-			System.out.println("Note: Difficulty constructing legend for transposed graphic. Table is potentially too complicated to construct transpose. Using default color for legend items.");
+		if (problem) {
+			System.out.println("Note: Difficulty constructing legend for transposed graphic. Table is potentially too complicated to construct transpose.");
+			legenditemcollection = null;
+		}
 		return legenditemcollection;
 	}
 

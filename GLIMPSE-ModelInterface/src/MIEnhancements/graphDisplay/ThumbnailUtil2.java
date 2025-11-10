@@ -576,10 +576,9 @@ public class ThumbnailUtil2 {
 				category = true;
 			freeChart = chart.getChart();
 		} catch (java.lang.IllegalStateException e) {
-			System.out.println("java.lang.IllegalStateException");
+			System.out.println("ThumbnailUtil2:java.lang.IllegalStateException");
 		} catch (java.lang.NullPointerException e1) {
-			System.out.println("buttonIcon:chart:class " + freeChart.getTitle().getText() + " plot: "
-					+ freeChart.getPlot().getPlotType());
+			System.out.println("ThumbnailUtil2:java.lang.NullPointerException");
 		}
 
 		if (freeChart != null) {
