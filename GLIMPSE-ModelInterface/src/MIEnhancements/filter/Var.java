@@ -32,10 +32,27 @@
 */
 package filter;
 
+/**
+ * Utility class for storing year range variables used in filtering operations.
+ * <p>
+ * This class provides default year ranges and allows for customization via
+ * origYRange and sectionYRange. All fields are static for global access.
+ */
 public class Var {
-	//public static final String[] defaultYRange = { "2010", "2015", "2020", "2025", "2030", "2035", "2040", "2045", "2050", "2055" };
-	public static final String[] defaultYRange = { "2015", "2020","2021", "2025", "2030", "2035", "2040", "2045", "2050" };
-	public static String[] origYRange;
-	public static String[] sectionYRange;
-	//public static boolean yearSelected = false;
+    /**
+     * Default year range for filtering operations.
+     */
+    public static final String[] defaultYRange = {
+        "2015", "2020", "2021", "2025", "2030", "2035", "2040", "2045", "2050"
+    };
+
+    /**
+     * Original year range, can be set externally for custom filtering.
+     */
+    public static String[] origYRange;
+
+    /**
+     * Section-specific year range, can be set externally for custom filtering.
+     */
+    public static String[] sectionYRange;
 }

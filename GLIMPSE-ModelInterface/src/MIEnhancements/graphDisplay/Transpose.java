@@ -84,8 +84,8 @@ public class Transpose {
 		}
 		//Dan: 2025.11.07 Attempting to see if using ThumbnailUtil2 corrects issue with null pointer on graph name
 		//TODO: merge ThumbnailUtil and ThumbnailUtil2
-		int idx = ThumbnailUtil2.getFirstNonNullChart(chart);
-		Chart[] chart1 = ThumbnailUtil.createTransposeChart(chart[idx].getGraphName(), chart[idx].getPath(), chart[idx].getAxis_name_unit(), meta,
+		int idx = ThumbnailUtilNew.getFirstNonNullChart(chart);
+		Chart[] chart1 = ThumbnailUtilNew.createTransposeChart(chart[idx].getGraphName(), chart[idx].getPath(), chart[idx].getAxis_name_unit(), meta,
 				chart[idx].getChartColumn(), transposedData, legend);
 
 		//Chart[] chart1 = ThumbnailUtil2.createChart(chart[idx].getGraphName(), chart[idx].getAxis_name_unit(), legend, meta,
@@ -96,7 +96,7 @@ public class Transpose {
 					+ " transpose: " + chart1.length);
 
 		//Dan: Using modified version (2)
-		JPanel jp = ThumbnailUtil2.setChartPane(chart1, 0, sameScale, true, sp);
+		JPanel jp = ThumbnailUtilNew.setChartPane(chart1, 0, sameScale, true, sp);
 
 		JDialog dialog = CreateComponent.crtJDialog("Transpose Thumbnails: " + chart1[0].getGraphName());
 		dialog.setContentPane(new JScrollPane(jp));// new JScrollPane(chartPane)

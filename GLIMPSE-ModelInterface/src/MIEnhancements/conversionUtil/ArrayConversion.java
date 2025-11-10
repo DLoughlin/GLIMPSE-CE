@@ -26,69 +26,120 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package conversionUtil;
 
-/**
- * The class to handle a conversion between two arrays.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
- */
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Utility class for converting between different array and list formats.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
+ */
 public class ArrayConversion {
-	public static String[][] array1to2Conversion(String[] in) {
-		String[][] out = new String[in.length][in[0].split(",").length];
-		for (int i = 0; i < in.length; i++) 
-				out[i] = string2Array(in[i],",");
-		return out;
-	}
+    /**
+     * Converts a 1D String array where each element is a comma-separated string into a 2D String array.
+     * @param in 1D String array
+     * @return 2D String array
+     */
+    public static String[][] array1to2Conversion(String[] in) {
+        String[][] out = new String[in.length][in[0].split(",").length];
+        for (int i = 0; i < in.length; i++) {
+            // Split each string by comma and assign to output
+            out[i] = string2Array(in[i], ",");
+        }
+        return out;
+    }
 
-	public static String[] array2to1Conversion(String[][] in) {
-		String[] out = new String[in.length];
-		for (int i = 0; i < in[0].length; i++) 
-				out[i] = array2String(in[i]);
-		return out;
-	}
-	
-	public static String[][] arrayDimReverse(String[][] in) {
-		String[][] out = new String[in[0].length][in.length];
-		for (int i = 0; i < in.length; i++)
-			for (int j = 0; j < in[i].length; j++) 
-				out[j][i] = in[i][j];
-		return out;
-	}
+    /**
+     * Converts a 2D String array into a 1D String array, joining each row into a single comma-separated string.
+     * @param in 2D String array
+     * @return 1D String array
+     */
+    public static String[] array2to1Conversion(String[][] in) {
+        String[] out = new String[in.length];
+        for (int i = 0; i < in.length; i++) {
+            // Join each row into a single string
+            out[i] = array2String(in[i]);
+        }
+        return out;
+    }
 
-	public static String[] string2Array(String in, String sep) {
-		return in.split(sep==null?",":sep);
-	}
-	
-	public static String[] arrayList2Array(ArrayList<?> in) {
-		return in.toArray(new String[0]);
-	}
-	
-	public static Object[] arrayList2Array(ArrayList<?> in, boolean isChart) {
-		return in.toArray(new Object[0]);
-	}
-	
-	public static String[] list2Array(List<?> in) {
-		return in.toArray(new String[0]);
-	}
-	
-	public static String array2String(String[] in) {
-		return Arrays.toString(in).replace("[", "").replace("]", "");
-	}
-	
-	public static String list2String(List<?> in) {
-		return in.toString().replace("[", "").replace("]", "");
-	}
-	
+    /**
+     * Reverses the dimensions of a 2D String array (transposes the array).
+     * @param in 2D String array
+     * @return Transposed 2D String array
+     */
+    public static String[][] arrayDimReverse(String[][] in) {
+        String[][] out = new String[in[0].length][in.length];
+        for (int i = 0; i < in.length; i++) {
+            for (int j = 0; j < in[i].length; j++) {
+                // Swap rows and columns
+                out[j][i] = in[i][j];
+            }
+        }
+        return out;
+    }
+
+    /**
+     * Splits a string into an array using the specified separator.
+     * @param in Input string
+     * @param sep Separator (defaults to comma if null)
+     * @return Array of strings
+     */
+    public static String[] string2Array(String in, String sep) {
+        return in.split(sep == null ? "," : sep);
+    }
+
+    /**
+     * Converts an ArrayList to a String array.
+     * @param in ArrayList
+     * @return String array
+     */
+    public static String[] arrayList2Array(ArrayList<?> in) {
+        return in.toArray(new String[0]);
+    }
+
+    /**
+     * Converts an ArrayList to an Object array.
+     * @param in ArrayList
+     * @param isChart Unused parameter (for compatibility)
+     * @return Object array
+     */
+    public static Object[] arrayList2Array(ArrayList<?> in, boolean isChart) {
+        return in.toArray(new Object[0]);
+    }
+
+    /**
+     * Converts a List to a String array.
+     * @param in List
+     * @return String array
+     */
+    public static String[] list2Array(List<?> in) {
+        return in.toArray(new String[0]);
+    }
+
+    /**
+     * Joins a String array into a single comma-separated string.
+     * @param in String array
+     * @return Comma-separated string
+     */
+    public static String array2String(String[] in) {
+        return String.join(",", in);
+    }
+
+    /**
+     * Joins a List into a single comma-separated string.
+     * @param in List
+     * @return Comma-separated string
+     */
+    public static String list2String(List<?> in) {
+        return String.join(",", in.toString().replace("[", "").replace("]", ""));
+    }
 }

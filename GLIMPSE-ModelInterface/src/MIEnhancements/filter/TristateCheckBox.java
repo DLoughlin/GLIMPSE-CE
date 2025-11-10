@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,47 +34,61 @@ package filter;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-
 import chart.LegendUtil;
 
 /**
- * The class to handle the status change of a tree (select/unselect/partial select) ont a branch.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * TristateCheckBox is a custom JCheckBox supporting three states:
+ * selected, unselected, and half-selected (partial selection).
+ * Used for tree structures where a branch can be partially selected.
+ *
+ * Author: TWU
+ * Created: 1/2/2016
  */
-
 public class TristateCheckBox extends JCheckBox {
 
-	private static final long serialVersionUID = 1L;
-	private boolean halfState;
-	private static Icon halfselected = new ImageIcon(LegendUtil.getBufferedImage(Color.white, Color.black, 10));
-	private static Icon unselected = new ImageIcon(LegendUtil.getBufferedImage(Color.white, Color.black));
+    private static final long serialVersionUID = 1L;
+    /** Indicates if the checkbox is in the half-selected state. */
+    private boolean halfState;
+    /** Icon for half-selected state. */
+    private static final Icon halfselected = new ImageIcon(LegendUtil.getBufferedImage(Color.white, Color.black, 10));
+    /** Icon for unselected state. */
+    private static final Icon unselected = new ImageIcon(LegendUtil.getBufferedImage(Color.white, Color.black));
 
-	@Override
-	public void paint(Graphics g) {
-		if (isSelected()) {
-			halfState = false;
-		}
-		setIcon(halfState ? halfselected : isSelected() ? super.getSelectedIcon() : unselected);
-		super.paint(g);
-	}
+    /**
+     * Custom paint method to set the icon based on the current state.
+     * @param g the Graphics context
+     */
+    @Override
+    public void paint(Graphics g) {
+        // If selected, ensure halfState is false
+        if (isSelected()) {
+            halfState = false;
+        }
+        // Set icon based on state
+        setIcon(halfState ? halfselected : isSelected() ? super.getSelectedIcon() : unselected);
+        super.paint(g);
+    }
 
-	public boolean isHalfSelected() {
-		return halfState;
-	}
+    /**
+     * Returns true if the checkbox is half-selected.
+     * @return boolean half-selected state
+     */
+    public boolean isHalfSelected() {
+        return halfState;
+    }
 
-	public void setHalfSelected(boolean halfState) {
-		this.halfState = halfState;
-		if (halfState) {
-			setSelected(false);
-			repaint();
-		}
-	}
-
+    /**
+     * Sets the half-selected state. If set to true, also sets selected to false and repaints.
+     * @param halfState true to set half-selected, false otherwise
+     */
+    public void setHalfSelected(boolean halfState) {
+        this.halfState = halfState;
+        if (halfState) {
+            setSelected(false);
+            repaint();
+        }
+    }
 }

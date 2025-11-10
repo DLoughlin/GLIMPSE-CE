@@ -26,23 +26,14 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package filter;
 
-/**
- * The class to handle renderering a node's checkbox on the filter tree pane. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
- */
-
 import java.awt.Component;
 import java.awt.Dimension;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -51,71 +42,84 @@ import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-// Referenced classes of package ui.output:
-//            TrNode
-
+/**
+ * Handles rendering a node's checkbox and label in the filter tree pane.
+ * <p>
+ * Displays a tristate checkbox and a label for each tree node, reflecting selection state.
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
+ */
 class TreeSelCellRenderer extends DefaultTreeCellRenderer {
 
-	private static final long serialVersionUID = 1L;
-	private JLabel label;
-	private TristateCheckBox checkBox;
-	private JTextField textField;
-	private JPanel panel;
-	
-	public TreeSelCellRenderer() {
-		label = new JLabel();
+    private static final long serialVersionUID = 1L;
+    private final JLabel label; // Used for non-TrNode objects
+    private final TristateCheckBox checkBox; // Checkbox for selection state
+    private final JTextField textField; // Displays node name
+    private final JPanel panel; // Panel containing checkbox and text field
 
-		checkBox = new TristateCheckBox();
-		checkBox.setBackground(UIManager.getColor("Tree.background"));
-		checkBox.setBorder(null);
+    /**
+     * Constructs the cell renderer, initializing UI components.
+     */
+    public TreeSelCellRenderer() {
+        label = new JLabel();
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBackground(UIManager.getColor("Tree.background"));
-		textField.setBorder(null);
+        checkBox = new TristateCheckBox();
+        checkBox.setBackground(UIManager.getColor("Tree.background"));
+        checkBox.setBorder(null);
 
-		panel = new JPanel();
-		panel.setOpaque(false);
-		panel.add(checkBox, 0);
-		panel.add(textField, 1);
-		panel.setMaximumSize(new Dimension(300, 18));
-	}
+        textField = new JTextField();
+        textField.setEditable(false);
+        textField.setBackground(UIManager.getColor("Tree.background"));
+        textField.setBorder(null);
 
-	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
-			boolean leaf, int row, boolean hasFocus) {
+        panel = new JPanel();
+        panel.setOpaque(false);
+        panel.add(checkBox, 0);
+        panel.add(textField, 1);
+        panel.setMaximumSize(new Dimension(300, 18));
+    }
 
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
-		checkBox.setHalfSelected(false);
-		if (node.getUserObject() instanceof TrNode) {
-			TrNode trNode = (TrNode) node.getUserObject();
-			if (trNode.isPartialSelectedForParent() && !node.isLeaf()){
-				checkBox.setSelected(false);
-				checkBox.setHalfSelected(true);
-			} else if (selected) {
-				checkBox.setHalfSelected(false);
-				if (trNode.isSelected()) {
-					checkBox.setSelected(true);
-				} else
-					checkBox.setSelected(false);
-			} else if (!selected) {
-				if (!trNode.isSelected())
-					checkBox.setSelected(false);
-				else
-					checkBox.setSelected(true);
-			} else {
-				if (selected)
-					checkBox.setSelected(true);
-				else
-					checkBox.setSelected(false);
-			}
-			
-			textField.setText(trNode.nodeName);
-			return panel;
-		} else {
-			label.setBackground(UIManager.getColor("Tree.background"));
-			label.setText(node.toString());
-			return label;
-		}
-	}
+    /**
+     * Returns the component used for drawing the cell. Configures the checkbox and label
+     * based on the node's selection state and type.
+     *
+     * @param tree the JTree
+     * @param value the value to be rendered (tree node)
+     * @param selected whether the node is selected
+     * @param expanded whether the node is expanded
+     * @param leaf whether the node is a leaf
+     * @param row the row index
+     * @param hasFocus whether the node has focus
+     * @return the component for rendering
+     */
+    @Override
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
+            boolean leaf, int row, boolean hasFocus) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+        checkBox.setHalfSelected(false); // Reset half-selected state
 
+        // If node contains a TrNode, render with checkbox and text field
+        if (node.getUserObject() instanceof TrNode) {
+            TrNode trNode = (TrNode) node.getUserObject();
+            // Set checkbox state based on TrNode selection logic
+            if (trNode.isPartialSelectedForParent() && !node.isLeaf()) {
+                checkBox.setSelected(false);
+                checkBox.setHalfSelected(true);
+            } else if (selected) {
+                checkBox.setHalfSelected(false);
+                checkBox.setSelected(trNode.isSelected());
+            } else {
+                checkBox.setSelected(trNode.isSelected());
+            }
+            textField.setText(trNode.nodeName);
+            return panel;
+        } else {
+            // For other node types, just show the label
+            label.setBackground(UIManager.getColor("Tree.background"));
+            label.setText(node.toString());
+            return label;
+        }
+    }
 }

@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,43 +34,64 @@ package listener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JList;
 
 /**
- * The class handles finding match sequence selection. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * ListKeyListener handles key events for a JList to enable match sequence selection.
+ * <p>
+ * When a key is typed, it selects the next matching item in the list.
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class ListKeyListener implements KeyListener {
 
-    private JList<String> jl;
+    /**
+     * The JList component to operate on.
+     */
+    private final JList<String> jl;
     
-    public ListKeyListener(JList<String> Jl)
-    {
-        this.jl = Jl;
+    /**
+     * Constructs a ListKeyListener for the given JList.
+     * @param jl the JList to attach the listener to
+     */
+    public ListKeyListener(JList<String> jl) {
+        this.jl = jl;
     }
 
-    public void keyTyped(KeyEvent e)
-    {
-        String s = "";
+    /**
+     * Invoked when a key is typed. Selects the next matching item in the list.
+     * @param e the KeyEvent
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Get the character typed
         char c = e.getKeyChar();
-        s = (new StringBuilder(String.valueOf(s))).append(c).toString();
+        String s = String.valueOf(c);
+        // Find the next match in the list
         int i = jl.getNextMatch(s, 0, javax.swing.text.Position.Bias.Forward);
         jl.setSelectedIndex(i);
+        // Set focus and appearance properties
         jl.setFocusCycleRoot(true);
         jl.setOpaque(true);
     }
 
-    public void keyPressed(KeyEvent keyevent)
-    {
+    /**
+     * Invoked when a key has been pressed. Not used.
+     * @param e the KeyEvent
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // No action needed
     }
 
-    public void keyReleased(KeyEvent keyevent)
-    {
+    /**
+     * Invoked when a key has been released. Not used.
+     * @param e the KeyEvent
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // No action needed
     }
-
 }

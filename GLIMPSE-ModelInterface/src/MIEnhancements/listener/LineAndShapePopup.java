@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -48,62 +48,92 @@ import chart.Chart;
 import chartOptions.SetModifyChanges;
 
 /**
- * The class handles line and shape options. Referenced classes of package listener:
- *            JPopupMenuShower
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Handles popup menu for toggling line and shape options on charts.
+ * <p>
+ * Provides options for displaying lines with or without shapes on supported chart types.
+ * </p>
+ * <p>
+ * Usage: Attach to a JTextField to show popup on mouse events.
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class LineAndShapePopup implements ActionListener {
 
-	private MouseListener mouseListener;
-	private boolean lineAndShape;
-	private Chart chart;
-	public JPopupMenu popup;
+    /** Mouse listener for showing the popup menu. */
+    private MouseListener mouseListener;
+    /** True if both line and shape should be shown. */
+    private boolean lineAndShape;
+    /** Reference to the chart being modified. */
+    private Chart chart;
+    /** The popup menu instance. */
+    public JPopupMenu popup;
 
-	public LineAndShapePopup(JTextField jtf, Chart chart) {
-		this.chart = chart;
-		popup = new JPopupMenu();
-		popup.add(createMenuItem("Line and Shape"));
-		popup.add(createMenuItem("Line without Shape"));
-		mouseListener = new JPopupMenuShower(popup);
-		jtf.addMouseListener(mouseListener);
-	}
+    /**
+     * Constructs a LineAndShapePopup and attaches it to the given JTextField.
+     *
+     * @param jtf   JTextField to attach the popup to
+     * @param chart Chart to modify
+     */
+    public LineAndShapePopup(JTextField jtf, Chart chart) {
+        this.chart = chart;
+        popup = new JPopupMenu();
+        popup.add(createMenuItem("Line and Shape"));
+        popup.add(createMenuItem("Line without Shape"));
+        mouseListener = new JPopupMenuShower(popup);
+        jtf.addMouseListener(mouseListener);
+    }
 
-	public boolean isLineAndShape() {
-		return lineAndShape;
-	}
+    /**
+     * Returns true if both line and shape are selected.
+     *
+     * @return true if line and shape, false otherwise
+     */
+    public boolean isLineAndShape() {
+        return lineAndShape;
+    }
 
-	JMenuItem createMenuItem(String name) {
-		JMenuItem menuItem = new JMenuItem(name);
-		menuItem.addActionListener(this);
-		return menuItem;
-	}
+    /**
+     * Creates a menu item with the given name and attaches this as its action listener.
+     *
+     * @param name Name of the menu item
+     * @return JMenuItem instance
+     */
+    private JMenuItem createMenuItem(String name) {
+        JMenuItem menuItem = new JMenuItem(name);
+        menuItem.addActionListener(this);
+        return menuItem;
+    }
 
-	public void actionPerformed(ActionEvent e) {
-		if (chart.getChart().getPlot().getPlotType().contains("Category"))
-			if (!(chart.getChart().getCategoryPlot().getRenderer() instanceof LineAndShapeRenderer)) {
-				JOptionPane.showMessageDialog(null, "Support for Line Chart", "Information",
-						JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-
-		if (chart.getChart().getPlot().getPlotType().contains("XY"))
-			if (!(chart.getChart().getXYPlot().getRenderer() instanceof XYLineAndShapeRenderer)) {
-				JOptionPane.showMessageDialog(null, "Support for Line Chart", "Information",
-						JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-
-		JMenuItem source = (JMenuItem) e.getSource();
-		if (source.getText().equalsIgnoreCase("Line and Shape"))
-			lineAndShape = true;
-		else
-			lineAndShape = false;
-		chart.setShowLineAndShape(lineAndShape);
-		SetModifyChanges.setLineAndShapeChanges(chart.getChart(), lineAndShape);
-	}
-
+    /**
+     * Handles menu item selection events.
+     *
+     * @param e ActionEvent triggered by menu item selection
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Check for supported chart type: Category
+        if (chart.getChart().getPlot().getPlotType().contains("Category")) {
+            if (!(chart.getChart().getCategoryPlot().getRenderer() instanceof LineAndShapeRenderer)) {
+                JOptionPane.showMessageDialog(null, "Support for Line Chart", "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+        // Check for supported chart type: XY
+        if (chart.getChart().getPlot().getPlotType().contains("XY")) {
+            if (!(chart.getChart().getXYPlot().getRenderer() instanceof XYLineAndShapeRenderer)) {
+                JOptionPane.showMessageDialog(null, "Support for Line Chart", "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+        // Determine which menu item was selected
+        JMenuItem source = (JMenuItem) e.getSource();
+        lineAndShape = source.getText().equalsIgnoreCase("Line and Shape");
+        // Update chart display and notify changes
+        chart.setShowLineAndShape(lineAndShape);
+        SetModifyChanges.setLineAndShapeChanges(chart.getChart(), lineAndShape);
+    }
 }

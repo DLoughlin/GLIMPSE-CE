@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -44,62 +44,105 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.DefaultXYDataset;
 
 /**
- * The class handle to create a XYLine JFreeChart with all properties stored in Chart. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Creates an XY line chart using JFreeChart with properties from the parent XYChart.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class XYLineChart extends XYChart {
-	public XYLineChart(String path, String graphName, String meta, String[] titles, String[] axis_name_unit, String legend,
-			int[] color, int[] pColor, int[] pattern, int[] lineStrokes, String[][] annotationText, DefaultXYDataset dataset,
-			int relativeColIndex, boolean ShowLineAndShape) {
-		super(path, graphName, meta, titles, axis_name_unit, legend, color, pColor, pattern, lineStrokes, annotationText, dataset,
-				relativeColIndex, ShowLineAndShape);
+    /**
+     * Constructs an XYLineChart with dataset and rendering options.
+     *
+     * @param path              Path for output or chart file
+     * @param graphName         Name of the chart
+     * @param meta              Metadata string
+     * @param titles            Chart titles
+     * @param axis_name_unit    Axis names and units
+     * @param legend            Legend text
+     * @param color             Series colors
+     * @param pColor            Paint colors
+     * @param pattern           Line patterns
+     * @param lineStrokes       Line stroke styles
+     * @param annotationText    Annotation text for chart
+     * @param dataset           XY dataset
+     * @param relativeColIndex  Relative column index for data
+     * @param ShowLineAndShape  Show lines and shapes flag
+     */
+    public XYLineChart(String path, String graphName, String meta, String[] titles, String[] axis_name_unit, String legend,
+                       int[] color, int[] pColor, int[] pattern, int[] lineStrokes, String[][] annotationText, DefaultXYDataset dataset,
+                       int relativeColIndex, boolean ShowLineAndShape) {
+        super(path, graphName, meta, titles, axis_name_unit, legend, color, pColor, pattern, lineStrokes, annotationText, dataset,
+                relativeColIndex, ShowLineAndShape);
+        chartClassName = "chart.XYLineChart";
+        crtChart();
+    }
 
-		chartClassName = "chart.XYLineChart";
-		crtChart();
-	}
+    /**
+     * Constructs an XYLineChart with raw data and annotation options.
+     *
+     * @param path              Path for output or chart file
+     * @param graphName         Name of the chart
+     * @param meta              Metadata string
+     * @param titles            Chart titles
+     * @param axis_name_unit    Axis names and units
+     * @param legend            Legend text
+     * @param column            Data column
+     * @param annotationText    Annotation text for chart
+     * @param data              Raw data
+     * @param relativeColIndex  Relative column index for data
+     */
+    public XYLineChart(String path, String graphName, String meta, String[] titles, String[] axis_name_unit, String legend,
+                       String column, String[][] annotationText, String[][] data, int relativeColIndex) {
+        super(path, graphName, meta, titles, axis_name_unit, legend, column, annotationText, data, relativeColIndex);
+        chartClassName = "chart.XYLineChart";
+        crtChart();
+    }
 
-	public XYLineChart(String path, String graphName, String meta, String[] titles, String[] axis_name_unit, String legend,
-			String column, String[][] annotationText, String[][] data, int relativeColIndex) {
-		super(path, graphName, meta, titles, axis_name_unit, legend, column, annotationText, data, relativeColIndex);
+    /**
+     * Creates and configures the XY line chart plot and renderer.
+     */
+    private void crtChart() {
+        // Set up drawing supplier for custom colors and strokes
+        DrawingSupplier supplier;
+        if (this.color != null) {
+            supplier = ChartUtil.setDrawingSupplier(this.chartClassName, this.color, this.lineStrokes);
+        } else {
+            supplier = new DefaultDrawingSupplier(
+                    DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE,
+                    DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
+                    DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE,
+                    DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE,
+                    DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE);
+        }
 
-		chartClassName = "chart.XYLineChart";
-		crtChart();
-	}
+        // Create axes
+        NumberAxis domainAxis = new NumberAxis(verifyAxisName_unit(0));
+        ValueAxis rangeAxis = new NumberAxis(verifyAxisName_unit(1));
 
-	private void crtChart() {
+        // Create renderer for lines and shapes
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
-		DrawingSupplier supplier = new DefaultDrawingSupplier();
-		if (this.color != null)
-			supplier = ChartUtil.setDrawingSupplier(this.chartClassName, this.color, this.lineStrokes);
-		else
-			supplier = (new DefaultDrawingSupplier(
-					DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE,
-					DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE));
-		
-		NumberAxis domainAxis = new NumberAxis(verifyAxisName_unit(0));
-		ValueAxis rangeAxis = new NumberAxis(verifyAxisName_unit(1));
-		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-		plot = new XYPlot(dataset, domainAxis, rangeAxis, renderer);
-		plot.setDrawingSupplier(supplier);
+        // Create plot and set drawing supplier
+        plot = new XYPlot(dataset, domainAxis, rangeAxis, renderer);
+        plot.setDrawingSupplier(supplier);
 
-		setPlotProperty();
-		setAxisProperty();
-		RendererUtil.setRendererProperty(renderer);
-		chart = new JFreeChart("", plot);
-		setLegendProperty();
-		for (int i = 0; i < getLineStrokes().length; i++)
-			renderer.setSeriesShapesVisible(i, isShowLineAndShape());
-		
-		for (int i = 0; i < getLineStrokes().length ; i++)
-			renderer.setSeriesStroke(i, LegendUtil.getLineStroke(getLineStrokes()[i]));
-		ChartFactory.setChartTheme(StandardChartTheme.createLegacyTheme());
-		setChartProperty();
-	}
+        // Set plot, axis, and renderer properties
+        setPlotProperty();
+        setAxisProperty();
+        RendererUtil.setRendererProperty(renderer);
+
+        // Create chart and set legend
+        chart = new JFreeChart("", plot);
+        setLegendProperty();
+
+        // Configure renderer for each series
+        for (int i = 0; i < getLineStrokes().length; i++) {
+            renderer.setSeriesShapesVisible(i, isShowLineAndShape());
+            renderer.setSeriesStroke(i, LegendUtil.getLineStroke(getLineStrokes()[i]));
+        }
+
+        // Apply legacy chart theme
+        ChartFactory.setChartTheme(StandardChartTheme.createLegacyTheme());
+        setChartProperty();
+    }
 }

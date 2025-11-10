@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -71,161 +71,161 @@ import chartOptions.ModifyLegend;
 import chartOptions.SelectDecimalFormat;
 
 /**
- * The class to handle displaying a chart with functions Referenced classes of
- * package graphDisplay: GraphDisplay, BoxAndWhiskerDataPane,
- * CategoryDatasetDataPane, DataPanel, MarkalChartOptions
- * 
- * Author Action Date Flag
- * ======================================================================= 
- * TWU    created 1/2/2016
+ * AChartDisplay handles displaying a chart and its options in a dialog window.
+ * Supports showing/hiding legend, table, and chart options for a given chart or chart array.
+ * <p>
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class AChartDisplay {
 
-	// Passed in from IconMoudeListener
+	/** Array of charts to display (from IconMouseListener) */
 	private Chart[] charts;
-	// Passed in from IconMoudeListener
+	/** Index of the chart to display (from IconMouseListener) */
 	private int id;
-	// Passed in from IconMoudeListener
+	/** The chart to display (from IconMouseListener) */
 	private Chart chart;
-	// the original chart passed in private JFreeChart origin;
-	// share chart among all options call, points to the pie and histogram chart
-	// type performed
+	/** The current chart being displayed */
 	private JFreeChart curchart;
-	// Main Panel of AChartDisplay
+	/** Main split pane for chart and data */
 	private JSplitPane sp;
+	/** Main panel for chart display */
 	private JPanel jp;
+	/** Dialog window for chart display */
 	private JDialog dialog;
-	private JScrollPane chartPaneScroll=null;
-	
-	private int smallSizeX=540;
-	private int smallSizeY=480;
-	
+	/** Scroll pane for chart panel */
+	private JScrollPane chartPaneScroll = null;
+	/** Default dialog size X */
+	private int smallSizeX = 540;
+	/** Default dialog size Y */
+	private int smallSizeY = 480;
+	/** Button to show/hide table */
 	JButton jb_table = new JButton("Show Table");
+	/** Button to show/hide legend */
 	JButton jb_legend = new JButton("Show Legend");
-	
-	ChartOptions myOpts=null;
-	
-	
-	public AChartDisplay(Chart[] charts, final int id) {// final
+	/** Chart options dialog */
+	ChartOptions myOpts = null;
+	/** Flag for table visibility */
+	private boolean tableShowing = false;
+	/** Flag for legend visibility */
+	private boolean legendShowing = false;
+
+	/**
+	 * Constructor for displaying a chart from an array of charts.
+	 * @param charts Array of Chart objects
+	 * @param id Index of chart to display
+	 */
+	public AChartDisplay(Chart[] charts, final int id) {
 		super();
 		this.charts = charts;
 		this.id = id;
 		this.chart = charts[id];
 		init();
 	}
-	
-	private boolean tableShowing=false;
-	private boolean legendShowing=false;
 
-	public AChartDisplay(Chart chart) {// final
+	/**
+	 * Constructor for displaying a single chart.
+	 * @param chart Chart object to display
+	 */
+	public AChartDisplay(Chart chart) {
 		super();
 		this.charts = new Chart[1];
 		charts[0] = chart;
-		//charts[0].setUnitsLookup(chart.getUnitsLookup());
 		this.chart = chart;
 		this.id = 0;
 		init();
 	}
 
+	/**
+	 * Initializes the chart display dialog and sets up chart panel and options.
+	 */
 	private void init() {
 		curchart = null;
-		//if chart is null we need to exit.
-		if(chart==null) {
+		if (chart == null) {
 			return;
 		}
-		// Set Chart and Data
-//		String prefix = charts == null ? "" : String.valueOf(id) + "_";
 		JFreeChart jf = chart.getChart();
-		
-		
-		
-		
-
-	
-		
 		if (jf != null) {
-			Font axisLableFont=new Font("Arial",Font.PLAIN,17);
+			// Set fonts for axis labels and title
+			Font axisLableFont = new Font("Arial", Font.PLAIN, 17);
 			jf.getCategoryPlot().getRangeAxis().setTickLabelFont(axisLableFont);
 			jf.getCategoryPlot().getRangeAxis().setLabelFont(axisLableFont);
 			jf.getCategoryPlot().getDomainAxis().setTickLabelFont(axisLableFont);
 			jf.getCategoryPlot().getDomainAxis().setLabelFont(axisLableFont);
-			
-			Font titleFont=new Font("Arial",Font.BOLD,17);
-			if(jf!=null && jf.getTitle()!=null) {
+			Font titleFont = new Font("Arial", Font.BOLD, 17);
+			if (jf.getTitle() != null) {
 				jf.getTitle().setFont(titleFont);
 			}
-			
-			if(jf.getLegend()!=null) {
+			if (jf.getLegend() != null) {
 				jf.getLegend().setItemFont(axisLableFont);
 			}
 			for (int j = 0; j < jf.getSubtitleCount(); j++) {
 				jf.getSubtitle(j).setVisible(true);
-				//jf.getLegend().setVisible(true);
 			}
 			if (jf.getTitle() != null)
-				jf.getTitle().setVisible(true); // Dan: added to make sure title visible
-			//setJSplitPane(setChartPane(jf), setDataPane(jf,chart.getUnitsLookup()));
-			
+				jf.getTitle().setVisible(true); // Ensure title is visible
 			dialog = CreateComponent.crtJDialog(chart.getGraphName());
 			dialog.setSize(new Dimension(smallSizeX, smallSizeY));
 			setJSplitPane(setChartPane(jf), null);
-			this.legendShowing= false;
-			if(jf!=null && jf.getLegend()!=null) {
-				this.legendShowing=jf.getLegend().visible;
+			this.legendShowing = false;
+			if (jf.getLegend() != null) {
+				this.legendShowing = jf.getLegend().visible;
 			}
-			if(legendShowing) {
-				jb_legend.setText("Hide Legend");
-			}else {
-				jb_legend.setText("Show Legend");
-			}
-			//dialog.setContentPane(sp);
-			//dialog.pack();
-			smallSizeX=dialog.getWidth();
-			smallSizeY=dialog.getHeight();
+			jb_legend.setText(legendShowing ? "Hide Legend" : "Show Legend");
+			smallSizeX = dialog.getWidth();
+			smallSizeY = dialog.getHeight();
 			dialog.setVisible(true);
 			DbViewer.openWindows.add(dialog);
 		}
 	}
 
-	// Set Chart and Data panel
+	/**
+	 * Sets up the split pane for chart and data panels in the dialog.
+	 * @param chartPane Chart panel scroll pane
+	 * @param dataPane Data panel scroll pane
+	 */
 	private void setJSplitPane(JScrollPane chartPane, JScrollPane dataPane) {
-		sp=null;
-		
-		if(dataPane!=null) {
-			
-			sp=new JSplitPane();
+		sp = null;
+		if (dataPane != null) {
+			sp = new JSplitPane();
 			sp.setOrientation(JSplitPane.VERTICAL_SPLIT);
 			sp.setTopComponent(chartPane);
 			sp.setBottomComponent(dataPane);
 			sp.setDividerLocation(0.9);
 			sp.setDividerSize(5);
 			dialog.setContentPane(sp);
-		}else {
-			
+		} else {
 			dialog.setContentPane(chartPane);
 		}
-		
 		dialog.pack();
 		dialog.setVisible(true);
 	}
 
-	// Set running chart - subset, pie
+	/**
+	 * Creates the chart panel with options and returns as a scroll pane.
+	 * @param jfreechart Chart to display
+	 * @return JScrollPane containing chart panel
+	 */
 	private JScrollPane setChartPane(JFreeChart jfreechart) {
-		if(chartPaneScroll==null) {
+		if (chartPaneScroll == null) {
 			ChartPanel chartPanel = new ChartPanel(jfreechart);
 			JPanel chartPane = new JPanel(new BorderLayout());
 			chartPane.add(chartPanel, BorderLayout.CENTER);
 			chartPane.add(chartOption(), BorderLayout.SOUTH);
 			chartPane.setMinimumSize(new Dimension(640, 360));
 			chartPane.updateUI();
-			chartPaneScroll=new JScrollPane(chartPane);
+			chartPaneScroll = new JScrollPane(chartPane);
 		}
 		return chartPaneScroll;
 	}
 
-	// set full set of data always
-	private JScrollPane setDataPane(JFreeChart jfreechart,HashMap<String, String> unitLookup) {
+	/**
+	 * Creates the data panel for the chart and returns as a scroll pane.
+	 * @param jfreechart Chart to display
+	 * @param unitLookup Units lookup map
+	 * @return JScrollPane containing data panel
+	 */
+	private JScrollPane setDataPane(JFreeChart jfreechart, HashMap<String, String> unitLookup) {
 		DataPanel dataPane = null;
 		try {
 			if (jfreechart.getPlot().getPlotType().contains("Category")) {
@@ -244,84 +244,63 @@ public class AChartDisplay {
 					dataPane = new XYDatasetDataPane(charts, id);
 			}
 		} catch (CloneNotSupportedException e1) {
+			// ignore
 		}
 		return new JScrollPane(dataPane);
 	}
 
+	/**
+	 * Creates the chart options box with buttons for chart/table/legend options.
+	 * @return Box containing chart option buttons
+	 */
 	private Box chartOption() {
 		JButton jb = new JButton("Chart Options");
 		jb.setName("ChartOptions");
 		java.awt.event.MouseListener ml = new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(myOpts!=null) {
+				if (myOpts != null) {
 					myOpts.dispose();
-					myOpts=null;
+					myOpts = null;
 				}
-				myOpts=new ChartOptions(sp, e.getXOnScreen(), e.getYOnScreen());
+				myOpts = new ChartOptions(sp, e.getXOnScreen(), e.getYOnScreen());
 			}
 		};
 		jb.addMouseListener(ml);
 		Box box = Box.createHorizontalBox();
 		box.add(jb);
-		
 		jb.setName("ChartOptions");
+		// Table show/hide button
 		java.awt.event.MouseListener mlTable = new MouseAdapter() {
-			
 			public void mouseClicked(MouseEvent e) {
-				
-				this.toString();
-				
-				if(!tableShowing) {
-					//sp.remove(sp.getTopComponent());
+				if (!tableShowing) {
 					jb_table.setText("Hide Table");
-					setJSplitPane(setChartPane(chart.getChart()), setDataPane(chart.getChart(),chart.getUnitsLookup()));
-					//dialog.setSize(new Dimension(smallSizeX, (int)((double)smallSizeY*1.2)));
-					
-				}else {
-					//sp.remove(sp.getBottomComponent());
+					setJSplitPane(setChartPane(chart.getChart()), setDataPane(chart.getChart(), chart.getUnitsLookup()));
+				} else {
 					jb_table.setText("Show Table");
 					setJSplitPane(setChartPane(chart.getChart()), null);
-					//dialog.setSize(new Dimension(smallSizeX, smallSizeY));
-					
 				}
-				//dialog.pack();
-				tableShowing=!tableShowing;	
+				tableShowing = !tableShowing;
 			}
 		};
 		jb_table.addMouseListener(mlTable);
 		box.add(jb_table);
+		// Legend show/hide button
 		java.awt.event.MouseListener mlLegend = new MouseAdapter() {
-			
 			public void mouseClicked(MouseEvent e) {
-				
-				if(!legendShowing) {
-					//sp.remove(sp.getTopComponent());'
-					JFreeChart jf = chart.getChart();
-					//jf.getLegend().setVisible(true);
+				JFreeChart jf = chart.getChart();
+				if (!legendShowing) {
 					jf.addLegend(chart.myLegend);
 					jb_legend.setText("Hide Legend");
-					
-					//setJSplitPane(setChartPane(chart.getChart()), setDataPane(chart.getChart(),chart.getUnitsLookup()));
-					//dialog.setSize(new Dimension(smallSizeX, (int)((double)smallSizeY*1.2)));
-					
-				}else {
-					//sp.remove(sp.getBottomComponent());
-					JFreeChart jf = chart.getChart();
-					//jf.getLegend().setVisible(true);
+				} else {
 					jf.removeLegend();
 					jb_legend.setText("Show Legend");
-					//setJSplitPane(setChartPane(chart.getChart()), null);
-					//dialog.setSize(new Dimension(smallSizeX, smallSizeY));
-					
 				}
-				//dialog.pack();
 				dialog.repaint();
-				legendShowing=!legendShowing;	
+				legendShowing = !legendShowing;
 			}
 		};
 		jb_legend.addMouseListener(mlLegend);
 		box.add(jb_legend);
-		
 		return box;
 	}
 
@@ -340,28 +319,11 @@ public class AChartDisplay {
 		private Box box;
 		// Chart data manipulation
 		private DataPanel datapane;
-		// Refresh Chart Panel
-		//private JPanel jp = (JPanel) ((JScrollPane) sp.getTopComponent()).getViewport().getView();
 		private JFreeChart jfreechart;
 
 		public ChartOptions(JSplitPane sp, int x, int y) {
 			super((Frame) null, false);
 			new ModifyLegend(charts, id);
-			/*
-			jfreechart = chart.getChart();
-			ChartUtils.applyCurrentTheme(jfreechart);
-			datapane = (DataPanel) ((JScrollPane) sp.getBottomComponent()).getViewport().getView();
-			box = Box.createVerticalBox();
-			createButtonItem(0, 4);
-			createCheckBoxItem();
-			createButtonItem(6, options.length);
-			setContentPane(new JScrollPane(box));
-			setLocation(x, y);
-			setTitle("Chart Options");
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			pack();
-			setSize(new Dimension(200, 270));
-			setVisible(true);*/
 		}
 
 		private void createButtonItem(int start, int end) {
@@ -450,7 +412,7 @@ public class AChartDisplay {
 					if (JOptionPane.showConfirmDialog(null, "Meta Data Also?", "choose one",
 							JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION)
 						new ExportExcel("", datapane.getTableCol(), datapane.getDataValue(), chart.getTitles()[1],
-								chart.getMetaCol(), chart.getMeta(), chart.getAxis_name_unit()[1]);
+							chart.getMetaCol(), chart.getMeta(), chart.getAxis_name_unit()[1]);
 					else
 						new ExportExcel("", datapane.getTableCol(), datapane.getDataValue());
 					break;
@@ -463,10 +425,8 @@ public class AChartDisplay {
 		}
 
 		private void refreshChart(JFreeChart jf) {
-			//jf.getLegend().visible = true;
 			ChartUtils.applyCurrentTheme(jf);
-			//Dan: Using modified version (2)
-			ThumbnailUtil2.validateChartPane(jp);
+			ThumbnailUtilNew.validateChartPane(jp);
 			jp.add(new ChartPanel(jf), BorderLayout.CENTER);
 			jp.updateUI();
 		}
@@ -496,8 +456,7 @@ public class AChartDisplay {
 				this.dispose();
 			}
 			ChartUtils.applyCurrentTheme(jfreechart);
-			//Dan: Using modified version (2)
-			ThumbnailUtil2.validateChartPane(jp);
+			ThumbnailUtilNew.validateChartPane(jp);
 			jp.add(new ChartPanel(jfreechart), BorderLayout.CENTER);
 			jp.updateUI();
 			this.dispose();

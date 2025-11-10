@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -43,54 +43,66 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 /**
- * The class to handle showing help on legend modification
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * LegendHelpButton is a custom JButton that displays a help icon ('?') for legend modification.
+ * When clicked, it opens a LegendHelpList dialog for the specified legend name.
+ * The button also visually responds to mouse hover events by painting its border.
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
-
 public class LegendHelpButton extends JButton {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public LegendHelpButton(String name, String[] s){
-		super();;
-		this.setName(name);
-		this.setText("?");
-		MouseListener ml = new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.getClickCount() > 0)
-					new LegendHelpList(name.trim());
-			}
-		};
-		this.addMouseListener(ml);
-		setContentAreaFilled(false);
-		setFocusable(false);
-		setBorder(BorderFactory.createEtchedBorder());
-		addMouseListener(buttonMouseListener);
-		setRolloverEnabled(true);
-		this.setPreferredSize(new Dimension(10, 10));
-	}
+    /**
+     * Constructs a LegendHelpButton with the given name and help content.
+     *
+     * @param name the legend name associated with this help button
+     * @param s    the help content (currently unused)
+     */
+    public LegendHelpButton(String name, String[] s) {
+        super();
+        this.setName(name); // Set the button's name for identification
+        this.setText("?"); // Display '?' as the button label
+        // Add mouse listener to show help dialog on click
+        MouseListener ml = new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.getClickCount() > 0) {
+                    new LegendHelpList(name.trim()); // Show help dialog
+                }
+            }
+        };
+        this.addMouseListener(ml);
+        setContentAreaFilled(false); // Make button background transparent
+        setFocusable(false); // Prevent button from gaining focus
+        setBorder(BorderFactory.createEtchedBorder()); // Set etched border
+        addMouseListener(buttonMouseListener); // Add hover effect listener
+        setRolloverEnabled(true); // Enable rollover effects
+        this.setPreferredSize(new Dimension(10, 10)); // Set button size
+    }
 
-	protected static final MouseListener buttonMouseListener = new MouseAdapter() {
+    /**
+     * MouseListener for hover effects: paints border on mouse enter, removes on exit.
+     */
+    protected static final MouseListener buttonMouseListener = new MouseAdapter() {
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            Component component = e.getComponent();
+            if (component instanceof AbstractButton) {
+                AbstractButton button = (AbstractButton) component;
+                button.setBorderPainted(true); // Show border on hover
+            }
+        }
 
-		public void mouseEntered(MouseEvent e) {
-			Component component = e.getComponent();
-			if (component instanceof AbstractButton) {
-				AbstractButton button = (AbstractButton) component;
-				button.setBorderPainted(true);
-			}
-		}
+        @Override
+        public void mouseExited(MouseEvent e) {
+            Component component = e.getComponent();
+            if (component instanceof AbstractButton) {
+                AbstractButton button = (AbstractButton) component;
+                button.setBorderPainted(false); // Hide border when not hovered
+            }
+        }
+    };
 
-		public void mouseExited(MouseEvent e) {
-			Component component = e.getComponent();
-			if (component instanceof AbstractButton) {
-				AbstractButton button = (AbstractButton) component;
-				button.setBorderPainted(false);
-			}
-		}
-
-	};
-	
 }

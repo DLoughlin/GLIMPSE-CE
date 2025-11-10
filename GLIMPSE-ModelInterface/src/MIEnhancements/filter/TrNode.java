@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -35,64 +35,104 @@ package filter;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- * The class to handle a node on the filter tree pane. It carrys parent node value 
- * as key String, as well partial selection flag.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Represents a node in the filter tree pane. Stores the node's name, type, selection state,
+ * and key string for identification. Supports partial selection for parent nodes.
+ *
+ * <p>Author: TWU
+ * <p>Date: 1/2/2016
  */
+public class TrNode extends DefaultMutableTreeNode {
 
-class TrNode extends DefaultMutableTreeNode {
+    private static final long serialVersionUID = 1L;
+    /** Display name of the node. */
+    protected String nodeName;
+    /** Type of the node (e.g., category, value). */
+    protected String type;
+    /** Key string representing the node's path in the tree. */
+    protected String keyStr;
+    /** Selection state of the node. */
+    protected boolean isSelected;
+    /** Indicates if the parent is partially selected. */
+    protected boolean isPartialSelectedForParent = false;
+    /** Reference to the top node in the tree. */
+    protected DefaultMutableTreeNode topNode;
 
-	private static final long serialVersionUID = 1L;
-	protected String nodeName;
-	protected String type;
-	protected String keyStr;
-	protected boolean isSelected;
-	protected boolean isPartialSelectedForParent = false;
-	protected DefaultMutableTreeNode topNode;
+    /**
+     * Constructs a TrNode with the specified properties.
+     *
+     * @param nodename Name of the node
+     * @param type Type of the node
+     * @param isSelected Selection state
+     * @param topNode Reference to the top node
+     */
+    protected TrNode(String nodename, String type, boolean isSelected, DefaultMutableTreeNode topNode) {
+        keyStr = "";
+        nodeName = nodename;
+        this.type = type;
+        this.isSelected = isSelected;
+        this.topNode = topNode;
+        setKeyStr();
+    }
 
-	protected TrNode(String nodename, String type, boolean isSelected, DefaultMutableTreeNode topNode) {
-		keyStr = "";
-		nodeName = nodename;
-		this.type = type;
-		this.isSelected = isSelected;
-		this.topNode = topNode;
-		setKeyStr();
-	}
+    /**
+     * Returns whether the parent is partially selected.
+     * @return true if parent is partially selected, false otherwise
+     */
+    public boolean isPartialSelectedForParent() {
+        return isPartialSelectedForParent;
+    }
 
-	public boolean isPartialSelectedForParent() {
-		return isPartialSelectedForParent;
-	}
+    /**
+     * Sets the partial selection state for the parent.
+     * @param isPartialSelectedForParent true if parent is partially selected
+     */
+    public void setPartialSelectedForParent(boolean isPartialSelectedForParent) {
+        this.isPartialSelectedForParent = isPartialSelectedForParent;
+    }
 
-	public void setPartialSelectedForParent(boolean isPartialSelectedForParent) {
-		this.isPartialSelectedForParent = isPartialSelectedForParent;
-	}
+    /**
+     * Returns the display name of the node.
+     * @return node name
+     */
+    @Override
+    public String toString() {
+        return nodeName;
+    }
 
-	public String toString() {
-		return nodeName;
-	}
+    /**
+     * Sets the key string for this node based on its position in the tree.
+     */
+    protected void setKeyStr() {
+        // If topNode is not null and not a heading, build keyStr based on type and parent
+        if (topNode != null && !topNode.toString().equals("Heading")) {
+            if (!type.trim().equals("value")) {
+                if (topNode.toString().trim().equals("Filter All")) {
+                    keyStr = nodeName;
+                } else {
+                    keyStr = ((TrNode) topNode.getUserObject()).keyStr.trim() + "|" + nodeName.trim();
+                }
+            } else {
+                keyStr = ((TrNode) topNode.getUserObject()).keyStr.trim();
+            }
+        } else {
+            keyStr = " ";
+        }
+    }
 
-	protected void setKeyStr() {
-		if (topNode != null && !topNode.toString().equals("Heading")) {
-			if (!type.trim().equals("value")) {
-				if (topNode.toString().trim().equals("Filter All"))
-					keyStr = nodeName;
-				else
-					keyStr = ((TrNode) topNode.getUserObject()).keyStr.trim() + "|" + nodeName.trim();
-			} else
-				keyStr = ((TrNode) topNode.getUserObject()).keyStr.trim();
-		} else
-			keyStr = " ";
-	}
+    /**
+     * Sets the selection state of the node.
+     * @param isSelected true if selected, false otherwise
+     */
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
-	}
-
-	public boolean isSelected() {
-		return isSelected;
-	}
+    /**
+     * Returns the selection state of the node.
+     * @return true if selected, false otherwise
+     */
+    public boolean isSelected() {
+        return isSelected;
+    }
 
 }

@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -38,55 +38,74 @@ import org.jfree.data.xy.XYDataset;
 import chart.Chart;
 
 /**
- * The class to handle displaying XY chart's data set with functions in display a chart panel. 
- * You can subset the chart by selecting data
- * Referenced classes of package graphDisplay: DataPanel
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Handles displaying an XY chart's dataset with functions to display a chart panel.
+ * Allows subsetting the chart by selecting data.
+ *
+ * Referenced classes: DataPanel
+ *
+ * Author: TWU
+ * Created: 1/2/2016
  */
-
 public class XYDatasetDataPane extends DataPanel {
-	private static final long serialVersionUID = 1L;
-	private XYDataset ds;
+    private static final long serialVersionUID = 1L;
+    /** The XY dataset associated with the chart. */
+    private XYDataset ds;
 
-	public XYDatasetDataPane(JFreeChart chart)
-			throws CloneNotSupportedException {
-		super(chart);
-		setDataset();
-	}
+    /**
+     * Constructs a data pane for a single JFreeChart.
+     * @param chart the JFreeChart to display
+     * @throws CloneNotSupportedException if chart cloning fails
+     */
+    public XYDatasetDataPane(JFreeChart chart) throws CloneNotSupportedException {
+        super(chart);
+        setDataset();
+    }
 
-	public XYDatasetDataPane(Chart[] charts, int id) {
-		super(charts, id);
-		setDataset();
-	}
-	
-	private void setDataset() {
-		getDataFromDataset();
-		tableModel.setDataVector(dataValue, tableCol);
-		table.getSelectionModel().addListSelectionListener(this);
-		SetColumnModel();
-		table.updateUI();
-	}
+    /**
+     * Constructs a data pane for an array of charts and a specific chart id.
+     * @param charts array of Chart objects
+     * @param id index of the chart to display
+     */
+    public XYDatasetDataPane(Chart[] charts, int id) {
+        super(charts, id);
+        setDataset();
+    }
 
-	private void getDataFromDataset() {
-		int lc = 0;
-		for (int i = 0; i < copyChart[id].getXYPlot().getDatasetCount(); i++)
-			lc = lc + copyChart[id].getXYPlot().getDataset(i).getSeriesCount();
-		ds = copyChart[id].getXYPlot().getDataset(0);
-		dataValue = new String[lc][ds.getItemCount(0) + 1];
-		tableCol = new String[ds.getItemCount(0) + 1];
-		tableCol[0] = copyChart[id].getXYPlot().getDomainAxis().getLabel() != null ? copyChart[id]
-				.getXYPlot().getDomainAxis().getLabel()
-				: "Series";
-		for (int i = 0; i < lc; i++)
-			dataValue[i][0] = copyChart[id].getXYPlot().getLegendItems()//.getFixedLegendItems()
-					.get(lc - 1 - i).getLabel();
-		for (int i = 0; i < ds.getItemCount(0); i++)
-			tableCol[i + 1] = String.valueOf(ds.getXValue(0, i));
+    /**
+     * Sets up the dataset and updates the table model for display.
+     */
+    private void setDataset() {
+        getDataFromDataset();
+        tableModel.setDataVector(dataValue, tableCol);
+        table.getSelectionModel().addListSelectionListener(this);
+        SetColumnModel();
+        table.updateUI();
+    }
 
-		setDigit(ds, 3);
-	}
-
+    /**
+     * Extracts data from the chart's XYDataset and populates the table model.
+     */
+    private void getDataFromDataset() {
+        int lc = 0;
+        // Calculate total number of series across all datasets
+        for (int i = 0; i < copyChart[id].getXYPlot().getDatasetCount(); i++) {
+            lc += copyChart[id].getXYPlot().getDataset(i).getSeriesCount();
+        }
+        ds = copyChart[id].getXYPlot().getDataset(0);
+        dataValue = new String[lc][ds.getItemCount(0) + 1];
+        tableCol = new String[ds.getItemCount(0) + 1];
+        // Set column header to domain axis label or default to "Series"
+        tableCol[0] = copyChart[id].getXYPlot().getDomainAxis().getLabel() != null ?
+                copyChart[id].getXYPlot().getDomainAxis().getLabel() : "Series";
+        // Populate series labels in first column
+        for (int i = 0; i < lc; i++) {
+            dataValue[i][0] = copyChart[id].getXYPlot().getLegendItems().get(lc - 1 - i).getLabel();
+        }
+        // Populate X values as column headers
+        for (int i = 0; i < ds.getItemCount(0); i++) {
+            tableCol[i + 1] = String.valueOf(ds.getXValue(0, i));
+        }
+        // Format digits for display
+        setDigit(ds, 3);
+    }
 }

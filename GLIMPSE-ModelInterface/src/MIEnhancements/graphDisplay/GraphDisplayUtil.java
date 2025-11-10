@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -59,236 +59,189 @@ import chart.DatasetUtil;
 import chart.LegendUtil;
 
 /**
- * The class to handle utility functions for GraphDisplay package. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Utility functions for the GraphDisplay package.
+ *
+ * Author: TWU
+ * Created: 1/2/2016
  */
-
 public class GraphDisplayUtil {
-	
-	private static boolean debug = false;
+    private static boolean debug = false;
 
-	/**
-	 * Build qualifiers for base selector - it is a multiple - level selection.
-	 * 
-	 * @param qualifier
-	 *            array of qualifier names ({@code null} not permitted).
-	 * @param data
-	 *            values of qualifiers ({@code null} not permitted).
-	 * @return list of values for each qualifier
-	 */
+    /**
+     * Build qualifiers for base selector - it is a multiple-level selection.
+     *
+     * @param qualifier array of qualifier names (not null)
+     * @param data values of qualifiers (not null)
+     * @return list of unique values for each qualifier
+     */
+    public static ArrayList<String[]> getUniqQualifierData(String[] qualifier, String[][] data) {
+        ArrayList<String[]> al = new ArrayList<String[]>();
+        for (int i = 0; i < qualifier.length; i++) {
+            ArrayList<String> al1 = new ArrayList<String>();
+            String[] temp = data[i];
+            Arrays.sort(temp, null); // Sort the data for uniqueness
+            String t = temp[0].trim();
+            al1.add(t);
+            for (int j = 1; j < temp.length; j++) {
+                if (!t.equals(temp[j].trim())) {
+                    al1.add(temp[j]);
+                    t = temp[j].trim();
+                }
+            }
+            al.add(i, al1.toArray(new String[0]));
+        }
+        return al;
+    }
 
-	public static ArrayList<String[]> getUniqQualifierData(String[] qualifier, String[][] data) {
-		ArrayList<String[]> al = new ArrayList<String[]>();
+    /**
+     * Display JFreeChart instance of selected rows with subset of selected columns.
+     *
+     * @param row indexes of selected rows (not null)
+     * @param chart chart which rows and columns selected upon (not null)
+     */
+    public static void showSelectRow(int[] row, JFreeChart chart) {
+        if (debug)
+            System.out.println("GraphDisplayUtil::showSelectRow:row: " + Arrays.toString(row));
+        if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
+            if (row != null) {
+                // Hide all series first
+                for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++) {
+                    renderer.setSeriesVisible(i, Boolean.valueOf(false));
+                    renderer.setSeriesVisibleInLegend(i, Boolean.valueOf(false));
+                }
+                // Show only selected series
+                for (int i = 0; i < row.length; i++) {
+                    renderer.setSeriesVisible(row[i], Boolean.valueOf(true));
+                    renderer.setSeriesVisibleInLegend(row[i], Boolean.valueOf(true));
+                }
+            }
+        } else {
+            if (row != null) {
+                XYItemRenderer renderer = chart.getXYPlot().getRenderer();
+                // Hide all series first
+                for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
+                    renderer.setSeriesVisible(i, Boolean.valueOf(false));
+                // Show only selected series
+                for (int i = 0; i < row.length; i++)
+                    renderer.setSeriesVisible(row[i], Boolean.valueOf(true));
+            }
+        }
+    }
 
-		for (int i = 0; i < qualifier.length; i++) {
-			ArrayList<String> al1 = new ArrayList<String>();
-			String[] temp = data[i];
-			Arrays.sort(temp, null);
-			String t = temp[0].trim();
-			al1.add(t);
-			for (int j = 1; j < temp.length; j++) {
-				if (!t.equals(temp[j].trim())) {
-					al1.add(temp[j]);
-					t = temp[j].trim();
-				}
-			}
-			al.add(i, al1.toArray(new String[0]));
-		}
-		return al;
-	}
+    /**
+     * Display JFreeChart instance of selected rows with subset of selected columns.
+     *
+     * @param row names of selected rows (not null)
+     * @param chart chart which rows and columns selected upon (not null)
+     */
+    public static void showSelectRow(String[] row, JFreeChart chart) {
+        // Hide all rows then only show selected rows
+        if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
+            if (row != null) {
+                for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++) {
+                    renderer.setSeriesVisible(i, Boolean.valueOf(false));
+                    renderer.setSeriesVisibleInLegend(i, Boolean.valueOf(false));
+                }
+                for (int i = 0; i < row.length; i++) {
+                    int idx = chart.getCategoryPlot().getDataset().getRowIndex(row[i]);
+                    renderer.setSeriesVisible(idx, Boolean.valueOf(true));
+                    renderer.setSeriesVisibleInLegend(idx, Boolean.valueOf(true));
+                }
+            }
+        } else {
+            if (row != null) {
+                XYItemRenderer renderer = chart.getXYPlot().getRenderer();
+                for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
+                    renderer.setSeriesVisible(i, Boolean.valueOf(false));
+                for (int i = 0; i < row.length; i++) {
+                    int idx = chart.getXYPlot().getDataset().indexOf(row[i]);
+                    renderer.setSeriesVisible(idx, Boolean.valueOf(true));
+                }
+            }
+        }
+        ChartUtils.applyCurrentTheme(chart);
+    }
 
-	
-	/**
-	 * Display JFreeChart instance of selected rows with subset of selected
-	 * columns.
-	 *
-	 * @param row
-	 *            indexes of selected rows ({@code null} not permitted).
-	 * @param chart
-	 *            chart which rows and columns selected upon ({@code null} not
-	 *            permitted).
-	 */
+    /**
+     * Show all columns/series in the chart (used in BoxAndWhisker plots).
+     *
+     * @param chart JFreeChart instance
+     */
+    public static void showSelectColumn(JFreeChart chart) {
+        if (chart.getPlot().getPlotType().contains("Category")) {
+            CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
+            for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++)
+                renderer.setSeriesVisible(i, Boolean.valueOf(true));
+        } else {
+            XYItemRenderer renderer = chart.getXYPlot().getRenderer();
+            for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
+                renderer.setSeriesVisible(i, Boolean.valueOf(true));
+        }
+    }
 
-	/*public static void showSelectRow(int[] selectedC, int[] selectedR, JFreeChart[] chart, JFreeChart[] copyChart,
-			LegendItemCollection copyLgd) {
-		for (int i = 0; i < chart.length; i++)
-			showSelectRow(selectedC, selectedR, chart[i], copyChart[i], copyLgd);
-	}*/
+    /**
+     * Convert a date string (MM/dd/yyyy) to a long value representing milliseconds since epoch.
+     *
+     * @param s date string
+     * @return milliseconds since epoch
+     */
+    public static long getDayLong(String s) {
+        java.util.Date d = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            if (s != null && !s.equals(""))
+                d = sdf.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return d.getTime();
+    }
 
-	/**
-	 * Display JFreeChart instance of selected rows and columns from data table.
-	 *
-	 * @param selectedC
-	 *            indexes of selected columns ({@code null} not permitted).
-	 * @param selectedR
-	 *            indexes of selected rows ({@code null} not permitted).
-	 * @param chart
-	 *            chart which rows and columns selected upon ({@code null} not
-	 *            permitted).
-	 * @param copyChart
-	 *            chart which hold original rows and columns ({@code null} not
-	 *            permitted).
-	 */
+    /**
+     * Check if a value exists in an array.
+     *
+     * @param computeFC array of values
+     * @param k value to check
+     * @return true if k exists in computeFC
+     */
+    public static boolean computIt(int[] computeFC, int k) {
+        for (int i = 0; i < computeFC.length; i++) {
+            if (k == computeFC[i])
+                return true;
+        }
+        return false;
+    }
 
-	/*public static void showSelectRow(int[] selectedC, int[] selectedR, JFreeChart chart, JFreeChart copyChart,
-			LegendItemCollection copyLgd) {
-		// Get subset of columns data set, then call showSelectRow to show only
-		// selected rows
-		if (chart.getPlot().getPlotType().contains("Category")) {
-			if (!(chart.getCategoryPlot().getDataset() instanceof DefaultBoxAndWhiskerCategoryDataset)) {
-				chart.getCategoryPlot()
-						.setDataset((CategoryDataset) DatasetUtil.getSubsetColumnDataset(selectedC, copyChart));
+    /**
+     * Stub for computing function column (not implemented).
+     *
+     * @param expression mathematical expression
+     * @return null
+     */
+    public static String[][] computeFunctionColumn(String expression) {
+        JEP myParser = new JEP();
+        myParser.parseExpression(expression);
+        // TODO: Implement computation logic
+        return null;
+    }
 
-				GraphDisplayUtil.showSelectRow(selectedR, chart);
-				ChartUtils.applyCurrentTheme(chart);
-				chart.getCategoryPlot().setFixedLegendItems(LegendUtil.adjLenend(selectedR, copyLgd));
-			}
-			CategoryAxis domainAxis = chart.getCategoryPlot().getDomainAxis();
-			if (chart.getCategoryPlot().getDataset().getColumnCount() > 16)
-				domainAxis.setCategoryLabelPositions(CategoryLabelPositions.DOWN_90);
-			else
-				domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD);
-		} else if (chart.getPlot().getPlotType().contains("XY")) {
-			if (chart.getXYPlot().getDataset() instanceof IntervalXYDataset)
-				chart.getXYPlot().setDataset((IntervalXYDataset) DatasetUtil.getSubsetColumnXYDataset(selectedC,
-						copyChart.getXYPlot().getDataset()));
-			else
-				chart.getXYPlot().setDataset(DatasetUtil.createXYDataset(
-						(XYDataset) DatasetUtil.getSubsetColumnXYDataset(selectedC, copyChart.getXYPlot().getDataset()),
-						-1));
-			GraphDisplayUtil.showSelectRow(selectedR, chart);
-			chart.getXYPlot().setFixedLegendItems(LegendUtil.adjLenend(selectedR, copyLgd));
-		} else { // for Pie Chart
-			return;
-		}
-	}*/
-
-	/**
-	 * Display JFreeChart instance of selected rows with subset of selected
-	 * columns.
-	 *
-	 * @param row
-	 *            indexes of selected rows ({@code null} not permitted).
-	 * @param chart
-	 *            chart which rows and columns selected upon ({@code null} not
-	 *            permitted).
-	 */
-
-	public static void showSelectRow(int[] row, JFreeChart chart) {
-		if (debug)
-			System.out.println("GraphDisplayUtil::showSelectRow:row: " + Arrays.toString(row));
-		if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
-			if (row != null) {
-				for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++) {
-					renderer.setSeriesVisible(i, Boolean.valueOf(false));
-					renderer.setSeriesVisibleInLegend(i, Boolean.valueOf(false));
-				}
-				for (int i = 0; i < row.length; i++) {
-					renderer.setSeriesVisible(row[i], Boolean.valueOf(true));
-					renderer.setSeriesVisibleInLegend(row[i], Boolean.valueOf(true));
-				}
-			}
-		} else {
-			if (row != null) {
-				XYItemRenderer renderer = chart.getXYPlot().getRenderer();
-				for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
-					renderer.setSeriesVisible(i, Boolean.valueOf(false));
-				for (int i = 0; i < row.length; i++)
-					renderer.setSeriesVisible(row[i], Boolean.valueOf(true));
-			}
-		}
-	}
-
-	/**
-	 * Display JFreeChart instance of selected rows with subset of selected
-	 * columns.
-	 *
-	 * @param row
-	 *            names of selected rows ({@code null} not permitted).
-	 * @param chart
-	 *            chart which rows and columns selected upon ({@code null} not
-	 *            permitted).
-	 */
-
-	public static void showSelectRow(String[] row, JFreeChart chart) {
-		// hide all rows then only show selected rows
-		if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
-			if (row != null) {
-				for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++) {
-					renderer.setSeriesVisible(i, Boolean.valueOf(false));
-					renderer.setSeriesVisibleInLegend(i, Boolean.valueOf(false));
-				}
-				for (int i = 0; i < row.length; i++) {
-					renderer.setSeriesVisible(chart.getCategoryPlot().getDataset().getRowIndex(row[i]),
-							Boolean.valueOf(true));
-					renderer.setSeriesVisibleInLegend(chart.getCategoryPlot().getDataset().getRowIndex(row[i]),
-							Boolean.valueOf(true));
-				}
-			}
-		} else {
-			if (row != null) {
-				XYItemRenderer renderer = chart.getXYPlot().getRenderer();
-				for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
-					renderer.setSeriesVisible(i, Boolean.valueOf(false));
-				for (int i = 0; i < row.length; i++)
-					renderer.setSeriesVisible(chart.getXYPlot().getDataset().indexOf(row[i]), Boolean.valueOf(true));
-			}
-		}
-		ChartUtils.applyCurrentTheme(chart);
-	}
-
-	// used in BoxandWhisker
-	public static void showSelectColumn(JFreeChart chart) {
-		if (chart.getPlot().getPlotType().contains("Category")) {
-			CategoryItemRenderer renderer = chart.getCategoryPlot().getRenderer();
-			for (int i = 0; i < chart.getCategoryPlot().getDataset().getRowCount(); i++)
-				renderer.setSeriesVisible(i, Boolean.valueOf(true));
-		} else {
-			XYItemRenderer renderer = chart.getXYPlot().getRenderer();
-			for (int i = 0; i < chart.getXYPlot().getDataset().getSeriesCount(); i++)
-				renderer.setSeriesVisible(i, Boolean.valueOf(true));
-		}
-	}
-
-	public static long getDayLong(String s) {
-		java.util.Date d = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		try {
-			if (s != null && !s.equals(""))
-				d = sdf.parse(s);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return d.getTime();
-	}
-
-	public static boolean computIt(int[] computeFC, int k) {
-		for (int i = 0; i < computeFC.length; i++) {
-			if (k == computeFC[i])
-				return true;
-		}
-		return false;
-	}
-
-	public static String[][] computeFunctionColumn(String expression) {
-		JEP myParser = new JEP();
-		myParser.parseExpression(expression);
-		return null;
-	}
-
-	public static JList<Object> metaList(Chart[] charts) {
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		for (int i = 0; i < charts.length; i++)
-			map.put(charts[i].getMeta().replace(",", "_") + "," + String.valueOf(i), charts[i].getMeta().replace(",", "_") + "," + String.valueOf(i));
-
-		Object selOption[] = map.values().toArray();
-		JList<Object> list = new JList<Object>(selOption);
-		return list;
-	}
-
+    /**
+     * Create a JList containing chart metadata.
+     *
+     * @param charts array of Chart objects
+     * @return JList of metadata strings
+     */
+    public static JList<Object> metaList(Chart[] charts) {
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        for (int i = 0; i < charts.length; i++) {
+            // Replace commas in metadata to avoid issues
+            String meta = charts[i].getMeta().replace(",", "_") + "," + String.valueOf(i);
+            map.put(meta, meta);
+        }
+        Object selOption[] = map.values().toArray();
+        JList<Object> list = new JList<Object>(selOption);
+        return list;
+    }
 }

@@ -49,15 +49,12 @@ import filter.FilteredTable;
 
 
 /**
- * The class to display a Sankey Diagram by constructing a flow dataset from 
- * user selected input and output data flow
- * 
- * Author Action Date Flag
- * ======================================================================= 
- * Yadong
- * created August/08/2024
+ * SankeyDiagramPanel displays a Sankey Diagram by constructing a flow dataset from
+ * user-selected input and output data flows.
+ *
+ * Author: Yadong
+ * Created: August/08/2024
  */
-
 public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 	private static final long serialVersionUID = 1L;
 	private String diagramName;
@@ -88,6 +85,15 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 	private HashMap<String,DefaultFlowDataset> gatheredFlowDatasets = new HashMap<>();
 	DbProcInterrupt context = null;
 
+	/**
+	 * Constructor for SankeyDiagramPanel.
+	 * @param diagramName Name of the diagram.
+	 * @param scnList List of scenarios.
+	 * @param regionList List of regions.
+	 * @param queryList JTree of queries.
+	 * @param tablesTabs Tabbed pane for tables.
+	 * @throws ClassNotFoundException if required classes are not found.
+	 */
 	public SankeyDiagramPanel(String diagramName,JList scnList, JList regionList,JTree queryList,JTabbedPane tablesTabs) throws ClassNotFoundException {
 		this.diagramName = diagramName;
 		this.scnList = scnList;
@@ -97,6 +103,9 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		initialize();
 	}
 	
+	/**
+	 * Initializes the Sankey diagram panel and its components.
+	 */
 	private void initialize() {
 		sankey_query_names[0]= "End-use energy consumption (aggregated)";
 		sankey_query_names[1]= "End-use energy consumption (detail)";
@@ -127,6 +136,10 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Creates the left-side toolbar with dropdown menus for user selections.
+	 * @return JComponent toolbar.
+	 */
 	protected JComponent createToolBar() {
 		//create a toolBar on the left
 		toolBar = new JToolBar();
@@ -231,6 +244,11 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		return toolBar;
 	};
 	
+	/**
+	 * Creates the Sankey plot panel using the provided flow dataset.
+	 * @param myDataset The flow dataset to visualize.
+	 * @return JComponent Sankey plot panel.
+	 */
 	protected JComponent createSankeyPlot(DefaultFlowDataset myDataset) {
 		
 		
@@ -285,6 +303,10 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 	}
 	
 	// YD added this method for Sankey Diagrams,Sep-2024
+	/**
+	 * Selects queries relevant for the Sankey diagram and adds their results to the tabbed pane.
+	 * @param queryList JTree containing available queries.
+	 */
 	public void selectQueriesForSankey(JTree queryList) {
 			
 			//look for the queries under "for Sankey diagrams" group
@@ -343,6 +365,14 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 			}
 	    }// selectQueriesForSankey method end
 	
+	/**
+	 * Creates a combined flow dataset from all selected tables based on scenario, region, and year.
+	 * @param queryList JTree of queries.
+	 * @param scenarioStr Selected scenario string.
+	 * @param regionStr Selected region string.
+	 * @param yearStr Selected year string.
+	 * @return DefaultFlowDataset combined dataset.
+	 */
 	private DefaultFlowDataset createFlowDatasetFromAllTables(JTree queryList, String scenarioStr, String regionStr, String yearStr) {
 		DefaultFlowDataset combinedFlowDataset = new DefaultFlowDataset();
 		ComboTableModel bt = null;
@@ -415,7 +445,15 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		return combinedFlowDataset;
 	}
 	
-   //YD added,Sep-2024,this method need to be refactored
+	/**
+	 * Creates a flow dataset from a single table, filtering by scenario, region, and year.
+	 * @param jtable JTable containing data.
+	 * @param scenarioStr Scenario string.
+	 * @param regionStr Region string.
+	 * @param yearStr Year string.
+	 * @param stageN Stage number for the flow.
+	 * @return DefaultFlowDataset dataset.
+	 */
 	private DefaultFlowDataset createFlowDatasetFromTable(JTable jtable, String scenarioStr, String regionStr, String yearStr, int stageN) {			
 			//remove those rows not matching scenarioStr and regionStr from jtable first
 			int regionIdx = FilteredTable.getColumnByName(jtable, "region");
@@ -445,6 +483,11 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 			}
 			return dataset;
 		}
+	/**
+	 * Returns an example flow dataset for demonstration purposes.
+	 * @param choice Integer to select example data.
+	 * @return DefaultFlowDataset example dataset.
+	 */
 	private DefaultFlowDataset getExampleFlowDataset(int choice) {
 		// these data are from the query results "Inputs by tech" under "Inputs and outputs" 
 	    // NC "Region" for "Year" 2015
@@ -507,6 +550,12 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 	}
 	
 	//YD added,Sep-2024,this method is to find the full treePath containing a group name string
+	/**
+	 * Finds the full tree path containing a group name string in a JTree.
+	 * @param tree JTree to search.
+	 * @param groupName Name of the group to find.
+	 * @return ArrayList<TreePath> of matching paths.
+	 */
 	private ArrayList<TreePath> getFullTreePathSankey(JTree tree, String groupName) {
 		Enumeration<TreePath> allPath = tree.getExpandedDescendants(new TreePath(tree.getModel().getRoot()));
 		ArrayList<TreePath> myTreePath = new ArrayList<TreePath>();
@@ -528,23 +577,9 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		return (myTreePath);
 	}
 	
-//	private void getFilteredTableData(JTable jTable) {
-//		String[] tableColumnData;
-//		int doubleIndex;
-//		
-//		tableColumnData = ModelInterfaceUtil.getColumnFromTable(jTable, 4);
-//		System.out.println("getFilteredTableData: col: " + Arrays.toString(tableColumnData));
-//		String[] cls = new String[tableColumnData.length];
-//		for (int j = 0; j < tableColumnData.length; j++) {
-//		    cls[j] = jTable.getColumnName(j);
-//		}
-//
-//		doubleIndex = ModelInterfaceUtil.getDoubleTypeColIndex(cls);
-//		String[] qualifier = ModelInterfaceUtil.getColumnFromTable(jTable, 3);
-//		
-//	}
-	
-	
+	/**
+	 * ActionListener to update the Sankey chart when region or year selection changes.
+	 */
 	public class UpdateSankeyChart extends JPanel implements ActionListener {
 		@Override
 		protected void paintComponent(Graphics g) {
@@ -554,6 +589,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// Remove previous Sankey panel and update with new selection
 			frame.remove(sankeyPanel);
 			selectedScenario = (String)scenarioListMenu.getSelectedItem();
 		    selectedRegion = (String)regionListMenu.getSelectedItem();
@@ -567,7 +603,9 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 			
 		}
 	}
-	
+	/**
+	 * ActionListener to update selected queries when end-use energy selection changes.
+	 */
 	public class UpdateSelectedQueries extends JPanel implements ActionListener {
 		@Override
 		protected void paintComponent(Graphics g) {
@@ -577,34 +615,21 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// Remove all tabs and re-select queries for Sankey
 			tablesTabs.removeAll();
 			selectQueriesForSankey(queryList);
 		}
 	}
 	
+	// ComponentListener methods (empty implementations)
 	@Override
-	public void componentResized(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void componentResized(ComponentEvent e) {}
 	@Override
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void componentMoved(ComponentEvent e) {}
 	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void componentShown(ComponentEvent e) {}
 	@Override
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void componentHidden(ComponentEvent e) {}
 	
 	
 }

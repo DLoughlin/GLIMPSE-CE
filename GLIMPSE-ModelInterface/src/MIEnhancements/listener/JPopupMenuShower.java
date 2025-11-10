@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -34,44 +34,64 @@ package listener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JPopupMenu;
 
 /**
- * The class handles Popup event. 
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
+ * Handles showing and hiding a JPopupMenu in response to mouse events.
+ * <p>
+ * Usage: Attach this listener to a component and provide the popup menu to show.
+ * </p>
+ *
+ * Author: TWU
+ * Date: 1/2/2016
  */
+public class JPopupMenuShower extends MouseAdapter {
+    /**
+     * The popup menu to show on popup trigger events.
+     */
+    private final JPopupMenu popup;
 
-public class JPopupMenuShower extends MouseAdapter
-{
-
-    public JPopupMenuShower(JPopupMenu popup)
-    {
+    /**
+     * Constructs a JPopupMenuShower for the given popup menu.
+     *
+     * @param popup the JPopupMenu to show
+     */
+    public JPopupMenuShower(JPopupMenu popup) {
         this.popup = popup;
+        // Ensure popup is hidden initially
         popup.setVisible(false);
-       
     }
 
-    private void showIfPopupTrigger(MouseEvent mouseEvent)
-    {
-        if(mouseEvent.isPopupTrigger())
+    /**
+     * Shows the popup menu if the event is a popup trigger, otherwise hides it.
+     *
+     * @param mouseEvent the mouse event to check
+     */
+    private void showIfPopupTrigger(MouseEvent mouseEvent) {
+        if (mouseEvent.isPopupTrigger()) {
+            // Show popup at mouse location
             popup.show(mouseEvent.getComponent(), mouseEvent.getX(), mouseEvent.getY());
-        else
+        } else {
+            // Hide popup if not a trigger
             popup.setVisible(false);
+        }
     }
 
-    public void mousePressed(MouseEvent mouseEvent)
-    {
+    /**
+     * Invoked when a mouse button has been pressed on a component.
+     * @param mouseEvent the mouse event
+     */
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
         showIfPopupTrigger(mouseEvent);
     }
 
-    public void mouseReleased(MouseEvent mouseEvent)
-    {
+    /**
+     * Invoked when a mouse button has been released on a component.
+     * @param mouseEvent the mouse event
+     */
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
         showIfPopupTrigger(mouseEvent);
     }
-
-    private JPopupMenu popup;
 }

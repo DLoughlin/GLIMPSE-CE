@@ -26,32 +26,39 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA’s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPAï¿½s Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
 package filter;
 
-/**
- * The class to handle editing a node on the filter tree.
- * 
- *    Author			Action						Date		Flag
- *  ======================================================================= 			
- *	TWU				created 						1/2/2016	
- */
-
 import java.awt.Color;
-
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-public class TreeSelEditor extends DefaultTreeCellEditor
-{
-
-    public TreeSelEditor(JTree tree, DefaultTreeCellRenderer selRenderer)
-    {
+/**
+ * TreeSelEditor is a custom tree cell editor for filter trees.
+ * <p>
+ * This editor sets a custom border selection color for tree nodes when editing.
+ * </p>
+ *
+ * <p>
+ * <b>Author:</b> TWU<br>
+ * <b>Date:</b> 1/2/2016
+ * </p>
+ */
+public class TreeSelEditor extends DefaultTreeCellEditor {
+    /**
+     * Constructs a TreeSelEditor with a specified tree and cell renderer.
+     * Sets the border selection color to blue.
+     *
+     * @param tree        the JTree to be edited
+     * @param selRenderer the renderer used to draw the tree cells
+     */
+    public TreeSelEditor(JTree tree, DefaultTreeCellRenderer selRenderer) {
         super(tree, selRenderer);
+        // Set the border color for selected tree nodes to blue
         setBorderSelectionColor(Color.blue);
     }
 }
