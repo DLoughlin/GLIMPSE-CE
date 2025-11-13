@@ -117,8 +117,8 @@ public class InterfaceMain implements ActionListener {
 
 	public static final int FILE_MENU_POS = 0;
 	public static final int EDIT_MENU_POS = 1;
-	public static final int VIEW_MENU_POS=2;
-	//public static final int TOOLS_MENU_POS = 80; // YD added
+	public static final int VIEW_MENU_POS = 2;
+	// public static final int TOOLS_MENU_POS = 80; // YD added
 	public static final int ADVANCED_MENU_POS = 90; // YD added
 	public static final int ADVANCED_SUBMENU1_POS = 0; // YD added
 	public static final int ADVANCED_SUBMENU15_POS = 2; // YD added
@@ -128,12 +128,12 @@ public class InterfaceMain implements ActionListener {
 	public static final int HELP_MENU_POS = 100;
 	public static final int FILE_NEW_MENUITEM_POS = 0;
 	public static final int FILE_OPEN_SUBMENU_POS = 5;
-	public static final int FILE_TABS_SUBMENU_POS=20;
-	public static final int FILE_MENU_SEPERATOR=30;
+	public static final int FILE_TABS_SUBMENU_POS = 20;
+	public static final int FILE_MENU_SEPERATOR = 30;
 	public static final int FILE_QUIT_MENUITEM_POS = 50;
 	public static final int QUERIES_SAVE_MENUITEM_POS = 35; // YD changed
 	public static final int QUERIES_SAVEAS_MENUITEM_POS = 40; // YD changed
-	
+
 	public static final int EDIT_QUERY_SUBMENU_POS = 18; // YD added
 	public static final int EDIT_COPY_MENUITEM_POS = 10;
 	public static final int EDIT_PASTE_MENUITEM_POS = 11;
@@ -158,8 +158,8 @@ public class InterfaceMain implements ActionListener {
 	private JMenuItem batchMenu;
 	private JMenuItem toolsCSVMenu; // YD added
 	private JMenuItem toolsUnitMenu; // YD added
-	//private JMenuItem toolsSankeyMenu; // YD moved to "DbViewer.java"
-	
+	// private JMenuItem toolsSankeyMenu; // YD moved to "DbViewer.java"
+
 	private JMenuItem editQuerySubMenu; // YD added
 	private JMenu advancedSubMenu1;// YD added
 	private JMenu advancedSubMenu2;// YD added
@@ -171,21 +171,20 @@ public class InterfaceMain implements ActionListener {
 	private List<MenuAdder> menuAdders;
 	static String path = null;
 	static String queryFilename = null;
-	// GLIMPSEUtils utils = GLIMPSEUtils.getInstance(); //YD added
-	// GLIMPSEFiles files = GLIMPSEFiles.getInstance(); //YD added
+
 	ArrayList<String> energyNameList = null; // YD added
 
 	public static String unitFileLocation = null;
 	public static String presetRegionListLocation = null; // YD added,Feb-2024
 	public static String favoriteQueriesFileLocation = null; // YD added,Feb-2024
-	public static String stateShapeFileLocation = null; //YD added,May-2024
-	public static String gcamReg32ShapeFileLocation = null; //YD added,July-2024
-	public static String gcamReg32US52ShapeFileLocation = null; //YD added,July-2024
-	public static boolean enableMapping = false; //YD added,August-2024
-	public static boolean enableSankey = false; //YD added,August-2024
+	public static String stateShapeFileLocation = null; // YD added,May-2024
+	public static String gcamReg32ShapeFileLocation = null; // YD added,July-2024
+	public static String gcamReg32US52ShapeFileLocation = null; // YD added,July-2024
+	public static boolean enableMapping = false; // YD added,August-2024
+	public static boolean enableSankey = false; // YD added,August-2024
 	public static String shapeFileLocationPrefix = null;
 	public static String legendBundlesLoc = null;
-	
+
 	/**
 	 * The main GUI the rest of the GUI components of the ModelInterface will rely
 	 * on.
@@ -200,11 +199,11 @@ public class InterfaceMain implements ActionListener {
 		for (int i = 0; i < args.length; i++) {
 			System.out.println("arg " + i + ": " + args[i]);
 		}
-		
-		//we want this to always be in root of run environment
+
+		// we want this to always be in root of run environment
 		propertiesFile = new File("model_interface.properties");
-		System.out.println("Getting model properties from "+propertiesFile.getAbsolutePath());
-		
+		System.out.println("Getting model properties from " + propertiesFile.getAbsolutePath());
+
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 			public void uncaughtException(Thread t, Throwable e) {
 				// Dan commented out the error message which seemed to get negatively impacted
@@ -227,26 +226,27 @@ public class InterfaceMain implements ActionListener {
 		parser.accepts("u", "Path to CSV file for unit conversions").withOptionalArg();
 		parser.accepts("p", "Path to preset region list").withOptionalArg(); // YD added,Feb-2024
 		parser.accepts("f", "Path to favorite queries file").withOptionalArg(); // YD added,Feb-2024
-		parser.accepts("m","Path to mapping directory").withOptionalArg();//YD added,May-2024
-		parser.accepts("legend_bundle","Path to the LegendBundle.properties file").withOptionalArg();
-		
+		parser.accepts("m", "Path to mapping directory").withOptionalArg();// YD added,May-2024
+		parser.accepts("legend_bundle", "Path to the LegendBundle.properties file").withOptionalArg();
+
 		OptionSet opts = null;
 		try {
 			opts = parser.parse(args);
 		} catch (OptionException e) {
-			System.out.println("Unable to parse all options: "+e.toString());
-			String[] buttons = { "Exit Program", "Lauch with no arguments"};    
-			int returnValue = JOptionPane.showOptionDialog(null, "Invalid Launch Argument found: "+e.toString().split(":")[1], "Bad Launch Argument",
-			        JOptionPane.YES_NO_CANCEL_OPTION, 0, null, buttons, buttons[0]);
-			if(returnValue==0) {
+			System.out.println("Unable to parse all options: " + e.toString());
+			String[] buttons = { "Exit Program", "Lauch with no arguments" };
+			int returnValue = JOptionPane.showOptionDialog(null,
+					"Invalid Launch Argument found: " + e.toString().split(":")[1], "Bad Launch Argument",
+					JOptionPane.YES_NO_CANCEL_OPTION, 0, null, buttons, buttons[0]);
+			if (returnValue == 0) {
 				System.exit(1);
 			}
 		}
-		
-		//this is to cover launching with a bad argument to blank screen.
-		//specifically to ensure some of the default ones can be tried.
-		if (opts==null) {
-			String[] argsEmpty=new String[0];
+
+		// this is to cover launching with a bad argument to blank screen.
+		// specifically to ensure some of the default ones can be tried.
+		if (opts == null) {
+			String[] argsEmpty = new String[0];
 			opts = parser.parse(argsEmpty);
 		}
 
@@ -280,18 +280,19 @@ public class InterfaceMain implements ActionListener {
 
 		if (opts.has("o")) {
 			path = (String) opts.valueOf("o");
-			System.out.println("InterfaceMain: DB Path: " + path+" exists: "+new File(path).exists());
+			System.out.println("InterfaceMain: DB Path: " + path + " exists: " + new File(path).exists());
 		}
 
 		// added by Dan to allow query file to be specified as runtime argument
 		if (opts.has("q")) {
 			queryFilename = (String) opts.valueOf("q");
-			System.out.println("InterfaceMain: Query File Path: " + queryFilename+" exists: "+new File(queryFilename).exists());
+			System.out.println("InterfaceMain: Query File Path: " + queryFilename + " exists: "
+					+ new File(queryFilename).exists());
 		}
 
 		if (opts.has("b")) {
 			String filename = (String) opts.valueOf("b");
-			System.out.println("InterfaceMain: batchFile: " + filename+" exists: "+new File(filename).exists());
+			System.out.println("InterfaceMain: batchFile: " + filename + " exists: " + new File(filename).exists());
 
 			System.setProperty("java.awt.headless", "true");
 			System.out.println("Running headless? " + GraphicsEnvironment.isHeadless());
@@ -317,120 +318,140 @@ public class InterfaceMain implements ActionListener {
 			System.setOut(stdout);
 			return;
 		}
-		
+
 		if (opts.has("u")) {
 			unitFileLocation = (String) opts.valueOf("u");
-			System.out.println("InterfaceMain: unitsFile: " + unitFileLocation+" exists: "+new File(unitFileLocation).exists());
+			System.out.println("InterfaceMain: unitsFile: " + unitFileLocation + " exists: "
+					+ new File(unitFileLocation).exists());
 		} else {
 			// also look in the current directory
-			File f = new File("config"+File.separator+"units_rules.csv");
+			File f = new File("config" + File.separator + "units_rules.csv");
 			if (f.exists()) {
 				unitFileLocation = f.getAbsolutePath();
 			}
-			System.out.println("    --> attempting to use default unitsFile: " + unitFileLocation+" exists: "+new File(unitFileLocation).exists());
+			System.out.println("    --> attempting to use default unitsFile: " + unitFileLocation + " exists: "
+					+ new File(unitFileLocation).exists());
 		}
 
 		// YD added,Feb-2024
-		// For preset regions in ORDModelInterface
+		// For preset regions in ModelInterface
 		if (opts.has("p")) {
 			presetRegionListLocation = (String) opts.valueOf("p");
-			System.out.println("InterfaceMain: presetRegionListLocation: " + presetRegionListLocation+" exists: "+new File(presetRegionListLocation).exists());
+			System.out.println("InterfaceMain: presetRegionListLocation: " + presetRegionListLocation + " exists: "
+					+ new File(presetRegionListLocation).exists());
 
-			//System.out.println("found the preset region list file from the command line: " + presetRegionListLocation);
+			// System.out.println("found the preset region list file from the command line:
+			// " + presetRegionListLocation);
 		} else {
 			// also look in the current config directory
-			File f_preset = new File("config"+File.separator+"preset_region_list.txt");
-					
+			File f_preset = new File("config" + File.separator + "preset_region_list.txt");
+
 			if (f_preset.exists()) {
 				presetRegionListLocation = f_preset.getAbsolutePath();
-				//System.out.println("found the region list file: " + presetRegionListLocation);
+				// System.out.println("found the region list file: " +
+				// presetRegionListLocation);
 			}
-			System.out.println("    --> attempting to use default presetRegionListLocation: " + presetRegionListLocation+" exists: "+new File(presetRegionListLocation).exists());
+			System.out.println("    --> attempting to use default presetRegionListLocation: " + presetRegionListLocation
+					+ " exists: " + new File(presetRegionListLocation).exists());
 		}
-		// For favorite queries in ORDModelInterface
+		// For favorite queries in ModelInterface
 		if (opts.has("f")) {
 			favoriteQueriesFileLocation = (String) opts.valueOf("f");
-			System.out.println("InterfaceMain: favoriteQueriesFileLocation: " + favoriteQueriesFileLocation+" exists: "+new File(favoriteQueriesFileLocation).exists());
-			//System.out.println("found the favorite queries file from the command line: " + favoriteQueriesFileLocation);
+			System.out.println("InterfaceMain: favoriteQueriesFileLocation: " + favoriteQueriesFileLocation
+					+ " exists: " + new File(favoriteQueriesFileLocation).exists());
+			// System.out.println("found the favorite queries file from the command line: "
+			// + favoriteQueriesFileLocation);
 		} else {
 			// also look in the current directory
-			File f_favorite = new File("config"+File.separator+"favorite_queries_list.txt");
+			File f_favorite = new File("config" + File.separator + "favorite_queries_list.txt");
 			if (f_favorite.exists()) {
 				favoriteQueriesFileLocation = f_favorite.getAbsolutePath();
-				//System.out.println("found the favorite queries file: " + favoriteQueriesFileLocation);
+				// System.out.println("found the favorite queries file: " +
+				// favoriteQueriesFileLocation);
 			}
-			System.out.println("    --> attempting to use default favoriteQueriesFileLocation: " + favoriteQueriesFileLocation+" exists: "+new File(favoriteQueriesFileLocation).exists());
+			System.out.println("    --> attempting to use default favoriteQueriesFileLocation: "
+					+ favoriteQueriesFileLocation + " exists: " + new File(favoriteQueriesFileLocation).exists());
 		}
-		
-		//For mapUS52Compact shape files in ORDModelInterface
-		
+
+		// For mapUS52Compact shape files in ModelInterface
+
 		if (opts.has("m")) {
-			shapeFileLocationPrefix = (String)opts.valueOf("m");
-			System.out.println("InterfaceMain: shapeFileLocationPrefix: " + shapeFileLocationPrefix+" exists: "+new File(shapeFileLocationPrefix).exists());
-			enableMapping=true;
-		}else {
-			//now check the path
-			File loc=new File("map_resources");
-			if(loc.exists() && loc.isDirectory()) {
-				System.out.println("Found absolute map path at "+loc.getAbsolutePath());
-				shapeFileLocationPrefix=loc.getAbsolutePath();
-				enableMapping=true;
-			}else {
+			shapeFileLocationPrefix = (String) opts.valueOf("m");
+			System.out.println("InterfaceMain: shapeFileLocationPrefix: " + shapeFileLocationPrefix + " exists: "
+					+ new File(shapeFileLocationPrefix).exists());
+			enableMapping = true;
+		} else {
+			// now check the path
+			File loc = new File("map_resources");
+			if (loc.exists() && loc.isDirectory()) {
+				System.out.println("Found absolute map path at " + loc.getAbsolutePath());
+				shapeFileLocationPrefix = loc.getAbsolutePath();
+				enableMapping = true;
+			} else {
 				System.out.println("Could not find any maps, disabling mapping option");
 				enableMapping = false;
 			}
-			System.out.println("    --> attempting to use default shapeFileLocationPrefix: " + shapeFileLocationPrefix+" exists: "+new File(shapeFileLocationPrefix).exists());
-		}
-		
-		if(enableMapping) {
-		
-			//go ahead and try to load files even if mapping is disabled, may be enabled later
-			File preset_shapefile = new File(shapeFileLocationPrefix+File.separator+"mapUS52Compact_from_rmap.shp");
-			if (preset_shapefile.exists()) {
-				stateShapeFileLocation = preset_shapefile.getAbsolutePath();
-			    System.out.println("Found the US52Compact shape file: " + preset_shapefile.getAbsolutePath());
-		    }else {
-		        System.out.println("Could not find US52Compact shape file: " + preset_shapefile.getAbsolutePath() +" disabling mapping.");
-			    enableMapping=false;
-		    }
-			
-			File preset_reg32_shapefile = new File(shapeFileLocationPrefix+File.separator+"mapGCAMReg32_from_rmap.shp");
-			if (preset_reg32_shapefile.exists()) {
-				gcamReg32ShapeFileLocation = preset_reg32_shapefile.getAbsolutePath();
-			    System.out.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
-		    }else {
-			    System.out.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
-				enableMapping=false;
-		    }
-			
-			File preset_reg32US52_shapefile = new File(shapeFileLocationPrefix+File.separator+"mapGCAMReg32US52_from_rmap.shp");
-			if (preset_reg32US52_shapefile.exists()) {
-				gcamReg32US52ShapeFileLocation = preset_reg32US52_shapefile.getAbsolutePath();
-			    System.out.println("Found the global shapefile with US state-level detail shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
-		    }else {
-		        System.out.println("Found the global shapefile with US state-level detail shape file: " + preset_reg32US52_shapefile.getAbsolutePath());
-			    
-		    }
-		}
-		
-		if(opts.has("legend_bundle")) {
-			legendBundlesLoc=(String)opts.valueOf("legend_bundle");
-			System.out.println("InterfaceMain: legendBundlesLoc: " + legendBundlesLoc+" exists: "+new File(legendBundlesLoc).exists());
-		}
-		File legendBundleFile=null;
-		if(legendBundlesLoc!=null) {
-			legendBundleFile=new File(legendBundlesLoc);
-		}
-		if(legendBundlesLoc==null || !legendBundleFile.exists()) {
-			legendBundlesLoc="config/LegendBundle.properties";
-			legendBundleFile=new File(legendBundlesLoc);
-			if(!legendBundleFile.exists()) {
-				legendBundlesLoc="LegendBundle.properties";
-			}
-			
+			System.out.println("    --> attempting to use default shapeFileLocationPrefix: " + shapeFileLocationPrefix
+					+ " exists: " + new File(shapeFileLocationPrefix).exists());
 		}
 
-			
+		if (enableMapping) {
+
+			// go ahead and try to load files even if mapping is disabled, may be enabled
+			// later
+			File preset_shapefile = new File(shapeFileLocationPrefix + File.separator + "mapUS52Compact_from_rmap.shp");
+			if (preset_shapefile.exists()) {
+				stateShapeFileLocation = preset_shapefile.getAbsolutePath();
+				System.out.println("Found the US52Compact shape file: " + preset_shapefile.getAbsolutePath());
+			} else {
+				System.out.println("Could not find US52Compact shape file: " + preset_shapefile.getAbsolutePath()
+						+ " disabling mapping.");
+				enableMapping = false;
+			}
+
+			File preset_reg32_shapefile = new File(
+					shapeFileLocationPrefix + File.separator + "mapGCAMReg32_from_rmap.shp");
+			if (preset_reg32_shapefile.exists()) {
+				gcamReg32ShapeFileLocation = preset_reg32_shapefile.getAbsolutePath();
+				System.out
+						.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
+			} else {
+				System.out
+						.println("Found the global 32 region shape file: " + preset_reg32_shapefile.getAbsolutePath());
+				enableMapping = false;
+			}
+
+			File preset_reg32US52_shapefile = new File(
+					shapeFileLocationPrefix + File.separator + "mapGCAMReg32US52_from_rmap.shp");
+			if (preset_reg32US52_shapefile.exists()) {
+				gcamReg32US52ShapeFileLocation = preset_reg32US52_shapefile.getAbsolutePath();
+				System.out.println("Found the global shapefile with US state-level detail shape file: "
+						+ preset_reg32US52_shapefile.getAbsolutePath());
+			} else {
+				System.out.println("Found the global shapefile with US state-level detail shape file: "
+						+ preset_reg32US52_shapefile.getAbsolutePath());
+
+			}
+		}
+
+		if (opts.has("legend_bundle")) {
+			legendBundlesLoc = (String) opts.valueOf("legend_bundle");
+			System.out.println("InterfaceMain: legendBundlesLoc: " + legendBundlesLoc + " exists: "
+					+ new File(legendBundlesLoc).exists());
+		}
+		File legendBundleFile = null;
+		if (legendBundlesLoc != null) {
+			legendBundleFile = new File(legendBundlesLoc);
+		}
+		if (legendBundlesLoc == null || !legendBundleFile.exists()) {
+			legendBundlesLoc = "config/LegendBundle.properties";
+			legendBundleFile = new File(legendBundlesLoc);
+			if (!legendBundleFile.exists()) {
+				legendBundlesLoc = "LegendBundle.properties";
+			}
+
+		}
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -440,7 +461,7 @@ public class InterfaceMain implements ActionListener {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				createAndShowGUI();
+				createGUI();
 				if (path != null) {
 					DbViewer db = (DbViewer) main.dbView;
 					db.doOpenDB(new File(path));
@@ -450,44 +471,45 @@ public class InterfaceMain implements ActionListener {
 					RecentFilesList.getInstance().addFile(files, "ModelInterface.ModelGUI2.DbViewer", "Open DB");
 
 				}
+				showGUI();
 			}
 		});
-		
-		//This bit of code makes JAI happy as it must have a vendor argument.
+
+		// This bit of code makes JAI happy as it must have a vendor argument.
 		try {
-	        InterfaceMain.afVenderNames(PackageUtil.class, "GLIMPSE", "GLIMPSE", "GLIMPSE");
-	    } catch (NoSuchFieldException e1) {
-	        e1.printStackTrace();
-	    } catch (SecurityException e1) {
-	        e1.printStackTrace();
-	    } catch (IllegalArgumentException e1) {
-	        e1.printStackTrace();
-	    } catch (IllegalAccessException e1) {
-	        e1.printStackTrace();
-	    }    
+			InterfaceMain.afVenderNames(PackageUtil.class, "GLIMPSE", "GLIMPSE", "GLIMPSE");
+		} catch (NoSuchFieldException e1) {
+			e1.printStackTrace();
+		} catch (SecurityException e1) {
+			e1.printStackTrace();
+		} catch (IllegalArgumentException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		}
 
 	}
-	
-	//the static setup of JAI vendor names
-    public static void afVenderNames(Class<?> PackageUtil, String vendor, String version, String specTitle)
-	        throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-	    Field vendorField = PackageUtil.getDeclaredField("vendor");
-	    vendorField.setAccessible(true);
-	    vendorField.set(null, vendor);
 
-	    Field versionField = PackageUtil.getDeclaredField("version");
-	    versionField.setAccessible(true);
-	    versionField.set(null, version);
+	// the static setup of JAI vendor names
+	public static void afVenderNames(Class<?> PackageUtil, String vendor, String version, String specTitle)
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		Field vendorField = PackageUtil.getDeclaredField("vendor");
+		vendorField.setAccessible(true);
+		vendorField.set(null, vendor);
 
-	    Field specTitleField = PackageUtil.getDeclaredField("specTitle");
-	    specTitleField.setAccessible(true);
-	    specTitleField.set(null, specTitle);
-    }
+		Field versionField = PackageUtil.getDeclaredField("version");
+		versionField.setAccessible(true);
+		versionField.set(null, version);
+
+		Field specTitleField = PackageUtil.getDeclaredField("specTitle");
+		specTitleField.setAccessible(true);
+		specTitleField.set(null, specTitle);
+	}
 
 	/**
 	 * Create a new instance of this class and makes it visible
 	 */
-	private static void createAndShowGUI() {
+	private static void createGUI() {
 		main = null;
 		main = new InterfaceMain();
 		main.mainFrame = new JFrame("Model Interface");
@@ -500,22 +522,25 @@ public class InterfaceMain implements ActionListener {
 		}
 		String lastHeight = main.savedProperties.getProperty("lastHeight", "600");
 		String lastWidth = main.savedProperties.getProperty("lastWidth", "800");
-		String enableMapping=main.savedProperties.getProperty("enableMapping", "true");
-		if(enableMapping!=null) {
+
+		System.out.println("Using size " + lastWidth + " width x " + lastHeight + " height");
+
+		String enableMapping = main.savedProperties.getProperty("enableMapping", "true");
+		if (enableMapping != null) {
 			try {
-				boolean enableMaps=Boolean.parseBoolean(enableMapping);
-				InterfaceMain.enableMapping=enableMaps;
-			}catch(Exception e) {
-				System.out.println("Couldn't parse enableMaps: "+enableMapping);
+				boolean enableMaps = Boolean.parseBoolean(enableMapping);
+				InterfaceMain.enableMapping = enableMaps;
+			} catch (Exception e) {
+				System.out.println("Couldn't parse enableMaps: " + enableMapping);
 			}
 		}
-		String enableSankey=main.savedProperties.getProperty("enableSankey", "true");
-		if(enableSankey!=null) {
+		String enableSankey = main.savedProperties.getProperty("enableSankey", "true");
+		if (enableSankey != null) {
 			try {
-				boolean enableSankeys=Boolean.parseBoolean(enableSankey);
-				InterfaceMain.enableSankey=enableSankeys;
-			}catch(Exception e) {
-				System.out.println("Couldn't parse enableSankey: "+enableMapping);
+				boolean enableSankeys = Boolean.parseBoolean(enableSankey);
+				InterfaceMain.enableSankey = enableSankeys;
+			} catch (Exception e) {
+				System.out.println("Couldn't parse enableSankey: " + enableMapping);
 			}
 		}
 		main.mainFrame.setSize(Integer.parseInt(lastWidth), Integer.parseInt(lastHeight));
@@ -523,11 +548,18 @@ public class InterfaceMain implements ActionListener {
 		main.mainFrame.setLayout(new BorderLayout());
 
 		main.initialize();
-		// main.pack();
-		main.mainFrame.setVisible(true);
+//		// main.pack();
+		main.mainFrame.setVisible(false);
 		if (path != null) {
 			main.fireControlChange("DbViewer");
 
+		}
+	}
+
+	private static void showGUI() {
+		if (main != null && main.mainFrame != null) {
+			main.mainFrame.setVisible(true);
+			main.mainFrame.toFront();
 		}
 	}
 
@@ -535,9 +567,8 @@ public class InterfaceMain implements ActionListener {
 		mainFrame = null;
 		savedProperties = new Properties();
 		if (propertiesFile.exists()) {
-			System.out.println("Props: "+propertiesFile.getAbsolutePath());
-				
-			
+			System.out.println("Props: " + propertiesFile.getAbsolutePath());
+
 			try {
 				savedProperties.loadFromXML(new FileInputStream(propertiesFile));
 				String prettyPrintProperty = savedProperties.getProperty("pretty-print", null);
@@ -606,10 +637,7 @@ public class InterfaceMain implements ActionListener {
 		// commented out
 		// saveAsMenu.setEnabled(false);//YD commented out
 		menuMan.getSubMenuManager(FILE_MENU_POS).addMenuItem(quitMenu = makeMenuItem("Quit"), FILE_QUIT_MENUITEM_POS);
-		
-		
-		
-		
+
 		menuMan.addMenuItem(new JMenu("Edit"), EDIT_MENU_POS);
 		// YD edits, August-2023
 		// copyMenu = new JMenuItem("Copy");//YD commented out
@@ -639,7 +667,7 @@ public class InterfaceMain implements ActionListener {
 
 		// YD added lines to add "Tools" and "Advanced" to the main menu bar
 		menuMan.addMenuItem(new JMenu("View"), VIEW_MENU_POS);
-		//menuMan.addMenuItem(new JMenu("Tools"), TOOLS_MENU_POS);
+		// menuMan.addMenuItem(new JMenu("Tools"), TOOLS_MENU_POS);
 		menuMan.addMenuItem(new JMenu("Advanced"), ADVANCED_MENU_POS);
 		menuMan.addMenuItem(new JMenu("Help"), HELP_MENU_POS);
 		// YD added the following lines to add "Query File" under "Edit" dropdown menu
@@ -697,7 +725,7 @@ public class InterfaceMain implements ActionListener {
 				.addSeparator(QUERIES_SAVEAS_MENUITEM_POS);
 
 		setupUndo(menuMan);
-		
+
 	}
 
 	// second round YD edited the following lines to move "Undo" and "Redo" to be
@@ -746,7 +774,7 @@ public class InterfaceMain implements ActionListener {
 		undoMenu.addActionListener(undoListener);
 		redoMenu.addActionListener(undoListener);
 	}
-	
+
 	public UndoManager getUndoManager() {
 		return undoManager;
 	}
@@ -758,7 +786,6 @@ public class InterfaceMain implements ActionListener {
 		redoMenu.setEnabled(undoManager.canRedo());
 	}
 
-	
 	private void addMenuAdderMenuItems(MenuManager menuMan) {
 		/*
 		 * FileChooserDemo is being removed, but I will leave this here, This is how I
@@ -887,7 +914,7 @@ public class InterfaceMain implements ActionListener {
 					} catch (IOException ioe) {
 						ioe.printStackTrace();
 					}
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "No unit file specified, please add to launch arguments");
 				}
 			}

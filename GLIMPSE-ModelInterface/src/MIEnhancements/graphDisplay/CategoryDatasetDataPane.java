@@ -122,7 +122,7 @@ public class CategoryDatasetDataPane extends DataPanel {
                 dataValue[i][dataValue[0].length - 1] = unitLookup.get(dataValue[i][0]);
             }
         }
-        setDigit(cds, 3);
+		setDigit(cds, 3);
     }
 
     /**
