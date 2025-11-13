@@ -35,233 +35,175 @@ package graphDisplay;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-
 import chart.Chart;
 import chart.DatasetUtil;
 import conversionUtil.ArrayConversion;
 
 /**
- * The class to handle transpose row and column of a data set then display chars
- * in a panel
- * 
+ * Handles transposing rows and columns of a dataset and displaying charts in a
+ * panel.
+ *
  * Author Action Date Flag
  * ======================================================================= TWU
  * created 1/2/2016
  */
-
 public class Transpose {
-
-	// Dan: to-do: rework this so graphics don't have to have the same number of
-	// series
 	private Chart[] transChart;
-	private static boolean debug = false;
+	private static final boolean DEBUG = false;
 
+	/**
+	 * Transposes the given charts and displays them in a dialog.
+	 * 
+	 * @param chart     Array of Chart objects
+	 * @param w         Width (unused)
+	 * @param gridWidth Grid width (unused)
+	 * @param sameScale Whether to use the same scale for all charts
+	 * @param sp        JSplitPane for chart display
+	 */
 	public Transpose(Chart[] chart, int w, int gridWidth, boolean sameScale, JSplitPane sp) {
-		String meta = ArrayConversion.array2String(getMetaArray(chart));
-		ArrayList<String[][]> transposedData = new ArrayList<String[][]>();
-		ArrayList<String> master_legend=getMasterLegend(chart);
-		
-		String[] legend=convertArrayListToArray(master_legend);
-		
+		String meta = ArrayConversion.array2String(getMetaArray(chart)); // original chart info, e.g., state and
+																			// scenario name
+		List<String> masterLegend = getMasterLegend(chart); // original series in chart
+		String[] newPlotNames = masterLegend.toArray(new String[0]); // each original series becomes a new plot
+		List<String[][]> transposedData;
 		try {
-			transposedData = getTransposeData(master_legend,transChart);
-		} catch (java.lang.NullPointerException e1) {
-			transposedData.clear();
-		} catch (java.lang.IndexOutOfBoundsException e1) {
-			transposedData.clear();
+			transposedData = getTransposeData(masterLegend, transChart); // transposes plot data for all charts
+		} catch (NullPointerException | IndexOutOfBoundsException e) {
+			transposedData = new ArrayList<>();
 		}
-		
-		if (transposedData.isEmpty()||(chart.length>2)) {
-			JOptionPane.showMessageDialog(null, "Transpose is not yet supported on complex datasets.",
-					"Information", JOptionPane.INFORMATION_MESSAGE);
+		// need to determine how to handle complex datasets
+		if (transposedData.isEmpty()) {// || chart.length > 2) {
+			JOptionPane.showMessageDialog(null, "Transpose is not yet supported on complex datasets.", "Information",
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		//Dan: 2025.11.07 Attempting to see if using ThumbnailUtil2 corrects issue with null pointer on graph name
-		//TODO: merge ThumbnailUtil and ThumbnailUtil2
+		String[] newSeries = meta.split(","); // each original chart becomes a new series based on metadata
 		int idx = ThumbnailUtilNew.getFirstNonNullChart(chart);
-		Chart[] chart1 = ThumbnailUtilNew.createTransposeChart(chart[idx].getGraphName(), chart[idx].getPath(), chart[idx].getAxis_name_unit(), meta,
-				chart[idx].getChartColumn(), transposedData, legend);
+		Chart[] chart1 = ThumbnailUtilNew.createTransposeChart(chart[idx].getGraphName(), // same as queryName
+				chart[idx].getAxis_name_unit(), // units
+				chart[idx].getChartColumn(), meta, newSeries, // what were previously the graph names
+				newPlotNames, // what was previously the legend
+				new ArrayList<String[][]>(transposedData)); // transposed data
 
-		//Chart[] chart1 = ThumbnailUtil2.createChart(chart[idx].getGraphName(), chart[idx].getAxis_name_unit(), legend, meta,
-		//		chart[idx].getChartColumn(), al, legend, null);
-		
-		if (debug)
+		if (DEBUG) {
 			System.out.println("Transpose::Transpose:input " + chart1.length + " trans: " + transChart.length
 					+ " transpose: " + chart1.length);
-
-		//Dan: Using modified version (2)
+		}
 		JPanel jp = ThumbnailUtilNew.setChartPane(chart1, 0, sameScale, true, sp);
-
-		JDialog dialog = CreateComponent.crtJDialog("Transpose Thumbnails: " + chart1[0].getGraphName());
-		dialog.setContentPane(new JScrollPane(jp));// new JScrollPane(chartPane)
+		JDialog dialog = CreateComponent.crtJDialog("Transpose Thumbnails: " + chart[0].getGraphName());
+		dialog.setContentPane(new JScrollPane(jp));
 		dialog.pack();
 		dialog.setSize(new Dimension(705, 805));
 		dialog.setVisible(true);
-		
-
 	}
-	
-	private String[] convertArrayListToArray(ArrayList<String> from_list) {
-		String[] to_list=new String[from_list.size()];
-		for (int i=0;i<from_list.size();i++) {
-			to_list[i]=from_list.get(i);
-		}
-		return to_list;
-	}
-	
-	private ArrayList<String> getMasterLegend(Chart[] chart_array) {
-		ArrayList<String> master_legend = new ArrayList<String>();
 
-		for (int c = 0; c < chart_array.length; c++) {
-			// get legend from chart
-			String[] legend = chart_array[c].getLegend().split(",");
-
-			// builds list of legend items across graphics
-			for (int i = 0; i < legend.length; i++) {
-
-				boolean has_match = false;
-				for (int j = 0; j < master_legend.size(); j++) {
-					if (master_legend.get(j).equals(legend[i].trim())) {
-						has_match = true;
-					}
+	/**
+	 * Converts a Chart array to a master legend list (unique legend items).
+	 * 
+	 * @param chartArray Array of Chart objects
+	 * @return List of unique legend items
+	 */
+	private static List<String> getMasterLegend(Chart[] chartArray) {
+		List<String> masterLegend = new ArrayList<>();
+		for (Chart chart : chartArray) {
+			String[] legendItems = chart.getLegend().split(",");
+			for (String item : legendItems) {
+				String trimmed = item.trim();
+				if (!masterLegend.contains(trimmed)) {
+					masterLegend.add(trimmed);
 				}
-				if (!has_match)
-					master_legend.add(legend[i].trim());
 			}
 		}
-		
-		return master_legend;
-	}
-	
-	private ArrayList<String[][]> getTransposeData(ArrayList<String> master_legend, Chart[] chart) {
-		ArrayList<String[][]> al = new ArrayList<String[][]>();
-		
-		//iterates through the series and pulls data for the legend item
-		for (int i = 0; i < master_legend.size(); i++) {
-			//String[][] s = DatasetUtil.oneSeriesDataset2Data(chart, i);
-			String[][] s = getDataset2Data(chart,i,master_legend.get(i),master_legend);
-			if (s != null) {
-				al.add(s);
-				if (debug)
-				  System.out.println("Legend item: "+master_legend.get(i)+" "+i+" of "+master_legend.size()+ " data: " + al.get(i).length + "  "
-						+ Arrays.toString(al.get(i)[0]));
-			}
-		}
-
-		return al;
+		return masterLegend;
 	}
 
-	
-	
-	private String[][] getDataset2Data(Chart[] chart,int series_no,String series,ArrayList<String> series_list){
-		String[][] data=new String[chart.length][series_list.size()];
-		//initialize data to zeroes
-		for (int i=0;i<chart.length;i++) {
-			for (int j=0;j<series_list.size();j++) {
-				data[i][j]="0.0";
+	/**
+	 * Transposes the data for each legend item across all charts.
+	 * 
+	 * @param masterLegend List of legend items
+	 * @param chart        Array of Chart objects
+	 * @return List of transposed data arrays
+	 */
+	private static List<String[][]> getTransposeData(List<String> masterLegend, Chart[] chart) {
+		List<String[][]> transposed = new ArrayList<>();
+		int wid = chart[0].getChartColumn().length();
+		for (int i = 0; i < masterLegend.size(); i++) {
+			String[][] data = getDataset2Data(chart, i, masterLegend.get(i), masterLegend, wid);
+			if (data != null) {
+				transposed.add(data);
+				if (DEBUG) {
+					System.out.println("Legend item: " + masterLegend.get(i) + " " + i + " of " + masterLegend.size()
+							+ " data: " + data.length + "  " + Arrays.toString(data[0]));
+				}
 			}
 		}
-		
-		//iteratates over all the charts
-		int k=0;
-		for (int idx=0;idx < chart.length && chart[idx].getChart() !=null; idx++) {
-			
+		return transposed;
+	}
+
+	/**
+	 * Gets the data for a specific series across all charts.
+	 * 
+	 * @param chart      Array of Chart objects
+	 * @param seriesNo   Series index
+	 * @param series     Series name
+	 * @param seriesList List of all series
+	 * @return 2D String array of data
+	 */
+	private static String[][] getDataset2Data(Chart[] chart, int seriesNo, String series, List<String> seriesList,
+			int wid) {
+		String[][] data = new String[chart.length][wid]; // was this, but sizing wasn't correct [seriesList.size()];
+		for (int i = 0; i < chart.length; i++) {
+			Arrays.fill(data[i], "0.0");
+		}
+		int k = 0;
+		for (int idx = 0; idx < chart.length && chart[idx].getChart() != null; idx++) {
 			k++;
-			//for chart idx, get legend
-			String[] chart_legend = chart[idx].getLegend().split(",");
-			
-			//gets the legend number that matches the series
-			int legend_no=-1;
-			for (int l=0;l<chart_legend.length;l++) {
-				if (chart_legend[l].trim().equals(series.trim())) { 
-					legend_no=l;
+			String[] chartLegend = chart[idx].getLegend().split(",");
+			int legendNo = -1;
+			for (int l = 0; l < chartLegend.length; l++) {
+				if (chartLegend[l].trim().equals(series.trim())) {
+					legendNo = l;
 					break;
 				}
 			}
-			
-			//if it found a match
-			if (legend_no>-1) {
-			   data[idx] = DatasetUtil.dataset2Data(chart[idx].getChart(),legend_no)[0];
+			if (legendNo > -1) {
+				data[idx] = DatasetUtil.dataset2Data(chart[idx].getChart(), legendNo)[0];
 			}
 		}
-		
-		String[][] return_data=Arrays.copyOfRange(data,0,k);
-		//return_data = removeEmptyRows(return_data);
-		return return_data;
+		return Arrays.copyOfRange(data, 0, k);
 	}
-	
-	//Dan added in attempt to remove empty rows (all zeroes) from transposed data
-//	private String[][] removeEmptyRows(String[][] data) {
-//		int row_count=0;
-//		for (int i=0;i<data.length;i++) {
-//			boolean non_zero_found=false;
-//			for (int j=0;j<data[i].length;j++) {
-//				if (!data[i][j].equals("0.0")) {
-//					non_zero_found=true;
-//					break;
-//				}
-//			}
-//			if (non_zero_found)
-//				row_count++;
-//		}
-//		
-//		String[][] new_data=new String[row_count][data[0].length];
-//		int k=0;
-//		for (int i=0;i<data.length;i++) {
-//			boolean non_zero_found=false;
-//			for (int j=0;j<data[i].length;j++) {
-//				if (!data[i][j].equals("0.0")) {
-//					non_zero_found=true;
-//					break;
-//				}
-//			}
-//			if (non_zero_found) {
-//				new_data[k]=data[i];
-//				k++;
-//			}
-//		}
-//		return new_data;
-//	}
 
-//	private ArrayList<String[][]> getTransposeDataOrig(String[] legend, Chart[] chart) {
-//		ArrayList<String[][]> al = new ArrayList<String[][]>();
-//		for (int i = 0; i < legend.length; i++) {
-//			String[][] s = DatasetUtil.oneSeriesDataset2Data(chart, i);
-//			al.add(s);
-//			// if (debug)
-//			System.out.println("Transpose::getTransposeData:i " + i + " : " + " data: " + al.get(i).length + "  "
-//					+ Arrays.toString(al.get(i)[0]));
-//		}
-//		return al;
-//	}
-
+	/**
+	 * Gets the meta array for the given charts and sets transChart.
+	 * 
+	 * @param chart Array of Chart objects
+	 * @return Array of meta strings
+	 */
 	private String[] getMetaArray(Chart[] chart) {
 		String[] meta = new String[chart.length];
-		ArrayList<Chart> chartList = new ArrayList<Chart>();
+		List<Chart> chartList = new ArrayList<>();
 		int k = 0;
 		for (int i = 0; i < chart.length; i++) {
 			if (chart[i].getMeta() != null) {
 				meta[k] = chart[i].getMeta().replace(",", "_");
 				chartList.add(chart[i]);
-				if (debug)
-					System.out.println("Transpose::getMetaArray:i " + i + " : " + " meta: " + meta[k] + " : "
-							+ chart[i].getMeta());
+				if (DEBUG) {
+					System.out.println(
+							"Transpose::getMetaArray:i " + i + " : meta: " + meta[k] + " : " + chart[i].getMeta());
+				}
 				k++;
-			} else
+			} else {
 				System.out
 						.println("Transpose::getMetaArray:i " + i + " k: " + k + " title: " + chart[i].getTitles()[1]);
+			}
 		}
-		transChart = new Chart[chartList.size()];
-		if (chartList.size() > 0)
-			for (int i = 0; i < transChart.length; i++)
-				transChart[i] = chartList.get(i);
+		transChart = chartList.toArray(new Chart[0]);
 		return Arrays.copyOfRange(meta, 0, k);
 	}
-
 }
