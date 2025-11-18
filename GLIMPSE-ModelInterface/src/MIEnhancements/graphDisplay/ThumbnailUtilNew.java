@@ -556,7 +556,11 @@ public class ThumbnailUtilNew {
 	 * @return Subtitle string
 	 */
 	private static String getSubTitle(String[] keys, String keyString, String mCol) {
+		String rtn_str="";
 		keyString = keyString.replace(",depth=1", "");
+		if (keyString.contains("minus")) {
+			rtn_str=keyString;
+		} else {
 		String temp = keyString.split(",")[0];
 		int ks = temp.split(" ").length;
 		String scen = temp.split(" ")[ks - 1];
@@ -584,11 +588,12 @@ public class ThumbnailUtilNew {
 						break;
 			}
 		}
-		String rtn_str = scen;
+		rtn_str = scen;
 		if (dateIndex > 0)
 			rtn_str += dateIndex;
 		if (region.length() > 0)
 			rtn_str += "\nregion: " + region;
+		}
 		return rtn_str;
 	}
 
