@@ -2443,7 +2443,7 @@
 				</labelRewriteList>
 			</supplyDemandQuery>
 		   </queryGroup>
-		   <queryGroup name="by sector">
+		  <queryGroup name="by sector">
 			<supplyDemandQuery title="2.7 End-use energy consumption in buildings">
 				<axis1 name="input">input</axis1>
 				<axis2 name="Year">demand-physical[@vintage]</axis2>
@@ -4263,7 +4263,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="4.5 building service output by tech (sales)">
+				<supplyDemandQuery title="4.5 Building service output by tech (sales)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='building' or (exists(child::keyword[@final-energy='building'])))]/
@@ -5790,7 +5790,7 @@
                output-primary/physical-output/node()</xPath>
 				<comments/>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="8.5 elec production (incl CHP)">
+			<supplyDemandQuery title="8.5 Elec production (incl CHP)">
 				<axis1 name="region">region</axis1>
 				<axis2 name="Year">physical-output[@vintage]</axis2>
 				<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:)]//
@@ -5799,14 +5799,14 @@
 				physical-output/node()</xPath>
 				<comments>Electricity production by region.</comments>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="8.6 electricity use">
+			<supplyDemandQuery title="8.6 Electricity use">
 				<axis1 name="region">region</axis1>
 				<axis2 name="Year">demand-physical[@vintage]</axis2>
 				<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:)]//*[@type='input' (:collapse:) and (@name="elect_td_bld" or @name="elect_td_ind" or @name="elect_td_trn" )]/
 					demand-physical[@unit='EJ']/node()</xPath>
 				<comments>Electricity use by region.</comments>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="8.7 refined liquids production">
+			<supplyDemandQuery title="8.7 Refined liquids production">
 				<axis1 name="region">region</axis1>
 				<axis2 name="Year">physical-output[@vintage]</axis2>
 				<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:) and
@@ -5814,7 +5814,7 @@
 							output-primary[@type='output' (:collapse:)]/physical-output/node()</xPath>
 				<comments/>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="8.8 refined liquids use">
+			<supplyDemandQuery title="8.8 Refined liquids use">
 				<axis1 name="region">region</axis1>
 				<axis2 name="Year">demand-physical[@vintage]</axis2>
 				<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:)]//*[@type='input' (:collapse:) and (@name="refined liquids enduse" or @name="refined liquids industrial")]//
@@ -5860,7 +5860,7 @@
 							*[@type='technology']//*[@type='input' and (@name='capital' or @name='OM-fixed' or @name='OM-var' or @name='cooling system' or @name='regional price adjustment' or @name='backup-cap-cost' or @name='cost')]/price-paid/node()</xPath>
 				<comments>Reports detailed costs by technology, including fixed and variable OM, capital cost, and any regional price adjustment. </comments>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="9.6 Elec apacity-factors by tech">
+			<supplyDemandQuery title="9.6 Elec capacity-factors by tech">
 				<axis1 name="technology">technology</axis1>
 				<axis2 name="Year">technology</axis2>
 				<xPath buildList="true" dataName="cost" group="false" sumAll="false">*[@type='sector']//*[@type='subsector']//
@@ -5936,11 +5936,19 @@
 				<xPath buildList="true" dataName="coefficient" group="false" sumAll="false">*[@type='sector' and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]//*[@type='subsector']//*[(@type='technology'and not (starts-with(@name,'LDV')))(:collapse:)]//*[@type='input' (:collapse:)]//IO-coefficient[@vintage=parent::*/parent::*/@year]/node()</xPath>
 				<comments>Coefficients for transportation technologies.</comments>
 			</supplyDemandQuery>
-			<supplyDemandQuery title="9.17 transport load factors">
+			<supplyDemandQuery title="9.17 Transport load factors">
 				<axis1 name="technology">technology</axis1>
 				<axis2 name="Year">technology</axis2>
 				<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/
                *[@type='subsector']/*[@type='technology']//load-factor/node()</xPath>
+				<comments/>
+			</supplyDemandQuery>
+			<supplyDemandQuery title="9.18 All tech amortized cap costs">
+				<axis1 name="technology">technology</axis1>
+				<axis2 name="Year">price-paid[@vintage]</axis2>
+				<xPath buildList="true" dataName="non energy cost" group="false" sumAll="false">*[@type='sector']/
+               *[@type='subsector']/*[@type='technology']/*[@type='input' (:collapse:) and not (@name='fuel taxes')]/
+               price-paid[@vintage=parent::*/parent::*/@year]/text()</xPath>
 				<comments/>
 			</supplyDemandQuery>
 		</queryGroup>
@@ -6299,6 +6307,14 @@
 					cost/text()</xPath>
 					<comments>Refined liquid prices, converted from million 1975$s/EJ to 2020$/gallon (gasoline equivalent).</comments>
 				</supplyDemandQuery>
+				<emissionsQueryBuilder title="10.8 Damages with corrected units (2023$Mil)">
+					<axis1 name="GHG">GHG</axis1>
+					<axis2 name="Year">emissions</axis2>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' (:collapse:) or @type = 'resource' (:collapse:)](: / *[@type = 'subresource' (: collapse :)] :)//
+					*[@type = 'GHG' and ((@name='PMDAM') or (@name='O3DAM') or (@name='Damage'))]/emissions/node()</xPath>
+					<comments>Selected air pollutant emissions, converted to units of short tons.</comments>
+				</emissionsQueryBuilder>
+			
 			</queryGroup>
 			<queryGroup name="for air quality and benefits assessment using COBRA">
 				<emissionsQueryBuilder title="10.8 Air pollutant emissions for COBRA Part1">
@@ -6394,46 +6410,195 @@
 					<comments>CO2 emissions (in units of MTC) per GCAM sector</comments>
 					<labelRewriteList append-values="false">
 						<level name="sector">
-							<rewrite from="base load generation" to="electric"/>
-							<rewrite from="intermediate generation" to="electric"/>
-							<rewrite from="subpeak generation" to="electric"/>
-							<rewrite from="peak generation" to="electric"/>
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
 					</labelRewriteList>
 				</emissionsQueryBuilder>
-				<supplyDemandQuery title="10.11 Inputs by sector - EJ only">
+				<supplyDemandQuery title="10.1x Inputs by sector - EJ only">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector'(:collapse:)]//*[@type='technology'(:collapse:)]/*[@type='input' ]/demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Inputs by sector. Useful for energy flows.</comments>
 					<labelRewriteList append-values="false">
 						<level name="sector">
-							<rewrite from="base load generation" to="electric"/>
-							<rewrite from="intermediate generation" to="electric"/>
-							<rewrite from="subpeak generation" to="electric"/>
-							<rewrite from="peak generation" to="electric"/>
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.12 Primary output by sector">
+				<supplyDemandQuery title="10.1x Primary output by sector">
 					<axis1 name="sector">sector</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']//
 				   output-primary/physical-output/node()</xPath>
 					<comments/>
+					<labelRewriteList append-values="false">
+						<level name="sector">
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
+						</level>
+					</labelRewriteList>
 				</supplyDemandQuery>
-				<demographicsQuery title="10.13 Population by region">
+				<demographicsQuery title="10.11 Population by region">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">populationMiniCAM</axis2>
 					<xPath buildList="true" dataName="total-population" group="false" sumAll="false">demographics/populationMiniCAM/total-population/node()</xPath>
 					<comments>Exogenously-determined population by region (thousands). Note: USA population is reported both at the state and national level. Do not sum over population USA and states to avoid double-counting.</comments>
 				</demographicsQuery>
-				<gdpQueryBuilder title="10.14 GDP per capita PPP by region">
+				<gdpQueryBuilder title="10.12 GDP per capita MER by region">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">nationalAccount[@year]</axis2>
-					<xPath buildList="true" dataName="gdp-per-capita-ppp" group="false" sumAll="false">nationalAccount/account[@name = 'gdp-per-capita-ppp']/node()</xPath>
+					<xPath buildList="true" dataName="gdp-per-capita-mer" group="false" sumAll="false">nationalAccount/account[@name = 'gdp-per-capita']/node()</xPath>
+				<comments/>
+			</gdpQueryBuilder>
+				<emissionsQueryBuilder title="10.13 All emissions by tech">
+				<axis1 name="GHG">GHG</axis1>
+				<axis2 name="Year">emissions</axis2>
+				<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' or @type = 'resource']/*[@type = 'subsector']//*[@type = 'technology']/-->
+				<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[(@type = 'sector') ]/*[@type = 'subsector']//*[@type = 'technology']/
+					*[@type = 'GHG']/emissions/node()</xPath>
+				<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']//*[@type = 'technology']/
+					*[@type = 'GHG']/emissions/node()</xPath>-->
+				<comments>All tracked emission species by technology.</comments>
+				<labelRewriteList append-values="false">
+					<level name="GHG">					
+						<rewrite from="CO2_FUG" to="CO2"/>
+						<rewrite from="CO2_FUG" to="CO2"/>
+						<rewrite from="SO2_1" to="SO2"/>
+						<rewrite from="SO2_1_AWB" to="SO2"/>
+						<rewrite from="SO2_1_AGR" to="SO2"/>
+						<rewrite from="SO2_3" to="SO2"/>
+						<rewrite from="SO2_3_AGR" to="SO2"/>
+						<rewrite from="SO2_3_AWB" to="SO2"/>
+						<rewrite from="CO2_ELEC" to=""/>
+						<rewrite from="CO2_ELEC2" to=""/>
+						<rewrite from="BC_AWB" to="BC"/>
+						<rewrite from="OC_AWB" to="OC"/>
+						<rewrite from="CH4_AWB" to="CH4"/>
+						<rewrite from="N2O_AWB" to="N2O"/>
+						<rewrite from="NOx_AWB" to="NOx"/>
+						<rewrite from="NMVOC_AWB" to="NMVOC"/>
+						<rewrite from="CO_AWB" to="CO"/>
+						<rewrite from="NH3_AWB" to="NH3"/>
+						<rewrite from="H2_AWB" to="H2"/>
+						<rewrite from="BC_AGR" to="BC"/>
+						<rewrite from="OC_AGR" to="OC"/>
+						<rewrite from="CH4_AGR" to="CH4"/>
+						<rewrite from="N2O_AGR" to="N2O"/>
+						<rewrite from="NOx_AGR" to="NOx"/>
+						<rewrite from="NMVOC_AGR" to="NMVOC"/>
+						<rewrite from="CO_AGR" to="CO"/>
+						<rewrite from="NH3_AGR" to="NH3"/>
+						<rewrite from="H2_AGR" to="H2"/>
+					</level>
+
+						<level name="sector">
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
+						</level>
+
+				</labelRewriteList>
+			</emissionsQueryBuilder>
+				<emissionsQueryBuilder title="10.14 All emissions by resource production">
+					<axis1 name="GHG">GHG</axis1>
+					<axis2 name="Year">emissions</axis2>
+					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'resource']//*[@type = 'GHG']/emissions/node()</xPath>
 					<comments/>
-				</gdpQueryBuilder>
+					<labelRewriteList append-values="false">
+						<level name="sector">
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
+						</level>
+					</labelRewriteList>
+			</emissionsQueryBuilder>
+				<supplyDemandQuery title="10.15 Inputs by tech">
+				<axis1 name="input">input</axis1>
+				<axis2 name="Year">demand-physical[@vintage]</axis2>
+				<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
+				<comments>Inputs into each technology. Useful for tracking fuel and material flows.</comments>
+					<labelRewriteList append-values="false">
+						<level name="sector">
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
+						</level>
+					</labelRewriteList>
+			</supplyDemandQuery>
+				<supplyDemandQuery title="10.16 Outputs by tech">
+				<axis1 name="output">output</axis1>
+				<axis2 name="Year">physical-output[@vintage]</axis2>
+				<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
+				<comments>Outputs from each technology. Useful for tracking fuel and material flows.</comments>
+					<labelRewriteList append-values="false">
+						<level name="sector">
+							<rewrite from="base load generation" to="Electric"/>
+							<rewrite from="intermediate generation" to="Electric"/>
+							<rewrite from="subpeak generation" to="Electric"/>
+							<rewrite from="peak generation" to="Electric"/>
+							<rewrite from="trn_aviation_intl" to="International aviation"/>
+							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
+							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
+							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_shipping_intl" to="International shipping"/>	
+							<rewrite from="biomass liquids" to="Biofuel production"/>		
+						</level>
+					</labelRewriteList>
+			</supplyDemandQuery>
 			</queryGroup>
 			<queryGroup name="for Sankey diagrams">
 				<supplyDemandQuery title="10.15 End-use energy consumption (detail)">
