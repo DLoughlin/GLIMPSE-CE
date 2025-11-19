@@ -225,6 +225,8 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	private JMenuItem menuExpPrn;
 
 	private String filteringText; // YD added
+	private Enumeration<TreePath> expansionState;// YD added
+	private boolean AllCollapsed = false; // YD added
 	ArrayList<String> region_list = new ArrayList<String>();// YD added,Feb-2024
 	ArrayList<String> subregion_list = new ArrayList<String>();// YD added,Feb-2024
 	ArrayList<String> preset_region_list = new ArrayList<String>();// YD added,Feb-2024
@@ -979,11 +981,10 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 	JTree queryList = null;
 
 	private JButton queryFilterButton;
-
 	private JButton favoriteQueryButton;
-
 	private JButton runQueryButton;
 	private JButton diffQueryButton;
+	private JButton listCollapseButton; 
 
 	private JCheckBox doTotalCheckBox;
 
@@ -1071,9 +1072,12 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		runQueryButton = new JButton("Run Query");
 		diffQueryButton = new JButton("Diff Query");
-		final JButton listCollapseButton = new JButton("Collapse");
-		final JButton queryFilterButton = new JButton("Search");
-		final JButton favoriteQueryButton = new JButton("Favorites");
+		//final JButton 
+		listCollapseButton = new JButton("View +/-");
+		//final JButton 
+		queryFilterButton = new JButton("Search");
+		//final JButton 
+		favoriteQueryButton = new JButton("Favorites");
 		queriesEditMenu.setEnabled(false);
 		runQueryButton.setEnabled(false);
 		diffQueryButton.setEnabled(false);
@@ -1334,6 +1338,25 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 			}
 		});
 
+		listCollapseButton.addActionListener(new ActionListener() {
+            private boolean expanded = true;
+            public void actionPerformed(ActionEvent e) {
+                if (expanded) {
+                    // Collapse all except root
+                    for (int i = queryList.getRowCount() - 1; i > 0; i--) {
+                        queryList.collapseRow(i);
+                    }
+                } else {
+                    // Expand all
+                    for (int i = 0; i < queryList.getRowCount(); i++) {
+                        queryList.expandRow(i);
+                    }
+                }
+                expanded = !expanded;
+            }
+        }); // listener end
+		
+		
 		JFrame parentFrame = InterfaceMain.getInstance().getFrame();
 		Container contentPane = parentFrame.getContentPane();
 		contentPane.add(tableCreatorSplit);
@@ -1368,6 +1391,9 @@ public class DbViewer implements ActionListener, MenuAdder, BatchRunner {
 		return model;
 	}
 
+
+
+	
 	/**
 	 * Returns a list of matching nodes in the QueryGroup that do not contain the
 	 * query string.

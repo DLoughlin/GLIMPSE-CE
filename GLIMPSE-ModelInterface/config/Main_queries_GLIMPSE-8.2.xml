@@ -3412,9 +3412,9 @@
 					</labelRewriteList>
 				</supplyDemandQuery>
 				<supplyDemandQuery title="3.4 Electricity generation by technology and input (GCAM-USA)">
-					<axis1 name="input">input</axis1>
+					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
-					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='electricity' or
+					<xPath buildList="true" dataName="technology" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='electricity' or
 					@name='base load generation' or @name='intermediate generation' or @name='subpeak generation' or @name='peak generation' or
 					@name='elect_td_bld') ]/*[@type='subsector']/*[@type='subsector' (:collapse:)]//*[@type='technology']//*[@type='input' and (@name != 'ELEC_RPS') and (@name != 'oil-credits') and (@name != 'electricity domestic supply') and not(contains( @name, 'water'))and not(contains( @name, 'Up_'))and not(contains( @name, 'Lo_')) and not(contains( @name, 'Upp'))and not(contains( @name, 'Low'))]/
 					demand-physical[@unit='EJ']/node()</xPath>
@@ -4078,10 +4078,10 @@
 		</queryGroup>
 		<queryGroup name="4. End-use technology energy use and service output">
 			<queryGroup name="Energy use by technology">
-				<supplyDemandQuery title="4.1 Building final energy by tech">
-					<axis1 name="input">input</axis1>
+				<supplyDemandQuery title="4.1 Building final energy by tech and fuel">
+					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
-					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector'  and (@name='building' or (exists(child::keyword[@final-energy='building'])))]/
+					<xPath buildList="true" dataName="technology" group="false" sumAll="false">*[@type='sector'  and (@name='building' or (exists(child::keyword[@final-energy='building'])))]/
 					*[@type='subsector' (:collapse:)]/*[@type='technology']/*[@type='input']/
 					demand-physical/node()</xPath>
 					<comments>Final energy used in buildings by technology. Useful in understanding the quantity of fuel used by various technologies in meeting service demands.  </comments>
@@ -4170,11 +4170,11 @@
 					@name='refined liquids industrial')]/demand-physical/node()</xPath>
 					<comments>Final energy used in industry by technology. Useful in understanding how and where fuels are used to meet industrial demands. </comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="4.3 Transport final energy by tech">
+				<supplyDemandQuery title="4.3 Transport final energy by subsector and fuel">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/
-					*[@type='subsector' ]/*[@type='technology']/*[@type='input'  and not(@name='renewable')]/
+					*[@type='subsector' ]/*[@type='technology'(:collapse:)]/*[@type='input'  and not(@name='renewable')]/
 					demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Final energy used by technology in meeting end use transportation service demands. Useful in understanding sectoral fuel use and the impacts of changes in vehicle efficiency. </comments>
 				</supplyDemandQuery>
@@ -4378,9 +4378,9 @@
 		</queryGroup>
 		<queryGroup name="5. Emissions">
 			<emissionsQueryBuilder title="5.1 CO2 emissions by region">
-				<axis1 name="CO2">CO2</axis1>
-				<axis2 name="Year">emissions</axis2>
-				<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' (:collapse:) or @type = 'resource' (:collapse:)]//*[((@name='CO2'))]/emissions/node()</xPath>
+				<axis1 name="region">region</axis1>
+				<axis2 name="emissions">emissions</axis2>
+				<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' (:collapse:) or @type = 'resource' (:collapse:)]//*[@name='CO2'(:collapse:)]/emissions/node()</xPath>
 				<comments>Total CO2 emissions (MTC) per region</comments>
 			</emissionsQueryBuilder>
 			<emissionsQueryBuilder title="5.2 CO2 emissions by aggregate sector">
@@ -4833,7 +4833,7 @@
 				<axis2 name="Year">emissions</axis2>
 				<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' or @type = 'resource']/*[@type = 'subsector']//*[@type = 'technology']/-->
 				<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[(@type = 'sector') ]/*[@type = 'subsector']//*[@type = 'technology']/
-					*[@type = 'GHG' and @name = 'CO2' ]/emissions/node()</xPath>
+					*[@type = 'GHG' and @name = 'CO2' (:collapse:) ]/emissions/node()</xPath>
 				<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']//*[@type = 'technology']/
 					*[@type = 'GHG']/emissions/node()</xPath>-->
 				<comments>All tracked emission species by technology.</comments>
@@ -6317,7 +6317,7 @@
 			
 			</queryGroup>
 			<queryGroup name="for air quality and benefits assessment using COBRA">
-				<emissionsQueryBuilder title="10.8 Air pollutant emissions for COBRA Part1">
+				<emissionsQueryBuilder title="10.9 Air pollutant emissions for COBRA Part1">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'resource']//*[@type = 'GHG' and ((@name='NOx') or (@name='NOx_AGR') or (@name='NOx_AWB') or (@name='NH3') or (@name='NH3_AGR') or (@name='NH3_AWB') or 
@@ -6358,7 +6358,7 @@
 					</level>
 					</labelRewriteList>
 				</emissionsQueryBuilder>
-				<emissionsQueryBuilder title="10.9 Air pollutant emissions for COBRA Part2">
+				<emissionsQueryBuilder title="10.10 Air pollutant emissions for COBRA Part2">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[(@type = 'sector') ]/*[@type = 'subsector' ]//*[@type = 'technology'(:collapse:)]/
@@ -6402,7 +6402,7 @@
 				</emissionsQueryBuilder>
 			</queryGroup>
 			<queryGroup name="for Kaya identify calculations">
-				<emissionsQueryBuilder title="10.10 CO2 emissions by sector">
+				<emissionsQueryBuilder title="10.11 CO2 emissions by sector">
 					<axis1 name="sector">sector</axis1>
 					<axis2 name="Year">emissions</axis2>
 					<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type='sector']//CO2/emissions/node()</xPath>-->
@@ -6418,7 +6418,9 @@
 							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
 							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
 							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road" to="Onroad buses"/>
 							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_pass_road_LDV" to="Onroad passenger cars trucks and MCs"/>
 							<rewrite from="trn_shipping_intl" to="International shipping"/>	
 							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
@@ -6439,7 +6441,9 @@
 							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
 							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
 							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road" to="Onroad buses"/>
 							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_pass_road_LDV" to="Onroad passenger cars trucks and MCs"/>
 							<rewrite from="trn_shipping_intl" to="International shipping"/>	
 							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
@@ -6461,25 +6465,27 @@
 							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
 							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
 							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road" to="Onroad buses"/>
 							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_pass_road_LDV" to="Onroad passenger cars trucks and MCs"/>
 							<rewrite from="trn_shipping_intl" to="International shipping"/>	
 							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<demographicsQuery title="10.11 Population by region">
+				<demographicsQuery title="10.12 Population by region">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">populationMiniCAM</axis2>
 					<xPath buildList="true" dataName="total-population" group="false" sumAll="false">demographics/populationMiniCAM/total-population/node()</xPath>
 					<comments>Exogenously-determined population by region (thousands). Note: USA population is reported both at the state and national level. Do not sum over population USA and states to avoid double-counting.</comments>
 				</demographicsQuery>
-				<gdpQueryBuilder title="10.12 GDP per capita MER by region">
+				<gdpQueryBuilder title="10.13 GDP per capita MER by region">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">nationalAccount[@year]</axis2>
 					<xPath buildList="true" dataName="gdp-per-capita-mer" group="false" sumAll="false">nationalAccount/account[@name = 'gdp-per-capita']/node()</xPath>
 				<comments/>
 			</gdpQueryBuilder>
-				<emissionsQueryBuilder title="10.13 All emissions by tech">
+				<emissionsQueryBuilder title="10.14 All emissions by tech">
 				<axis1 name="GHG">GHG</axis1>
 				<axis2 name="Year">emissions</axis2>
 				<!--<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' or @type = 'resource']/*[@type = 'subsector']//*[@type = 'technology']/-->
@@ -6529,14 +6535,16 @@
 							<rewrite from="trn_freight" to="Nonroad freight vehicles"/>
 							<rewrite from="trn_freight_road" to="Onroad freight trucks"/>
 							<rewrite from="trn_pass" to="Other passenger vehicles"/>
+							<rewrite from="trn_pass_road" to="Onroad buses"/>
 							<rewrite from="trn_pass_road_LDV_4W" to="Onroad passenger cars and trucks"/>
+							<rewrite from="trn_pass_road_LDV" to="Onroad passenger cars trucks and MCs"/>
 							<rewrite from="trn_shipping_intl" to="International shipping"/>	
 							<rewrite from="biomass liquids" to="Biofuel production"/>		
 						</level>
 
 				</labelRewriteList>
 			</emissionsQueryBuilder>
-				<emissionsQueryBuilder title="10.14 All emissions by resource production">
+				<emissionsQueryBuilder title="10.15 All emissions by resource production">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'resource']//*[@type = 'GHG']/emissions/node()</xPath>
@@ -6557,7 +6565,7 @@
 						</level>
 					</labelRewriteList>
 			</emissionsQueryBuilder>
-				<supplyDemandQuery title="10.15 Inputs by tech">
+				<supplyDemandQuery title="10.16 Inputs by tech">
 				<axis1 name="input">input</axis1>
 				<axis2 name="Year">demand-physical[@vintage]</axis2>
 				<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
@@ -6578,7 +6586,7 @@
 						</level>
 					</labelRewriteList>
 			</supplyDemandQuery>
-				<supplyDemandQuery title="10.16 Outputs by tech">
+				<supplyDemandQuery title="10.17 Outputs by tech">
 				<axis1 name="output">output</axis1>
 				<axis2 name="Year">physical-output[@vintage]</axis2>
 				<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
@@ -6601,7 +6609,7 @@
 			</supplyDemandQuery>
 			</queryGroup>
 			<queryGroup name="for Sankey diagrams">
-				<supplyDemandQuery title="10.15 End-use energy consumption (detail)">
+				<supplyDemandQuery title="10.18 End-use energy consumption (detail)">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' and (contains(@name,'resid') or contains(@name,'comm') or contains(@name,'ind') or contains(@name,'trn')) and not (starts-with(@name,'H2')) ]//
@@ -6689,7 +6697,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.16 End-use energy consumption (aggregated)">
+				<supplyDemandQuery title="10.19 End-use energy consumption (aggregated)">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector'  and ((contains(@name,'resid') or contains(@name,'comm') or contains(@name,'ind') or contains(@name,'trn'))) and not (starts-with(@name,'H2'))]//
@@ -6983,7 +6991,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.17 Electricity generation input">
+				<supplyDemandQuery title="10.20 Electricity generation input">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' and ((@name='electricity' or @name='base load generation' or
@@ -7098,7 +7106,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.18 Refined liquid production input">
+				<supplyDemandQuery title="10.21 Refined liquid production input">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' and ((@name='oil refining') or (@name='biomass liquids') or (@name='gas to liquids') or (@name='coal to liquids')) ]//
@@ -7198,7 +7206,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.19 Hydrogen production input">
+				<supplyDemandQuery title="10.22 Hydrogen production input">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' and ((@name='H2 central production') or (@name='H2 wholesale dispensing')) ]//
@@ -7298,28 +7306,28 @@
 				</supplyDemandQuery>
 			</queryGroup>
 			<queryGroup name="for damage analysis calculations">
-				<supplyDemandQuery title="10.20 Primary outputs by sector">
+				<supplyDemandQuery title="10.23 Primary outputs by sector">
 					<axis1 name="sector">sector</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']//
 				   output-primary/physical-output/node()</xPath>
 					<comments/>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.21 Primary outputs by tech and vintage">
+				<supplyDemandQuery title="10.24 Primary outputs by tech and vintage">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']//*[@type='technology']//output-primary/physical-output/node()</xPath>
 					<comments>Outputs from each technology and vintage. Useful for tracking fuel and material flows.</comments>
 					<showAttribute attribute-name="year" level="technology"/>
 				</supplyDemandQuery>
-				<emissionsQueryBuilder title="10.22a Emissions by tech and vintage (excluding resource production) - not nested">
+				<emissionsQueryBuilder title="10.25 Emissions by tech and vintage (excluding resource production) - not nested">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions[@year]</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'technology']//emissions/node()</xPath>
 					<comments/>
 					<showAttribute attribute-name="year" level="technology"/>
 				</emissionsQueryBuilder>
-				<emissionsQueryBuilder title="10.22b Emissions by tech and vintage (excluding resource production) - nested">
+				<emissionsQueryBuilder title="10.26 Emissions by tech and vintage (excluding resource production) - nested">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions[@year]</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'subsector']//*[@type = 'technology']//emissions/node()</xPath>
@@ -7328,79 +7336,79 @@
 				</emissionsQueryBuilder>
 			</queryGroup>
 			<queryGroup name="for onroad EV analysis">
-				<supplyDemandQuery title="10.23 Electricity demand no Cogen or Rooftop PV (TWh)">
+				<supplyDemandQuery title="10.27 Electricity demand no Cogen or Rooftop PV (TWh)">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name!="other industrial energy use")]//*[@type='input' (:collapse:) and ((@name="elect_td_bld" or @name="elect_td_ind" or @name="elect_td_trn" ) and (@name!="distributed_solar")) ]/
 					demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Electricity use by region.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.24 Electricity demand no Cogen or Rooftop PV by type (TWh)">
+				<supplyDemandQuery title="10.28 Electricity demand no Cogen or Rooftop PV by type (TWh)">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name!="other industrial energy use")]//*[@type='input' and ((@name="elect_td_bld" or @name="elect_td_ind" or @name="elect_td_trn" ) and (@name!="distributed_solar")) ]/
 					demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Electricity use by region.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.25 Electricity demand from onroad pass EVs (TWh)">
+				<supplyDemandQuery title="10.29 Electricity demand from onroad pass EVs (TWh)">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name="trn_pass_road_LDV_4W")]//*[@type='input' (:collapse:) and (@name="elect_td_trn") ]/
 					demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Electricity use by region.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.26 Electricity demand from onroad freight EVs (TWh)">
+				<supplyDemandQuery title="10.30 Electricity demand from onroad freight EVs (TWh)">
 					<axis1 name="region">region</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name="trn_freight_road")]//*[@type='input' (:collapse:) and (@name="elect_td_trn") ]/
 					demand-physical[@unit='EJ']/node()</xPath>
 					<comments>Electricity use by region.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.27 Passenger car service output by tech (VMT)">
+				<supplyDemandQuery title="10.31 Passenger car service output by tech (VMT)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_pass_road_LDV_4W')]//*[@type="subsector" (:collapse:) and (@name="Car")]//*[@type='technology']/*[@type='output' and (@name='trn_pass_road_LDV_4W') ]/	physical-output/node()</xPath>
 					<comments>Onroad light-duty passenger travel demands (pass-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.28 Passenger truck service output by tech (VMT)">
+				<supplyDemandQuery title="10.32 Passenger truck service output by tech (VMT)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_pass_road_LDV_4W')]//*[@type="subsector" (:collapse:) and (@name="Large Car and Truck")]//*[@type='technology']/*[@type='output' and (@name='trn_pass_road_LDV_4W')]/	physical-output/node()</xPath>
 					<comments>Onroad light-duty passenger travel demands (pass-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.29 Freight light truck service output by tech (no bus) (VMT)">
+				<supplyDemandQuery title="10.33 Freight light truck service output by tech (no bus) (VMT)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_freight_road')]//*[@type="subsector" and (@name="Light truck")]//	*[@type='technology']/*[@type='output' and (@name='trn_freight_road')]/	physical-output/node()</xPath>
 					<comments>Onroad freight travel demand (tonne-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.30 Freight medium truck service output by tech (no bus) (VMT)">
+				<supplyDemandQuery title="10.34 Freight medium truck service output by tech (no bus) (VMT)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_freight_road')]//*[@type="subsector" and (@name="Medium truck")]//	*[@type='technology']/*[@type='output' and (@name='trn_freight_road')]/	physical-output/node()</xPath>
 					<comments>Onroad freight travel demand (tonne-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.31 Freight heavy truck service output by tech (no bus) (VMT)">
+				<supplyDemandQuery title="10.35 Freight heavy truck service output by tech (no bus) (VMT)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_freight_road')]//*[@type="subsector" and (@name="Heavy truck")]//	*[@type='technology']/*[@type='output' and (@name='trn_freight_road')]/	physical-output/node()</xPath>
 					<comments>Onroad freight travel demand (tonne-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.32 Elec prices by sector (2020$/kwh)">
+				<supplyDemandQuery title="10.36 Elec prices by sector (2020$/kwh)">
 					<axis1 name="fuel">sector</axis1>
 					<axis2 name="Year">cost</axis2>
 					<xPath buildList="true" dataName="price" group="false" sumAll="false">*[@type='sector' and (@name='elect_td_bld' or @name='elect_td_ind'
 						or @name='elect_td_trn')]/cost/text()</xPath>
 					<comments>Electricity prices, converted from million 1975$s/EJ to 2020$/kWh</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.33 Refined liquid prices (2020$/gal)">
+				<supplyDemandQuery title="10.37 Refined liquid prices (2020$/gal)">
 					<axis1 name="fuel">sector</axis1>
 					<axis2 name="Year">cost</axis2>
 					<xPath buildList="true" dataName="cost" group="false" sumAll="false">*[@type='sector' and (@name='refined liquids enduse')]/
 						cost/text()</xPath>
 					<comments>Refined liquid prices, converted from million 1975$s/EJ to 2020$/gallon (gasoline equivalent).</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.34 Gas prices (2020$/100cf)">
+				<supplyDemandQuery title="10.38 Gas prices (2020$/100cf)">
 					<axis1 name="fuel">sector</axis1>
 					<axis2 name="Year">cost</axis2>
 					<xPath buildList="true" dataName="cost" group="false" sumAll="false">*[@type='sector' and (@name='delivered gas' or @name='wholesale gas')]/
@@ -7409,7 +7417,7 @@
 				</supplyDemandQuery>
 			</queryGroup>
 			<queryGroup name="for household energy burden analysis">
-				<supplyDemandQuery title="10.35 Residential final energy by tech and income decile (GCAM)">
+				<supplyDemandQuery title="10.39 Residential final energy by tech and income decile (GCAM)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector'  and (starts-with(@name,"resid"))]/
@@ -7491,7 +7499,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.36 Residential service output by tech and income decile (GCAM)">
+				<supplyDemandQuery title="10.40 Residential service output by tech and income decile (GCAM)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector'  and (starts-with(@name,"resid"))]/
@@ -7574,7 +7582,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.37 Residential service output by tech and income decile (sales)(GCAM)">
+				<supplyDemandQuery title="10.41 Residential service output by tech and income decile (sales)(GCAM)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector'  and (starts-with(@name,"resid"))]/
@@ -7657,7 +7665,7 @@
 						</level>
 					</labelRewriteList>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.38 Final energy prices">
+				<supplyDemandQuery title="10.42 Final energy prices">
 					<axis1 name="fuel">sector</axis1>
 					<axis2 name="Year">cost</axis2>
 					<xPath buildList="true" dataName="cost" group="false" sumAll="false">*[@type='sector' and (@name='wholesale gas' or @name='delivered gas' or
@@ -7669,25 +7677,25 @@
 				</supplyDemandQuery>
 			</queryGroup>
 			<queryGroup name="for developing GCAM techbound file">
-				<supplyDemandQuery title="10.39 Inputs by tech for nested subsectors">
+				<supplyDemandQuery title="10.43 Inputs by tech for nested subsectors">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='subsector']/*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
 					<comments>Inputs into each technology. Useful for tracking fuel and material flows.</comments>
 				</supplyDemandQuery>				
-				<supplyDemandQuery title="10.40 Inputs by tech for non-nested subsectors">
+				<supplyDemandQuery title="10.44 Inputs by tech for non-nested subsectors">
 					<axis1 name="input">input</axis1>
 					<axis2 name="Year">demand-physical[@vintage]</axis2>
 					<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
 				<comments>Inputs into each technology. Useful for tracking fuel and material flows.</comments>
 				</supplyDemandQuery>
-				<supplyDemandQuery title="10.41 Outputs by tech for nested subsectors">
+				<supplyDemandQuery title="10.45 Outputs by tech for nested subsectors">
 					<axis1 name="output">output</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='subsector']//*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
 					<comments>Outputs from each technology. Useful for tracking fuel and material flows.</comments>
 				</supplyDemandQuery>				
-				<supplyDemandQuery title="10.42 Outputs by tech for non-nested subsectors">
+				<supplyDemandQuery title="10.46 Outputs by tech for non-nested subsectors">
 					<axis1 name="output">output</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
 					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='output' and @name!='oil-credits']/physical-output/node()</xPath>
