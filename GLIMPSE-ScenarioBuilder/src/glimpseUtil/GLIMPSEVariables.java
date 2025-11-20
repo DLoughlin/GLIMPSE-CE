@@ -60,23 +60,25 @@ public class GLIMPSEVariables {
     private GLIMPSEStyles styles;
 
     // --- Constants ---
-    private static final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.0-beta";
-    public static final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
-    public static final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
-    private static final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
-    private static final List<Integer> DEFAULT_ALLOWABLE_POLICY_YEARS_LIST = new ArrayList<>(Arrays.asList(2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
-    private static final List<Integer> DEFAULT_ALL_YEARS_LIST = new ArrayList<>(Arrays.asList(1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
-    private static final Integer DEFAULT_CALIBRATION_YEAR = new Integer(2021);
-    private static final String DEFAULT_USE_ICONS = "false";
-    private static final String DEFAULT_PREFERRED_FONT_SIZE = "12";
-    private static final String DEFAULT_DEBUG_REGION = "USA";
-    private static final boolean DEFAULT_SHOW_SPLASH = true;
-    private static final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
-    private static final int DEFAULT_PERIOD_INCREMENT = 5; // Default period increment for GCAM
-    private static final List<String> DEFAULT_REGION_LIST = new ArrayList<>(Arrays.asList("USA", "Canada", "EU-15", "Europe_Non_EU", "European Free Trade Association", "Japan", "Australia_NZ", "Central Asia", "Russia", "China", "Middle East", "Africa_Eastern", "Africa_Northern", "Africa_Southern", "Africa_Western", "South Africa", "Brazil", "Central America and Caribbean", "Mexico", "South America_Northern", "South America_Southern", "Argentina", "Colombia", "Indonesia", "Pakistan", "South Asia", "Southeast Asia", "Taiwan", "Europe_Eastern", "EU-12", "South Korea", "India", "Ukraine"));
-    private static final List<String> DEFAULT_SUBREGION_LIST = new ArrayList<>(Arrays.asList("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"));
-    private static final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
+    private final String DEFAULT_GLIMPSE_VERSION = "GLIMPSE-CE v1.0";
+    public final int DEFAULT_SCENARIO_BUILDER_WIDTH = 1200;
+    public final int DEFAULT_SCENARIO_BUILDER_HEIGHT = 800;
+    private final float DEFAULT_MAX_DATABASE_SIZE_GB = 40f;
+    private final List<Integer> DEFAULT_ALLOWABLE_POLICY_YEARS_LIST = new ArrayList<>(Arrays.asList(2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
+    private final List<Integer> DEFAULT_ALL_YEARS_LIST = new ArrayList<>(Arrays.asList(1990,2005,2010,2015,2021,2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080,2085,2090,2095,2100));
+    private final Integer DEFAULT_CALIBRATION_YEAR = new Integer(2021);
+    private final String DEFAULT_USE_ICONS = "false";
+    private final String DEFAULT_PREFERRED_FONT_SIZE = "12";
+    private final String DEFAULT_DEBUG_REGION = "USA";
+    private final boolean DEFAULT_SHOW_SPLASH = true;
+    private final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
+    private final int DEFAULT_PERIOD_INCREMENT = 5; // Default period increment for GCAM
+    private final List<String> DEFAULT_REGION_LIST = new ArrayList<>(Arrays.asList("USA", "Canada", "EU-15", "Europe_Non_EU", "European Free Trade Association", "Japan", "Australia_NZ", "Central Asia", "Russia", "China", "Middle East", "Africa_Eastern", "Africa_Northern", "Africa_Southern", "Africa_Western", "South Africa", "Brazil", "Central America and Caribbean", "Mexico", "South America_Northern", "South America_Southern", "Argentina", "Colombia", "Indonesia", "Pakistan", "South Asia", "Southeast Asia", "Taiwan", "Europe_Eastern", "EU-12", "South Korea", "India", "Ukraine"));
+    private final List<String> DEFAULT_SUBREGION_LIST = new ArrayList<>(Arrays.asList("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"));
+    private final List<String> DEFAULT_POLLUTANT_LIST = new ArrayList<>(Arrays.asList("CO2 (MTC)", "CO2 (MT CO2)","GHG (MT CO2E)", "NOx (Tg)", "SO2 (Tg)", "PM2.5 (Tg)", "CO (Tg)", "NMVOC (Tg)", "NH3 (Tg)", "CH4 (Tg)", "N2O (Tg)", "BC (Tg)", "OC (Tg)","F-gases (MT CO2E)"));
+    private final int DEFAULT_SIMULATION_YEAR_INCREMENT = 5;
 
+    
     // --- Fields ---
     private String glimpseVersion = DEFAULT_GLIMPSE_VERSION;
     private int scenarioBuilderWidth = DEFAULT_SCENARIO_BUILDER_WIDTH;
@@ -94,6 +96,7 @@ public class GLIMPSEVariables {
     //private String[][] sectorInfo = null;
     private List<Integer> allowablePolicyYears = DEFAULT_ALLOWABLE_POLICY_YEARS_LIST;
     private List<Integer> allYears = DEFAULT_ALL_YEARS_LIST;
+    private List<String> pollutantList = DEFAULT_POLLUTANT_LIST;
     private Integer calibrationYear = DEFAULT_CALIBRATION_YEAR;
     private int periodIncrement = DEFAULT_PERIOD_INCREMENT;
     private String preferredFontSize = DEFAULT_PREFERRED_FONT_SIZE;
@@ -163,6 +166,32 @@ public class GLIMPSEVariables {
         return INSTANCE;
     }
 
+    /**
+     * Returns the list of pollutants as an array of strings.
+     *
+     * @return An array of pollutant names.
+     */
+    public String[] getPollutantList() {
+		String[] pollutants = new String[pollutantList.size()];
+		for (int i = 0; i < pollutantList.size(); i++) {
+			pollutants[i] = pollutantList.get(i);
+		}
+		return pollutants;
+	}
+
+    /**
+     * Sets the list of pollutants from a comma-separated string.
+     *
+     * @param pollutantListStr A comma-separated list of pollutant names.
+     */
+    public void setPollutantList(String pollutantListStr) {
+		this.pollutantList = new ArrayList<>();
+		String[] pollutants = pollutantListStr.split(",");
+		for (String pollutant : pollutants) {
+			this.pollutantList.add(pollutant.trim());
+		}
+	}
+    
     /**
      * Initializes utility, style, and file dependencies.
      *
