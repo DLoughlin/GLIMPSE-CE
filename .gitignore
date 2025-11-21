@@ -1,3 +1,4 @@
+**/*.class
 **/GLIMPSE-ScenarioBuilder/*.jar
 **/GLIMPSE-ModelInterface/*.jar
 **/GLIMPSE*.jar

@@ -56,19 +56,16 @@ million90$,million2020$,1.98,10.5 Prices of all markets (2020$s),,,,,,,,
 1990$/GJ,2020$/gal,0.261,10.7 Refined liquid prices (2020$/gal),,,,,,,,
 1975$/GJ,2020$/gal,0.551,10.7 Refined liquid prices (2020$/gal),,,,,,,,
 
-Tg,2023$mil,1.0,10.8 Damages with corrected units (2023$Mil),,,,,,,,
-
 #Correcting units
-<<<<<<< main
 #Tg,2023$mil,1.0,10.8 Damages with corrected units (2023$Mil),,,,,,,,
 Tg,2023$bln,1.0,,GHG,Damage,,,,,,
 Tg,2023$bln,1.0,,GHG,PMDAM,,,,,,
 Tg,2023$bln,1.0,,GHG,O3DAM,,,,,,
-=======
->>>>>>> 05b590d Modified name of collapse button to view +/- and added the ability to toggle the tree between fully expanded and fully collapsed. Also updated main query file and units_rules. The former includes some updates to queries to support graphing, while the latter includes an update to GWPs and auto-conversion of damage units from Tg to 2023$mil.
 1990$/pass-km,1990$/veh-km,1.0,Amortized cap costs of transport techs (corrected units),,,,,,,,
 1990$/pass-km,1990$/veh-km,1.0,9.15 Transport tech amortized cap costs,,,,,,,,
 1990$/ton-km,1990$/veh-km,1.0,9.15 Transport tech amortized cap costs,,,,,,,,
+
+
 
 #EJ,billion gallons,0.13176,Transport final energy by tech and fuel,technology,*Liquids,,,,,,
 #MTC,MTCO2,3.666,,,,,,,,,    
