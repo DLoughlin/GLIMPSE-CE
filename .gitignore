@@ -16,3 +16,13 @@
 **/GCAM-Model/*
 /Contrib.zip
 /GLIMPSE-code-folders.zip
+**/*.class
+**/*.log
+**/*.tmp
+**/*.bak
+**/*Restart*
+**/*restart*
+**/GCAM-Model/input/*
+**/GCAM-Model/output/*
+**/GCAM-Model/input/
+**/GCAM-Model/output/
