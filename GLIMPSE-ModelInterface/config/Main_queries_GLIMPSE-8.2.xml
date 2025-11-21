@@ -5276,7 +5276,7 @@
 				<comments>All tracked emission species by region.</comments>
 			</emissionsQueryBuilder>
 			<emissionsQueryBuilder title="5.12 All emissions by aggregate sector">
-				<axis1 name="GHG">GHG</axis1>
+				<axis1 name="Sector">sector</axis1>
 				<axis2 name="Year">emissions</axis2>
 				<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[(@type = 'sector') ]//*[@type = 'GHG']/emissions/node()</xPath>
 				<comments>All tracked emission species by aggregate sector.</comments>
@@ -6307,7 +6307,7 @@
 					cost/text()</xPath>
 					<comments>Refined liquid prices, converted from million 1975$s/EJ to 2020$/gallon (gasoline equivalent).</comments>
 				</supplyDemandQuery>
-				<emissionsQueryBuilder title="10.8 Damages with corrected units (2023$Mil)">
+				<emissionsQueryBuilder title="10.8 Damages with corrected units (2023$Bln)">
 					<axis1 name="GHG">GHG</axis1>
 					<axis2 name="Year">emissions</axis2>
 					<xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' (:collapse:) or @type = 'resource' (:collapse:)](: / *[@type = 'subresource' (: collapse :)] :)//

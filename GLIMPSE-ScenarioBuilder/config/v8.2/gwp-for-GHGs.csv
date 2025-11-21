@@ -1,4 +1,4 @@
-﻿pollutant,demand_adjust,price_adjust,price_unit,output_unit
+﻿#pollutant,demand_adjust,price_adjust,price_unit,output_unit
 CO2,3.667,1.000,1990$/tC,MtC
 CH4,25,6.818,1990$/GgCH4,TgCH4
 CH4_AWB,25,6.818,1990$/GgCH4,TgCH4
