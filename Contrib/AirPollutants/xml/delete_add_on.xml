@@ -1,8 +1,0 @@
-<scenario>
-    <world>
-        <region name="USA">
-            <supplysector delete="1" name="industry"/>
-            <supplysector delete="1" name="urban processes"/>
-        </region>
-    </world>
-</scenario>
