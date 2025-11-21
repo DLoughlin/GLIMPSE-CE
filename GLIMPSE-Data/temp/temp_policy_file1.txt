@@ -1,5 +1,0 @@
-INPUT_TABLE
-Variable ID
-GLIMPSEPFStdTechUpBoundP1-Nest
-
-region,sector,nested-subsector,subsector,tech,year,policy-name

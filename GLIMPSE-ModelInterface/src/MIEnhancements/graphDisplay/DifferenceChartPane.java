@@ -290,7 +290,7 @@ public class DifferenceChartPane extends JPanel {
     private String[] getsubTitle() {
         String[] st = new String[charts[selected[0]].getTitles().length];
         for (int i = 1; i < charts[selected[0]].getTitles().length; i++) {
-            st[i] = charts[selected[0]].getTitles()[i] + " - " + charts[selected[1]].getTitles()[i];
+            st[i] = charts[selected[0]].getTitles()[i] + " minus " + charts[selected[1]].getTitles()[i];
         }
         return st;
     }
