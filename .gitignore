@@ -7,10 +7,6 @@
 **/gcamdata/
 **/database*/
 **/model_interface.properties-nope
-**/GLIMPSE-Data/GCAM*/trash/*
-**/GLIMPSE-Data/GCAM*/log/*
-**/GLIMPSE-Data/GCAM*/ScenarioComponents/*
-**/GLIMPSE-Data/GCAM*/ScenarioFolders/*
 /amazon-corretto-8.442.06.1-windows-x64-jre/
 **/*log.txt
 **/GCAM-Model/*
@@ -26,4 +22,4 @@
 **/GCAM-Model/output/*
 **/GCAM-Model/input/
 **/GCAM-Model/output/
-/bfg-1.15.0.jar
+
