@@ -2,3 +2,4 @@
 *.jar
 **/*.class
 
+/model_interface.properties

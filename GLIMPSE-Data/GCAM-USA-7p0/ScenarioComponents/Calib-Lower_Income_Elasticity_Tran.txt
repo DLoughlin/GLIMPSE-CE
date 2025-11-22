@@ -1,2 +1,0 @@
-@type=xmllist
-..\..\..\Contrib\Calibration\economics\trn_USA_income_elasticity_1.xml
