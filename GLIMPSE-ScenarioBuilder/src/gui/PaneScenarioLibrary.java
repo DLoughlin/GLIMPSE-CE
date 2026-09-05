@@ -969,6 +969,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             if (configFile == null || configFile.trim().isEmpty()) {
                 continue;
             }
+            ScenarioLibraryStopHelper.clearSoftStopRequest();
             String scenarioName = scenarioNameFromConfigPath(configFile);
             if (scenarioName.isEmpty()) {
                 continue;
@@ -1237,6 +1238,18 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
 
         ScenarioLibraryStopHelper.StopMode stopMode = ScenarioLibraryStopHelper.promptForStopMode();
         if (stopMode == ScenarioLibraryStopHelper.StopMode.CONTINUE) {
+            return;
+        }
+
+        if (stopMode == ScenarioLibraryStopHelper.StopMode.SOFT_STOP) {
+            if (ScenarioLibraryStopHelper.requestSoftStop()) {
+                try {
+                    ConsoleManager.appendHeader(ConsoleManager.StreamSource.GCAM_STDOUT, "Soft stop requested");
+                    ConsoleManager.appendLine(ConsoleManager.StreamSource.GCAM_STDOUT,
+                            ConsoleManager.MessageKind.GLIMPSE_INFO,
+                            "Requested GCAM soft stop after the current period ends.");
+                } catch (Exception ignored) {}
+            }
             return;
         }
 
