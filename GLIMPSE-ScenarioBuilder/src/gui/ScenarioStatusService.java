@@ -56,6 +56,9 @@ final class ScenarioStatusService {
     private static final String FILES_HEADER = "<Files>";
     private static final String EXTERNALLY_CREATED_SCENARIO = "Externally-created scenario";
     private static final String STOPPED_MARKER = "GLIMPSE scenario status: Stopped";
+    private static final String[] LOG_LINE_LEVEL_PREFIXES = {
+            "TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
+    };
     private static final String[] STDOUT_SUCCESS_MARKERS = {
             "Model exiting successfully.",
             "Exiting successfully.",
@@ -186,8 +189,7 @@ final class ScenarioStatusService {
             } else {
                 status = STATUS_DNF;
                 if (scenarioLogAnalysis.statusText.contains(",ERR")) {
-                    String errorStr = scenarioLogAnalysis.statusText.substring(scenarioLogAnalysis.statusText.indexOf(',') + 4);
-                    unsolved = errorStr;
+                    unsolved = extractErrPayload(scenarioLogAnalysis.statusText);
                 }
             }
         }
@@ -202,14 +204,14 @@ final class ScenarioStatusService {
         }
         if (!scenarioLogAnalysis.unsolvedLine.isEmpty()) {
             try {
-                unsolved = scenarioLogAnalysis.unsolvedLine.split(":", 2)[1].trim();
+                unsolved = extractSuffixAfterMarker(scenarioLogAnalysis.unsolvedLine, UNSOLVED_PREFIX);
                 status = STATUS_UNSOLVED;
             } catch (Exception e) {
                 unsolved = "";
             }
         } else if (!scenarioStdoutAnalysis.unsolvedLine.isEmpty()) {
             try {
-                unsolved = scenarioStdoutAnalysis.unsolvedLine.split(":", 2)[1].trim();
+                unsolved = extractSuffixAfterMarker(scenarioStdoutAnalysis.unsolvedLine, UNSOLVED_PREFIX);
                 status = STATUS_UNSOLVED;
             } catch (Exception e) {
                 unsolved = "";
@@ -248,11 +250,11 @@ final class ScenarioStatusService {
                             && !scenarioStdoutAnalysis.successMarkerFound) {
                         // Keep Writing sticky for the active run until terminal completion/error markers appear.
                         status = STATUS_WRITING;
-                    } else if (runningStatus.contains("ERROR:")) {
-                        String temp = runningStatus.substring(0, runningStatus.indexOf(","));
+                    } else if (runningStatus.contains(",ERR")) {
+                        int comma = runningStatus.indexOf(',');
+                        String temp = comma > 0 ? runningStatus.substring(0, comma).trim() : "ERROR";
                         status = status + "(" + temp + ")";
-                        String errorStr = runningStatus.substring(runningStatus.indexOf(",") + 4);
-                        unsolved = errorStr;
+                        unsolved = extractErrPayload(runningStatus);
                     } else {
                         String temp = runningStatus;
                         if (!temp.isEmpty()) {
@@ -471,7 +473,7 @@ final class ScenarioStatusService {
 
         List<String> tailLines = readTailLines(file, LOG_TAIL_BYTES);
         for (int i = tailLines.size() - 1; i >= 0; i--) {
-            String line = safeTrim(tailLines.get(i));
+            String line = stripKnownLogLinePrefixes(tailLines.get(i));
             if (line.isEmpty()) {
                 continue;
             }
@@ -512,7 +514,7 @@ final class ScenarioStatusService {
             try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    String trimmed = safeTrim(line);
+                    String trimmed = stripKnownLogLinePrefixes(line);
                     if (trimmed.isEmpty()) {
                         continue;
                     }
@@ -708,6 +710,58 @@ final class ScenarioStatusService {
         return value == null ? "" : value.trim();
     }
 
+    private String extractErrPayload(String statusText) {
+        String trimmed = safeTrim(statusText);
+        int markerIndex = trimmed.indexOf(",ERR");
+        if (markerIndex < 0) {
+            return "";
+        }
+        return safeTrim(trimmed.substring(markerIndex + 4));
+    }
+
+    private String extractSuffixAfterMarker(String line, String marker) {
+        String trimmed = safeTrim(line);
+        if (trimmed.isEmpty()) {
+            return "";
+        }
+        int markerIndex = marker == null ? -1 : trimmed.indexOf(marker);
+        if (markerIndex >= 0) {
+            return safeTrim(trimmed.substring(markerIndex + marker.length()));
+        }
+        int colonIndex = trimmed.lastIndexOf(':');
+        return colonIndex >= 0 ? safeTrim(trimmed.substring(colonIndex + 1)) : trimmed;
+    }
+
+    private String stripKnownLogLinePrefixes(String line) {
+        String trimmed = safeTrim(line);
+        if (trimmed.isEmpty()) {
+            return "";
+        }
+        String normalized = trimmed;
+        boolean changed;
+        do {
+            changed = false;
+            for (String prefix : LOG_LINE_LEVEL_PREFIXES) {
+                if (prefix == null || prefix.isEmpty()) {
+                    continue;
+                }
+                if (startsWithIgnoreCase(normalized, prefix + ":")) {
+                    normalized = safeTrim(normalized.substring(prefix.length() + 1));
+                    changed = true;
+                    break;
+                }
+            }
+        } while (changed && !normalized.isEmpty());
+        return normalized;
+    }
+
+    private boolean startsWithIgnoreCase(String value, String prefix) {
+        if (value == null || prefix == null || value.length() < prefix.length()) {
+            return false;
+        }
+        return value.regionMatches(true, 0, prefix, 0, prefix.length());
+    }
+
     private String getExplicitRunStateLabel(String scenarioName, File currentMainLogFile, String runningStatus,
             RefreshRequest request) {
         if (scenarioName == null || scenarioName.trim().isEmpty()) {
@@ -735,11 +789,18 @@ final class ScenarioStatusService {
     private String toRuntimeText(String runtimeLine) {
         String runtime = "";
         try {
-            runtime = runtimeLine.split(":")[1].trim();
+            String normalized = stripKnownLogLinePrefixes(runtimeLine);
+            int runtimePrefixIndex = normalized.indexOf(RUNTIME_PREFIX);
+            if (runtimePrefixIndex >= 0) {
+                runtime = normalized.substring(runtimePrefixIndex + RUNTIME_PREFIX.length()).trim();
+            } else {
+                int colonIndex = normalized.lastIndexOf(':');
+                runtime = colonIndex >= 0 ? normalized.substring(colonIndex + 1).trim() : normalized;
+            }
         } catch (Exception e) {
             runtime = "";
         }
-        runtime = runtime.replace("seconds.", "").trim();
+        runtime = runtime.replace("seconds.", "").replace("seconds", "").trim();
         try {
             int totalSecs = (int) Math.round(Float.parseFloat(runtime));
             int hours = (totalSecs - totalSecs % 3600) / 3600;

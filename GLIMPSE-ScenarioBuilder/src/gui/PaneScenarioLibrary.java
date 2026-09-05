@@ -116,6 +116,9 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
     private static final Duration LIVE_STATUS_REFRESH_INTERVAL = Duration.ofSeconds(5);
     private static final String STOPPED_LOG_MARKER = "GLIMPSE scenario status: Stopped";
     private static final String LIVE_STDOUT_ERROR_PREFIX = "ERROR";
+    private static final String[] LIVE_STDOUT_LOG_LEVEL_PREFIXES = {
+            "TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
+    };
     private static final java.util.regex.Pattern LIVE_UNSOLVED_PERIOD_ERROR_PATTERN = java.util.regex.Pattern.compile(
             "did\\s+not\\s+solve\\s+periods?\\s*[:=]?\\s*([0-9]{1,3}(?:\\s*(?:,|and|&)\\s*[0-9]{1,3})*)",
             java.util.regex.Pattern.CASE_INSENSITIVE);
@@ -1741,10 +1744,11 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      * @return true if line is a live error, false otherwise
      */
     private boolean isLiveStdoutErrorLine(String line) {
-        if (line == null) {
+        String normalized = stripLiveStdoutLogPrefixes(line);
+        if (normalized.isEmpty()) {
             return false;
         }
-        return line.trim().startsWith(LIVE_STDOUT_ERROR_PREFIX);
+        return normalized.startsWith(LIVE_STDOUT_ERROR_PREFIX);
     }
 
     /**
@@ -1755,10 +1759,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      */
     private LinkedHashSet<String> extractLiveErrorPeriods(String line) {
         LinkedHashSet<String> periods = new LinkedHashSet<>();
-        if (line == null) {
-            return periods;
-        }
-        String trimmed = line.trim();
+        String trimmed = stripLiveStdoutLogPrefixes(line);
         if (trimmed.isEmpty() || !trimmed.toLowerCase(Locale.ENGLISH).contains("did not solve period")) {
             return periods;
         }
@@ -1778,6 +1779,38 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             }
         }
         return periods;
+    }
+
+    private String stripLiveStdoutLogPrefixes(String line) {
+        if (line == null) {
+            return "";
+        }
+        String normalized = line.trim();
+        if (normalized.isEmpty()) {
+            return "";
+        }
+        boolean changed;
+        do {
+            changed = false;
+            for (String prefix : LIVE_STDOUT_LOG_LEVEL_PREFIXES) {
+                if (prefix == null || prefix.isEmpty()) {
+                    continue;
+                }
+                if (startsWithIgnoreCase(normalized, prefix + ":")) {
+                    normalized = normalized.substring(prefix.length() + 1).trim();
+                    changed = true;
+                    break;
+                }
+            }
+        } while (changed && !normalized.isEmpty());
+        return normalized;
+    }
+
+    private boolean startsWithIgnoreCase(String value, String prefix) {
+        if (value == null || prefix == null || value.length() < prefix.length()) {
+            return false;
+        }
+        return value.regionMatches(true, 0, prefix, 0, prefix.length());
     }
 
     /**
