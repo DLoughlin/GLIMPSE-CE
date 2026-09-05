@@ -129,8 +129,9 @@ public class Client extends Application {
 	private static final String RESOURCE_STATUS_PREFIX = "Resources...";
 	
     // region Constants
-    private static final double MIN_WINDOW_HEIGHT = 850;
-    private static final double MIN_WINDOW_WIDTH = 1100;
+    // Reduced by ~20% to allow a smaller usable minimum window size.
+    private static final double MIN_WINDOW_HEIGHT = 680;
+    private static final double MIN_WINDOW_WIDTH = 880;
     private static final double SPLASH_WIDTH = 383.0;
     private static final double SPLASH_HEIGHT = 384.0;
     private static final String OPTIONS_ARG_FLAG = "-options";

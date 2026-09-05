@@ -44,8 +44,9 @@ import javafx.geometry.Insets;
 public final class GLIMPSEStyles {
     private static final GLIMPSEStyles INSTANCE = new GLIMPSEStyles();
 
-    private final int bigButtonWidth = 78;
-    private final int smallButtonWidth = 42;
+    // Slightly narrower defaults help dense toolbars at smaller window widths.
+    private final int bigButtonWidth = 70;
+    private final int smallButtonWidth = 40;
 
     private int fontSize = 12;
 

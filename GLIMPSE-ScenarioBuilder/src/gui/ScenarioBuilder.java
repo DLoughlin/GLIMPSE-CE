@@ -109,7 +109,6 @@ public class ScenarioBuilder {
 	private static final String LABEL_COMPONENT_LIBRARY = "Component Library";
 	private static final String LABEL_CREATE_SCENARIO = "Create Scenario";
 	private static final String LABEL_SCENARIO_LIBRARY = "Scenario Library";
-	private static final String LABEL_SEARCH = "Search:";
 	private static final String TOOLTIP_FILTER = "Enter text to begin filtering";
 	private static final String TOOLTIP_REMOVE_SELECTED_COMPONENTS = "Remove selected component(s) from scenario";
 	private static final String TOOLTIP_REMOVE_ALL_COMPONENTS = "Remove all components from scenario";
@@ -133,8 +132,6 @@ public class ScenarioBuilder {
 
 	// UI Labels
 	protected Label labelComponentLibrary;
-	protected Label labelSearchComponentLibrary;
-	protected Label labelSearchScenarios;
 	protected Label labelScenarioLibrary;
 	protected Label labelScenarioName;
 
@@ -229,8 +226,6 @@ public class ScenarioBuilder {
 		labelComponentLibrary = utils.createLabel(LABEL_COMPONENT_LIBRARY/*, 1.7 * styles.getBigButtonWidth()*/);
 		labelComponentLibrary.getStyleClass().add(STYLE_SECTION_TITLE);
 
-		labelSearchComponentLibrary = utils.createLabel(LABEL_SEARCH);
-		labelSearchComponentLibrary.setMinWidth(Region.USE_PREF_SIZE);
 
 		HBox paneObjects = new HBox();
 		paneObjects.getStyleClass().add(STYLE_TOOLBAR);
@@ -243,7 +238,6 @@ public class ScenarioBuilder {
 
 		// Add all relevant controls to the component library pane
 		paneObjects.getChildren().addAll(
-			labelSearchComponentLibrary,
 			ComponentLibraryTable.getFilterComponentsTextField(),
 			utils.getSeparator(Orientation.VERTICAL, 3, false),
 			Client.buttonNewComponent,
@@ -478,8 +472,6 @@ public class ScenarioBuilder {
 	 */
 	private void resizeLabels() {
 		labelComponentLibrary = utils.resizeLabelText(labelComponentLibrary);
-		labelSearchComponentLibrary = utils.resizeLabelText(labelSearchComponentLibrary);
-		labelSearchScenarios = utils.resizeLabelText(labelSearchScenarios);
 		labelScenarioLibrary = utils.resizeLabelText(labelScenarioLibrary);
 		labelScenarioName = utils.resizeLabelText(labelScenarioName);
 		// Title overlay tweaks no longer needed (titles are their own rows).
@@ -753,15 +745,15 @@ public class ScenarioBuilder {
 		logBuildStep("createScenarioLibraryPane: toolbar containers start");
 		HBox buttonHBox = new HBox();
 		buttonHBox.setAlignment(Pos.CENTER_LEFT);
-		buttonHBox.setSpacing(4);
+		// Keep controls compact so the toolbar remains usable at the reduced min width.
+		buttonHBox.setSpacing(2);
 		buttonHBox.getStyleClass().add(STYLE_TOOLBAR);
 
-		labelSearchScenarios = utils.createLabel(LABEL_SEARCH/*, styles.getBigButtonWidth()*/);
-		labelSearchScenarios.setTextAlignment(TextAlignment.LEFT);
+		// Intentionally omit separate "Search:" label; the field prompt is sufficient.
 		logBuildStep("createScenarioLibraryPane: toolbar containers complete");
 
 		// Add all relevant controls to the scenario library pane
-		addScenarioLibraryControl(buttonHBox, "labelSearchScenarios", labelSearchScenarios);
+		//addScenarioLibraryControl(buttonHBox, "labelSearchScenarios", labelSearchScenarios);
 		addScenarioLibraryControl(buttonHBox, "filterScenarioTextField", filterScenarioTextField);
 		addScenarioLibraryControl(buttonHBox, "sep1", utils.getSeparator(Orientation.VERTICAL, 3, false));
 		addScenarioLibraryControl(buttonHBox, "buttonEditScenario", Client.buttonEditScenario);
