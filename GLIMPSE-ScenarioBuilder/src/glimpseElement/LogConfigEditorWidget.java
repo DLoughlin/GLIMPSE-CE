@@ -44,6 +44,8 @@ import glimpseUtil.UtilsDialogs;
 import java.io.File;
 import java.io.StringWriter;
 import java.nio.file.Paths;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,6 +114,15 @@ public class LogConfigEditorWidget {
     private static final String PRESET_MINIMAL = "Minimal";
     private static final String PRESET_NORMAL = "Normal";
     private static final String PRESET_DEBUG = "Debug";
+    private static final String PRESET_QUIET = "Quiet";
+    private static final String PRESET_DEFAULT = "Default";
+    private static final String[] DEBUG_PRESET_TARGETS = {
+        "solver_log", "single_market_log", "worst_market_log"
+    };
+    private static final String[] QUIET_PRESET_TARGETS = {
+        "single_market_log", "worst_market_log", "dependency_finder_log",
+        "solver-data-log", "solver-data-key"
+    };
 
     private final GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
     private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
@@ -166,15 +177,22 @@ public class LogConfigEditorWidget {
     private static final Map<String, LoggerDefaults> HARD_DEFAULTS = buildHardDefaults();
 
     public void createAndShow() {
+        createAndShow(null);
+    }
+
+    public void createAndShow(File initialFile) {
         stage = new Stage();
         stage.setTitle("Edit Log Configuration");
-        stage.initModality(Modality.WINDOW_MODAL);
         try {
             Window owner = UtilsDialogs.getPrimaryOwnerWindow();
             if (owner != null) {
                 stage.initOwner(owner);
+                stage.initModality(Modality.WINDOW_MODAL);
+            } else {
+                stage.initModality(Modality.NONE);
             }
         } catch (Exception ignored) {
+            stage.initModality(Modality.NONE);
         }
 
         BorderPane root = buildRoot();
@@ -189,14 +207,14 @@ public class LogConfigEditorWidget {
             }
         });
 
-        File defaultFile = resolveDefaultLogConfig();
+        File defaultFile = (initialFile != null && initialFile.isFile()) ? initialFile : resolveDefaultLogConfig();
         if (defaultFile != null) {
             loadFromFile(defaultFile);
         } else {
             updateHeaderLabels();
-            validationLabel.setText("Validation: log_conf.xml path is not configured.");
-            statusLabel.setText("Status: invalid");
-            statusLabel.setStyle("-fx-text-fill: #b00020;");
+            validationLabel.setText("Validation: no default log_conf.xml was found. Use Open to choose a file.");
+            statusLabel.setText("Status: ready");
+            statusLabel.setStyle("-fx-text-fill: black;");
             setDetailsButtonVisible(true);
         }
 
@@ -261,7 +279,7 @@ public class LogConfigEditorWidget {
         detailsButton.setOnAction(e -> showValidationDetailsDialog());
         setDetailsButtonVisible(false);
 
-        HBox buttonRow = new HBox(8, openButton, saveButton, saveAsButton, revertButton,
+        HBox buttonRow = new HBox(8, openButton, revertButton,
                 compareButton, editRawButton);
         buttonRow.setAlignment(Pos.CENTER_LEFT);
         HBox statusRow = new HBox(8, statusLabel, validationLabel, detailsButton);
@@ -320,6 +338,7 @@ public class LogConfigEditorWidget {
         quietButton.setOnAction(e -> applyQuietProductionPreset());
         defaultButton.setOnAction(e -> restoreDefaults());
 
+        Label globalActionsLabel = new Label("Set globally:");
         HBox globalActions = new HBox(8, debugButton, quietButton, defaultButton);
         globalActions.setAlignment(Pos.CENTER_LEFT);
 
@@ -327,6 +346,7 @@ public class LogConfigEditorWidget {
                 new Label("Logger list"),
                 searchField,
                 loggerListView,
+                globalActionsLabel,
                 globalActions);
         pane.setPadding(new Insets(0, 10, 0, 0));
         pane.setPrefWidth(320);
@@ -348,7 +368,7 @@ public class LogConfigEditorWidget {
     }
 
     private VBox buildLoggerDetailsPane() {
-        presetCombo.getItems().addAll(PRESET_MINIMAL, PRESET_NORMAL, PRESET_DEBUG);
+        presetCombo.getItems().addAll(PRESET_DEBUG, PRESET_QUIET, PRESET_DEFAULT);
         printLogWarningCombo.getItems().setAll(PRINT_LOG_WARNING_OPTIONS);
         minLogWarningCombo.getItems().setAll(WARNING_LEVEL_OPTIONS);
         minToScreenWarningCombo.getItems().setAll(WARNING_LEVEL_OPTIONS);
@@ -360,7 +380,7 @@ public class LogConfigEditorWidget {
         advancedTypeField.setEditable(false);
         headerMessageArea.setPrefRowCount(5);
 
-        applyTooltip(presetCombo, "Preset is optional; custom level combinations may leave this blank.");
+        applyTooltip(presetCombo, "Applies to the selected logger only.");
         applyTooltip(printLogWarningCombo, "Whether warning-level labels are printed in log messages.");
         applyTooltip(minLogWarningCombo, "Minimum severity retained by this logger.");
         applyTooltip(minToScreenWarningCombo, "Messages from this logger that appear in the console.");
@@ -381,7 +401,7 @@ public class LogConfigEditorWidget {
                 selected.minToScreenWarningLevel = "6";
             } else if ("6".equals(safe(selected.minLogWarningLevel))
                     && "6".equals(safe(selected.minToScreenWarningLevel))) {
-                applyPresetToModel(selected, PRESET_NORMAL);
+                applyHardDefaultVerbosityToModel(selected);
             }
             populateDetails(selected);
             markDirtyAndRefresh();
@@ -395,7 +415,7 @@ public class LogConfigEditorWidget {
             if (selected == null) {
                 return;
             }
-            applyPresetToModel(selected, newVal);
+            applySelectedVerbosityPreset(selected, newVal);
             populateDetails(selected);
             markDirtyAndRefresh();
         });
@@ -411,7 +431,7 @@ public class LogConfigEditorWidget {
         grid.setVgap(8);
         int r = 0;
         grid.add(enabledCheckBox, 0, r++, 2, 1);
-        grid.add(new Label("Verbosity preset:"), 0, r);
+        grid.add(new Label("Preset Verbosity Settings:"), 0, r);
         grid.add(presetCombo, 1, r++);
         grid.add(new Label("Name:"), 0, r);
         grid.add(advancedNameField, 1, r++);
@@ -460,10 +480,15 @@ public class LogConfigEditorWidget {
             }
         });
 
+        Button saveButton = new Button("Save");
+        Button saveAsButton = new Button("Save As");
+        saveButton.setOnAction(e -> saveCurrentFile());
+        saveAsButton.setOnAction(e -> saveAsNewFile());
+
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox footer = new HBox(8, spacer, closeButton);
+        HBox footer = new HBox(8, spacer, saveButton, saveAsButton, closeButton);
         footer.setAlignment(Pos.CENTER_RIGHT);
         footer.setPadding(new Insets(10, 0, 0, 0));
         return footer;
@@ -636,7 +661,7 @@ public class LogConfigEditorWidget {
             if (loggerName.equalsIgnoreCase(model.name)) {
                 model.enabled = enabled;
                 if (enabled) {
-                    applyPresetToModel(model, preset);
+                    applyInternalPresetToModel(model, preset);
                 } else {
                     model.printLogWarningLevel = "0";
                     model.minLogWarningLevel = "6";
@@ -1016,11 +1041,11 @@ public class LogConfigEditorWidget {
         if (model == null || preset == null) {
             return;
         }
-        if (PRESET_MINIMAL.equals(preset)) {
+        if ("Minimal".equals(preset)) {
             model.printLogWarningLevel = "0";
             model.minLogWarningLevel = "3";
             model.minToScreenWarningLevel = "4";
-        } else if (PRESET_NORMAL.equals(preset)) {
+        } else if ("Normal".equals(preset)) {
             model.printLogWarningLevel = "0";
             model.minLogWarningLevel = "2";
             model.minToScreenWarningLevel = "3";
@@ -1031,20 +1056,122 @@ public class LogConfigEditorWidget {
         }
     }
 
+    private void applyInternalPresetToModel(LoggerModel model, String preset) {
+        applyPresetToModel(model, preset);
+    }
+
+    private void applySelectedVerbosityPreset(LoggerModel model, String preset) {
+        if (model == null || preset == null) {
+            return;
+        }
+        if (PRESET_DEBUG.equals(preset)) {
+            if (isNamedLogger(model.name, DEBUG_PRESET_TARGETS)) {
+                model.enabled = true;
+                applyInternalPresetToModel(model, PRESET_DEBUG);
+            } else {
+                applyHardDefaultVerbosityToModel(model);
+            }
+        } else if (PRESET_QUIET.equals(preset)) {
+            if (isNamedLogger(model.name, QUIET_PRESET_TARGETS)) {
+                model.enabled = false;
+                model.printLogWarningLevel = "0";
+                model.minLogWarningLevel = "6";
+                model.minToScreenWarningLevel = "6";
+            } else if ("main_log".equalsIgnoreCase(safe(model.name).trim())) {
+                model.enabled = true;
+                applyInternalPresetToModel(model, "Normal");
+            } else {
+                applyHardDefaultVerbosityToModel(model);
+            }
+        } else if (PRESET_DEFAULT.equals(preset)) {
+            applyHardDefaultVerbosityToModel(model);
+        }
+    }
+
+    private void applyHardDefaultVerbosityToModel(LoggerModel model) {
+        if (model == null || model.name == null) {
+            return;
+        }
+        LoggerDefaults defaults = HARD_DEFAULTS.get(model.name);
+        if (defaults == null) {
+            return;
+        }
+        model.printLogWarningLevel = defaults.printLogWarningLevel;
+        model.minLogWarningLevel = defaults.minLogWarningLevel;
+        model.minToScreenWarningLevel = defaults.minToScreenWarningLevel;
+        model.enabled = !"6".equals(defaults.minLogWarningLevel)
+                || !"6".equals(defaults.minToScreenWarningLevel);
+    }
+
     private String detectPreset(LoggerModel model) {
-        String p = safe(model.printLogWarningLevel).trim();
-        String m = safe(model.minLogWarningLevel).trim();
-        String s = safe(model.minToScreenWarningLevel).trim();
-        if ("0".equals(p) && "3".equals(m) && "4".equals(s)) {
-            return PRESET_MINIMAL;
+        if (model == null) {
+            return null;
         }
-        if ("0".equals(p) && "2".equals(m) && "3".equals(s)) {
-            return PRESET_NORMAL;
+        if (matchesHardDefaultVerbosity(model)) {
+            return PRESET_DEFAULT;
         }
-        if ("0".equals(p) && "1".equals(m) && "1".equals(s)) {
+        if (matchesQuietPreset(model)) {
+            return PRESET_QUIET;
+        }
+        if (matchesDebugPreset(model)) {
             return PRESET_DEBUG;
         }
         return null;
+    }
+
+    private boolean matchesHardDefaultVerbosity(LoggerModel model) {
+        if (model == null || model.name == null) {
+            return false;
+        }
+        LoggerDefaults defaults = HARD_DEFAULTS.get(model.name);
+        if (defaults == null) {
+            return false;
+        }
+        return safe(model.printLogWarningLevel).trim().equals(defaults.printLogWarningLevel)
+                && safe(model.minLogWarningLevel).trim().equals(defaults.minLogWarningLevel)
+                && safe(model.minToScreenWarningLevel).trim().equals(defaults.minToScreenWarningLevel)
+                && model.enabled == (!"6".equals(defaults.minLogWarningLevel)
+                        || !"6".equals(defaults.minToScreenWarningLevel));
+    }
+
+    private boolean matchesDebugPreset(LoggerModel model) {
+        return isNamedLogger(model == null ? null : model.name, DEBUG_PRESET_TARGETS)
+                && model.enabled
+                && "0".equals(safe(model.printLogWarningLevel).trim())
+                && "1".equals(safe(model.minLogWarningLevel).trim())
+                && "1".equals(safe(model.minToScreenWarningLevel).trim());
+    }
+
+    private boolean matchesQuietPreset(LoggerModel model) {
+        if (model == null || model.name == null) {
+            return false;
+        }
+        String name = model.name.trim();
+        if ("main_log".equalsIgnoreCase(name)) {
+            return model.enabled
+                    && "0".equals(safe(model.printLogWarningLevel).trim())
+                    && "2".equals(safe(model.minLogWarningLevel).trim())
+                    && "3".equals(safe(model.minToScreenWarningLevel).trim());
+        }
+        if (!isNamedLogger(name, QUIET_PRESET_TARGETS)) {
+            return false;
+        }
+        return !model.enabled
+                && "0".equals(safe(model.printLogWarningLevel).trim())
+                && "6".equals(safe(model.minLogWarningLevel).trim())
+                && "6".equals(safe(model.minToScreenWarningLevel).trim());
+    }
+
+    private boolean isNamedLogger(String name, String[] targets) {
+        if (name == null || targets == null) {
+            return false;
+        }
+        for (String target : targets) {
+            if (target != null && target.equalsIgnoreCase(name.trim())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean confirmDiscardIfDirty(String message) {
@@ -1075,10 +1202,50 @@ public class LogConfigEditorWidget {
     }
 
     private File resolveDefaultLogConfig() {
-        if (vars.getgCamExecutableDir() == null || vars.getgCamExecutableDir().trim().isEmpty()) {
+        File candidate = resolveLogConfigInDirectory(vars.getgCamExecutableDir());
+        if (candidate != null) {
+            return candidate;
+        }
+
+        candidate = resolveLogConfigInDirectory(System.getProperty("user.dir"));
+        if (candidate != null) {
+            return candidate;
+        }
+
+        File editorLocation = resolveEditorLocationDirectory();
+        if (editorLocation != null) {
+            candidate = resolveLogConfigInDirectory(editorLocation.getAbsolutePath());
+            if (candidate != null) {
+                return candidate;
+            }
+        }
+
+        return null;
+    }
+
+    private File resolveLogConfigInDirectory(String directory) {
+        if (directory == null || directory.trim().isEmpty()) {
             return null;
         }
-        return Paths.get(vars.getgCamExecutableDir(), "log_conf.xml").toFile();
+        File candidate = Paths.get(directory.trim(), "log_conf.xml").toFile();
+        return candidate.isFile() ? candidate : null;
+    }
+
+    private File resolveEditorLocationDirectory() {
+        try {
+            URL location = LogConfigEditorWidget.class.getProtectionDomain().getCodeSource().getLocation();
+            if (location == null) {
+                return null;
+            }
+            URI uri = location.toURI();
+            File file = new File(uri);
+            if (file.isFile()) {
+                return file.getParentFile();
+            }
+            return file;
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
     private File resolveDefaultParentDir() {

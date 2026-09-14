@@ -210,6 +210,60 @@ public class TabCloseIcon implements Icon {
 		return tabHeaderPanel;
 	}
 
+	private void closeTabAtIndex(final int index, final boolean restoreSelectionAfterClose,
+			final int selectedBeforeClose) {
+		if (index < 0 || index >= tabPane.getTabCount()) {
+			return;
+		}
+		final QueryResultsPanel closeThread = (QueryResultsPanel) tabPane.getComponentAt(index);
+		final BaseTableModel btm = DbViewer.getTableModelFromComponent(closeThread);
+		if (InterfaceMain.getInstance() != null) {
+			InterfaceMain.getInstance().fireProperty("Query", btm, null);
+		}
+		try {
+			closeThread.killThreadAndWait();
+		} catch (final Exception ex) {
+			// Best-effort shutdown; still allow the tab to close.
+		}
+		tabPane.remove(index);
+		if (restoreSelectionAfterClose) {
+			restoreTabSelectionAfterClose(selectedBeforeClose, index);
+		}
+	}
+
+	private void closeAllTabsExcept(final int keepIndex) {
+		if (keepIndex < 0 || keepIndex >= tabPane.getTabCount()) {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+			return;
+		}
+
+		final Component keepComponent = tabPane.getComponentAt(keepIndex);
+		closeClickInProgress = true;
+		try {
+			for (int index = tabPane.getTabCount() - 1; index >= 0; --index) {
+				if (tabPane.getComponentAt(index) == keepComponent) {
+					continue;
+				}
+				closeTabAtIndex(index, false, -1);
+			}
+
+			final int remainingIndex = tabPane.indexOfComponent(keepComponent);
+			if (remainingIndex >= 0) {
+				restoringSelection = true;
+				try {
+					tabPane.setSelectedIndex(remainingIndex);
+					lastStableSelectedIndex = remainingIndex;
+				} finally {
+					restoringSelection = false;
+				}
+			}
+		} finally {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+		}
+	}
+
 	private void restoreTabSelectionAfterClose(final int selectedBeforeClose, final int closedTabIndex) {
 		if (selectedBeforeClose < 0 || tabPane.getTabCount() == 0) {
 			return;
@@ -488,19 +542,11 @@ public class TabCloseIcon implements Icon {
 			final int selectedBeforeClose = lastStableSelectedIndex >= 0
 					? lastStableSelectedIndex : tabPane.getSelectedIndex();
 			closeClickInProgress = true;
-			final QueryResultsPanel closeThread = (QueryResultsPanel) tabPane.getComponentAt(index);
-			final BaseTableModel btm = DbViewer.getTableModelFromComponent(closeThread);
-			if (InterfaceMain.getInstance() != null) {
-				InterfaceMain.getInstance().fireProperty("Query", btm, null);
-			}
 			try {
-				closeThread.killThreadAndWait();
-			} catch (final Exception ex) {
-				// Best-effort shutdown; still allow the tab to close.
+				closeTabAtIndex(index, true, selectedBeforeClose);
+			} finally {
+				closeClickInProgress = false;
 			}
-			tabPane.remove(index);
-			restoreTabSelectionAfterClose(selectedBeforeClose, index);
-			closeClickInProgress = false;
 		}
 
 		/** Builds and shows the right-click context popup. */
@@ -515,6 +561,16 @@ public class TabCloseIcon implements Icon {
 				}
 			});
 			popup.add(closeItem);
+
+			final JMenuItem closeOthersItem = new JMenuItem("Close all but this");
+			closeOthersItem.setEnabled(tabPane.getTabCount() > 1);
+			closeOthersItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent ae) {
+					final int index = tabPane.indexOfTabComponent(TabHeaderPanel.this);
+					closeAllTabsExcept(index);
+				}
+			});
+			popup.add(closeOthersItem);
 
 			final JMenuItem saveAsItem = new JMenuItem("Save As...");
 			saveAsItem.setEnabled(finished && dbViewer != null);
