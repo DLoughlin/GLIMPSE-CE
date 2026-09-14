@@ -264,6 +264,25 @@ public class TabCloseIcon implements Icon {
 		}
 	}
 
+	private void closeAllTabs() {
+		if (tabPane.getTabCount() == 0) {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+			return;
+		}
+
+		closeClickInProgress = true;
+		try {
+			for (int index = tabPane.getTabCount() - 1; index >= 0; --index) {
+				closeTabAtIndex(index, false, -1);
+			}
+			lastStableSelectedIndex = tabPane.getSelectedIndex();
+		} finally {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+		}
+	}
+
 	private void restoreTabSelectionAfterClose(final int selectedBeforeClose, final int closedTabIndex) {
 		if (selectedBeforeClose < 0 || tabPane.getTabCount() == 0) {
 			return;
@@ -562,7 +581,7 @@ public class TabCloseIcon implements Icon {
 			});
 			popup.add(closeItem);
 
-			final JMenuItem closeOthersItem = new JMenuItem("Close all but this");
+			final JMenuItem closeOthersItem = new JMenuItem("Close All But This");
 			closeOthersItem.setEnabled(tabPane.getTabCount() > 1);
 			closeOthersItem.addActionListener(new ActionListener() {
 				public void actionPerformed(final ActionEvent ae) {
@@ -571,6 +590,15 @@ public class TabCloseIcon implements Icon {
 				}
 			});
 			popup.add(closeOthersItem);
+
+			final JMenuItem closeAllItem = new JMenuItem("Close All");
+			closeAllItem.setEnabled(tabPane.getTabCount() > 0);
+			closeAllItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent ae) {
+					closeAllTabs();
+				}
+			});
+			popup.add(closeAllItem);
 
 			final JMenuItem saveAsItem = new JMenuItem("Save As...");
 			saveAsItem.setEnabled(finished && dbViewer != null);
