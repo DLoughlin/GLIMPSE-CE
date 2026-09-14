@@ -870,28 +870,13 @@ public class Client extends Application {
         HBox.setHgrow(createScenarioBox, Priority.ALWAYS);
 
         final double ratioDenominator = TOP_LEFT_PANEL_RATIO + TOP_RIGHT_PANEL_RATIO;
+        final javafx.beans.binding.NumberBinding availableTopWidth = topRowBox.widthProperty()
+                .subtract(arrowBox.widthProperty())
+                .subtract(TOP_PANEL_GAP * 2.0);
         componentLibraryBox.prefWidthProperty().bind(
-                javafx.beans.binding.Bindings.createDoubleBinding(
-                        () -> {
-                            double topWidth = topRowBox.getWidth();
-                            double arrowWidth = Math.max(arrowBox.getWidth(), arrowBox.prefWidth(-1));
-                            double availableWidth = Math.max(0.0, topWidth - arrowWidth - TOP_PANEL_GAP);
-                            return availableWidth * (TOP_LEFT_PANEL_RATIO / ratioDenominator);
-                        },
-                        topRowBox.widthProperty(),
-                        arrowBox.widthProperty(),
-                        arrowBox.prefWidthProperty()));
+                availableTopWidth.multiply(TOP_LEFT_PANEL_RATIO / ratioDenominator));
         createScenarioBox.prefWidthProperty().bind(
-                javafx.beans.binding.Bindings.createDoubleBinding(
-                        () -> {
-                            double topWidth = topRowBox.getWidth();
-                            double arrowWidth = Math.max(arrowBox.getWidth(), arrowBox.prefWidth(-1));
-                            double availableWidth = Math.max(0.0, topWidth - arrowWidth - TOP_PANEL_GAP);
-                            return availableWidth * (TOP_RIGHT_PANEL_RATIO / ratioDenominator);
-                        },
-                        topRowBox.widthProperty(),
-                        arrowBox.widthProperty(),
-                        arrowBox.prefWidthProperty()));
+                availableTopWidth.multiply(TOP_RIGHT_PANEL_RATIO / ratioDenominator));
 
         final HBox bottomRowBox = new HBox(10, runBox);
         bottomRowBox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -987,7 +972,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
         applyConfiguredStageBounds(primaryStage);
-        applyRuntimeFontSize(getRuntimeFontSize());
+        applyFontSizeToSceneRoot(scene, getRuntimeFontSize());
 
         applyStartupStatus(sb.getText(), calculateStartupProgress(), startupBusyState);
         if (showImmediately) {
@@ -1145,7 +1130,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
         applyConfiguredStageBounds(primaryStage);
-        applyRuntimeFontSize(getRuntimeFontSize());
+        applyFontSizeToSceneRoot(scene, getRuntimeFontSize());
     }
 
   private static void loadPersistentWindowPreferences() {
@@ -2301,6 +2286,18 @@ public class Client extends Application {
             return baseStyle.replaceAll("-fx-font-size\\s*:\\s*[-+]?[0-9]*\\.?[0-9]+px\\s*;?", fontStyle);
         }
         return (baseStyle + " " + fontStyle).trim();
+    }
+
+    private static void applyFontSizeToSceneRoot(Scene scene, int requestedFontSize) {
+        if (scene == null || scene.getRoot() == null) {
+            return;
+        }
+        int fontSize = clampRuntimeFontSize(requestedFontSize);
+        try {
+            scene.getRoot().setStyle(mergeFontStyle(scene.getRoot().getStyle(), fontSize));
+            scene.getRoot().requestLayout();
+        } catch (Exception ignored) {
+        }
     }
 
     private static void applyFontSizeRecursively(Node node, int fontSize) {
