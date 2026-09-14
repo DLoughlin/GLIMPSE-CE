@@ -48,11 +48,14 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.geom.AffineTransform;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
@@ -62,6 +65,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -82,6 +86,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -117,6 +122,18 @@ import javafx.scene.Parent;
  */
 public class Client extends Application {
 
+  private static final class WindowPreferencesState {
+    private Double width;
+    private Double height;
+    private Double x;
+    private Double y;
+    private Integer fontSize;
+
+    private boolean hasLocation() {
+      return x != null && y != null;
+    }
+  }
+
 	// version
 	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder";
 	private static final int MIN_RUNTIME_FONT_SIZE = 8;
@@ -127,6 +144,12 @@ public class Client extends Application {
 	private static final double STATUS_BAR_OPERATION_PROGRESS_WIDTH = 120.0;
 	private static final double STATUS_BAR_OPERATION_PROGRESS_HEIGHT = 12.0;
 	private static final String RESOURCE_STATUS_PREFIX = "Resources...";
+  private static final String WINDOW_PREFERENCES_FILENAME = "GLIMPSE-ScenarioBuilder.properties";
+  private static final String WINDOW_PREF_WIDTH_KEY = "window.width";
+  private static final String WINDOW_PREF_HEIGHT_KEY = "window.height";
+  private static final String WINDOW_PREF_X_KEY = "window.x";
+  private static final String WINDOW_PREF_Y_KEY = "window.y";
+  private static final String WINDOW_PREF_FONT_SIZE_KEY = "font.size";
 	
     // region Constants
     // Reduced by ~20% to allow a smaller usable minimum window size.
@@ -314,6 +337,12 @@ public class Client extends Application {
     private static volatile String lastLaunchThreadsSnapshotSignature = "";
     /** Last printed classloader URL diagnostic signature to avoid repetitive watchdog spam. */
     private static volatile String lastLaunchClassLoaderUrlsSignature = "";
+    /** Resolved properties file stored beside the ScenarioBuilder jar/install directory. */
+    private static volatile File windowPreferencesFile;
+    /** Window and font preferences loaded from the external properties file. */
+    private static volatile WindowPreferencesState persistedWindowPreferences = new WindowPreferencesState();
+    /** Prevent duplicate writes when close-request and stop() both execute. */
+    private static final AtomicBoolean windowPreferencesSaved = new AtomicBoolean(false);
 
     /**
      * Launches the JavaFX application lifecycle for Scenario Builder.
@@ -491,6 +520,7 @@ public class Client extends Application {
 
         // Load options into the vars singleton
         vars.loadOptions(optionsFilename);
+        loadPersistentWindowPreferences();
         deferMainUiUntilReady = Boolean.parseBoolean(System.getProperty(STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG, "true"));
         bootstrapTimingEnabled = vars.getDebugStartupTiming();
         logStartupCheckpoint("init(): options loaded", t0);
@@ -545,6 +575,7 @@ public class Client extends Application {
 
         // Ensure threads are properly terminated on window close
         primaryStage.setOnCloseRequest(event -> {
+            persistWindowPreferencesOnExit();
             // Don't let exceptions prevent shutdown.
             safeShutdownExecutionThreads();
             Platform.exit();
@@ -611,6 +642,12 @@ public class Client extends Application {
 
         logStartupCheckpoint("Client.start complete", t0);
     }
+
+  @Override
+  public void stop() throws Exception {
+    persistWindowPreferencesOnExit();
+    super.stop();
+  }
 
     /**
      * Pre-initializes JavaFX rendering pipeline by creating a minimal off-screen stage
@@ -949,11 +986,8 @@ public class Client extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
-        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-        primaryStage.centerOnScreen();
+        applyConfiguredStageBounds(primaryStage);
+        applyRuntimeFontSize(getRuntimeFontSize());
 
         applyStartupStatus(sb.getText(), calculateStartupProgress(), startupBusyState);
         if (showImmediately) {
@@ -1110,12 +1144,261 @@ public class Client extends Application {
         Scene scene = new Scene(shellRoot, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
-        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-        primaryStage.centerOnScreen();
+        applyConfiguredStageBounds(primaryStage);
+        applyRuntimeFontSize(getRuntimeFontSize());
     }
+
+  private static void loadPersistentWindowPreferences() {
+    windowPreferencesSaved.set(false);
+    windowPreferencesFile = resolveWindowPreferencesFile();
+    persistedWindowPreferences = new WindowPreferencesState();
+    if (windowPreferencesFile == null || !windowPreferencesFile.exists()) {
+      return;
+    }
+
+    Properties properties = new Properties();
+    try (FileInputStream input = new FileInputStream(windowPreferencesFile)) {
+      properties.load(input);
+    } catch (Exception ex) {
+      System.out.println("Could not read ScenarioBuilder window preferences from "
+          + windowPreferencesFile.getAbsolutePath() + ": " + ex.getMessage());
+      return;
+    }
+
+    WindowPreferencesState loaded = new WindowPreferencesState();
+    loaded.width = parseStoredDouble(properties, WINDOW_PREF_WIDTH_KEY);
+    loaded.height = parseStoredDouble(properties, WINDOW_PREF_HEIGHT_KEY);
+    loaded.x = parseStoredDouble(properties, WINDOW_PREF_X_KEY);
+    loaded.y = parseStoredDouble(properties, WINDOW_PREF_Y_KEY);
+    loaded.fontSize = parseStoredInteger(properties, WINDOW_PREF_FONT_SIZE_KEY);
+
+    if (loaded.width != null) {
+      double normalizedWidth = Math.max(MIN_WINDOW_WIDTH, loaded.width.doubleValue());
+      loaded.width = normalizedWidth;
+      GLIMPSEVariables.getInstance().setScenarioBuilderWidth((int) Math.round(normalizedWidth));
+    }
+    if (loaded.height != null) {
+      double normalizedHeight = Math.max(MIN_WINDOW_HEIGHT, loaded.height.doubleValue());
+      loaded.height = normalizedHeight;
+      GLIMPSEVariables.getInstance().setScenarioBuilderHeight((int) Math.round(normalizedHeight));
+    }
+    if (loaded.fontSize != null) {
+      GLIMPSEVariables.getInstance().setPreferredFontSize(
+          Integer.toString(clampRuntimeFontSize(loaded.fontSize.intValue())));
+    }
+
+    persistedWindowPreferences = loaded;
+  }
+
+  private static void persistWindowPreferencesOnExit() {
+    if (!windowPreferencesSaved.compareAndSet(false, true)) {
+      return;
+    }
+
+    try {
+      File preferencesFile = windowPreferencesFile;
+      if (preferencesFile == null) {
+        preferencesFile = resolveWindowPreferencesFile();
+        windowPreferencesFile = preferencesFile;
+      }
+      if (preferencesFile == null) {
+        return;
+      }
+
+      File parentDir = preferencesFile.getParentFile();
+      if (parentDir != null && !parentDir.exists()) {
+        parentDir.mkdirs();
+      }
+
+      Stage stage = primaryStage;
+      double width = resolveInitialWindowWidth();
+      double height = resolveInitialWindowHeight();
+      Double x = null;
+      Double y = null;
+      if (stage != null) {
+        if (Double.isFinite(stage.getWidth()) && stage.getWidth() > 0.0) {
+          width = Math.max(MIN_WINDOW_WIDTH, stage.getWidth());
+        }
+        if (Double.isFinite(stage.getHeight()) && stage.getHeight() > 0.0) {
+          height = Math.max(MIN_WINDOW_HEIGHT, stage.getHeight());
+        }
+        if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
+          x = stage.getX();
+          y = stage.getY();
+        }
+      }
+
+      Properties properties = new Properties();
+      properties.setProperty(WINDOW_PREF_WIDTH_KEY, Double.toString(width));
+      properties.setProperty(WINDOW_PREF_HEIGHT_KEY, Double.toString(height));
+      if (x != null && y != null) {
+        properties.setProperty(WINDOW_PREF_X_KEY, Double.toString(x.doubleValue()));
+        properties.setProperty(WINDOW_PREF_Y_KEY, Double.toString(y.doubleValue()));
+      }
+      properties.setProperty(WINDOW_PREF_FONT_SIZE_KEY, Integer.toString(getRuntimeFontSize()));
+
+      try (FileOutputStream output = new FileOutputStream(preferencesFile)) {
+        properties.store(output, "GLIMPSE ScenarioBuilder window preferences");
+      }
+
+      GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+      vars.setScenarioBuilderWidth((int) Math.round(width));
+      vars.setScenarioBuilderHeight((int) Math.round(height));
+      persistedWindowPreferences.width = width;
+      persistedWindowPreferences.height = height;
+      persistedWindowPreferences.fontSize = getRuntimeFontSize();
+      if (x != null) {
+        persistedWindowPreferences.x = x;
+      }
+      if (y != null) {
+        persistedWindowPreferences.y = y;
+      }
+    } catch (Exception ex) {
+      System.out.println("Could not save ScenarioBuilder window preferences: " + ex.getMessage());
+    }
+  }
+
+  private static File resolveWindowPreferencesFile() {
+    File preferencesDir = resolveWindowPreferencesDirectory();
+    if (preferencesDir == null) {
+      return null;
+    }
+    return new File(preferencesDir, WINDOW_PREFERENCES_FILENAME);
+  }
+
+  private static File resolveWindowPreferencesDirectory() {
+    GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    File candidate = normalizeDirectoryPath(vars.getScenarioBuilderJarDirOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeParentDirectory(vars.getScenarioBuilderJarOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeDirectoryPath(vars.getScenarioBuilderDirOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeParentDirectory(vars.getOptionsFilename());
+    if (candidate != null) {
+      return candidate;
+    }
+    return normalizeDirectoryPath(System.getProperty("user.dir"));
+  }
+
+  private static File normalizeDirectoryPath(String rawPath) {
+    if (rawPath == null || rawPath.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      return new File(rawPath.trim()).getAbsoluteFile();
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static File normalizeParentDirectory(String rawPath) {
+    if (rawPath == null || rawPath.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      File file = new File(rawPath.trim()).getAbsoluteFile();
+      return file.getParentFile();
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static Double parseStoredDouble(Properties properties, String key) {
+    if (properties == null || key == null) {
+      return null;
+    }
+    String raw = properties.getProperty(key);
+    if (raw == null || raw.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      double value = Double.parseDouble(raw.trim());
+      return Double.isFinite(value) ? value : null;
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static Integer parseStoredInteger(Properties properties, String key) {
+    if (properties == null || key == null) {
+      return null;
+    }
+    String raw = properties.getProperty(key);
+    if (raw == null || raw.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      return Integer.valueOf(raw.trim());
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static double resolveInitialWindowWidth() {
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (preferences != null && preferences.width != null && Double.isFinite(preferences.width.doubleValue())) {
+      return Math.max(MIN_WINDOW_WIDTH, preferences.width.doubleValue());
+    }
+    return MIN_WINDOW_WIDTH;
+  }
+
+  private static double resolveInitialWindowHeight() {
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (preferences != null && preferences.height != null && Double.isFinite(preferences.height.doubleValue())) {
+      return Math.max(MIN_WINDOW_HEIGHT, preferences.height.doubleValue());
+    }
+    return MIN_WINDOW_HEIGHT;
+  }
+
+  private static void applyConfiguredStageBounds(Stage stage) {
+    if (stage == null) {
+      return;
+    }
+    double width = resolveInitialWindowWidth();
+    double height = resolveInitialWindowHeight();
+    stage.setMinHeight(MIN_WINDOW_HEIGHT);
+    stage.setMinWidth(MIN_WINDOW_WIDTH);
+    stage.setWidth(width);
+    stage.setHeight(height);
+
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (hasUsableSavedWindowLocation(preferences, width, height)) {
+      stage.setX(preferences.x.doubleValue());
+      stage.setY(preferences.y.doubleValue());
+    } else {
+      stage.centerOnScreen();
+    }
+  }
+
+  private static boolean hasUsableSavedWindowLocation(WindowPreferencesState preferences, double width, double height) {
+    if (preferences == null || !preferences.hasLocation()) {
+      return false;
+    }
+    double x = preferences.x.doubleValue();
+    double y = preferences.y.doubleValue();
+    if (!Double.isFinite(x) || !Double.isFinite(y) || !Double.isFinite(width) || !Double.isFinite(height)) {
+      return false;
+    }
+
+    double minVisibleWidth = Math.min(120.0, Math.max(40.0, width * 0.15));
+    double minVisibleHeight = Math.min(120.0, Math.max(40.0, height * 0.15));
+    for (Screen screen : Screen.getScreens()) {
+      Rectangle2D bounds = screen.getVisualBounds();
+      double overlapWidth = Math.min(bounds.getMaxX(), x + width) - Math.max(bounds.getMinX(), x);
+      double overlapHeight = Math.min(bounds.getMaxY(), y + height) - Math.max(bounds.getMinY(), y);
+      if (overlapWidth >= minVisibleWidth && overlapHeight >= minVisibleHeight) {
+        return true;
+      }
+    }
+    return false;
+  }
 
     /**
      * Sets up the execution threads for GCAM and the model interface.
