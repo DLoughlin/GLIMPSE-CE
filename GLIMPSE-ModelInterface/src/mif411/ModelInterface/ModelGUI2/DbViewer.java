@@ -4097,7 +4097,26 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	private void loadRegionListToDropdown() {
-		String region_list_file = "config/preset_region_list.txt";
+		// Get region list file from properties, with fallback to default location
+		String region_list_file = null;
+		InterfaceMain main = InterfaceMain.getInstance();
+		if (main != null) {
+			java.util.Properties props = main.getProperties();
+			if (props != null) {
+				region_list_file = props.getProperty("presetRegionList", null);
+			}
+		}
+		
+		// If not found in properties, try default location
+		if (region_list_file == null || region_list_file.trim().isEmpty()) {
+			java.io.File defaultFile = new java.io.File("config" + java.io.File.separator + "preset_region_list.txt");
+			if (defaultFile.exists()) {
+				region_list_file = defaultFile.getAbsolutePath();
+			} else {
+				region_list_file = "config/preset_region_list.txt";
+			}
+		}
+		
 		preset_region_list.clear();
 		subregion_list.clear();
 		preset_choices = null;

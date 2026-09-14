@@ -64,6 +64,7 @@ import java.util.Vector;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;
+import javax.swing.Icon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -74,6 +75,7 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.InsetsUIResource;
 
 import org.basex.query.QueryException;
 import org.basex.query.QueryProcessor;
@@ -337,6 +339,30 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 							baseFont.getName(), baseFont.getStyle(), configuredFontSize));
 				}
 			}
+		}
+		// Remove the empty icon/checkmark gutter while leaving a small amount of
+		// internal padding for readability.
+		UIManager.put("MenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("CheckBoxMenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("RadioButtonMenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("MenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("CheckBoxMenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("RadioButtonMenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("Menu.margin", new InsetsUIResource(2, 4, 2, 4));
+	}
+
+	private static final Icon EMPTY_MENU_ICON = new EmptyIcon();
+
+	private static final class EmptyIcon implements Icon {
+		@Override
+		public int getIconWidth() { return 0; }
+
+		@Override
+		public int getIconHeight() { return 0; }
+
+		@Override
+		public void paintIcon(java.awt.Component c, java.awt.Graphics g, int x, int y) {
+			// Intentionally empty.
 		}
 	}
 
@@ -2812,8 +2838,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			Object[] keys = subItems.keySet().toArray();
 			for (int i = 0; i < keys.length; ++i) {
 				JMenuItem menu = subItems.get(keys[i]).createSubMenu();
-				// Add extra padding to main menu items
-				menu.setBorder(BorderFactory.createEmptyBorder(4, 8, 4, 8));
+							// Avoid adding extra padding around top-level menu bar items.
+							menu.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 				ret.add(menu);
 			}
 			return ret;
@@ -3045,4 +3071,4 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 		}
 	}
-}
+}
