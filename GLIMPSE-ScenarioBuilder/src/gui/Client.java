@@ -868,11 +868,12 @@ public class Client extends Application {
         arrowBox.setMaxWidth(Region.USE_PREF_SIZE);
         HBox.setHgrow(componentLibraryBox, Priority.ALWAYS);
         HBox.setHgrow(createScenarioBox, Priority.ALWAYS);
-
         final double ratioDenominator = TOP_LEFT_PANEL_RATIO + TOP_RIGHT_PANEL_RATIO;
-        final javafx.beans.binding.NumberBinding availableTopWidth = topRowBox.widthProperty()
-                .subtract(arrowBox.widthProperty())
-                .subtract(TOP_PANEL_GAP * 2.0);
+        final javafx.beans.binding.NumberBinding availableTopWidth = javafx.beans.binding.Bindings.max(
+                0.0,
+                topRowBox.widthProperty()
+                        .subtract(arrowBox.widthProperty())
+                        .subtract(TOP_PANEL_GAP * 2.0));
         componentLibraryBox.prefWidthProperty().bind(
                 availableTopWidth.multiply(TOP_LEFT_PANEL_RATIO / ratioDenominator));
         createScenarioBox.prefWidthProperty().bind(
