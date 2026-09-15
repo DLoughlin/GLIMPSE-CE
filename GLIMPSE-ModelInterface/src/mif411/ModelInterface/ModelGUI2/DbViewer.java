@@ -298,6 +298,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		InterfaceMain.logStartupTiming("DbViewer:" + stage + " " + elapsedMillis(startNanos) + " ms");
 	}
 
+
 	private void scheduleMappingWarmupAfterStartupReady() {
 		if (!InterfaceMain.enableMapping) {
 			return;
@@ -557,6 +558,9 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		try {
 			// New database open: capture a fresh region ordering baseline.
 			initialRegionOrdering.clear();
+			// Load preset region definitions before querying regions so startup ordering
+			// can use the configured first preset entry (for example China provinces).
+			loadRegionListToDropdown();
 			File queryFile = prepareQueryDefinitionsForStartup();
 			XMLDB.openDatabase(dbFile.getAbsolutePath(), create);
 			logStartupPhase("Database opened", dbFile);
@@ -2252,23 +2256,65 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		
 		// Use primary region subregions if available, otherwise fall back to US state codes
 		List<String> subregionsToSort = primaryRegionSubregions.isEmpty() ? US_STATE_CODES : primaryRegionSubregions;
-		
-		sortAggregateEntries(currentRegions, subregionsToSort, primaryRegionName);
-		ArrayList<String> subregions = new ArrayList<String>();
-		for (Object regionObj : currentRegions) {
-			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
-				subregions.add(regionObj.toString());
+		if (subregionsToSort.isEmpty()) {
+			return currentRegions;
+		}
+
+		java.util.HashSet<String> subregionLookup = new java.util.HashSet<String>();
+		for (String subregion : subregionsToSort) {
+			if (subregion != null) {
+				subregionLookup.add(subregion.trim());
 			}
 		}
-		subregions.sort(String.CASE_INSENSITIVE_ORDER);
-		int subregionIndex = 0;
+
+		ArrayList<String> subregions = new ArrayList<String>();
+		ArrayList<String> aggregates = new ArrayList<String>();
+		ArrayList<String> trailingRegions = new ArrayList<String>();
+		int lastSubregionIndex = -1;
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
-				currentRegions.set(i, subregions.get(subregionIndex++));
+			if (regionObj != null && subregionLookup.contains(regionObj.toString().trim())) {
+				lastSubregionIndex = i;
 			}
 		}
-		return currentRegions;
+		if (lastSubregionIndex < 0) {
+			return currentRegions;
+		}
+
+		for (int i = 0; i < currentRegions.size(); ++i) {
+			Object regionObj = currentRegions.get(i);
+			if (regionObj == null) {
+				continue;
+			}
+			String regionName = regionObj.toString();
+			String trimmedRegion = regionName.trim();
+			if (subregionLookup.contains(trimmedRegion)) {
+				subregions.add(regionName);
+			} else if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(trimmedRegion)) {
+				aggregates.add(regionName);
+			} else if (i <= lastSubregionIndex) {
+				aggregates.add(regionName);
+			} else {
+				trailingRegions.add(regionName);
+			}
+		}
+
+		aggregates.sort((left, right) -> {
+			if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(left)) {
+				return primaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
+			}
+			if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(right)) {
+				return 1;
+			}
+			return left.compareToIgnoreCase(right);
+		});
+		subregions.sort(String.CASE_INSENSITIVE_ORDER);
+
+		Vector ordered = new Vector();
+		ordered.addAll(aggregates);
+		ordered.addAll(subregions);
+		ordered.addAll(trailingRegions);
+		return ordered;
 	}
 
 	/**
