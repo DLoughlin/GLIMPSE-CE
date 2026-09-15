@@ -135,7 +135,7 @@ public class Client extends Application {
   }
 
 	// version
-	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder";
+	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder v2.3 Beta";
 	private static final int MIN_RUNTIME_FONT_SIZE = 8;
 	private static final int MAX_RUNTIME_FONT_SIZE = 24;
 	private static final String STATUS_BAR_BASE_STYLE = " -fx-padding: 6 10 6 10; -fx-border-color: #e0e0e0 transparent transparent transparent; -fx-border-width: 1 0 0 0;";
