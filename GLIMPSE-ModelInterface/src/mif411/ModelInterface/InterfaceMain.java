@@ -192,6 +192,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	}
 
 	private static final String STARTUP_TIMING_PROPERTY = "do_output_timings";
+	private static final String SHOW_STARTUP_STEPS_PROPERTY = "showStartupSteps";
 	private static final String NATIVE_FILE_DIALOG_PROPERTY = "nativeFileDialog";
 	private static final String NATIVE_FILE_DIALOG_LEGACY_PROPERTY = "modelinterface.nativeFileDialog";
 	private static final String NATIVE_FILE_DIALOG_DEBUG_PROPERTY = "nativeFileDialogDebug";
@@ -227,6 +228,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	public static final double MIN_GRAPHICS_LINE_WIDTH_SCALE = 0.25d;
 	public static final double MAX_GRAPHICS_LINE_WIDTH_SCALE = 5.0d;
 	private static volatile boolean outputStartupTimings = false;
+	private static volatile boolean showStartupSteps = false;
 	private static volatile int configuredFontSize = DEFAULT_FONT_SIZE;
 
 	private static int clampFontSize(final int fontSize) {
@@ -430,6 +432,18 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			value = props.getProperty(STARTUP_TIMING_PROPERTY);
 		}
 		outputStartupTimings = value != null && Boolean.parseBoolean(value.trim());
+	}
+
+	public static boolean shouldShowStartupSteps() {
+		return showStartupSteps;
+	}
+
+	public static void configureShowStartupSteps(Properties props) {
+		String value = System.getProperty(SHOW_STARTUP_STEPS_PROPERTY);
+		if (value == null && props != null) {
+			value = props.getProperty(SHOW_STARTUP_STEPS_PROPERTY);
+		}
+		showStartupSteps = value != null && Boolean.parseBoolean(value.trim());
 	}
 
 	private static String getTrimmedProperty(Properties props, String primaryKey, String legacyKey) {
@@ -686,6 +700,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 		}
 		configureStartupTimingOutput(bootProps);
+		configureShowStartupSteps(bootProps);
 		configureNativeFileDialogProperties(bootProps);
 		configuredFontSize = resolveConfiguredFontSize(bootProps);
 		bootProps.setProperty(FONT_SIZE_PROPERTY, Integer.toString(configuredFontSize));
@@ -730,6 +745,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		parser.accepts("legend_bundle", "Path to the LegendBundle.properties file").withOptionalArg();
 		parser.accepts("auto-generate-graphics", "Automatically generate graphics when a scenario is run.");
 		parser.accepts("init-db", "Initialize a new XML database at the path given by -o and exit.");
+		parser.accepts("Debug", "Enable debug messages including startup steps.");
 
 		OptionSet opts = null;
 		try {
@@ -750,6 +766,15 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		if (opts == null) {
 			String[] argsEmpty = new String[0];
 			opts = parser.parse(argsEmpty);
+		}
+
+		// Handle -Debug flag to enable debug output
+		if (opts.has("Debug")) {
+			System.out.println("InterfaceMain: Debug mode enabled via -Debug flag");
+			System.setProperty(STARTUP_TIMING_PROPERTY, "true");
+			System.setProperty(SHOW_STARTUP_STEPS_PROPERTY, "true");
+			configureStartupTimingOutput(bootProps);
+			configureShowStartupSteps(bootProps);
 		}
 
 		if (opts.has("help")) {
@@ -1449,6 +1474,9 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	}
 
 	public void showStartupLoadingView(final String message) {
+		if (!shouldShowStartupSteps()) {
+			return;
+		}
 		final Runnable r = new Runnable() {
 			@Override
 			public void run() {
@@ -3071,4 +3099,4 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 		}
 	}
-}
+}

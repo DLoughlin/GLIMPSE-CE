@@ -334,6 +334,9 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private static final int MAX_EXCEPTION_CHAIN_DEPTH = 5;
 
 	private void updateStartupMessage(final String message) {
+		if (!InterfaceMain.shouldShowStartupSteps()) {
+			return;
+		}
 		final InterfaceMain main = InterfaceMain.getInstance();
 		if (main != null) {
 			main.updateStartupLoadingMessage(message);
@@ -341,7 +344,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	private void logStartupPhase(String phase, File dbFile) {
-		if (!DEBUG) {
+		if (!DEBUG || !InterfaceMain.shouldShowStartupSteps()) {
 			return;
 		}
 		String context = dbFile == null ? "" : " [" + formatDatabaseStartupContext(dbFile) + "]";
@@ -574,11 +577,11 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			logStartupPhase("Regions loaded", dbFile);
 			logStartupPhase(STARTUP_MESSAGE_LOADING_QUERIES, dbFile);
 			updateStartupMessage(STARTUP_MESSAGE_LOADING_QUERIES);
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: calling validateQueriesDocument()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: calling validateQueriesDocument()...");
 			validateQueriesDocument();
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: validateQueriesDocument() done, calling getQueries()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: validateQueriesDocument() done, calling getQueries()...");
 			QueryTreeModel loadedQueries = getQueries();
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: getQueries() done, calling validateStartupData()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: getQueries() done, calling validateStartupData()...");
 			logStartupPhase("Query definitions loaded", dbFile);
 			return validateStartupData(new StartupData(loadedScenarios, loadedRegions, loadedQueries, queryFile));
 		} catch (RuntimeException e) {
