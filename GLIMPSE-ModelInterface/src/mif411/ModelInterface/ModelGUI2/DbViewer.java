@@ -601,6 +601,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			"ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS",
 			"MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA",
 			"RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
+	// Primary region subregions (e.g., states for USA, provinces for China) loaded from preset regions list
+	private java.util.List<String> primaryRegionSubregions = new ArrayList<String>();
+	// Name of the primary region grouping (e.g., "USA", "China") - used for sorting
+	private String primaryRegionName = "USA";
 	protected QueryTreeModel queries;
 	private JTabbedPane tablesTabs = new JTabbedPane();
 	private JSplitPane scenarioRegionSplit;
@@ -2238,68 +2242,74 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	/**
-	 * Sorts aggregate-region names and state abbreviations without moving entries
+	 * Sorts aggregate-region names and state/province abbreviations without moving entries
 	 * between their database-defined groups.
 	 */
 	private Vector sortRegionEntries(Vector currentRegions) {
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return currentRegions;
 		}
-		sortAggregateEntries(currentRegions);
-		ArrayList<String> states = new ArrayList<String>();
+		
+		// Use primary region subregions if available, otherwise fall back to US state codes
+		List<String> subregionsToSort = primaryRegionSubregions.isEmpty() ? US_STATE_CODES : primaryRegionSubregions;
+		
+		sortAggregateEntries(currentRegions, subregionsToSort, primaryRegionName);
+		ArrayList<String> subregions = new ArrayList<String>();
 		for (Object regionObj : currentRegions) {
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				states.add(regionObj.toString());
+			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
+				subregions.add(regionObj.toString());
 			}
 		}
-		states.sort(String.CASE_INSENSITIVE_ORDER);
-		int stateIndex = 0;
+		subregions.sort(String.CASE_INSENSITIVE_ORDER);
+		int subregionIndex = 0;
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				currentRegions.set(i, states.get(stateIndex++));
+			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
+				currentRegions.set(i, subregions.get(subregionIndex++));
 			}
 		}
 		return currentRegions;
 	}
 
 	/**
-	 * Sorts the aggregate block before the first state, with USA always first.
-	 * Entries after the state block (for example PADD/grid groupings) are not
+	 * Sorts the aggregate block before the first state/province, with the primary region always first.
+	 * Entries after the subregion block (for example PADD/grid groupings) are not
 	 * affected.
 	 */
-	private void sortAggregateEntries(Vector currentRegions) {
-		int firstStateIndex = -1;
+	private void sortAggregateEntries(Vector currentRegions, List<String> subregionsToSort, String primaryRegionName) {
+		int firstSubregionIndex = -1;
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				firstStateIndex = i;
+			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
+				firstSubregionIndex = i;
 				break;
 			}
 		}
-		if (firstStateIndex <= 0) {
+		if (firstSubregionIndex <= 0) {
 			return;
 		}
 
 		ArrayList<String> aggregates = new ArrayList<String>();
-		for (int i = 0; i < firstStateIndex; ++i) {
+		for (int i = 0; i < firstSubregionIndex; ++i) {
 			Object regionObj = currentRegions.get(i);
 			if (regionObj != null && !"Global".equalsIgnoreCase(regionObj.toString().trim())) {
 				aggregates.add(regionObj.toString());
 			}
 		}
+		
+		// Sort aggregates, keeping the primary region (e.g., "USA" for US states, "China" for provinces) first
 		aggregates.sort((left, right) -> {
-			if ("USA".equalsIgnoreCase(left)) {
-				return "USA".equalsIgnoreCase(right) ? 0 : -1;
+			if (primaryRegionName.equalsIgnoreCase(left)) {
+				return primaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
 			}
-			if ("USA".equalsIgnoreCase(right)) {
+			if (primaryRegionName.equalsIgnoreCase(right)) {
 				return 1;
 			}
 			return left.compareToIgnoreCase(right);
 		});
 
 		int aggregateIndex = 0;
-		for (int i = 0; i < firstStateIndex; ++i) {
+		for (int i = 0; i < firstSubregionIndex; ++i) {
 			Object regionObj = currentRegions.get(i);
 			if (regionObj != null && !"Global".equalsIgnoreCase(regionObj.toString().trim())) {
 				currentRegions.set(i, aggregates.get(aggregateIndex++));
@@ -2348,6 +2358,12 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	protected void createTableSelector() {
 		if (dbViewInitialized) {
 			return;
+		}
+		// Load preset region list first so that primaryRegionSubregions are available for sorting
+		try {
+			loadRegionListToDropdown();
+		} catch (Exception e) {
+			System.out.println("Could not load preset region list early: " + e.getMessage());
 		}
 		setupScenarioRegionLists();
 		createTableSelector(new StartupData(scns, regions, queries, null));
@@ -4119,6 +4135,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		
 		preset_region_list.clear();
 		subregion_list.clear();
+		primaryRegionSubregions.clear();
+		primaryRegionName = "USA"; // Reset to default
 		preset_choices = null;
 		try {
 			preset_region_list = getStringArrayFromFile(region_list_file, "#");
@@ -4134,9 +4152,18 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 							continue;
 						}
 						choiceList.add(name);
+						// Extract the first entry's name and subregions for use in region ordering
+						if (i == 0) {
+							primaryRegionName = name;
+						}
 						String[] subregions = splitString(line.substring(index + 1), ",");
 						for (int j = 0; j < subregions.length; j++) {
-							subregion_list.add(subregions[j]);
+							String subregion = subregions[j].trim();
+							subregion_list.add(subregion);
+							// Extract the first entry's subregions for use in region ordering
+							if (i == 0) {
+								primaryRegionSubregions.add(subregion);
+							}
 						}
 					}
 				}
