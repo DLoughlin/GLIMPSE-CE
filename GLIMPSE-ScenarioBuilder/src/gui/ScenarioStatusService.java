@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -64,6 +65,10 @@ final class ScenarioStatusService {
             "Exiting successfully.",
             "Model run completed.",
             "Finished printing output."
+    };
+    private static final String[] MAIN_LOG_START_TIMESTAMP_FORMATS = {
+            "yyyy-dd-MM:HH:mm:ss",
+            "yyyy-MM-dd:HH:mm:ss"
     };
 
     private final GLIMPSEVariables vars;
@@ -201,6 +206,9 @@ final class ScenarioStatusService {
             runtime = toRuntimeText(scenarioLogAnalysis.runtimeLine);
         } else if (!scenarioStdoutAnalysis.runtimeLine.isEmpty()) {
             runtime = toRuntimeText(scenarioStdoutAnalysis.runtimeLine);
+        } else if (mainLogExists && (STATUS_SUCCESS.equals(status) || STATUS_UNSOLVED.equals(status)
+                || STATUS_DNF.equals(status) || STATUS_STOPPED.equals(status))) {
+            runtime = estimateRuntimeFromMainLogMetadata(mainLogFile);
         }
         if (!scenarioLogAnalysis.unsolvedLine.isEmpty()) {
             try {
@@ -802,13 +810,61 @@ final class ScenarioStatusService {
         }
         runtime = runtime.replace("seconds.", "").replace("seconds", "").trim();
         try {
-            int totalSecs = (int) Math.round(Float.parseFloat(runtime));
-            int hours = (totalSecs - totalSecs % 3600) / 3600;
-            int minutes = (totalSecs % 3600 - totalSecs % 3600 % 60) / 60;
-            return hours + " hr " + minutes + " min ";
+            long totalSecs = Math.round(Float.parseFloat(runtime));
+            return formatRuntimeFromSeconds(totalSecs);
         } catch (Exception e) {
             return runtime;
         }
+    }
+
+    private String estimateRuntimeFromMainLogMetadata(File mainLogFile) {
+        if (mainLogFile == null || !mainLogFile.exists()) {
+            return "";
+        }
+        long endMillis = mainLogFile.lastModified();
+        if (endMillis <= 0L) {
+            return "";
+        }
+        String firstLine = "";
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(mainLogFile))) {
+            firstLine = safeTrim(reader.readLine());
+        } catch (Exception ignored) {
+            return "";
+        }
+        if (firstLine.isEmpty()) {
+            return "";
+        }
+
+        Long startMillis = parseMainLogStartTimestampMillis(firstLine);
+        if (startMillis == null || startMillis <= 0L || endMillis < startMillis) {
+            return "";
+        }
+        long durationSeconds = (endMillis - startMillis) / 1000L;
+        return formatRuntimeFromSeconds(durationSeconds);
+    }
+
+    private Long parseMainLogStartTimestampMillis(String value) {
+        String timestamp = safeTrim(value);
+        if (timestamp.isEmpty()) {
+            return null;
+        }
+        for (String pattern : MAIN_LOG_START_TIMESTAMP_FORMATS) {
+            try {
+                SimpleDateFormat parser = new SimpleDateFormat(pattern, Locale.ENGLISH);
+                parser.setLenient(false);
+                return parser.parse(timestamp).getTime();
+            } catch (ParseException ignored) {}
+        }
+        return null;
+    }
+
+    private String formatRuntimeFromSeconds(long totalSecs) {
+        if (totalSecs < 0L) {
+            return "";
+        }
+        long hours = totalSecs / 3600L;
+        long minutes = (totalSecs % 3600L) / 60L;
+        return hours + " hr " + minutes + " min ";
     }
 
     private static final class CachedConfigMetadata {
