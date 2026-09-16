@@ -54,7 +54,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * TabMarketShare is a GUI tab that provides the UI and logic for creating,
@@ -86,9 +85,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private static final String[] CONSTRAINT_OPTIONS = { "Lower", "Fixed" };
     private static final String[] TREATMENT_OPTIONS = { "Each Selected Region", "Across Selected Regions" };
     private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial and Final %", "Initial w/% Growth/yr",
-            "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
-	private static final String SELECT_ONE_OR_MORE = "Select One or More";
-	private static final double FILTER_DEBOUNCE_SECONDS = 0.15;
+             "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
+ 	private static final String SELECT_ONE_OR_MORE = "Select One or More";
+ 	private final PauseTransition filterUpdateDelay = createFilterUpdateDelay(this::setupCheckComboBoxes);
 
     // === Labels and Controls ===
     private final Label labelSubsetFilter = createLabel("Subset Filter:", LABEL_WIDTH);
@@ -108,7 +107,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private final Label labelTreatment = createLabel("Treatment: ", LABEL_WIDTH);
     private final ComboBox<String> comboBoxTreatment = createComboBoxString();
     private final HBox hBoxAutoUnique = new HBox(8);
-	private final PauseTransition filterUpdateDelay = new PauseTransition(Duration.seconds(FILTER_DEBOUNCE_SECONDS));
 
     // === Constants for Metadata ===
     private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
@@ -317,10 +315,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		});
 		setOnAction(textFieldSubsetFilter, e -> setupCheckComboBoxes());
 		setOnAction(textFieldSupersetFilter, e -> setupCheckComboBoxes());
-		filterUpdateDelay.setOnFinished(event -> setupCheckComboBoxes());
-		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
-		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
-		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
+ 		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
+ 		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
+ 		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxTreatment, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxConstraint, e -> setPolicyAndMarketNames());
 
@@ -518,33 +515,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 		}
-	}
-
-	/**
-	 * Returns true when every non-empty search token appears in at least one tech
-	 * metadata field. This enables multi-word contains filtering.
-	 */
-	private boolean matchesAllFilterTerms(String[] techFields, String filterTextLc) {
-		if (filterTextLc == null || filterTextLc.trim().isEmpty()) {
-			return true;
-		}
-		String[] terms = filterTextLc.trim().split("\\s+");
-		for (String term : terms) {
-			if (term.isEmpty()) {
-				continue;
-			}
-			boolean found = false;
-			for (String field : techFields) {
-				if (field != null && field.toLowerCase().contains(term)) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/**

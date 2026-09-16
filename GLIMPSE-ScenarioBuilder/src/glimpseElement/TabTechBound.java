@@ -41,6 +41,7 @@ import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -125,7 +126,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 	private final Label labelComboBoxCategory = createLabel(LABEL_CATEGORY, LABEL_WIDTH);
 	private final ComboBox<String> comboBoxCategory = createComboBoxString();
 	private final Label labelCheckComboBoxTech = createLabel(LABEL_TECHS, LABEL_WIDTH);
-	private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox();
+	private final CheckComboBox<String> checkComboBoxTech = createCheckComboBox();
 	private final Label labelComboBoxConstraint = createLabel(LABEL_CONSTRAINT, LABEL_WIDTH);
 	private final ComboBox<String> comboBoxConstraint = createComboBoxString();
 	private final Label labelTreatment = createLabel(LABEL_TREATMENT, LABEL_WIDTH);
@@ -136,6 +137,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
 	// HBox for Auto and Unique checkboxes
     private final javafx.scene.layout.HBox hBoxAutoUnique = new javafx.scene.layout.HBox(8);
+	private final PauseTransition filterUpdateDelay = createFilterUpdateDelay(this::updateCheckComboBoxTech);
 
 	/**
 	 * Create a new TabTechBound instance and initialize the UI controls and event handlers.
@@ -280,13 +282,14 @@ public class TabTechBound extends PolicyTab implements Runnable {
 	 */
 	protected void setupEventHandlers() {
 
-		super.setupEventHandlers();
+ 		super.setupEventHandlers();
 
-		setOnAction(textFieldFilter, e -> {
-			updateCheckComboBoxTech();
-		});
+ 		setOnAction(textFieldFilter, e -> {
+ 			updateCheckComboBoxTech();
+ 		});
+			textFieldFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
 
-		labelCheckComboBoxTech.setOnMouseClicked(e -> {
+ 		labelCheckComboBoxTech.setOnMouseClicked(e -> {
 			// Allow double-click to select/deselect all when control is enabled
 			if (!checkComboBoxTech.isDisabled()) {
 				boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
@@ -387,26 +390,30 @@ public class TabTechBound extends PolicyTab implements Runnable {
 			return;
 		boolean isAllCat = cat.equals(ALL);
 		try {
-			// Clear previous items and checks to ensure clean state
+			List<String> prevCheckedTechs = new ArrayList<>(checkComboBoxTech.getCheckModel().getCheckedItems());
 			resetCheckComboBoxItems(checkComboBoxTech, null);
-			if (cat != null) {
-				String lastLine = "";
-				String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-				for (String[] techRow : techInfo) {
-					if (techRow == null || techRow.length < 3)
-						continue;
-					String line = (techRow[0] != null ? techRow[0].trim() : "") + " : "
+			String lastLine = "";
+			String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
+			String filterTextLc = filterText.toLowerCase();
+			for (String[] techRow : techInfo) {
+				if (techRow == null || techRow.length < 3)
+					continue;
+				String line = (techRow[0] != null ? techRow[0].trim() : "") + " : "
 						+ (techRow[1] != null ? techRow[1] : "") + " : " + (techRow[2] != null ? techRow[2] : "");
-					if (filterText.isEmpty() || line.contains(filterText)) {
-						if (techRow.length >= 7 && techRow[6] != null)
-							line += " : " + techRow[6];
-						if (!line.equals(lastLine)) {
-							lastLine = line;
-							if (isAllCat || (techRow.length > 7 && techRow[7] != null && techRow[7].equals(cat))) {
-								checkComboBoxTech.getItems().add(line);
-							}
+				if (filterText.isEmpty() || matchesAllFilterTerms(techRow, filterTextLc)) {
+					if (techRow.length >= 7 && techRow[6] != null)
+						line += " : " + techRow[6];
+					if (!line.equals(lastLine)) {
+						lastLine = line;
+						if (isAllCat || (techRow.length > 7 && techRow[7] != null && techRow[7].equals(cat))) {
+							checkComboBoxTech.getItems().add(line);
 						}
 					}
+				}
+			}
+			for (String item : prevCheckedTechs) {
+				if (checkComboBoxTech.getItems().contains(item)) {
+					checkComboBoxTech.getCheckModel().check(item);
 				}
 			}
 		} catch (NullPointerException e) {
@@ -946,7 +953,6 @@ public class TabTechBound extends PolicyTab implements Runnable {
 		}
 		return normalized.toString();
 	}
-
 	/**
 	 * Check whether the table contains at least one data point whose year is
 	 * among the allowable policy years.
