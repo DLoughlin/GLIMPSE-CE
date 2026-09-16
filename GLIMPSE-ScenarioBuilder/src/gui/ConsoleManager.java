@@ -317,6 +317,7 @@ final class ConsoleManager {
         stage = new Stage();
         stage.setTitle("GLIMPSE Console");
         initOwnerForConsoleStage(stage);
+        final boolean[] restoredSavedLocation = { false };
 
         tabPane = new TabPane();
         tabPane.getTabs().add(createTab("GLIMPSE", glimpseStdoutArea));
@@ -347,14 +348,22 @@ final class ConsoleManager {
         Scene scene = new Scene(root, 700, 525);
         ScenarioBuilder.applyModernTheme(scene);
         stage.setScene(scene);
+        try {
+            restoredSavedLocation[0] = Client.applyConsoleStageBounds(stage, 700, 525);
+        } catch (Exception ignored) {}
         stage.showingProperty().addListener((obs, wasShowing, isShowing) -> {
             if (Boolean.TRUE.equals(isShowing)) {
                 flushDeferredGcamBacklogIfVisible();
+            } else {
+                Client.persistConsoleStageBounds(stage);
             }
         });
+        stage.setOnCloseRequest(e -> Client.persistConsoleStageBounds(stage));
         stage.setOnShown(e -> {
             flushDeferredGcamBacklogIfVisible();
-            centerStageOverPrimaryOwner(stage);
+            if (!restoredSavedLocation[0]) {
+                centerStageOverPrimaryOwner(stage);
+            }
         });
     }
 

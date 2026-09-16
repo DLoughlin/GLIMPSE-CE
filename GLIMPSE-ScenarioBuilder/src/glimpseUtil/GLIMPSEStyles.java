@@ -47,6 +47,9 @@ public final class GLIMPSEStyles {
     // Slightly narrower defaults help dense toolbars at smaller window widths.
     private final int bigButtonWidth = 70;
     private final int smallButtonWidth = 40;
+    private static final int BASE_BUTTON_FONT_SIZE = 12;
+    private static final int MIN_SMALL_BUTTON_WIDTH = 32;
+    private static final int MAX_SMALL_BUTTON_WIDTH = 72;
 
     private int fontSize = 12;
 
@@ -262,6 +265,8 @@ public final class GLIMPSEStyles {
      * @return standard small button width in pixels
      */
     public int getSmallButtonWidth() {
-        return smallButtonWidth;
+        double scale = fontSize / (double) BASE_BUTTON_FONT_SIZE;
+        int scaledWidth = (int) Math.round(smallButtonWidth * scale);
+        return Math.max(MIN_SMALL_BUTTON_WIDTH, Math.min(MAX_SMALL_BUTTON_WIDTH, scaledWidth));
     }
 }

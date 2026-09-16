@@ -933,17 +933,8 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
         ScenarioSelection selection = ScenarioSelection.capture();
         ScenarioLibraryRunPreparationHelper.RunPreparationResult preparationResult = runPreparationHelper.prepareSelectedRuns(
                 selection,
-                new ScenarioLibraryRunPreparationHelper.RunPreparationCallbacks() {
-                    @Override
-                    public void clearScenarioRunStatusFields(String scenarioName) {
-                        PaneScenarioLibrary.this.clearScenarioRunStatusFields(scenarioName);
-                    }
-
-                    @Override
-                    public void markQueued(String scenarioName) {
-                        runController.addQueuedRun(scenarioName);
-                    }
-                });
+                this::clearScenarioRunStatusFields,
+                runController::addQueuedRun);
         if (!preparationResult.hasLaunchableRuns()) {
             return;
         }
@@ -987,42 +978,35 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
                     Client.gCAMExecutionThread,
                     new GcamRunController.RunRequest(scenarioName, command, workingDir),
                     this::handleGcamProcessLine,
-                    new GcamRunController.RunLifecycleListener() {
-                        @Override
-                        public void onRunStarted(String startedScenarioName) {
-                            Platform.runLater(() -> {
-                                startLiveStatusRefresh();
-                                refreshScenarioActionButtons();
-                            });
-                        }
-
-                        @Override
-                        public void onRunFinished(String finishedScenarioName, ProcessResult result) {
-                            PaneScenarioLibrary.this.finalizeScenarioRunArtifacts(finishedScenarioName);
-                            if (result != null && (result.getExitCode() != 0 || result.isTimedOut())) {
-                                if (finishedScenarioName != null
-                                        && finishedScenarioName.equals(runController.getStopRequestedScenarioName())) {
-                                    moveExeMainLogToScenarioFolder(finishedScenarioName);
-                                    persistStoppedStatusMarker(finishedScenarioName);
-                                    markScenarioStopped(finishedScenarioName);
-                                } else {
-                                    maybePromptWindowsPolicyBlockOnStartupFailure(finishedScenarioName, result);
-                                    reportRunFailureDetails(finishedScenarioName, result);
-                                    markScenarioDnF(finishedScenarioName);
-                                }
+                    startedScenarioName -> Platform.runLater(() -> {
+                        startLiveStatusRefresh();
+                        refreshScenarioActionButtons();
+                    }),
+                    (finishedScenarioName, result) -> {
+                        PaneScenarioLibrary.this.finalizeScenarioRunArtifacts(finishedScenarioName);
+                        if (result != null && (result.getExitCode() != 0 || result.isTimedOut())) {
+                            if (finishedScenarioName != null
+                                    && finishedScenarioName.equals(runController.getStopRequestedScenarioName())) {
+                                moveExeMainLogToScenarioFolder(finishedScenarioName);
+                                persistStoppedStatusMarker(finishedScenarioName);
+                                markScenarioStopped(finishedScenarioName);
+                            } else {
+                                maybePromptWindowsPolicyBlockOnStartupFailure(finishedScenarioName, result);
+                                reportRunFailureDetails(finishedScenarioName, result);
+                                markScenarioDnF(finishedScenarioName);
                             }
-                            // Clean up the stored command
-                            submittedCommandByScenario.remove(finishedScenarioName);
-                            Platform.runLater(() -> {
-                                try {
-                                    updateRunStatus();
-                                } catch (Exception ignored) {}
-                                refreshScenarioActionButtons();
-                                if (!runController.hasActiveRun()) {
-                                    stopLiveStatusRefresh();
-                                }
-                            });
                         }
+                        // Clean up the stored command
+                        submittedCommandByScenario.remove(finishedScenarioName);
+                        Platform.runLater(() -> {
+                            try {
+                                updateRunStatus();
+                            } catch (Exception ignored) {}
+                            refreshScenarioActionButtons();
+                            if (!runController.hasActiveRun()) {
+                                stopLiveStatusRefresh();
+                            }
+                        });
                     });
         }
         startLiveStatusRefresh();

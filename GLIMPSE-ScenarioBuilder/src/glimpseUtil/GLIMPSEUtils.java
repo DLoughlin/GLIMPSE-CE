@@ -804,6 +804,22 @@ public class GLIMPSEUtils {
 	}
 
 	/**
+	 * Refreshes icon-button sizing so square toolbar buttons track the current
+	 * runtime font size.
+	 *
+	 * @param button button to refresh
+	 */
+	public void refreshManagedButtonSizing(Button button) {
+		if (uiUtils == null) {
+			UtilsUI temp = new UtilsUI();
+			temp.init(vars, styles);
+			temp.refreshManagedButtonSizing(button);
+			return;
+		}
+		uiUtils.refreshManagedButtonSizing(button);
+	}
+
+	/**
 	 * Shrinks label text as needed so it fits the label's configured width.
 	 *
 	 * @param label label to adjust
