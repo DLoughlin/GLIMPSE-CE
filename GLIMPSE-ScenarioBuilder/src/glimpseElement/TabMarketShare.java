@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,6 +54,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * TabMarketShare is a GUI tab that provides the UI and logic for creating,
@@ -86,6 +88,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial and Final %", "Initial w/% Growth/yr",
             "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
 	private static final String SELECT_ONE_OR_MORE = "Select One or More";
+	private static final double FILTER_DEBOUNCE_SECONDS = 0.15;
 
     // === Labels and Controls ===
     private final Label labelSubsetFilter = createLabel("Subset Filter:", LABEL_WIDTH);
@@ -105,6 +108,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private final Label labelTreatment = createLabel("Treatment: ", LABEL_WIDTH);
     private final ComboBox<String> comboBoxTreatment = createComboBoxString();
     private final HBox hBoxAutoUnique = new HBox(8);
+	private final PauseTransition filterUpdateDelay = new PauseTransition(Duration.seconds(FILTER_DEBOUNCE_SECONDS));
 
     // === Constants for Metadata ===
     private static final String METADATA_HEADER = "########## Scenario Component Metadata ##########";
@@ -313,8 +317,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		});
 		setOnAction(textFieldSubsetFilter, e -> setupCheckComboBoxes());
 		setOnAction(textFieldSupersetFilter, e -> setupCheckComboBoxes());
-		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> setupCheckComboBoxes());
-		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> setupCheckComboBoxes());
+		filterUpdateDelay.setOnFinished(event -> setupCheckComboBoxes());
+		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
+		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
 		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxTreatment, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxConstraint, e -> setPolicyAndMarketNames());
@@ -377,6 +382,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		try {
 			List<String> techListSub = new ArrayList<>();
 			List<String> techListSup = new ArrayList<>();
+			List<String> prevCheckedSubset = new ArrayList<>(checkComboBoxSubset.getCheckModel().getCheckedItems());
+			List<String> prevCheckedSuperset = new ArrayList<>(checkComboBoxSuperset.getCheckModel().getCheckedItems());
 			String filterTextSub = textFieldSubsetFilter.getText() != null ? textFieldSubsetFilter.getText().trim()
 					: "";
 			String filterTextSup = textFieldSupersetFilter.getText() != null ? textFieldSupersetFilter.getText().trim()
@@ -396,33 +403,23 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				boolean showSub = !useFilterSub;
 				if (useFilterSub) {
-					for (String temp : tech) {
-						if (temp != null && temp.toLowerCase().contains(filterTextSubLc)) {
-							showSub = true;
-							break;
-						}
-					}
+					showSub = matchesAllFilterTerms(tech, filterTextSubLc);
 				}
 				if (showSub)
 					techListSub.add(line.trim());
 				boolean showSup = !useFilterSup;
 				if (useFilterSup) {
-					for (String temp : tech) {
-						if (temp != null && temp.toLowerCase().contains(filterTextSupLc)) {
-							showSup = true;
-							break;
-						}
-					}
+					showSup = matchesAllFilterTerms(tech, filterTextSupLc);
 				}
 				if (showSup)
 					techListSup.add(line.trim());
 			}
-			//I think the following was confusing for some users; commenting out for now. 2024-06-05
-//		 // clear previous entries before repopulating
-//			checkComboBoxSubset.getCheckModel().clearChecks();
-//			checkComboBoxSubset.getItems().clear();
-//			checkComboBoxSuperset.getCheckModel().clearChecks();
-//			checkComboBoxSuperset.getItems().clear();
+
+			// Rebuild both lists on each call so text filters actually limit options.
+			checkComboBoxSubset.getCheckModel().clearChecks();
+			checkComboBoxSubset.getItems().clear();
+			checkComboBoxSuperset.getCheckModel().clearChecks();
+			checkComboBoxSuperset.getItems().clear();
 
 			String policyType = comboBoxPolicyType.getValue();
 			// Apply the same policy-specific predicate to both lists. Keeping this
@@ -435,6 +432,17 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			for (String techLine : techListSup) {
 				if (shouldShowTechLine(techLine, policyType)) {
 					checkComboBoxSuperset.getItems().add(techLine);
+				}
+			}
+
+			for (String item : prevCheckedSubset) {
+				if (checkComboBoxSubset.getItems().contains(item)) {
+					checkComboBoxSubset.getCheckModel().check(item);
+				}
+			}
+			for (String item : prevCheckedSuperset) {
+				if (checkComboBoxSuperset.getItems().contains(item)) {
+					checkComboBoxSuperset.getCheckModel().check(item);
 				}
 			}
 
@@ -510,6 +518,33 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			System.out.println("Error reading tech list from " + vars.getTchBndListFilename() + ":");
 			System.out.println("  ---> " + e);
 		}
+	}
+
+	/**
+	 * Returns true when every non-empty search token appears in at least one tech
+	 * metadata field. This enables multi-word contains filtering.
+	 */
+	private boolean matchesAllFilterTerms(String[] techFields, String filterTextLc) {
+		if (filterTextLc == null || filterTextLc.trim().isEmpty()) {
+			return true;
+		}
+		String[] terms = filterTextLc.trim().split("\\s+");
+		for (String term : terms) {
+			if (term.isEmpty()) {
+				continue;
+			}
+			boolean found = false;
+			for (String field : techFields) {
+				if (field != null && field.toLowerCase().contains(term)) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
