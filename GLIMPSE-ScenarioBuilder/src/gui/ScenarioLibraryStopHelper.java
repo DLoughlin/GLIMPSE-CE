@@ -35,6 +35,7 @@ final class ScenarioLibraryStopHelper {
     static StopMode promptForStopMode() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         alert.setTitle("Stop GCAM run");
         alert.setHeaderText("Stop GCAM?");
 

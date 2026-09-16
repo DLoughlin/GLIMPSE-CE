@@ -752,6 +752,7 @@ final class ConsoleManager {
     private static void showAlert(Alert.AlertType type, String title, String header, String content) {
         try {
             Alert alert = new Alert(type);
+            UtilsDialogs.applyDialogTheme(alert);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);

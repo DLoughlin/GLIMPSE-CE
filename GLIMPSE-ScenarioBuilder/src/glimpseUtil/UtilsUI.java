@@ -315,9 +315,16 @@ public class UtilsUI {
         }
         if (wid > 0 && styles != null) {
             double height = styles.getSmallButtonWidth();
-            button.setPrefSize(wid, height);
-            button.setMaxSize(wid, height);
+            String buttonText = button.getText();
+            Font font = button.getFont();
+            if (font == null) {
+                font = Font.font(styles.getFontSize());
+            }
+            double preferredWidth = Math.max(wid, estimateButtonWidth(button, buttonText, font));
             button.setMinSize(wid, height);
+            button.setPrefSize(preferredWidth, height);
+            button.setMaxWidth(Double.MAX_VALUE);
+            button.setMaxHeight(height);
         }
     }
 
@@ -484,10 +491,20 @@ public class UtilsUI {
             prefHeight = button.getMinHeight();
         }
 
+        Font baseFont = Font.font(targetSize);
+        if (!(button.getGraphic() != null && button.getContentDisplay() == ContentDisplay.GRAPHIC_ONLY)) {
+            double preferredWidth = estimateButtonWidth(button, text, baseFont);
+            if (preferredWidth > 0 && preferredWidth > prefWidth) {
+                button.setPrefWidth(preferredWidth);
+                button.setMaxWidth(Double.MAX_VALUE);
+                prefWidth = preferredWidth;
+            }
+        }
+
         while (targetSize > 0) {
             Font candidate = Font.font(targetSize);
-            double estimatedWidth = estimateTextWidth(text, candidate);
-            boolean widthTooLarge = prefWidth > 0 && estimatedWidth > prefWidth - 5;
+            double estimatedWidth = estimateButtonWidth(button, text, candidate);
+            boolean widthTooLarge = prefWidth > 0 && estimatedWidth > prefWidth;
             boolean heightTooLarge = prefHeight > 0 && targetSize > prefHeight - 5;
             if (!widthTooLarge && !heightTooLarge) {
                 break;
@@ -598,6 +615,13 @@ public class UtilsUI {
         Text measure = new Text(text == null ? "" : text);
         measure.setFont(font);
         return measure.getLayoutBounds().getWidth();
+    }
+
+    private double estimateButtonWidth(Button button, String text, Font font) {
+        double textWidth = estimateTextWidth(text, font);
+        Insets padding = button == null ? null : button.getPadding();
+        double paddingWidth = padding == null ? 0 : padding.getLeft() + padding.getRight();
+        return Math.ceil(textWidth + paddingWidth + 20);
     }
 
     /**

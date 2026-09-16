@@ -204,6 +204,7 @@ public final class SetupMenuView {
         root.setPadding(new Insets(12));
 
         Scene scene = new Scene(root, 350, 140);
+        Client.registerSceneForRuntimeFontSize(scene);
         dialog.setScene(scene);
         dialog.setResizable(false);
         dialog.showAndWait();

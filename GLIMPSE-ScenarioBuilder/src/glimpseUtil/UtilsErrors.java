@@ -271,13 +271,7 @@ public final class UtilsErrors {
 			border.setBottom(buttonBox);
 
 			Scene scene = new Scene(border);
-			try {
-				String css = gui.CSSResourceManager.getModernCssUrl();
-				if (css != null) {
-					scene.getStylesheets().add(css);
-				}
-			} catch (Exception ignored) {
-			}
+			ScenarioBuilder.applyModernTheme(scene);
 			stage.setScene(scene);
 			stage.show();
 		};

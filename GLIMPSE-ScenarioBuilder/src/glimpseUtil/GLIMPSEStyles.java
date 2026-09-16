@@ -252,7 +252,8 @@ public final class GLIMPSEStyles {
      * @return standard large button width in pixels
      */
     public int getBigButtonWidth() {
-        return bigButtonWidth;
+        int extraWidth = Math.max(0, fontSize - 12) * 7;
+        return bigButtonWidth + extraWidth;
     }
 
     /**

@@ -616,6 +616,7 @@ public class LogConfigEditorWidget {
 
         Alert alert = new Alert(AlertType.INFORMATION);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         applyAppFontStyle(alert.getDialogPane());
         alert.setTitle("Compare to Default");
         alert.setHeaderText("Differences from hard-coded defaults");
@@ -861,6 +862,7 @@ public class LogConfigEditorWidget {
         AlertType type = issues.isEmpty() ? AlertType.INFORMATION : AlertType.WARNING;
         Alert alert = new Alert(type);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         applyAppFontStyle(alert.getDialogPane());
         alert.setTitle("Validation Details");
         alert.setHeaderText(issues.isEmpty() ? "No validation issues were found." : "Current validation issues");
@@ -1181,6 +1183,7 @@ public class LogConfigEditorWidget {
         ButtonType discardButton = new ButtonType("Discard", ButtonBar.ButtonData.OK_DONE);
         Alert alert = new Alert(AlertType.CONFIRMATION, message, discardButton, ButtonType.CANCEL);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         applyAppFontStyle(alert.getDialogPane());
         alert.setTitle("Unsaved Changes");
         alert.setHeaderText("You have unsaved changes");
@@ -1191,6 +1194,7 @@ public class LogConfigEditorWidget {
     private void showError(String header, String message) {
         Alert alert = new Alert(AlertType.ERROR, message, ButtonType.OK);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         applyAppFontStyle(alert.getDialogPane());
         alert.setTitle("Log Configuration Editor");
         alert.setHeaderText(header);

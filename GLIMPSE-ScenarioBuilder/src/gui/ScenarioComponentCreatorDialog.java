@@ -235,6 +235,7 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 		} catch (Exception e) {
 			System.out.println("Error loading modern.css: " + e);
 		}
+		Client.registerSceneForRuntimeFontSize(scene);
 		stageWithTabs.setScene(scene);
 		stageWithTabs.setTitle(DIALOG_TITLE_NEW_COMPONENT);
 

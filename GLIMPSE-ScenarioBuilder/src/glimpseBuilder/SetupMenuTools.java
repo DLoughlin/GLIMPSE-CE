@@ -153,6 +153,7 @@ public final class SetupMenuTools {
     private boolean confirmDeleteTrash() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "This will permanently delete all items from the trash folder.", ButtonType.OK, ButtonType.CANCEL);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Permanently delete all items from trash?");
         return alert.showAndWait().filter(b -> b == ButtonType.OK).isPresent();

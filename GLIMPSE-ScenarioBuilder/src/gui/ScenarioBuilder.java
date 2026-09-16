@@ -615,6 +615,7 @@ public class ScenarioBuilder {
 	 */
 	public static void applyModernTheme(Scene scene) {
 		CSSResourceManager.applyModernTheme(scene);
+		Client.registerSceneForRuntimeFontSize(scene);
 	}
 
 	/**

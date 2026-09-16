@@ -1412,6 +1412,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
 
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 glimpseUtil.UtilsDialogs.initDialogOwner(alert);
+                glimpseUtil.UtilsDialogs.applyDialogTheme(alert);
                 alert.setTitle("GCAM waiting for database");
                 alert.setHeaderText("Close ModelInterface to continue GCAM");
 

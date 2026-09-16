@@ -53,9 +53,13 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
@@ -212,6 +216,7 @@ public class Client extends Application {
     public static boolean exit_on_exception = false; // Retained public for potential external access
     /** When true, startup status messages are printed to stdout. Default is false. */
     private static volatile boolean reportStartupStatus = false;
+    private static final Map<Scene, Boolean> runtimeFontManagedScenes = Collections.synchronizedMap(new WeakHashMap<>());
     // endregion
 
     // region GUI Panels
@@ -973,7 +978,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
         applyConfiguredStageBounds(primaryStage);
-        applyFontSizeToSceneRoot(scene, getRuntimeFontSize());
+        registerSceneForRuntimeFontSize(scene);
 
         applyStartupStatus(sb.getText(), calculateStartupProgress(), startupBusyState);
         if (showImmediately) {
@@ -1131,7 +1136,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
         applyConfiguredStageBounds(primaryStage);
-        applyFontSizeToSceneRoot(scene, getRuntimeFontSize());
+        registerSceneForRuntimeFontSize(scene);
     }
 
   private static void loadPersistentWindowPreferences() {
@@ -2301,6 +2306,23 @@ public class Client extends Application {
         }
     }
 
+    private static void applyFontSizeToScene(Scene scene, int requestedFontSize) {
+        if (scene == null) {
+            return;
+        }
+        int fontSize = clampRuntimeFontSize(requestedFontSize);
+        applyFontSizeToSceneRoot(scene, fontSize);
+        Parent root = scene.getRoot();
+        if (root == null) {
+            return;
+        }
+        applyFontSizeRecursively(root, fontSize);
+        try {
+            root.requestLayout();
+        } catch (Exception ignored) {
+        }
+    }
+
     private static void applyFontSizeRecursively(Node node, int fontSize) {
         if (node == null) {
             return;
@@ -2325,23 +2347,56 @@ public class Client extends Application {
             GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
             vars.setPreferredFontSize(Integer.toString(fontSize));
 
+            LinkedHashSet<Scene> scenesToUpdate = new LinkedHashSet<>();
             Stage stage = primaryStage;
-            if (stage == null) {
-                return;
+            if (stage != null && stage.getScene() != null) {
+                scenesToUpdate.add(stage.getScene());
             }
-            Scene scene = stage.getScene();
-            if (scene == null || scene.getRoot() == null) {
+            synchronized (runtimeFontManagedScenes) {
+                scenesToUpdate.addAll(new ArrayList<>(runtimeFontManagedScenes.keySet()));
+            }
+            if (scenesToUpdate.isEmpty()) {
                 return;
             }
 
-            applyFontSizeRecursively(scene.getRoot(), fontSize);
-            scene.getRoot().requestLayout();
+            for (Scene scene : scenesToUpdate) {
+                applyFontSizeToScene(scene, fontSize);
+            }
         };
 
         if (Platform.isFxApplicationThread()) {
             applyTask.run();
         } else {
             Platform.runLater(applyTask);
+        }
+    }
+
+    /**
+     * Registers a scene to receive the currently configured runtime font size now and on future updates.
+     * Safe to call multiple times for the same scene.
+     *
+     * @param scene scene to manage
+     */
+    public static void registerSceneForRuntimeFontSize(Scene scene) {
+        if (scene == null) {
+            return;
+        }
+        Runnable registerTask = () -> {
+            boolean addListener;
+            synchronized (runtimeFontManagedScenes) {
+                addListener = !runtimeFontManagedScenes.containsKey(scene);
+                runtimeFontManagedScenes.put(scene, Boolean.TRUE);
+            }
+            if (addListener) {
+                scene.rootProperty().addListener((obs, oldRoot, newRoot) -> applyFontSizeToScene(scene, getRuntimeFontSize()));
+            }
+            applyFontSizeToScene(scene, getRuntimeFontSize());
+        };
+
+        if (Platform.isFxApplicationThread()) {
+            registerTask.run();
+        } else {
+            Platform.runLater(registerTask);
         }
     }
 
