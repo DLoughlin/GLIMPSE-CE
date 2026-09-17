@@ -659,7 +659,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 					if ((y >= start_year) && (y <= last_year)) {
 
 						if (sector.toLowerCase().startsWith("trn")) {
-							String loadStr = utils.getTrnVehInfo("load", state, sector, subsector, tech, yr);
+							String loadStr = utils.getTrnVehInfo("load", state, sector, subsector, tech, yr,null);
 							loadFactorList.add(state + "," + sector + "," + subsector + "," + yr + "," + loadStr);
 						}
 

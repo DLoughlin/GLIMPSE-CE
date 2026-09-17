@@ -116,9 +116,10 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 	private static final String SELECT_ONE_OR_MORE = "Select One or More";
 	private static final String[] APPLICATION_MODE_OPTIONS = { MODE_FLEET_AVERAGE, MODE_NEW_SALES };
 	private static final String[] SUBSECTOR_OPTIONS = { "Car", "Large Car and Truck", "Light Truck",
-			"Medium Truck", "Heavy Truck" };
+			"Medium Truck", "Heavy Truck", "Bus", "Domestic Aviation", "International Aviation",
+			"Domestic Ship", "International Ship", "Freight Rail", "HSR", "Passenger Rail" };
 	private static final String[] TECH_OPTIONS = { "BEV", "FCEV", "Hybrid Liquids", "Liquids", "NG" };
-	private static final String[] UNITS_OPTIONS = { "MPG", "MJ/vkt" };
+	private static final String[] UNITS_OPTIONS = { "MPG", "EJ/billion-service-km" };
 	private static final String[] MOD_TYPE_OPTIONS = { "Initial and Final", "Initial w/% Growth/yr",
 			"Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
 	// private static final String HEADER_PART1 = "GLIMPSEEffCreditTargets-Part1";
@@ -204,7 +205,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		checkComboBoxTech.setDisable(true); // Disabled until subsector selected
 		resetComboBoxItems(comboBoxWhichUnits, java.util.Arrays.asList(UNITS_OPTIONS));
 		comboBoxWhichUnits.getSelectionModel().select("MPG");
-		comboBoxWhichUnits.setDisable(true); // Disabled until tech selected
+		comboBoxWhichUnits.setDisable(true); // Enabled once a subsector is selected
 		resetComboBoxItems(comboBoxApplicationMode, java.util.Arrays.asList(APPLICATION_MODE_OPTIONS));
 		setComboBoxPrompt(comboBoxApplicationMode, SELECT_ONE);
 		setModificationTypeOptions(MOD_TYPE_OPTIONS);
@@ -283,8 +284,10 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		comboBoxSubsector.setOnAction(e -> {
 			if (!isSelectionMissing(comboBoxSubsector)) {
 				checkComboBoxTech.setDisable(false); // Enable tech selection
+				comboBoxWhichUnits.setDisable(false); // Enable units selection
 			} else {
 				checkComboBoxTech.setDisable(true); // Disable tech selection
+				comboBoxWhichUnits.setDisable(true); // Disable units selection
 			}
 			setPolicyAndMarketNames(); // Update names when subsector changes
 		});
@@ -438,12 +441,25 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		boolean newSalesMode = isNewSalesMode();
 
 		// --- Subsector / sector mapping (transport-specific for now; extend later) ---
+		// eventually may want to make this more resilient... Does it actually need to read/match the sector?
 		String subsector = comboBoxSubsector.getValue();
 		String sector;
 		if (subsector.equals("Light Truck") || subsector.equals("Medium Truck") || subsector.equals("Heavy Truck")) {
 			sector = "trn_freight_road";
+		} else if (subsector.equals("Car") || subsector.equals("Large Car and Truck")) {
+			sector = "trn_pass_road_4W";
+		} else if (subsector.equals("Bus")) {
+			sector = "trn_pass_road";
+		} else if (subsector.equals("Freight Rail") || subsector.equals("Domestic Ship")) {
+			sector = "trn_freight";
+		} else if (subsector.equals("Domestic Aviation") || subsector.equals("HSR") || subsector.equals("Passenger Rail")) {
+			sector = "trn_pass";
+		} else if (subsector.equals("International Aviation")) {
+			sector = "trn_aviation_intl";
+		} else if (subsector.equals("International Ship")) {
+			sector = "trn_shipping_intl";
 		} else {
-			sector = "trn_pass_road_LDV_4W";
+			sector = "trn_pass_road_4W"; // default fallback
 		}
 
 		// --- Parse table rows up front ---
@@ -532,7 +548,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 					if (!vars.isGcamVersionPre8_5()) units = "EJ/billion-service-km"; // GCAM 8.5+ uses billion-vkt units
 					String techEffS = utils.getTrnVehInfo("intensity", region, sector, subsector, tech, targetYearStr,
 							units);
-					String techLoadS = utils.getTrnVehInfo("load", region, sector, subsector, tech, targetYearStr);
+					String techLoadS = utils.getTrnVehInfo("load", region, sector, subsector, tech, targetYearStr,null);
 
 					if ((techEffS == null) || (techLoadS == null)) {
 						break;
@@ -544,13 +560,13 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 
 					} catch (Exception e) {
 						System.out.println("Error parsing tech efficiency or load for " + region + ", " + sector + ", "
-								+ subsector + ", " + tech + " in year " + targetYearStr);
+								+ subsector + ", " + tech + " in year " + targetYearStr + " error: " + e.getMessage() + ":"+techEffS + ","+techLoadS+ ":");
 						break;
 					}
 					
 					// Calculate output_ratio: the efficiency gap (target minus tech baseline)
 					float output_ratio = (float) (targetEff - techEff);
-					System.out.println(region + "," + tech + "," + targetYearStr + "," + targetEff + "," + techEff + "," + output_ratio);
+					//System.out.println(region + "," + tech + "," + targetYearStr + "," + targetEff + "," + techEff + "," + output_ratio);
 
 					// Convert coefficients according to the selected GCAM transport version
 					if (vars.isGcamVersionPre8_5()) {
@@ -586,141 +602,6 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		System.out.println("Done");
 	}
 
-	private void saveScenarioComponentAlt1(TreeView<String> tree) {
-
-		if (!qaInputs()) {
-			return;
-		} else {
-
-			//// setting up policy name and suggested file name
-
-			String ID = resolveUniqueSuffix(this.textFieldMarketName.getText());
-			String policy_name = this.textFieldPolicyName.getText() + ID;
-			String market_name = this.textFieldMarketName.getText() + ID;
-			filenameSuggestion = this.textFieldPolicyName.getText().replaceAll("/", "-").replaceAll(" ", "_") + ".csv";
-
-			// clearing info to save to file
-			fileContent = this.getMetaDataContent(tree, market_name, policy_name);
-			String content_p1 = "";
-			String content_p2 = "";
-
-			//// -----------getting selected regions info from GUI
-			String[] listOfSelectedLeaves = utils.getAllSelectedRegions(tree);
-			listOfSelectedLeaves = utils.removeUSADuplicate(listOfSelectedLeaves);
-			String states = utils.returnAppendedString(listOfSelectedLeaves);
-
-			//// -----------getting constraint data from GUI
-
-			// getting values for constraint
-			ArrayList<String> dataArrayList = this.paneForComponentDetails.getDataYrValsArrayList();
-			String[] year_list = new String[dataArrayList.size()];
-			String[] value_list = new String[dataArrayList.size()];
-			double[] valuef_list = new double[dataArrayList.size()];
-
-			// setting up dates for iteration
-
-			//// ------------ setting up headers
-			String header_part1 = "GLIMPSECAFETargets";
-			String header_part2 = "GLIMPSEPFStdActivate";
-
-			// header 1:
-			content_p1 += "INPUT_TABLE" + vars.getEol();
-			content_p1 += "Variable ID" + vars.getEol();
-			content_p1 += header_part1 + vars.getEol() + vars.getEol();
-			content_p1 += "region,sector,subsector,tech,year,input,coefficient,policy,output-ratio,pMultiplier"
-					+ vars.getEol();
-
-			// header 2:
-			content_p2 += "INPUT_TABLE" + vars.getEol();
-			content_p2 += "Variable ID" + vars.getEol();
-			content_p2 += header_part2 + vars.getEol() + vars.getEol();
-			content_p2 += "region,policy,market,type,year,constrained" + vars.getEol();
-
-			///// ----- Constructing data components
-
-			// loop over regions
-			for (int r = 0; r < listOfSelectedLeaves.length; r++) {
-				String region = listOfSelectedLeaves[r];
-
-				// for each region, sector/subsector, get list of techs
-				String subsector = comboBoxSubsector.getValue();
-				String sector = "";
-				if ((subsector.equals("Light Truck")) || (subsector.equals("Medium Truck"))
-						|| (subsector.equals("Heavy Truck"))) {
-					sector = "trn_freight_road";
-				} else {
-					sector = "trn_pass_road_LDV_4W";
-				}
-
-				for (int i = 0; i < dataArrayList.size(); i++) {
-					String str = dataArrayList.get(i).replaceAll(" ", "").trim();
-					year_list[i] = utils.splitString(str, ",")[0];
-					value_list[i] = utils.splitString(str, ",")[1];
-					valuef_list[i] = Double.parseDouble(value_list[i]);
-
-					String yr = year_list[i];
-					double val = valuef_list[i];
-
-					ObservableList<String> tech_list = this.checkComboBoxTech.getCheckModel().getCheckedItems();
-
-					for (int t = 0; t < tech_list.size(); t++) {
-						String tech = tech_list.get(t);
-
-						String load_str = utils.getTrnVehInfo("load", region, sector, subsector, tech, yr);
-						if (load_str == null) {
-							System.out.println("why null?");
-						}
-						double load = Double.parseDouble(load_str);
-
-						String coef_str = utils.getTrnVehInfo("intensity", region, sector, subsector, tech, yr);
-						if (coef_str == null) {
-							// hack since NG vehicles are not in the coef list
-							coef_str = "5000";
-							load = 0.0;
-						}
-						double coef = Double.parseDouble(coef_str);
-
-						String io = yr + "_" + policy_name;
-						String iom = io + "Mkt";
-
-						String outputratio = "";
-						String pMultiplier = "";
-
-						// Convert MPG target to GJ/million-km basis for comparison with coef.
-						// Energy content: 0.1203 GJ/gallon; distance conversion: 1.61 km/mile
-						double gjPerGallon = 0.1203;
-						double targetGJPerMillionKm = (gjPerGallon / (1.61 * val)) * 1e6;
-
-									boolean which = vars.isGcamVersionPre8_5();
-
-									if (which) { // for GCAM8.2 and earlier versions
-							// coef is already in GJ/million-km; outputratio is target intensity on same
-							// basis
-							outputratio = formatDisplayValue((float) targetGJPerMillionKm);
-							pMultiplier = formatDisplayValue((float) (load * 1e9));
-						} else { // for GCAM8.5 and later versions
-							// coef is in MJ/km; convert to GJ/million-km for consistency with 8.2 workflow
-							coef *= 1000000.0; // convert from GJ/km to GJ/million km
-							outputratio = formatDisplayValue((float) targetGJPerMillionKm);
-							// pMultiplier=Double.toString((float)(load*1e9));
-							pMultiplier = formatDisplayValue(1.0);
-						}
-
-						content_p1 += region + "," + sector + "," + subsector + "," + tech + "," + yr + "," + io + ","
-								+ coef + "," + io + "," + outputratio + "," + pMultiplier + vars.getEol();
-						if (t == 0)
-							content_p2 += region + "," + io + "," + iom + ",RES," + yr + ",1" + vars.getEol();
-					}
-				}
-
-				fileContent += content_p1 + vars.getEol();
-				fileContent += content_p2;
-
-				System.out.println("Done");
-			}
-		}
-
-	}
 
 	/**
 	 * Generates the metadata content string for the scenario component, including

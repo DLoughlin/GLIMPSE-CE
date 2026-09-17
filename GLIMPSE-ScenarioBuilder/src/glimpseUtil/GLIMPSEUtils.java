@@ -1296,16 +1296,6 @@ public class GLIMPSEUtils {
 		return transportUtils.getTrnTechsInSubsector(region, sector, subsector);
 	}
 
-	/**
-	 * Retrieves transportation vehicle information for a given parameter, region,
-	 * sector, subsector, technology, and year.
-	 */
-	public String getTrnVehInfo(String param, String region, String sector, String subsector, String tech,
-			String year_str) {
-		if (transportUtils == null)
-			return null;
-		return transportUtils.getTrnVehInfo(param, region, sector, subsector, tech, year_str);
-	}
 
 	/**
 	 * Retrieves transportation vehicle information for a given parameter, region,
