@@ -56,7 +56,7 @@ import ModelInterface.InterfaceMain;
  * DanL modified 2/17/2026
  */
 public class Breakout extends JDialog {
-	private Chart[] transChart;
+	private Chart[] transposeSourceCharts;
 	private static final boolean DEBUG = false;
     private Chart[] chart;
     private int gridWidth;
@@ -95,82 +95,71 @@ public class Breakout extends JDialog {
 			setVisible(true);
 		}
 		else {
-			String meta = ArrayConversion.array2String(getMetaArray(chart)); // original chart info, e.g., state and
-																				// scenario name
-			List<String> masterLegend = getMasterLegend(chart); // original series in chart
-			String[] newPlotNames = masterLegend.toArray(new String[0]); // each original series becomes a new plot
-			List<String[][]> transposedData;
-			try {
-				transposedData = getTransposeData(masterLegend, transChart); // transposes plot data for all charts
-			} catch (NullPointerException | IndexOutOfBoundsException e) {
-				transposedData = new ArrayList<>();
-			}
-			// need to determine how to handle complex datasets
-			if (transposedData.isEmpty()) {// || chart.length > 2) {
-				JOptionPane.showMessageDialog(InterfaceMain.getInstance().getFrame(), "Transpose is not yet supported on complex datasets.", "Information",
-						JOptionPane.INFORMATION_MESSAGE);
+				this.chart = createTransposedCharts(chart);
+			if (this.chart == null) {
 				return;
 			}
-			String[] newSeries = meta.split(","); // each original chart becomes a new series based on metadata
-			int idx = ThumbnailUtilNew.getFirstNonNullChart(chart);
-
-			// Extract units from each original chart to associate with the new series (which correspond to original charts)
-			// The length of 'newSeries' is determined by the number of original charts that made it into 'meta'
-			// We need an array of units that matches 'newSeries' length/order.
-			String[] newSeriesUnits = new String[newSeries.length];
-			// 'meta' comes from getMetaArray(chart), which iterates through 'chart' array.
-			// So 'newSeries' should align with 'chart' array elements, assuming all charts are included in meta.
-			// However, getMetaArray might filter or process. Let's look at getMetaArray implementation if needed, 
-			// but typically it just maps chart->meta. 
-			// Let's assume 1-to-1 mapping for now.
-			for(int i=0; i<newSeries.length && i<chart.length; i++) {
-				if(chart[i] != null && chart[i].getAxis_name_unit() != null && chart[i].getAxis_name_unit().length > 1) {
-					// axis_name_unit[1] is the Y-axis label which usually contains the unit, e.g. "Energy (EJ)"
-					// We want to extract just "EJ" or keep "Energy (EJ)". 
-					// ThumbnailUtilNew.createChart constructs it as: item_shown + " (" + str_unit + ")"
-					// Let's use the full y-axis label as the unit for now, or parse it if specifically requested.
-					// The user prompt example says "input (EJ)", which looks like a full axis label.
-					newSeriesUnits[i] = chart[i].getAxis_name_unit()[1];
-				} else {
-					newSeriesUnits[i] = "";
-				}
-			}
-
-			Chart[] chart1 = ThumbnailUtilNew.createTransposeChart(chart[idx].getGraphName(), // same as queryName
-					newSeriesUnits, // units - PASS SPECIFIC SERIES UNITS HERE instead of generic axis units
-					chart[idx].getChartColumn(), meta, newSeries, // what were previously the graph names
-					newPlotNames, // what was previously the legend
-					new ArrayList<String[][]>(transposedData)); // transposed data
-
-			if (DEBUG) {
-				System.out.println("Transpose::Transpose:input " + chart1.length + " trans: " + transChart.length
-						+ " transpose: " + chart1.length);
-			}
-			
-			this.chart = chart1;
-			this.gridWidth = 0;
-
-			// Build the transpose dialog the same way as Breakout View: options in NORTH, single scrollpane in CENTER
-			JPanel optionsPanel = new JPanel();
-			this.optionsArea = new OptionsArea(optionsPanel, this.chart, this.gridWidth, sameScale, sp, true);
-			jp.add(optionsArea.getPanel(), BorderLayout.NORTH);
-			setChartPane();
-			add(jp);
-			setTitle("Transpose Thumbnails: " + chart[0].getGraphName());
-			setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			pack();
-			setSize(800, 600);
-			java.awt.Point baseLoc = InterfaceMain.getInstance().getFrame().getLocation();
-			// If this transpose is launched from within an existing Breakout dialog, offset from that dialog instead
-			if (sp != null) {
-				java.awt.Container spTop = javax.swing.SwingUtilities.getWindowAncestor(sp);
-				if (spTop instanceof Breakout) {
-					baseLoc = spTop.getLocation();
-				}
-			}
-			setLocation(baseLoc.x + 40, baseLoc.y + 40);
-			setVisible(true);
+				this.gridWidth = 0;
+				this.optionsArea = new OptionsArea(jp, this.chart, this.gridWidth, sameScale, sp, true);
+				showTransposeDialog(sp);
 		}
+	}
+
+	private Chart[] createTransposedCharts(Chart[] sourceCharts) {
+		String meta = ArrayConversion.array2String(getMetaArray(sourceCharts));
+		List<String> masterLegend = getMasterLegend(sourceCharts);
+		String[] plotNames = masterLegend.toArray(new String[0]);
+		List<String[][]> transposedSeriesData;
+		try {
+			transposedSeriesData = getTransposeData(masterLegend, transposeSourceCharts);
+		} catch (NullPointerException | IndexOutOfBoundsException e) {
+			transposedSeriesData = new ArrayList<>();
+		}
+		if (transposedSeriesData.isEmpty()) {
+			JOptionPane.showMessageDialog(InterfaceMain.getInstance().getFrame(),
+					"Transpose is not yet supported on complex datasets.",
+					"Information", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
+		String[] seriesNames = meta.split(",");
+		int idx = ThumbnailUtilNew.getFirstNonNullChart(sourceCharts);
+		if (idx < 0) {
+			return null;
+		}
+		String[] seriesUnitsByChart = new String[seriesNames.length];
+		for (int i = 0; i < seriesNames.length && i < sourceCharts.length; i++) {
+			if (sourceCharts[i] != null && sourceCharts[i].getAxis_name_unit() != null
+					&& sourceCharts[i].getAxis_name_unit().length > 1) {
+				seriesUnitsByChart[i] = sourceCharts[i].getAxis_name_unit()[1];
+			} else {
+				seriesUnitsByChart[i] = "";
+			}
+		}
+		Chart[] transposedCharts = ThumbnailUtilNew.createTransposeChart(sourceCharts[idx].getGraphName(),
+				seriesUnitsByChart, sourceCharts[idx].getChartColumn(), meta, seriesNames, plotNames,
+				new ArrayList<String[][]>(transposedSeriesData));
+		if (DEBUG) {
+			System.out.println("Transpose::Transpose:input " + transposedCharts.length + " source: "
+					+ transposeSourceCharts.length + " transpose: " + transposedCharts.length);
+		}
+		return transposedCharts;
+	}
+
+	private void showTransposeDialog(JSplitPane sp) {
+		add(jp);
+		setTitle("Transpose Thumbnails: " + chart[0].getGraphName());
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pack();
+		setSize(800, 600);
+		java.awt.Point baseLoc = InterfaceMain.getInstance().getFrame().getLocation();
+		if (sp != null) {
+			java.awt.Container spTop = javax.swing.SwingUtilities.getWindowAncestor(sp);
+			if (spTop instanceof Breakout) {
+				baseLoc = spTop.getLocation();
+			}
+		}
+		setLocation(baseLoc.x + 40, baseLoc.y + 40);
+		setVisible(true);
 	}
 
 	/**
@@ -273,7 +262,7 @@ public class Breakout extends JDialog {
 						.println("Transpose::getMetaArray:i " + i + " k: " + k + " title: " + chart[i].getTitles()[1]);
 			}
 		}
-		transChart = chartList.toArray(new Chart[0]);
+		transposeSourceCharts = chartList.toArray(new Chart[0]);
 		return Arrays.copyOfRange(meta, 0, k);
 	}
 
