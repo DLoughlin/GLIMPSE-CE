@@ -65,6 +65,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.Timer;
 import javax.swing.SwingUtilities;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
@@ -130,6 +131,19 @@ public class AChartDisplay {
 	private int chartOptionsHeight = 36;
 	/** True while this class is mutating dialog layout (not a user resize). */
 	private boolean updatingLayout = false;
+	/** Baseline graphics preferences captured from the chart before any resize scaling is applied. */
+	private ChartUtil.GraphicsPreferences chartGraphicsPreferences = null;
+	/** Reference viewport size used to compute proportional font scaling. */
+	private Dimension chartViewportReferenceSize = null;
+	/** Delay before applying chart auto-fit after the user stops resizing. */
+	private static final int CHART_RESIZE_DEBOUNCE_MS = 200;
+	/** Debounces repeated resize events so chart fitting only happens after resizing pauses. */
+	private final Timer chartResizeDebounceTimer = new Timer(CHART_RESIZE_DEBOUNCE_MS, e -> {
+		if (dialog == null || !dialog.isShowing() || updatingLayout) {
+			return;
+		}
+		fitChartViewToViewport();
+	});
 	/** Emits chart/table layout sizing diagnostics for toggle troubleshooting. */
 	private static final boolean DEBUG_LAYOUT = false;
 	/** Button to show/hide table */
@@ -261,6 +275,8 @@ public class AChartDisplay {
 		this.charts = charts;
 		this.id = id;
 		this.chart = charts[id];
+		chartResizeDebounceTimer.setRepeats(false);
+		chartResizeDebounceTimer.setCoalesce(true);
 		init();
 	}
 
@@ -274,6 +290,8 @@ public class AChartDisplay {
 		charts[0] = chart;
 		this.chart = chart;
 		this.id = 0;
+		chartResizeDebounceTimer.setRepeats(false);
+		chartResizeDebounceTimer.setCoalesce(true);
 		init();
 	}
 
@@ -288,6 +306,8 @@ public class AChartDisplay {
 		JFreeChart jf = chart.getChart();
 		if (jf != null) {
 			ChartUtil.applyGraphicsDefaults(jf);
+				chartGraphicsPreferences = ChartUtil.captureGraphicsPreferences(jf);
+				chartViewportReferenceSize = null;
 			for (int j = 0; j < jf.getSubtitleCount(); j++) {
 				jf.getSubtitle(j).setVisible(true);
 			}
@@ -303,10 +323,21 @@ public class AChartDisplay {
 					// User-driven window resizing should be allowed to resize the chart.
 					clearPreservedChartViewportSize();
 					updateChartScrollBarPolicies();
-					// Recalculate and apply chart scaling for new viewport size
-					SwingUtilities.invokeLater(() -> fitChartViewToViewport());
+						// Recalculate and apply chart scaling after resizing settles.
+						chartResizeDebounceTimer.restart();
 				}
 			});
+				dialog.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						chartResizeDebounceTimer.stop();
+					}
+
+					@Override
+					public void windowClosed(WindowEvent e) {
+						chartResizeDebounceTimer.stop();
+					}
+				});
 			dialog.setSize(new Dimension(smallSizeX, smallSizeY));
 			setJSplitPane(setChartPane(jf), null);
 			this.legendShowing = false;
@@ -386,6 +417,12 @@ public class AChartDisplay {
 			// the preserved size over repeated show/hide toggles.
 			preservedChartViewportSize.width = Math.max(preservedChartViewportSize.width, viewportSize.width);
 			preservedChartViewportSize.height = Math.max(preservedChartViewportSize.height, viewportSize.height);
+		}
+		if (chartViewportReferenceSize == null) {
+			chartViewportReferenceSize = new Dimension(viewportSize);
+		} else {
+			chartViewportReferenceSize.width = Math.max(chartViewportReferenceSize.width, viewportSize.width);
+			chartViewportReferenceSize.height = Math.max(chartViewportReferenceSize.height, viewportSize.height);
 		}
 		applyPreservedChartViewportSize();
 	}
@@ -467,10 +504,27 @@ public class AChartDisplay {
 			chartPanel.setMaximumDrawWidth(target.width);
 			chartPanel.setMaximumDrawHeight(target.height);
 		}
+		applyChartFontScaling(target);
 		jp.revalidate();
 		if (chartPaneContainer != null) {
 			chartPaneContainer.revalidate();
 		}
+	}
+
+	private void applyChartFontScaling(Dimension targetViewportSize) {
+		if (chartPanel == null || chartPanel.getChart() == null || chartGraphicsPreferences == null
+				|| targetViewportSize == null) {
+			return;
+		}
+		Dimension referenceSize = chartViewportReferenceSize;
+		if (referenceSize == null || referenceSize.width <= 0 || referenceSize.height <= 0) {
+			referenceSize = targetViewportSize;
+		}
+		double widthScale = referenceSize.width <= 0 ? 1.0d : (double) targetViewportSize.width / referenceSize.width;
+		double heightScale = referenceSize.height <= 0 ? 1.0d : (double) targetViewportSize.height / referenceSize.height;
+		double scale = Math.min(1.0d, Math.min(widthScale, heightScale));
+		ChartUtil.applyGraphicsPreferences(chartPanel.getChart(), ChartUtil.scaleGraphicsPreferences(chartGraphicsPreferences, scale));
+		chartPanel.repaint();
 	}
 
 	private int getTargetSplitTopHeight() {
