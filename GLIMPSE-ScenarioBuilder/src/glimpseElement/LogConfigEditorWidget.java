@@ -41,6 +41,7 @@ import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEVariables;
 import glimpseUtil.UtilsDialogs;
+import gui.Client;
 import java.io.File;
 import java.io.StringWriter;
 import java.nio.file.Paths;
@@ -58,11 +59,13 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -87,6 +90,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.xml.transform.OutputKeys;
@@ -104,6 +108,13 @@ import org.w3c.dom.NodeList;
  * constrained advanced edits while keeping XML serialization safe.
  */
 public class LogConfigEditorWidget {
+
+    private static final double INITIAL_DIALOG_WIDTH = 1120;
+    private static final double INITIAL_DIALOG_HEIGHT = 720;
+    private static final double DIALOG_EXTRA_WIDTH_PADDING = 28;
+    private static final double DIALOG_EXTRA_HEIGHT_PADDING = 20;
+    private static final double DIALOG_MAX_SCREEN_WIDTH_FACTOR = 0.96;
+    private static final double DIALOG_MAX_SCREEN_HEIGHT_FACTOR = 0.96;
 
     private static final String[] KNOWN_LOGGER_ORDER = {
         "main_log", "solver_log", "single_market_log", "worst_market_log", "calibration_log",
@@ -155,11 +166,15 @@ public class LogConfigEditorWidget {
     private final TextArea warningsArea = new TextArea();
     private final TextArea previewArea = new TextArea();
 
+    private TabPane detailsTabPane;
+    private VBox loggerDetailsPane;
+
     private Stage stage;
     private File currentFile;
     private Document xmlDocument;
     private boolean dirty = false;
     private boolean updatingUi = false;
+    private boolean dialogAutoFitPending = false;
     private String lastSavedDisplay = "--";
 
     private static final List<String> PRINT_LOG_WARNING_OPTIONS = Arrays.asList(
@@ -197,9 +212,14 @@ public class LogConfigEditorWidget {
 
         BorderPane root = buildRoot();
         applyAppFontStyle(root);
-        Scene scene = new Scene(root, 1120, 720);
+        Scene scene = new Scene(root, INITIAL_DIALOG_WIDTH, INITIAL_DIALOG_HEIGHT);
         gui.ScenarioBuilder.applyModernTheme(scene);
         stage.setScene(scene);
+        Client.registerSceneForRuntimeFontSize(scene);
+        stage.setMinWidth(INITIAL_DIALOG_WIDTH);
+        stage.setMinHeight(INITIAL_DIALOG_HEIGHT);
+        installDialogAutoFitTriggers(root, scene);
+        stage.setOnShown(e -> ensureDialogFitsContent(root, scene));
 
         stage.setOnCloseRequest(e -> {
             if (!confirmDiscardIfDirty("Close editor and discard unsaved changes?")) {
@@ -356,6 +376,7 @@ public class LogConfigEditorWidget {
 
     private TabPane buildDetailsPanel() {
         TabPane tabs = new TabPane();
+        detailsTabPane = tabs;
 
         Tab detailsTab = new Tab("Logger Details", buildLoggerDetailsPane());
         Tab previewTab = new Tab("Preview", buildPreviewPane());
@@ -431,28 +452,175 @@ public class LogConfigEditorWidget {
         grid.setVgap(8);
         int r = 0;
         grid.add(enabledCheckBox, 0, r++, 2, 1);
-        grid.add(new Label("Preset Verbosity Settings:"), 0, r);
+        grid.add(createDetailsLabel("Presets:"), 0, r);
         grid.add(presetCombo, 1, r++);
-        grid.add(new Label("Name:"), 0, r);
+        grid.add(createDetailsLabel("Name:"), 0, r);
         grid.add(advancedNameField, 1, r++);
-        grid.add(new Label("Type:"), 0, r);
+        grid.add(createDetailsLabel("Type:"), 0, r);
         grid.add(advancedTypeField, 1, r++);
-        grid.add(new Label("FileName:"), 0, r);
+        grid.add(createDetailsLabel("FileName:"), 0, r);
         grid.add(outputFileField, 1, r++);
         grid.add(new Separator(), 0, r++, 2, 1);
-        grid.add(new Label("printLogWarningLevel:"), 0, r);
+        grid.add(createDetailsLabel("printLogWarningLevel:"), 0, r);
         grid.add(printLogWarningCombo, 1, r++);
-        grid.add(new Label("minLogWarningLevel:"), 0, r);
+        grid.add(createDetailsLabel("minLogWarningLevel:"), 0, r);
         grid.add(minLogWarningCombo, 1, r++);
-        grid.add(new Label("minToScreenWarningLevel:"), 0, r);
+        grid.add(createDetailsLabel("minToScreenWarningLevel:"), 0, r);
         grid.add(minToScreenWarningCombo, 1, r++);
         grid.add(new Separator(), 0, r++, 2, 1);
-        grid.add(new Label("headerMessage:"), 0, r);
+        grid.add(createDetailsLabel("headerMessage:"), 0, r);
         grid.add(headerMessageArea, 1, r++);
 
         VBox box = new VBox(10, grid);
         box.setPadding(new Insets(10));
+        loggerDetailsPane = box;
         return box;
+    }
+
+    private Label createDetailsLabel(String text) {
+        Label label = new Label(text);
+        // Prevent clipping of the label column when users run with larger font settings.
+        label.setMinWidth(Region.USE_PREF_SIZE);
+        return label;
+    }
+
+    private void installDialogAutoFitTriggers(BorderPane root, Scene scene) {
+        if (root == null || scene == null) {
+            return;
+        }
+        root.styleProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+        loadedFileLabel.textProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+        savedPathLabel.textProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+        statusLabel.textProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+        validationLabel.textProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+        detailsButton.visibleProperty().addListener((obs, oldVal, newVal) -> requestDialogAutoFit(root, scene));
+    }
+
+    private void requestDialogAutoFit(BorderPane root, Scene scene) {
+        if (dialogAutoFitPending || stage == null || !stage.isShowing()) {
+            return;
+        }
+        dialogAutoFitPending = true;
+        Platform.runLater(() -> {
+            dialogAutoFitPending = false;
+            ensureDialogFitsContent(root, scene);
+        });
+    }
+
+    private void ensureDialogFitsContent(BorderPane root, Scene scene) {
+        if (stage == null || root == null || scene == null) {
+            return;
+        }
+        root.applyCss();
+        root.layout();
+
+        double contentWidth = root.prefWidth(-1);
+        if (Double.isNaN(contentWidth) || contentWidth <= 0) {
+            return;
+        }
+
+        double windowChromeWidth = stage.getWidth() - scene.getWidth();
+        if (Double.isNaN(windowChromeWidth) || windowChromeWidth < 0) {
+            windowChromeWidth = 16;
+        }
+        double windowChromeHeight = stage.getHeight() - scene.getHeight();
+        if (Double.isNaN(windowChromeHeight) || windowChromeHeight < 0) {
+            windowChromeHeight = 39;
+        }
+
+        double requiredWidth = contentWidth + windowChromeWidth + DIALOG_EXTRA_WIDTH_PADDING;
+        double maxWidth = getMaxDialogWidth();
+        if (maxWidth > 0) {
+            requiredWidth = Math.min(requiredWidth, maxWidth);
+        }
+
+        double availableContentWidth = scene.getWidth();
+        if (Double.isNaN(availableContentWidth) || availableContentWidth <= 0) {
+            availableContentWidth = Math.max(0, stage.getWidth() - windowChromeWidth);
+        }
+        boolean widthNeedsGrowth = requiredWidth - stage.getWidth() > 1.0d
+                && contentWidth - availableContentWidth > 1.0d;
+        if (widthNeedsGrowth) {
+            double newWidth = Math.max(stage.getWidth(), requiredWidth);
+            stage.setWidth(newWidth);
+            root.applyCss();
+            root.layout();
+        }
+
+        double requiredHeight = getRequiredDialogHeight(root, scene, windowChromeHeight);
+        double maxHeight = getMaxDialogHeight();
+        if (maxHeight > 0) {
+            requiredHeight = Math.min(requiredHeight, maxHeight);
+        }
+        double newHeight = Math.max(INITIAL_DIALOG_HEIGHT, requiredHeight);
+        if (newHeight > stage.getHeight()) {
+            stage.setHeight(newHeight);
+        }
+    }
+
+    private double getRequiredDialogHeight(BorderPane root, Scene scene, double windowChromeHeight) {
+        if (root == null || scene == null) {
+            return INITIAL_DIALOG_HEIGHT;
+        }
+        double widthForHeight = scene.getWidth();
+        if (Double.isNaN(widthForHeight) || widthForHeight <= 0) {
+            widthForHeight = INITIAL_DIALOG_WIDTH;
+        }
+
+        if (loggerDetailsPane == null || detailsTabPane == null) {
+            return root.prefHeight(widthForHeight) + windowChromeHeight + DIALOG_EXTRA_HEIGHT_PADDING;
+        }
+
+        double detailsWidth = detailsTabPane.getWidth();
+        if (Double.isNaN(detailsWidth) || detailsWidth <= 0) {
+            detailsWidth = Math.max(320, widthForHeight - 360);
+        }
+        double tabChromeHeight = detailsTabPane.getHeight() - loggerDetailsPane.getHeight();
+        if (Double.isNaN(tabChromeHeight) || tabChromeHeight < 0) {
+            tabChromeHeight = 40;
+        }
+
+        double requiredMainHeight = Math.max(0, loggerDetailsPane.prefHeight(detailsWidth)) + tabChromeHeight;
+        double topHeight = root.getTop() == null ? 0 : root.getTop().prefHeight(widthForHeight);
+        double bottomHeight = root.getBottom() == null ? 0 : root.getBottom().prefHeight(widthForHeight);
+        Insets rootInsets = root.getInsets();
+        double contentHeight = topHeight + bottomHeight + requiredMainHeight
+                + rootInsets.getTop() + rootInsets.getBottom();
+        return contentHeight + windowChromeHeight + DIALOG_EXTRA_HEIGHT_PADDING;
+    }
+
+    private double getMaxDialogWidth() {
+        Rectangle2D visualBounds = getTargetScreenVisualBounds();
+        if (visualBounds == null || visualBounds.getWidth() <= 0) {
+            return -1;
+        }
+        return visualBounds.getWidth() * DIALOG_MAX_SCREEN_WIDTH_FACTOR;
+    }
+
+    private double getMaxDialogHeight() {
+        Rectangle2D visualBounds = getTargetScreenVisualBounds();
+        if (visualBounds == null || visualBounds.getHeight() <= 0) {
+            return -1;
+        }
+        return visualBounds.getHeight() * DIALOG_MAX_SCREEN_HEIGHT_FACTOR;
+    }
+
+    private Rectangle2D getTargetScreenVisualBounds() {
+        Screen targetScreen = null;
+        if (stage != null) {
+            double windowX = stage.getX();
+            double windowY = stage.getY();
+            double windowWidth = Math.max(1, stage.getWidth());
+            double windowHeight = Math.max(1, stage.getHeight());
+            List<Screen> matchingScreens = Screen.getScreensForRectangle(windowX, windowY, windowWidth, windowHeight);
+            if (!matchingScreens.isEmpty()) {
+                targetScreen = matchingScreens.get(0);
+            }
+        }
+        if (targetScreen == null) {
+            targetScreen = Screen.getPrimary();
+        }
+        return targetScreen == null ? null : targetScreen.getVisualBounds();
     }
 
     private VBox buildPreviewPane() {
