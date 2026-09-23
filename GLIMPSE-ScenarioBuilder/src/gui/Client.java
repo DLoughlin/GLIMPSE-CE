@@ -198,6 +198,7 @@ public class Client extends Application {
     private static final String STARTUP_SHOW_WATCHDOG_FLAG = "glimpse.debugShowWatchdog";
     private static final String STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG = "glimpse.startupDeferMainUiUntilReady";
     private static final String STARTUP_WATCHDOG_VERBOSE_STACK_FLAG = "glimpse.debugWatchdogVerboseStack";
+    // Explicit opt-in for JavaFX system-scale mode on Windows.
     private static final String STARTUP_DISABLE_HIDPI_FLAG = "glimpse.disableHiDpi";
     private static final String STARTUP_HIDPI_COMPAT_SCALE_FLAG = "glimpse.hidpiCompatScalePercent";
     private static final int STARTUP_WATCHDOG_INTERVAL_MS = 2000;
@@ -219,8 +220,6 @@ public class Client extends Application {
     private static final int STARTUP_STEP_FILES_READY = 3;
     private static final int STARTUP_STEP_COMPONENTS_READY = 4;
     private static final int STARTUP_STEP_SCENARIOS_READY = 5;
-    private static final double TOP_LEFT_PANEL_RATIO = 4.0;
-    private static final double TOP_RIGHT_PANEL_RATIO = 2.5;
     private static final double TOP_PANEL_GAP = 4.0;
     private static final double TOP_ROW_HEIGHT_RATIO = 45.0;
     private static final double BOTTOM_ROW_HEIGHT_RATIO = 55.0;
@@ -424,13 +423,10 @@ public class Client extends Application {
     }
 
     /**
-     * JavaFX on some Windows mixed-DPI setups can fail to reflow correctly when a
-     * window crosses monitors with different scale factors. In that case, prefer
-     * a stable system-scaled UI over dynamic per-monitor scaling.
+     * Optional Windows HiDPI compatibility mode.
      * <p>
-     * The workaround is now opt-in via {@code -Dglimpse.disableHiDpi=true}; native
-     * per-monitor scaling is the default because it preserves correct layout when
-     * the app starts on a secondary monitor.
+     * When enabled via {@code -Dglimpse.disableHiDpi=true}, JavaFX runs in
+     * system-scale mode instead of per-monitor scale mode.
      */
     private static void applyWindowsMixedDpiCompatibilityWorkaround() {
         try {
@@ -557,7 +553,7 @@ public class Client extends Application {
         deferMainUiUntilReady = Boolean.parseBoolean(System.getProperty(STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG, "true"));
         if (deferMainUiUntilReady && isWindowsPlatform() && hasMixedWindowsMonitorScaling()) {
             deferMainUiUntilReady = false;
-            logStartupCheckpoint("init(): disabling deferred startup shell on mixed-DPI Windows setup", t0);
+            logStartupCheckpoint("init(): mixed-DPI startup mode enabled (skip shell scene swap)", t0);
         }
         bootstrapTimingEnabled = vars.getDebugStartupTiming();
         logStartupCheckpoint("init(): options loaded", t0);
@@ -591,8 +587,12 @@ public class Client extends Application {
     /**
      * Builds and displays the primary Scenario Builder window.
      * <p>
-     * Shows a lightweight startup shell immediately, then composes the full UI and
-     * starts deferred initialization tasks.
+     * Uses one of two startup paths:
+     * <ul>
+     *   <li>Direct main-UI startup on mixed-DPI Windows setups (skips scene swap).</li>
+     *   <li>Lightweight startup shell followed by deferred main-UI composition on other setups.</li>
+     * </ul>
+     * Both paths finish by starting deferred initialization tasks.
      *
      * @param primaryStage The primary stage for this application.
      */
@@ -619,15 +619,6 @@ public class Client extends Application {
         });
         logStartupCheckpoint("start(): close handler installed", t0);
 
-        //        //testing to see if I can have this appear early
-//        primaryStage.setTitle(VERSION);
-//        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-//        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-//        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-//        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-//        primaryStage.centerOnScreen();
-//        primaryStage.show();
-                
         final boolean prewarmBeforeShow = Boolean.getBoolean(STARTUP_PREWARM_BEFORE_SHOW_FLAG);
         if (prewarmBeforeShow) {
             startStartupResourcePrewarm();
@@ -635,7 +626,7 @@ public class Client extends Application {
         }
 
         if (!deferMainUiUntilReady) {
-            logStartupCheckpoint("start(): direct main-UI startup path enabled", t0);
+            logStartupCheckpoint("start(): mixed-DPI startup mode active (direct main-UI path)", t0);
             advanceStartupStep(STARTUP_STEP_WINDOW_LAYOUT, STARTUP_WINDOW_READY_MESSAGE);
             setStartupStatus(STARTUP_BUILDING_UI_MESSAGE, -1, true);
             warmUpFxControlsForStartup();
@@ -646,7 +637,7 @@ public class Client extends Application {
             closeEarlyStartupSplash();
             logStartupCheckpoint("start(): after closeEarlyStartupSplash", t0);
             startDeferredSetupAnalysisLogging();
-            logStartupCheckpoint("Startup shell skipped for direct main-UI startup", t0);
+            logStartupCheckpoint("Startup shell skipped for mixed-DPI startup mode", t0);
             if (!prewarmBeforeShow) {
                 startStartupResourcePrewarm();
                 logStartupCheckpoint("start(): startup resource prewarm queued (post-show)", t0);
@@ -692,7 +683,7 @@ public class Client extends Application {
         }
 
         runAfterInitialFxPulse(() -> {
-            // Build heavy panes after first paint so startup is perceived as immediate.
+            // Shell-path only: build heavy panes after first paint so startup appears immediate.
             setStartupStatus(STARTUP_BUILDING_UI_MESSAGE, -1, true);
             warmUpFxControlsForStartup();
             waitForCriticalIconPrewarmThenBuild(0);
@@ -1576,55 +1567,6 @@ public class Client extends Application {
       }
     }
     return null;
-  }
-
-  private static boolean screensAreEquivalent(Screen a, Screen b) {
-    if (a == null || b == null) {
-      return a == b;
-    }
-    Rectangle2D boundsA = a.getVisualBounds();
-    Rectangle2D boundsB = b.getVisualBounds();
-    return boundsA.equals(boundsB);
-  }
-
-  private static double scaleWindowDimensionBetweenScreens(double dimension, Screen fromScreen, Screen toScreen) {
-    if (fromScreen == null || toScreen == null || !Double.isFinite(dimension) || dimension <= 0) {
-      return dimension;
-    }
-    Rectangle2D fromBounds = fromScreen.getVisualBounds();
-    Rectangle2D toBounds = toScreen.getVisualBounds();
-    
-    if (fromBounds.getWidth() <= 0) {
-      return dimension;
-    }
-
-    double scaledDimension = scaleDimensionBetweenSpans(dimension, fromBounds.getWidth(), toBounds.getWidth());
-    double percentageOfFromScreen = dimension / fromBounds.getWidth();
-    
-    System.out.println("[STARTUP]   Cross-monitor scale: " + String.format("%.0f", dimension) + 
-                       " (" + String.format("%.1f%%", percentageOfFromScreen * 100) + " of " + 
-                       String.format("%.0f", fromBounds.getWidth()) + ") -> " + 
-                       String.format("%.0f", scaledDimension) + " (" + 
-                       String.format("%.1f%%", percentageOfFromScreen * 100) + " of " + 
-                       String.format("%.0f", toBounds.getWidth()) + ")");
-    
-    return scaledDimension;
-  }
-
-  private static double scaleDimensionBetweenSpans(double dimension, double fromSpan, double toSpan) {
-    if (!Double.isFinite(dimension) || dimension <= 0 || !Double.isFinite(fromSpan)
-        || !Double.isFinite(toSpan) || fromSpan <= 0 || toSpan <= 0) {
-      return dimension;
-    }
-    return (dimension / fromSpan) * toSpan;
-  }
-
-  private static boolean roughlyEqualSpan(double a, double b) {
-    if (!Double.isFinite(a) || !Double.isFinite(b) || a <= 0 || b <= 0) {
-      return false;
-    }
-    double tolerance = Math.max(2.0, Math.max(a, b) * 0.01);
-    return Math.abs(a - b) <= tolerance;
   }
 
   private static synchronized void persistWindowPreferencesSnapshot(Stage componentCreatorStage)
