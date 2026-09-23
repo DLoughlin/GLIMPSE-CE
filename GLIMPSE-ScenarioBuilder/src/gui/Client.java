@@ -68,10 +68,13 @@ import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -227,7 +230,7 @@ public class Client extends Application {
     private static final int STARTUP_STEP_SCENARIOS_READY = 5;
     private static final double TOP_PANEL_GAP = 4.0;
     private static final double DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.6;
-    private static final double MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.2;
+    private static final double MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.5;
     private static final double MAX_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.8;
     private static final double TOP_ROW_HEIGHT_RATIO = 45.0;
     private static final double BOTTOM_ROW_HEIGHT_RATIO = 55.0;
@@ -311,6 +314,9 @@ public class Client extends Application {
     private final AtomicBoolean startupOverlayVisible = new AtomicBoolean(false);
     private Label startupOverlayLabel;
     private VBox startupOverlayBox;
+    private final DoubleProperty topRowComponentLibraryFraction = new SimpleDoubleProperty(
+            DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION);
+    private volatile boolean topRowSplitDragActive = false;
 
     /** Startup timing anchor (nanoseconds). */
     private static final long STARTUP_T0_NANOS = System.nanoTime();
@@ -928,7 +934,9 @@ public class Client extends Application {
         arrowBox.setMaxWidth(Region.USE_PREF_SIZE);
         HBox.setHgrow(componentLibraryBox, Priority.NEVER);
         HBox.setHgrow(createScenarioBox, Priority.NEVER);
+        topRowComponentLibraryFraction.set(getTopRowComponentLibraryFraction());
         bindTopRowPaneFractions(topRowBox, componentLibraryBox, arrowBox, createScenarioBox);
+        installTopRowSplitDragBehavior(topRowBox, componentLibraryBox, arrowBox, createScenarioBox);
 
         final HBox bottomRowBox = new HBox(10, runBox);
         bottomRowBox.setFillHeight(true);
@@ -951,9 +959,6 @@ public class Client extends Application {
             return;
         }
 
-        final double leftFraction = getTopRowComponentLibraryFraction();
-        final double rightFraction = 1.0 - leftFraction;
-
         componentLibraryBox.prefWidthProperty().unbind();
         createScenarioBox.prefWidthProperty().unbind();
 
@@ -963,8 +968,94 @@ public class Client extends Application {
                         .subtract(arrowBox.widthProperty())
                         .subtract(topRowBox.spacingProperty().multiply(2.0)));
 
-        componentLibraryBox.prefWidthProperty().bind(availableWidth.multiply(leftFraction));
-        createScenarioBox.prefWidthProperty().bind(availableWidth.multiply(rightFraction));
+        componentLibraryBox.prefWidthProperty().bind(availableWidth.multiply(topRowComponentLibraryFraction));
+        createScenarioBox.prefWidthProperty().bind(
+                availableWidth.multiply(Bindings.subtract(1.0, topRowComponentLibraryFraction)));
+    }
+
+    private void installTopRowSplitDragBehavior(HBox topRowBox, VBox componentLibraryBox, VBox arrowBox, VBox createScenarioBox) {
+        if (topRowBox == null || componentLibraryBox == null || arrowBox == null || createScenarioBox == null) {
+            return;
+        }
+
+        topRowBox.setOnMouseMoved(event -> {
+            if (isInTopRowSplitterZone(event.getX(), topRowBox, componentLibraryBox, arrowBox)) {
+                topRowBox.setCursor(Cursor.H_RESIZE);
+            } else if (!topRowSplitDragActive) {
+                topRowBox.setCursor(Cursor.DEFAULT);
+            }
+        });
+
+        topRowBox.setOnMousePressed(event -> {
+            if (!isInTopRowSplitterZone(event.getX(), topRowBox, componentLibraryBox, arrowBox)) {
+                topRowSplitDragActive = false;
+                return;
+            }
+            if (event.getTarget() instanceof Button) {
+                topRowSplitDragActive = false;
+                return;
+            }
+            topRowSplitDragActive = true;
+            topRowBox.setCursor(Cursor.H_RESIZE);
+            updateTopRowFractionFromMouseX(event.getX(), topRowBox, arrowBox);
+            event.consume();
+        });
+
+        topRowBox.setOnMouseDragged(event -> {
+            if (!topRowSplitDragActive) {
+                return;
+            }
+            updateTopRowFractionFromMouseX(event.getX(), topRowBox, arrowBox);
+            event.consume();
+        });
+
+        topRowBox.setOnMouseReleased(event -> {
+            topRowSplitDragActive = false;
+            topRowBox.setCursor(Cursor.DEFAULT);
+        });
+
+        topRowBox.setOnMouseExited(event -> {
+            if (!topRowSplitDragActive) {
+                topRowBox.setCursor(Cursor.DEFAULT);
+            }
+        });
+    }
+
+    private boolean isInTopRowSplitterZone(double mouseX, HBox topRowBox, VBox componentLibraryBox, VBox arrowBox) {
+        if (topRowBox == null || componentLibraryBox == null || arrowBox == null) {
+            return false;
+        }
+        if (!Double.isFinite(mouseX)) {
+            return false;
+        }
+        double spacing = Math.max(0.0, topRowBox.getSpacing());
+        double leftPaneWidth = Math.max(0.0, componentLibraryBox.getWidth());
+        double arrowWidth = Math.max(0.0, arrowBox.getWidth());
+        double zoneStart = leftPaneWidth;
+        double zoneEnd = leftPaneWidth + spacing + arrowWidth + spacing;
+        return mouseX >= zoneStart && mouseX <= zoneEnd;
+    }
+
+    private void updateTopRowFractionFromMouseX(double mouseX, HBox topRowBox, VBox arrowBox) {
+        if (topRowBox == null || arrowBox == null) {
+            return;
+        }
+        if (!Double.isFinite(mouseX)) {
+            return;
+        }
+        double spacing = Math.max(0.0, topRowBox.getSpacing());
+        double arrowWidth = Math.max(0.0, arrowBox.getWidth());
+        double availableWidth = topRowBox.getWidth() - arrowWidth - (2.0 * spacing);
+        if (!(availableWidth > 0.0)) {
+            return;
+        }
+
+        double desiredLeftWidth = mouseX - spacing - (arrowWidth / 2.0);
+        double clampedLeftWidth = Math.max(0.0, Math.min(availableWidth, desiredLeftWidth));
+        double rawFraction = clampedLeftWidth / availableWidth;
+        double normalized = normalizeTopRowComponentLibraryFraction(rawFraction);
+        topRowComponentLibraryFraction.set(normalized);
+        persistedTopRowComponentLibraryFraction = normalized;
     }
 
     private static double getTopRowComponentLibraryFraction() {
@@ -981,6 +1072,13 @@ public class Client extends Application {
     }
 
     private static double resolveCurrentTopRowComponentLibraryFraction() {
+        Client clientInstance = instanceForStatus;
+        if (clientInstance != null) {
+            double liveFraction = clientInstance.topRowComponentLibraryFraction.get();
+            if (Double.isFinite(liveFraction)) {
+                return normalizeTopRowComponentLibraryFraction(liveFraction);
+            }
+        }
         if (!Platform.isFxApplicationThread()) {
             return getTopRowComponentLibraryFraction();
         }
