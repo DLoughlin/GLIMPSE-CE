@@ -131,6 +131,8 @@ public class Client extends Application {
     private Double height;
     private Double x;
     private Double y;
+    private Double sourceScreenWidth;
+    private Double sourceScreenHeight;
     private Integer fontSize;
 
     private boolean hasLocation() {
@@ -153,6 +155,8 @@ public class Client extends Application {
   private static final String WINDOW_PREF_HEIGHT_KEY = "window.height";
   private static final String WINDOW_PREF_X_KEY = "window.x";
   private static final String WINDOW_PREF_Y_KEY = "window.y";
+  private static final String WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY = "window.source.screen.width";
+  private static final String WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY = "window.source.screen.height";
   private static final String WINDOW_PREF_FONT_SIZE_KEY = "font.size";
   private static final String COMPONENT_CREATOR_PREF_WIDTH_KEY = "component.creator.window.width";
   private static final String COMPONENT_CREATOR_PREF_HEIGHT_KEY = "component.creator.window.height";
@@ -230,6 +234,9 @@ public class Client extends Application {
     private static volatile boolean reportStartupStatus = false;
     private static final Map<Scene, Boolean> runtimeFontManagedScenes = Collections.synchronizedMap(new WeakHashMap<>());
     // endregion
+
+    private boolean monitorScaleRelayoutListenersInstalled = false;
+    private final AtomicBoolean monitorScaleRelayoutPending = new AtomicBoolean(false);
 
     // region GUI Panels
     static PaneCreateScenario paneCreateScenario;
@@ -420,6 +427,10 @@ public class Client extends Application {
      * JavaFX on some Windows mixed-DPI setups can fail to reflow correctly when a
      * window crosses monitors with different scale factors. In that case, prefer
      * a stable system-scaled UI over dynamic per-monitor scaling.
+     * <p>
+     * The workaround is now opt-in via {@code -Dglimpse.disableHiDpi=true}; native
+     * per-monitor scaling is the default because it preserves correct layout when
+     * the app starts on a secondary monitor.
      */
     private static void applyWindowsMixedDpiCompatibilityWorkaround() {
         try {
@@ -430,13 +441,14 @@ public class Client extends Application {
                 return;
             }
 
-            boolean disableHiDpiRequested = Boolean.getBoolean(STARTUP_DISABLE_HIDPI_FLAG);
-            if (disableHiDpiRequested || hasMixedWindowsMonitorScaling()) {
-                String compatScalePercent = resolveHiDpiCompatScalePercent();
-                System.setProperty("prism.allowhidpi", "false");
-                System.setProperty("glass.win.uiScale", compatScalePercent);
-                logBootstrapCheckpoint("main(): applying mixed-DPI compatibility mode (-Dprism.allowhidpi=false, -Dglass.win.uiScale=" + compatScalePercent + ")");
+            if (!Boolean.getBoolean(STARTUP_DISABLE_HIDPI_FLAG)) {
+                return;
             }
+
+            String compatScalePercent = resolveHiDpiCompatScalePercent();
+            System.setProperty("prism.allowhidpi", "false");
+            System.setProperty("glass.win.uiScale", compatScalePercent);
+            logBootstrapCheckpoint("main(): applying explicit HiDPI compatibility mode (-Dprism.allowhidpi=false, -Dglass.win.uiScale=" + compatScalePercent + ")");
         } catch (Throwable ignored) {
             // Never let DPI probing interfere with app startup.
         }
@@ -543,6 +555,10 @@ public class Client extends Application {
         vars.loadOptions(optionsFilename);
         loadPersistentWindowPreferences();
         deferMainUiUntilReady = Boolean.parseBoolean(System.getProperty(STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG, "true"));
+        if (deferMainUiUntilReady && isWindowsPlatform() && hasMixedWindowsMonitorScaling()) {
+            deferMainUiUntilReady = false;
+            logStartupCheckpoint("init(): disabling deferred startup shell on mixed-DPI Windows setup", t0);
+        }
         bootstrapTimingEnabled = vars.getDebugStartupTiming();
         logStartupCheckpoint("init(): options loaded", t0);
         updateEarlyStartupSplashMessage("Loading GLIMPSE options...");
@@ -612,6 +628,33 @@ public class Client extends Application {
 //        primaryStage.centerOnScreen();
 //        primaryStage.show();
                 
+        final boolean prewarmBeforeShow = Boolean.getBoolean(STARTUP_PREWARM_BEFORE_SHOW_FLAG);
+        if (prewarmBeforeShow) {
+            startStartupResourcePrewarm();
+            logStartupCheckpoint("start(): startup resource prewarm queued (pre-show)", t0);
+        }
+
+        if (!deferMainUiUntilReady) {
+            logStartupCheckpoint("start(): direct main-UI startup path enabled", t0);
+            advanceStartupStep(STARTUP_STEP_WINDOW_LAYOUT, STARTUP_WINDOW_READY_MESSAGE);
+            setStartupStatus(STARTUP_BUILDING_UI_MESSAGE, -1, true);
+            warmUpFxControlsForStartup();
+            buildScenarioBuilderAndComposeMainWindow();
+            logStartupCheckpoint("start(): before primaryStage.show", t0);
+            primaryStage.show();
+            logStartupCheckpoint("start(): after primaryStage.show", t0);
+            closeEarlyStartupSplash();
+            logStartupCheckpoint("start(): after closeEarlyStartupSplash", t0);
+            startDeferredSetupAnalysisLogging();
+            logStartupCheckpoint("Startup shell skipped for direct main-UI startup", t0);
+            if (!prewarmBeforeShow) {
+                startStartupResourcePrewarm();
+                logStartupCheckpoint("start(): startup resource prewarm queued (post-show)", t0);
+            }
+            logStartupCheckpoint("Client.start complete", t0);
+            return;
+        }
+
         logStartupCheckpoint("start(): before startup shell setup", t0);
         advanceStartupStep(STARTUP_STEP_WINDOW_LAYOUT, STARTUP_SHELL_MESSAGE);
         logStartupCheckpoint("start(): after advanceStartupStep", t0);
@@ -619,12 +662,6 @@ public class Client extends Application {
         logStartupCheckpoint("start(): after setStartupStatus(shell)", t0);
         setStartupShellWindow();
         logStartupCheckpoint("start(): after setStartupShellWindow", t0);
-
-        final boolean prewarmBeforeShow = Boolean.getBoolean(STARTUP_PREWARM_BEFORE_SHOW_FLAG);
-        if (prewarmBeforeShow) {
-            startStartupResourcePrewarm();
-            logStartupCheckpoint("start(): startup resource prewarm queued (pre-show)", t0);
-        }
 
         final AtomicBoolean showWatchdogDone = new AtomicBoolean(false);
         Thread showWatchdog = null;
@@ -868,7 +905,8 @@ public class Client extends Application {
         VBox createScenarioBox = getScenarioBuilder().getvBoxCreateScenario();
         VBox runBox = getScenarioBuilder().getvBoxRun();
 
-        // Keep panes hidden until all controls are assembled; reveal together after the frame is shown.
+        // Keep panes visually hidden until all controls are assembled; leave them managed so
+        // width/height bindings still compute against the real stage size before reveal.
         deferMainPaneDisplayUntilReady(componentLibraryBox);
         deferMainPaneDisplayUntilReady(arrowBox);
         deferMainPaneDisplayUntilReady(createScenarioBox);
@@ -889,18 +927,9 @@ public class Client extends Application {
         arrowBox.setMaxWidth(Region.USE_PREF_SIZE);
         HBox.setHgrow(componentLibraryBox, Priority.ALWAYS);
         HBox.setHgrow(createScenarioBox, Priority.ALWAYS);
-        final double ratioDenominator = TOP_LEFT_PANEL_RATIO + TOP_RIGHT_PANEL_RATIO;
-        final javafx.beans.binding.NumberBinding availableTopWidth = javafx.beans.binding.Bindings.max(
-                0.0,
-                topRowBox.widthProperty()
-                        .subtract(arrowBox.widthProperty())
-                        .subtract(TOP_PANEL_GAP * 2.0));
-        componentLibraryBox.prefWidthProperty().bind(
-                availableTopWidth.multiply(TOP_LEFT_PANEL_RATIO / ratioDenominator));
-        createScenarioBox.prefWidthProperty().bind(
-                availableTopWidth.multiply(TOP_RIGHT_PANEL_RATIO / ratioDenominator));
 
         final HBox bottomRowBox = new HBox(10, runBox);
+        bottomRowBox.setFillHeight(true);
         bottomRowBox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         HBox.setHgrow(runBox, Priority.ALWAYS);
         bottomRowBox.setStyle(styles.getStyle1());
@@ -919,8 +948,10 @@ public class Client extends Application {
         if (pane == null) {
             return;
         }
-        pane.setVisible(false);
-        pane.setManaged(false);
+        pane.setVisible(true);
+        pane.setManaged(true);
+        pane.setOpacity(0.0);
+        pane.setMouseTransparent(true);
     }
 
     private static void revealMainPane(VBox pane) {
@@ -929,6 +960,8 @@ public class Client extends Application {
         }
         pane.setManaged(true);
         pane.setVisible(true);
+        pane.setOpacity(1.0);
+        pane.setMouseTransparent(false);
     }
 
     private void revealMainPanesIfReady() {
@@ -994,6 +1027,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
         applyConfiguredStageBounds(primaryStage);
+        installMonitorScaleRelayoutSupport(primaryStage, root);
         registerSceneForRuntimeFontSize(scene);
 
         applyStartupStatus(sb.getText(), calculateStartupProgress(), startupBusyState);
@@ -1055,6 +1089,66 @@ public class Client extends Application {
     }
 
     /**
+     * Re-runs CSS and layout when the main window moves between monitors with different
+     * output scaling. JavaFX layout panes already handle resizing correctly; the missing
+     * piece is an explicit relayout pulse when the window's DPI context changes.
+     */
+    private void installMonitorScaleRelayoutSupport(Stage stage, Parent root) {
+        if (monitorScaleRelayoutListenersInstalled || stage == null || root == null) {
+            return;
+        }
+        monitorScaleRelayoutListenersInstalled = true;
+
+        javafx.beans.value.ChangeListener<Number> relayoutListener = (obs, oldValue, newValue) ->
+                requestMonitorScaleRelayout(stage, root);
+        javafx.beans.value.ChangeListener<Boolean> showingListener = (obs, oldValue, newValue) -> {
+            if (Boolean.TRUE.equals(newValue)) {
+                requestMonitorScaleRelayout(stage, root);
+            }
+        };
+
+        stage.xProperty().addListener(relayoutListener);
+        stage.yProperty().addListener(relayoutListener);
+        stage.widthProperty().addListener(relayoutListener);
+        stage.heightProperty().addListener(relayoutListener);
+        stage.outputScaleXProperty().addListener(relayoutListener);
+        stage.outputScaleYProperty().addListener(relayoutListener);
+        stage.showingProperty().addListener(showingListener);
+
+        if (stage.isShowing()) {
+            requestMonitorScaleRelayout(stage, root);
+        }
+    }
+
+    private void requestMonitorScaleRelayout(Stage stage, Parent root) {
+        if (stage == null || root == null || !monitorScaleRelayoutPending.compareAndSet(false, true)) {
+            return;
+        }
+        Platform.runLater(() -> {
+            try {
+                root.applyCss();
+                root.requestLayout();
+                root.layout();
+
+                if (stage.isShowing()) {
+                    final double currentWidth = stage.getWidth();
+                    final double currentHeight = stage.getHeight();
+                    if (Double.isFinite(currentWidth) && currentWidth > 0.0
+                            && Double.isFinite(currentHeight) && currentHeight > 0.0) {
+                        stage.setWidth(currentWidth + 1.0);
+                        stage.setHeight(currentHeight + 1.0);
+                        stage.setWidth(currentWidth);
+                        stage.setHeight(currentHeight);
+                    }
+                }
+            } catch (Exception ignored) {
+            } finally {
+                monitorScaleRelayoutPending.set(false);
+            }
+        });
+    }
+
+    /**
      * After swapping from the lightweight startup shell to the full UI scene,
      * force one extra CSS/layout pass and a tiny one-time stage-size nudge so
      * width/height bindings settle immediately without user resize.
@@ -1087,24 +1181,41 @@ public class Client extends Application {
                         root.applyCss();
                         root.layout();
 
+                        // Reveal panes before the final settle pass so width-bound controls can
+                        // observe the restored stage dimensions without requiring user resize.
+                        revealMainPanesIfReady();
+                        root.applyCss();
+                        root.layout();
+
                         // Let JavaFX compute scene-driven preferred sizing once, then restore
                         // the target startup dimensions to keep the expected window footprint.
                         stage.sizeToScene();
                         stage.setWidth(targetW);
                         stage.setHeight(targetH);
 
-                        // Final one-pixel nudge to guarantee bound regions recompute now.
+                        // First nudge pass.
                         stage.setWidth(targetW + 1);
                         stage.setHeight(targetH + 1);
                         stage.setWidth(targetW);
                         stage.setHeight(targetH);
 
-                        // Only reveal the main panes after the final sizing pass so the user never
-                        // sees the intermediate resize/layout churn.
-                        revealMainPanesIfReady();
-                        root.applyCss();
-                        root.layout();
-                        markMainPanesRevealedThenHideOverlayNextPulse();
+                        // One extra pulse catches controls (for example TableView internals)
+                        // that finalize their preferred sizes only after becoming visible.
+                        Platform.runLater(() -> {
+                            try {
+                                root.requestLayout();
+                                root.applyCss();
+                                root.layout();
+                                stage.setWidth(targetW + 1);
+                                stage.setHeight(targetH + 1);
+                                stage.setWidth(targetW);
+                                stage.setHeight(targetH);
+                                root.applyCss();
+                                root.layout();
+                            } catch (Exception ignored) {
+                            }
+                            markMainPanesRevealedThenHideOverlayNextPulse();
+                        });
                     } catch (Exception ignored) {
                     }
                 });
@@ -1176,6 +1287,8 @@ public class Client extends Application {
 
     WindowPreferencesState loaded = loadStoredWindowState(properties, WINDOW_PREF_WIDTH_KEY,
         WINDOW_PREF_HEIGHT_KEY, WINDOW_PREF_X_KEY, WINDOW_PREF_Y_KEY);
+    loaded.sourceScreenWidth = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY);
+    loaded.sourceScreenHeight = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY);
     loaded.fontSize = parseStoredInteger(properties, WINDOW_PREF_FONT_SIZE_KEY);
     WindowPreferencesState loadedComponentCreator = loadStoredWindowState(properties,
         COMPONENT_CREATOR_PREF_WIDTH_KEY, COMPONENT_CREATOR_PREF_HEIGHT_KEY,
@@ -1418,14 +1531,16 @@ public class Client extends Application {
     double height = resolveInitialWindowHeight();
     stage.setMinHeight(MIN_WINDOW_HEIGHT);
     stage.setMinWidth(MIN_WINDOW_WIDTH);
-    stage.setWidth(width);
-    stage.setHeight(height);
 
     WindowPreferencesState preferences = persistedWindowPreferences;
     if (hasUsableSavedWindowLocation(preferences, width, height)) {
+      stage.setWidth(width);
+      stage.setHeight(height);
       stage.setX(preferences.x.doubleValue());
       stage.setY(preferences.y.doubleValue());
     } else {
+      stage.setWidth(width);
+      stage.setHeight(height);
       stage.centerOnScreen();
     }
   }
@@ -1451,6 +1566,65 @@ public class Client extends Application {
       }
     }
     return false;
+  }
+
+  private static Screen findScreenContainingPosition(double x, double y) {
+    for (Screen screen : Screen.getScreens()) {
+      Rectangle2D bounds = screen.getVisualBounds();
+      if (bounds.contains(x, y)) {
+        return screen;
+      }
+    }
+    return null;
+  }
+
+  private static boolean screensAreEquivalent(Screen a, Screen b) {
+    if (a == null || b == null) {
+      return a == b;
+    }
+    Rectangle2D boundsA = a.getVisualBounds();
+    Rectangle2D boundsB = b.getVisualBounds();
+    return boundsA.equals(boundsB);
+  }
+
+  private static double scaleWindowDimensionBetweenScreens(double dimension, Screen fromScreen, Screen toScreen) {
+    if (fromScreen == null || toScreen == null || !Double.isFinite(dimension) || dimension <= 0) {
+      return dimension;
+    }
+    Rectangle2D fromBounds = fromScreen.getVisualBounds();
+    Rectangle2D toBounds = toScreen.getVisualBounds();
+    
+    if (fromBounds.getWidth() <= 0) {
+      return dimension;
+    }
+
+    double scaledDimension = scaleDimensionBetweenSpans(dimension, fromBounds.getWidth(), toBounds.getWidth());
+    double percentageOfFromScreen = dimension / fromBounds.getWidth();
+    
+    System.out.println("[STARTUP]   Cross-monitor scale: " + String.format("%.0f", dimension) + 
+                       " (" + String.format("%.1f%%", percentageOfFromScreen * 100) + " of " + 
+                       String.format("%.0f", fromBounds.getWidth()) + ") -> " + 
+                       String.format("%.0f", scaledDimension) + " (" + 
+                       String.format("%.1f%%", percentageOfFromScreen * 100) + " of " + 
+                       String.format("%.0f", toBounds.getWidth()) + ")");
+    
+    return scaledDimension;
+  }
+
+  private static double scaleDimensionBetweenSpans(double dimension, double fromSpan, double toSpan) {
+    if (!Double.isFinite(dimension) || dimension <= 0 || !Double.isFinite(fromSpan)
+        || !Double.isFinite(toSpan) || fromSpan <= 0 || toSpan <= 0) {
+      return dimension;
+    }
+    return (dimension / fromSpan) * toSpan;
+  }
+
+  private static boolean roughlyEqualSpan(double a, double b) {
+    if (!Double.isFinite(a) || !Double.isFinite(b) || a <= 0 || b <= 0) {
+      return false;
+    }
+    double tolerance = Math.max(2.0, Math.max(a, b) * 0.01);
+    return Math.abs(a - b) <= tolerance;
   }
 
   private static synchronized void persistWindowPreferencesSnapshot(Stage componentCreatorStage)
@@ -1482,6 +1656,14 @@ public class Client extends Application {
     if (mainWindowState.x != null && mainWindowState.y != null) {
       properties.setProperty(WINDOW_PREF_X_KEY, Double.toString(mainWindowState.x.doubleValue()));
       properties.setProperty(WINDOW_PREF_Y_KEY, Double.toString(mainWindowState.y.doubleValue()));
+    }
+    if (mainWindowState.sourceScreenWidth != null && mainWindowState.sourceScreenHeight != null
+        && Double.isFinite(mainWindowState.sourceScreenWidth.doubleValue())
+        && Double.isFinite(mainWindowState.sourceScreenHeight.doubleValue())) {
+      properties.setProperty(WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY,
+          Double.toString(mainWindowState.sourceScreenWidth.doubleValue()));
+      properties.setProperty(WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY,
+          Double.toString(mainWindowState.sourceScreenHeight.doubleValue()));
     }
     properties.setProperty(WINDOW_PREF_FONT_SIZE_KEY, Integer.toString(getRuntimeFontSize()));
 
@@ -1526,6 +1708,12 @@ public class Client extends Application {
       if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
         x = stage.getX();
         y = stage.getY();
+        Screen sourceScreen = findScreenContainingPosition(x, y);
+        if (sourceScreen != null) {
+          Rectangle2D sourceBounds = sourceScreen.getVisualBounds();
+          state.sourceScreenWidth = sourceBounds.getWidth();
+          state.sourceScreenHeight = sourceBounds.getHeight();
+        }
       }
     }
     state.width = width;

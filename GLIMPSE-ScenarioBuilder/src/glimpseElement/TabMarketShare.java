@@ -76,7 +76,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private static final double MIN_WIDTH = 175;
     private static final String SELECT_ONE = "Select One";
     private static final String[] POLICY_TYPE_OPTIONS = { "All","Renewable Portfolio Standard (RPS)",
-            "Clean Energy Standard (CES)", "EV passenger cars and trucks (LDV-EV)", "EV passenger cars trucks and MCs (LDV-EV)",
+            "Clean Energy Standard (CES)", "EV passenger cars (LDV-EV-Car)","EV passenger trucks (LDV-EV-Truck)","EV passenger cars and trucks (LDV-EV)", "EV passenger cars trucks and MCs (LDV-EV-All)",
             "EV freight light truck (HDV-Lt)", "EV freight medium truck (HDV-Med)", "EV freight heavy truck (HDV-Hvy)", 
             "EV freight all trucks (HDV-EV)","LED lights (LED)", "Heat pumps (HP)", "Biofuels (BioF)", "Other (OTH)", 
             "Sector:EGU (EGU)", "Sector:Industry (IND)", "Sector:Industry-fuels (Fuels)","Sector:Buildings (BLD)", 
@@ -265,18 +265,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				textFieldInitialAmount, textFieldGrowth);
 		gridPaneLeft.setAlignment(Pos.TOP_LEFT);
 		gridPaneLeft.setVgap(3.);
-		// Use explicit padding rather than CSS -fx-padding for consistent internal spacing
-		//gridPaneLeft.setPadding(styles.getDefaultPadding());
-		// Apply light background so the left panel matches the dialog's button area
-		//gridPaneLeft.setStyle(styles.getLightBackgroundStyle() + styles.getBackgroundStyle());
-		// Apply padding and background to scroll panes so spacing matches other tabs
-		//scrollPaneLeft.setPadding(styles.getDefaultPadding());
-		//scrollPaneLeft.setStyle(styles.getBackgroundStyle());
-		//scrollPaneCenter.setPadding(styles.getDefaultPadding());
-		//scrollPaneCenter.setStyle(styles.getBackgroundStyle());
-		//scrollPaneRight.setPadding(styles.getDefaultPadding());
-		//scrollPaneRight.setStyle(styles.getBackgroundStyle());
-		// Intentionally omit explicit padding/background here; PolicyTab provides defaults
 		scrollPaneLeft.setContent(gridPaneLeft);
 	}
 
@@ -478,14 +466,14 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
-			if (policyType.startsWith("EV")) {
-				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
-					if (itemText.indexOf("bev") >= 0)
-						checkComboBoxSubset.getCheckModel().check(i);
-				}
-				checkComboBoxSuperset.getCheckModel().checkAll();
-			}
+//			if (policyType.startsWith("EV")) {
+//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
+//					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
+//					if (itemText.indexOf("bev") >= 0)
+//						checkComboBoxSubset.getCheckModel().check(i);
+//				}
+//				checkComboBoxSuperset.getCheckModel().checkAll();
+//			}
 			if (policyType.contains("LED")) {
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
@@ -529,14 +517,14 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 		String techLineLc = techLine.toLowerCase();
 		boolean showEgu = policyType.contains("CES") || policyType.contains("RPS");
-		boolean showLdvTruck = false;
-		boolean showLdvCar = false;
-		boolean showLdv4w = policyType.contains("EV passenger cars and trucks");
-		boolean showLdvAll = policyType.contains("EV passenger cars trucks and MCs");
-		boolean showHdvAll = policyType.contains("EV freight all trucks");
-		boolean showHdvLight = policyType.contains("EV freight light truck");
-		boolean showHdvMedium = policyType.contains("EV freight medium truck");
-		boolean showHdvHeavy = policyType.contains("EV freight heavy truck");
+		boolean showLdvTruck = policyType.contains("LDV-EV-Truck");
+		boolean showLdvCar = policyType.contains("LDV-EV-Car");
+		boolean showLdv4w = policyType.contains("LDV-EV");
+		boolean showLdvAll = policyType.contains("LDV-EV-All");
+		boolean showHdvAll = policyType.contains("HDV-EV");
+		boolean showHdvLight = policyType.contains("HDV-EV-Lt");
+		boolean showHdvMedium = policyType.contains("HDV-EV-Med");
+		boolean showHdvHeavy = policyType.contains("HDV-EV-Hvy");
 		boolean showLighting = policyType.contains("LED lights");
 		boolean showHeating = policyType.contains("Heat pumps");
 		boolean showRefining = policyType.contains("Biofuels");

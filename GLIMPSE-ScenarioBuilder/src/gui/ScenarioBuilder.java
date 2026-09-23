@@ -191,12 +191,9 @@ public class ScenarioBuilder {
 		Client.logStartupBuildCheckpoint("ScenarioBuilder.build: createScenarioLibraryPane start");
 		createScenarioLibraryPane();
 		Client.logStartupBuildCheckpoint("ScenarioBuilder.build: createScenarioLibraryPane complete");
-		// Defer label resize to the next FX turn to reduce synchronous startup blocking.
-		Platform.runLater(() -> {
-			Client.logStartupBuildCheckpoint("ScenarioBuilder.build: resizeLabels start (deferred)");
-			resizeLabels();
-			Client.logStartupBuildCheckpoint("ScenarioBuilder.build: resizeLabels complete (deferred)");
-		});
+		Client.logStartupBuildCheckpoint("ScenarioBuilder.build: resizeLabels start");
+		resizeLabels();
+		Client.logStartupBuildCheckpoint("ScenarioBuilder.build: resizeLabels complete");
 	}
 
 	/**
@@ -209,6 +206,7 @@ public class ScenarioBuilder {
 		if (ComponentLibraryTable.getFilterComponentsTextField() == null) {
 			ComponentLibraryTable.setFilterComponentsTextField(utils.createTextField());
 		}
+		ComponentLibraryTable.getFilterComponentsTextField().setPrefColumnCount(10);
 
 		new SetupTableComponentLibrary().setup();
 		ComponentLibraryTable.getFilterComponentsTextField().setTooltip(new Tooltip(TOOLTIP_FILTER));
@@ -231,12 +229,16 @@ public class ScenarioBuilder {
 		paneObjects.getStyleClass().add(STYLE_TOOLBAR);
 		paneObjects.setAlignment(Pos.CENTER_LEFT);
 		paneObjects.setSpacing(4);
+		paneObjects.setMinWidth(0);
+		paneObjects.setMaxWidth(Double.MAX_VALUE);
 
 		// create component library pane
 		//Client.paneComponentLibrary = new PaneNewScenarioComponent();
 		Client.paneComponentLibrary = new PaneComponentLibrary();
 
 		// Add all relevant controls to the component library pane
+		ComponentLibraryTable.getFilterComponentsTextField().setMinWidth(Region.USE_PREF_SIZE);
+		HBox.setHgrow(ComponentLibraryTable.getFilterComponentsTextField(), Priority.ALWAYS);
 		paneObjects.getChildren().addAll(
 			ComponentLibraryTable.getFilterComponentsTextField(),
 			utils.getSeparator(Orientation.VERTICAL, 3, false),
@@ -254,7 +256,9 @@ public class ScenarioBuilder {
 		vBoxComponentLibrary.getStyleClass().add(STYLE_PANEL_CARD);
 		vBoxComponentLibrary.setStyle(styles.getStyle1());
 		vBoxComponentLibrary.setFillWidth(true);
+		vBoxComponentLibrary.setMinWidth(0);
 		vBoxComponentLibrary.setMaxWidth(Double.MAX_VALUE);
+		Client.paneComponentLibrary.getvBox().setMinWidth(0);
 		VBox.setVgrow(Client.paneComponentLibrary.getvBox(), Priority.ALWAYS);
 	}
 
@@ -273,7 +277,9 @@ public class ScenarioBuilder {
 		vBoxCreateScenario.getStyleClass().add(STYLE_PANEL_CARD);
 		vBoxCreateScenario.setStyle(styles.getStyle1());
 		vBoxCreateScenario.setFillWidth(true);
+		vBoxCreateScenario.setMinWidth(Region.USE_PREF_SIZE);
 		vBoxCreateScenario.setMaxWidth(Double.MAX_VALUE);
+		Client.paneCreateScenario.getvBox().setMinWidth(0);
 		VBox.setVgrow(Client.paneCreateScenario.getvBox(), Priority.ALWAYS);
 	}
 
@@ -709,8 +715,9 @@ public class ScenarioBuilder {
 
 		logBuildStep("createScenarioLibraryPane: filter field start");
 		TextField filterScenarioTextField = utils.createTextField();
-		filterScenarioTextField.setMinWidth(styles.getBigButtonWidth());
-		filterScenarioTextField.setPrefWidth(styles.getBigButtonWidth() * 1.75);
+		filterScenarioTextField.setPrefColumnCount(10);
+		filterScenarioTextField.setMinWidth(Region.USE_PREF_SIZE);
+		filterScenarioTextField.setMaxWidth(Double.MAX_VALUE);
 		filterScenarioTextField.setTooltip(new Tooltip(TOOLTIP_FILTER));
 		filterScenarioTextField.setPromptText("Filter scenarios...");
 		logBuildStep("createScenarioLibraryPane: filter field complete");
@@ -749,6 +756,8 @@ public class ScenarioBuilder {
 		// Keep controls compact so the toolbar remains usable at the reduced min width.
 		buttonHBox.setSpacing(2);
 		buttonHBox.getStyleClass().add(STYLE_TOOLBAR);
+		buttonHBox.setMinWidth(0);
+		buttonHBox.setMaxWidth(Double.MAX_VALUE);
 
 		// Intentionally omit separate "Search:" label; the field prompt is sufficient.
 		logBuildStep("createScenarioLibraryPane: toolbar containers complete");
@@ -756,6 +765,7 @@ public class ScenarioBuilder {
 		// Add all relevant controls to the scenario library pane
 		//addScenarioLibraryControl(buttonHBox, "labelSearchScenarios", labelSearchScenarios);
 		addScenarioLibraryControl(buttonHBox, "filterScenarioTextField", filterScenarioTextField);
+		HBox.setHgrow(filterScenarioTextField, Priority.ALWAYS);
 		addScenarioLibraryControl(buttonHBox, "sep1", utils.getSeparator(Orientation.VERTICAL, 3, false));
 		addScenarioLibraryControl(buttonHBox, "buttonEditScenario", Client.buttonEditScenario);
 		addScenarioLibraryControl(buttonHBox, "buttonViewConfig", Client.buttonViewConfig);
@@ -783,6 +793,8 @@ public class ScenarioBuilder {
 		logBuildStep("createScenarioLibraryPane: content assembly start");
 		VBox content = new VBox(4, buttonHBox, Client.paneScenarioLibrary.gethBox());
 		content.setFillWidth(true);
+		content.setMinSize(0, 0);
+		content.setMaxHeight(Double.MAX_VALUE);
 		content.setMaxWidth(Double.MAX_VALUE);
 		VBox.setVgrow(Client.paneScenarioLibrary.gethBox(), Priority.ALWAYS);
 
@@ -791,7 +803,9 @@ public class ScenarioBuilder {
 		// Don't use legacy style1 here: it adds the blue border around the whole Scenario Library pane.
 		vBoxRun.setStyle("");
 		vBoxRun.setFillWidth(true);
+		vBoxRun.setMinSize(0, 0);
 		vBoxRun.setMaxWidth(Double.MAX_VALUE);
+		vBoxRun.setMaxHeight(Double.MAX_VALUE);
 		VBox.setVgrow(content, Priority.ALWAYS);
 		logBuildStep("createScenarioLibraryPane: content assembly complete");
 	}

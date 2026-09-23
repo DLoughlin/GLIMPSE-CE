@@ -251,10 +251,13 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      */
     PaneScenarioLibrary(Stage stage) {
         scenarioLibraryHBox.setSpacing(10);
+        scenarioLibraryHBox.setMinSize(0, 0);
+        scenarioLibraryHBox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         wireScenarioSelectionButtonRefresh();
         createScenarioLibraryButtons();
         ensureLiveStatusRefreshTimeline();
 
+        ScenarioTable.tableScenariosLibrary.setMinSize(0, 0);
         ScenarioTable.tableScenariosLibrary.setMaxWidth(Double.MAX_VALUE);
         ScenarioTable.tableScenariosLibrary.setMaxHeight(Double.MAX_VALUE);
         HBox.setHgrow(ScenarioTable.tableScenariosLibrary, javafx.scene.layout.Priority.ALWAYS);

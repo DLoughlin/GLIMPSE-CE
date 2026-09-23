@@ -53,6 +53,8 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
@@ -116,9 +118,16 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 		initializeFilterField();
 		initializeComponentLibraryTable();
 		setupEventHandlers();
-		mainVBox.getChildren().add(ComponentLibraryTable.getTableComponents());
+		TableView<ComponentRow> table = ComponentLibraryTable.getTableComponents();
+		if (table != null) {
+			table.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+			table.setMinHeight(0);
+			VBox.setVgrow(table, Priority.ALWAYS);
+			mainVBox.getChildren().add(table);
+		}
 		mainVBox.setFillWidth(true);
 		mainVBox.setMaxWidth(Double.MAX_VALUE);
+		mainVBox.setMaxHeight(Double.MAX_VALUE);
 	}
 
 	private void initializeFilterField() {
@@ -129,6 +138,8 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 			filter = utils.createTextField();
 			ComponentLibraryTable.setFilterComponentsTextField(filter);
 		}
+		filter.setPrefColumnCount(10);
+		filter.setMinWidth(Region.USE_PREF_SIZE);
 		filter.setPromptText(PROMPT_FILTER_COMPONENTS);
 	}
 
