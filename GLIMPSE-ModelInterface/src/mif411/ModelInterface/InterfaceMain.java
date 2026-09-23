@@ -197,6 +197,9 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private static final String NATIVE_FILE_DIALOG_LEGACY_PROPERTY = "modelinterface.nativeFileDialog";
 	private static final String NATIVE_FILE_DIALOG_DEBUG_PROPERTY = "nativeFileDialogDebug";
 	private static final String NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY = "modelinterface.nativeFileDialog.debug";
+	private static final java.util.Set<String> PATH_PROPERTY_KEYS = new java.util.HashSet<String>(
+			Arrays.asList("paramPath", "queryFile", "lastDirectory", "unitsFile", "presetRegionList",
+					"presetRegionsFile", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
 	public static final String FONT_SIZE_PROPERTY = "fontSize";
 	public static final String GRAPHICS_TITLE_FONT_SIZE_PROPERTY = "graphicsTitleFontSize";
 	public static final String GRAPHICS_SUBTITLE_FONT_SIZE_PROPERTY = "graphicsSubtitleFontSize";
@@ -457,6 +460,46 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		return value == null ? null : value.trim();
 	}
 
+	private static boolean shouldNormalizePathProperty(String key) {
+		if (key == null) {
+			return false;
+		}
+		if (PATH_PROPERTY_KEYS.contains(key)) {
+			return true;
+		}
+		return key.endsWith("File") || key.endsWith("Folder") || key.endsWith("Path");
+	}
+
+	private static String normalizePathForProperties(String value) {
+		if (value == null || value.indexOf('\\') < 0) {
+			return value;
+		}
+		return value.replace('\\', '/');
+	}
+
+	private static String normalizePropertyValueForPersistence(String key, String value) {
+		if (!shouldNormalizePathProperty(key)) {
+			return value;
+		}
+		return normalizePathForProperties(value);
+	}
+
+	private static void normalizePathProperties(Properties props) {
+		if (props == null) {
+			return;
+		}
+		for (String key : props.stringPropertyNames()) {
+			if (!shouldNormalizePathProperty(key)) {
+				continue;
+			}
+			String value = props.getProperty(key);
+			String normalized = normalizePathForProperties(value);
+			if (normalized != null && !normalized.equals(value)) {
+				props.setProperty(key, normalized);
+			}
+		}
+	}
+
 	private static void configureNativeFileDialogProperties(Properties props) {
 		String nativeDialogValue = System.getProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY);
 		if (nativeDialogValue == null || nativeDialogValue.trim().isEmpty()) {
@@ -695,6 +738,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		if (propertiesFile.exists()) {
 			try (FileInputStream fis = new FileInputStream(propertiesFile)) {
 				bootProps.loadFromXML(fis);
+				normalizePathProperties(bootProps);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -822,7 +866,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			path = (String) opts.valueOf("o");
 			System.out.println("InterfaceMain: DB Path: " + path + " exists: " + new File(path).exists());
 			// Persist last DB path so it is available on next launch
-			bootProps.setProperty("paramPath", path);
+			bootProps.setProperty("paramPath", normalizePropertyValueForPersistence("paramPath", path));
 		} else {
 			// use value from properties if available
 			String propPath = bootProps.getProperty("paramPath", null);
@@ -855,7 +899,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			queryFilename = (String) opts.valueOf("q");
 			System.out.println("InterfaceMain: Query File Path: " + queryFilename + " exists: "
 					+ new File(queryFilename).exists());
-			bootProps.setProperty("queryFile", queryFilename);
+			bootProps.setProperty("queryFile", normalizePropertyValueForPersistence("queryFile", queryFilename));
 		} else {
 			// use value from properties if available
 			String propQuery = bootProps.getProperty("queryFile", null);
@@ -900,7 +944,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			unitFileLocation = (String) opts.valueOf("u");
 			System.out.println("InterfaceMain: unitsFile: " + unitFileLocation + " exists: "
 					+ new File(unitFileLocation).exists());
-			bootProps.setProperty("unitsFile", unitFileLocation);
+			bootProps.setProperty("unitsFile", normalizePropertyValueForPersistence("unitsFile", unitFileLocation));
 		} else {
 			String propUnits = bootProps.getProperty("unitsFile", null);
 			if (propUnits != null) {
@@ -923,7 +967,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			presetRegionListLocation = (String) opts.valueOf("p");
 			System.out.println("InterfaceMain: presetRegionListLocation: " + presetRegionListLocation + " exists: "
 					+ new File(presetRegionListLocation).exists());
-			bootProps.setProperty("presetRegionList", presetRegionListLocation);
+			bootProps.setProperty("presetRegionList",
+					normalizePropertyValueForPersistence("presetRegionList", presetRegionListLocation));
 		} else {
 			String propPreset = bootProps.getProperty("presetRegionList", null);
 			if (propPreset != null) {
@@ -947,7 +992,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			favoriteQueriesFileLocation = (String) opts.valueOf("f");
 			System.out.println("InterfaceMain: favoriteQueriesFileLocation: " + favoriteQueriesFileLocation
 					+ " exists: " + new File(favoriteQueriesFileLocation).exists());
-			bootProps.setProperty("favoriteQueriesFile", favoriteQueriesFileLocation);
+			bootProps.setProperty("favoriteQueriesFile",
+					normalizePropertyValueForPersistence("favoriteQueriesFile", favoriteQueriesFileLocation));
 		} else {
 			String propFav = bootProps.getProperty("favoriteQueriesFile", null);
 			if (propFav != null) {
@@ -994,7 +1040,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			System.out.println("InterfaceMain: shapeFileLocationPrefix: " + shapeFileLocationPrefix + " exists: "
 					+ new File(shapeFileLocationPrefix).exists());
 			enableMapping = true;
-			bootProps.setProperty("mapResourceFolder", shapeFileLocationPrefix);
+			bootProps.setProperty("mapResourceFolder",
+					normalizePropertyValueForPersistence("mapResourceFolder", shapeFileLocationPrefix));
 		} else {
 			String propMap = bootProps.getProperty("mapResourceFolder", null);
 			if (propMap != null) {
@@ -1027,7 +1074,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			legendBundlesLoc = (String) opts.valueOf("legend_bundle");
 			System.out.println("InterfaceMain: legendBundlesLoc: " + legendBundlesLoc + " exists: "
 					+ new File(legendBundlesLoc).exists());
-			bootProps.setProperty("legend_bundle", legendBundlesLoc);
+			bootProps.setProperty("legend_bundle", normalizePropertyValueForPersistence("legend_bundle", legendBundlesLoc));
 		}
 		File legendBundleFile = null;
 		if (legendBundlesLoc == null) {
@@ -1048,6 +1095,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		}
 
 		// Persist any updated properties from CLI back to the properties file
+		normalizePathProperties(bootProps);
 		try (FileOutputStream fos = new FileOutputStream(propertiesFile)) {
 			bootProps.storeToXML(fos, "ModelInterface properties (boot updated)");
 		} catch (IOException ioe) {
@@ -1923,6 +1971,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 
 				try {
 					savedProperties.loadFromXML(new FileInputStream(propertiesFile));
+					normalizePathProperties(savedProperties);
 					String prettyPrintProperty = savedProperties.getProperty("pretty-print", null);
 					if (System.getProperty("ModelInterface.pretty-print", null) == null && prettyPrintProperty != null) {
 						System.getProperties().setProperty("ModelInterface.pretty-print", prettyPrintProperty);
@@ -1969,16 +2018,16 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				savedProperties.setProperty("enableMapping", "true");
 			}
 			if (!savedProperties.containsKey("favoriteQueriesFile")) {
-				savedProperties.setProperty("favoriteQueriesFile", ".\\config\\favorite_queries_list.txt");
+				savedProperties.setProperty("favoriteQueriesFile", "./config/favorite_queries_list.txt");
 			}
 			if (!savedProperties.containsKey("presetRegionsFile")) {
-				savedProperties.setProperty("presetRegionsFile", ".\\config\\preset_region_list.txt");
+				savedProperties.setProperty("presetRegionsFile", "./config/preset_region_list.txt");
 			}
 			if (!savedProperties.containsKey("unitsFile")) {
-				savedProperties.setProperty("unitsFile", ".\\config\\units_rules.csv");
+				savedProperties.setProperty("unitsFile", "./config/units_rules.csv");
 			}
 			if (!savedProperties.containsKey("mapResourceFolder")) {
-				savedProperties.setProperty("mapResourceFolder", ".\\map_resources");
+				savedProperties.setProperty("mapResourceFolder", "./map_resources");
 			}
 			if (!savedProperties.containsKey("RecentFilesLength")) {
 				savedProperties.setProperty("RecentFilesLength", "5");
@@ -2899,10 +2948,11 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	public void setProperty(String key, String value) {
 		synchronized (propertiesLock) {
 			if (savedProperties != null) {
+				String normalizedValue = normalizePropertyValueForPersistence(key, value);
 				if ("paramPath".equals(key)) {
-					path = value;
+					path = normalizedValue;
 				}
-				savedProperties.setProperty(key, value);
+				savedProperties.setProperty(key, normalizedValue);
 				persistProperties();
 			}
 		}
@@ -3069,6 +3119,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private void persistProperties() {
 		synchronized (propertiesLock) {
 			try (FileOutputStream fos = new FileOutputStream(propertiesFile)) {
+				normalizePathProperties(savedProperties);
 				Properties sortedProps = new Properties() {
 					@Override
 					public java.util.Enumeration<Object> keys() {
@@ -3099,4 +3150,4 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 		}
 	}
-}
+}

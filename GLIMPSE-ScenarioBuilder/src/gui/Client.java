@@ -166,6 +166,9 @@ public class Client extends Application {
   private static final String CONSOLE_PREF_HEIGHT_KEY = "console.window.height";
   private static final String CONSOLE_PREF_X_KEY = "console.window.x";
   private static final String CONSOLE_PREF_Y_KEY = "console.window.y";
+  private static final java.util.Set<String> PATH_LIKE_PREFERENCE_KEYS = new java.util.HashSet<String>(
+      java.util.Arrays.asList("lastDirectory", "queryFile", "paramPath", "unitsFile",
+          "presetRegionList", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
 	
     // region Constants
     // Reduced by ~20% to allow a smaller usable minimum window size.
@@ -1620,6 +1623,9 @@ public class Client extends Application {
         CONSOLE_PREF_HEIGHT_KEY, CONSOLE_PREF_X_KEY,
         CONSOLE_PREF_Y_KEY, consoleState);
 
+    // Future-proof path persistence for any path-like keys added later.
+    normalizePathPreferenceValues(properties);
+
     try (FileOutputStream output = new FileOutputStream(preferencesFile)) {
       properties.store(output, "GLIMPSE ScenarioBuilder window preferences");
     }
@@ -1723,6 +1729,51 @@ public class Client extends Application {
     return state;
   }
 
+  private static boolean isPathLikePreferenceKey(String key) {
+    if (key == null) {
+      return false;
+    }
+    String trimmed = key.trim();
+    if (trimmed.isEmpty()) {
+      return false;
+    }
+    if (PATH_LIKE_PREFERENCE_KEYS.contains(trimmed)) {
+      return true;
+    }
+    String lower = trimmed.toLowerCase();
+    return lower.endsWith("path")
+        || lower.endsWith("file")
+        || lower.endsWith("folder")
+        || lower.endsWith("directory")
+        || lower.contains(".path")
+        || lower.contains(".file")
+        || lower.contains(".folder")
+        || lower.contains(".directory");
+  }
+
+  private static String normalizePathPreferenceValue(String value) {
+    if (value == null || value.indexOf('\\') < 0) {
+      return value;
+    }
+    return value.replace('\\', '/');
+  }
+
+  private static void normalizePathPreferenceValues(Properties properties) {
+    if (properties == null) {
+      return;
+    }
+    for (String key : properties.stringPropertyNames()) {
+      if (!isPathLikePreferenceKey(key)) {
+        continue;
+      }
+      String value = properties.getProperty(key);
+      String normalized = normalizePathPreferenceValue(value);
+      if (normalized != null && !normalized.equals(value)) {
+        properties.setProperty(key, normalized);
+      }
+    }
+  }
+
   private static void writeStoredWindowState(Properties properties, String widthKey, String heightKey,
       String xKey, String yKey, WindowPreferencesState state) {
     if (properties == null || state == null) {
@@ -1749,6 +1800,7 @@ public class Client extends Application {
         properties.load(input);
       }
     }
+    normalizePathPreferenceValues(properties);
     return properties;
   }
 

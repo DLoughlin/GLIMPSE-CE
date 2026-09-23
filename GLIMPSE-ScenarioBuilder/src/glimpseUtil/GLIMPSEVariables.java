@@ -2269,7 +2269,8 @@ public class GLIMPSEVariables {
             filename = filename.replace("$modelInterfaceDir$", modelInterfaceDir);
         }
 
-        filename = filename.replace("/", File.separator).replace("\\", File.separator).replace("\\\\", File.separator);
+        // Persist and propagate normalized separators so options stay cross-platform.
+        filename = filename.replace('\\', '/');
 
         return filename;
     }

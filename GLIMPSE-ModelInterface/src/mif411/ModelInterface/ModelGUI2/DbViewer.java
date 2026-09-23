@@ -521,7 +521,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		if (xmlFiles != null && xmlFiles.length > 0 && xmlFiles[0] != null) {
 			queryFile = xmlFiles[0];
 			queryFileName = queryFile.getAbsolutePath();
-			prop.setProperty("queryFile", queryFileName);
+			InterfaceMain.getInstance().setProperty("queryFile", queryFileName);
 			return queryFile;
 		}
 
@@ -1509,7 +1509,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			if (exportDir == null) {
 				return;
 			}
-		main.getProperties().setProperty("lastDirectory", exportDir.getAbsolutePath());
+		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
 		int exportedCount = 0;
 		int skippedCount = 0;
 		List<String> skippedNoModel = new ArrayList<String>();
@@ -1582,7 +1582,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					"Save As CSV", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		main.getProperties().setProperty("lastDirectory", exportDir.getAbsolutePath());
+		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
 		File outFile = new File(exportDir, fileName);
 		PrintWriter pw = null;
 		try {
@@ -1664,9 +1664,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		betaMn.setText("Disable Beta Features");
 		InterfaceMain.enableMapping = true;
 		InterfaceMain.enableSankey = true;
-		Properties prop = InterfaceMain.getInstance().getProperties();
-		prop.setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
-		prop.setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
+		InterfaceMain.getInstance().setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
+		InterfaceMain.getInstance().setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
 	}
 
 	/**
@@ -1677,9 +1676,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		betaMn.setText("Enable Beta Features");
 		InterfaceMain.enableMapping = false;
 		InterfaceMain.enableSankey = false;
-		Properties prop = InterfaceMain.getInstance().getProperties();
-		prop.setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
-		prop.setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
+		InterfaceMain.getInstance().setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
+		InterfaceMain.getInstance().setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
 	}
 
 	/**
@@ -1696,7 +1694,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		if (batchFiles == null) {
 			return;
 		} else {
-			main.getProperties().setProperty("lastDirectory", batchFiles[0].getParent());
+			main.setProperty("lastDirectory", batchFiles[0].getParent());
 			final FileFilter xlsFilter = new javax.swing.filechooser.FileFilter() {
 				public boolean accept(File f) {
 					return f.getName().toLowerCase().endsWith(".xls") || f.getName().toLowerCase().endsWith(".csv")
@@ -1717,7 +1715,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 						xlsFiles[i] = new File(xlsFiles[i].getAbsolutePath() + ".xls");
 					}
 				}
-				main.getProperties().setProperty("lastDirectory", xlsFiles[0].getParent());
+				main.setProperty("lastDirectory", xlsFiles[0].getParent());
 				batchExecutionController.batchQuery(batchFiles[0], xlsFiles[0]);
 			}
 		}
@@ -1787,7 +1785,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			if (!file.exists() || InterfaceMain.getInstance().showConfirmDialog("Overwrite existing file?",
 					"Confirm Overwrite", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
 					JOptionPane.YES_OPTION) == JOptionPane.YES_OPTION) {
-				main.getProperties().setProperty("queryFile", file.getAbsolutePath());
+				main.setProperty("queryFile", file.getAbsolutePath());
 				writeQueries();
 			}
 		}

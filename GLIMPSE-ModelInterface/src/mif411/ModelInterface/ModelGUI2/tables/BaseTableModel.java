@@ -814,7 +814,7 @@ public abstract class BaseTableModel extends AbstractTableModel {
 			    	   }
 			    	   
 			    	   if(InterfaceMain.getInstance() != null) {
-			    		   InterfaceMain.getInstance().getProperties().setProperty("selectedYearList", yearList);
+			    		   InterfaceMain.getInstance().setProperty("selectedYearList", yearList);
 			    	   }	
 			       }
 		       }
@@ -867,7 +867,7 @@ public abstract class BaseTableModel extends AbstractTableModel {
 			    	   }
 			    	   
 			    	   if(InterfaceMain.getInstance() != null) {
-			    		   InterfaceMain.getInstance().getProperties().setProperty("allYearList", yearList);
+			    		   InterfaceMain.getInstance().setProperty("allYearList", yearList);
 			    	   }	
 			       }
 		       }
