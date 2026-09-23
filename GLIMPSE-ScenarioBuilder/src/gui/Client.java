@@ -67,6 +67,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -158,6 +159,7 @@ public class Client extends Application {
   private static final String WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY = "window.source.screen.width";
   private static final String WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY = "window.source.screen.height";
   private static final String WINDOW_PREF_FONT_SIZE_KEY = "font.size";
+  private static final String WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY = "top.row.component.fraction";
   private static final String COMPONENT_CREATOR_PREF_WIDTH_KEY = "component.creator.window.width";
   private static final String COMPONENT_CREATOR_PREF_HEIGHT_KEY = "component.creator.window.height";
   private static final String COMPONENT_CREATOR_PREF_X_KEY = "component.creator.window.x";
@@ -224,6 +226,9 @@ public class Client extends Application {
     private static final int STARTUP_STEP_COMPONENTS_READY = 4;
     private static final int STARTUP_STEP_SCENARIOS_READY = 5;
     private static final double TOP_PANEL_GAP = 4.0;
+    private static final double DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.6;
+    private static final double MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.2;
+    private static final double MAX_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.8;
     private static final double TOP_ROW_HEIGHT_RATIO = 45.0;
     private static final double BOTTOM_ROW_HEIGHT_RATIO = 55.0;
     // endregion
@@ -367,6 +372,8 @@ public class Client extends Application {
     private static volatile File windowPreferencesFile;
     /** Window and font preferences loaded from the external properties file. */
     private static volatile WindowPreferencesState persistedWindowPreferences = new WindowPreferencesState();
+    /** Persisted top-row component-library width fraction (left pane). */
+    private static volatile double persistedTopRowComponentLibraryFraction = DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
     /** New Scenario Component Creator bounds loaded from the external properties file. */
     private static volatile WindowPreferencesState persistedScenarioComponentCreatorPreferences = new WindowPreferencesState();
     /** GLIMPSE Console bounds loaded from the external properties file. */
@@ -919,8 +926,9 @@ public class Client extends Application {
         arrowBox.setMinWidth(Region.USE_PREF_SIZE);
         arrowBox.setPrefWidth(Region.USE_COMPUTED_SIZE);
         arrowBox.setMaxWidth(Region.USE_PREF_SIZE);
-        HBox.setHgrow(componentLibraryBox, Priority.ALWAYS);
-        HBox.setHgrow(createScenarioBox, Priority.ALWAYS);
+        HBox.setHgrow(componentLibraryBox, Priority.NEVER);
+        HBox.setHgrow(createScenarioBox, Priority.NEVER);
+        bindTopRowPaneFractions(topRowBox, componentLibraryBox, arrowBox, createScenarioBox);
 
         final HBox bottomRowBox = new HBox(10, runBox);
         bottomRowBox.setFillHeight(true);
@@ -936,6 +944,62 @@ public class Client extends Application {
         mainGridPane.add(bottomRowBox, 0, 1);
 
         return mainGridPane;
+    }
+
+    private void bindTopRowPaneFractions(HBox topRowBox, VBox componentLibraryBox, VBox arrowBox, VBox createScenarioBox) {
+        if (topRowBox == null || componentLibraryBox == null || arrowBox == null || createScenarioBox == null) {
+            return;
+        }
+
+        final double leftFraction = getTopRowComponentLibraryFraction();
+        final double rightFraction = 1.0 - leftFraction;
+
+        componentLibraryBox.prefWidthProperty().unbind();
+        createScenarioBox.prefWidthProperty().unbind();
+
+        javafx.beans.binding.DoubleBinding availableWidth = Bindings.max(
+                0.0,
+                topRowBox.widthProperty()
+                        .subtract(arrowBox.widthProperty())
+                        .subtract(topRowBox.spacingProperty().multiply(2.0)));
+
+        componentLibraryBox.prefWidthProperty().bind(availableWidth.multiply(leftFraction));
+        createScenarioBox.prefWidthProperty().bind(availableWidth.multiply(rightFraction));
+    }
+
+    private static double getTopRowComponentLibraryFraction() {
+        return normalizeTopRowComponentLibraryFraction(persistedTopRowComponentLibraryFraction);
+    }
+
+    private static double normalizeTopRowComponentLibraryFraction(double rawFraction) {
+        if (!Double.isFinite(rawFraction)) {
+            return DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
+        }
+        return Math.max(
+                MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION,
+                Math.min(MAX_TOP_ROW_COMPONENT_LIBRARY_FRACTION, rawFraction));
+    }
+
+    private static double resolveCurrentTopRowComponentLibraryFraction() {
+        if (!Platform.isFxApplicationThread()) {
+            return getTopRowComponentLibraryFraction();
+        }
+        ScenarioBuilder builder = ScenarioBuilder.getInstance();
+        if (builder == null) {
+            return getTopRowComponentLibraryFraction();
+        }
+        VBox componentLibraryBox = builder.getvBoxComponentLibrary();
+        VBox createScenarioBox = builder.getvBoxCreateScenario();
+        if (componentLibraryBox == null || createScenarioBox == null) {
+            return getTopRowComponentLibraryFraction();
+        }
+        double leftWidth = componentLibraryBox.getWidth();
+        double rightWidth = createScenarioBox.getWidth();
+        double totalWidth = leftWidth + rightWidth;
+        if (!(leftWidth > 0.0) || !(rightWidth > 0.0) || !(totalWidth > 0.0)) {
+            return getTopRowComponentLibraryFraction();
+        }
+        return normalizeTopRowComponentLibraryFraction(leftWidth / totalWidth);
     }
 
     private static void deferMainPaneDisplayUntilReady(VBox pane) {
@@ -1264,6 +1328,7 @@ public class Client extends Application {
     windowPreferencesSaved.set(false);
     windowPreferencesFile = resolveWindowPreferencesFile();
     persistedWindowPreferences = new WindowPreferencesState();
+    persistedTopRowComponentLibraryFraction = DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
     persistedScenarioComponentCreatorPreferences = new WindowPreferencesState();
     persistedConsolePreferences = new WindowPreferencesState();
     if (windowPreferencesFile == null || !windowPreferencesFile.exists()) {
@@ -1284,6 +1349,8 @@ public class Client extends Application {
     loaded.sourceScreenWidth = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY);
     loaded.sourceScreenHeight = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY);
     loaded.fontSize = parseStoredInteger(properties, WINDOW_PREF_FONT_SIZE_KEY);
+    Double loadedTopRowComponentFraction = parseStoredDouble(properties,
+        WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY);
     WindowPreferencesState loadedComponentCreator = loadStoredWindowState(properties,
         COMPONENT_CREATOR_PREF_WIDTH_KEY, COMPONENT_CREATOR_PREF_HEIGHT_KEY,
         COMPONENT_CREATOR_PREF_X_KEY, COMPONENT_CREATOR_PREF_Y_KEY);
@@ -1323,6 +1390,10 @@ public class Client extends Application {
     }
 
     persistedWindowPreferences = loaded;
+    persistedTopRowComponentLibraryFraction = normalizeTopRowComponentLibraryFraction(
+        loadedTopRowComponentFraction == null
+            ? DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION
+            : loadedTopRowComponentFraction.doubleValue());
     persistedScenarioComponentCreatorPreferences = loadedComponentCreator;
     persistedConsolePreferences = loadedConsole;
   }
@@ -1623,6 +1694,11 @@ public class Client extends Application {
         CONSOLE_PREF_HEIGHT_KEY, CONSOLE_PREF_X_KEY,
         CONSOLE_PREF_Y_KEY, consoleState);
 
+    double topRowComponentFraction = normalizeTopRowComponentLibraryFraction(
+        resolveCurrentTopRowComponentLibraryFraction());
+    properties.setProperty(WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY,
+        Double.toString(topRowComponentFraction));
+
     // Future-proof path persistence for any path-like keys added later.
     normalizePathPreferenceValues(properties);
 
@@ -1635,6 +1711,7 @@ public class Client extends Application {
     vars.setScenarioBuilderHeight((int) Math.round(mainWindowState.height.doubleValue()));
     persistedWindowPreferences = mainWindowState;
     persistedWindowPreferences.fontSize = getRuntimeFontSize();
+    persistedTopRowComponentLibraryFraction = topRowComponentFraction;
     persistedScenarioComponentCreatorPreferences = componentCreatorState;
     persistedConsolePreferences = consoleState;
   }
