@@ -51,6 +51,8 @@ import glimpseElement.ScenarioRow;
 import glimpseElement.ScenarioTable;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Priority;
@@ -148,14 +150,27 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 				"New: Open dialog to create new scenario component", "add");
 		Client.buttonEditComponent = utils.createButton(BUTTON_LABEL_EDIT, styles.getBigButtonWidth(),
 				"Edit: Edit selected scenario component", "edit");
+		applyIconOnlyToolbarButton(Client.buttonNewComponent);
+		applyIconOnlyToolbarButton(Client.buttonEditComponent);
 		Client.buttonEditComponent.setDisable(true);
 		Client.buttonBrowseComponentLibrary = utils.createButton(BUTTON_LABEL_BROWSE, styles.getBigButtonWidth(),
 				"Browse: Open scenario component library folder", "open_folder");
 		Client.buttonDeleteComponent = utils.createButton(BUTTON_LABEL_DELETE, styles.getBigButtonWidth(),
 				"Delete: Remove selected scenario component", "delete");
+		applyIconOnlyToolbarButton(Client.buttonBrowseComponentLibrary);
+		applyIconOnlyToolbarButton(Client.buttonDeleteComponent);
 		Client.buttonDeleteComponent.setDisable(true);
 		Client.buttonRefreshComponents = utils.createButton(BUTTON_LABEL_REFRESH, styles.getBigButtonWidth(),
 				"Refresh: Reload list of candidate scenario components", "refresh");
+		applyIconOnlyToolbarButton(Client.buttonRefreshComponents);
+	}
+
+	private void applyIconOnlyToolbarButton(Button button) {
+		if (button == null || button.getGraphic() == null) {
+			return;
+		}
+		button.setText("");
+		button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 	}
 
 	private void initializeComponentLibraryTable() {

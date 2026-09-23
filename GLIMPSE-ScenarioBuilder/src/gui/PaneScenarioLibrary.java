@@ -75,8 +75,10 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -2551,8 +2553,17 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
     private javafx.scene.control.Button createTimedScenarioButton(String label, String text, double width, String tooltip, String iconKey) {
         logButtonBuildStep("createScenarioLibraryButtonInstances: " + label + " start");
         javafx.scene.control.Button button = utils.createButton(text, (int) width, tooltip, iconKey);
+        applyIconOnlyToolbarButton(button);
         logButtonBuildStep("createScenarioLibraryButtonInstances: " + label + " complete");
         return button;
+    }
+
+    private void applyIconOnlyToolbarButton(Button button) {
+        if (button == null || button.getGraphic() == null) {
+            return;
+        }
+        button.setText("");
+        button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
     }
 
     private enum ScenarioRunStateClearMode {
