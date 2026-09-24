@@ -36,18 +36,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.10.2'
-
       - name: Show tool versions
         run: |
           java -version
-          gradle --version
+          bash ./gradlew --version
 
       - name: Compile ScenarioBuilder
-        run: gradle clean classes --no-daemon --stacktrace
+        run: bash ./gradlew clean classes --no-daemon --stacktrace
 
   full-build:
     name: Full Build (${{ matrix.os }})
@@ -73,15 +68,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.10.2'
-
       - name: Show tool versions
         run: |
           java -version
-          gradle --version
+          bash ./gradlew --version
 
       - name: Build ScenarioBuilder
-        run: gradle clean build --no-daemon --stacktrace
+        run: bash ./gradlew clean build --no-daemon --stacktrace

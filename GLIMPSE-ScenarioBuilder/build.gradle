@@ -56,6 +56,18 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+tasks.named('processResources') {
+    // resources/ and config/ contain some overlapping filenames.
+    duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+}
+
+['distTar', 'distZip', 'installDist'].each { taskName ->
+    tasks.named(taskName) {
+        // Legacy jar layout can surface duplicate library names in distributions.
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+    }
+}
+
 tasks.named('jar') {
     archiveBaseName = 'GLIMPSE-ScenarioBuilder-gradle'
 }
