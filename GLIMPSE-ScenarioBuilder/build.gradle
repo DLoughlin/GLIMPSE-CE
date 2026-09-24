@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'org.glimpse'
+version = '8.2-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['resources', 'config']
+        }
+    }
+}
+
+javafx {
+    version = '21.0.4'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    // Keep current repository layout: most third-party dependencies are checked in as jars.
+    implementation fileTree(dir: projectDir, include: ['*.jar'], exclude: [
+            'GLIMPSE-ScenarioBuilder*.jar',
+            'javafx-*.jar'
+    ])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('../GLIMPSE-ModelInterface/GLIMPSE-ModelInterface.jar')
+}
+
+application {
+    mainClass = 'gui.Client'
+    // Required by ControlsFX on JavaFX 21 in this codebase.
+    applicationDefaultJvmArgs = [
+            '--add-exports=javafx.base/com.sun.javafx.runtime=ALL-UNNAMED'
+    ]
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('processResources') {
+    // resources/ and config/ contain some overlapping filenames.
+    duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+}
+
+['distTar', 'distZip', 'installDist'].each { taskName ->
+    tasks.named(taskName) {
+        // Legacy jar layout can surface duplicate library names in distributions.
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+    }
+}
+
+tasks.named('jar') {
+    archiveBaseName = 'GLIMPSE-ScenarioBuilder-gradle'
+}
+
+tasks.register('printRuntimeClasspath') {
+    group = 'help'
+    description = 'Prints resolved runtime classpath entries for troubleshooting.'
+    doLast {
+        sourceSets.main.runtimeClasspath.files.each { println it.absolutePath }
+    }
+}

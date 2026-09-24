@@ -45,9 +45,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.controlsfx.control.CheckComboBox;
 
-import com.sun.javafx.tk.FontLoader;
-import com.sun.javafx.tk.Toolkit;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,11 +64,14 @@ import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  * Utility class for JavaFX/ControlsFX UI node creation and sizing.
  */
 public class UtilsUI {
+    private static final String BUTTON_ICON_NAME_PROPERTY = "glimpse.iconButton.imageName";
+    private static final String BUTTON_ICON_REQUESTED_WIDTH_PROPERTY = "glimpse.iconButton.requestedWidth";
 
     private GLIMPSEVariables vars;
     private GLIMPSEStyles styles;
@@ -247,6 +247,7 @@ public class UtilsUI {
 
     private Button createButtonInternal(String text, int wid, String tt, String imageName) {
         Button button = new Button();
+        rememberManagedButtonMetadata(button, wid, imageName);
         if (styles != null) {
             button.setPadding(styles.getMicroPadding());
         } else {
@@ -267,33 +268,7 @@ public class UtilsUI {
                 && "true".equalsIgnoreCase(vars.getUseIcons());
         if (canAttemptIcon) {
             try {
-                double size = styles.getSmallButtonWidth();
-                String imagePath = "file:" + vars.getResourceDir() + File.separator + imageName + ".png";
-                if (FAILED_BUTTON_ICON_PATHS.contains(imagePath)) {
-                    throw new IllegalArgumentException("Previously failed icon load: " + imagePath);
-                }
-                String cacheKey = imagePath + "|" + size;
-                Image image = BUTTON_ICON_CACHE.get(cacheKey);
-                if (image == null) {
-                    image = new Image(imagePath, size, size, false, true);
-                    if (image.isError() || image.getWidth() <= 0 || image.getHeight() <= 0) {
-                        FAILED_BUTTON_ICON_PATHS.add(imagePath);
-                        throw new IllegalArgumentException("Could not load image: " + imagePath);
-                    }
-                    BUTTON_ICON_CACHE.put(cacheKey, image);
-                }
-                if (image.isError() || image.getWidth() <= 0 || image.getHeight() <= 0) {
-                    throw new IllegalArgumentException("Could not load image: " + imagePath);
-                }
-                ImageView imageView = new ImageView(image);
-                imageView.autosize();
-                button.setGraphic(imageView);
-                button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-                button.setPrefSize(size, size);
-                button.setMaxSize(size, size);
-                button.setMinSize(size, size);
-                button.setPadding(styles.getNoPadding());
-                button.setStyle("-fx-background-color: transparent; -fx-background-radius: 0; -fx-padding: 0;");
+                applyButtonIconGraphic(button, imageName);
             } catch (Exception e) {
                 logMissingButtonImageOnce(imageName);
                 applyIconTextFallback(button, text, wid, imageName);
@@ -317,9 +292,16 @@ public class UtilsUI {
         }
         if (wid > 0 && styles != null) {
             double height = styles.getSmallButtonWidth();
-            button.setPrefSize(wid, height);
-            button.setMaxSize(wid, height);
+            String buttonText = button.getText();
+            Font font = button.getFont();
+            if (font == null) {
+                font = Font.font(styles.getFontSize());
+            }
+            double preferredWidth = Math.max(wid, estimateButtonWidth(button, buttonText, font));
             button.setMinSize(wid, height);
+            button.setPrefSize(preferredWidth, height);
+            button.setMaxWidth(Double.MAX_VALUE);
+            button.setMaxHeight(height);
         }
     }
 
@@ -360,6 +342,51 @@ public class UtilsUI {
      */
     public Button createButton(String text, int wid, String tt, String imageName) {
         return createButtonInternal(text, wid, tt, imageName);
+    }
+
+    private void rememberManagedButtonMetadata(Button button, int wid, String imageName) {
+        if (button == null) {
+            return;
+        }
+        if (imageName != null && !imageName.trim().isEmpty()) {
+            button.getProperties().put(BUTTON_ICON_NAME_PROPERTY, imageName.trim());
+        }
+        if (wid > 0) {
+            button.getProperties().put(BUTTON_ICON_REQUESTED_WIDTH_PROPERTY, Integer.valueOf(wid));
+        }
+    }
+
+    private void applyButtonIconGraphic(Button button, String imageName) {
+        if (button == null || imageName == null || vars == null || styles == null) {
+            return;
+        }
+        double size = styles.getSmallButtonWidth();
+        String imagePath = "file:" + vars.getResourceDir() + File.separator + imageName + ".png";
+        if (FAILED_BUTTON_ICON_PATHS.contains(imagePath)) {
+            throw new IllegalArgumentException("Previously failed icon load: " + imagePath);
+        }
+        String cacheKey = imagePath + "|" + size;
+        Image image = BUTTON_ICON_CACHE.get(cacheKey);
+        if (image == null) {
+            image = new Image(imagePath, size, size, false, true);
+            if (image.isError() || image.getWidth() <= 0 || image.getHeight() <= 0) {
+                FAILED_BUTTON_ICON_PATHS.add(imagePath);
+                throw new IllegalArgumentException("Could not load image: " + imagePath);
+            }
+            BUTTON_ICON_CACHE.put(cacheKey, image);
+        }
+        if (image.isError() || image.getWidth() <= 0 || image.getHeight() <= 0) {
+            throw new IllegalArgumentException("Could not load image: " + imagePath);
+        }
+        ImageView imageView = new ImageView(image);
+        imageView.autosize();
+        button.setGraphic(imageView);
+        button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        button.setPrefSize(size, size);
+        button.setMaxSize(size, size);
+        button.setMinSize(size, size);
+        button.setPadding(styles.getNoPadding());
+        button.setStyle("-fx-background-color: transparent; -fx-background-radius: 0; -fx-padding: 0;");
     }
 
     /**
@@ -447,6 +474,44 @@ public class UtilsUI {
     }
 
     /**
+     * Refreshes a button created with an icon so its square size tracks the current
+     * runtime font size. Safe to call repeatedly during scene-wide font updates.
+     *
+     * @param button button to refresh
+     */
+    public void refreshManagedButtonSizing(Button button) {
+        if (button == null || styles == null) {
+            return;
+        }
+        Object iconNameValue = button.getProperties().get(BUTTON_ICON_NAME_PROPERTY);
+        if (!(iconNameValue instanceof String) || ((String) iconNameValue).trim().isEmpty()) {
+            return;
+        }
+
+        String imageName = ((String) iconNameValue).trim();
+        int requestedWidth = -1;
+        Object requestedWidthValue = button.getProperties().get(BUTTON_ICON_REQUESTED_WIDTH_PROPERTY);
+        if (requestedWidthValue instanceof Number) {
+            requestedWidth = ((Number) requestedWidthValue).intValue();
+        }
+
+        boolean useGraphic = vars != null && "true".equalsIgnoreCase(vars.getUseIcons());
+        if (useGraphic) {
+            try {
+                applyButtonIconGraphic(button, imageName);
+                return;
+            } catch (Exception ignored) {
+                logMissingButtonImageOnce(imageName);
+            }
+        }
+
+        applyIconTextFallback(button, button.getText(), requestedWidth, imageName);
+        if (button.getText() != null && !button.getText().isEmpty()) {
+            resizeButtonText(button);
+        }
+    }
+
+    /**
      * Shrinks button text as needed so it fits the button's configured size.
      *
      * @param button button to resize
@@ -476,7 +541,6 @@ public class UtilsUI {
         if (text == null)
             text = "";
 
-        FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
         double targetSize = size;
         double prefWidth = button.getPrefWidth();
         if (prefWidth <= 0 && button.getMinWidth() > 0) {
@@ -487,10 +551,20 @@ public class UtilsUI {
             prefHeight = button.getMinHeight();
         }
 
+        Font baseFont = Font.font(targetSize);
+        if (!(button.getGraphic() != null && button.getContentDisplay() == ContentDisplay.GRAPHIC_ONLY)) {
+            double preferredWidth = estimateButtonWidth(button, text, baseFont);
+            if (preferredWidth > 0 && preferredWidth > prefWidth) {
+                button.setPrefWidth(preferredWidth);
+                button.setMaxWidth(Double.MAX_VALUE);
+                prefWidth = preferredWidth;
+            }
+        }
+
         while (targetSize > 0) {
             Font candidate = Font.font(targetSize);
-            double estimatedWidth = fontLoader.computeStringWidth(text, candidate);
-            boolean widthTooLarge = prefWidth > 0 && estimatedWidth > prefWidth - 5;
+            double estimatedWidth = estimateButtonWidth(button, text, candidate);
+            boolean widthTooLarge = prefWidth > 0 && estimatedWidth > prefWidth;
             boolean heightTooLarge = prefHeight > 0 && targetSize > prefHeight - 5;
             if (!widthTooLarge && !heightTooLarge) {
                 break;
@@ -542,7 +616,6 @@ public class UtilsUI {
         if (text == null)
             text = "";
 
-        FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
         Font existingFont = label.getFont();
         String family = existingFont != null ? existingFont.getFamily() : null;
         double targetSize = size;
@@ -550,7 +623,7 @@ public class UtilsUI {
         if (prefWidth > 0) {
             while (targetSize > 0) {
                 Font candidate = Font.font(family, targetSize);
-                double predictedWidth = fontLoader.computeStringWidth(text, candidate);
+                double predictedWidth = estimateTextWidth(text, candidate);
                 if (predictedWidth <= prefWidth - 10) {
                     break;
                 }
@@ -593,6 +666,22 @@ public class UtilsUI {
         list = UtilsStrings.removeUSADuplicate(list);
         list = UtilsStrings.removeWorldRegion(list);
         return list;
+    }
+
+    private double estimateTextWidth(String text, Font font) {
+        if (font == null) {
+            return 0;
+        }
+        Text measure = new Text(text == null ? "" : text);
+        measure.setFont(font);
+        return measure.getLayoutBounds().getWidth();
+    }
+
+    private double estimateButtonWidth(Button button, String text, Font font) {
+        double textWidth = estimateTextWidth(text, font);
+        Insets padding = button == null ? null : button.getPadding();
+        double paddingWidth = padding == null ? 0 : padding.getLeft() + padding.getRight();
+        return Math.ceil(textWidth + paddingWidth + 20);
     }
 
     /**

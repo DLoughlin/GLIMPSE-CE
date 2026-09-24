@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 import glimpseElement.ScenarioRow;
 import glimpseUtil.GLIMPSEFiles;
@@ -33,13 +34,15 @@ final class ScenarioLibraryRunPreparationHelper {
      *
      * @return a result containing launchable config paths
      */
-    RunPreparationResult prepareSelectedRuns(ScenarioSelection selection, RunPreparationCallbacks callbacks) {
+    RunPreparationResult prepareSelectedRuns(ScenarioSelection selection,
+            Consumer<String> clearScenarioRunStatusFields,
+            Consumer<String> markQueued) {
         List<String> configFiles = new ArrayList<>();
-        if (selection == null || callbacks == null) {
+        if (selection == null || clearScenarioRunStatusFields == null || markQueued == null) {
             return new RunPreparationResult(configFiles);
         }
         for (ScenarioRow row : selection.getRows()) {
-            PreparedRun preparedRun = prepareRun(row, callbacks);
+            PreparedRun preparedRun = prepareRun(row, clearScenarioRunStatusFields, markQueued);
             if (preparedRun.shouldLaunch()) {
                 configFiles.add(preparedRun.getConfigFile());
             }
@@ -47,7 +50,9 @@ final class ScenarioLibraryRunPreparationHelper {
         return new RunPreparationResult(configFiles);
     }
 
-    private PreparedRun prepareRun(ScenarioRow row, RunPreparationCallbacks callbacks) {
+    private PreparedRun prepareRun(ScenarioRow row,
+            Consumer<String> clearScenarioRunStatusFields,
+            Consumer<String> markQueued) {
         if (row == null) {
             return PreparedRun.skip();
         }
@@ -61,11 +66,11 @@ final class ScenarioLibraryRunPreparationHelper {
             return PreparedRun.skip();
         }
 
-        callbacks.clearScenarioRunStatusFields(scenarioName);
+        clearScenarioRunStatusFields.accept(scenarioName);
         cleanupPriorRunLogs(scenarioName);
 
         String configFile = ScenarioLibraryPathHelper.scenarioConfigFile(vars.getScenarioDir(), scenarioName);
-        callbacks.markQueued(scenarioName);
+        markQueued.accept(scenarioName);
         row.setStatus("In queue");
 
         String launchConfig = maybeUseArchivedConfig(row, scenarioName, configFile);
@@ -102,12 +107,6 @@ final class ScenarioLibraryRunPreparationHelper {
             System.out.println("Problem checking on existence of archive. Attempting to continue from non-archived files.");
         }
         return defaultConfigFile;
-    }
-
-    /** Callback contract used to synchronize queue and row state during preparation. */
-    interface RunPreparationCallbacks {
-        void clearScenarioRunStatusFields(String scenarioName);
-        void markQueued(String scenarioName);
     }
 
     /** Immutable result of run preparation, including launchable configuration files. */

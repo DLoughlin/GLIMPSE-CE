@@ -66,12 +66,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -116,9 +118,12 @@ class PaneCreateScenario extends ScenarioBuilder {
     private static final String BUTTON_ICON_DOWN = "move_down";
     private static final String WARNING_INVALID_NAME = "Please specify a name for the scenario. The name should not include any of these special characters: [! @#$%&*()+=|<>?{}[]~]\\//";
     private static final String DIALOG_TITLE_CREATE = "Creating Scenario";
-    private static final int DIALOG_HEIGHT = 550;
-    // Make the Creating Scenario dialog about 50% wider than before
-    private static final int DIALOG_WIDTH = 500;
+    // Slightly larger defaults than legacy while keeping the dialog manageable.
+    private static final int DIALOG_HEIGHT = 720;
+    private static final int DIALOG_WIDTH = 660;
+    // Keep a practical floor; scrollbars handle remaining overflow on dense displays.
+    private static final int DIALOG_MIN_HEIGHT = 640;
+    private static final int DIALOG_MIN_WIDTH = 600;
     private static final String META_DATA_HEADER = "##################### Scenario Meta Data #####################";
     private static final String META_DATA_SEPARATOR = "###############################################################";
     private static final String COMPONENTS_HEADER = "Components:";
@@ -132,6 +137,7 @@ class PaneCreateScenario extends ScenarioBuilder {
     private static final double DIALOG_PROGRESS_BAR_WIDTH = DIALOG_WIDTH - 50.0;
     private static final double DIALOG_PROGRESS_BAR_MARGIN = 50.0;
     private static final String CREATE_IN_PROGRESS_TEXT = "Creating...";
+    private static final double CREATE_BUTTON_MIN_WIDTH = 44.0;
 
     // ComboBox options
     //private static final String[] DEFAULT_STOP_YEARS = {"2020", "2025", "2030", "2035", "2040", "2045", "2050", "2055", "2060", "2065", "2070", "2075", "2080", "2085", "2090", "2095", "2100"};
@@ -192,7 +198,10 @@ class PaneCreateScenario extends ScenarioBuilder {
 
         nameRow = new HBox(4);
         nameRow.setAlignment(Pos.CENTER_LEFT);
+        nameRow.setMaxWidth(Double.MAX_VALUE);
         nameRow.getChildren().addAll(labelName, textFieldScenarioName);
+        textFieldScenarioName.setMinWidth(0);
+        textFieldScenarioName.setPrefWidth(2.0 * styles.getBigButtonWidth());
         textFieldScenarioName.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(textFieldScenarioName, javafx.scene.layout.Priority.ALWAYS);
 
@@ -203,14 +212,24 @@ class PaneCreateScenario extends ScenarioBuilder {
         // Use centralized top padding 5px
         buttonRow.setPadding(styles.getTopPadding5());
         buttonRow.setAlignment(Pos.CENTER);
+        buttonRow.setSpacing(4);
 
         setupButtons();
-        buttonRow.getChildren().addAll(Client.buttonCreateScenarioConfigFile, utils.getSeparator(Orientation.VERTICAL, 2, false), Client.buttonMoveComponentUp, utils.getSeparator(Orientation.VERTICAL, 2, false), Client.buttonMoveComponentDown);
+        buttonRow.getChildren().addAll(Client.buttonCreateScenarioConfigFile, Client.buttonMoveComponentUp, Client.buttonMoveComponentDown);
+        configureResponsiveCreateButtonWidth();
 
         // Set up main layout and let the parent GridPane apportion width.
-        vBox.getChildren().addAll(nameRow, ComponentLibraryTable.getTableCreateScenario(), buttonRow);
+        TableView<ComponentRow> createScenarioTable = ComponentLibraryTable.getTableCreateScenario();
+        if (createScenarioTable != null) {
+          createScenarioTable.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+          createScenarioTable.setMinHeight(0);
+          VBox.setVgrow(createScenarioTable, Priority.ALWAYS);
+        }
+        vBox.getChildren().addAll(nameRow, createScenarioTable, buttonRow);
         vBox.setFillWidth(true);
+        vBox.setMinWidth(0);
         vBox.setMaxWidth(Double.MAX_VALUE);
+        vBox.setMaxHeight(Double.MAX_VALUE);
     }
 
     /**
@@ -218,9 +237,12 @@ class PaneCreateScenario extends ScenarioBuilder {
      * Handles enabling/disabling buttons based on selection and scenario name validity.
      */
     private void setupButtons() {
+        final int compactCreateWidth = Math.max(58, styles.getBigButtonWidth() - 12);
         Client.buttonMoveComponentUp = utils.createButton(null, styles.getSmallButtonWidth(), BUTTON_MOVE_UP, BUTTON_ICON_UP);
         Client.buttonMoveComponentDown = utils.createButton(null, styles.getSmallButtonWidth(), BUTTON_MOVE_DOWN, BUTTON_ICON_DOWN);
-        Client.buttonCreateScenarioConfigFile = utils.createButton(BUTTON_CREATE, styles.getBigButtonWidth(), BUTTON_CREATE, BUTTON_ICON_CREATE);
+        Client.buttonCreateScenarioConfigFile = utils.createButton(BUTTON_CREATE, compactCreateWidth, BUTTON_CREATE, BUTTON_ICON_CREATE);
+        Client.buttonCreateScenarioConfigFile.setMinWidth(CREATE_BUTTON_MIN_WIDTH);
+        Client.buttonCreateScenarioConfigFile.setMaxWidth(Double.MAX_VALUE);
 
         Client.buttonCreateScenarioConfigFile.setDisable(true);
         Client.buttonMoveComponentUp.setDisable(true);
@@ -240,6 +262,47 @@ class PaneCreateScenario extends ScenarioBuilder {
         // Set up event handlers for button actions and table interactions
         ComponentLibraryTable.getTableCreateScenario().setOnMouseClicked(e -> setArrowAndButtonStatus());
         textFieldScenarioName.setOnKeyPressed(e -> setArrowAndButtonStatus());
+    }
+
+    private void configureResponsiveCreateButtonWidth() {
+        buttonRow.widthProperty().addListener((obs, oldVal, newVal) -> updateCreateButtonPreferredWidth());
+        Client.buttonMoveComponentUp.widthProperty().addListener((obs, oldVal, newVal) -> updateCreateButtonPreferredWidth());
+        Client.buttonMoveComponentDown.widthProperty().addListener((obs, oldVal, newVal) -> updateCreateButtonPreferredWidth());
+        Platform.runLater(this::updateCreateButtonPreferredWidth);
+    }
+
+    private void updateCreateButtonPreferredWidth() {
+        if (Client.buttonCreateScenarioConfigFile == null || buttonRow == null) {
+            return;
+        }
+        double rowWidth = buttonRow.getWidth();
+        if (!Double.isFinite(rowWidth) || rowWidth <= 0.0) {
+            return;
+        }
+
+        double upWidth = resolveButtonWidth(Client.buttonMoveComponentUp);
+        double downWidth = resolveButtonWidth(Client.buttonMoveComponentDown);
+        Insets insets = buttonRow.getInsets();
+        double horizontalInsets = insets == null ? 0.0 : insets.getLeft() + insets.getRight();
+        double spacing = buttonRow.getSpacing() * 2.0;
+        double availableForCreate = rowWidth - upWidth - downWidth - horizontalInsets - spacing;
+        double targetWidth = Math.max(CREATE_BUTTON_MIN_WIDTH,
+                Math.min(styles.getBigButtonWidth(), availableForCreate));
+        if (Double.isFinite(targetWidth) && targetWidth > 0.0) {
+            Client.buttonCreateScenarioConfigFile.setPrefWidth(targetWidth);
+        }
+    }
+
+    private static double resolveButtonWidth(javafx.scene.control.Button button) {
+        if (button == null) {
+            return 0.0;
+        }
+        double width = button.getWidth();
+        if (Double.isFinite(width) && width > 0.0) {
+            return width;
+        }
+        double prefWidth = button.prefWidth(-1);
+        return Double.isFinite(prefWidth) && prefWidth > 0.0 ? prefWidth : 0.0;
     }
 
     /**
@@ -656,6 +719,7 @@ class PaneCreateScenario extends ScenarioBuilder {
         useAllAvailableProcessors.setSelected(isChecked);
 
         Label filesToSaveLabel = new Label("Save files in scenario folder: (global setting)");
+        filesToSaveLabel.setWrapText(true);
         CheckBox saveMainLogCheckBox = new CheckBox("Main log");
         saveMainLogCheckBox.setSelected(true);
         saveMainLogCheckBox.setDisable(true);
@@ -685,6 +749,12 @@ class PaneCreateScenario extends ScenarioBuilder {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(styles.getHorizontalPadding10());
+        javafx.scene.layout.ColumnConstraints labelColumn = new javafx.scene.layout.ColumnConstraints();
+        labelColumn.setMinWidth(javafx.scene.layout.Region.USE_PREF_SIZE);
+        javafx.scene.layout.ColumnConstraints valueColumn = new javafx.scene.layout.ColumnConstraints();
+        valueColumn.setHgrow(javafx.scene.layout.Priority.ALWAYS);
+        valueColumn.setFillWidth(true);
+        grid.getColumnConstraints().setAll(labelColumn, valueColumn);
         grid.add(scenarioNameLabel, 0, 0);
         grid.add(scenarioName, 1, 0);
         grid.add(databaseNameLabel, 0, 1);
@@ -703,6 +773,9 @@ class PaneCreateScenario extends ScenarioBuilder {
         grid.add(textArea, 0, 9, 2, 1);
 
         Stage stage = createDialogStage(DIALOG_TITLE_CREATE, DIALOG_WIDTH, DIALOG_HEIGHT);
+        stage.setResizable(true);
+        stage.setMinWidth(DIALOG_MIN_WIDTH);
+        stage.setMinHeight(DIALOG_MIN_HEIGHT);
         Scene scene = new Scene(new Group());
         applyModernTheme(scene);
 
@@ -798,8 +871,14 @@ class PaneCreateScenario extends ScenarioBuilder {
         root.setSpacing(5);
         root.setAlignment(Pos.TOP_LEFT);
         textArea.setText("");
-        VBox.setVgrow(grid, javafx.scene.layout.Priority.ALWAYS);
         VBox.setVgrow(textArea, javafx.scene.layout.Priority.ALWAYS);
+        ScrollPane formScrollPane = new ScrollPane(grid);
+        formScrollPane.setFitToWidth(true);
+        formScrollPane.setFitToHeight(true);
+        formScrollPane.setPannable(true);
+        formScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        formScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        VBox.setVgrow(formScrollPane, javafx.scene.layout.Priority.ALWAYS);
         HBox progressBox = new HBox();
         progressBox.setAlignment(Pos.CENTER);
         progressBox.setFillHeight(true);
@@ -811,7 +890,7 @@ class PaneCreateScenario extends ScenarioBuilder {
         buttonBox.setSpacing(5);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.getChildren().addAll(okButton, cancelButton);
-        root.getChildren().addAll(grid, progressBox, buttonBox);
+        root.getChildren().addAll(formScrollPane, progressBox, buttonBox);
         scene.setRoot(root);
         stage.setScene(scene);
         stage.showAndWait();

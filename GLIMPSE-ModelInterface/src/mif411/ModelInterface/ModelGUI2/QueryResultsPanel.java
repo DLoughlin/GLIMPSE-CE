@@ -105,6 +105,12 @@ public class QueryResultsPanel extends JPanel {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	/** The active filtered-table view used for single-query result tabs. */
+	private volatile FilteredTable filteredTableView;
+
+	protected void setFilteredTableView(FilteredTable filteredTableView) {
+		this.filteredTableView = filteredTableView;
+	}
 
 	public QueryResultsPanel() {
 		;
@@ -141,12 +147,13 @@ public class QueryResultsPanel extends JPanel {
 					}
 				} catch (org.basex.core.jobs.JobException e) {
 					// This is expected when a query is interrupted by the user.
-					// We can ignore it.
+					// We can ignore it and suppress the stack trace.
 					errorMessage = "Query cancelled.";
 				} catch (Exception e) {
-					if (e.getCause() instanceof org.basex.core.jobs.JobException) {
+					if (e instanceof org.basex.core.jobs.JobException ||
+					    e.getCause() instanceof org.basex.core.jobs.JobException) {
 						// This is expected when a query is interrupted by the user.
-						// We can ignore it.
+						// We can ignore it and suppress the stack trace.
 						errorMessage = "Query cancelled.";
 					} else {
 						errorMessage = buildDetailedErrorMessage(e, shouldIncludeErrorStackTrace());
@@ -403,6 +410,29 @@ public class QueryResultsPanel extends JPanel {
 	}
 
 	/**
+	 * Reapplies formatting preferences (including significant digits) to this tab's
+	 * current table view without rerunning the query.
+	 */
+	public void refreshSignificantDigitsDisplay() {
+		Runnable refreshTask = () -> {
+			if (filteredTableView != null) {
+				filteredTableView.refreshSignificantDigitsDisplay();
+			}
+			JTable table = getJTableFromComponent(this);
+			if (table != null) {
+				table.revalidate();
+				table.repaint();
+			}
+			revalidate();
+			repaint();
+		};
+		if (javax.swing.SwingUtilities.isEventDispatchThread()) {
+			refreshTask.run();
+		} else {
+			javax.swing.SwingUtilities.invokeLater(refreshTask);
+		}
+	}
+	/**
 	 * Creates the group table content.
 	 * 
 	 * @param qg               the query generator
@@ -500,9 +530,9 @@ public class QueryResultsPanel extends JPanel {
 //		new FilteredTable(null,qg.toString(), //@1
 //				unit, path, //@1
 //				jTable, sp); //@1
-		new FilteredTable(null, qg.toString(), // @1
+		setFilteredTableView(new FilteredTable(null, qg.toString(), // @1
 				units[0], path, // @1
-				jTable, sp, getSelectedYears()); // @1
+				jTable, sp, getSelectedYears())); // @1
 
 		main.fireProperty("Query", null, bt); // @1
 		return sp;

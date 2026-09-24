@@ -1,0 +1,273 @@
+# Java + JavaFX Migration Execution Plan (ScenarioBuilder)
+
+This plan converts the high-level checklist into commit-sized tasks that can be completed and validated incrementally.
+
+## Target Baseline
+
+- **Target Java**: Java 21 LTS
+- **Target JavaFX**: JavaFX 21 LTS (`javafx-base`, `javafx-graphics`, `javafx-controls`, `javafx-fxml` as needed)
+- **Target ControlsFX**: 11.2.x
+- **Fallback baseline if blocked**: Java 17 LTS + JavaFX 17 LTS
+
+## Working Rules
+
+- Keep every task shippable and reviewable as one commit.
+- Do not mix dependency updates with broad refactors in the same commit.
+- Keep launch-script changes separate from source-code compatibility changes.
+- After each commit, run at least a quick compile and startup smoke check.
+
+## Commit-Sized Execution Plan
+
+### Commit 1 - Capture migration baseline
+
+- **Commit message**: `docs: add Java 21/JavaFX 21 migration execution plan`
+- **Tasks**:
+  - Finalize this file as the source of truth for migration scope.
+  - Record current Java/JavaFX assumptions and known risk areas.
+- **Primary files**:
+  - `JAVA_JAVAFX_MIGRATION_CHECKLIST.md`
+- **Exit criteria**:
+  - Plan is approved and ordered for implementation.
+
+### Commit 2 - Inventory current runtime assumptions (completed 2026-08-22)
+
+- **Commit message**: `docs: inventory launcher and classpath assumptions`
+- **Tasks**:
+  - Document current Java invocation patterns and hardcoded paths.
+  - List JavaFX-related jars currently expected by runtime.
+- **Primary files**:
+  - `README.md`
+  - `run_GLIMPSE_GCAM-USA-8.2-windows.bat` (repo root)
+  - `../GLIMPSE-ModelInterface/run_GLIMPSE-ModelInterface-Windows.bat`
+  - `../GLIMPSE-ModelInterface/run-GLIMPSE-ModelInterface_Linux.sh`
+- **Exit criteria**:
+  - Migration has a clear before-state reference.
+
+#### Commit 2 inventory snapshot (before migration)
+
+- **Root launcher (Windows)**:
+  - `../run_GLIMPSE_GCAM-USA-8.2-windows.bat` sets `JAVA_HOME` to `amazon-corretto-8.442.06.1-windows-x64-jre` and runs:
+    - `java -Djava.util.logging.config.file -Dprism.order=sw -jar .\GLIMPSE-ScenarioBuilder\GLIMPSE-ScenarioBuilder.jar -options options_GCAM-USA-8.2-windows.txt`
+  - Assumption: bundled Java 8 JRE path exists relative to repo root.
+- **ModelInterface launcher (Windows)**:
+  - `../GLIMPSE-ModelInterface/run_GLIMPSE-ModelInterface-Windows.bat` requires `%JAVA_HOME%\bin\java.exe` and prepends `%JAVA_HOME%\bin\server` to `PATH`.
+  - Runs ModelInterface with `java -jar ./GLIMPSE-ModelInterface.jar ...`.
+- **ModelInterface launcher (Linux)**:
+  - `../GLIMPSE-ModelInterface/run-GLIMPSE-ModelInterface_Linux.sh` requires `$JAVA_HOME/bin/java`, prepends `$JAVA_HOME/bin/server` to `PATH`, then runs `java -jar ./GLIMPSE-ModelInterface.jar ...`.
+- **ScenarioBuilder dependency assumption**:
+  - `.classpath` uses `org.eclipse.jdt.launching.JRE_CONTAINER` plus explicit `libs/controlsfx-8.40.18.jar`.
+  - JavaFX modules are not pinned as explicit jars in `.classpath`; they are assumed to be available via the selected Java runtime or IDE setup.
+- **ModelInterface dependency assumption**:
+  - `../GLIMPSE-ModelInterface/.classpath` uses `JRE_CONTAINER` and third-party Swing/charting/geotools jars; no explicit JavaFX jar dependencies are declared.
+
+### Commit 3 - Add Java 21 compiler settings (completed 2026-08-22)
+
+- **Commit message**: `build: set source/target release to Java 21`
+- **Tasks**:
+  - Update project/compiler settings to Java 21 for ScenarioBuilder.
+  - Keep functional behavior unchanged in this commit.
+- **Primary files**:
+  - `.classpath` and/or Eclipse project metadata as applicable
+  - Any local build scripts used for compile
+- **Exit criteria**:
+  - Project attempts compile under Java 21, with failures captured for next commits.
+
+#### Commit 3 compile attempt snapshot
+
+- Command run from repo root used `javac 21.0.10` with `--release 21` over ScenarioBuilder and ModelInterface source trees.
+- First failure observed:
+  - `GLIMPSE-ModelInterface/src/mif411/ModelInterface/UnitConversionInstance.java:29`
+  - `error: unmappable character (0x92) for encoding UTF-8`
+- Immediate interpretation:
+  - Compiler level change is in place; next commits need encoding normalization or explicit `javac -encoding` alignment before broader API migration fixes.
+
+### Commit 4 - Upgrade JavaFX and ControlsFX artifacts (completed 2026-08-22)
+
+- **Commit message**: `deps: upgrade to JavaFX 21 and ControlsFX 11.2`
+- **Tasks**:
+  - Add JavaFX 21 artifacts for supported platforms.
+  - Replace `libs/controlsfx-8.40.18.jar` with ControlsFX 11.2.x.
+  - Remove superseded JavaFX 8/legacy jars only if safe.
+- **Primary files**:
+  - `libs/`
+  - Any dependency manifest or classpath metadata in use
+- **Exit criteria**:
+  - Dependencies resolve locally; compile failures are API-related (not missing jars).
+
+#### Commit 4 dependency snapshot
+
+- Added JavaFX 21.0.4 module jars under:
+  - `libs/javafx-21/win/` (`base`, `graphics`, `controls`, `fxml`)
+  - `libs/javafx-21/linux/` (`base`, `graphics`, `controls`, `fxml`)
+- Added `libs/controlsfx-11.2.1.jar` and replaced classpath entries previously pointing to `libs/controlsfx-8.40.18.jar`.
+- Updated `.classpath` metadata to include JavaFX 21 Windows jars for local IDE compilation.
+- Quick compile check (`javac --release 21` with upgraded jars) no longer reports missing JavaFX/ControlsFX artifacts; remaining failures are API-level (`FontLoader.computeStringWidth`, `Thread.destroy`).
+
+### Commit 5 - Update launcher module flags (Windows) (completed 2026-08-22)
+
+- **Commit message**: `build: update Windows launcher for JavaFX module path`
+- **Tasks**:
+  - Add `--module-path` and `--add-modules` for JavaFX 21.
+  - Prefer `JAVA_HOME`/`PATH` usage over fixed Java 8 paths where practical.
+- **Primary files**:
+  - `run_GLIMPSE_GCAM-USA-8.2-windows.bat`
+  - ScenarioBuilder launch scripts in this repo
+- **Exit criteria**:
+  - Windows launcher starts app to initial UI stage.
+
+#### Commit 5 launcher snapshot
+
+- Updated `../run_GLIMPSE_GCAM-USA-8.2-windows.bat` and `../run_GLIMPSE_GCAM-global-8.2-windows.bat` to:
+  - Prefer configured `%JAVA_HOME%` when valid.
+  - Fallback to legacy bundled Corretto path if present.
+  - Fallback to `java.exe` from `%PATH%` as last resort.
+  - Add JavaFX flags for Java 21+: `--module-path .\GLIMPSE-ScenarioBuilder\libs\javafx-21\win --add-modules=javafx.controls,javafx.fxml`.
+- Added explicit existence check for `javafx-controls-21.0.4-win.jar` before launch.
+- Validation scope for this commit:
+  - Script-path/runtime checks verified.
+  - Full GUI startup smoke remains part of Commit 9 test sign-off.
+
+### Commit 6 - Update launcher module flags (Linux) (completed 2026-08-22)
+
+- **Commit message**: `build: update Linux launcher for JavaFX module path`
+- **Tasks**:
+  - Apply equivalent module-path/module changes to Linux scripts.
+  - Keep script behavior consistent with Windows changes.
+- **Primary files**:
+  - `../GLIMPSE-ModelInterface/run-GLIMPSE-ModelInterface_Linux.sh`
+  - Any Linux launchers used by ScenarioBuilder
+- **Exit criteria**:
+  - Linux launcher command line is migration-ready and documented.
+
+#### Commit 6 launcher snapshot
+
+- Updated `../run_GLIMPSE_GCAM-USA-8.2-linux.sh` and `../run_GLIMPSE_GCAM-global-8.2-linux.sh` to:
+  - Prefer `JAVA_HOME` when valid.
+  - Fallback to legacy bundled Corretto path if present.
+  - Fallback to `java` from `PATH` as last resort.
+  - Add JavaFX flags for Java 21+: `--module-path ./GLIMPSE-ScenarioBuilder/libs/javafx-21/linux --add-modules javafx.controls,javafx.fxml`.
+- Added explicit existence check for `javafx-controls-21.0.4-linux.jar` before launch.
+- Updated `../GLIMPSE-ModelInterface/run-GLIMPSE-ModelInterface_Linux.sh` Java resolution order for consistency with ScenarioBuilder launchers.
+- Validation scope for this commit:
+  - Script-level review completed; Linux shell syntax/runtime verification requires a host with `bash`.
+  - Full Linux UI runtime smoke remains part of Commit 9 test sign-off.
+
+### Commit 7 - Fix first-pass JavaFX/ControlsFX compile breaks (completed 2026-08-22)
+
+- **Commit message**: `fix: resolve JavaFX 21 and ControlsFX API compile issues`
+- **Tasks**:
+  - Address imports, API changes, and type incompatibilities.
+  - Prioritize known UI hotspots first.
+- **Primary files (expected)**:
+  - `src/gui/Client.java`
+  - `src/gui/DiffWindow.java`
+  - `src/gui/ConsoleManager.java`
+  - `src/glimpseBuilder/SetupMenuView.java`
+  - `src/glimpseBuilder/SetupMenuTools.java`
+  - `src/glimpseElement/PolicyTab.java`
+- **Exit criteria**:
+  - Clean compile under Java 21 in ScenarioBuilder.
+
+#### Commit 7 compatibility-fix snapshot
+
+- Replaced unsupported internal JavaFX text measurement APIs (`com.sun.javafx.tk.Toolkit` / `FontLoader.computeStringWidth`) with supported `javafx.scene.text.Text` layout-bounds measurement in:
+  - `src/glimpseUtil/UtilsErrors.java`
+  - `src/glimpseUtil/UtilsUI.java`
+- Replaced removed `Thread.currentThread().destroy()` calls with safe early returns in:
+  - `src/glimpseElement/TabCafeStd.java`
+- Validation scope for this commit:
+  - Java 21 compile check of touched files succeeded.
+  - Full ScenarioBuilder Java 21 compile succeeded with JavaFX 21 module path and ControlsFX 11.2.1 (warnings only).
+
+### Commit 8 - Runtime behavior fixes (completed 2026-08-22)
+
+- **Commit message**: `fix: address JavaFX runtime behavior regressions`
+- **Tasks**:
+  - Fix runtime exceptions and threading issues (`Platform.runLater`, task boundaries).
+  - Verify dialogs, table interactions, and menu actions.
+- **Primary files**:
+  - UI/controller files touched by runtime regressions
+- **Exit criteria**:
+  - Core workflows execute without runtime errors.
+
+#### Commit 8 runtime-fix snapshot
+
+- Hardened scenario-table interactions in `src/glimpseBuilder/SetupTableScenariosLibrary.java`:
+  - Added null guard for double-click open action when no row is selected.
+  - Prevented stale tooltip assignment by requiring the row to still be hovered before applying async tooltip results.
+- Stabilized menu action behavior in `src/glimpseBuilder/SetupMenuTools.java`:
+  - `Empty Trash` now uses `Files.deleteIfExists(...)` and logs partial failures instead of silently ignoring undeleted paths.
+- Reduced UI timing jitter from unnecessary FX queue hops:
+  - `src/gui/ConsoleManager.java` now updates immediately when already on the FX thread for append/clear operations.
+  - `src/glimpseElement/PolicyTab.java` progress bar updates now run immediately on the FX thread and remain thread-safe off-thread.
+- Validation scope for this commit:
+  - Touched files compile under Java 21 with JavaFX 21/ControlsFX 11.2.1 classpath.
+
+### Commit 9 - Smoke test and regression checklist sign-off (completed 2026-08-22)
+
+- **Commit message**: `test: record Java 21/JavaFX 21 smoke and regression results`
+- **Tasks**:
+  - Run smoke tests for startup, open/save, trash actions, and key tools.
+  - Record pass/fail and known follow-ups.
+- **Primary files**:
+  - `JAVA_JAVAFX_MIGRATION_CHECKLIST.md`
+  - Optional test notes under `build_tmp/`
+- **Exit criteria**:
+  - Migration status is transparent and reproducible.
+
+#### Commit 9 smoke-test snapshot
+
+- Environment used:
+  - Windows host (`powershell.exe`) with `openjdk 21.0.10` on `PATH`
+- ScenarioBuilder startup smoke (`../run_GLIMPSE_GCAM-USA-8.2-windows.bat`):
+  - **Fail** at application construction.
+  - Observed runtime error:
+    - `java.lang.IllegalAccessError: class impl.org.controlsfx.version.VersionChecker ... cannot access class com.sun.javafx.runtime.VersionInfo`
+  - Interpretation:
+    - ControlsFX 11.2.1 still touches internal JavaFX package `com.sun.javafx.runtime` and requires module export compatibility handling.
+- ModelInterface startup smoke (`../GLIMPSE-ModelInterface/run_GLIMPSE-ModelInterface-Windows.bat`):
+  - **Partial/indeterminate** for UI validation in this run (batch script launches detached with `start`, so CLI process exits immediately).
+  - Additional script hygiene issue observed:
+    - `#set JAVA_HOME=...` line is parsed as a command in `.bat` and emits `'#set' is not recognized...`.
+- Manual UI workflows status (open/save, trash actions, key tools):
+  - **Not yet verified** in this commit because ScenarioBuilder startup currently blocks at ControlsFX module-access error.
+- Follow-ups before final sign-off:
+  - Add and validate Java runtime flags for required JavaFX exports (or upgrade/downgrade ControlsFX to a fully compatible build).
+  - Re-run startup smoke, then complete manual workflow checks.
+
+#### Post-Commit 9 launcher re-validation (2026-08-22)
+
+- Launcher flag validation:
+  - Retained `--add-exports=javafx.base/com.sun.javafx.runtime=ALL-UNNAMED` in both Windows and Linux ScenarioBuilder launchers.
+  - Attempted `--add-exports=javafx.base/com.sun.javafx.runtime=org.controlsfx.controls`, but Java reported `Unknown module: org.controlsfx.controls` in current `-jar` launch mode, so this flag was removed.
+- Smoke re-run results (Windows):
+  - `../run_GLIMPSE_GCAM-USA-8.2-windows.bat`: startup passes previous ControlsFX `IllegalAccessError` stage.
+  - New blocker: `NoSuchMethodError` for `com.sun.javafx.tk.FontLoader.computeStringWidth` from `glimpseUtil.UtilsUI` in packaged runtime classes.
+  - `../run_GLIMPSE_GCAM-global-8.2-windows.bat`: same `NoSuchMethodError` blocker.
+- Interpretation:
+  - Module export handling is now adequate for current classpath/module-path layout.
+  - Remaining startup failure is due to stale packaged bytecode still calling removed JavaFX internals; rebuild/repackage is required before manual UI workflow checks can complete.
+
+### Commit 10 - Finalize docs and rollback guidance
+
+- **Commit message**: `docs: finalize migration notes and rollback procedure`
+- **Tasks**:
+  - Document required environment variables and launch expectations.
+  - Add short rollback instructions for Java 8 profile if needed.
+- **Primary files**:
+  - `README.md`
+  - Launcher comments and migration docs
+- **Exit criteria**:
+  - Team has clear runbook for forward use and fallback.
+
+## Definition of Done
+
+- ScenarioBuilder compiles with Java 21.
+- JavaFX 21 + ControlsFX 11.2.x are used at runtime.
+- Launchers work with module path configuration.
+- Smoke tests pass on at least Windows; Linux status is documented.
+- Migration docs include setup, validation, and rollback notes.
+
+## Suggested Immediate Next Commit
+
+- Continue with **Commit 10** for final docs/rollback guidance after resolving the remaining ControlsFX/JavaFX module-access startup blocker.

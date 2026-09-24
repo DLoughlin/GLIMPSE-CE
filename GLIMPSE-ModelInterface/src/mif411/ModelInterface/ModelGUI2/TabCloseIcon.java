@@ -37,6 +37,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,8 +63,8 @@ import ModelInterface.ModelGUI2.tables.BaseTableModel;
 
 public class TabCloseIcon implements Icon {
 
-	private static final int CLOSE_ICON_WIDTH_DELTA = 8;
-	private static final int CLOSE_ICON_HEIGHT_DELTA = 10;
+	private static final int CLOSE_ICON_WIDTH_DELTA = 0;
+	private static final int CLOSE_ICON_HEIGHT_DELTA = 2;
 	private static final int CLOSE_ICON_TEXT_GAP = 6;
 	private static final int TAB_ICON_LEFT_INSET = 4;
 	private static final int CLOSE_ICON_HIT_PADDING = 3;
@@ -207,6 +208,79 @@ public class TabCloseIcon implements Icon {
 	public TabHeaderPanel createTabHeader(final String title, final DbViewer dbViewer) {
 		tabHeaderPanel = new TabHeaderPanel(title, dbViewer);
 		return tabHeaderPanel;
+	}
+
+	private void closeTabAtIndex(final int index, final boolean restoreSelectionAfterClose,
+			final int selectedBeforeClose) {
+		if (index < 0 || index >= tabPane.getTabCount()) {
+			return;
+		}
+		final QueryResultsPanel closeThread = (QueryResultsPanel) tabPane.getComponentAt(index);
+		final BaseTableModel btm = DbViewer.getTableModelFromComponent(closeThread);
+		if (InterfaceMain.getInstance() != null) {
+			InterfaceMain.getInstance().fireProperty("Query", btm, null);
+		}
+		try {
+			closeThread.killThreadAndWait();
+		} catch (final Exception ex) {
+			// Best-effort shutdown; still allow the tab to close.
+		}
+		tabPane.remove(index);
+		if (restoreSelectionAfterClose) {
+			restoreTabSelectionAfterClose(selectedBeforeClose, index);
+		}
+	}
+
+	private void closeAllTabsExcept(final int keepIndex) {
+		if (keepIndex < 0 || keepIndex >= tabPane.getTabCount()) {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+			return;
+		}
+
+		final Component keepComponent = tabPane.getComponentAt(keepIndex);
+		closeClickInProgress = true;
+		try {
+			for (int index = tabPane.getTabCount() - 1; index >= 0; --index) {
+				if (tabPane.getComponentAt(index) == keepComponent) {
+					continue;
+				}
+				closeTabAtIndex(index, false, -1);
+			}
+
+			final int remainingIndex = tabPane.indexOfComponent(keepComponent);
+			if (remainingIndex >= 0) {
+				restoringSelection = true;
+				try {
+					tabPane.setSelectedIndex(remainingIndex);
+					lastStableSelectedIndex = remainingIndex;
+				} finally {
+					restoringSelection = false;
+				}
+			}
+		} finally {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+		}
+	}
+
+	private void closeAllTabs() {
+		if (tabPane.getTabCount() == 0) {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+			return;
+		}
+
+		closeClickInProgress = true;
+		try {
+			for (int index = tabPane.getTabCount() - 1; index >= 0; --index) {
+				closeTabAtIndex(index, false, -1);
+			}
+			lastStableSelectedIndex = tabPane.getSelectedIndex();
+		} finally {
+			closeClickInProgress = false;
+			pressedCloseTabIndex = -1;
+		}
 	}
 
 	private void restoreTabSelectionAfterClose(final int selectedBeforeClose, final int closedTabIndex) {
@@ -368,11 +442,11 @@ public class TabCloseIcon implements Icon {
 		private final JButton closeButton;
 		private final DbViewer dbViewer;
 
-		private TabHeaderPanel(final String title, final DbViewer dbViewer) {
-			super(new FlowLayout(FlowLayout.LEFT, 9, 0));
-			this.dbViewer = dbViewer;
-			setOpaque(false);
-			setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+	private TabHeaderPanel(final String title, final DbViewer dbViewer) {
+		super(new FlowLayout(FlowLayout.LEFT, 3, 0));
+		this.dbViewer = dbViewer;
+		setOpaque(false);
+		setBorder(BorderFactory.createEmptyBorder(0, 1, 0, 1));
 
 			titleLabel = new JLabel(title);
 			titleLabel.setForeground(RUNNING_LABEL_COLOR);
@@ -432,10 +506,22 @@ public class TabCloseIcon implements Icon {
 			//                    mouseReleased event that triggered the popup from
 			//                    immediately activating the menu item under the cursor.
 			final MouseAdapter tabInteractionListener = new MouseAdapter() {
+				private void forwardLeftMouseEventToTabPane(final MouseEvent e) {
+					if (!SwingUtilities.isLeftMouseButton(e)) {
+						return;
+					}
+					final Point tabPoint = SwingUtilities.convertPoint(e.getComponent(), e.getPoint(), tabPane);
+					final MouseEvent forwarded = new MouseEvent(tabPane, e.getID(), e.getWhen(), e.getModifiersEx(),
+							tabPoint.x, tabPoint.y, e.getClickCount(), e.isPopupTrigger(), e.getButton());
+					tabPane.dispatchEvent(forwarded);
+				}
+
 				@Override public void mousePressed(final MouseEvent e) {
 					if (SwingUtilities.isLeftMouseButton(e)) {
 						final int idx = tabPane.indexOfTabComponent(TabHeaderPanel.this);
 						if (idx >= 0) tabPane.setSelectedIndex(idx);
+						// Preserve tab drag-to-export behavior when events originate on header child components.
+						forwardLeftMouseEventToTabPane(e);
 					}
 					if (e.isPopupTrigger()) {
 						final MouseEvent ev = e;
@@ -444,7 +530,13 @@ public class TabCloseIcon implements Icon {
 						});
 					}
 				}
+				@Override public void mouseDragged(final MouseEvent e) {
+					forwardLeftMouseEventToTabPane(e);
+				}
 				@Override public void mouseReleased(final MouseEvent e) {
+					if (SwingUtilities.isLeftMouseButton(e)) {
+						forwardLeftMouseEventToTabPane(e);
+					}
 					if (e.isPopupTrigger()) {
 						final MouseEvent ev = e;
 						SwingUtilities.invokeLater(new Runnable() {
@@ -455,6 +547,8 @@ public class TabCloseIcon implements Icon {
 			};
 			addMouseListener(tabInteractionListener);
 			titleLabel.addMouseListener(tabInteractionListener);
+			addMouseMotionListener(tabInteractionListener);
+			titleLabel.addMouseMotionListener(tabInteractionListener);
 		}
 
 		/** Closes this tab — shared by the close button action and the right-click "Close" menu item. */
@@ -467,19 +561,11 @@ public class TabCloseIcon implements Icon {
 			final int selectedBeforeClose = lastStableSelectedIndex >= 0
 					? lastStableSelectedIndex : tabPane.getSelectedIndex();
 			closeClickInProgress = true;
-			final QueryResultsPanel closeThread = (QueryResultsPanel) tabPane.getComponentAt(index);
-			final BaseTableModel btm = DbViewer.getTableModelFromComponent(closeThread);
-			if (InterfaceMain.getInstance() != null) {
-				InterfaceMain.getInstance().fireProperty("Query", btm, null);
-			}
 			try {
-				closeThread.killThreadAndWait();
-			} catch (final Exception ex) {
-				// Best-effort shutdown; still allow the tab to close.
+				closeTabAtIndex(index, true, selectedBeforeClose);
+			} finally {
+				closeClickInProgress = false;
 			}
-			tabPane.remove(index);
-			restoreTabSelectionAfterClose(selectedBeforeClose, index);
-			closeClickInProgress = false;
 		}
 
 		/** Builds and shows the right-click context popup. */
@@ -494,6 +580,25 @@ public class TabCloseIcon implements Icon {
 				}
 			});
 			popup.add(closeItem);
+
+			final JMenuItem closeOthersItem = new JMenuItem("Close All But This");
+			closeOthersItem.setEnabled(tabPane.getTabCount() > 1);
+			closeOthersItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent ae) {
+					final int index = tabPane.indexOfTabComponent(TabHeaderPanel.this);
+					closeAllTabsExcept(index);
+				}
+			});
+			popup.add(closeOthersItem);
+
+			final JMenuItem closeAllItem = new JMenuItem("Close All");
+			closeAllItem.setEnabled(tabPane.getTabCount() > 0);
+			closeAllItem.addActionListener(new ActionListener() {
+				public void actionPerformed(final ActionEvent ae) {
+					closeAllTabs();
+				}
+			});
+			popup.add(closeAllItem);
 
 			final JMenuItem saveAsItem = new JMenuItem("Save As...");
 			saveAsItem.setEnabled(finished && dbViewer != null);

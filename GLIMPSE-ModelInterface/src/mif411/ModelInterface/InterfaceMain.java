@@ -64,6 +64,8 @@ import java.util.Vector;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;
+import javax.swing.Icon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -74,6 +76,7 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.InsetsUIResource;
 
 import org.basex.query.QueryException;
 import org.basex.query.QueryProcessor;
@@ -190,6 +193,14 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	}
 
 	private static final String STARTUP_TIMING_PROPERTY = "do_output_timings";
+	private static final String SHOW_STARTUP_STEPS_PROPERTY = "showStartupSteps";
+	private static final String NATIVE_FILE_DIALOG_PROPERTY = "nativeFileDialog";
+	private static final String NATIVE_FILE_DIALOG_LEGACY_PROPERTY = "modelinterface.nativeFileDialog";
+	private static final String NATIVE_FILE_DIALOG_DEBUG_PROPERTY = "nativeFileDialogDebug";
+	private static final String NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY = "modelinterface.nativeFileDialog.debug";
+	private static final java.util.Set<String> PATH_PROPERTY_KEYS = new java.util.HashSet<String>(
+			Arrays.asList("paramPath", "queryFile", "lastDirectory", "unitsFile", "presetRegionList",
+					"presetRegionsFile", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
 	public static final String FONT_SIZE_PROPERTY = "fontSize";
 	public static final String GRAPHICS_TITLE_FONT_SIZE_PROPERTY = "graphicsTitleFontSize";
 	public static final String GRAPHICS_SUBTITLE_FONT_SIZE_PROPERTY = "graphicsSubtitleFontSize";
@@ -221,6 +232,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	public static final double MIN_GRAPHICS_LINE_WIDTH_SCALE = 0.25d;
 	public static final double MAX_GRAPHICS_LINE_WIDTH_SCALE = 5.0d;
 	private static volatile boolean outputStartupTimings = false;
+	private static volatile boolean showStartupSteps = false;
 	private static volatile int configuredFontSize = DEFAULT_FONT_SIZE;
 
 	private static int clampFontSize(final int fontSize) {
@@ -334,6 +346,30 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				}
 			}
 		}
+		// Remove the empty icon/checkmark gutter while leaving a small amount of
+		// internal padding for readability.
+		UIManager.put("MenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("CheckBoxMenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("RadioButtonMenuItem.checkIcon", EMPTY_MENU_ICON);
+		UIManager.put("MenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("CheckBoxMenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("RadioButtonMenuItem.margin", new InsetsUIResource(2, 4, 2, 4));
+		UIManager.put("Menu.margin", new InsetsUIResource(2, 4, 2, 4));
+	}
+
+	private static final Icon EMPTY_MENU_ICON = new EmptyIcon();
+
+	private static final class EmptyIcon implements Icon {
+		@Override
+		public int getIconWidth() { return 0; }
+
+		@Override
+		public int getIconHeight() { return 0; }
+
+		@Override
+		public void paintIcon(java.awt.Component c, java.awt.Graphics g, int x, int y) {
+			// Intentionally empty.
+		}
 	}
 
 	private static void refreshFontSensitiveComponentMetrics(java.awt.Component comp) {
@@ -400,6 +436,98 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			value = props.getProperty(STARTUP_TIMING_PROPERTY);
 		}
 		outputStartupTimings = value != null && Boolean.parseBoolean(value.trim());
+	}
+
+	public static boolean shouldShowStartupSteps() {
+		return showStartupSteps;
+	}
+
+	public static void configureShowStartupSteps(Properties props) {
+		String value = System.getProperty(SHOW_STARTUP_STEPS_PROPERTY);
+		if (value == null && props != null) {
+			value = props.getProperty(SHOW_STARTUP_STEPS_PROPERTY);
+		}
+		showStartupSteps = value != null && Boolean.parseBoolean(value.trim());
+	}
+
+	private static String getTrimmedProperty(Properties props, String primaryKey, String legacyKey) {
+		if (props == null) {
+			return null;
+		}
+		String value = props.getProperty(primaryKey);
+		if ((value == null || value.trim().isEmpty()) && legacyKey != null) {
+			value = props.getProperty(legacyKey);
+		}
+		return value == null ? null : value.trim();
+	}
+
+	private static boolean shouldNormalizePathProperty(String key) {
+		if (key == null) {
+			return false;
+		}
+		if (PATH_PROPERTY_KEYS.contains(key)) {
+			return true;
+		}
+		return key.endsWith("File") || key.endsWith("Folder") || key.endsWith("Path");
+	}
+
+	private static String normalizePathForProperties(String value) {
+		if (value == null || value.indexOf('\\') < 0) {
+			return value;
+		}
+		return value.replace('\\', '/');
+	}
+
+	private static String normalizePropertyValueForPersistence(String key, String value) {
+		if (!shouldNormalizePathProperty(key)) {
+			return value;
+		}
+		return normalizePathForProperties(value);
+	}
+
+	private static void normalizePathProperties(Properties props) {
+		if (props == null) {
+			return;
+		}
+		for (String key : props.stringPropertyNames()) {
+			if (!shouldNormalizePathProperty(key)) {
+				continue;
+			}
+			String value = props.getProperty(key);
+			String normalized = normalizePathForProperties(value);
+			if (normalized != null && !normalized.equals(value)) {
+				props.setProperty(key, normalized);
+			}
+		}
+	}
+
+	private static void configureNativeFileDialogProperties(Properties props) {
+		String nativeDialogValue = System.getProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY);
+		if (nativeDialogValue == null || nativeDialogValue.trim().isEmpty()) {
+			nativeDialogValue = getTrimmedProperty(props, NATIVE_FILE_DIALOG_PROPERTY,
+					NATIVE_FILE_DIALOG_LEGACY_PROPERTY);
+		}
+		boolean useNativeFileDialog = nativeDialogValue == null
+				|| !"false".equalsIgnoreCase(nativeDialogValue.trim());
+
+		String nativeDialogDebugValue = System.getProperty(NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY);
+		if (nativeDialogDebugValue == null || nativeDialogDebugValue.trim().isEmpty()) {
+			nativeDialogDebugValue = getTrimmedProperty(props, NATIVE_FILE_DIALOG_DEBUG_PROPERTY,
+					NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY);
+		}
+		boolean debugNativeFileDialog = "true".equalsIgnoreCase(
+				nativeDialogDebugValue == null ? "" : nativeDialogDebugValue.trim());
+
+		System.setProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY, Boolean.toString(useNativeFileDialog));
+		System.setProperty(NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY, Boolean.toString(debugNativeFileDialog));
+
+		if (props != null) {
+			props.setProperty(NATIVE_FILE_DIALOG_PROPERTY, Boolean.toString(useNativeFileDialog));
+			props.setProperty(NATIVE_FILE_DIALOG_DEBUG_PROPERTY, Boolean.toString(debugNativeFileDialog));
+		}
+
+		System.out.println("InterfaceMain: nativeFileDialog = " + useNativeFileDialog
+				+ ", nativeFileDialogDebug = " + debugNativeFileDialog);
 	}
 
 	public static void logStartupTiming(String message) {
@@ -611,11 +739,14 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		if (propertiesFile.exists()) {
 			try (FileInputStream fis = new FileInputStream(propertiesFile)) {
 				bootProps.loadFromXML(fis);
+				normalizePathProperties(bootProps);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
 		}
 		configureStartupTimingOutput(bootProps);
+		configureShowStartupSteps(bootProps);
+		configureNativeFileDialogProperties(bootProps);
 		configuredFontSize = resolveConfiguredFontSize(bootProps);
 		bootProps.setProperty(FONT_SIZE_PROPERTY, Integer.toString(configuredFontSize));
 
@@ -659,6 +790,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		parser.accepts("legend_bundle", "Path to the LegendBundle.properties file").withOptionalArg();
 		parser.accepts("auto-generate-graphics", "Automatically generate graphics when a scenario is run.");
 		parser.accepts("init-db", "Initialize a new XML database at the path given by -o and exit.");
+		parser.accepts("Debug", "Enable debug messages including startup steps.");
 
 		OptionSet opts = null;
 		try {
@@ -679,6 +811,15 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		if (opts == null) {
 			String[] argsEmpty = new String[0];
 			opts = parser.parse(argsEmpty);
+		}
+
+		// Handle -Debug flag to enable debug output
+		if (opts.has("Debug")) {
+			System.out.println("InterfaceMain: Debug mode enabled via -Debug flag");
+			System.setProperty(STARTUP_TIMING_PROPERTY, "true");
+			System.setProperty(SHOW_STARTUP_STEPS_PROPERTY, "true");
+			configureStartupTimingOutput(bootProps);
+			configureShowStartupSteps(bootProps);
 		}
 
 		if (opts.has("help")) {
@@ -705,7 +846,6 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 						+ ". Keeping font size " + configuredFontSize + ".");
 			}
 		}
-
 		// if the -l option is set then we will redirect standard output to the
 		// specified log file
 		PrintStream stdout = System.out;
@@ -727,7 +867,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			path = (String) opts.valueOf("o");
 			System.out.println("InterfaceMain: DB Path: " + path + " exists: " + new File(path).exists());
 			// Persist last DB path so it is available on next launch
-			bootProps.setProperty("paramPath", path);
+			bootProps.setProperty("paramPath", normalizePropertyValueForPersistence("paramPath", path));
 		} else {
 			// use value from properties if available
 			String propPath = bootProps.getProperty("paramPath", null);
@@ -760,7 +900,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			queryFilename = (String) opts.valueOf("q");
 			System.out.println("InterfaceMain: Query File Path: " + queryFilename + " exists: "
 					+ new File(queryFilename).exists());
-			bootProps.setProperty("queryFile", queryFilename);
+			bootProps.setProperty("queryFile", normalizePropertyValueForPersistence("queryFile", queryFilename));
 		} else {
 			// use value from properties if available
 			String propQuery = bootProps.getProperty("queryFile", null);
@@ -805,7 +945,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			unitFileLocation = (String) opts.valueOf("u");
 			System.out.println("InterfaceMain: unitsFile: " + unitFileLocation + " exists: "
 					+ new File(unitFileLocation).exists());
-			bootProps.setProperty("unitsFile", unitFileLocation);
+			bootProps.setProperty("unitsFile", normalizePropertyValueForPersistence("unitsFile", unitFileLocation));
 		} else {
 			String propUnits = bootProps.getProperty("unitsFile", null);
 			if (propUnits != null) {
@@ -828,7 +968,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			presetRegionListLocation = (String) opts.valueOf("p");
 			System.out.println("InterfaceMain: presetRegionListLocation: " + presetRegionListLocation + " exists: "
 					+ new File(presetRegionListLocation).exists());
-			bootProps.setProperty("presetRegionList", presetRegionListLocation);
+			bootProps.setProperty("presetRegionList",
+					normalizePropertyValueForPersistence("presetRegionList", presetRegionListLocation));
 		} else {
 			String propPreset = bootProps.getProperty("presetRegionList", null);
 			if (propPreset != null) {
@@ -852,7 +993,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			favoriteQueriesFileLocation = (String) opts.valueOf("f");
 			System.out.println("InterfaceMain: favoriteQueriesFileLocation: " + favoriteQueriesFileLocation
 					+ " exists: " + new File(favoriteQueriesFileLocation).exists());
-			bootProps.setProperty("favoriteQueriesFile", favoriteQueriesFileLocation);
+			bootProps.setProperty("favoriteQueriesFile",
+					normalizePropertyValueForPersistence("favoriteQueriesFile", favoriteQueriesFileLocation));
 		} else {
 			String propFav = bootProps.getProperty("favoriteQueriesFile", null);
 			if (propFav != null) {
@@ -899,7 +1041,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			System.out.println("InterfaceMain: shapeFileLocationPrefix: " + shapeFileLocationPrefix + " exists: "
 					+ new File(shapeFileLocationPrefix).exists());
 			enableMapping = true;
-			bootProps.setProperty("mapResourceFolder", shapeFileLocationPrefix);
+			bootProps.setProperty("mapResourceFolder",
+					normalizePropertyValueForPersistence("mapResourceFolder", shapeFileLocationPrefix));
 		} else {
 			String propMap = bootProps.getProperty("mapResourceFolder", null);
 			if (propMap != null) {
@@ -932,7 +1075,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			legendBundlesLoc = (String) opts.valueOf("legend_bundle");
 			System.out.println("InterfaceMain: legendBundlesLoc: " + legendBundlesLoc + " exists: "
 					+ new File(legendBundlesLoc).exists());
-			bootProps.setProperty("legend_bundle", legendBundlesLoc);
+			bootProps.setProperty("legend_bundle", normalizePropertyValueForPersistence("legend_bundle", legendBundlesLoc));
 		}
 		File legendBundleFile = null;
 		if (legendBundlesLoc == null) {
@@ -953,6 +1096,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		}
 
 		// Persist any updated properties from CLI back to the properties file
+		normalizePathProperties(bootProps);
 		try (FileOutputStream fos = new FileOutputStream(propertiesFile)) {
 			bootProps.storeToXML(fos, "ModelInterface properties (boot updated)");
 		} catch (IOException ioe) {
@@ -1379,6 +1523,9 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	}
 
 	public void showStartupLoadingView(final String message) {
+		if (!shouldShowStartupSteps()) {
+			return;
+		}
 		final Runnable r = new Runnable() {
 			@Override
 			public void run() {
@@ -1743,7 +1890,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		}
 		if (javax.swing.SwingUtilities.isEventDispatchThread()) {
 			activeDbStatusLabel.setText(text);
-		} else {
+				} else {
 			javax.swing.SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
@@ -1825,6 +1972,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 
 				try {
 					savedProperties.loadFromXML(new FileInputStream(propertiesFile));
+					normalizePathProperties(savedProperties);
 					String prettyPrintProperty = savedProperties.getProperty("pretty-print", null);
 					if (System.getProperty("ModelInterface.pretty-print", null) == null && prettyPrintProperty != null) {
 						System.getProperties().setProperty("ModelInterface.pretty-print", prettyPrintProperty);
@@ -1871,16 +2019,16 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				savedProperties.setProperty("enableMapping", "true");
 			}
 			if (!savedProperties.containsKey("favoriteQueriesFile")) {
-				savedProperties.setProperty("favoriteQueriesFile", ".\\config\\favorite_queries_list.txt");
+				savedProperties.setProperty("favoriteQueriesFile", "./config/favorite_queries_list.txt");
 			}
 			if (!savedProperties.containsKey("presetRegionsFile")) {
-				savedProperties.setProperty("presetRegionsFile", ".\\config\\preset_region_list.txt");
+				savedProperties.setProperty("presetRegionsFile", "./config/preset_region_list.txt");
 			}
 			if (!savedProperties.containsKey("unitsFile")) {
-				savedProperties.setProperty("unitsFile", ".\\config\\units_rules.csv");
+				savedProperties.setProperty("unitsFile", "./config/units_rules.csv");
 			}
 			if (!savedProperties.containsKey("mapResourceFolder")) {
-				savedProperties.setProperty("mapResourceFolder", ".\\map_resources");
+				savedProperties.setProperty("mapResourceFolder", "./map_resources");
 			}
 			if (!savedProperties.containsKey("RecentFilesLength")) {
 				savedProperties.setProperty("RecentFilesLength", "5");
@@ -1893,6 +2041,14 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 			if (!savedProperties.containsKey("zipExportedScenarios")) {
 				savedProperties.setProperty("zipExportedScenarios", "false");
+			}
+			if (!savedProperties.containsKey(NATIVE_FILE_DIALOG_PROPERTY)
+					&& !savedProperties.containsKey(NATIVE_FILE_DIALOG_LEGACY_PROPERTY)) {
+				savedProperties.setProperty(NATIVE_FILE_DIALOG_PROPERTY, "true");
+			}
+			if (!savedProperties.containsKey(NATIVE_FILE_DIALOG_DEBUG_PROPERTY)
+					&& !savedProperties.containsKey(NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY)) {
+				savedProperties.setProperty(NATIVE_FILE_DIALOG_DEBUG_PROPERTY, "false");
 			}
 		if (!savedProperties.containsKey("copyIncludeQueryName")) {
 			savedProperties.setProperty("copyIncludeQueryName", "false");
@@ -2127,6 +2283,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 						savedProperties.setProperty("lastWidth", Integer.toString(mainFrame.getWidth()));
 						savedProperties.setProperty("lastHeight", Integer.toString(mainFrame.getHeight()));
 					}
+					syncRuntimePreferencePropertiesLocked();
 				}
 			}
 			updateShutdownProgressStatus(2, SHUTDOWN_TOTAL_STEPS, SHUTDOWN_MESSAGE_SAVING_SETTINGS);
@@ -2146,6 +2303,15 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				System.exit(0);
 			}
 		}
+	}
+
+	private void syncRuntimePreferencePropertiesLocked() {
+		if (savedProperties == null) {
+			return;
+		}
+		// Keep menu-driven runtime toggles aligned with persisted preferences on close.
+		savedProperties.setProperty("autoGenerateGraphics", Boolean.toString(autoGenerateGraphics));
+		savedProperties.setProperty("limitSigDigits", Boolean.toString(!DbViewer.disableSigDigits));
 	}
 
 	public JFrame getFrame() {
@@ -2235,6 +2401,68 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		JMenu viewMenu = new JMenu("View");
 		viewMenu.setMnemonic(KeyEvent.VK_V);
 		menuMan.addMenuItem(viewMenu, VIEW_MENU_POS);
+		addViewPreferenceMenuItems(menuMan.getSubMenuManager(VIEW_MENU_POS));
+	}
+
+	private void addViewPreferenceMenuItems(MenuManager viewMM) {
+		if (viewMM == null) {
+			return;
+		}
+
+		final JCheckBoxMenuItem limitSigDigitsItem = new JCheckBoxMenuItem("Limit significant digits");
+		limitSigDigitsItem.setSelected(getBooleanPreference("limitSigDigits", false));
+		updateToggleMenuLabel(limitSigDigitsItem, "Limit significant digits");
+		limitSigDigitsItem.addActionListener(e -> {
+			setLimitSignificantDigitsEnabled(limitSigDigitsItem.isSelected());
+			updateToggleMenuLabel(limitSigDigitsItem, "Limit significant digits");
+		});
+		viewMM.addMenuItem(limitSigDigitsItem, -20);
+
+		final JCheckBoxMenuItem autoGraphicsItem = new JCheckBoxMenuItem("Enable auto graphics");
+		autoGraphicsItem.setSelected(getBooleanPreference("autoGenerateGraphics", false));
+		updateToggleMenuLabel(autoGraphicsItem, "Enable auto graphics");
+		autoGraphicsItem.addActionListener(e -> {
+			setAutoGenerateGraphicsEnabled(autoGraphicsItem.isSelected());
+			updateToggleMenuLabel(autoGraphicsItem, "Enable auto graphics");
+		});
+		viewMM.addMenuItem(autoGraphicsItem, -10);
+
+		viewMM.addSeparator(0);
+	}
+
+	private boolean getBooleanPreference(String key, boolean fallback) {
+		String value = getProperties().getProperty(key);
+		if (value == null) {
+			return fallback;
+		}
+		if ("true".equalsIgnoreCase(value.trim())) {
+			return true;
+		}
+		if ("false".equalsIgnoreCase(value.trim())) {
+			return false;
+		}
+		return fallback;
+	}
+
+	private void setAutoGenerateGraphicsEnabled(boolean enabled) {
+		autoGenerateGraphics = enabled;
+		setProperty("autoGenerateGraphics", Boolean.toString(enabled));
+	}
+
+	private void setLimitSignificantDigitsEnabled(boolean enabled) {
+		boolean previousDisableSigDigits = DbViewer.disableSigDigits;
+		DbViewer.disableSigDigits = !enabled;
+		setProperty("limitSigDigits", Boolean.toString(enabled));
+		if (previousDisableSigDigits != DbViewer.disableSigDigits && dbView instanceof DbViewer) {
+			((DbViewer) dbView).refreshOpenResultsSignificantDigits();
+		}
+	}
+
+	private void updateToggleMenuLabel(JCheckBoxMenuItem menuItem, String baseLabel) {
+		if (menuItem == null || baseLabel == null) {
+			return;
+		}
+		menuItem.setText(baseLabel + (menuItem.isSelected() ? " [ON]" : " [OFF]"));
 	}
 
 	private void addToolsMenu(MenuManager menuMan) {
@@ -2336,8 +2564,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		logStartupTiming("addMenuAdder:new DbViewer " + elapsedMillis(menuAdderStart) + " ms");
 		dbView.addMenuItems(menuMan);
 		logStartupTiming("addMenuAdder:DbViewer.addMenuItems " + elapsedMillis(menuAdderStart) + " ms");
-		// "XML file" (InputViewer) hidden — not working correctly
-		// addLazyMenuItem(menuMan, TOOLS_MENU_POS, TOOLS_SUBMENU2_POS, new JMenuItem("XML file"), LAZY_OPEN_INPUT_VIEWER, 0);
+		// Restore XML open entry under Tools -> Open Files (lazy-load InputViewer on demand).
+		addLazyMenuItem(menuMan, TOOLS_MENU_POS, TOOLS_SUBMENU2_POS, new JMenuItem("XML file"), LAZY_OPEN_INPUT_VIEWER, 0);
 		addLazyMenuItem(menuMan, TOOLS_MENU_POS, TOOLS_SUBMENU2_POS, new JMenuItem("Preprocessor file"), LAZY_OPEN_PP_VIEWER, 20);
 		logStartupTiming("addMenuAdder:add lazy open-file items " + elapsedMillis(menuAdderStart) + " ms");
 		final MenuAdder recentFilesList = RecentFilesList.getInstance();
@@ -2576,6 +2804,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	}
 
 	private void showPreferencesDialog() {
+		final String previousSigDigits = getProperties().getProperty("significantDigits", "3");
+		final boolean previousDisableSigDigits = DbViewer.disableSigDigits;
 		new PreferenceDialog(this).showDialog();
 		// Reload auto graphics setting from properties after dialog closes
 		synchronized (propertiesLock) {
@@ -2586,6 +2816,12 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				String propLimitSigDigits = savedProperties.getProperty("limitSigDigits", "false");
 				boolean limitSigDigits = "true".equalsIgnoreCase(propLimitSigDigits);
 				DbViewer.disableSigDigits = !limitSigDigits;  // Inverse: if limiting is enabled, disabling is off
+			}
+		}
+		final String currentSigDigits = getProperties().getProperty("significantDigits", "3");
+		if (previousDisableSigDigits != DbViewer.disableSigDigits || !previousSigDigits.equals(currentSigDigits)) {
+			if (dbView instanceof DbViewer) {
+				((DbViewer) dbView).refreshOpenResultsSignificantDigits();
 			}
 		}
 	}
@@ -2752,8 +2988,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			Object[] keys = subItems.keySet().toArray();
 			for (int i = 0; i < keys.length; ++i) {
 				JMenuItem menu = subItems.get(keys[i]).createSubMenu();
-				// Add extra padding to main menu items
-				menu.setBorder(BorderFactory.createEmptyBorder(4, 8, 4, 8));
+							// Avoid adding extra padding around top-level menu bar items.
+							menu.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 				ret.add(menu);
 			}
 			return ret;
@@ -2785,10 +3021,11 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	public void setProperty(String key, String value) {
 		synchronized (propertiesLock) {
 			if (savedProperties != null) {
+				String normalizedValue = normalizePropertyValueForPersistence(key, value);
 				if ("paramPath".equals(key)) {
-					path = value;
+					path = normalizedValue;
 				}
-				savedProperties.setProperty(key, value);
+				savedProperties.setProperty(key, normalizedValue);
 				persistProperties();
 			}
 		}
@@ -2955,6 +3192,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private void persistProperties() {
 		synchronized (propertiesLock) {
 			try (FileOutputStream fos = new FileOutputStream(propertiesFile)) {
+				normalizePathProperties(savedProperties);
 				Properties sortedProps = new Properties() {
 					@Override
 					public java.util.Enumeration<Object> keys() {

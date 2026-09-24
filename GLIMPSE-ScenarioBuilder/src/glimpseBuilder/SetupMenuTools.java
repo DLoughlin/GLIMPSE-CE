@@ -36,6 +36,7 @@
 package glimpseBuilder;
 
 import glimpseElement.CsvToXmlWidget;
+import glimpseElement.LogConfigEditorWidget;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
@@ -45,8 +46,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -76,15 +79,10 @@ public final class SetupMenuTools {
                 Client.buttonRefreshScenarioStatus.fire();
             }),
             new SeparatorMenuItem(),
+            createMenuItem("Edit Log Configuration", () -> new LogConfigEditorWidget().createAndShow()),
+            new SeparatorMenuItem(),
             createMenuItem("Browse Trash", () -> files.openFileExplorer(vars.getTrashDir())),
             createMenuItem("Empty Trash", this::emptyTrashAction),
-            new SeparatorMenuItem()
-        );
-
-        // --- Advanced Submenu ---
-        menuAdvanced.getItems().addAll(
-            createMenuItem("CSV to XML", () -> new CsvToXmlWidget().createAndShow()),
-            createMenuItem("Cleanup Saved Files", this::cleanupSavedFilesAction),
             new SeparatorMenuItem(),
             createMenuItem("Stop ModelInterface Jobs", () -> {
                 try {
@@ -95,7 +93,14 @@ public final class SetupMenuTools {
                 } catch (Throwable t) {
                     System.err.println("Error stopping ModelInterface jobs: " + t);
                 }
-            })
+            }),
+            new SeparatorMenuItem()
+        );
+
+        // --- Advanced Submenu ---
+        menuAdvanced.getItems().addAll(
+            createMenuItem("CSV to XML", () -> new CsvToXmlWidget().createAndShow()),
+            createMenuItem("Cleanup Saved Files", this::cleanupSavedFilesAction)
         );
         
         menuTools.getItems().add(menuAdvanced);
@@ -123,12 +128,21 @@ public final class SetupMenuTools {
             Path trashPath = new File(vars.getTrashDir()).toPath();
             try {
                 Files.createDirectories(trashPath);
+                List<Path> failedDeletes = new ArrayList<>();
                 try (Stream<Path> paths = Files.walk(trashPath)) {
                     paths
                         .filter(path -> !path.equals(trashPath))
                         .sorted(Comparator.reverseOrder())
-                        .map(Path::toFile)
-                        .forEach(File::delete);
+                        .forEach(path -> {
+                            try {
+                                Files.deleteIfExists(path);
+                            } catch (IOException ex) {
+                                failedDeletes.add(path);
+                            }
+                        });
+                }
+                if (!failedDeletes.isEmpty()) {
+                    System.err.println("Trash cleanup skipped " + failedDeletes.size() + " item(s). First failure: " + failedDeletes.get(0));
                 }
             } catch (IOException e) {
                  System.err.println("Error while deleting trash contents: " + e.getMessage());
@@ -139,6 +153,7 @@ public final class SetupMenuTools {
     private boolean confirmDeleteTrash() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "This will permanently delete all items from the trash folder.", ButtonType.OK, ButtonType.CANCEL);
         UtilsDialogs.initDialogOwner(alert);
+        UtilsDialogs.applyDialogTheme(alert);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Permanently delete all items from trash?");
         return alert.showAndWait().filter(b -> b == ButtonType.OK).isPresent();

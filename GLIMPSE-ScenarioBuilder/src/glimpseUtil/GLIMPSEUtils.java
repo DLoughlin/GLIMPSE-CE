@@ -804,6 +804,22 @@ public class GLIMPSEUtils {
 	}
 
 	/**
+	 * Refreshes icon-button sizing so square toolbar buttons track the current
+	 * runtime font size.
+	 *
+	 * @param button button to refresh
+	 */
+	public void refreshManagedButtonSizing(Button button) {
+		if (uiUtils == null) {
+			UtilsUI temp = new UtilsUI();
+			temp.init(vars, styles);
+			temp.refreshManagedButtonSizing(button);
+			return;
+		}
+		uiUtils.refreshManagedButtonSizing(button);
+	}
+
+	/**
 	 * Shrinks label text as needed so it fits the label's configured width.
 	 *
 	 * @param label label to adjust
@@ -1280,16 +1296,6 @@ public class GLIMPSEUtils {
 		return transportUtils.getTrnTechsInSubsector(region, sector, subsector);
 	}
 
-	/**
-	 * Retrieves transportation vehicle information for a given parameter, region,
-	 * sector, subsector, technology, and year.
-	 */
-	public String getTrnVehInfo(String param, String region, String sector, String subsector, String tech,
-			String year_str) {
-		if (transportUtils == null)
-			return null;
-		return transportUtils.getTrnVehInfo(param, region, sector, subsector, tech, year_str);
-	}
 
 	/**
 	 * Retrieves transportation vehicle information for a given parameter, region,

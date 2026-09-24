@@ -1,5 +1,14 @@
 **/*.class
 bin/
 GLIMPSE*.jar
+*.bak2
+*.backup*
+startup_output.txt
+startup_error.txt
+options_.txt
 
 /build_tmp/
+/jar_extract_temp/
+
+/build/
+/.gradle/

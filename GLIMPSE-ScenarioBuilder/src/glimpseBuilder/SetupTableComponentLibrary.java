@@ -123,7 +123,7 @@ public class SetupTableComponentLibrary {
 			throw new IllegalStateException("Filter TextField not initialized. Create it in PaneComponentLibrary and call ComponentLibraryTable.setFilterComponentsTextField(...) before SetupTableComponentLibrary.setup().");
 		}
 
-		ComponentLibraryTable.getFilterComponentsTextField().setMinWidth(styles.getBigButtonWidth());
+		ComponentLibraryTable.getFilterComponentsTextField().setMinWidth(0);
 
 		FilteredList<ComponentRow> filteredComponents = new FilteredList<>(ComponentLibraryTable.getTableComponents().getItems(), p -> true);
 

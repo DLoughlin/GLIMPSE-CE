@@ -52,6 +52,9 @@ public class UtilsStatus {
 	private static final Pattern RUNNING_PERIOD_WITH_YEAR_PATTERN = Pattern.compile(
 			"^period\\s+(\\d{1,3})\\s*:\\s*(\\d{4})\\s*$",
 			Pattern.CASE_INSENSITIVE);
+	private static final String[] LOG_LINE_LEVEL_PREFIXES = {
+			"TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
+	};
 
 	private GLIMPSEVariables vars;
 	private GLIMPSEFiles files;
@@ -127,14 +130,22 @@ public class UtilsStatus {
 		if (currentPeriod != null && !currentPeriod.isEmpty()) {
 			return currentPeriod;
 		}
-		String unsolved = files.searchForTextInFileS(mainLogFile, "The following model periods did not solve:", "#");
-		if (unsolved != null && !unsolved.trim().isEmpty()) {
-			String msg = unsolved.replace("The following model periods did not solve:", "").trim();
-			return "Unsolved,ERR " + msg;
-		}
-		String err = files.searchForTextInFileS(mainLogFile, "ERROR", "#");
-		if (err != null && !err.trim().isEmpty()) {
-			return "ERROR,ERR " + err.trim();
+		try {
+			ArrayList<String> lines = files.getStringArrayFromFile(mainLogFile.getAbsolutePath(), "#");
+			for (int i = lines.size() - 1; i >= 0; i--) {
+				String normalized = stripKnownLogLinePrefixes(lines.get(i));
+				if (normalized.isEmpty()) {
+					continue;
+				}
+				if (normalized.contains("The following model periods did not solve:")) {
+					String msg = normalized.replace("The following model periods did not solve:", "").trim();
+					return "Unsolved,ERR " + msg;
+				}
+				if (normalized.contains("ERROR")) {
+					return "ERROR,ERR " + normalized.trim();
+				}
+			}
+		} catch (Exception ignored) {
 		}
 		return "";
 	}
@@ -155,7 +166,7 @@ public class UtilsStatus {
 				if (line == null) {
 					continue;
 				}
-				String trimmed = line.trim();
+				String trimmed = stripKnownLogLinePrefixes(line);
 				if (trimmed.isEmpty()) {
 					continue;
 				}
@@ -490,5 +501,37 @@ public class UtilsStatus {
 		if (scenarioName == null || scenarioName.trim().isEmpty())
 			return null;
 		return new File(vars.getScenarioDir() + File.separator + scenarioName + File.separator + "main_log.txt");
+	}
+
+	private String stripKnownLogLinePrefixes(String line) {
+		if (line == null) {
+			return "";
+		}
+		String normalized = line.trim();
+		if (normalized.isEmpty()) {
+			return "";
+		}
+		boolean changed;
+		do {
+			changed = false;
+			for (String prefix : LOG_LINE_LEVEL_PREFIXES) {
+				if (prefix == null || prefix.isEmpty()) {
+					continue;
+				}
+				if (startsWithIgnoreCase(normalized, prefix + ":")) {
+					normalized = normalized.substring(prefix.length() + 1).trim();
+					changed = true;
+					break;
+				}
+			}
+		} while (changed && !normalized.isEmpty());
+		return normalized;
+	}
+
+	private boolean startsWithIgnoreCase(String value, String prefix) {
+		if (value == null || prefix == null || value.length() < prefix.length()) {
+			return false;
+		}
+		return value.regionMatches(true, 0, prefix, 0, prefix.length());
 	}
 }

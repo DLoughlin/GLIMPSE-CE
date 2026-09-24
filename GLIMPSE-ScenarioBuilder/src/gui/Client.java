@@ -43,12 +43,23 @@ import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEVariables;
 import glimpseUtil.WindowsRuntimePreflight;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.geom.AffineTransform;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
@@ -56,9 +67,14 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -78,6 +94,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -113,8 +130,22 @@ import javafx.scene.Parent;
  */
 public class Client extends Application {
 
+  private static final class WindowPreferencesState {
+    private Double width;
+    private Double height;
+    private Double x;
+    private Double y;
+    private Double sourceScreenWidth;
+    private Double sourceScreenHeight;
+    private Integer fontSize;
+
+    private boolean hasLocation() {
+      return x != null && y != null;
+    }
+  }
+
 	// version
-	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder";
+	private static final String VERSION = "GLIMPSE-CE ScenarioBuilder v2.3 Beta";
 	private static final int MIN_RUNTIME_FONT_SIZE = 8;
 	private static final int MAX_RUNTIME_FONT_SIZE = 24;
 	private static final String STATUS_BAR_BASE_STYLE = " -fx-padding: 6 10 6 10; -fx-border-color: #e0e0e0 transparent transparent transparent; -fx-border-width: 1 0 0 0;";
@@ -123,10 +154,36 @@ public class Client extends Application {
 	private static final double STATUS_BAR_OPERATION_PROGRESS_WIDTH = 120.0;
 	private static final double STATUS_BAR_OPERATION_PROGRESS_HEIGHT = 12.0;
 	private static final String RESOURCE_STATUS_PREFIX = "Resources...";
+  private static final String WINDOW_PREFERENCES_FILENAME = "GLIMPSE-ScenarioBuilder.properties";
+  private static final String WINDOW_PREF_WIDTH_KEY = "window.width";
+  private static final String WINDOW_PREF_HEIGHT_KEY = "window.height";
+  private static final String WINDOW_PREF_X_KEY = "window.x";
+  private static final String WINDOW_PREF_Y_KEY = "window.y";
+  private static final String WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY = "window.source.screen.width";
+  private static final String WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY = "window.source.screen.height";
+  private static final String WINDOW_PREF_FONT_SIZE_KEY = "font.size";
+  private static final String WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY = "top.row.component.fraction";
+  private static final String WINDOW_PREF_TOP_SECTION_FRACTION_KEY = "top.section.fraction";
+  private static final String COMPONENT_CREATOR_PREF_WIDTH_KEY = "component.creator.window.width";
+  private static final String COMPONENT_CREATOR_PREF_HEIGHT_KEY = "component.creator.window.height";
+  private static final String COMPONENT_CREATOR_PREF_X_KEY = "component.creator.window.x";
+  private static final String COMPONENT_CREATOR_PREF_Y_KEY = "component.creator.window.y";
+  private static final String CONSOLE_PREF_WIDTH_KEY = "console.window.width";
+  private static final String CONSOLE_PREF_HEIGHT_KEY = "console.window.height";
+  private static final String CONSOLE_PREF_X_KEY = "console.window.x";
+  private static final String CONSOLE_PREF_Y_KEY = "console.window.y";
+  private static final java.util.Set<String> PATH_LIKE_PREFERENCE_KEYS = new java.util.HashSet<String>(
+      java.util.Arrays.asList("lastDirectory", "queryFile", "paramPath", "unitsFile",
+          "presetRegionList", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
 	
     // region Constants
-    private static final double MIN_WINDOW_HEIGHT = 850;
-    private static final double MIN_WINDOW_WIDTH = 1100;
+    // Reduced by ~20% to allow a smaller usable minimum window size.
+    private static final double MIN_WINDOW_HEIGHT = 680;
+    private static final double MIN_WINDOW_WIDTH = 880;
+    private static final double MIN_COMPONENT_CREATOR_WINDOW_HEIGHT = 400;
+    private static final double MIN_COMPONENT_CREATOR_WINDOW_WIDTH = 500;
+    private static final double MIN_CONSOLE_WINDOW_HEIGHT = 300;
+    private static final double MIN_CONSOLE_WINDOW_WIDTH = 420;
     private static final double SPLASH_WIDTH = 383.0;
     private static final double SPLASH_HEIGHT = 384.0;
     private static final String OPTIONS_ARG_FLAG = "-options";
@@ -150,6 +207,9 @@ public class Client extends Application {
     private static final String STARTUP_SHOW_WATCHDOG_FLAG = "glimpse.debugShowWatchdog";
     private static final String STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG = "glimpse.startupDeferMainUiUntilReady";
     private static final String STARTUP_WATCHDOG_VERBOSE_STACK_FLAG = "glimpse.debugWatchdogVerboseStack";
+    // Explicit opt-in for JavaFX system-scale mode on Windows.
+    private static final String STARTUP_DISABLE_HIDPI_FLAG = "glimpse.disableHiDpi";
+    private static final String STARTUP_HIDPI_COMPAT_SCALE_FLAG = "glimpse.hidpiCompatScalePercent";
     private static final int STARTUP_WATCHDOG_INTERVAL_MS = 2000;
     private static final long DATABASE_REBUILD_WATCH_INTERVAL_MS = 15000L;
     private static final String[] STARTUP_CRITICAL_ICON_PREWARM_KEYS = new String[] {
@@ -169,11 +229,13 @@ public class Client extends Application {
     private static final int STARTUP_STEP_FILES_READY = 3;
     private static final int STARTUP_STEP_COMPONENTS_READY = 4;
     private static final int STARTUP_STEP_SCENARIOS_READY = 5;
-    private static final double TOP_LEFT_PANEL_RATIO = 4.0;
-    private static final double TOP_RIGHT_PANEL_RATIO = 2.5;
     private static final double TOP_PANEL_GAP = 4.0;
-    private static final double TOP_ROW_HEIGHT_RATIO = 45.0;
-    private static final double BOTTOM_ROW_HEIGHT_RATIO = 55.0;
+    private static final double DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.6;
+    private static final double MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.5;
+    private static final double MAX_TOP_ROW_COMPONENT_LIBRARY_FRACTION = 0.8;
+    private static final double DEFAULT_TOP_SECTION_FRACTION = 0.5;
+    private static final double MIN_TOP_SECTION_FRACTION = 0.3;
+    private static final double MAX_TOP_SECTION_FRACTION = 0.7;
     // endregion
 
     // region Static Fields
@@ -182,7 +244,11 @@ public class Client extends Application {
     public static boolean exit_on_exception = false; // Retained public for potential external access
     /** When true, startup status messages are printed to stdout. Default is false. */
     private static volatile boolean reportStartupStatus = false;
+    private static final Map<Scene, Boolean> runtimeFontManagedScenes = Collections.synchronizedMap(new WeakHashMap<>());
     // endregion
+
+    private boolean monitorScaleRelayoutListenersInstalled = false;
+    private final AtomicBoolean monitorScaleRelayoutPending = new AtomicBoolean(false);
 
     // region GUI Panels
     static PaneCreateScenario paneCreateScenario;
@@ -250,6 +316,10 @@ public class Client extends Application {
     private final AtomicBoolean startupOverlayVisible = new AtomicBoolean(false);
     private Label startupOverlayLabel;
     private VBox startupOverlayBox;
+    private final DoubleProperty topRowComponentLibraryFraction = new SimpleDoubleProperty(
+            DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION);
+    private final DoubleProperty topSectionFraction = new SimpleDoubleProperty(DEFAULT_TOP_SECTION_FRACTION);
+    private volatile boolean topRowSplitDragActive = false;
 
     /** Startup timing anchor (nanoseconds). */
     private static final long STARTUP_T0_NANOS = System.nanoTime();
@@ -307,6 +377,20 @@ public class Client extends Application {
     private static volatile String lastLaunchThreadsSnapshotSignature = "";
     /** Last printed classloader URL diagnostic signature to avoid repetitive watchdog spam. */
     private static volatile String lastLaunchClassLoaderUrlsSignature = "";
+    /** Resolved properties file stored beside the ScenarioBuilder jar/install directory. */
+    private static volatile File windowPreferencesFile;
+    /** Window and font preferences loaded from the external properties file. */
+    private static volatile WindowPreferencesState persistedWindowPreferences = new WindowPreferencesState();
+    /** Persisted top-row component-library width fraction (left pane). */
+    private static volatile double persistedTopRowComponentLibraryFraction = DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
+    /** Persisted top-section height fraction. */
+    private static volatile double persistedTopSectionFraction = DEFAULT_TOP_SECTION_FRACTION;
+    /** New Scenario Component Creator bounds loaded from the external properties file. */
+    private static volatile WindowPreferencesState persistedScenarioComponentCreatorPreferences = new WindowPreferencesState();
+    /** GLIMPSE Console bounds loaded from the external properties file. */
+    private static volatile WindowPreferencesState persistedConsolePreferences = new WindowPreferencesState();
+    /** Prevent duplicate writes when close-request and stop() both execute. */
+    private static final AtomicBoolean windowPreferencesSaved = new AtomicBoolean(false);
 
     /**
      * Launches the JavaFX application lifecycle for Scenario Builder.
@@ -315,6 +399,7 @@ public class Client extends Application {
      */
     public static void main(String[] args) {
         logBootstrapCheckpoint("main(): entered");
+        applyWindowsMixedDpiCompatibilityWorkaround();
         if (!Boolean.getBoolean(EARLY_SPLASH_DISABLE_FLAG)) {
             showEarlyStartupSplash(EARLY_SPLASH_INITIAL_MESSAGE);
         } else {
@@ -359,6 +444,105 @@ public class Client extends Application {
     }
 
     /**
+     * Optional Windows HiDPI compatibility mode.
+     * <p>
+     * When enabled via {@code -Dglimpse.disableHiDpi=true}, JavaFX runs in
+     * system-scale mode instead of per-monitor scale mode.
+     */
+    private static void applyWindowsMixedDpiCompatibilityWorkaround() {
+        try {
+            if (!isWindowsPlatform()) {
+                return;
+            }
+            if (System.getProperty("prism.allowhidpi") != null || System.getProperty("glass.win.uiScale") != null) {
+                return;
+            }
+
+            if (!Boolean.getBoolean(STARTUP_DISABLE_HIDPI_FLAG)) {
+                return;
+            }
+
+            String compatScalePercent = resolveHiDpiCompatScalePercent();
+            System.setProperty("prism.allowhidpi", "false");
+            System.setProperty("glass.win.uiScale", compatScalePercent);
+            logBootstrapCheckpoint("main(): applying explicit HiDPI compatibility mode (-Dprism.allowhidpi=false, -Dglass.win.uiScale=" + compatScalePercent + ")");
+        } catch (Throwable ignored) {
+            // Never let DPI probing interfere with app startup.
+        }
+    }
+
+    private static String resolveHiDpiCompatScalePercent() {
+        String configured = System.getProperty(STARTUP_HIDPI_COMPAT_SCALE_FLAG, "").trim();
+        if (!configured.isEmpty()) {
+            if (!configured.endsWith("%")) {
+                configured += "%";
+            }
+            return configured;
+        }
+        int detected = detectPrimaryMonitorScalePercent();
+        return detected + "%";
+    }
+
+    private static int detectPrimaryMonitorScalePercent() {
+        try {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice primary = ge.getDefaultScreenDevice();
+            if (primary != null && primary.getDefaultConfiguration() != null) {
+                AffineTransform tx = primary.getDefaultConfiguration().getDefaultTransform();
+                double sx = tx == null ? 1.0d : tx.getScaleX();
+                int percent = (int) Math.round(sx * 100.0d);
+                if (percent < 100) {
+                    return 100;
+                }
+                if (percent > 300) {
+                    return 300;
+                }
+                return percent;
+            }
+        } catch (Throwable ignored) {
+        }
+        return 100;
+    }
+
+    private static boolean isWindowsPlatform() {
+        String os = System.getProperty("os.name", "").toLowerCase();
+        return os.contains("win");
+    }
+
+    private static boolean hasMixedWindowsMonitorScaling() {
+        try {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice[] devices = ge.getScreenDevices();
+            if (devices == null || devices.length <= 1) {
+                return false;
+            }
+
+            Double baselineScale = null;
+            final double epsilon = 0.02d;
+            for (GraphicsDevice device : devices) {
+                if (device == null) {
+                    continue;
+                }
+                GraphicsConfiguration cfg = device.getDefaultConfiguration();
+                if (cfg == null) {
+                    continue;
+                }
+                AffineTransform tx = cfg.getDefaultTransform();
+                double sx = tx == null ? 1.0d : tx.getScaleX();
+
+                if (baselineScale == null) {
+                    baselineScale = sx;
+                } else if (Math.abs(sx - baselineScale.doubleValue()) > epsilon) {
+                    return true;
+                }
+            }
+        } catch (Throwable ignored) {
+            return false;
+        }
+        return false;
+    }
+
+    /**
      * Initializes singleton utilities, options, and startup logging before the primary stage is shown.
      *
      * @throws Exception if initialization fails
@@ -386,7 +570,12 @@ public class Client extends Application {
 
         // Load options into the vars singleton
         vars.loadOptions(optionsFilename);
+        loadPersistentWindowPreferences();
         deferMainUiUntilReady = Boolean.parseBoolean(System.getProperty(STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG, "true"));
+        if (deferMainUiUntilReady && isWindowsPlatform() && hasMixedWindowsMonitorScaling()) {
+            deferMainUiUntilReady = false;
+            logStartupCheckpoint("init(): mixed-DPI startup mode enabled (skip shell scene swap)", t0);
+        }
         bootstrapTimingEnabled = vars.getDebugStartupTiming();
         logStartupCheckpoint("init(): options loaded", t0);
         updateEarlyStartupSplashMessage("Loading GLIMPSE options...");
@@ -419,8 +608,12 @@ public class Client extends Application {
     /**
      * Builds and displays the primary Scenario Builder window.
      * <p>
-     * Shows a lightweight startup shell immediately, then composes the full UI and
-     * starts deferred initialization tasks.
+     * Uses one of two startup paths:
+     * <ul>
+     *   <li>Direct main-UI startup on mixed-DPI Windows setups (skips scene swap).</li>
+     *   <li>Lightweight startup shell followed by deferred main-UI composition on other setups.</li>
+     * </ul>
+     * Both paths finish by starting deferred initialization tasks.
      *
      * @param primaryStage The primary stage for this application.
      */
@@ -440,21 +633,40 @@ public class Client extends Application {
 
         // Ensure threads are properly terminated on window close
         primaryStage.setOnCloseRequest(event -> {
+            persistWindowPreferencesOnExit();
             // Don't let exceptions prevent shutdown.
             safeShutdownExecutionThreads();
             Platform.exit();
         });
         logStartupCheckpoint("start(): close handler installed", t0);
 
-        //        //testing to see if I can have this appear early
-//        primaryStage.setTitle(VERSION);
-//        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-//        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-//        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-//        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-//        primaryStage.centerOnScreen();
-//        primaryStage.show();
-                
+        final boolean prewarmBeforeShow = Boolean.getBoolean(STARTUP_PREWARM_BEFORE_SHOW_FLAG);
+        if (prewarmBeforeShow) {
+            startStartupResourcePrewarm();
+            logStartupCheckpoint("start(): startup resource prewarm queued (pre-show)", t0);
+        }
+
+        if (!deferMainUiUntilReady) {
+            logStartupCheckpoint("start(): mixed-DPI startup mode active (direct main-UI path)", t0);
+            advanceStartupStep(STARTUP_STEP_WINDOW_LAYOUT, STARTUP_WINDOW_READY_MESSAGE);
+            setStartupStatus(STARTUP_BUILDING_UI_MESSAGE, -1, true);
+            warmUpFxControlsForStartup();
+            buildScenarioBuilderAndComposeMainWindow();
+            logStartupCheckpoint("start(): before primaryStage.show", t0);
+            primaryStage.show();
+            logStartupCheckpoint("start(): after primaryStage.show", t0);
+            closeEarlyStartupSplash();
+            logStartupCheckpoint("start(): after closeEarlyStartupSplash", t0);
+            startDeferredSetupAnalysisLogging();
+            logStartupCheckpoint("Startup shell skipped for mixed-DPI startup mode", t0);
+            if (!prewarmBeforeShow) {
+                startStartupResourcePrewarm();
+                logStartupCheckpoint("start(): startup resource prewarm queued (post-show)", t0);
+            }
+            logStartupCheckpoint("Client.start complete", t0);
+            return;
+        }
+
         logStartupCheckpoint("start(): before startup shell setup", t0);
         advanceStartupStep(STARTUP_STEP_WINDOW_LAYOUT, STARTUP_SHELL_MESSAGE);
         logStartupCheckpoint("start(): after advanceStartupStep", t0);
@@ -462,12 +674,6 @@ public class Client extends Application {
         logStartupCheckpoint("start(): after setStartupStatus(shell)", t0);
         setStartupShellWindow();
         logStartupCheckpoint("start(): after setStartupShellWindow", t0);
-
-        final boolean prewarmBeforeShow = Boolean.getBoolean(STARTUP_PREWARM_BEFORE_SHOW_FLAG);
-        if (prewarmBeforeShow) {
-            startStartupResourcePrewarm();
-            logStartupCheckpoint("start(): startup resource prewarm queued (pre-show)", t0);
-        }
 
         final AtomicBoolean showWatchdogDone = new AtomicBoolean(false);
         Thread showWatchdog = null;
@@ -498,7 +704,7 @@ public class Client extends Application {
         }
 
         runAfterInitialFxPulse(() -> {
-            // Build heavy panes after first paint so startup is perceived as immediate.
+            // Shell-path only: build heavy panes after first paint so startup appears immediate.
             setStartupStatus(STARTUP_BUILDING_UI_MESSAGE, -1, true);
             warmUpFxControlsForStartup();
             waitForCriticalIconPrewarmThenBuild(0);
@@ -506,6 +712,12 @@ public class Client extends Application {
 
         logStartupCheckpoint("Client.start complete", t0);
     }
+
+  @Override
+  public void stop() throws Exception {
+    persistWindowPreferencesOnExit();
+    super.stop();
+  }
 
     /**
      * Pre-initializes JavaFX rendering pipeline by creating a minimal off-screen stage
@@ -692,11 +904,13 @@ public class Client extends Application {
 
         javafx.scene.layout.RowConstraints topRow = new javafx.scene.layout.RowConstraints();
         topRow.setVgrow(Priority.ALWAYS);
-        topRow.setPercentHeight(TOP_ROW_HEIGHT_RATIO / (TOP_ROW_HEIGHT_RATIO + BOTTOM_ROW_HEIGHT_RATIO) * 100.0);
 
         javafx.scene.layout.RowConstraints bottomRow = new javafx.scene.layout.RowConstraints();
         bottomRow.setVgrow(Priority.ALWAYS);
-        bottomRow.setPercentHeight(BOTTOM_ROW_HEIGHT_RATIO / (TOP_ROW_HEIGHT_RATIO + BOTTOM_ROW_HEIGHT_RATIO) * 100.0);
+
+        topSectionFraction.set(getTopSectionFraction());
+        topRow.percentHeightProperty().bind(topSectionFraction.multiply(100.0));
+        bottomRow.percentHeightProperty().bind(Bindings.subtract(100.0, topSectionFraction.multiply(100.0)));
 
         mainGridPane.getRowConstraints().setAll(topRow, bottomRow);
 
@@ -705,7 +919,8 @@ public class Client extends Application {
         VBox createScenarioBox = getScenarioBuilder().getvBoxCreateScenario();
         VBox runBox = getScenarioBuilder().getvBoxRun();
 
-        // Keep panes hidden until all controls are assembled; reveal together after the frame is shown.
+        // Keep panes visually hidden until all controls are assembled; leave them managed so
+        // width/height bindings still compute against the real stage size before reveal.
         deferMainPaneDisplayUntilReady(componentLibraryBox);
         deferMainPaneDisplayUntilReady(arrowBox);
         deferMainPaneDisplayUntilReady(createScenarioBox);
@@ -724,34 +939,14 @@ public class Client extends Application {
         arrowBox.setMinWidth(Region.USE_PREF_SIZE);
         arrowBox.setPrefWidth(Region.USE_COMPUTED_SIZE);
         arrowBox.setMaxWidth(Region.USE_PREF_SIZE);
-        HBox.setHgrow(componentLibraryBox, Priority.ALWAYS);
-        HBox.setHgrow(createScenarioBox, Priority.ALWAYS);
-
-        final double ratioDenominator = TOP_LEFT_PANEL_RATIO + TOP_RIGHT_PANEL_RATIO;
-        componentLibraryBox.prefWidthProperty().bind(
-                javafx.beans.binding.Bindings.createDoubleBinding(
-                        () -> {
-                            double topWidth = topRowBox.getWidth();
-                            double arrowWidth = Math.max(arrowBox.getWidth(), arrowBox.prefWidth(-1));
-                            double availableWidth = Math.max(0.0, topWidth - arrowWidth - TOP_PANEL_GAP);
-                            return availableWidth * (TOP_LEFT_PANEL_RATIO / ratioDenominator);
-                        },
-                        topRowBox.widthProperty(),
-                        arrowBox.widthProperty(),
-                        arrowBox.prefWidthProperty()));
-        createScenarioBox.prefWidthProperty().bind(
-                javafx.beans.binding.Bindings.createDoubleBinding(
-                        () -> {
-                            double topWidth = topRowBox.getWidth();
-                            double arrowWidth = Math.max(arrowBox.getWidth(), arrowBox.prefWidth(-1));
-                            double availableWidth = Math.max(0.0, topWidth - arrowWidth - TOP_PANEL_GAP);
-                            return availableWidth * (TOP_RIGHT_PANEL_RATIO / ratioDenominator);
-                        },
-                        topRowBox.widthProperty(),
-                        arrowBox.widthProperty(),
-                        arrowBox.prefWidthProperty()));
+        HBox.setHgrow(componentLibraryBox, Priority.NEVER);
+        HBox.setHgrow(createScenarioBox, Priority.NEVER);
+        topRowComponentLibraryFraction.set(getTopRowComponentLibraryFraction());
+        bindTopRowPaneFractions(topRowBox, componentLibraryBox, arrowBox, createScenarioBox);
+        installTopRowSplitDragBehavior(mainGridPane, topRowBox, componentLibraryBox, arrowBox, createScenarioBox);
 
         final HBox bottomRowBox = new HBox(10, runBox);
+        bottomRowBox.setFillHeight(true);
         bottomRowBox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         HBox.setHgrow(runBox, Priority.ALWAYS);
         bottomRowBox.setStyle(styles.getStyle1());
@@ -766,12 +961,201 @@ public class Client extends Application {
         return mainGridPane;
     }
 
+    private void bindTopRowPaneFractions(HBox topRowBox, VBox componentLibraryBox, VBox arrowBox, VBox createScenarioBox) {
+        if (topRowBox == null || componentLibraryBox == null || arrowBox == null || createScenarioBox == null) {
+            return;
+        }
+
+        componentLibraryBox.prefWidthProperty().unbind();
+        createScenarioBox.prefWidthProperty().unbind();
+
+        javafx.beans.binding.DoubleBinding availableWidth = Bindings.max(
+                0.0,
+                topRowBox.widthProperty()
+                        .subtract(arrowBox.widthProperty())
+                        .subtract(topRowBox.spacingProperty().multiply(2.0)));
+
+        componentLibraryBox.prefWidthProperty().bind(availableWidth.multiply(topRowComponentLibraryFraction));
+        createScenarioBox.prefWidthProperty().bind(
+                availableWidth.multiply(Bindings.subtract(1.0, topRowComponentLibraryFraction)));
+    }
+
+    private void installTopRowSplitDragBehavior(GridPane mainGridPane, HBox topRowBox, VBox componentLibraryBox, VBox arrowBox, VBox createScenarioBox) {
+        if (mainGridPane == null || topRowBox == null || componentLibraryBox == null || arrowBox == null || createScenarioBox == null) {
+            return;
+        }
+
+        topRowBox.setOnMouseMoved(event -> {
+            if (isInTopRowSplitterZone(event.getX(), topRowBox, componentLibraryBox, arrowBox)) {
+                topRowBox.setCursor(Cursor.MOVE);
+            } else if (!topRowSplitDragActive) {
+                topRowBox.setCursor(Cursor.DEFAULT);
+            }
+        });
+
+        topRowBox.setOnMousePressed(event -> {
+            if (!isInTopRowSplitterZone(event.getX(), topRowBox, componentLibraryBox, arrowBox)) {
+                topRowSplitDragActive = false;
+                return;
+            }
+            if (event.getTarget() instanceof Button) {
+                topRowSplitDragActive = false;
+                return;
+            }
+            topRowSplitDragActive = true;
+            topRowBox.setCursor(Cursor.MOVE);
+            updateTopRowFractionFromMouseX(event.getX(), topRowBox, arrowBox);
+            javafx.geometry.Point2D pointInGrid = mainGridPane.sceneToLocal(event.getSceneX(), event.getSceneY());
+            updateTopSectionFractionFromMouseY(pointInGrid.getY(), mainGridPane);
+            event.consume();
+        });
+
+        topRowBox.setOnMouseDragged(event -> {
+            if (!topRowSplitDragActive) {
+                return;
+            }
+            updateTopRowFractionFromMouseX(event.getX(), topRowBox, arrowBox);
+            javafx.geometry.Point2D pointInGrid = mainGridPane.sceneToLocal(event.getSceneX(), event.getSceneY());
+            updateTopSectionFractionFromMouseY(pointInGrid.getY(), mainGridPane);
+            event.consume();
+        });
+
+        topRowBox.setOnMouseReleased(event -> {
+            topRowSplitDragActive = false;
+            topRowBox.setCursor(Cursor.DEFAULT);
+        });
+
+        topRowBox.setOnMouseExited(event -> {
+            if (!topRowSplitDragActive) {
+                topRowBox.setCursor(Cursor.DEFAULT);
+            }
+        });
+    }
+
+    private void updateTopSectionFractionFromMouseY(double mouseY, GridPane mainGridPane) {
+        if (mainGridPane == null || !Double.isFinite(mouseY)) {
+            return;
+        }
+        double availableHeight = mainGridPane.getHeight();
+        if (!(availableHeight > 0.0)) {
+            return;
+        }
+        double clampedTopHeight = Math.max(0.0, Math.min(availableHeight, mouseY));
+        double rawFraction = clampedTopHeight / availableHeight;
+        double normalized = normalizeTopSectionFraction(rawFraction);
+        topSectionFraction.set(normalized);
+        persistedTopSectionFraction = normalized;
+    }
+
+    private boolean isInTopRowSplitterZone(double mouseX, HBox topRowBox, VBox componentLibraryBox, VBox arrowBox) {
+        if (topRowBox == null || componentLibraryBox == null || arrowBox == null) {
+            return false;
+        }
+        if (!Double.isFinite(mouseX)) {
+            return false;
+        }
+        double spacing = Math.max(0.0, topRowBox.getSpacing());
+        double leftPaneWidth = Math.max(0.0, componentLibraryBox.getWidth());
+        double arrowWidth = Math.max(0.0, arrowBox.getWidth());
+        double zoneStart = leftPaneWidth;
+        double zoneEnd = leftPaneWidth + spacing + arrowWidth + spacing;
+        return mouseX >= zoneStart && mouseX <= zoneEnd;
+    }
+
+    private void updateTopRowFractionFromMouseX(double mouseX, HBox topRowBox, VBox arrowBox) {
+        if (topRowBox == null || arrowBox == null) {
+            return;
+        }
+        if (!Double.isFinite(mouseX)) {
+            return;
+        }
+        double spacing = Math.max(0.0, topRowBox.getSpacing());
+        double arrowWidth = Math.max(0.0, arrowBox.getWidth());
+        double availableWidth = topRowBox.getWidth() - arrowWidth - (2.0 * spacing);
+        if (!(availableWidth > 0.0)) {
+            return;
+        }
+
+        double desiredLeftWidth = mouseX - spacing - (arrowWidth / 2.0);
+        double clampedLeftWidth = Math.max(0.0, Math.min(availableWidth, desiredLeftWidth));
+        double rawFraction = clampedLeftWidth / availableWidth;
+        double normalized = normalizeTopRowComponentLibraryFraction(rawFraction);
+        topRowComponentLibraryFraction.set(normalized);
+        persistedTopRowComponentLibraryFraction = normalized;
+    }
+
+    private static double getTopRowComponentLibraryFraction() {
+        return normalizeTopRowComponentLibraryFraction(persistedTopRowComponentLibraryFraction);
+    }
+
+    private static double normalizeTopRowComponentLibraryFraction(double rawFraction) {
+        if (!Double.isFinite(rawFraction)) {
+            return DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
+        }
+        return Math.max(
+                MIN_TOP_ROW_COMPONENT_LIBRARY_FRACTION,
+                Math.min(MAX_TOP_ROW_COMPONENT_LIBRARY_FRACTION, rawFraction));
+    }
+
+    private static double resolveCurrentTopRowComponentLibraryFraction() {
+        Client clientInstance = instanceForStatus;
+        if (clientInstance != null) {
+            double liveFraction = clientInstance.topRowComponentLibraryFraction.get();
+            if (Double.isFinite(liveFraction)) {
+                return normalizeTopRowComponentLibraryFraction(liveFraction);
+            }
+        }
+        if (!Platform.isFxApplicationThread()) {
+            return getTopRowComponentLibraryFraction();
+        }
+        ScenarioBuilder builder = ScenarioBuilder.getInstance();
+        if (builder == null) {
+            return getTopRowComponentLibraryFraction();
+        }
+        VBox componentLibraryBox = builder.getvBoxComponentLibrary();
+        VBox createScenarioBox = builder.getvBoxCreateScenario();
+        if (componentLibraryBox == null || createScenarioBox == null) {
+            return getTopRowComponentLibraryFraction();
+        }
+        double leftWidth = componentLibraryBox.getWidth();
+        double rightWidth = createScenarioBox.getWidth();
+        double totalWidth = leftWidth + rightWidth;
+        if (!(leftWidth > 0.0) || !(rightWidth > 0.0) || !(totalWidth > 0.0)) {
+            return getTopRowComponentLibraryFraction();
+        }
+        return normalizeTopRowComponentLibraryFraction(leftWidth / totalWidth);
+    }
+
+    private static double getTopSectionFraction() {
+        return normalizeTopSectionFraction(persistedTopSectionFraction);
+    }
+
+    private static double normalizeTopSectionFraction(double rawFraction) {
+        if (!Double.isFinite(rawFraction)) {
+            return DEFAULT_TOP_SECTION_FRACTION;
+        }
+        return Math.max(MIN_TOP_SECTION_FRACTION, Math.min(MAX_TOP_SECTION_FRACTION, rawFraction));
+    }
+
+    private static double resolveCurrentTopSectionFraction() {
+        Client clientInstance = instanceForStatus;
+        if (clientInstance != null) {
+            double liveFraction = clientInstance.topSectionFraction.get();
+            if (Double.isFinite(liveFraction)) {
+                return normalizeTopSectionFraction(liveFraction);
+            }
+        }
+        return getTopSectionFraction();
+    }
+
     private static void deferMainPaneDisplayUntilReady(VBox pane) {
         if (pane == null) {
             return;
         }
-        pane.setVisible(false);
-        pane.setManaged(false);
+        pane.setVisible(true);
+        pane.setManaged(true);
+        pane.setOpacity(0.0);
+        pane.setMouseTransparent(true);
     }
 
     private static void revealMainPane(VBox pane) {
@@ -780,6 +1164,8 @@ public class Client extends Application {
         }
         pane.setManaged(true);
         pane.setVisible(true);
+        pane.setOpacity(1.0);
+        pane.setMouseTransparent(false);
     }
 
     private void revealMainPanesIfReady() {
@@ -844,11 +1230,9 @@ public class Client extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
-        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-        primaryStage.centerOnScreen();
+        applyConfiguredStageBounds(primaryStage);
+        installMonitorScaleRelayoutSupport(primaryStage, root);
+        registerSceneForRuntimeFontSize(scene);
 
         applyStartupStatus(sb.getText(), calculateStartupProgress(), startupBusyState);
         if (showImmediately) {
@@ -909,6 +1293,66 @@ public class Client extends Application {
     }
 
     /**
+     * Re-runs CSS and layout when the main window moves between monitors with different
+     * output scaling. JavaFX layout panes already handle resizing correctly; the missing
+     * piece is an explicit relayout pulse when the window's DPI context changes.
+     */
+    private void installMonitorScaleRelayoutSupport(Stage stage, Parent root) {
+        if (monitorScaleRelayoutListenersInstalled || stage == null || root == null) {
+            return;
+        }
+        monitorScaleRelayoutListenersInstalled = true;
+
+        javafx.beans.value.ChangeListener<Number> relayoutListener = (obs, oldValue, newValue) ->
+                requestMonitorScaleRelayout(stage, root);
+        javafx.beans.value.ChangeListener<Boolean> showingListener = (obs, oldValue, newValue) -> {
+            if (Boolean.TRUE.equals(newValue)) {
+                requestMonitorScaleRelayout(stage, root);
+            }
+        };
+
+        stage.xProperty().addListener(relayoutListener);
+        stage.yProperty().addListener(relayoutListener);
+        stage.widthProperty().addListener(relayoutListener);
+        stage.heightProperty().addListener(relayoutListener);
+        stage.outputScaleXProperty().addListener(relayoutListener);
+        stage.outputScaleYProperty().addListener(relayoutListener);
+        stage.showingProperty().addListener(showingListener);
+
+        if (stage.isShowing()) {
+            requestMonitorScaleRelayout(stage, root);
+        }
+    }
+
+    private void requestMonitorScaleRelayout(Stage stage, Parent root) {
+        if (stage == null || root == null || !monitorScaleRelayoutPending.compareAndSet(false, true)) {
+            return;
+        }
+        Platform.runLater(() -> {
+            try {
+                root.applyCss();
+                root.requestLayout();
+                root.layout();
+
+                if (stage.isShowing()) {
+                    final double currentWidth = stage.getWidth();
+                    final double currentHeight = stage.getHeight();
+                    if (Double.isFinite(currentWidth) && currentWidth > 0.0
+                            && Double.isFinite(currentHeight) && currentHeight > 0.0) {
+                        stage.setWidth(currentWidth + 1.0);
+                        stage.setHeight(currentHeight + 1.0);
+                        stage.setWidth(currentWidth);
+                        stage.setHeight(currentHeight);
+                    }
+                }
+            } catch (Exception ignored) {
+            } finally {
+                monitorScaleRelayoutPending.set(false);
+            }
+        });
+    }
+
+    /**
      * After swapping from the lightweight startup shell to the full UI scene,
      * force one extra CSS/layout pass and a tiny one-time stage-size nudge so
      * width/height bindings settle immediately without user resize.
@@ -941,24 +1385,41 @@ public class Client extends Application {
                         root.applyCss();
                         root.layout();
 
+                        // Reveal panes before the final settle pass so width-bound controls can
+                        // observe the restored stage dimensions without requiring user resize.
+                        revealMainPanesIfReady();
+                        root.applyCss();
+                        root.layout();
+
                         // Let JavaFX compute scene-driven preferred sizing once, then restore
                         // the target startup dimensions to keep the expected window footprint.
                         stage.sizeToScene();
                         stage.setWidth(targetW);
                         stage.setHeight(targetH);
 
-                        // Final one-pixel nudge to guarantee bound regions recompute now.
+                        // First nudge pass.
                         stage.setWidth(targetW + 1);
                         stage.setHeight(targetH + 1);
                         stage.setWidth(targetW);
                         stage.setHeight(targetH);
 
-                        // Only reveal the main panes after the final sizing pass so the user never
-                        // sees the intermediate resize/layout churn.
-                        revealMainPanesIfReady();
-                        root.applyCss();
-                        root.layout();
-                        markMainPanesRevealedThenHideOverlayNextPulse();
+                        // One extra pulse catches controls (for example TableView internals)
+                        // that finalize their preferred sizes only after becoming visible.
+                        Platform.runLater(() -> {
+                            try {
+                                root.requestLayout();
+                                root.applyCss();
+                                root.layout();
+                                stage.setWidth(targetW + 1);
+                                stage.setHeight(targetH + 1);
+                                stage.setWidth(targetW);
+                                stage.setHeight(targetH);
+                                root.applyCss();
+                                root.layout();
+                            } catch (Exception ignored) {
+                            }
+                            markMainPanesRevealedThenHideOverlayNextPulse();
+                        });
                     } catch (Exception ignored) {
                     }
                 });
@@ -1005,12 +1466,573 @@ public class Client extends Application {
         Scene scene = new Scene(shellRoot, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle(VERSION);
-        primaryStage.setMinHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setHeight(MIN_WINDOW_HEIGHT);
-        primaryStage.setMinWidth(MIN_WINDOW_WIDTH);
-        primaryStage.setWidth(MIN_WINDOW_WIDTH);
-        primaryStage.centerOnScreen();
+        applyConfiguredStageBounds(primaryStage);
+        registerSceneForRuntimeFontSize(scene);
     }
+
+  private static void loadPersistentWindowPreferences() {
+    windowPreferencesSaved.set(false);
+    windowPreferencesFile = resolveWindowPreferencesFile();
+    persistedWindowPreferences = new WindowPreferencesState();
+    persistedTopRowComponentLibraryFraction = DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION;
+    persistedTopSectionFraction = DEFAULT_TOP_SECTION_FRACTION;
+    persistedScenarioComponentCreatorPreferences = new WindowPreferencesState();
+    persistedConsolePreferences = new WindowPreferencesState();
+    if (windowPreferencesFile == null || !windowPreferencesFile.exists()) {
+      return;
+    }
+
+    Properties properties;
+    try {
+      properties = loadWindowPreferenceProperties(windowPreferencesFile);
+    } catch (Exception ex) {
+      System.out.println("Could not read ScenarioBuilder window preferences from "
+          + windowPreferencesFile.getAbsolutePath() + ": " + ex.getMessage());
+      return;
+    }
+
+    WindowPreferencesState loaded = loadStoredWindowState(properties, WINDOW_PREF_WIDTH_KEY,
+        WINDOW_PREF_HEIGHT_KEY, WINDOW_PREF_X_KEY, WINDOW_PREF_Y_KEY);
+    loaded.sourceScreenWidth = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY);
+    loaded.sourceScreenHeight = parseStoredDouble(properties, WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY);
+    loaded.fontSize = parseStoredInteger(properties, WINDOW_PREF_FONT_SIZE_KEY);
+    Double loadedTopRowComponentFraction = parseStoredDouble(properties,
+        WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY);
+    Double loadedTopSectionFraction = parseStoredDouble(properties, WINDOW_PREF_TOP_SECTION_FRACTION_KEY);
+    WindowPreferencesState loadedComponentCreator = loadStoredWindowState(properties,
+        COMPONENT_CREATOR_PREF_WIDTH_KEY, COMPONENT_CREATOR_PREF_HEIGHT_KEY,
+        COMPONENT_CREATOR_PREF_X_KEY, COMPONENT_CREATOR_PREF_Y_KEY);
+    WindowPreferencesState loadedConsole = loadStoredWindowState(properties,
+        CONSOLE_PREF_WIDTH_KEY, CONSOLE_PREF_HEIGHT_KEY,
+        CONSOLE_PREF_X_KEY, CONSOLE_PREF_Y_KEY);
+
+    if (loaded.width != null) {
+      double normalizedWidth = Math.max(MIN_WINDOW_WIDTH, loaded.width.doubleValue());
+      loaded.width = normalizedWidth;
+      GLIMPSEVariables.getInstance().setScenarioBuilderWidth((int) Math.round(normalizedWidth));
+    }
+    if (loaded.height != null) {
+      double normalizedHeight = Math.max(MIN_WINDOW_HEIGHT, loaded.height.doubleValue());
+      loaded.height = normalizedHeight;
+      GLIMPSEVariables.getInstance().setScenarioBuilderHeight((int) Math.round(normalizedHeight));
+    }
+    if (loaded.fontSize != null) {
+      GLIMPSEVariables.getInstance().setPreferredFontSize(
+          Integer.toString(clampRuntimeFontSize(loaded.fontSize.intValue())));
+    }
+    if (loadedComponentCreator.width != null) {
+      loadedComponentCreator.width = Math.max(MIN_COMPONENT_CREATOR_WINDOW_WIDTH,
+          loadedComponentCreator.width.doubleValue());
+    }
+    if (loadedComponentCreator.height != null) {
+      loadedComponentCreator.height = Math.max(MIN_COMPONENT_CREATOR_WINDOW_HEIGHT,
+          loadedComponentCreator.height.doubleValue());
+    }
+    if (loadedConsole.width != null) {
+      loadedConsole.width = Math.max(MIN_CONSOLE_WINDOW_WIDTH,
+          loadedConsole.width.doubleValue());
+    }
+    if (loadedConsole.height != null) {
+      loadedConsole.height = Math.max(MIN_CONSOLE_WINDOW_HEIGHT,
+          loadedConsole.height.doubleValue());
+    }
+
+    persistedWindowPreferences = loaded;
+    persistedTopRowComponentLibraryFraction = normalizeTopRowComponentLibraryFraction(
+        loadedTopRowComponentFraction == null
+            ? DEFAULT_TOP_ROW_COMPONENT_LIBRARY_FRACTION
+            : loadedTopRowComponentFraction.doubleValue());
+    persistedTopSectionFraction = normalizeTopSectionFraction(
+        loadedTopSectionFraction == null ? DEFAULT_TOP_SECTION_FRACTION : loadedTopSectionFraction.doubleValue());
+    persistedScenarioComponentCreatorPreferences = loadedComponentCreator;
+    persistedConsolePreferences = loadedConsole;
+  }
+
+  private static void persistWindowPreferencesOnExit() {
+    if (!windowPreferencesSaved.compareAndSet(false, true)) {
+      return;
+    }
+
+    try {
+      persistWindowPreferencesSnapshot(null);
+    } catch (Exception ex) {
+      System.out.println("Could not save ScenarioBuilder window preferences: " + ex.getMessage());
+    }
+  }
+
+  static boolean applyScenarioComponentCreatorStageBounds(Stage stage, double fallbackWidth,
+      double fallbackHeight) {
+    if (stage == null) {
+      return false;
+    }
+    WindowPreferencesState preferences = persistedScenarioComponentCreatorPreferences;
+    double width = fallbackWidth;
+    double height = fallbackHeight;
+    if (preferences != null && preferences.width != null
+        && Double.isFinite(preferences.width.doubleValue())) {
+      width = Math.max(MIN_COMPONENT_CREATOR_WINDOW_WIDTH, preferences.width.doubleValue());
+    }
+    if (preferences != null && preferences.height != null
+        && Double.isFinite(preferences.height.doubleValue())) {
+      height = Math.max(MIN_COMPONENT_CREATOR_WINDOW_HEIGHT, preferences.height.doubleValue());
+    }
+    stage.setWidth(width);
+    stage.setHeight(height);
+
+    if (hasUsableSavedWindowLocation(preferences, width, height)) {
+      stage.setX(preferences.x.doubleValue());
+      stage.setY(preferences.y.doubleValue());
+      return true;
+    }
+    return false;
+  }
+
+  static void persistScenarioComponentCreatorStageBounds(Stage stage) {
+    if (stage == null) {
+      return;
+    }
+    try {
+      persistWindowPreferencesSnapshot(stage);
+    } catch (Exception ex) {
+      System.out.println("Could not save Scenario Component Creator window preferences: "
+          + ex.getMessage());
+    }
+  }
+
+  static boolean applyConsoleStageBounds(Stage stage, double fallbackWidth, double fallbackHeight) {
+    if (stage == null) {
+      return false;
+    }
+    WindowPreferencesState preferences = persistedConsolePreferences;
+    double width = fallbackWidth;
+    double height = fallbackHeight;
+    if (preferences != null && preferences.width != null
+        && Double.isFinite(preferences.width.doubleValue())) {
+      width = Math.max(MIN_CONSOLE_WINDOW_WIDTH, preferences.width.doubleValue());
+    }
+    if (preferences != null && preferences.height != null
+        && Double.isFinite(preferences.height.doubleValue())) {
+      height = Math.max(MIN_CONSOLE_WINDOW_HEIGHT, preferences.height.doubleValue());
+    }
+    stage.setMinWidth(MIN_CONSOLE_WINDOW_WIDTH);
+    stage.setMinHeight(MIN_CONSOLE_WINDOW_HEIGHT);
+    stage.setWidth(width);
+    stage.setHeight(height);
+
+    if (hasUsableSavedWindowLocation(preferences, width, height)) {
+      stage.setX(preferences.x.doubleValue());
+      stage.setY(preferences.y.doubleValue());
+      return true;
+    }
+    return false;
+  }
+
+  static void persistConsoleStageBounds(Stage stage) {
+    if (stage == null) {
+      return;
+    }
+    try {
+      persistWindowPreferencesSnapshot(null, stage);
+    } catch (Exception ex) {
+      System.out.println("Could not save GLIMPSE Console window preferences: "
+          + ex.getMessage());
+    }
+  }
+
+  private static File resolveWindowPreferencesFile() {
+    File preferencesDir = resolveWindowPreferencesDirectory();
+    if (preferencesDir == null) {
+      return null;
+    }
+    return new File(preferencesDir, WINDOW_PREFERENCES_FILENAME);
+  }
+
+  private static File resolveWindowPreferencesDirectory() {
+    GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    File candidate = normalizeDirectoryPath(vars.getScenarioBuilderJarDirOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeParentDirectory(vars.getScenarioBuilderJarOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeDirectoryPath(vars.getScenarioBuilderDirOptional().orElse(null));
+    if (candidate != null) {
+      return candidate;
+    }
+    candidate = normalizeParentDirectory(vars.getOptionsFilename());
+    if (candidate != null) {
+      return candidate;
+    }
+    return normalizeDirectoryPath(System.getProperty("user.dir"));
+  }
+
+  private static File normalizeDirectoryPath(String rawPath) {
+    if (rawPath == null || rawPath.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      return new File(rawPath.trim()).getAbsoluteFile();
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static File normalizeParentDirectory(String rawPath) {
+    if (rawPath == null || rawPath.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      File file = new File(rawPath.trim()).getAbsoluteFile();
+      return file.getParentFile();
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static Double parseStoredDouble(Properties properties, String key) {
+    if (properties == null || key == null) {
+      return null;
+    }
+    String raw = properties.getProperty(key);
+    if (raw == null || raw.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      double value = Double.parseDouble(raw.trim());
+      return Double.isFinite(value) ? value : null;
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static Integer parseStoredInteger(Properties properties, String key) {
+    if (properties == null || key == null) {
+      return null;
+    }
+    String raw = properties.getProperty(key);
+    if (raw == null || raw.trim().isEmpty()) {
+      return null;
+    }
+    try {
+      return Integer.valueOf(raw.trim());
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  private static double resolveInitialWindowWidth() {
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (preferences != null && preferences.width != null && Double.isFinite(preferences.width.doubleValue())) {
+      return Math.max(MIN_WINDOW_WIDTH, preferences.width.doubleValue());
+    }
+    return MIN_WINDOW_WIDTH;
+  }
+
+  private static double resolveInitialWindowHeight() {
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (preferences != null && preferences.height != null && Double.isFinite(preferences.height.doubleValue())) {
+      return Math.max(MIN_WINDOW_HEIGHT, preferences.height.doubleValue());
+    }
+    return MIN_WINDOW_HEIGHT;
+  }
+
+  private static void applyConfiguredStageBounds(Stage stage) {
+    if (stage == null) {
+      return;
+    }
+    double width = resolveInitialWindowWidth();
+    double height = resolveInitialWindowHeight();
+    stage.setMinHeight(MIN_WINDOW_HEIGHT);
+    stage.setMinWidth(MIN_WINDOW_WIDTH);
+
+    WindowPreferencesState preferences = persistedWindowPreferences;
+    if (hasUsableSavedWindowLocation(preferences, width, height)) {
+      stage.setWidth(width);
+      stage.setHeight(height);
+      stage.setX(preferences.x.doubleValue());
+      stage.setY(preferences.y.doubleValue());
+    } else {
+      stage.setWidth(width);
+      stage.setHeight(height);
+      stage.centerOnScreen();
+    }
+  }
+
+  private static boolean hasUsableSavedWindowLocation(WindowPreferencesState preferences, double width, double height) {
+    if (preferences == null || !preferences.hasLocation()) {
+      return false;
+    }
+    double x = preferences.x.doubleValue();
+    double y = preferences.y.doubleValue();
+    if (!Double.isFinite(x) || !Double.isFinite(y) || !Double.isFinite(width) || !Double.isFinite(height)) {
+      return false;
+    }
+
+    double minVisibleWidth = Math.min(120.0, Math.max(40.0, width * 0.15));
+    double minVisibleHeight = Math.min(120.0, Math.max(40.0, height * 0.15));
+    for (Screen screen : Screen.getScreens()) {
+      Rectangle2D bounds = screen.getVisualBounds();
+      double overlapWidth = Math.min(bounds.getMaxX(), x + width) - Math.max(bounds.getMinX(), x);
+      double overlapHeight = Math.min(bounds.getMaxY(), y + height) - Math.max(bounds.getMinY(), y);
+      if (overlapWidth >= minVisibleWidth && overlapHeight >= minVisibleHeight) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private static Screen findScreenContainingPosition(double x, double y) {
+    for (Screen screen : Screen.getScreens()) {
+      Rectangle2D bounds = screen.getVisualBounds();
+      if (bounds.contains(x, y)) {
+        return screen;
+      }
+    }
+    return null;
+  }
+
+  private static synchronized void persistWindowPreferencesSnapshot(Stage componentCreatorStage)
+      throws Exception {
+    persistWindowPreferencesSnapshot(componentCreatorStage, null);
+  }
+
+  private static synchronized void persistWindowPreferencesSnapshot(Stage componentCreatorStage,
+      Stage consoleStage) throws Exception {
+    File preferencesFile = windowPreferencesFile;
+    if (preferencesFile == null) {
+      preferencesFile = resolveWindowPreferencesFile();
+      windowPreferencesFile = preferencesFile;
+    }
+    if (preferencesFile == null) {
+      return;
+    }
+
+    File parentDir = preferencesFile.getParentFile();
+    if (parentDir != null && !parentDir.exists()) {
+      parentDir.mkdirs();
+    }
+
+    Properties properties = loadWindowPreferenceProperties(preferencesFile);
+
+    WindowPreferencesState mainWindowState = snapshotPrimaryStagePreferences();
+    properties.setProperty(WINDOW_PREF_WIDTH_KEY, Double.toString(mainWindowState.width.doubleValue()));
+    properties.setProperty(WINDOW_PREF_HEIGHT_KEY, Double.toString(mainWindowState.height.doubleValue()));
+    if (mainWindowState.x != null && mainWindowState.y != null) {
+      properties.setProperty(WINDOW_PREF_X_KEY, Double.toString(mainWindowState.x.doubleValue()));
+      properties.setProperty(WINDOW_PREF_Y_KEY, Double.toString(mainWindowState.y.doubleValue()));
+    }
+    if (mainWindowState.sourceScreenWidth != null && mainWindowState.sourceScreenHeight != null
+        && Double.isFinite(mainWindowState.sourceScreenWidth.doubleValue())
+        && Double.isFinite(mainWindowState.sourceScreenHeight.doubleValue())) {
+      properties.setProperty(WINDOW_PREF_SOURCE_SCREEN_WIDTH_KEY,
+          Double.toString(mainWindowState.sourceScreenWidth.doubleValue()));
+      properties.setProperty(WINDOW_PREF_SOURCE_SCREEN_HEIGHT_KEY,
+          Double.toString(mainWindowState.sourceScreenHeight.doubleValue()));
+    }
+    properties.setProperty(WINDOW_PREF_FONT_SIZE_KEY, Integer.toString(getRuntimeFontSize()));
+
+    WindowPreferencesState componentCreatorState = snapshotScenarioComponentCreatorPreferences(
+        componentCreatorStage);
+    writeStoredWindowState(properties, COMPONENT_CREATOR_PREF_WIDTH_KEY,
+        COMPONENT_CREATOR_PREF_HEIGHT_KEY, COMPONENT_CREATOR_PREF_X_KEY,
+        COMPONENT_CREATOR_PREF_Y_KEY, componentCreatorState);
+
+    WindowPreferencesState consoleState = snapshotConsolePreferences(consoleStage);
+    writeStoredWindowState(properties, CONSOLE_PREF_WIDTH_KEY,
+        CONSOLE_PREF_HEIGHT_KEY, CONSOLE_PREF_X_KEY,
+        CONSOLE_PREF_Y_KEY, consoleState);
+
+    double topRowComponentFraction = normalizeTopRowComponentLibraryFraction(
+        resolveCurrentTopRowComponentLibraryFraction());
+    properties.setProperty(WINDOW_PREF_TOP_ROW_COMPONENT_FRACTION_KEY,
+        Double.toString(topRowComponentFraction));
+    double topSectionFraction = normalizeTopSectionFraction(resolveCurrentTopSectionFraction());
+    properties.setProperty(WINDOW_PREF_TOP_SECTION_FRACTION_KEY, Double.toString(topSectionFraction));
+
+    // Future-proof path persistence for any path-like keys added later.
+    normalizePathPreferenceValues(properties);
+
+    try (FileOutputStream output = new FileOutputStream(preferencesFile)) {
+      properties.store(output, "GLIMPSE ScenarioBuilder window preferences");
+    }
+
+    GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
+    vars.setScenarioBuilderWidth((int) Math.round(mainWindowState.width.doubleValue()));
+    vars.setScenarioBuilderHeight((int) Math.round(mainWindowState.height.doubleValue()));
+    persistedWindowPreferences = mainWindowState;
+    persistedWindowPreferences.fontSize = getRuntimeFontSize();
+    persistedTopRowComponentLibraryFraction = topRowComponentFraction;
+    persistedTopSectionFraction = topSectionFraction;
+    persistedScenarioComponentCreatorPreferences = componentCreatorState;
+    persistedConsolePreferences = consoleState;
+  }
+
+  private static WindowPreferencesState snapshotPrimaryStagePreferences() {
+    WindowPreferencesState state = new WindowPreferencesState();
+    Stage stage = primaryStage;
+    double width = resolveInitialWindowWidth();
+    double height = resolveInitialWindowHeight();
+    Double x = null;
+    Double y = null;
+    if (stage != null) {
+      if (Double.isFinite(stage.getWidth()) && stage.getWidth() > 0.0) {
+        width = Math.max(MIN_WINDOW_WIDTH, stage.getWidth());
+      }
+      if (Double.isFinite(stage.getHeight()) && stage.getHeight() > 0.0) {
+        height = Math.max(MIN_WINDOW_HEIGHT, stage.getHeight());
+      }
+      if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
+        x = stage.getX();
+        y = stage.getY();
+        Screen sourceScreen = findScreenContainingPosition(x, y);
+        if (sourceScreen != null) {
+          Rectangle2D sourceBounds = sourceScreen.getVisualBounds();
+          state.sourceScreenWidth = sourceBounds.getWidth();
+          state.sourceScreenHeight = sourceBounds.getHeight();
+        }
+      }
+    }
+    state.width = width;
+    state.height = height;
+    state.x = x;
+    state.y = y;
+    return state;
+  }
+
+  private static WindowPreferencesState snapshotScenarioComponentCreatorPreferences(Stage stage) {
+    WindowPreferencesState state = new WindowPreferencesState();
+    WindowPreferencesState cached = persistedScenarioComponentCreatorPreferences;
+    if (cached != null) {
+      state.width = cached.width;
+      state.height = cached.height;
+      state.x = cached.x;
+      state.y = cached.y;
+    }
+    if (stage != null) {
+      if (Double.isFinite(stage.getWidth()) && stage.getWidth() > 0.0) {
+        state.width = Math.max(MIN_COMPONENT_CREATOR_WINDOW_WIDTH, stage.getWidth());
+      }
+      if (Double.isFinite(stage.getHeight()) && stage.getHeight() > 0.0) {
+        state.height = Math.max(MIN_COMPONENT_CREATOR_WINDOW_HEIGHT, stage.getHeight());
+      }
+      if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
+        state.x = stage.getX();
+        state.y = stage.getY();
+      }
+    }
+    return state;
+  }
+
+  private static WindowPreferencesState snapshotConsolePreferences(Stage stage) {
+    WindowPreferencesState state = new WindowPreferencesState();
+    WindowPreferencesState cached = persistedConsolePreferences;
+    if (cached != null) {
+      state.width = cached.width;
+      state.height = cached.height;
+      state.x = cached.x;
+      state.y = cached.y;
+    }
+    if (stage != null) {
+      if (Double.isFinite(stage.getWidth()) && stage.getWidth() > 0.0) {
+        state.width = Math.max(MIN_CONSOLE_WINDOW_WIDTH, stage.getWidth());
+      }
+      if (Double.isFinite(stage.getHeight()) && stage.getHeight() > 0.0) {
+        state.height = Math.max(MIN_CONSOLE_WINDOW_HEIGHT, stage.getHeight());
+      }
+      if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
+        state.x = stage.getX();
+        state.y = stage.getY();
+      }
+    }
+    return state;
+  }
+
+  private static WindowPreferencesState loadStoredWindowState(Properties properties, String widthKey,
+      String heightKey, String xKey, String yKey) {
+    WindowPreferencesState state = new WindowPreferencesState();
+    state.width = parseStoredDouble(properties, widthKey);
+    state.height = parseStoredDouble(properties, heightKey);
+    state.x = parseStoredDouble(properties, xKey);
+    state.y = parseStoredDouble(properties, yKey);
+    return state;
+  }
+
+  private static boolean isPathLikePreferenceKey(String key) {
+    if (key == null) {
+      return false;
+    }
+    String trimmed = key.trim();
+    if (trimmed.isEmpty()) {
+      return false;
+    }
+    if (PATH_LIKE_PREFERENCE_KEYS.contains(trimmed)) {
+      return true;
+    }
+    String lower = trimmed.toLowerCase();
+    return lower.endsWith("path")
+        || lower.endsWith("file")
+        || lower.endsWith("folder")
+        || lower.endsWith("directory")
+        || lower.contains(".path")
+        || lower.contains(".file")
+        || lower.contains(".folder")
+        || lower.contains(".directory");
+  }
+
+  private static String normalizePathPreferenceValue(String value) {
+    if (value == null || value.indexOf('\\') < 0) {
+      return value;
+    }
+    return value.replace('\\', '/');
+  }
+
+  private static void normalizePathPreferenceValues(Properties properties) {
+    if (properties == null) {
+      return;
+    }
+    for (String key : properties.stringPropertyNames()) {
+      if (!isPathLikePreferenceKey(key)) {
+        continue;
+      }
+      String value = properties.getProperty(key);
+      String normalized = normalizePathPreferenceValue(value);
+      if (normalized != null && !normalized.equals(value)) {
+        properties.setProperty(key, normalized);
+      }
+    }
+  }
+
+  private static void writeStoredWindowState(Properties properties, String widthKey, String heightKey,
+      String xKey, String yKey, WindowPreferencesState state) {
+    if (properties == null || state == null) {
+      return;
+    }
+    if (state.width != null && Double.isFinite(state.width.doubleValue())) {
+      properties.setProperty(widthKey, Double.toString(state.width.doubleValue()));
+    }
+    if (state.height != null && Double.isFinite(state.height.doubleValue())) {
+      properties.setProperty(heightKey, Double.toString(state.height.doubleValue()));
+    }
+    if (state.x != null && Double.isFinite(state.x.doubleValue())) {
+      properties.setProperty(xKey, Double.toString(state.x.doubleValue()));
+    }
+    if (state.y != null && Double.isFinite(state.y.doubleValue())) {
+      properties.setProperty(yKey, Double.toString(state.y.doubleValue()));
+    }
+  }
+
+  private static Properties loadWindowPreferenceProperties(File preferencesFile) throws Exception {
+    Properties properties = new Properties();
+    if (preferencesFile != null && preferencesFile.exists()) {
+      try (FileInputStream input = new FileInputStream(preferencesFile)) {
+        properties.load(input);
+      }
+    }
+    normalizePathPreferenceValues(properties);
+    return properties;
+  }
 
     /**
      * Sets up the execution threads for GCAM and the model interface.
@@ -1257,6 +2279,9 @@ public class Client extends Application {
         startupOverlayProgressBar.setMaxWidth(240);
         startupOverlayProgressBar.setMinWidth(240);
         startupOverlayProgressBar.setPrefHeight(18);
+        startupOverlayProgressBar.setMaxHeight(STATUS_BAR_OPERATION_PROGRESS_HEIGHT);
+        startupOverlayProgressBar.setVisible(false);
+        startupOverlayProgressBar.setManaged(false);
         startupOverlayProgressBar.setFocusTraversable(false);
         startupOverlayProgressBar.setStyle("-fx-accent: #748ac4;");
 
@@ -1915,6 +2940,35 @@ public class Client extends Application {
         return (baseStyle + " " + fontStyle).trim();
     }
 
+    private static void applyFontSizeToSceneRoot(Scene scene, int requestedFontSize) {
+        if (scene == null || scene.getRoot() == null) {
+            return;
+        }
+        int fontSize = clampRuntimeFontSize(requestedFontSize);
+        try {
+            scene.getRoot().setStyle(mergeFontStyle(scene.getRoot().getStyle(), fontSize));
+            scene.getRoot().requestLayout();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private static void applyFontSizeToScene(Scene scene, int requestedFontSize) {
+        if (scene == null) {
+            return;
+        }
+        int fontSize = clampRuntimeFontSize(requestedFontSize);
+        applyFontSizeToSceneRoot(scene, fontSize);
+        Parent root = scene.getRoot();
+        if (root == null) {
+            return;
+        }
+        applyFontSizeRecursively(root, fontSize);
+        try {
+            root.requestLayout();
+        } catch (Exception ignored) {
+        }
+    }
+
     private static void applyFontSizeRecursively(Node node, int fontSize) {
         if (node == null) {
             return;
@@ -1922,6 +2976,12 @@ public class Client extends Application {
         try {
             node.setStyle(mergeFontStyle(node.getStyle(), fontSize));
         } catch (Exception ignored) {
+        }
+        if (node instanceof Button) {
+            try {
+                glimpseUtil.GLIMPSEUtils.getInstance().refreshManagedButtonSizing((Button) node);
+            } catch (Exception ignored) {
+            }
         }
         if (node instanceof Parent) {
             for (Node child : ((Parent) node).getChildrenUnmodifiable()) {
@@ -1939,23 +2999,56 @@ public class Client extends Application {
             GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
             vars.setPreferredFontSize(Integer.toString(fontSize));
 
+            LinkedHashSet<Scene> scenesToUpdate = new LinkedHashSet<>();
             Stage stage = primaryStage;
-            if (stage == null) {
-                return;
+            if (stage != null && stage.getScene() != null) {
+                scenesToUpdate.add(stage.getScene());
             }
-            Scene scene = stage.getScene();
-            if (scene == null || scene.getRoot() == null) {
+            synchronized (runtimeFontManagedScenes) {
+                scenesToUpdate.addAll(new ArrayList<>(runtimeFontManagedScenes.keySet()));
+            }
+            if (scenesToUpdate.isEmpty()) {
                 return;
             }
 
-            applyFontSizeRecursively(scene.getRoot(), fontSize);
-            scene.getRoot().requestLayout();
+            for (Scene scene : scenesToUpdate) {
+                applyFontSizeToScene(scene, fontSize);
+            }
         };
 
         if (Platform.isFxApplicationThread()) {
             applyTask.run();
         } else {
             Platform.runLater(applyTask);
+        }
+    }
+
+    /**
+     * Registers a scene to receive the currently configured runtime font size now and on future updates.
+     * Safe to call multiple times for the same scene.
+     *
+     * @param scene scene to manage
+     */
+    public static void registerSceneForRuntimeFontSize(Scene scene) {
+        if (scene == null) {
+            return;
+        }
+        Runnable registerTask = () -> {
+            boolean addListener;
+            synchronized (runtimeFontManagedScenes) {
+                addListener = !runtimeFontManagedScenes.containsKey(scene);
+                runtimeFontManagedScenes.put(scene, Boolean.TRUE);
+            }
+            if (addListener) {
+                scene.rootProperty().addListener((obs, oldRoot, newRoot) -> applyFontSizeToScene(scene, getRuntimeFontSize()));
+            }
+            applyFontSizeToScene(scene, getRuntimeFontSize());
+        };
+
+        if (Platform.isFxApplicationThread()) {
+            registerTask.run();
+        } else {
+            Platform.runLater(registerTask);
         }
     }
 

@@ -39,8 +39,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import com.sun.javafx.tk.Toolkit;
-
 /**
  * Error-report dialog helpers extracted from {@link GLIMPSEUtils}.
  */
@@ -50,6 +48,9 @@ public final class UtilsErrors {
 
 	private final Pattern intPattern = Pattern.compile("-?[0-9]+");
 	private final Pattern doublePattern = Pattern.compile("-?(([0-9]+)|([0-9]*\\.[0-9]+))");
+	private static final String[] LOG_LINE_LEVEL_PREFIXES = {
+			"TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
+	};
 
 	private GLIMPSEVariables vars;
 	private GLIMPSEStyles styles;
@@ -270,13 +271,7 @@ public final class UtilsErrors {
 			border.setBottom(buttonBox);
 
 			Scene scene = new Scene(border);
-			try {
-				String css = gui.CSSResourceManager.getModernCssUrl();
-				if (css != null) {
-					scene.getStylesheets().add(css);
-				}
-			} catch (Exception ignored) {
-			}
+			ScenarioBuilder.applyModernTheme(scene);
 			stage.setScene(scene);
 			stage.show();
 		};
@@ -520,7 +515,9 @@ public final class UtilsErrors {
 				if (font == null) {
 					return false;
 				}
-				double textWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth(text, font);
+				Text measure = new Text(text);
+				measure.setFont(font);
+				double textWidth = measure.getLayoutBounds().getWidth();
 				return textWidth > (available + 1.0);
 			}
 		});
@@ -618,9 +615,10 @@ public final class UtilsErrors {
 		File mainlogfile = new File(mainLogFile);
 		if (mainlogfile.exists()) {
 			String[] prefixes = { "ERROR", "SEVERE", "Period" };
-			ArrayList<String> errorLines = files.getStringArrayWithPrefix(mainlogfile.getPath(), prefixes);
-			for (String errorLine : errorLines) {
-				if (errorLine == null)
+			ArrayList<String> logLines = files.getStringArrayFromFile(mainlogfile.getPath(), "#");
+			for (String rawLine : logLines) {
+				String errorLine = stripKnownLogLinePrefixes(rawLine);
+				if (errorLine.isEmpty() || !startsWithAnyPrefix(errorLine, prefixes))
 					continue;
 				String normalized = errorLine.replace(":", ",");
 				String[] tokens = normalized.split(",");
@@ -774,9 +772,10 @@ public final class UtilsErrors {
 		int minor = 0;
 		int smallMarkets = 0;
 		for (String errorLine : errors) {
-			if (errorLine == null)
+			String normalizedLine = stripKnownLogLinePrefixes(errorLine);
+			if (normalizedLine.isEmpty())
 				continue;
-			String normalized = errorLine.replace(":", ",");
+			String normalized = normalizedLine.replace(":", ",");
 			String[] tokens = normalized.split(",");
 			try {
 				if (tokens.length > 12) {
@@ -804,6 +803,50 @@ public final class UtilsErrors {
 			return "";
 		return "total=" + total + ";major=" + major + ";moderate=" + moderate + ";minor=" + minor
 				+ ";small=" + smallMarkets;
+	}
+
+	private String stripKnownLogLinePrefixes(String line) {
+		if (line == null) {
+			return "";
+		}
+		String normalized = line.trim();
+		if (normalized.isEmpty()) {
+			return "";
+		}
+		boolean changed;
+		do {
+			changed = false;
+			for (String prefix : LOG_LINE_LEVEL_PREFIXES) {
+				if (prefix == null || prefix.isEmpty()) {
+					continue;
+				}
+				if (startsWithIgnoreCase(normalized, prefix + ":")) {
+					normalized = normalized.substring(prefix.length() + 1).trim();
+					changed = true;
+					break;
+				}
+			}
+		} while (changed && !normalized.isEmpty());
+		return normalized;
+	}
+
+	private boolean startsWithAnyPrefix(String line, String[] prefixes) {
+		if (line == null || prefixes == null) {
+			return false;
+		}
+		for (String prefix : prefixes) {
+			if (prefix != null && !prefix.isEmpty() && startsWithIgnoreCase(line, prefix)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean startsWithIgnoreCase(String value, String prefix) {
+		if (value == null || prefix == null || value.length() < prefix.length()) {
+			return false;
+		}
+		return value.regionMatches(true, 0, prefix, 0, prefix.length());
 	}
 }
 
