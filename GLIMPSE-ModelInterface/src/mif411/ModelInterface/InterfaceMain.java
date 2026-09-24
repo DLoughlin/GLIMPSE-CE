@@ -65,6 +65,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;
 import javax.swing.Icon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -2282,6 +2283,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 						savedProperties.setProperty("lastWidth", Integer.toString(mainFrame.getWidth()));
 						savedProperties.setProperty("lastHeight", Integer.toString(mainFrame.getHeight()));
 					}
+					syncRuntimePreferencePropertiesLocked();
 				}
 			}
 			updateShutdownProgressStatus(2, SHUTDOWN_TOTAL_STEPS, SHUTDOWN_MESSAGE_SAVING_SETTINGS);
@@ -2301,6 +2303,15 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				System.exit(0);
 			}
 		}
+	}
+
+	private void syncRuntimePreferencePropertiesLocked() {
+		if (savedProperties == null) {
+			return;
+		}
+		// Keep menu-driven runtime toggles aligned with persisted preferences on close.
+		savedProperties.setProperty("autoGenerateGraphics", Boolean.toString(autoGenerateGraphics));
+		savedProperties.setProperty("limitSigDigits", Boolean.toString(!DbViewer.disableSigDigits));
 	}
 
 	public JFrame getFrame() {
@@ -2390,6 +2401,68 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		JMenu viewMenu = new JMenu("View");
 		viewMenu.setMnemonic(KeyEvent.VK_V);
 		menuMan.addMenuItem(viewMenu, VIEW_MENU_POS);
+		addViewPreferenceMenuItems(menuMan.getSubMenuManager(VIEW_MENU_POS));
+	}
+
+	private void addViewPreferenceMenuItems(MenuManager viewMM) {
+		if (viewMM == null) {
+			return;
+		}
+
+		final JCheckBoxMenuItem limitSigDigitsItem = new JCheckBoxMenuItem("Limit significant digits");
+		limitSigDigitsItem.setSelected(getBooleanPreference("limitSigDigits", false));
+		updateToggleMenuLabel(limitSigDigitsItem, "Limit significant digits");
+		limitSigDigitsItem.addActionListener(e -> {
+			setLimitSignificantDigitsEnabled(limitSigDigitsItem.isSelected());
+			updateToggleMenuLabel(limitSigDigitsItem, "Limit significant digits");
+		});
+		viewMM.addMenuItem(limitSigDigitsItem, -20);
+
+		final JCheckBoxMenuItem autoGraphicsItem = new JCheckBoxMenuItem("Enable auto graphics");
+		autoGraphicsItem.setSelected(getBooleanPreference("autoGenerateGraphics", false));
+		updateToggleMenuLabel(autoGraphicsItem, "Enable auto graphics");
+		autoGraphicsItem.addActionListener(e -> {
+			setAutoGenerateGraphicsEnabled(autoGraphicsItem.isSelected());
+			updateToggleMenuLabel(autoGraphicsItem, "Enable auto graphics");
+		});
+		viewMM.addMenuItem(autoGraphicsItem, -10);
+
+		viewMM.addSeparator(0);
+	}
+
+	private boolean getBooleanPreference(String key, boolean fallback) {
+		String value = getProperties().getProperty(key);
+		if (value == null) {
+			return fallback;
+		}
+		if ("true".equalsIgnoreCase(value.trim())) {
+			return true;
+		}
+		if ("false".equalsIgnoreCase(value.trim())) {
+			return false;
+		}
+		return fallback;
+	}
+
+	private void setAutoGenerateGraphicsEnabled(boolean enabled) {
+		autoGenerateGraphics = enabled;
+		setProperty("autoGenerateGraphics", Boolean.toString(enabled));
+	}
+
+	private void setLimitSignificantDigitsEnabled(boolean enabled) {
+		boolean previousDisableSigDigits = DbViewer.disableSigDigits;
+		DbViewer.disableSigDigits = !enabled;
+		setProperty("limitSigDigits", Boolean.toString(enabled));
+		if (previousDisableSigDigits != DbViewer.disableSigDigits && dbView instanceof DbViewer) {
+			((DbViewer) dbView).refreshOpenResultsSignificantDigits();
+		}
+	}
+
+	private void updateToggleMenuLabel(JCheckBoxMenuItem menuItem, String baseLabel) {
+		if (menuItem == null || baseLabel == null) {
+			return;
+		}
+		menuItem.setText(baseLabel + (menuItem.isSelected() ? " [ON]" : " [OFF]"));
 	}
 
 	private void addToolsMenu(MenuManager menuMan) {
@@ -3150,4 +3223,4 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			}
 		}
 	}
-}
+}
