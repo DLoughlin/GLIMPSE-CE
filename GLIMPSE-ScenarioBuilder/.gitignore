@@ -3,3 +3,6 @@ bin/
 GLIMPSE*.jar
 
 /build_tmp/
+
+/build/
+/.gradle/

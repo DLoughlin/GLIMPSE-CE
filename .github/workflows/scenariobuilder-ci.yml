@@ -1,0 +1,87 @@
+name: ScenarioBuilder CI
+
+on:
+  push:
+    paths:
+      - 'GLIMPSE-ScenarioBuilder/**'
+      - '.github/workflows/scenariobuilder-ci.yml'
+  pull_request:
+    paths:
+      - 'GLIMPSE-ScenarioBuilder/**'
+      - '.github/workflows/scenariobuilder-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  quick-compile:
+    name: Quick Compile (${{ matrix.os }})
+    if: github.event_name == 'pull_request'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: GLIMPSE-ScenarioBuilder
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Show tool versions
+        run: |
+          java -version
+          gradle --version
+
+      - name: Compile ScenarioBuilder
+        run: gradle clean classes --no-daemon --stacktrace
+
+  full-build:
+    name: Full Build (${{ matrix.os }})
+    if: github.event_name != 'pull_request'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: GLIMPSE-ScenarioBuilder
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Show tool versions
+        run: |
+          java -version
+          gradle --version
+
+      - name: Build ScenarioBuilder
+        run: gradle clean build --no-daemon --stacktrace
