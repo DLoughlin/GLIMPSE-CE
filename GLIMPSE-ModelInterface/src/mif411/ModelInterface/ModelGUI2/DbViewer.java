@@ -2254,6 +2254,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return currentRegions;
 		}
+		String effectivePrimaryRegionName = getEffectivePrimaryRegionName(currentRegions);
 		
 		// Use primary region subregions if available, otherwise fall back to US state codes
 		List<String> subregionsToSort = primaryRegionSubregions.isEmpty() ? US_STATE_CODES : primaryRegionSubregions;
@@ -2291,7 +2292,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			String trimmedRegion = regionName.trim();
 			if (subregionLookup.contains(trimmedRegion)) {
 				subregions.add(regionName);
-			} else if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(trimmedRegion)) {
+			} else if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(trimmedRegion)) {
 				aggregates.add(regionName);
 			} else if (i <= lastSubregionIndex) {
 				aggregates.add(regionName);
@@ -2301,10 +2302,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		}
 
 		aggregates.sort((left, right) -> {
-			if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(left)) {
-				return primaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
+			if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(left)) {
+				return effectivePrimaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
 			}
-			if (primaryRegionName != null && primaryRegionName.equalsIgnoreCase(right)) {
+			if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(right)) {
 				return 1;
 			}
 			return left.compareToIgnoreCase(right);
@@ -2316,6 +2317,30 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		ordered.addAll(subregions);
 		ordered.addAll(trailingRegions);
 		return ordered;
+	}
+
+	private String getEffectivePrimaryRegionName(Vector currentRegions) {
+		if (containsRegionName(currentRegions, primaryRegionName)) {
+			return primaryRegionName;
+		}
+		// GCAM-USA commonly uses "USA" as the aggregate name even when the preset label is
+		// "United States".
+		if (containsRegionName(currentRegions, "USA")) {
+			return "USA";
+		}
+		return primaryRegionName;
+	}
+
+	private boolean containsRegionName(Vector currentRegions, String targetRegionName) {
+		if (currentRegions == null || targetRegionName == null || targetRegionName.trim().isEmpty()) {
+			return false;
+		}
+		for (Object regionObj : currentRegions) {
+			if (regionObj != null && targetRegionName.equalsIgnoreCase(regionObj.toString().trim())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
