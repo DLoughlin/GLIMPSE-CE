@@ -153,7 +153,7 @@ public class CsvFileWriter {
             }
             // Split subsector text if nested
             if (subsector1Text.contains("=>")) {
-                String[] str = subsector1Text.split("=>");
+                String[] str = subsector1Text.split("=>"); 
                 subsector1Text = str[0].trim();
                 subsector2Text = str[1].trim();
                 isNested = true;
