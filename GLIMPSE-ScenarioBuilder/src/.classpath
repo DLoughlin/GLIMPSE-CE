@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="../libs/controlsfx-11.2.1.jar"/>
-	<!-- Resolve JavaFX from the GLIMPSE_JAVAFX_21 user library; configure it per-OS (win/linux/mac). -->
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/GLIMPSE_JAVAFX_21">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
