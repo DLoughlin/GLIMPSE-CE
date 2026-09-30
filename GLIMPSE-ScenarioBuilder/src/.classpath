@@ -2,10 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="../libs/controlsfx-11.2.1.jar"/>
-	<classpathentry kind="lib" path="../libs/javafx-21/win/javafx-base-21.0.4-win.jar"/>
-	<classpathentry kind="lib" path="../libs/javafx-21/win/javafx-graphics-21.0.4-win.jar"/>
-	<classpathentry kind="lib" path="../libs/javafx-21/win/javafx-controls-21.0.4-win.jar"/>
-	<classpathentry kind="lib" path="../libs/javafx-21/win/javafx-fxml-21.0.4-win.jar"/>
+	<!-- Resolve JavaFX from the GLIMPSE_JAVAFX_21 user library; configure it per-OS (win/linux/mac). -->
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
