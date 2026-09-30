@@ -3,4 +3,5 @@
 **/*.class
 
 /model_interface.properties
+/bin/
 /build/
