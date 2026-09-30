@@ -2256,32 +2256,35 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		}
 		String effectivePrimaryRegionName = getEffectivePrimaryRegionName(currentRegions);
 		
-		// Use primary region subregions if available, otherwise fall back to US state codes
-		List<String> subregionsToSort = primaryRegionSubregions.isEmpty() ? US_STATE_CODES : primaryRegionSubregions;
+		// Use the configured subregions when available. Only fall back to US state codes for U.S. region sets.
+		List<String> subregionsToSort = primaryRegionSubregions;
+		if (subregionsToSort.isEmpty()) {
+			if (effectivePrimaryRegionName != null && "USA".equalsIgnoreCase(effectivePrimaryRegionName.trim())) {
+				subregionsToSort = US_STATE_CODES;
+			} else {
+				return currentRegions;
+			}
+		}
 		if (subregionsToSort.isEmpty()) {
 			return currentRegions;
 		}
 
+		String effectivePrimaryRegionTrimmed = effectivePrimaryRegionName == null ? null : effectivePrimaryRegionName.trim();
 		java.util.HashSet<String> subregionLookup = new java.util.HashSet<String>();
 		for (String subregion : subregionsToSort) {
 			if (subregion != null) {
-				subregionLookup.add(subregion.trim());
+				String trimmedSubregion = subregion.trim();
+				if (!trimmedSubregion.isEmpty()
+						&& (effectivePrimaryRegionTrimmed == null
+							|| !trimmedSubregion.equalsIgnoreCase(effectivePrimaryRegionTrimmed))) {
+					subregionLookup.add(trimmedSubregion);
+				}
 			}
 		}
 
+		ArrayList<String> primaryRegions = new ArrayList<String>();
 		ArrayList<String> subregions = new ArrayList<String>();
-		ArrayList<String> aggregates = new ArrayList<String>();
-		ArrayList<String> trailingRegions = new ArrayList<String>();
-		int lastSubregionIndex = -1;
-		for (int i = 0; i < currentRegions.size(); ++i) {
-			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && subregionLookup.contains(regionObj.toString().trim())) {
-				lastSubregionIndex = i;
-			}
-		}
-		if (lastSubregionIndex < 0) {
-			return currentRegions;
-		}
+		ArrayList<String> otherRegions = new ArrayList<String>();
 
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
@@ -2290,38 +2293,32 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			}
 			String regionName = regionObj.toString();
 			String trimmedRegion = regionName.trim();
-			if (subregionLookup.contains(trimmedRegion)) {
-				subregions.add(regionName);
+			if (trimmedRegion.isEmpty()) {
+				continue;
 			} else if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(trimmedRegion)) {
-				aggregates.add(regionName);
-			} else if (i <= lastSubregionIndex) {
-				aggregates.add(regionName);
+				primaryRegions.add(regionName);
+			} else if (subregionLookup.contains(trimmedRegion)) {
+				subregions.add(regionName);
 			} else {
-				trailingRegions.add(regionName);
+				otherRegions.add(regionName);
 			}
 		}
 
-		aggregates.sort((left, right) -> {
-			if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(left)) {
-				return effectivePrimaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
-			}
-			if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(right)) {
-				return 1;
-			}
-			return left.compareToIgnoreCase(right);
-		});
 		subregions.sort(String.CASE_INSENSITIVE_ORDER);
 
 		Vector ordered = new Vector();
-		ordered.addAll(aggregates);
+		ordered.addAll(primaryRegions);
 		ordered.addAll(subregions);
-		ordered.addAll(trailingRegions);
+		ordered.addAll(otherRegions);
 		return ordered;
 	}
 
 	private String getEffectivePrimaryRegionName(Vector currentRegions) {
 		if (containsRegionName(currentRegions, primaryRegionName)) {
 			return primaryRegionName;
+		}
+		if (containsRegionName(currentRegions, "China")) {
+			return "China";
 		}
 		// GCAM-USA commonly uses "USA" as the aggregate name even when the preset label is
 		// "United States".
