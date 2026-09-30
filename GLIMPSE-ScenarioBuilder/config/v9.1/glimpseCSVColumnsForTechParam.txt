@@ -32,4 +32,3 @@ trn/Fixed Output;GLIMPSETranTechFixOut:region,sector,subsector1,technology,year,
 trn/InputEmissCoef;GLIMPSETranTechInputEmissCoef:region,sector,subsector1,technology,year,species,data
 trn/OutputEmissCoef;GLIMPSTranTechOutputEmissCoef:region,sector,subsector1,technology,year,species,data
 
-

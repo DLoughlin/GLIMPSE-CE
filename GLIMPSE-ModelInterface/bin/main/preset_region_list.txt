@@ -1,9 +1,9 @@
-United States:AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY,USA
+United States:USA,AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY
 North America:USA,Canada,Mexico,Central America and Caribbean,AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY
 South America:Argentina,Brazil,Colombia,South America_Northern,South America_Southern 
 Africa:Africa_Northern,Africa_Southern,Africa_Eastern,Africa_Western,South Africa
 EU:EU-15,EU-12
-Europe:EU-15,EU-12,Europe_Eastern,European Free Trade Association,Europe_Non_EGU,Ukraine
+Europe:EU-15,EU-12,Europe_Eastern,European Free Trade Association,Europe_Non_EGU
 Asia:Japan,Central Asia,Russia,China,Middle East,Indonesia,Pakistan,South Asia,Southeast Asia,Taiwan,South Korea,India
 East Asia:Japan,China,Taiwan,South Korea
 Southeast Asia:Indonesia,Southeast Asia
@@ -37,4 +37,4 @@ US-EPA-R8:CO,MT,ND,SD,UT,WY
 US-EPA-R9:AX,CA,HI,NV
 US-EPA-R10:AK,ID,OR,WA
 HDV-MDV-MOU:CA,CO,CT,DC,HI,MA,MD,ME,NC,NJ,NY,OR,PA,RI,VT,WA
-US-RGGI:CT,DE,ME,MD,MA,NH,NJ,NY,PA,RI,VT
+
