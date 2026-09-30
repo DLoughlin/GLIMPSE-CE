@@ -14,5 +14,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/GLIMPSE-ModelInterface"/>
+	<classpathentry kind="lib" path="libs/javafx-21/win/javafx-base-21.0.4-win.jar"/>
+	<classpathentry kind="lib" path="libs/javafx-21/win/javafx-controls-21.0.4-win.jar"/>
+	<classpathentry kind="lib" path="libs/javafx-21/win/javafx-fxml-21.0.4-win.jar"/>
+	<classpathentry kind="lib" path="libs/javafx-21/win/javafx-graphics-21.0.4-win.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

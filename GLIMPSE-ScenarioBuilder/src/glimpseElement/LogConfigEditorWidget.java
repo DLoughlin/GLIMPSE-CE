@@ -128,7 +128,7 @@ public class LogConfigEditorWidget {
     private static final String PRESET_QUIET = "Quiet";
     private static final String PRESET_DEFAULT = "Default";
     private static final String[] DEBUG_PRESET_TARGETS = {
-        "solver_log", "single_market_log", "worst_market_log"
+        "main_log", "solver_log", "single_market_log", "worst_market_log"
     };
     private static final String[] QUIET_PRESET_TARGETS = {
         "single_market_log", "worst_market_log", "dependency_finder_log",

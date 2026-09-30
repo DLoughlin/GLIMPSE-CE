@@ -3,3 +3,4 @@
 **/*.class
 
 /model_interface.properties
+/build/
