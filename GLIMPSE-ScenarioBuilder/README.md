@@ -42,5 +42,5 @@ The script prefers `JAVA_HOME`, then `/usr/libexec/java_home -v 21`, and finally
 
 ## Eclipse setup
 
-The project `.classpath` files now rely on the `GLIMPSE_JAVAFX_21` user library rather than hard-coded Windows jars.
-Configure that user library with the JavaFX jars for your operating system.
+The checked-in `.classpath` files reference the JavaFX jars under `libs/javafx-21/win/` so Eclipse can resolve `javafx.*` imports without a manually configured user library.
+If you are working on Linux or macOS and want your local Eclipse classpath to match that OS instead, update the jar paths in `.classpath` and `src/.classpath` to the corresponding `linux`, `mac`, or `mac-aarch64` folder.
