@@ -33,7 +33,7 @@ public class WrappingPanel extends JPanel implements Scrollable {
 
     @Override
     public boolean getScrollableTracksViewportWidth() {
-        return true;
+        return false;
     }
 
     @Override

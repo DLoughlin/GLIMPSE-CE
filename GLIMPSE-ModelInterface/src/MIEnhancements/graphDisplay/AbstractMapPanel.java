@@ -13,6 +13,8 @@ import java.awt.RenderingHints;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -23,7 +25,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -42,6 +48,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.AbstractAction;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -95,6 +102,7 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory2;
 import org.geotools.swing.JMapPane;
+import org.geotools.swing.tool.CursorTool;
 import org.geotools.swing.tool.PanTool;
 import org.geotools.swing.tool.ZoomInTool;
 import org.geotools.swing.tool.ZoomOutTool;
@@ -122,6 +130,8 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     /** The single FeatureLayer kept alive across redraws so only its Style is swapped. */
     protected FeatureLayer boundaryLayer;
     protected JToolBar toolBar;
+    private JPanel toolBarHostPanel;
+    private JToggleButton toolBarVisibilityButton;
     protected JPanel scenarioMenuPanel;
     protected JPanel yearMenuPanel;
     protected JPanel colorSchemePanel;
@@ -173,6 +183,10 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     private SwingWorker<Style, Void> redrawWorker;
     private javax.swing.Timer redrawDebounceTimer;
     private JLabel mapLoadingLabel;
+    private boolean altKeyDown;
+    private boolean mouseOverMapPane;
+    private CursorTool preAltCursorTool;
+    private KeyEventDispatcher altZoomKeyDispatcher;
 
     private static final Logger LOGGER = Logger.getLogger(AbstractMapPanel.class.getName());
     /** Milliseconds to wait after the last redraw request before actually rendering. */
@@ -216,7 +230,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(createToolBar(), BorderLayout.WEST);
+        frame.getContentPane().add(createToolBarHost(), BorderLayout.WEST);
         normalizeScale = true;
         minMaxFromTable = getInitialMinMax(normalizeScale);
         reverseColors = false;
@@ -287,6 +301,14 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         initialMapLoadWorker.execute();
     }
 
+    private JComponent createToolBarHost() {
+        toolBarHostPanel = new JPanel(new BorderLayout());
+        toolBarHostPanel.setOpaque(false);
+        toolBarHostPanel.add(createToolbarVisibilityButton(), BorderLayout.NORTH);
+        toolBarHostPanel.add(createToolBar(), BorderLayout.CENTER);
+        return toolBarHostPanel;
+    }
+
     protected JComponent createToolBar() {
         toolBar = new JToolBar(JToolBar.VERTICAL);
         toolBar.setBackground(Color.LIGHT_GRAY);
@@ -305,7 +327,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         scenarioMenuPanel = createControlSectionPanel();
         scenarioListLabel = new JLabel("Scenario:", SwingConstants.LEFT);
         scenarioListLabel.setFont(MAP_LABEL_FONT);
-        scenarioListLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        fitToPreferredWidth(scenarioListLabel);
         List<String> scenarioListFromTable = MapOptionsUtil.getScenarioListFromTableData(jtable);
         DefaultComboBoxModel<String> dmlScenario = new DefaultComboBoxModel<>();
         for (String scenario : scenarioListFromTable) {
@@ -318,7 +340,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         }
         scenarioListMenu.setVisible(true);
         scenarioListMenu.setFont(MAP_FIELD_FONT);
-        scenarioListMenu.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+        fitToPreferredWidth(scenarioListMenu);
         scenarioListMenu.addActionListener(new UpdateMap());
         scenarioMenuPanel.add(scenarioListLabel);
         scenarioMenuPanel.add(Box.createVerticalStrut(4));
@@ -329,7 +351,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         yearMenuPanel = createControlSectionPanel();
         listLabel = new JLabel("Year:", SwingConstants.LEFT);
         listLabel.setFont(MAP_LABEL_FONT);
-        listLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        fitToPreferredWidth(listLabel);
         ArrayList<String> yearListFromTable = MapOptionsUtil.getYearListFromTableData(jtable);
         DefaultComboBoxModel<String> dml = new DefaultComboBoxModel<>();
         for (String year : yearListFromTable) {
@@ -345,7 +367,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         }
         yearListMenu.setVisible(true);
         yearListMenu.setFont(MAP_FIELD_FONT);
-        yearListMenu.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+        fitToPreferredWidth(yearListMenu);
         yearListMenu.addActionListener(new UpdateMap());
         nextYearButton = new JButton(">");
         styleActionButton(nextYearButton);
@@ -382,6 +404,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
 
         JLabel selectColorLabel = new JLabel("Palette type:", SwingConstants.LEFT);
         selectColorLabel.setFont(MAP_LABEL_FONT);
+        fitToPreferredWidth(selectColorLabel);
         colorChoicePanel = createControlSectionPanel();
         colorChoicePanel.setBorder(new EmptyBorder(4, 0, 0, 0));
         colorChoicePanel.setLayout(new BoxLayout(colorChoicePanel, BoxLayout.Y_AXIS));
@@ -389,7 +412,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         colorSchemePanel = createControlSectionPanel();
         comboBoxPalette = new JComboBox<>(paletteType);
         comboBoxPalette.setFont(MAP_FIELD_FONT);
-        comboBoxPalette.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+        fitToPreferredWidth(comboBoxPalette);
         comboBoxPalette.setSelectedIndex(1);
         colorSchemePanel.add(selectColorLabel);
         colorSchemePanel.add(Box.createVerticalStrut(4));
@@ -405,13 +428,13 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
 
         JLabel changeNumberLabel = new JLabel("Number of color classes:", SwingConstants.LEFT);
         changeNumberLabel.setFont(MAP_LABEL_FONT);
+        fitToPreferredWidth(changeNumberLabel);
         changeNumberPanel = createControlSectionPanel();
         changeNumberPanel.add(changeNumberLabel);
         changeNumberPanel.add(Box.createVerticalStrut(4));
         comboBoxNumClasses = new JComboBox<>(numClasses);
         comboBoxNumClasses.setFont(MAP_FIELD_FONT);
-        comboBoxNumClasses.setMaximumSize(new Dimension(90, 28));
-        comboBoxNumClasses.setAlignmentX(Component.LEFT_ALIGNMENT);
+        fitToPreferredWidth(comboBoxNumClasses);
         comboBoxNumClasses.setSelectedIndex(chooseNumCombos() - 1);
         comboBoxNumClasses.addActionListener(e -> redrawMap());
         changeNumberPanel.add(comboBoxNumClasses);
@@ -421,7 +444,6 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         reverseColorPanel = createControlSectionPanel();
         JButton reverseBtn = new JButton("Reverse Colors");
         styleActionButton(reverseBtn);
-        reverseBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         reverseBtn.addActionListener(e -> {
             reverseColors = !reverseColors;
             redrawMap();
@@ -433,7 +455,6 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         colorConfigPanel = createControlSectionPanel();
         JButton configBtn = new JButton("Modify Color Scale");
         styleActionButton(configBtn);
-        configBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         configBtn.addActionListener(e -> colorScaleOptions());
         colorConfigPanel.add(configBtn);
         controlStack.add(colorConfigPanel);
@@ -442,9 +463,10 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         scaleStatusPanel = createControlSectionPanel();
         scaleStatusLabel = new JLabel();
         scaleStatusLabel.setFont(MAP_FIELD_FONT);
-        scaleStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        fitToPreferredWidth(scaleStatusLabel);
         JLabel scaleModeLabel = new JLabel("Scale mode:", SwingConstants.LEFT);
         scaleModeLabel.setFont(MAP_LABEL_FONT);
+        fitToPreferredWidth(scaleModeLabel);
         scaleStatusPanel.add(scaleModeLabel);
         scaleStatusPanel.add(Box.createVerticalStrut(4));
         scaleStatusPanel.add(scaleStatusLabel);
@@ -454,6 +476,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         navigationPanel = createControlSectionPanel();
         JLabel mapToolsLabel = new JLabel("Map tools:", SwingConstants.LEFT);
         mapToolsLabel.setFont(MAP_LABEL_FONT);
+        fitToPreferredWidth(mapToolsLabel);
         navigationPanel.add(mapToolsLabel);
         navigationPanel.add(Box.createVerticalStrut(4));
         navigationPanel.add(createNavigationButtons());
@@ -463,7 +486,6 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         refreshMapPanel = createControlSectionPanel();
         JButton refreshBtn = new JButton("Refresh Map");
         styleActionButton(refreshBtn);
-        refreshBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         refreshBtn.addActionListener(e -> redrawMap());
         refreshMapPanel.add(refreshBtn);
         controlStack.add(refreshMapPanel);
@@ -477,12 +499,10 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
 
         JButton copyBtn = new JButton("Copy");
         styleActionButton(copyBtn);
-        copyBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         copyBtn.addActionListener(e -> copyMapImageToClipboard());
 
         JButton saveBtn = new JButton("Export (PNG)");
         styleActionButton(saveBtn);
-        saveBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         saveBtn.addActionListener(e -> saveMap());
 
         exportButtons.add(copyBtn);
@@ -501,6 +521,37 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         return toolBar;
     }
 
+    private JToggleButton createToolbarVisibilityButton() {
+        toolBarVisibilityButton = new JToggleButton();
+        toolBarVisibilityButton.setFont(MAP_BUTTON_FONT);
+        toolBarVisibilityButton.setFocusPainted(false);
+        toolBarVisibilityButton.setMargin(new Insets(0, 1, 0, 1));
+        fitToPreferredWidth(toolBarVisibilityButton);
+        toolBarVisibilityButton.setToolTipText("Hide or show the map options panel");
+        toolBarVisibilityButton.addActionListener(e -> setToolBarVisible(toolBarVisibilityButton.isSelected()));
+        toolBarVisibilityButton.setSelected(true);
+        toolBarVisibilityButton.setText("<<");
+        return toolBarVisibilityButton;
+    }
+
+    private void setToolBarVisible(boolean visible) {
+        if (toolBar != null) {
+            toolBar.setVisible(visible);
+        }
+        if (toolBarVisibilityButton != null) {
+            toolBarVisibilityButton.setText(visible ? "<<" : ">>");
+            toolBarVisibilityButton.setSelected(visible);
+        }
+        if (toolBarHostPanel != null) {
+            toolBarHostPanel.revalidate();
+            toolBarHostPanel.repaint();
+        }
+        if (frame != null) {
+            frame.revalidate();
+            frame.repaint();
+        }
+    }
+
     protected JComponent createMapContent() {
         if (stateMap != null) {
             stateMap.dispose();
@@ -514,14 +565,15 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
 
     private JComponent createMapContentFromStateMap() {
         addMapPanel = new JPanel();
-        addMapPanel.setLayout(new BoxLayout(addMapPanel, BoxLayout.X_AXIS));
+        addMapPanel.setLayout(new BorderLayout());
         addMapPanel.setBorder(new EmptyBorder(6, 6, 6, 6));
         addMapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         jmap = new JMapPane(stateMap);
         jmap.setBorder(new EmptyBorder(10, 10, 10, 10));
         installMapContextMenu(jmap);
         configureMapPane(jmap);
-        addMapPanel.add(jmap);
+        installAltZoomControls(jmap);
+        addMapPanel.add(jmap, BorderLayout.CENTER);
         return addMapPanel;
     }
 
@@ -1194,6 +1246,11 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     }
 
     protected void configureMapPane(JMapPane mapPane) {
+        if (mapPane != null && mapPane.getMapContent() != null && mapPane.getMapContent().getViewport() != null) {
+            // Preserve the current world bounds during component resizes so the view stays centered without re-scaling.
+            mapPane.getMapContent().getViewport().setFixedBoundsOnResize(true);
+            mapPane.getMapContent().getViewport().setMatchingAspectRatio(true);
+        }
         mapMode.configureMapPane(mapPane);
         applyNavigationToolSelection();
     }
@@ -1455,8 +1512,19 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
             return;
         }
         button.setFont(MAP_BUTTON_FONT);
-        button.setAlignmentX(Component.LEFT_ALIGNMENT);
+        fitToPreferredWidth(button);
         button.setFocusPainted(false);
+    }
+
+    private static void fitToPreferredWidth(javax.swing.JComponent component) {
+        if (component == null) {
+            return;
+        }
+        Dimension preferredSize = component.getPreferredSize();
+        component.setAlignmentX(Component.LEFT_ALIGNMENT);
+        if (preferredSize != null) {
+            component.setMaximumSize(preferredSize);
+        }
     }
 
     private JComponent createNavigationButtons() {
@@ -1493,6 +1561,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     private JToggleButton createNavigationToggle(String label, boolean selected, Runnable onSelect) {
         JToggleButton button = new JToggleButton(label);
         button.setFont(MAP_BUTTON_FONT);
+        fitToPreferredWidth(button);
         button.setFocusPainted(false);
         button.setSelected(selected);
         button.addActionListener(e -> {
@@ -1515,6 +1584,132 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
                 return;
             }
         }
+    }
+
+    private void installAltZoomControls(final JMapPane mapPane) {
+        if (mapPane == null) {
+            return;
+        }
+        mouseOverMapPane = false;
+        mapPane.setFocusable(true);
+        mapPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                mouseOverMapPane = true;
+                updateAltZoomMode();
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                mouseOverMapPane = false;
+                updateAltZoomMode();
+            }
+        });
+        installAltZoomKeyDispatcher();
+    }
+
+    private void installAltZoomKeyDispatcher() {
+        if (altZoomKeyDispatcher != null) {
+            return;
+        }
+        altZoomKeyDispatcher = new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (frame == null || !frame.isDisplayable() || !frame.isActive()) {
+                    return false;
+                }
+                if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_ALT) {
+                    altKeyDown = true;
+                    updateAltZoomMode();
+                    return false;
+                }
+                if (e.getID() == KeyEvent.KEY_RELEASED && e.getKeyCode() == KeyEvent.VK_ALT) {
+                    altKeyDown = false;
+                    updateAltZoomMode();
+                    return false;
+                }
+                if (e.getID() == KeyEvent.KEY_PRESSED && e.isAltDown() && isAltZoomEngaged()) {
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        zoomMapByFactor(0.85);
+                        return true;
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        zoomMapByFactor(1.15);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(altZoomKeyDispatcher);
+        if (frame != null) {
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    uninstallAltZoomKeyDispatcher();
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    uninstallAltZoomKeyDispatcher();
+                }
+            });
+        }
+    }
+
+    private void uninstallAltZoomKeyDispatcher() {
+        if (altZoomKeyDispatcher == null) {
+            return;
+        }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(altZoomKeyDispatcher);
+        altZoomKeyDispatcher = null;
+    }
+
+    private boolean isAltZoomEngaged() {
+        return altKeyDown && mouseOverMapPane && jmap != null && jmap.isShowing();
+    }
+
+    private void updateAltZoomMode() {
+        if (jmap == null) {
+            return;
+        }
+        if (isAltZoomEngaged()) {
+            if (preAltCursorTool == null) {
+                preAltCursorTool = jmap.getCursorTool();
+            }
+            jmap.setCursorTool(new ZoomInTool());
+        } else {
+            if (preAltCursorTool != null) {
+                jmap.setCursorTool(preAltCursorTool);
+                preAltCursorTool = null;
+            } else {
+                applyNavigationToolSelection();
+            }
+        }
+    }
+
+    private void zoomMapByFactor(double scaleFactor) {
+        if (jmap == null || scaleFactor <= 0) {
+            return;
+        }
+        ReferencedEnvelope currentArea = jmap.getDisplayArea();
+        if (currentArea == null || currentArea.isEmpty()) {
+            return;
+        }
+        double centerX = currentArea.getMinimum(0) + (currentArea.getWidth() / 2.0);
+        double centerY = currentArea.getMinimum(1) + (currentArea.getHeight() / 2.0);
+        double halfWidth = (currentArea.getWidth() * scaleFactor) / 2.0;
+        double halfHeight = (currentArea.getHeight() * scaleFactor) / 2.0;
+        if (halfWidth <= 0 || halfHeight <= 0) {
+            return;
+        }
+        ReferencedEnvelope nextArea = new ReferencedEnvelope(
+                centerX - halfWidth,
+                centerX + halfWidth,
+                centerY - halfHeight,
+                centerY + halfHeight,
+                currentArea.getCoordinateReferenceSystem());
+        jmap.setDisplayArea(nextArea);
     }
 
     private void resetMapView() {

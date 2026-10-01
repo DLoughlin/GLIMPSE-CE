@@ -124,7 +124,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		}
 		frame.validate();
 		frame.pack();
-		Dimension preferredD = new Dimension(1200,800);
+		Dimension preferredD = new Dimension(1200,960);
 		frame.setSize(preferredD);
 		frame.setMinimumSize(new Dimension(500,300));
 		frame.setResizable(true);
@@ -141,7 +141,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		toolBar = new JToolBar();
 		toolBar.setBackground(Color.LIGHT_GRAY);
 		toolBar.setBorder(new EmptyBorder(5,5,5,5));
-		toolBar.setLayout(new GridLayout(10,1));
+		toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.Y_AXIS));
 		toolBar.setFloatable(false);
 		//add end-use energy consumption dropdown menu inside the JToolBar 
 		endUseEnergyPanel = new JPanel();
@@ -159,7 +159,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 	    endUseEnergyMenu.setModel(dmlForEndUse);
 	    endUseEnergyMenu.setVisible(true);
 	    endUseEnergyMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
-		endUseEnergyMenu.setMaximumSize(new Dimension(300,25));
+		fitToPreferredWidth(endUseEnergyMenu);
 		endUseEnergyMenu.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 		endUseEnergyMenu.addActionListener(new UpdateSelectedQueries());
 		//yearListMenu.addActionListener();
@@ -185,7 +185,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		scenarioListMenu.setVisible(true);
 		scenarioListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
 		scenarioListMenu.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-		scenarioListMenu.setMaximumSize(new Dimension(300,25));
+		fitToPreferredWidth(scenarioListMenu);
 		//scenarioListMenu.addActionListener();
 		scenarioMenuPanel.add(scenarioListLabel);
 		scenarioMenuPanel.add(scenarioListMenu);
@@ -208,7 +208,7 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		regionListMenu.setModel(dmlRegion);
 		regionListMenu.setVisible(true);
 		regionListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
-		regionListMenu.setMaximumSize(new Dimension(200,25));
+		fitToPreferredWidth(regionListMenu);
 		regionListMenu.addActionListener(new UpdateSankeyChart());
 		regionMenuPanel.add(regionListLabel);
 		regionMenuPanel.add(regionListMenu);
@@ -232,13 +232,24 @@ public class SankeyDiagramPanel extends JFrame implements ComponentListener {
 		yearListMenu.setVisible(true);
 		//yearListMenu.setMaximumSize(yearListMenu.getPreferredSize());
 		yearListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
-		yearListMenu.setMaximumSize(new Dimension(150,25));
+		fitToPreferredWidth(yearListMenu);
 		yearListMenu.addActionListener(new UpdateSankeyChart());
 		yearMenuPanel.add(listLabel);
 		yearMenuPanel.add(yearListMenu);
 		toolBar.add(yearMenuPanel);
 		return toolBar;
 	};
+
+	private static void fitToPreferredWidth(JComponent component) {
+		if (component == null) {
+			return;
+		}
+		component.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+		Dimension preferredSize = component.getPreferredSize();
+		if (preferredSize != null) {
+			component.setMaximumSize(preferredSize);
+		}
+	}
 	
 	/**
 	 * Creates the Sankey plot panel using the provided flow dataset.

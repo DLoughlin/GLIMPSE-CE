@@ -201,6 +201,9 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private static final java.util.Set<String> PATH_PROPERTY_KEYS = new java.util.HashSet<String>(
 			Arrays.asList("paramPath", "queryFile", "lastDirectory", "unitsFile", "presetRegionList",
 					"presetRegionsFile", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
+	private static final java.util.Set<String> RELATIVE_PATH_PROPERTY_KEYS = new java.util.HashSet<String>(
+			Arrays.asList("paramPath", "queryFile", "lastDirectory", "unitsFile", "presetRegionList",
+					"presetRegionsFile", "favoriteQueriesFile", "mapResourceFolder", "legend_bundle"));
 	public static final String FONT_SIZE_PROPERTY = "fontSize";
 	public static final String GRAPHICS_TITLE_FONT_SIZE_PROPERTY = "graphicsTitleFontSize";
 	public static final String GRAPHICS_SUBTITLE_FONT_SIZE_PROPERTY = "graphicsSubtitleFontSize";
@@ -478,11 +481,47 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		return value.replace('\\', '/');
 	}
 
+	private static File getPropertiesBaseDirectory() {
+		File props = propertiesFile != null ? propertiesFile : new File("model_interface.properties");
+		File parent = props.getAbsoluteFile().getParentFile();
+		return parent == null ? new File(".").getAbsoluteFile() : parent;
+	}
+
+	private static String relativizePathForPersistence(String key, String value) {
+		if (value == null || value.trim().isEmpty() || !RELATIVE_PATH_PROPERTY_KEYS.contains(key)) {
+			return value;
+		}
+		File candidate = new File(value);
+		if (!candidate.isAbsolute()) {
+			return value;
+		}
+		try {
+			java.nio.file.Path base = getPropertiesBaseDirectory().toPath().toAbsolutePath().normalize();
+			java.nio.file.Path target = candidate.toPath().toAbsolutePath().normalize();
+			java.nio.file.Path relative = base.relativize(target);
+			return relative.toString();
+		} catch (RuntimeException ex) {
+			return value;
+		}
+	}
+
+	public static String resolvePathFromProperties(String key, String value) {
+		if (value == null || value.trim().isEmpty() || !RELATIVE_PATH_PROPERTY_KEYS.contains(key)) {
+			return value;
+		}
+		File candidate = new File(value);
+		if (candidate.isAbsolute()) {
+			return value;
+		}
+		return new File(getPropertiesBaseDirectory(), value).getPath();
+	}
+
 	private static String normalizePropertyValueForPersistence(String key, String value) {
 		if (!shouldNormalizePathProperty(key)) {
 			return value;
 		}
-		return normalizePathForProperties(value);
+		String maybeRelative = relativizePathForPersistence(key, value);
+		return normalizePathForProperties(maybeRelative);
 	}
 
 	private static void normalizePathProperties(Properties props) {
@@ -494,7 +533,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				continue;
 			}
 			String value = props.getProperty(key);
-			String normalized = normalizePathForProperties(value);
+			String normalized = normalizePropertyValueForPersistence(key, value);
 			if (normalized != null && !normalized.equals(value)) {
 				props.setProperty(key, normalized);
 			}
@@ -528,6 +567,53 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 
 		System.out.println("InterfaceMain: nativeFileDialog = " + useNativeFileDialog
 				+ ", nativeFileDialogDebug = " + debugNativeFileDialog);
+	}
+
+	private static boolean isNativeFileDialogEnabled(Properties props) {
+		String nativeDialogValue = System.getProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY);
+		if (nativeDialogValue == null || nativeDialogValue.trim().isEmpty()) {
+			nativeDialogValue = getTrimmedProperty(props, NATIVE_FILE_DIALOG_PROPERTY,
+					NATIVE_FILE_DIALOG_LEGACY_PROPERTY);
+		}
+		return nativeDialogValue == null || !"false".equalsIgnoreCase(nativeDialogValue.trim());
+	}
+
+	private static void applyNativeFileDialogPreference(boolean useNativeFileDialog) {
+		String useNativeChoosers = Boolean.toString(useNativeFileDialog);
+		System.setProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY, useNativeChoosers);
+		if (main != null && propertiesFile != null && propertiesFile.exists()) {
+			main.updateProperties(p -> {
+				p.setProperty(NATIVE_FILE_DIALOG_PROPERTY, useNativeChoosers);
+				p.setProperty(NATIVE_FILE_DIALOG_LEGACY_PROPERTY, useNativeChoosers);
+			});
+		}
+	}
+
+	private static javax.swing.JCheckBox createStartupNativeChooserCheckbox() {
+		Properties runtimeProps = main != null ? main.getProperties() : null;
+		boolean initialUseNativeChoosers = isNativeFileDialogEnabled(runtimeProps);
+		javax.swing.JCheckBox nativeChooserCheckbox = new javax.swing.JCheckBox(
+				"Use native file and folder choosers", initialUseNativeChoosers);
+		nativeChooserCheckbox.putClientProperty("initialUseNativeChoosers", Boolean.valueOf(initialUseNativeChoosers));
+		return nativeChooserCheckbox;
+	}
+
+	private static JPanel createStartupNativeChooserPanel(String messageHtml,
+			javax.swing.JCheckBox nativeChooserCheckbox) {
+		JPanel chooserPanel = new JPanel(new BorderLayout(0, 8));
+		chooserPanel.add(new JLabel(messageHtml), BorderLayout.NORTH);
+		chooserPanel.add(nativeChooserCheckbox, BorderLayout.CENTER);
+		return chooserPanel;
+	}
+
+	private static void applyNativeChooserChangeIfNeeded(javax.swing.JCheckBox nativeChooserCheckbox) {
+		Object initialValue = nativeChooserCheckbox.getClientProperty("initialUseNativeChoosers");
+		boolean initialUseNativeChoosers = initialValue instanceof Boolean
+				? ((Boolean) initialValue).booleanValue()
+				: nativeChooserCheckbox.isSelected();
+		if (nativeChooserCheckbox.isSelected() != initialUseNativeChoosers) {
+			applyNativeFileDialogPreference(nativeChooserCheckbox.isSelected());
+		}
 	}
 
 	public static void logStartupTiming(String message) {
@@ -872,7 +958,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			// use value from properties if available
 			String propPath = bootProps.getProperty("paramPath", null);
 			if (propPath != null) {
-				path = propPath;
+				path = resolvePathFromProperties("paramPath", propPath);
 				System.out.println("InterfaceMain: DB Path (from properties): " + path + " exists: " + new File(path).exists());
 			}
 		}
@@ -905,7 +991,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			// use value from properties if available
 			String propQuery = bootProps.getProperty("queryFile", null);
 			if (propQuery != null) {
-				queryFilename = propQuery;
+				queryFilename = resolvePathFromProperties("queryFile", propQuery);
 				System.out.println("InterfaceMain: Query File Path (from properties): " + queryFilename + " exists: "
 						+ new File(queryFilename).exists());
 			}
@@ -949,7 +1035,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		} else {
 			String propUnits = bootProps.getProperty("unitsFile", null);
 			if (propUnits != null) {
-				unitFileLocation = propUnits;
+				unitFileLocation = resolvePathFromProperties("unitsFile", propUnits);
 				System.out.println("InterfaceMain: unitsFile (from properties): " + unitFileLocation + " exists: "
 						+ new File(unitFileLocation).exists());
 			} else {
@@ -973,7 +1059,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		} else {
 			String propPreset = bootProps.getProperty("presetRegionList", null);
 			if (propPreset != null) {
-				presetRegionListLocation = propPreset;
+				presetRegionListLocation = resolvePathFromProperties("presetRegionList", propPreset);
 				System.out.println("InterfaceMain: presetRegionListLocation (from properties): "
 						+ presetRegionListLocation + " exists: " + new File(presetRegionListLocation).exists());
 			} else {
@@ -998,7 +1084,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		} else {
 			String propFav = bootProps.getProperty("favoriteQueriesFile", null);
 			if (propFav != null) {
-				favoriteQueriesFileLocation = propFav;
+				favoriteQueriesFileLocation = resolvePathFromProperties("favoriteQueriesFile", propFav);
 				System.out.println("InterfaceMain: favoriteQueriesFileLocation (from properties): "
 						+ favoriteQueriesFileLocation + " exists: "
 						+ new File(favoriteQueriesFileLocation).exists());
@@ -1046,7 +1132,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		} else {
 			String propMap = bootProps.getProperty("mapResourceFolder", null);
 			if (propMap != null) {
-				shapeFileLocationPrefix = propMap;
+				shapeFileLocationPrefix = resolvePathFromProperties("mapResourceFolder", propMap);
 				enableMapping = true;
 				System.out.println("InterfaceMain: shapeFileLocationPrefix (from properties): "
 						+ shapeFileLocationPrefix + " exists: " + new File(shapeFileLocationPrefix).exists());
@@ -1081,7 +1167,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		if (legendBundlesLoc == null) {
 			String propLegend = bootProps.getProperty("legend_bundle", null);
 			if (propLegend != null) {
-				legendBundlesLoc = propLegend;
+				legendBundlesLoc = resolvePathFromProperties("legend_bundle", propLegend);
 			}
 		}
 		if (legendBundlesLoc != null) {
@@ -1120,13 +1206,18 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 				if (path != null) {
 					File dbFile = new File(path);
 					if (!dbFile.exists()) {
+						javax.swing.JCheckBox nativeChooserCheckbox = createStartupNativeChooserCheckbox();
+						JPanel chooserPanel = createStartupNativeChooserPanel(
+								"<html>The database '" + path + "' does not exist.<br>Would you like to create it?</html>",
+								nativeChooserCheckbox);
 						int response = main.showOptionDialog(
-								"The database '" + path + "' does not exist. \nWould you like to create it?",
+								chooserPanel,
 								"Create Database?",
 								new Object[] { "Create", "Cancel" },
 								JOptionPane.QUESTION_MESSAGE,
 								"Create",
 								JOptionPane.CANCEL_OPTION);
+						applyNativeChooserChangeIfNeeded(nativeChooserCheckbox);
 						if (response != JOptionPane.OK_OPTION) {
 							main.completeStartupStep(STARTUP_MESSAGE_READY);
 							showGUI();
@@ -1157,10 +1248,14 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 
 				}
 				else {
+					javax.swing.JCheckBox nativeChooserCheckbox = createStartupNativeChooserCheckbox();
+					JPanel chooserPanel = createStartupNativeChooserPanel(
+							"No database specified. What would you like to do?", nativeChooserCheckbox);
 					String[] options = { "Choose Database", "Open without Database", "Quit" };
 					int response = JOptionPane.showOptionDialog(main.mainFrame,
-							"No database specified. What would you like to do?", "Database not specified",
+							chooserPanel, "Database not specified",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+					applyNativeChooserChangeIfNeeded(nativeChooserCheckbox);
 					switch (response) {
 					case 0:
 						((ActionListener)main.dbView).actionPerformed(new ActionEvent(main.mainFrame, ActionEvent.ACTION_PERFORMED, "Open DB"));
@@ -2855,7 +2950,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private boolean hasQueryFileConfigured() {
 		String qFile = (queryFilename != null && !queryFilename.trim().isEmpty())
 				? queryFilename
-				: getProperties().getProperty("queryFile", "");
+				: resolvePathFromProperties("queryFile", getProperties().getProperty("queryFile", ""));
 		return qFile != null && !qFile.trim().isEmpty() && new File(qFile).exists();
 	}
 
@@ -2868,7 +2963,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private void openConfiguredQueryFileInXmlEditor() {
 		String qFile = (queryFilename != null && !queryFilename.trim().isEmpty())
 				? queryFilename
-				: getProperties().getProperty("queryFile", "");
+				: resolvePathFromProperties("queryFile", getProperties().getProperty("queryFile", ""));
 		if (qFile == null || qFile.trim().isEmpty()) {
 			showMessageDialog("No query file is configured. Use File > Select Query File first.",
 					"Query File", JOptionPane.INFORMATION_MESSAGE);
@@ -3013,6 +3108,13 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		synchronized (propertiesLock) {
 			if (savedProperties != null) {
 				copy.putAll(savedProperties);
+				for (String key : RELATIVE_PATH_PROPERTY_KEYS) {
+					String value = copy.getProperty(key);
+					String resolved = resolvePathFromProperties(key, value);
+					if (resolved != null && !resolved.equals(value)) {
+						copy.setProperty(key, resolved);
+					}
+				}
 			}
 		}
 		return copy;
@@ -3023,7 +3125,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 			if (savedProperties != null) {
 				String normalizedValue = normalizePropertyValueForPersistence(key, value);
 				if ("paramPath".equals(key)) {
-					path = normalizedValue;
+					path = resolvePathFromProperties("paramPath", normalizedValue);
 				}
 				savedProperties.setProperty(key, normalizedValue);
 				persistProperties();
@@ -3192,7 +3294,13 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	private void persistProperties() {
 		synchronized (propertiesLock) {
 			try (FileOutputStream fos = new FileOutputStream(propertiesFile)) {
-				normalizePathProperties(savedProperties);
+				for (String key : savedProperties.stringPropertyNames()) {
+					String value = savedProperties.getProperty(key);
+					String normalized = normalizePropertyValueForPersistence(key, value);
+					if (normalized != null && !normalized.equals(value)) {
+						savedProperties.setProperty(key, normalized);
+					}
+				}
 				Properties sortedProps = new Properties() {
 					@Override
 					public java.util.Enumeration<Object> keys() {

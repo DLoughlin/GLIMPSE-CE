@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -128,7 +129,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         if (firstYearIdx - regionIdx == 2) {
             replaceWithBarChart = true;
         }
-        frame.getContentPane().add(createToolBar(), BorderLayout.WEST);
+        frame.getContentPane().add(createToolBar(), BorderLayout.NORTH);
         if (replaceWithBarChart) {
             frame.getContentPane().add(createStackedBarPlot(), BorderLayout.CENTER);
         } else {
@@ -137,7 +138,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         frame.getContentPane().add(createSummary(), BorderLayout.EAST);
         frame.validate();
         frame.pack();
-        Dimension preferredD = new Dimension(1200, 800);
+        Dimension preferredD = new Dimension(1200, 960);
         frame.setSize(preferredD);
         frame.setMinimumSize(new Dimension(500, 300));
         frame.setResizable(true);
@@ -147,20 +148,26 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
     }
 
     /**
-     * Creates the left toolbar with scenario, region, and year selectors
+     * Creates the top control bar with two rows:
+     * Scenario (row 1), then Year + Region (row 2).
      * @return JComponent toolbar
      */
     protected JComponent createToolBar() {
         toolBar = new JToolBar();
         toolBar.setBackground(Color.LIGHT_GRAY);
         toolBar.setBorder(new EmptyBorder(5, 5, 5, 5));
-        toolBar.setLayout(new GridLayout(10, 1));
+        toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.Y_AXIS));
         toolBar.setFloatable(false);
+
+        JPanel scenarioRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 4));
+        scenarioRow.setOpaque(false);
+        JPanel yearRegionRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 4));
+        yearRegionRow.setOpaque(false);
 
         // Scenario dropdown
         scenarioMenuPanel = new JPanel();
-        scenarioMenuPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        scenarioMenuPanel.setLayout(new BoxLayout(scenarioMenuPanel, BoxLayout.Y_AXIS));
+        scenarioMenuPanel.setBorder(new EmptyBorder(2, 2, 2, 2));
+        scenarioMenuPanel.setLayout(new BoxLayout(scenarioMenuPanel, BoxLayout.X_AXIS));
         scenarioMenuPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         scenarioListLabel = new JLabel("Scenario:", SwingConstants.LEFT);
         scenarioListLabel.setFont(resolveUiFont("Label.font", Font.BOLD, 4));
@@ -175,15 +182,16 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         scenarioListMenu.setVisible(true);
         scenarioListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
         scenarioListMenu.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        scenarioListMenu.setMaximumSize(new Dimension(300, 25));
+        scenarioListMenu.setPreferredSize(new Dimension(280, scenarioListMenu.getPreferredSize().height));
         scenarioListMenu.addActionListener(new UpdateSankeyOrBarChart());
         scenarioMenuPanel.add(scenarioListLabel);
+        scenarioMenuPanel.add(Box.createHorizontalStrut(6));
         scenarioMenuPanel.add(scenarioListMenu);
-        toolBar.add(scenarioMenuPanel);
+        scenarioRow.add(scenarioMenuPanel);
 
         // Region dropdown
         regionMenuPanel = new JPanel();
-        regionMenuPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        regionMenuPanel.setBorder(new EmptyBorder(2, 2, 2, 2));
         regionMenuPanel.setLayout(new BoxLayout(regionMenuPanel, BoxLayout.X_AXIS));
         regionMenuPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         regionListLabel = new JLabel("Region:", SwingConstants.LEFT);
@@ -198,15 +206,15 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         regionListMenu.setModel(dmlRegion);
         regionListMenu.setVisible(true);
         regionListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
-        regionListMenu.setMaximumSize(new Dimension(100, 25));
+        regionListMenu.setPreferredSize(new Dimension(180, regionListMenu.getPreferredSize().height));
         regionListMenu.addActionListener(new UpdateSankeyOrBarChart());
         regionMenuPanel.add(regionListLabel);
+        regionMenuPanel.add(Box.createHorizontalStrut(6));
         regionMenuPanel.add(regionListMenu);
-        toolBar.add(regionMenuPanel);
 
         // Year dropdown
         yearMenuPanel = new JPanel();
-        yearMenuPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        yearMenuPanel.setBorder(new EmptyBorder(2, 2, 2, 2));
         yearMenuPanel.setLayout(new BoxLayout(yearMenuPanel, BoxLayout.X_AXIS));
         yearMenuPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         listLabel = new JLabel("Year:", SwingConstants.LEFT);
@@ -221,7 +229,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         yearListMenu.setModel(dml);
         yearListMenu.setVisible(true);
         yearListMenu.setFont(resolveUiFont("ComboBox.font", Font.BOLD, 2));
-        yearListMenu.setMaximumSize(new Dimension(150, 25));
+        yearListMenu.setPreferredSize(new Dimension(110, yearListMenu.getPreferredSize().height));
         yearListMenu.addActionListener(new UpdateSankeyOrBarChart());
 
         // Next/Prev year buttons
@@ -243,11 +251,28 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         prevYearButton.setVisible(true);
 
         yearMenuPanel.add(listLabel);
+        yearMenuPanel.add(Box.createHorizontalStrut(6));
         yearMenuPanel.add(prevYearButton);
         yearMenuPanel.add(yearListMenu);
         yearMenuPanel.add(nextYearButton);
-        toolBar.add(yearMenuPanel);
+
+        yearRegionRow.add(yearMenuPanel);
+        yearRegionRow.add(regionMenuPanel);
+
+        toolBar.add(scenarioRow);
+        toolBar.add(yearRegionRow);
         return toolBar;
+    }
+
+    private static void fitToPreferredWidth(JComponent component) {
+        if (component == null) {
+            return;
+        }
+        component.setAlignmentX(Component.LEFT_ALIGNMENT);
+        Dimension preferredSize = component.getPreferredSize();
+        if (preferredSize != null) {
+            component.setMaximumSize(preferredSize);
+        }
     }
 
     /**
@@ -262,7 +287,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         mySet = myDataset.getAllNodes();
 
         sankeyPanel = new JPanel();
-        sankeyPanel.setLayout(new BoxLayout(sankeyPanel, BoxLayout.Y_AXIS));
+        sankeyPanel.setLayout(new BorderLayout());
         sankeyPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         sankeyPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -281,7 +306,6 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
         chartPanel.validate();
-        chartPanel.setPreferredSize(new Dimension(800, 600));
         sankeyPanel.add(chartPanel, BorderLayout.CENTER);
 
         // Node labels below chart
@@ -293,13 +317,13 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         int regionIdx = FilteredTable.getColumnByName(jtable, "region");
         ArrayList<String> yearList = FilteredTable.getYearListFromTableData(jtable);
         if (yearList.isEmpty() || regionIdx < 0) {
-            sankeyPanel.add(sankeyLabelPanel);
+            sankeyPanel.add(sankeyLabelPanel, BorderLayout.SOUTH);
             return sankeyPanel;
         }
         int firstYearIdx = FilteredTable.getColumnByName(jtable, yearList.get(0));
         int totalNodes = firstYearIdx - regionIdx - 1;
         if (totalNodes <= 0) {
-            sankeyPanel.add(sankeyLabelPanel);
+            sankeyPanel.add(sankeyLabelPanel, BorderLayout.SOUTH);
             return sankeyPanel;
         }
         int labelWidth = (int) Math.round(4 * myPlot.getNodeWidth() / totalNodes);
@@ -320,7 +344,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
             nextNodeFromColumn.setBackground(Color.GRAY);
             sankeyLabelPanel.add(nextNodeFromColumn);
         }
-        sankeyPanel.add(sankeyLabelPanel);
+        sankeyPanel.add(sankeyLabelPanel, BorderLayout.SOUTH);
         return sankeyPanel;
     }
 
@@ -330,7 +354,7 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
      */
     protected JComponent createStackedBarPlot() {
         barChartPanel = new JPanel();
-        barChartPanel.setLayout(new BoxLayout(barChartPanel, BoxLayout.Y_AXIS));
+        barChartPanel.setLayout(new BorderLayout());
         barChartPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         barChartPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         String selectedScenario = (String) scenarioListMenu.getSelectedItem();
@@ -360,7 +384,6 @@ public class SankeyDiagramFromTable extends JFrame implements ComponentListener 
         ChartPanel chartPanel = new ChartPanel(barChart);
         chartPanel.setMouseWheelEnabled(true);
         chartPanel.validate();
-        chartPanel.setPreferredSize(new Dimension(800, 600));
         barChartPanel.add(chartPanel, BorderLayout.CENTER);
         return barChartPanel;
     }

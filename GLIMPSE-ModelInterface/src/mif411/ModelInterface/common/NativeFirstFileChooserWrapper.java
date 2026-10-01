@@ -97,6 +97,24 @@ public class NativeFirstFileChooserWrapper implements FileChooser {
 				}
 			}
 		}
+		if (isWindows() && !isDirectoryRequest(fileFilter)) {
+			try {
+				if (isDebugNativeFallbackEnabled()) {
+					debugLog("Attempting Windows native file chooser", null);
+				}
+				File[] windowsResult = showWindowsNativeFileChooser(title, setFile, loadOrSave, fileFilter);
+				if (isDebugNativeFallbackEnabled()) {
+					debugLog("Windows native file chooser returned "
+							+ (windowsResult == null ? "null (cancel/no selection)" : (windowsResult.length + " file(s)")),
+							null);
+				}
+				return windowsResult;
+			} catch (Throwable t) {
+				if (isDebugNativeFallbackEnabled()) {
+					debugLog("Windows native file chooser failed; falling back to chooser wrappers", t);
+				}
+			}
+		}
 
 		if (nativeChooser != null) {
 			try {
@@ -257,6 +275,89 @@ public class NativeFirstFileChooserWrapper implements FileChooser {
 			}
 		}
 		return new File[] { selected };
+	}
+
+	private static File[] showWindowsNativeFileChooser(String title, File seedFile, int loadOrSave,
+			FileFilter fileFilter) throws Exception {
+		String initialDir = ".";
+		String initialFileName = "";
+		if (seedFile != null) {
+			if (seedFile.isDirectory()) {
+				initialDir = seedFile.getAbsolutePath();
+			} else {
+				if (seedFile.getParentFile() != null) {
+					initialDir = seedFile.getParentFile().getAbsolutePath();
+				}
+				initialFileName = seedFile.getName();
+			}
+		}
+
+		String safeTitle = escapePsSingleQuoted(title == null ? "Choose File" : title);
+		String safeInitialDir = escapePsSingleQuoted(initialDir);
+		String safeInitialFileName = escapePsSingleQuoted(initialFileName);
+		String safeFilter = escapePsSingleQuoted(buildWindowsDialogFilter(fileFilter));
+		boolean saveDialog = loadOrSave == FileChooser.SAVE_DIALOG;
+
+		String script =
+				"Add-Type -AssemblyName System.Windows.Forms; " +
+				"$dlg = New-Object System.Windows.Forms." + (saveDialog ? "SaveFileDialog" : "OpenFileDialog") + "; " +
+				"$dlg.Title = '" + safeTitle + "'; " +
+				"$dlg.InitialDirectory = '" + safeInitialDir + "'; " +
+				"$dlg.FileName = '" + safeInitialFileName + "'; " +
+				"$dlg.Filter = '" + safeFilter + "'; " +
+				"$dlg.FilterIndex = 1; " +
+				(saveDialog
+						? "$dlg.OverwritePrompt = $true; "
+						: "$dlg.CheckFileExists = $true; $dlg.Multiselect = $false; ") +
+				"$res = $dlg.ShowDialog(); " +
+				"if ($res -eq [System.Windows.Forms.DialogResult]::OK) { Write-Output $dlg.FileName; }";
+
+		ProcessBuilder pb = new ProcessBuilder("powershell.exe", "-NoProfile", "-STA", "-Command", script);
+		pb.redirectErrorStream(false);
+		Process p = pb.start();
+
+		List<String> outLines = new ArrayList<String>();
+		List<String> errLines = new ArrayList<String>();
+		BufferedReader out = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+		String line;
+		while ((line = out.readLine()) != null) {
+			if (!line.trim().isEmpty()) {
+				outLines.add(line.trim());
+			}
+		}
+		while ((line = err.readLine()) != null) {
+			if (!line.trim().isEmpty()) {
+				errLines.add(line.trim());
+			}
+		}
+
+		int exit = p.waitFor();
+		if (exit != 0) {
+			throw new IOException("PowerShell native file chooser failed. Exit=" + exit + ", stderr=" + errLines);
+		}
+
+		if (outLines.isEmpty()) {
+			return null;
+		}
+
+		return new File[] { new File(outLines.get(outLines.size() - 1)) };
+	}
+
+	private static String buildWindowsDialogFilter(FileFilter fileFilter) {
+		if (fileFilter == null) {
+			return "All files (*.*)|*.*";
+		}
+		String description = null;
+		try {
+			description = fileFilter.getDescription();
+		} catch (Throwable t) {
+			description = null;
+		}
+		if (description != null && description.toLowerCase().contains("xml")) {
+			return "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+		}
+		return "All files (*.*)|*.*";
 	}
 
 	private static String escapePsSingleQuoted(String text) {

@@ -485,11 +485,30 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		return parentFrame != null && !java.awt.GraphicsEnvironment.isHeadless();
 	}
 
+	private FileChooser getConfiguredFileChooser() {
+		String runtimeValue = System.getProperty("modelinterface.nativeFileDialog", "");
+		boolean hasRuntimeValue = runtimeValue != null && !runtimeValue.trim().isEmpty();
+		InterfaceMain main = InterfaceMain.getInstance();
+		if (!hasRuntimeValue && main != null) {
+			String configuredValue = main.getProperties().getProperty("nativeFileDialog", null);
+			if (configuredValue != null && !configuredValue.trim().isEmpty()) {
+				System.setProperty("modelinterface.nativeFileDialog", configuredValue.trim());
+			}
+		}
+		if ("true".equalsIgnoreCase(System.getProperty("modelinterface.nativeFileDialog.debug", "false"))) {
+			System.out.println("[ModelInterface FileChooser DEBUG][DbViewer] nativeFileDialog="
+					+ System.getProperty("modelinterface.nativeFileDialog", "true")
+					+ " (true=native-first, false=java chooser)");
+		}
+		return FileChooserFactory.getFileChooser();
+	}
+
 	private File resolveStartupQueryFile(Properties prop, JFrame parentFrame) {
 		if (prop == null) {
 			prop = new Properties();
 		}
 		String queryFileName = prop.getProperty("queryFile", null);
+		queryFileName = InterfaceMain.resolvePathFromProperties("queryFile", queryFileName);
 		File queryFile = queryFileName != null && !queryFileName.trim().isEmpty() ? new File(queryFileName) : null;
 		if (queryFile != null && queryFile.exists() && queryFile.isFile()) {
 			return queryFile;
@@ -506,7 +525,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					+ "Update 'queryFile' in model_interface.properties or launch with -q <query-file>.");
 		}
 
-		FileChooser fc = FileChooserFactory.getFileChooser();
+		FileChooser fc = getConfiguredFileChooser();
 		final FileFilter xmlFilter = new XMLFilter();
 		File startDir;
 		if (queryFile != null && queryFile.getParentFile() != null) {
@@ -986,17 +1005,21 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 
 					}
 				} else if (evt.getPropertyName().equals("SelectQuery")) {
-					FileChooser fc = FileChooserFactory.getFileChooser();
+					FileChooser fc = getConfiguredFileChooser();
 					Properties props = main.getProperties();
-					File start = new File(props.getProperty("queryFile",
-							props.getProperty("lastDirectory", ".")));
+					String startPath = InterfaceMain.resolvePathFromProperties("queryFile", props.getProperty("queryFile", null));
+					if (startPath == null || startPath.trim().isEmpty()) {
+						startPath = props.getProperty("lastDirectory", ".");
+					}
+					File start = new File(startPath);
 					File[] files = fc.doFilePrompt(parentFrame, "Open Query File", FileChooser.LOAD_DIALOG, start,
 							new XMLFilter());
 					if (files != null && files.length > 0) {
 						File file = files[0];
 						invalidateQueriesDocument("select-query-file");
 						// update runtime and persist for next launch
-						String oldFile = main.getProperties().getProperty("queryFile");
+						String oldFile = InterfaceMain.resolvePathFromProperties("queryFile",
+								main.getProperties().getProperty("queryFile"));
 						main.setProperty("queryFile", file.getAbsolutePath());
 						main.setProperty("lastDirectory", file.getParent());
 						System.out.println("Selected query file: " + file.getAbsolutePath());
@@ -1418,7 +1441,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					return "Directory for a BaseX DB";
 				}
 			};
-			FileChooser fc = FileChooserFactory.getFileChooser();
+			FileChooser fc = getConfiguredFileChooser();
 			dbFiles = fc.doFilePrompt(parentFrame, "Choose BaseX Database", FileChooser.LOAD_DIALOG,
 					new File(main.getProperties().getProperty("lastDirectory", ".")), dbFilter, this, "Open DB");
 		}
@@ -1452,7 +1475,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	public void exportTabs() {
 		final InterfaceMain main = InterfaceMain.getInstance();
 		final JFrame parentFrame = main.getFrame();
-		FileChooser fc = FileChooserFactory.getFileChooser();
+		FileChooser fc = getConfiguredFileChooser();
 		final FileFilter dirFilter = new DirectoryFilter();
 		File[] exportDirs = fc.doFilePrompt(parentFrame, "Export Tabs as CSVs", FileChooser.LOAD_DIALOG,
 				new File(main.getProperties().getProperty("lastDirectory", ".")), dirFilter);
@@ -1466,6 +1489,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
 		int exportedCount = 0;
 		int skippedCount = 0;
+		Map<String, Integer> exportNameCounts = new HashMap<String, Integer>();
 		List<String> skippedNoModel = new ArrayList<String>();
 		List<String> skippedWriteFailed = new ArrayList<String>();
 		for (int i = 0; i < tablesTabs.getTabCount(); ++i) {
@@ -1476,7 +1500,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 				skippedNoModel.add(tabTitle);
 				continue;
 			}
-			File file = new File(exportDir, tabTitle.replaceAll("[^a-zA-Z0-9.-]", "_") + ".csv");
+			File file = createUniqueCsvFile(exportDir, tabTitle, exportNameCounts);
 			try {
 				PrintWriter pw = new PrintWriter(file);
 				exportTableToCSV(table, pw);
@@ -1512,6 +1536,24 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		}
 	}
 
+	private static File createUniqueCsvFile(File exportDir, String tabTitle, Map<String, Integer> exportNameCounts) {
+		final String baseName = sanitizeCsvBaseName(tabTitle);
+		int suffix = exportNameCounts.containsKey(baseName) ? exportNameCounts.get(baseName).intValue() : 0;
+		File candidate;
+		do {
+			String fileName = suffix == 0 ? baseName + ".csv" : baseName + "_(" + suffix + ").csv";
+			candidate = new File(exportDir, fileName);
+			suffix++;
+		} while (candidate.exists());
+		exportNameCounts.put(baseName, Integer.valueOf(suffix));
+		return candidate;
+	}
+
+	private static String sanitizeCsvBaseName(String tabTitle) {
+		String sanitized = tabTitle == null ? "" : tabTitle.replaceAll("[^a-zA-Z0-9.-]", "_").trim();
+		return sanitized.isEmpty() ? "tab" : sanitized;
+	}
+
 	/**
 	 * Prompts the user to choose a save location and exports a single tab to a CSV file.
 	 *
@@ -1522,8 +1564,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		final InterfaceMain main = InterfaceMain.getInstance();
 		final JFrame parentFrame = main.getFrame();
 		final String tabTitle = tablesTabs.getTitleAt(tabIndex);
-		final String fileName = tabTitle.replaceAll("[^a-zA-Z0-9.-]", "_") + ".csv";
-		FileChooser fc = FileChooserFactory.getFileChooser();
+		FileChooser fc = getConfiguredFileChooser();
 		final FileFilter dirFilter = new DirectoryFilter();
 		File[] exportDirs = fc.doFilePrompt(parentFrame, "Save Tab as CSV", FileChooser.LOAD_DIALOG,
 				new File(main.getProperties().getProperty("lastDirectory", ".")), dirFilter);
@@ -1537,7 +1578,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			return;
 		}
 		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
-		File outFile = new File(exportDir, fileName);
+		File outFile = createUniqueCsvFile(exportDir, tabTitle, new HashMap<String, Integer>());
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(outFile);
@@ -1641,7 +1682,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private void handleBatchQueryFile() {
 		final InterfaceMain main = InterfaceMain.getInstance();
 		final JFrame parentFrame = main.getFrame();
-		FileChooser fc = FileChooserFactory.getFileChooser();
+		FileChooser fc = getConfiguredFileChooser();
 		final FileFilter xmlFilter = new XMLFilter();
 		File[] batchFiles = fc.doFilePrompt(parentFrame, "Open batch Query File", FileChooser.LOAD_DIALOG,
 				new File(main.getProperties().getProperty("lastDirectory", ".")), xmlFilter);
@@ -1726,9 +1767,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		final InterfaceMain main = InterfaceMain.getInstance();
 		final JFrame parentFrame = main.getFrame();
 		final FileFilter xmlFilter = new XMLFilter();
-		FileChooser fc = FileChooserFactory.getFileChooser();
+		FileChooser fc = getConfiguredFileChooser();
 		File[] result = fc.doFilePrompt(parentFrame, null, FileChooser.SAVE_DIALOG,
-				new File(main.getProperties().getProperty("queryFile", ".")), xmlFilter);
+				new File(InterfaceMain.resolvePathFromProperties("queryFile",
+						main.getProperties().getProperty("queryFile", "."))), xmlFilter);
 		if (result != null) {
 			File file = result[0];
 			if (file.getName().indexOf('.') == -1) {
@@ -3384,6 +3426,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	public boolean writeQueries() {
 		Properties prop = InterfaceMain.getInstance().getProperties();
 		String queryFileName = prop.getProperty("queryFile", null);
+		queryFileName = InterfaceMain.resolvePathFromProperties("queryFile", queryFileName);
 		if (queryFileName == null || queryFileName.trim().isEmpty()) {
 			InterfaceMain.getInstance().showMessageDialog("No query file specified in properties.",
 					"Error Saving Queries", JOptionPane.ERROR_MESSAGE);
