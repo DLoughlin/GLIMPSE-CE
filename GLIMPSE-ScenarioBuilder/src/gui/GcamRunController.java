@@ -6,6 +6,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.concurrent.Future;
 
 import glimpseUtil.ProcessResult;
@@ -19,11 +21,6 @@ import glimpseUtil.ProcessRunner;
 final class GcamRunController {
     interface LineListener {
         void onLine(String scenarioName, String line, boolean stderr);
-    }
-
-    interface RunLifecycleListener {
-        void onRunStarted(String scenarioName);
-        void onRunFinished(String scenarioName, ProcessResult result);
     }
 
     static final class RunRequest {
@@ -157,7 +154,8 @@ final class GcamRunController {
     Future<ProcessResult> beginRun(ExecutionThread executionThread,
             RunRequest request,
             LineListener lineListener,
-            RunLifecycleListener lifecycleListener) {
+            Consumer<String> onRunStarted,
+            BiConsumer<String, ProcessResult> onRunFinished) {
         if (executionThread == null) {
             throw new IllegalArgumentException("executionThread cannot be null");
         }
@@ -165,7 +163,8 @@ final class GcamRunController {
             throw new IllegalArgumentException("request must include scenario name and command");
         }
 
-        ScenarioRunCallable callable = new ScenarioRunCallable(this, request, lineListener, lifecycleListener);
+        ScenarioRunCallable callable = new ScenarioRunCallable(this, request, lineListener, onRunStarted,
+                onRunFinished);
         Future<ProcessResult> future = executionThread.submitCallable(callable);
         this.currentFuture = future;
         return future;
@@ -197,16 +196,19 @@ final class GcamRunController {
         private final GcamRunController controller;
         private final RunRequest request;
         private final LineListener lineListener;
-        private final RunLifecycleListener lifecycleListener;
+        private final Consumer<String> onRunStarted;
+        private final BiConsumer<String, ProcessResult> onRunFinished;
 
         ScenarioRunCallable(GcamRunController controller,
                 RunRequest request,
                 LineListener lineListener,
-                RunLifecycleListener lifecycleListener) {
+                Consumer<String> onRunStarted,
+                BiConsumer<String, ProcessResult> onRunFinished) {
             this.controller = controller;
             this.request = request;
             this.lineListener = lineListener;
-            this.lifecycleListener = lifecycleListener;
+            this.onRunStarted = onRunStarted;
+            this.onRunFinished = onRunFinished;
         }
 
         @Override
@@ -264,8 +266,8 @@ final class GcamRunController {
                         });
                 controller.markRunStarted(request.scenarioName, run);
                 appendGcamInfo("[GCAM-RUN] Process started successfully for scenario: " + request.scenarioName);
-                if (lifecycleListener != null) {
-                    lifecycleListener.onRunStarted(request.scenarioName);
+                if (onRunStarted != null) {
+                    onRunStarted.accept(request.scenarioName);
                 }
                 result = run.waitForResult(null);
                 long elapsed = System.currentTimeMillis() - startMillis;
@@ -293,8 +295,8 @@ final class GcamRunController {
                 return result;
             } finally {
                 controller.markRunFinished(request.scenarioName, result);
-                if (lifecycleListener != null) {
-                    lifecycleListener.onRunFinished(request.scenarioName, result);
+                if (onRunFinished != null) {
+                    onRunFinished.accept(request.scenarioName, result);
                 }
             }
         }

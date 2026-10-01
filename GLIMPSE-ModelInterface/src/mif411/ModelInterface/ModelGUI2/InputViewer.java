@@ -110,6 +110,7 @@ import ModelInterface.common.FileChooser;
 import ModelInterface.common.FileChooserFactory;
 import ModelInterface.common.RecentFilesList.RecentFile;
 
+@SuppressWarnings("deprecation")
 public class InputViewer implements ActionListener, TableModelListener, MenuAdder, BatchRunner {
 
 	private InputViewer thisViewer;
@@ -286,7 +287,7 @@ public class InputViewer implements ActionListener, TableModelListener, MenuAdde
 
 						parentFrame.setTitle("GLIMPSE ModelInterface");
 						if(splitPane != null) {
-							main.getProperties().setProperty("dividerLocation", 
+							main.setProperty("dividerLocation", 
 								 String.valueOf(splitPane.getDividerLocation()));
 						}
 					}
@@ -1141,7 +1142,7 @@ public class InputViewer implements ActionListener, TableModelListener, MenuAdde
 		} else {
 			main.fireControlChange(controlStr);
 			file = result[0];
-			main.getProperties().setProperty("lastDirectory", file.getParent());
+			main.setProperty("lastDirectory", file.getParent());
 
 			  //Dan: Trying to see if file is too big to view
 		      long len=file.length();
@@ -1236,7 +1237,7 @@ public class InputViewer implements ActionListener, TableModelListener, MenuAdde
 			if(csvFiles == null) {
 				return false;
 			}
-			main.getProperties().setProperty("lastDirectory", csvFiles[0].getPath());
+			main.setProperty("lastDirectory", csvFiles[0].getPath());
 			headerFiles = fc.doFilePrompt(parentFrame, "Open Headers File", FileChooser.LOAD_DIALOG, 
 					new File(main.getProperties().getProperty("lastDirectory", ".")),
 					null, null, null);
@@ -1244,7 +1245,7 @@ public class InputViewer implements ActionListener, TableModelListener, MenuAdde
 			if(headerFiles == null) {
 				return false;
 			}
-			main.getProperties().setProperty("lastDirectory", headerFiles[0].getPath());
+			main.setProperty("lastDirectory", headerFiles[0].getPath());
 			File[] files = new File[csvFiles.length+1];
 			System.arraycopy(csvFiles, 0, files, 0, csvFiles.length);
 			files[files.length-1] = headerFiles[0];
@@ -1298,7 +1299,7 @@ public class InputViewer implements ActionListener, TableModelListener, MenuAdde
 				if (response == JOptionPane.CANCEL_OPTION)
 					return true;
 			}
-			main.getProperties().setProperty("lastDirectory", file.getParent());
+			main.setProperty("lastDirectory", file.getParent());
 			return writeFile(file, doc);
 		}
 	}

@@ -45,6 +45,7 @@ import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEStyles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
@@ -66,6 +67,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.controlsfx.control.CheckComboBox;
 
 /**
@@ -147,6 +149,7 @@ public abstract class PolicyTab extends Tab {
     protected static final String LABEL_VALUES = "Values: ";
     protected static final String CHECKBOX_AUTO = "Auto";
     protected static final String CHECKBOX_UNIQUE = "Unique";
+    protected static final double FILTER_DEBOUNCE_SECONDS = 0.15;
     private static final String REQUIRED_SELECTION_LISTENER_KEY = "requiredSelectionListenerAttached";
     private static final String REQUIRED_SELECTION_BASE_STYLE_KEY = "requiredSelectionBaseStyle";
     private static final String REQUIRED_SELECTION_SUBTLE_OUTLINE = "-fx-border-color: #AECF88; -fx-border-width: 1.2; -fx-border-radius: 3;";
@@ -678,7 +681,11 @@ public abstract class PolicyTab extends Tab {
      * @param progress Progress value between 0.0 and 1.0
      */
     public void setProgress(double progress) {
-        Platform.runLater(() -> getProgressBar().setProgress(progress));
+        if (Platform.isFxApplicationThread()) {
+            getProgressBar().setProgress(progress);
+        } else {
+            Platform.runLater(() -> getProgressBar().setProgress(progress));
+        }
     }
 
     /**
@@ -804,7 +811,11 @@ public abstract class PolicyTab extends Tab {
      * </p>
      */
     public void resetProgressBar() {
-        Platform.runLater(() -> getProgressBar().setProgress(0.0));
+        if (Platform.isFxApplicationThread()) {
+            getProgressBar().setProgress(0.0);
+        } else {
+            Platform.runLater(() -> getProgressBar().setProgress(0.0));
+        }
     }
 
     /**
@@ -1370,12 +1381,75 @@ public abstract class PolicyTab extends Tab {
      * @return A new CheckComboBox<String>
      */
     protected CheckComboBox<String> createCheckComboBox() {
-        CheckComboBox<String> checkComboBox = utils.createCheckComboBox();
-        ensureCheckComboBoxInnerBorderCleanup(checkComboBox);
-        return checkComboBox;
+         CheckComboBox<String> checkComboBox = utils.createCheckComboBox();
+         ensureCheckComboBoxInnerBorderCleanup(checkComboBox);
+         return checkComboBox;
+     }
+
+    /**
+     * Creates a standard debounced callback used by text filters.
+     */
+    protected PauseTransition createFilterUpdateDelay(Runnable callback) {
+        PauseTransition delay = new PauseTransition(Duration.seconds(FILTER_DEBOUNCE_SECONDS));
+        if (callback != null) {
+            delay.setOnFinished(event -> callback.run());
+        }
+        return delay;
     }
 
-    private void ensureCheckComboBoxInnerBorderCleanup(CheckComboBox<String> checkComboBox) {
+    /**
+     * Returns true when every non-empty search token appears in at least one field.
+     */
+    protected boolean matchesAllFilterTerms(String[] fields, String filterTextLc) {
+        if (filterTextLc == null || filterTextLc.trim().isEmpty()) {
+            return true;
+        }
+        if (fields == null || fields.length == 0) {
+            return false;
+        }
+        String[] terms = filterTextLc.trim().split("\\s+");
+        for (String term : terms) {
+            if (term.isEmpty()) {
+                continue;
+            }
+            boolean found = false;
+            for (String field : fields) {
+                if (field != null && field.toLowerCase().contains(term)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true when every non-empty search token appears in the source text.
+     */
+    protected boolean matchesAllFilterTerms(String source, String filterTextLc) {
+        if (filterTextLc == null || filterTextLc.trim().isEmpty()) {
+            return true;
+        }
+        if (source == null) {
+            return false;
+        }
+        String sourceLc = source.toLowerCase();
+        String[] terms = filterTextLc.trim().split("\\s+");
+        for (String term : terms) {
+            if (term.isEmpty()) {
+                continue;
+            }
+            if (!sourceLc.contains(term)) {
+                return false;
+            }
+        }
+        return true;
+    }
+ 
+     private void ensureCheckComboBoxInnerBorderCleanup(CheckComboBox<String> checkComboBox) {
         if (checkComboBox == null) {
             return;
         }

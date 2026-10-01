@@ -75,8 +75,10 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -116,6 +118,9 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
     private static final Duration LIVE_STATUS_REFRESH_INTERVAL = Duration.ofSeconds(5);
     private static final String STOPPED_LOG_MARKER = "GLIMPSE scenario status: Stopped";
     private static final String LIVE_STDOUT_ERROR_PREFIX = "ERROR";
+    private static final String[] LIVE_STDOUT_LOG_LEVEL_PREFIXES = {
+            "TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
+    };
     private static final java.util.regex.Pattern LIVE_UNSOLVED_PERIOD_ERROR_PATTERN = java.util.regex.Pattern.compile(
             "did\\s+not\\s+solve\\s+periods?\\s*[:=]?\\s*([0-9]{1,3}(?:\\s*(?:,|and|&)\\s*[0-9]{1,3})*)",
             java.util.regex.Pattern.CASE_INSENSITIVE);
@@ -248,10 +253,13 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      */
     PaneScenarioLibrary(Stage stage) {
         scenarioLibraryHBox.setSpacing(10);
+        scenarioLibraryHBox.setMinSize(0, 0);
+        scenarioLibraryHBox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         wireScenarioSelectionButtonRefresh();
         createScenarioLibraryButtons();
         ensureLiveStatusRefreshTimeline();
 
+        ScenarioTable.tableScenariosLibrary.setMinSize(0, 0);
         ScenarioTable.tableScenariosLibrary.setMaxWidth(Double.MAX_VALUE);
         ScenarioTable.tableScenariosLibrary.setMaxHeight(Double.MAX_VALUE);
         HBox.setHgrow(ScenarioTable.tableScenariosLibrary, javafx.scene.layout.Priority.ALWAYS);
@@ -801,7 +809,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
                     "No ModelInterface map resources folder was found; launching without mapping support.");
         }
 
-        showModelInterfaceLaunchingToast(5000);
+        // showModelInterfaceLaunchingToast(5000);  // Startup dialog disabled - no longer needed
 
         try {
             Future<?> modelInterfaceFuture = Client.modelInterfaceExecutionThread.submitCommandWithDirectory(
@@ -930,17 +938,8 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
         ScenarioSelection selection = ScenarioSelection.capture();
         ScenarioLibraryRunPreparationHelper.RunPreparationResult preparationResult = runPreparationHelper.prepareSelectedRuns(
                 selection,
-                new ScenarioLibraryRunPreparationHelper.RunPreparationCallbacks() {
-                    @Override
-                    public void clearScenarioRunStatusFields(String scenarioName) {
-                        PaneScenarioLibrary.this.clearScenarioRunStatusFields(scenarioName);
-                    }
-
-                    @Override
-                    public void markQueued(String scenarioName) {
-                        runController.addQueuedRun(scenarioName);
-                    }
-                });
+                this::clearScenarioRunStatusFields,
+                runController::addQueuedRun);
         if (!preparationResult.hasLaunchableRuns()) {
             return;
         }
@@ -966,6 +965,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             if (configFile == null || configFile.trim().isEmpty()) {
                 continue;
             }
+            ScenarioLibraryStopHelper.clearSoftStopRequest();
             String scenarioName = scenarioNameFromConfigPath(configFile);
             if (scenarioName.isEmpty()) {
                 continue;
@@ -983,42 +983,35 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
                     Client.gCAMExecutionThread,
                     new GcamRunController.RunRequest(scenarioName, command, workingDir),
                     this::handleGcamProcessLine,
-                    new GcamRunController.RunLifecycleListener() {
-                        @Override
-                        public void onRunStarted(String startedScenarioName) {
-                            Platform.runLater(() -> {
-                                startLiveStatusRefresh();
-                                refreshScenarioActionButtons();
-                            });
-                        }
-
-                        @Override
-                        public void onRunFinished(String finishedScenarioName, ProcessResult result) {
-                            PaneScenarioLibrary.this.finalizeScenarioRunArtifacts(finishedScenarioName);
-                            if (result != null && (result.getExitCode() != 0 || result.isTimedOut())) {
-                                if (finishedScenarioName != null
-                                        && finishedScenarioName.equals(runController.getStopRequestedScenarioName())) {
-                                    moveExeMainLogToScenarioFolder(finishedScenarioName);
-                                    persistStoppedStatusMarker(finishedScenarioName);
-                                    markScenarioStopped(finishedScenarioName);
-                                } else {
-                                    maybePromptWindowsPolicyBlockOnStartupFailure(finishedScenarioName, result);
-                                    reportRunFailureDetails(finishedScenarioName, result);
-                                    markScenarioDnF(finishedScenarioName);
-                                }
+                    startedScenarioName -> Platform.runLater(() -> {
+                        startLiveStatusRefresh();
+                        refreshScenarioActionButtons();
+                    }),
+                    (finishedScenarioName, result) -> {
+                        PaneScenarioLibrary.this.finalizeScenarioRunArtifacts(finishedScenarioName);
+                        if (result != null && (result.getExitCode() != 0 || result.isTimedOut())) {
+                            if (finishedScenarioName != null
+                                    && finishedScenarioName.equals(runController.getStopRequestedScenarioName())) {
+                                moveExeMainLogToScenarioFolder(finishedScenarioName);
+                                persistStoppedStatusMarker(finishedScenarioName);
+                                markScenarioStopped(finishedScenarioName);
+                            } else {
+                                maybePromptWindowsPolicyBlockOnStartupFailure(finishedScenarioName, result);
+                                reportRunFailureDetails(finishedScenarioName, result);
+                                markScenarioDnF(finishedScenarioName);
                             }
-                            // Clean up the stored command
-                            submittedCommandByScenario.remove(finishedScenarioName);
-                            Platform.runLater(() -> {
-                                try {
-                                    updateRunStatus();
-                                } catch (Exception ignored) {}
-                                refreshScenarioActionButtons();
-                                if (!runController.hasActiveRun()) {
-                                    stopLiveStatusRefresh();
-                                }
-                            });
                         }
+                        // Clean up the stored command
+                        submittedCommandByScenario.remove(finishedScenarioName);
+                        Platform.runLater(() -> {
+                            try {
+                                updateRunStatus();
+                            } catch (Exception ignored) {}
+                            refreshScenarioActionButtons();
+                            if (!runController.hasActiveRun()) {
+                                stopLiveStatusRefresh();
+                            }
+                        });
                     });
         }
         startLiveStatusRefresh();
@@ -1237,6 +1230,18 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             return;
         }
 
+        if (stopMode == ScenarioLibraryStopHelper.StopMode.SOFT_STOP) {
+            if (ScenarioLibraryStopHelper.requestSoftStop()) {
+                try {
+                    ConsoleManager.appendHeader(ConsoleManager.StreamSource.GCAM_STDOUT, "Soft stop requested");
+                    ConsoleManager.appendLine(ConsoleManager.StreamSource.GCAM_STDOUT,
+                            ConsoleManager.MessageKind.GLIMPSE_INFO,
+                            "Requested GCAM soft stop after the current period ends.");
+                } catch (Exception ignored) {}
+            }
+            return;
+        }
+
         boolean stopAll = stopMode == ScenarioLibraryStopHelper.StopMode.STOP_ALL;
         if (stopAll) {
             try {
@@ -1396,6 +1401,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
 
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 glimpseUtil.UtilsDialogs.initDialogOwner(alert);
+                glimpseUtil.UtilsDialogs.applyDialogTheme(alert);
                 alert.setTitle("GCAM waiting for database");
                 alert.setHeaderText("Close ModelInterface to continue GCAM");
 
@@ -1741,10 +1747,11 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      * @return true if line is a live error, false otherwise
      */
     private boolean isLiveStdoutErrorLine(String line) {
-        if (line == null) {
+        String normalized = stripLiveStdoutLogPrefixes(line);
+        if (normalized.isEmpty()) {
             return false;
         }
-        return line.trim().startsWith(LIVE_STDOUT_ERROR_PREFIX);
+        return normalized.startsWith(LIVE_STDOUT_ERROR_PREFIX);
     }
 
     /**
@@ -1755,10 +1762,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
      */
     private LinkedHashSet<String> extractLiveErrorPeriods(String line) {
         LinkedHashSet<String> periods = new LinkedHashSet<>();
-        if (line == null) {
-            return periods;
-        }
-        String trimmed = line.trim();
+        String trimmed = stripLiveStdoutLogPrefixes(line);
         if (trimmed.isEmpty() || !trimmed.toLowerCase(Locale.ENGLISH).contains("did not solve period")) {
             return periods;
         }
@@ -1778,6 +1782,38 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             }
         }
         return periods;
+    }
+
+    private String stripLiveStdoutLogPrefixes(String line) {
+        if (line == null) {
+            return "";
+        }
+        String normalized = line.trim();
+        if (normalized.isEmpty()) {
+            return "";
+        }
+        boolean changed;
+        do {
+            changed = false;
+            for (String prefix : LIVE_STDOUT_LOG_LEVEL_PREFIXES) {
+                if (prefix == null || prefix.isEmpty()) {
+                    continue;
+                }
+                if (startsWithIgnoreCase(normalized, prefix + ":")) {
+                    normalized = normalized.substring(prefix.length() + 1).trim();
+                    changed = true;
+                    break;
+                }
+            }
+        } while (changed && !normalized.isEmpty());
+        return normalized;
+    }
+
+    private boolean startsWithIgnoreCase(String value, String prefix) {
+        if (value == null || prefix == null || value.length() < prefix.length()) {
+            return false;
+        }
+        return value.regionMatches(true, 0, prefix, 0, prefix.length());
     }
 
     /**
@@ -2517,8 +2553,17 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
     private javafx.scene.control.Button createTimedScenarioButton(String label, String text, double width, String tooltip, String iconKey) {
         logButtonBuildStep("createScenarioLibraryButtonInstances: " + label + " start");
         javafx.scene.control.Button button = utils.createButton(text, (int) width, tooltip, iconKey);
+        applyIconOnlyToolbarButton(button);
         logButtonBuildStep("createScenarioLibraryButtonInstances: " + label + " complete");
         return button;
+    }
+
+    private void applyIconOnlyToolbarButton(Button button) {
+        if (button == null || button.getGraphic() == null) {
+            return;
+        }
+        button.setText("");
+        button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
     }
 
     private enum ScenarioRunStateClearMode {

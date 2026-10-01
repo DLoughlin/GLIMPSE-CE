@@ -1,0 +1,18 @@
+Sep 22, 2026 2:47:51 PM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @6c14328c'
+Exception in Application init method
+Exception in thread "main" java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader.main(JarRsrcLoader.java:63)
+Caused by: java.lang.RuntimeException: Exception in Application init method
+	at com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:888)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NullPointerException
+	at java.base/java.io.File.<init>(File.java:278)
+	at glimpseUtil.GLIMPSEVariables.loadOptions(GLIMPSEVariables.java:2361)
+	at glimpseUtil.GLIMPSEVariables.loadOptions(GLIMPSEVariables.java:2353)
+	at gui.Client.init(Client.java:543)
+	at com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	... 2 more

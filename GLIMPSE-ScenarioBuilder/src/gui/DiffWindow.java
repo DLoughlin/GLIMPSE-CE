@@ -353,6 +353,7 @@ public class DiffWindow {
         } catch (Exception ignored) {
         }
 
+        Client.registerSceneForRuntimeFontSize(scene);
         stage.setScene(scene);
 
         // Remember last size within this session.

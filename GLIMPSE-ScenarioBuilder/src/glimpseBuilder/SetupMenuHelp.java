@@ -66,7 +66,7 @@ public final class SetupMenuHelp {
             createWebMenuItem("GLIMPSE-CE GitHub site (web)", "https://github.com/DLoughlin/GLIMPSE-CE"),
             createWebMenuItem("GLIMPSE-CE GitHub documentation (web)", "https://dloughlin.github.io/GLIMPSE-CE"),
             new SeparatorMenuItem(),
-            createMenuItem("About GLIMPSE-CE 2.2", this::showAboutDialog)
+            createMenuItem("About GLIMPSE-CE 2.3 Beta", this::showAboutDialog)
             //new SeparatorMenuItem(),
             //new MenuItem(vars.getGLIMPSEVersion()) // Version display item
         );

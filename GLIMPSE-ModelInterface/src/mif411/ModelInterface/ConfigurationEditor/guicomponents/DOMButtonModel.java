@@ -53,6 +53,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings("deprecation")
 public class DOMButtonModel extends DefaultButtonModel implements ButtonModel, ItemListener, PropertyChangeListener {
     /**
      * Automatically generated unique class identifier.

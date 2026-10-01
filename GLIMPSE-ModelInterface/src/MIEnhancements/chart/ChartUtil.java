@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -251,6 +251,29 @@ public class ChartUtil {
         return new GraphicsPreferences(titleFontSize, subtitleFontSize, domainAxisLabelFontSize,
                 domainAxisTickFontSize, rangeAxisLabelFontSize, rangeAxisTickFontSize,
                 legendFontSize, prefs.lineWidthScale);
+    }
+
+    private static int scaleFontSize(int fontSize, double scale) {
+        double effectiveScale = Double.isFinite(scale) ? Math.max(0.1d, scale) : 1.0d;
+        int scaled = (int) Math.round(fontSize * effectiveScale);
+        return Math.max(InterfaceMain.MIN_GRAPHICS_FONT_SIZE,
+                Math.min(InterfaceMain.MAX_GRAPHICS_FONT_SIZE, scaled));
+    }
+
+    public static GraphicsPreferences scaleGraphicsPreferences(GraphicsPreferences prefs, double scale) {
+        if (prefs == null) {
+            return null;
+        }
+        double effectiveScale = Double.isFinite(scale) ? Math.max(0.1d, Math.min(1.0d, scale)) : 1.0d;
+        return new GraphicsPreferences(
+                scaleFontSize(prefs.titleFontSize, effectiveScale),
+                scaleFontSize(prefs.subtitleFontSize, effectiveScale),
+                scaleFontSize(prefs.domainAxisLabelFontSize, effectiveScale),
+                scaleFontSize(prefs.domainAxisTickFontSize, effectiveScale),
+                scaleFontSize(prefs.rangeAxisLabelFontSize, effectiveScale),
+                scaleFontSize(prefs.rangeAxisTickFontSize, effectiveScale),
+                scaleFontSize(prefs.legendFontSize, effectiveScale),
+                prefs.lineWidthScale);
     }
 
     public static ThumbnailGraphicsPreferences getThumbnailGraphicsPreferences() {

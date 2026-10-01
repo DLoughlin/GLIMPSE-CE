@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -345,7 +345,7 @@ public class ModelInterfaceUtil {
                 beginEnd[0] = beginEnd[1] + 1;
                 tempKey = keyStr;
             } else {
-                matchingRows.add(new Integer(i));
+                matchingRows.add(Integer.valueOf(i));
             }
             beginEnd[1] = i;
             if (i == data.length - 1) {
@@ -399,7 +399,7 @@ public class ModelInterfaceUtil {
                         }
                         keyStr = keyStr.trim();
                         if (rowKey.equals(keyStr)) {
-                            matchingRows.add(new Integer(row2));
+                            matchingRows.add(Integer.valueOf(row2));
                             matched[row2] = true;
                         }
                     }

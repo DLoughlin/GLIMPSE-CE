@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,7 +76,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private static final double MIN_WIDTH = 175;
     private static final String SELECT_ONE = "Select One";
     private static final String[] POLICY_TYPE_OPTIONS = { "All","Renewable Portfolio Standard (RPS)",
-            "Clean Energy Standard (CES)", "EV passenger cars and trucks (LDV-EV)", "EV passenger cars trucks and MCs (LDV-EV)",
+            "Clean Energy Standard (CES)", "EV passenger cars (LDV-EV-Car)","EV passenger trucks (LDV-EV-Truck)","EV passenger cars and trucks (LDV-EV)", "EV passenger cars trucks and MCs (LDV-EV-All)",
             "EV freight light truck (HDV-Lt)", "EV freight medium truck (HDV-Med)", "EV freight heavy truck (HDV-Hvy)", 
             "EV freight all trucks (HDV-EV)","LED lights (LED)", "Heat pumps (HP)", "Biofuels (BioF)", "Other (OTH)", 
             "Sector:EGU (EGU)", "Sector:Industry (IND)", "Sector:Industry-fuels (Fuels)","Sector:Buildings (BLD)", 
@@ -84,8 +85,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
     private static final String[] CONSTRAINT_OPTIONS = { "Lower", "Fixed" };
     private static final String[] TREATMENT_OPTIONS = { "Each Selected Region", "Across Selected Regions" };
     private static final String[] MODIFICATION_TYPE_OPTIONS = { "Initial and Final %", "Initial w/% Growth/yr",
-            "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
-	private static final String SELECT_ONE_OR_MORE = "Select One or More";
+             "Initial w/% Growth/pd", "Initial w/Delta/yr", "Initial w/Delta/pd" };
+ 	private static final String SELECT_ONE_OR_MORE = "Select One or More";
+ 	private final PauseTransition filterUpdateDelay = createFilterUpdateDelay(this::setupCheckComboBoxes);
 
     // === Labels and Controls ===
     private final Label labelSubsetFilter = createLabel("Subset Filter:", LABEL_WIDTH);
@@ -263,18 +265,6 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				textFieldInitialAmount, textFieldGrowth);
 		gridPaneLeft.setAlignment(Pos.TOP_LEFT);
 		gridPaneLeft.setVgap(3.);
-		// Use explicit padding rather than CSS -fx-padding for consistent internal spacing
-		//gridPaneLeft.setPadding(styles.getDefaultPadding());
-		// Apply light background so the left panel matches the dialog's button area
-		//gridPaneLeft.setStyle(styles.getLightBackgroundStyle() + styles.getBackgroundStyle());
-		// Apply padding and background to scroll panes so spacing matches other tabs
-		//scrollPaneLeft.setPadding(styles.getDefaultPadding());
-		//scrollPaneLeft.setStyle(styles.getBackgroundStyle());
-		//scrollPaneCenter.setPadding(styles.getDefaultPadding());
-		//scrollPaneCenter.setStyle(styles.getBackgroundStyle());
-		//scrollPaneRight.setPadding(styles.getDefaultPadding());
-		//scrollPaneRight.setStyle(styles.getBackgroundStyle());
-		// Intentionally omit explicit padding/background here; PolicyTab provides defaults
 		scrollPaneLeft.setContent(gridPaneLeft);
 	}
 
@@ -313,9 +303,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		});
 		setOnAction(textFieldSubsetFilter, e -> setupCheckComboBoxes());
 		setOnAction(textFieldSupersetFilter, e -> setupCheckComboBoxes());
-		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> setupCheckComboBoxes());
-		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> setupCheckComboBoxes());
-		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
+ 		textFieldSubsetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
+ 		textFieldSupersetFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
+ 		setOnAction(comboBoxAppliedTo, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxTreatment, e -> setPolicyAndMarketNames());
 		setOnAction(comboBoxConstraint, e -> setPolicyAndMarketNames());
 
@@ -377,6 +367,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		try {
 			List<String> techListSub = new ArrayList<>();
 			List<String> techListSup = new ArrayList<>();
+			List<String> prevCheckedSubset = new ArrayList<>(checkComboBoxSubset.getCheckModel().getCheckedItems());
+			List<String> prevCheckedSuperset = new ArrayList<>(checkComboBoxSuperset.getCheckModel().getCheckedItems());
 			String filterTextSub = textFieldSubsetFilter.getText() != null ? textFieldSubsetFilter.getText().trim()
 					: "";
 			String filterTextSup = textFieldSupersetFilter.getText() != null ? textFieldSupersetFilter.getText().trim()
@@ -396,33 +388,23 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				boolean showSub = !useFilterSub;
 				if (useFilterSub) {
-					for (String temp : tech) {
-						if (temp != null && temp.toLowerCase().contains(filterTextSubLc)) {
-							showSub = true;
-							break;
-						}
-					}
+					showSub = matchesAllFilterTerms(tech, filterTextSubLc);
 				}
 				if (showSub)
 					techListSub.add(line.trim());
 				boolean showSup = !useFilterSup;
 				if (useFilterSup) {
-					for (String temp : tech) {
-						if (temp != null && temp.toLowerCase().contains(filterTextSupLc)) {
-							showSup = true;
-							break;
-						}
-					}
+					showSup = matchesAllFilterTerms(tech, filterTextSupLc);
 				}
 				if (showSup)
 					techListSup.add(line.trim());
 			}
-			//I think the following was confusing for some users; commenting out for now. 2024-06-05
-//		 // clear previous entries before repopulating
-//			checkComboBoxSubset.getCheckModel().clearChecks();
-//			checkComboBoxSubset.getItems().clear();
-//			checkComboBoxSuperset.getCheckModel().clearChecks();
-//			checkComboBoxSuperset.getItems().clear();
+
+			// Rebuild both lists on each call so text filters actually limit options.
+			checkComboBoxSubset.getCheckModel().clearChecks();
+			checkComboBoxSubset.getItems().clear();
+			checkComboBoxSuperset.getCheckModel().clearChecks();
+			checkComboBoxSuperset.getItems().clear();
 
 			String policyType = comboBoxPolicyType.getValue();
 			// Apply the same policy-specific predicate to both lists. Keeping this
@@ -435,6 +417,17 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			for (String techLine : techListSup) {
 				if (shouldShowTechLine(techLine, policyType)) {
 					checkComboBoxSuperset.getItems().add(techLine);
+				}
+			}
+
+			for (String item : prevCheckedSubset) {
+				if (checkComboBoxSubset.getItems().contains(item)) {
+					checkComboBoxSubset.getCheckModel().check(item);
+				}
+			}
+			for (String item : prevCheckedSuperset) {
+				if (checkComboBoxSuperset.getItems().contains(item)) {
+					checkComboBoxSuperset.getCheckModel().check(item);
 				}
 			}
 
@@ -473,14 +466,14 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
-			if (policyType.startsWith("EV")) {
-				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
-					if (itemText.indexOf("bev") >= 0)
-						checkComboBoxSubset.getCheckModel().check(i);
-				}
-				checkComboBoxSuperset.getCheckModel().checkAll();
-			}
+//			if (policyType.startsWith("EV")) {
+//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
+//					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
+//					if (itemText.indexOf("bev") >= 0)
+//						checkComboBoxSubset.getCheckModel().check(i);
+//				}
+//				checkComboBoxSuperset.getCheckModel().checkAll();
+//			}
 			if (policyType.contains("LED")) {
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
@@ -524,14 +517,14 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 
 		String techLineLc = techLine.toLowerCase();
 		boolean showEgu = policyType.contains("CES") || policyType.contains("RPS");
-		boolean showLdvTruck = false;
-		boolean showLdvCar = false;
-		boolean showLdv4w = policyType.contains("EV passenger cars and trucks");
-		boolean showLdvAll = policyType.contains("EV passenger cars trucks and MCs");
-		boolean showHdvAll = policyType.contains("EV freight all trucks");
-		boolean showHdvLight = policyType.contains("EV freight light truck");
-		boolean showHdvMedium = policyType.contains("EV freight medium truck");
-		boolean showHdvHeavy = policyType.contains("EV freight heavy truck");
+		boolean showLdvTruck = policyType.contains("LDV-EV-Truck");
+		boolean showLdvCar = policyType.contains("LDV-EV-Car");
+		boolean showLdv4w = policyType.contains("LDV-EV");
+		boolean showLdvAll = policyType.contains("LDV-EV-All");
+		boolean showHdvAll = policyType.contains("HDV-EV");
+		boolean showHdvLight = policyType.contains("HDV-EV-Lt");
+		boolean showHdvMedium = policyType.contains("HDV-EV-Med");
+		boolean showHdvHeavy = policyType.contains("HDV-EV-Hvy");
 		boolean showLighting = policyType.contains("LED lights");
 		boolean showHeating = policyType.contains("Heat pumps");
 		boolean showRefining = policyType.contains("Biofuels");
@@ -714,8 +707,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		fileContent = "use temp file";
 		files.writeToBufferedFile(bw0, getMetaDataContent(tree, market_name, policy_name));
 		
-		int no_nested = 0;
-		int no_non_nested = 0;
+		int num_nested = 0;
+		int num_non_nested = 0;
 
 		String treatment = comboBoxTreatment.getValue().toLowerCase().trim();
 		String[] listOfSelectedLeaves = vars.normalizeSelectedRegionsForSubregions(
@@ -759,7 +752,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		files.writeToBufferedFile(bw2, "Variable ID" + vars.getEol());
 		files.writeToBufferedFile(bw2, "GLIMPSEPFStdAdjCoef-Nest" + vars.getEol() + vars.getEol());
 		files.writeToBufferedFile(bw2,
-				"region,sector,nested-subsector,tech,year,policy,adjcoef-year,adjcoef" + vars.getEol());
+				"region,sector,nested-subsector,subsector,tech,year,policy,adjcoef-year,adjcoef" + vars.getEol());
 
 		for (int s = 0; s < listOfSelectedLeaves.length; s++) {
 			String state = listOfSelectedLeaves[s];
@@ -802,12 +795,12 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								list_of_policy_sector_combos = utils
 										.addToArrayListIfUnique(list_of_policy_sector_combos, ss);
 								BufferedWriter bw = bw1;
-								if (tech_name.indexOf("=>") > -1) {
+								if ((subsector_name.indexOf("=>")>-1)||(tech_name.indexOf("=>")> -1)) {
 									bw = bw2;
-									tech_name = tech_name.replace("=>", ",");
-									no_nested++;
+									//subsector_name = subsector_name.replace("=>", ",");
+									num_nested++;
 								} else {
-									no_non_nested++;
+									num_non_nested++;
 								}
 											if (is_subsector_in_region) {
 												Double val = valuef_list[i];
@@ -819,7 +812,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 													val *= 1000.;
 												}
 																String formattedVal = formatDisplayValue(val);
-												String line = state + "," + sector_name + "," + subsector_name + "," + tech_name
+												String line = state + "," + sector_name + "," + subsector_name.replace("=>", ",") + "," + tech_name.replace("=>", ",")
 																	+ "," + t + "," + use_this_policy_name + "," + year_list[i] + "," + formattedVal
 														+ "," + conv + vars.getEol();
 												files.writeToBufferedFile(bw, line);
@@ -847,7 +840,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		files.writeToBufferedFile(bw2, "Variable ID" + vars.getEol());
 		files.writeToBufferedFile(bw2, "GLIMPSEPFStd2ndOut-Nest" + vars.getEol() + vars.getEol());
 		files.writeToBufferedFile(bw2,
-				"region,sector,nested-subsector,tech,year,policy,output-ratio,pMultiplier" + vars.getEol());
+				"region,sector,nested-subsector,subsector,tech,year,policy,output-ratio,pMultiplier" + vars.getEol());
 		int skippedConversionRows = 0;
 
 		for (int s = 0; s < listOfSelectedLeaves.length; s++) {
@@ -876,12 +869,12 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 							String tech_name = utils.splitString(temp, ":")[2].trim();
 							BufferedWriter bw = bw1;
 							
-							if (tech_name.indexOf("=>") > -1) {
+							if ((subsector_name.indexOf("=>")>-1)||(tech_name.indexOf("=>")> -1)) {
 								bw = bw2;
-								tech_name = tech_name.replace("=>", ",");
-								no_nested++;
+								//subsector_name = subsector_name.replace("=>", ",");
+								num_nested++;
 							} else {
-								no_non_nested++;
+								num_non_nested++;
 							}
 							
 							//boolean useTrnUnitPriceConversion = utils.shouldApplyTrnUnitPriceConversion(sector_name);
@@ -891,7 +884,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 							if (conversions != null) {
 								if (conversions.startsWith(","))
 									conversions = conversions.substring(1);
-								String line = state + "," + sector_name + "," + subsector_name + "," + tech_name + ","
+								String line = state + "," + sector_name + "," + subsector_name.replace("=>", ",") + "," + tech_name.replace("=>", ",") + ","
 										+ t + "," + use_this_policy_name + "," + conversions + vars.getEol();
 								files.writeToBufferedFile(bw, line);
 							} else {
@@ -976,9 +969,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		ArrayList<String> tempfiles = new ArrayList<>();
 		tempfiles.add(temp_file0);
 		
-		if (no_non_nested > 0)
+		if (num_non_nested > 0)
 			tempfiles.add(temp_file1);
-		if (no_nested > 0)
+		if (num_nested > 0)
 			tempfiles.add(temp_file2);
 		
 		files.concatDestSources(temp_file, tempfiles);

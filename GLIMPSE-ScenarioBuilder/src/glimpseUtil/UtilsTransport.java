@@ -153,6 +153,8 @@ public final class UtilsTransport {
 		return utils.createStringArrayFromArrayList(list);
 	}
 
+
+	
 	/**
 	 * Looks up a transportation input-table value for the requested parameter and
 	 * year.
@@ -237,7 +239,9 @@ public final class UtilsTransport {
 	 */
 	public String getTrnVehInfo(String param, String region, String sector, String subsector, String tech, String yearStr, String reqdUnits) {
 		String val = "";
+		//not working for bus
 		String[][] data = getTrnDataForProcessing(sector);
+
 		if (data == null || data.length == 0 || data[0] == null)
 			return null;
 
@@ -296,7 +300,8 @@ public final class UtilsTransport {
 					val = data[matchRow][yearCol];
 					double valf = Double.parseDouble(val);
 					String units = data[matchRow][data[matchRow].length - 1].trim();
-					Double convertedVal = convertTransportUnits(valf, units, reqdUnits);
+					Double convertedVal = null;
+					if (reqdUnits!=null) convertedVal = convertTransportUnits(valf, units, reqdUnits);
 					if (convertedVal != null) {
 						val = "" + convertedVal;
 					}
@@ -311,6 +316,7 @@ public final class UtilsTransport {
 		return val;
 	}
 
+	
 	/**
 	 * Converts transportation values between metric-style units such as
 	 * {@code kJ/service-km}, {@code GJ/million-service-km}, and
@@ -463,6 +469,10 @@ public final class UtilsTransport {
 		private static UnitScale unitless() {
 			return new UnitScale(1.0, 1.0, true);
 		}
+	}
+	
+	public void loadTrnVehInfoV2() {
+		loadTrnVehInfo();
 	}
 
 	/**

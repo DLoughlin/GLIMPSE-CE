@@ -60,6 +60,7 @@ import ModelInterface.ModelGUI2.queries.QueryGenerator;
 import ModelInterface.ModelGUI2.queries.SingleQueryExtension;
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class QueryTransferHandler extends TransferHandler {
 	private Document doc;
 	private DOMImplementationLS implls;

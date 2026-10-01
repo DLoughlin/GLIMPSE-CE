@@ -59,6 +59,16 @@ final class ScenarioLibraryPathHelper {
         return Paths.get(executableDir, "logs", "main_log.txt");
     }
 
+    /** Returns the soft-stop marker path in the GCAM executable folder. */
+    static String exeSoftStopNowFile(String executableDir) {
+        return Paths.get(executableDir, "soft-stop-now.txt").toString();
+    }
+
+    /** Returns the soft-stop marker path in the GCAM executable folder as a {@link Path}. */
+    static Path exeSoftStopNowPath(String executableDir) {
+        return Paths.get(executableDir, "soft-stop-now.txt");
+    }
+
     /** Returns a scenario `main_log.txt` path as a {@link Path}. */
     static Path scenarioMainLogPath(String scenarioRootDir, String scenarioName) {
         return Paths.get(scenarioRootDir, scenarioName, "main_log.txt");

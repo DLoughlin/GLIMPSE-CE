@@ -54,6 +54,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings("deprecation")
 public class DOMListModel extends AbstractListModel implements
 		ListSelectionListener, ListDataListener {
 	/**

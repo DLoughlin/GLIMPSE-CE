@@ -131,7 +131,7 @@ public class RecentFilesList implements MenuAdder {
 		recentFilesLength = 5;
 		try {
 			String lengthStr =  prop.getProperty("RecentFilesLength", "5");
-			prop.setProperty("RecentFilesLength", lengthStr);
+			InterfaceMain.getInstance().setProperty("RecentFilesLength", lengthStr);
 			recentFilesLength = Integer.parseInt(lengthStr);
 		} catch(NumberFormatException nfe) {
 			System.out.println("Could not parse length of recent files list: " + recentFilesLength + " , setting to "+recentFilesLength);

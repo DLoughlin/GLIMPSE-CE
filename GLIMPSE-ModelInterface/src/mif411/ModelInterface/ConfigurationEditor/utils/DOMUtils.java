@@ -61,6 +61,7 @@ import ModelInterface.InterfaceMain;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings("deprecation")
 public final class DOMUtils {
     /**
      * Private constructor to prevent creation of the static class.

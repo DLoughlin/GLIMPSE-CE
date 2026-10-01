@@ -46,6 +46,7 @@ import org.basex.query.value.node.ANode;
 import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class DemandComponentsQueryBuilder extends QueryBuilder {
 	/*
 	public static Map varList;
@@ -180,7 +181,7 @@ public class DemandComponentsQueryBuilder extends QueryBuilder {
 		// check the maps to see which ones are true and add it to the list of selected
 		for (int i = 0; i < currKeys.length; ++i) {
 			if (((Boolean)temp.get(currKeys[i])).booleanValue()) {
-				tempVector.addElement(new Integer(i));
+								tempVector.addElement(Integer.valueOf(i));
 			}
 		}
 		int[] selected = new int[tempVector.size()];
@@ -224,10 +225,10 @@ public class DemandComponentsQueryBuilder extends QueryBuilder {
 			default: System.out.println("Error currSel: "+qg.currSel);
 		}
 		for(Iterator it = selected.entrySet().iterator(); it.hasNext(); ) {
-			((Map.Entry)it.next()).setValue(new Boolean(false));
+						((Map.Entry)it.next()).setValue(Boolean.FALSE);
 		}
 		for(int i = 0; i < selectedKeys.length; ++i) {
-			selected.put(selectedKeys[i], new Boolean(true));
+						selected.put(selectedKeys[i], Boolean.TRUE);
 		}
 		*/
 	}
@@ -371,16 +372,16 @@ public class DemandComponentsQueryBuilder extends QueryBuilder {
 	private Map createList(String path, boolean isGroupNames) {
 		LinkedHashMap ret = new LinkedHashMap();
 		if(!isGroupNames && qg.isSumable) {
-			ret.put("Sum All", new Boolean(false));
-			ret.put("Group All", new Boolean(false));
+			ret.put("Sum All", Boolean.FALSE);
+			ret.put("Group All", Boolean.FALSE);
 		}
 		XmlResults res = XMLDB.getInstance().createQuery(path, queryFilter, queryFunctions);
 		try {
 			while(res.hasNext()) {
 				if(!isGroupNames) {
-					ret.put(res.next().asString(), new Boolean(false));
+					ret.put(res.next().asString(), Boolean.FALSE);
 				} else { 
-					ret.put("Group: "+res.next().asString(), new Boolean(false));
+					ret.put("Group: "+res.next().asString(), Boolean.FALSE);
 				}
 			}
 		} catch(XmlException e) {

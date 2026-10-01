@@ -137,20 +137,32 @@ public class CsvFileWriter {
         String headerText = utils.getMatch(colList, comboText, ";");
         System.out.println("Echo header text: " + headerText);
 
+        boolean isNested = false;
+        
         // Handle nested header structure if present
         if (headerText.contains("=>")) {
             headerText = headerText.replace("=>", ",");
-
+            isNested = true;
+            
             // Split technology text if nested
             if (technologyText.contains("=>")) {
                 String[] str = technologyText.split("=>");
                 subsector2Text = str[0].trim();
                 technologyText = str[1].trim();
+                isNested = true;
+            }
+            // Split subsector text if nested
+            if (subsector1Text.contains("=>")) {
+                String[] str = subsector1Text.split("=>"); 
+                subsector1Text = str[0].trim();
+                subsector2Text = str[1].trim();
+                isNested = true;
             }
         }
 
         // Split header into name and columns
         String headerName = (headerText.split(":")[0]).trim();
+        if (isNested) headerName += "-Nest";
         String header = (headerText.split(":")[1]).trim();
 
         // Add initial lines to CSV content

@@ -50,6 +50,7 @@ import org.basex.query.value.node.ANode;
 
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class LandAllocatorQueryBuilder extends QueryBuilder {
 	public static Map<String, Boolean> varList;
 	public static String xmlName = "LandAllocatorQuery";
@@ -197,7 +198,7 @@ public class LandAllocatorQueryBuilder extends QueryBuilder {
 					// check the maps to see which ones are true and add it to the list of selected
 					for (int i = 0; i < currKeys.length; ++i) {
 						if (((Boolean)temp.get(currKeys[i])).booleanValue()) {
-							tempVector.addElement(new Integer(i));
+												tempVector.addElement(Integer.valueOf(i));
 						}
 					}
 					int[] selected = new int[tempVector.size()];
@@ -228,10 +229,10 @@ public class LandAllocatorQueryBuilder extends QueryBuilder {
 			case 2: {
 					selected = varList;
 					for(Iterator it = selected.entrySet().iterator(); it.hasNext(); ) {
-						((Map.Entry)it.next()).setValue(new Boolean(false));
+										((Map.Entry)it.next()).setValue(Boolean.FALSE);
 					}
 					for(int i = 0; i < selectedKeys.length; ++i) {
-						selected.put(selectedKeys[i], new Boolean(true));
+										selected.put(selectedKeys[i], Boolean.TRUE);
 					}
 					break;
 			}

@@ -159,6 +159,10 @@ final class ConsoleManager {
         if (line == null) {
             return;
         }
+        if (Platform.isFxApplicationThread()) {
+            appendLineToUi(effectiveSource(source), kind, line);
+            return;
+        }
         Platform.runLater(() -> appendLineToUi(effectiveSource(source), kind, line));
     }
 
@@ -190,7 +194,7 @@ final class ConsoleManager {
         } catch (Exception ignored) {}
         clearDeferredPaintIfNeeded(source);
 
-        Platform.runLater(() -> {
+        Runnable clearUi = () -> {
             ensureModelCreated();
             TextArea area = areaFor(source);
             if (area != null) {
@@ -198,7 +202,13 @@ final class ConsoleManager {
                 LAST_APPLIED_AREA_STYLE.remove(area);
                 applyAreaStyle(area, MessageKind.MODEL_STDOUT);
             }
-        });
+        };
+
+        if (Platform.isFxApplicationThread()) {
+            clearUi.run();
+        } else {
+            Platform.runLater(clearUi);
+        }
     }
 
     private static void appendLineToUi(StreamSource source, MessageKind kind, String line) {
@@ -307,6 +317,7 @@ final class ConsoleManager {
         stage = new Stage();
         stage.setTitle("GLIMPSE Console");
         initOwnerForConsoleStage(stage);
+        final boolean[] restoredSavedLocation = { false };
 
         tabPane = new TabPane();
         tabPane.getTabs().add(createTab("GLIMPSE", glimpseStdoutArea));
@@ -337,14 +348,22 @@ final class ConsoleManager {
         Scene scene = new Scene(root, 700, 525);
         ScenarioBuilder.applyModernTheme(scene);
         stage.setScene(scene);
+        try {
+            restoredSavedLocation[0] = Client.applyConsoleStageBounds(stage, 700, 525);
+        } catch (Exception ignored) {}
         stage.showingProperty().addListener((obs, wasShowing, isShowing) -> {
             if (Boolean.TRUE.equals(isShowing)) {
                 flushDeferredGcamBacklogIfVisible();
+            } else {
+                Client.persistConsoleStageBounds(stage);
             }
         });
+        stage.setOnCloseRequest(e -> Client.persistConsoleStageBounds(stage));
         stage.setOnShown(e -> {
             flushDeferredGcamBacklogIfVisible();
-            centerStageOverPrimaryOwner(stage);
+            if (!restoredSavedLocation[0]) {
+                centerStageOverPrimaryOwner(stage);
+            }
         });
     }
 
@@ -742,6 +761,7 @@ final class ConsoleManager {
     private static void showAlert(Alert.AlertType type, String title, String header, String content) {
         try {
             Alert alert = new Alert(type);
+            UtilsDialogs.applyDialogTheme(alert);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);

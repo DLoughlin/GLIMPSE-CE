@@ -57,6 +57,7 @@ import ModelInterface.ModelGUI2.undo.EditQueryUndoableEdit;
 import ModelInterface.ModelGUI2.undo.MiUndoableEditListener;
 import ModelInterface.ModelGUI2.undo.QueryAddRemoveUndoableEdit;
 
+@SuppressWarnings("unchecked")
 public class QueryTreeModel implements TreeModel, MiUndoableEditListener {
 	protected QueryGroup root;
 	protected ArrayList<TreeModelListener> tmListeners;

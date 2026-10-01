@@ -40,6 +40,7 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Pralit Patel
  */
+@SuppressWarnings("deprecation")
 public class JListAdapter implements JComponentAdapter {
 
 	/**

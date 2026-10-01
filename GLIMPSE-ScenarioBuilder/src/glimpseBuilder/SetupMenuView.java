@@ -72,12 +72,13 @@ public final class SetupMenuView {
     private final GLIMPSEFiles files = GLIMPSEFiles.getInstance();
 
     public void setup(Menu menuView) {
+        Menu menuDebugging = new Menu("Debugging");
         Menu menuResourceLogs = new Menu("Resource Logs");
         Menu menuBrowseFolders = new Menu("Browse Folder");
 
         // --- Main Log Viewing Items ---
         String mainLogPath = Paths.get(vars.getgCamExecutableDir(), "logs", "main_log.txt").toString();
-        menuView.getItems().addAll(
+        menuDebugging.getItems().addAll(
             createMenuItem("Current Main Log", () -> files.showFileInTextEditor(mainLogPath)),
             createMenuItem("Errors in Main Log", () -> {
                 utils.showTextErrorReport(
@@ -88,8 +89,10 @@ public final class SetupMenuView {
             createMenuItem("Current Solver Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "solver_log.csv").toString())),
             createMenuItem("Current Worst Market Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "worst_market_log.txt").toString())),
             createMenuItem("Current Calibration Log", () -> files.showFileInTextEditor(Paths.get(vars.getgCamExecutableDir(), "logs", "calibration_log.txt").toString())),
-            createMenuItem("Debug File", this::showDebugFile),
-            new SeparatorMenuItem(),
+            createMenuItem("Debug File", this::showDebugFile)
+        );
+
+        menuView.getItems().addAll(
             createMenuItem("Font Size...", this::showFontSizeDialog),
             new SeparatorMenuItem()
         );
@@ -114,7 +117,7 @@ public final class SetupMenuView {
             createMenuItem("GCAM output Folder", () -> files.openFileExplorer(new File(vars.getgCamExecutableDir()).getParentFile().toPath().resolve("output").toString()))
         );
         
-        menuView.getItems().addAll(menuResourceLogs, new SeparatorMenuItem(), menuBrowseFolders);
+        menuView.getItems().addAll(menuBrowseFolders, new SeparatorMenuItem(), menuResourceLogs, new SeparatorMenuItem(), menuDebugging);
     }
 
     private void showDebugFile() {
@@ -201,6 +204,7 @@ public final class SetupMenuView {
         root.setPadding(new Insets(12));
 
         Scene scene = new Scene(root, 350, 140);
+        Client.registerSceneForRuntimeFontSize(scene);
         dialog.setScene(scene);
         dialog.setResizable(false);
         dialog.showAndWait();

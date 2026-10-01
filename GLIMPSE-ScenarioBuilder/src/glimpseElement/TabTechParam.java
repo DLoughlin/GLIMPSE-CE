@@ -41,6 +41,7 @@ import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
 import glimpseBuilder.CsvFileWriter;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -115,9 +116,9 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_MANUAL_YEAR_VALUE_PAIRS = "Year-Value Pairs:";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
-    
 
-    // === Layout and UI Components ===
+ 
+     // === Layout and UI Components ===
     // Layout containers for tab columns and panes
 
     // === UI Controls ===
@@ -129,7 +130,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private final Label labelFilter = createLabel(LABEL_FILTER, LABEL_WIDTH);
     private final TextField textFieldFilter = createTextField(PREF_WIDTH);
     private final Label labelCheckComboBoxTech = createLabel(LABEL_TECHS, LABEL_WIDTH);
-    private final CheckComboBox<String> checkComboBoxTech = utils.createCheckComboBox(PREF_WIDTH);
+    private final CheckComboBox<String> checkComboBoxTech = createCheckComboBox();
     private final Label labelComboBoxParam = createLabel(LABEL_PARAMETER, LABEL_WIDTH);
     private final ComboBox<String> comboBoxParam = createComboBoxString(PREF_WIDTH);
     private final Label labelComboBoxParam2 = createLabel(LABEL_PARAMETER2, LABEL_WIDTH);
@@ -148,6 +149,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
     // to be rows of String arrays describing sector, subsector, tech, inputs,
     // outputs and categories (see GLIMPSEVariables.getTechInfo()).
     private String[][] techInfo = null;
+    private final PauseTransition filterUpdateDelay = createFilterUpdateDelay(this::updateCheckComboTechs);
 
     /**
      * Construct a TabTechParam instance and initialize the UI controls.
@@ -302,7 +304,8 @@ public class TabTechParam extends PolicyTab implements Runnable {
         super.setupEventHandlers();
         
         // Update tech list when filter text is changed (press Enter)
-        setOnAction(textFieldFilter, e -> { updateCheckComboTechs(); });
+        setOnAction(textFieldFilter, e -> updateCheckComboTechs());
+        textFieldFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
         
         // Double-clicking the tech label toggles selection when enabled
         labelCheckComboBoxTech.setOnMouseClicked(e -> {
@@ -320,7 +323,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
         });
         // Category selection controls enabling/disabling of tech selection and filter
         setOnAction(comboBoxCategory, e -> {
-            String selectedItem = comboBoxCategory.getSelectionModel().getSelectedItem();
             if (isSelectionMissing(comboBoxCategory)) {
                 // Reset tech selection UI when no category chosen
                 resetCheckComboBoxItems(checkComboBoxTech, null);
@@ -487,22 +489,30 @@ public class TabTechParam extends PolicyTab implements Runnable {
             if (this.techInfo == null) return;
             boolean isAllCat = cat.equals(ALL);
             try {
+                List<String> prevCheckedTechs = new ArrayList<>(checkComboBoxTech.getCheckModel().getCheckedItems());
                 resetCheckComboBoxItems(checkComboBoxTech, null);
-                if (cat != null) {
-                    String lastLine = "";
-                    String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
-                    for (String[] techRow : this.techInfo) {
-                        if (techRow == null || techRow.length < 3) continue;
-                        String line = (techRow[0] != null ? techRow[0].trim() : "") + " : " + (techRow[1] != null ? techRow[1] : "") + " : " + (techRow[2] != null ? techRow[2] : "");
-                        if (filterText.isEmpty() || line.contains(filterText)) {
-                            if (techRow.length >= 7 && techRow[6] != null) line += " : " + techRow[6];
-                            if (!line.equals(lastLine)) {
-                                lastLine = line;
-                                if (isAllCat || techRow[7].equals(cat)) {
-                                    checkComboBoxTech.getItems().add(line);
-                                }
+                String lastLine = "";
+                String filterText = textFieldFilter.getText() != null ? textFieldFilter.getText().trim() : "";
+                String filterTextLc = filterText.toLowerCase();
+                for (String[] techRow : this.techInfo) {
+                    if (techRow == null || techRow.length < 3) continue;
+                    String line = (techRow[0] != null ? techRow[0].trim() : "") + " : "
+                            + (techRow[1] != null ? techRow[1] : "") + " : " + (techRow[2] != null ? techRow[2] : "");
+                    if (filterText.isEmpty() || matchesAllFilterTerms(techRow, filterTextLc)) {
+                        if (techRow.length >= 7 && techRow[6] != null) {
+                            line += " : " + techRow[6];
+                        }
+                        if (!line.equals(lastLine)) {
+                            lastLine = line;
+                            if (isAllCat || (techRow.length > 7 && techRow[7] != null && techRow[7].equals(cat))) {
+                                checkComboBoxTech.getItems().add(line);
                             }
                         }
+                    }
+                }
+                for (String item : prevCheckedTechs) {
+                    if (checkComboBoxTech.getItems().contains(item)) {
+                        checkComboBoxTech.getCheckModel().check(item);
                     }
                 }
             } catch (NullPointerException e) {
@@ -515,7 +525,6 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 System.out.println("  ---> " + e);
             }
     }
-    
 
     /**
      * Build the metadata header and body for the scenario component file. The

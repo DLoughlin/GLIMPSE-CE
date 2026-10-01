@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import gui.ScenarioBuilder;
 import glimpseElement.DataPoint;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -580,6 +581,7 @@ public class UtilsTable {
 			border.setBottom(buttonBox);
 
 			Scene scene = new Scene(border);
+			ScenarioBuilder.applyModernTheme(scene);
 			stage.setScene(scene);
 			stage.setOnShown(e -> {
 				try {

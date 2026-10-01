@@ -249,7 +249,7 @@ public class PPViewer implements ActionListener, MenuAdder, BatchRunner
     // set last directory for subsequent file opens
     File parentDir = currFile.getParentFile();
     if(parentDir != null) {
-      InterfaceMain.getInstance().getProperties().setProperty("lastDirectory",
+      InterfaceMain.getInstance().setProperty("lastDirectory",
           parentDir.getAbsolutePath());
     }
     

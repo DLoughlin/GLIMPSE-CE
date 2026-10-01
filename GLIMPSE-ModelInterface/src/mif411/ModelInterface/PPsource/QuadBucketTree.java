@@ -695,14 +695,14 @@ public class QuadBucketTree implements DataIndex
             if(((TreeMap)entry.data.get(varName)).containsKey(timeName))
             { //time already exists, add together values, replace old value
               oldValue = (Double)((TreeMap)entry.data.get(varName)).get(timeName);
-              newValue = new Double(oldValue.doubleValue()+(addValue.doubleValue()*weight));
+                    newValue = Double.valueOf(oldValue.doubleValue()+(addValue.doubleValue()*weight));
               ((TreeMap)entry.data.get(varName)).put(timeName, newValue);
               
               System.out.println("D"+oldValue+"->"+newValue+" ");
               
             } else
             { //must add time
-              newValue = new Double(addValue.doubleValue()*weight);
+                    newValue = Double.valueOf(addValue.doubleValue()*weight);
               ((TreeMap)entry.data.get(varName)).put(timeName, newValue);
               
               System.out.println("T"+newValue+" ");
@@ -710,7 +710,7 @@ public class QuadBucketTree implements DataIndex
           } else
           { //must add variable
             builder = new TreeMap();
-            newValue = new Double(addValue.doubleValue()*weight);
+                  newValue = Double.valueOf(addValue.doubleValue()*weight);
             builder.put(timeName, newValue);
             entry.data.put(varName, builder);
             System.out.println("V"+newValue+" ");
@@ -810,7 +810,7 @@ public class QuadBucketTree implements DataIndex
               {
                 //filling treemap with weighted values for each occured time
                 time = (Map.Entry)iT.next();
-                iHateObjects = new Double((((Double)time.getValue()).doubleValue()*weight));
+                        iHateObjects = Double.valueOf((((Double)time.getValue()).doubleValue()*weight));
                 builder.put(time.getKey(), iHateObjects);
               }
               //adding the treemap of time for each seperate variable after it is built
@@ -831,7 +831,7 @@ public class QuadBucketTree implements DataIndex
               {
                 //filling treemap with weighted values for each occured time
                 time = (Map.Entry)iT.next();
-                iHateObjects = new Double((((Double)((TreeMap)val.data.get(var.getKey())).get(time.getKey())).doubleValue()+(((Double)time.getValue()).doubleValue()*weight)));
+                        iHateObjects = Double.valueOf((((Double)((TreeMap)val.data.get(var.getKey())).get(time.getKey())).doubleValue()+(((Double)time.getValue()).doubleValue()*weight)));
                 builder.put(time.getKey(), iHateObjects);
               }
               //adding the treemap of time for each seperate variable after it is built
@@ -922,7 +922,7 @@ public class QuadBucketTree implements DataIndex
           }
           //adding a data point for the weight of this DB
           addPoint = new Point2D.Double(entry.x, entry.y);
-          ((TreeMap)((TreeMap)makeRegion.get("weight")).get("0")).put(addPoint, new Double(weight));
+              ((TreeMap)((TreeMap)makeRegion.get("weight")).get("0")).put(addPoint, Double.valueOf(weight));
           //add the data to the correct TreeMap (based on data name)
           //iterate through the data in this Node, by Var, then Time, adding to makeRegion
           Map.Entry var, time;

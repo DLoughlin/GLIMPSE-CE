@@ -67,6 +67,7 @@ import mapOptions.MapOptionsUtil;
  * Author: Yadong
  * Date: September/03/2024
  */
+@SuppressWarnings("unchecked")
 public class SankeyDiagramFromTable extends JFrame implements ComponentListener {
     private static final long serialVersionUID = 1L;
     private String chartName;
