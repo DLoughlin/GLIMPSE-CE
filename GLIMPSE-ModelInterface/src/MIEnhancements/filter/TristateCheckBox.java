@@ -34,7 +34,6 @@ package filter;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -75,21 +74,9 @@ public class TristateCheckBox extends JCheckBox {
          setSize(size);
      }
 
-    /**
-     * Custom paint method to set the icon based on the current state.
-     * @param g the Graphics context
-     */
     @Override
-    public void paint(Graphics g) {
-        // Half-selected takes precedence and is always mutually exclusive with checked.
-        if (halfState) {
-            setSelected(false);
-            setIcon(getHalfSelectedIcon(resolveNativeIconSize()));
-        } else {
-            // Use LAF icons for the checked/unchecked appearance (e.g., blue check).
-            setIcon(null);
-        }
-        super.paint(g);
+    public void setSelected(boolean selected) {
+        super.setSelected(halfState ? false : selected);
     }
 
     /**
@@ -109,6 +96,7 @@ public class TristateCheckBox extends JCheckBox {
         if (halfState) {
             setSelected(false);
         }
+        setIcon(halfState ? getHalfSelectedIcon(resolveNativeIconSize()) : null);
         repaint();
     }
 
