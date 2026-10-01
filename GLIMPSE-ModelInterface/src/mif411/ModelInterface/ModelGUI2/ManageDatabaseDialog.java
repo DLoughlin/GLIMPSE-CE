@@ -53,6 +53,7 @@ import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.FileChooser;
 import ModelInterface.common.FileChooserFactory;
 
+@SuppressWarnings({"unchecked", "deprecation"})
 public class ManageDatabaseDialog extends JDialog {
 
     private final DbViewer dbViewer;

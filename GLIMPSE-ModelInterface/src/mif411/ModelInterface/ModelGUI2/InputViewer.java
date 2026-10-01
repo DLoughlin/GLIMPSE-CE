@@ -110,6 +110,7 @@ import ModelInterface.common.FileChooser;
 import ModelInterface.common.FileChooserFactory;
 import ModelInterface.common.RecentFilesList.RecentFile;
 
+@SuppressWarnings("deprecation")
 public class InputViewer implements ActionListener, TableModelListener, MenuAdder, BatchRunner {
 
 	private InputViewer thisViewer;

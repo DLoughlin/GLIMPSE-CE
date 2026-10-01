@@ -56,6 +56,7 @@ import org.w3c.dom.Document;
 import ModelInterface.InterfaceMain;
 import ModelInterface.ModelGUI2.InputViewer;
 
+@SuppressWarnings("unchecked")
 public class TableSelector extends JDialog implements ActionListener {
 	/**
 	 * 

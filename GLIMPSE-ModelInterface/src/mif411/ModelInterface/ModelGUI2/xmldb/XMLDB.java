@@ -912,37 +912,37 @@ public class XMLDB {
 					} else if(md.get_name().equals("var")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							SupplyDemandQueryBuilder.varList.put(vars[i], new Boolean(false));
+							SupplyDemandQueryBuilder.varList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("demographicsVar")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							DemographicsQueryBuilder.varList.put(vars[i], new Boolean(false));
+							DemographicsQueryBuilder.varList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("ghgNames")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							EmissionsQueryBuilder.ghgList.put(vars[i], new Boolean(false));
+							EmissionsQueryBuilder.ghgList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("fuelNames")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							EmissionsQueryBuilder.fuelList.put(vars[i], new Boolean(false));
+							EmissionsQueryBuilder.fuelList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("GDPVar")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							GDPQueryBuilder.varList.put(vars[i], new Boolean(false));
+							GDPQueryBuilder.varList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("ClimateVar")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							ClimateQueryBuilder.varList.put(vars[i], new Boolean(false));
+							ClimateQueryBuilder.varList.put(vars[i], Boolean.FALSE);
 						}
 					} else if(md.get_name().equals("LandAllocationVar")) {
 						String[] vars = mdVal.asString().split(";");
 						for(int i = 0; i < vars.length; ++i) {
-							LandAllocatorQueryBuilder.varList.put(vars[i], new Boolean(false));
+							LandAllocatorQueryBuilder.varList.put(vars[i], Boolean.FALSE);
 						}
 					}
 				}

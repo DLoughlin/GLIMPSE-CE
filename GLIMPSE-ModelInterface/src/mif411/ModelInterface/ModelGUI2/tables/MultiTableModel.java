@@ -89,6 +89,7 @@ import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
 
 
+@SuppressWarnings("unchecked")
 public class MultiTableModel extends BaseTableModel{
 	/**
 	 * 
@@ -184,7 +185,7 @@ public class MultiTableModel extends BaseTableModel{
 		tableRenderer = new TableRenderer();
 		activeRows = new Vector(tables.size());
 		for(int i = 0; i < tables.size(); i++) {
-			activeRows.add(new Integer(i));
+			activeRows.add(Integer.valueOf(i));
 		}
 	}
 	/**
@@ -263,7 +264,7 @@ public class MultiTableModel extends BaseTableModel{
 			  }
 			  */
 			  if (!tempFilter.containsKey(attr)) {
-                          	tempFilter.put(attr, new Boolean(true));
+												  	tempFilter.put(attr, Boolean.TRUE);
                           	filterMaps.put(n.getNodeName(), tempFilter);
 			  }
 		  }
@@ -506,8 +507,8 @@ public class MultiTableModel extends BaseTableModel{
 		Vector tempActive = new Vector();
 		for(int i = 0; i < tables.size(); i+=2) {
 			if(((String)tables.get(i)).matches(regexStr)) {
-				tempActive.add(new Integer(i));
-				tempActive.add(new Integer(i+1));
+				tempActive.add(Integer.valueOf(i));
+				tempActive.add(Integer.valueOf(i+1));
 			}
 		}
 		activeRows = tempActive;
@@ -534,7 +535,7 @@ public class MultiTableModel extends BaseTableModel{
         tableRenderer = new TableRenderer();
         activeRows = new Vector(tables.size());
         for(int i = 0; i < tables.size(); i++) {
-            activeRows.add(new Integer(i));
+			activeRows.add(Integer.valueOf(i));
         }
         // add some html to make it look nice
         title = "<html><body><b>"+title+"</b> Comments: "+qg.getComments();

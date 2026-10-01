@@ -3052,17 +3052,17 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		}
 	}
 
-	protected Vector getRegions() {
-		Vector funcTemp = new Vector<String>(1, 0);
+	protected Vector<String> getRegions() {
+		Vector<String> funcTemp = new Vector<String>(1, 0);
 		funcTemp.add("distinct-values");
-		Vector ret = new Vector();
+		Vector<String> ret = new Vector<String>();
 		QueryProcessor queryProc = XMLDB.getInstance().createQuery(
 				"/scenario/world/" + ModelInterface.ModelGUI2.queries.QueryBuilder.regionQueryPortion + "/@name",
 				funcTemp, null, null);
 		try {
 			Iter res = queryProc.iter();
 			Item temp;
-			while ((temp = res.next()) != null) { ret.add(temp.toJava()); }
+			while ((temp = res.next()) != null) { ret.add(temp.toJava().toString()); }
 		} catch (QueryException e) { e.printStackTrace(); }
 		finally { queryProc.close(); }
 		ret.add("Global");

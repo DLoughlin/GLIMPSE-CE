@@ -59,6 +59,7 @@ import ModelInterface.common.FileChooserFactory;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings("deprecation")
 final public class FileUtils {
 	/**
 	 * Static properties object.

@@ -120,6 +120,7 @@ import graphDisplay.ModelInterfaceUtil;
  *					moved
  */
 
+@SuppressWarnings("unchecked")
 public class TableSorter extends AbstractTableModel {
     /**
 	 * 

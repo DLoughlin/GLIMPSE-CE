@@ -178,6 +178,7 @@ import mapOptions.MapOptionsUtil;
  * @version 1.1
  * @since 2012
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private static final boolean DEBUG = false;
 	private JPanel loadingPanel;
@@ -278,11 +279,11 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 
 	private static final class StartupData {
 		private final Vector<ScenarioListItem> scenarios;
-		private final Vector regions;
+		private final Vector<String> regions;
 		private final QueryTreeModel queries;
 		private final File queryFile;
 
-		private StartupData(Vector<ScenarioListItem> scenarios, Vector regions, QueryTreeModel queries, File queryFile) {
+		private StartupData(Vector<ScenarioListItem> scenarios, Vector<String> regions, QueryTreeModel queries, File queryFile) {
 			this.scenarios = scenarios;
 			this.regions = regions;
 			this.queries = queries;
@@ -573,7 +574,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			logStartupPhase("Scenarios loaded", dbFile);
 			logStartupPhase(STARTUP_MESSAGE_LOADING_REGIONS, dbFile);
 			updateStartupMessage(STARTUP_MESSAGE_LOADING_REGIONS);
-			Vector loadedRegions = getRegions();
+			Vector<String> loadedRegions = getRegions();
 			logStartupPhase("Regions loaded", dbFile);
 			logStartupPhase(STARTUP_MESSAGE_LOADING_QUERIES, dbFile);
 			updateStartupMessage(STARTUP_MESSAGE_LOADING_QUERIES);
@@ -600,7 +601,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	protected Vector<ScenarioListItem> scns;
 	public JList scnList;
 	protected JList regionList;
-	protected Vector regions;
+	protected Vector<String> regions;
 	// Preserve first-loaded ordering so later region refreshes remain stable.
 	private final java.util.List<String> initialRegionOrdering = new ArrayList<String>();
 	private static final List<String> US_STATE_CODES = Arrays.asList(
@@ -978,57 +979,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 							return;
 						}
 						resetDbViewInitialized("control-transition-enter");
-						setStartupState(StartupLifecycleState.PREPARING);
-						Properties prop = main.getProperties();
-						File queryFile;
-						try {
-							queryFile = resolveStartupQueryFile(prop, parentFrame);
-						} catch (StartupQuerySelectionCancelledException startupCanceled) {
-							setStartupState(StartupLifecycleState.FAILED);
-							resetDbViewInitialized("control-transition-query-selection-canceled");
-							invalidateQueriesDocument("control-transition-query-selection-canceled");
-							InterfaceMain.getInstance().showMessageDialog(
-									startupCanceled.getMessage() + "\nUse Open DB to try again.",
-									"Startup Canceled", JOptionPane.INFORMATION_MESSAGE);
-							final String restoreControl = determineControlToRestore(evt.getOldValue());
-							SwingUtilities.invokeLater(() -> InterfaceMain.getInstance().fireControlChange(restoreControl));
-							return;
-						} catch (IllegalStateException startupQueryError) {
-							setStartupState(StartupLifecycleState.FAILED);
-							resetDbViewInitialized("control-transition-missing-query-file");
-							invalidateQueriesDocument("control-transition-missing-query-file");
-							InterfaceMain.getInstance().showMessageDialog(startupQueryError.getMessage(),
-									"Startup Query File Required", JOptionPane.ERROR_MESSAGE);
-							return;
-						}
-
-						// TODO: move to load preferences
-						scenarioRegionSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
-						scenarioRegionSplit.setResizeWeight(.5);
-						queriesSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
-						// queriesSplit.setLeftComponent(scenarioRegionSplit);
-						queriesSplit.setResizeWeight(.5);
-						tableCreatorSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false);
-						String tempInt;
-						try {
-							if ((tempInt = prop.getProperty("scenarioRegionSplit")) != null) {
-								scenarioRegionSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-							if ((tempInt = prop.getProperty("queriesSplit")) != null) {
-								queriesSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-							if ((tempInt = prop.getProperty("tableCreatorSplit")) != null) {
-								tableCreatorSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-						} catch (NumberFormatException nfe) {
-							System.out.println("Invalid split location preference: " + nfe);
-						}
-						// Do not attach File menu Save/Save As here; they are managed under Tools > Queries
-						// Ensure File menu items remain disabled to avoid duplicates
-						main.getSaveMenu().setEnabled(false);
-						main.getSaveAsMenu().setEnabled(false);
-
-						ensureQueriesDocumentLoaded(queryFile);
+						// Interactive DB opens call fireControlChange(controlStr) before doOpenDB().
+						// Query-file selection and loading must happen only once, inside the
+						// doOpenDB/startup-loader path, otherwise startup can prompt for the
+						// same query file twice.
 
 					}
 				} else if (evt.getPropertyName().equals("SelectQuery")) {
@@ -2123,7 +2077,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	 *
 	 * @return Vector of region names.
 	 */
-	public Vector getRegions() {
+	public Vector<String> getRegions() {
 		// IMPORTANT: Do NOT use distinct-values(collection()/...) here.
 		// When distinct-values() wraps a large collection, BaseX must exhaustively scan the
 		// entire remaining database before returning null from iter(), causing a hang on large
@@ -2135,7 +2089,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		// The correct approach: query only the FIRST document in the collection to get the region
 		// list. All GCAM scenarios share the same world-region structure, so one document suffices.
 		// We fall back to scanning more documents only if the first document has no regions.
-		Vector ret = new Vector();
+		Vector<String> ret = new Vector<String>();
 		long startNanos = System.nanoTime();
 		if (DEBUG) System.out.println("DbViewer.getRegions: querying regions from first document in collection...");
 		// StandardQueryBinding always prepends "collection()" to the base path, so we pass
@@ -2212,8 +2166,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		return ret;
 	}
 
-	private Vector applyInitialRegionOrdering(Vector currentRegions) {
-		Vector ordered = new Vector();
+	private Vector<String> applyInitialRegionOrdering(Vector<String> currentRegions) {
+		Vector<String> ordered = new Vector<String>();
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return ordered;
 		}
@@ -2250,7 +2204,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	 * Sorts aggregate-region names and state/province abbreviations without moving entries
 	 * between their database-defined groups.
 	 */
-	private Vector sortRegionEntries(Vector currentRegions) {
+	private Vector<String> sortRegionEntries(Vector<String> currentRegions) {
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return currentRegions;
 		}
@@ -2306,14 +2260,14 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 
 		subregions.sort(String.CASE_INSENSITIVE_ORDER);
 
-		Vector ordered = new Vector();
+		Vector<String> ordered = new Vector<String>();
 		ordered.addAll(primaryRegions);
 		ordered.addAll(subregions);
 		ordered.addAll(otherRegions);
 		return ordered;
 	}
 
-	private String getEffectivePrimaryRegionName(Vector currentRegions) {
+	private String getEffectivePrimaryRegionName(Vector<String> currentRegions) {
 		if (containsRegionName(currentRegions, primaryRegionName)) {
 			return primaryRegionName;
 		}
@@ -2328,7 +2282,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		return primaryRegionName;
 	}
 
-	private boolean containsRegionName(Vector currentRegions, String targetRegionName) {
+	private boolean containsRegionName(Vector<String> currentRegions, String targetRegionName) {
 		if (currentRegions == null || targetRegionName == null || targetRegionName.trim().isEmpty()) {
 			return false;
 		}
@@ -2345,7 +2299,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	 * Entries after the subregion block (for example PADD/grid groupings) are not
 	 * affected.
 	 */
-	private void sortAggregateEntries(Vector currentRegions, List<String> subregionsToSort, String primaryRegionName) {
+	private void sortAggregateEntries(Vector<String> currentRegions, List<String> subregionsToSort, String primaryRegionName) {
 		int firstSubregionIndex = -1;
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);

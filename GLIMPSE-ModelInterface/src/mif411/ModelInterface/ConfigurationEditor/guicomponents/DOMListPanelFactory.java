@@ -49,6 +49,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings("deprecation")
 public class DOMListPanelFactory implements PropertyChangeListener {
     /**
      * Reference to the top level document.

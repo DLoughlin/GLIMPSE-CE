@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -243,7 +243,7 @@ public class AChartDisplay {
 		}
 
 		/**
-		 * Override the right-click popup to rename "Properties..." → "Customize...".
+		 * Override the right-click popup to rename "Properties..." -> "Customize...".
 		 */
 		@Override
 		public javax.swing.JPopupMenu createPopupMenu(boolean properties, boolean copy,
@@ -829,7 +829,7 @@ public class AChartDisplay {
 	}
 
 	private int resolveSeriesInsertIndex(JTabbedPane tabs) {
-		// Place Series first — it is the most commonly used tab.
+		// Place Series first - it is the most commonly used tab.
 		return 0;
 	}
 

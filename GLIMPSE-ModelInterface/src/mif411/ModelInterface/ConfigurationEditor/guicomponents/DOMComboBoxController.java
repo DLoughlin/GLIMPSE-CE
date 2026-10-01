@@ -51,6 +51,7 @@ import ModelInterface.ConfigurationEditor.utils.DOMUtils;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class DOMComboBoxController implements ItemListener {
 	/**
 	 * The DOM document which contains the information pertaining to the combo

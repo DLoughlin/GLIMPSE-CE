@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -231,7 +231,7 @@ public class FilteredTable {
                 // Prevent generating thumbnails if the table is too large.
                 int rowCountCheck = (jtable != null) ? jtable.getRowCount() : 0;
                 if (rowCountCheck >= MAX_AUTO_ROWS) {
-                    System.out.println("Graph suppressed: Result has " + rowCountCheck + " rows (limit is " + MAX_AUTO_ROWS + ") — auto graphics won't be generated.");
+                    System.out.println("Graph suppressed: Result has " + rowCountCheck + " rows (limit is " + MAX_AUTO_ROWS + ") - auto graphics won't be generated.");
                     return;
                 }
                  if (debug)
@@ -795,7 +795,7 @@ public class FilteredTable {
  		int rowCount = (jtable != null) ? jtable.getRowCount() : 0;
 		// If the number of rows has reached or exceeded the configured threshold, skip auto graphics.
 		if (rowCount >= MAX_AUTO_ROWS) {
-			System.out.println("Auto-graphics skipped: Result has " + rowCount + " rows (limit is " + MAX_AUTO_ROWS + ") — auto graphics won't be generated.");
+      System.out.println("Auto-graphics skipped: Result has " + rowCount + " rows (limit is " + MAX_AUTO_ROWS + ") - auto graphics won't be generated.");
 			return;
 		}
 
@@ -895,8 +895,8 @@ public class FilteredTable {
 
     /**
      * Attaches a right-click popup menu to the table column header.  When the
-     * user right-clicks a categorical (label) column – i.e. any column to the
-     * left of the first year/numeric column – a "Collapse" item is shown.
+     * user right-clicks a categorical (label) column - i.e. any column to the
+     * left of the first year/numeric column - a "Collapse" item is shown.
      * Selecting it removes that column and sums numeric values for rows that
      * now share the same remaining key, mirroring the (:collapse:) behaviour
      * available in GCAM XPath queries.

@@ -38,6 +38,7 @@ import javax.swing.undo.CannotUndoException;
 
 import ModelInterface.ModelGUI2.QueryTreeModel;
 
+@SuppressWarnings("unchecked")
 public class QueryAddRemoveUndoableEdit extends MiAbstractUndoableEdit {
 
 	private QueryTreeModel qt;

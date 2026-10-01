@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -84,6 +84,7 @@ import graphDisplay.CreateComponent;
  * Dialog for modifying chart legend properties such as color, pattern, and line stroke.
  * Provides UI for legend customization and applies changes to the chart.
  */
+@SuppressWarnings("unchecked")
 public class ModifyLegend extends JDialog {
     private static final long serialVersionUID = 1L;
     private static final int MAX_VISIBLE_LEGEND_ROWS = 20;
@@ -341,7 +342,7 @@ public class ModifyLegend extends JDialog {
     }
 
     /**
-     * Sets up the legend modification UI (dialog mode – includes Done button).
+     * Sets up the legend modification UI (dialog mode - includes Done button).
      */
     private void setLegendUI() {
         JScrollPane jsp = buildContentScrollPane(true);

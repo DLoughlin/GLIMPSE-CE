@@ -96,6 +96,7 @@ import filter.FilteredTable;
  * panel 1/2/2021 @1
  */
 
+@SuppressWarnings("unchecked")
 public class DiffResultsPanel extends QueryResultsPanel {
 
 	// Not used currently
@@ -641,7 +642,7 @@ public class DiffResultsPanel extends QueryResultsPanel {
 
 		for (int i = 0; i < diff_data.length; i++) {
 			int loc = yr.get(i).intValue();
-			obj[loc] = new Double(diff_data[i]);
+						obj[loc] = Double.valueOf(diff_data[i]);
 		}
 
 		if ((use_val_filter) || (use_pct_filter)) {

@@ -59,6 +59,7 @@ import ModelInterface.ModelGUI2.undo.NodeDeleteUndoableEdit;
 import ModelInterface.ModelGUI2.undo.NodeEditUndoableEdit;
 import ModelInterface.ModelGUI2.undo.NodeInsertUndoableEdit;
 
+@SuppressWarnings("unchecked")
 public class DOMmodel implements TreeModel {
 	private Vector treeModelListeners = new Vector();
 	private Node rootNode;
@@ -90,7 +91,7 @@ public class DOMmodel implements TreeModel {
 				// and if it is, do I not create a new edit?
 				// too tell if this change can from an Undo/redo(in which case I don't create a new edit)
 				// I set user data on the node under the key "isFromUndoable"
-				if(new Boolean(true).equals(target.getNode().getUserData("isFromUndoable"))) {
+				if(Boolean.TRUE.equals(target.getNode().getUserData("isFromUndoable"))) {
 					System.out.println("Thinks this is from undo");
 					// set to false or null?
 					target.getNode().setUserData("isFromUndoable", false, null);
@@ -119,7 +120,7 @@ public class DOMmodel implements TreeModel {
 				TreeModelEvent tEvent = new TreeModelEvent(this, getTreePathFromNode(rel), posArr, childArr);
 				// do I have to make sure this event isn't from an undo/redo
 				// and if it is, do I not create a new edit?
-				if(!new Boolean(true).equals(target.getNode().getUserData("isFromUndoable"))) {
+								if(!Boolean.TRUE.equals(target.getNode().getUserData("isFromUndoable"))) {
 					main.getUndoManager().addEdit(new NodeDeleteUndoableEdit(rel, target.getNode()));
 				} else {
 					target.getNode().setUserData("isFromUndoable", false, null);

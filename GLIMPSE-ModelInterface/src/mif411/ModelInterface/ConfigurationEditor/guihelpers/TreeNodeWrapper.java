@@ -126,7 +126,7 @@ public class TreeNodeWrapper implements InvocationHandler {
 			return aProxy == aArgs[0] ? Boolean.TRUE : Boolean.FALSE;
 		}
 		if (aMethod.getName().equals("hashCode")) {
-			return new Integer(System.identityHashCode(aProxy));
+			return Integer.valueOf(System.identityHashCode(aProxy));
 		}
 		// Dispatch all methods other than toString to the internal node object.
 		Object result = null;

@@ -41,6 +41,7 @@ import java.util.logging.Logger;
  * @author Josh Lurz
  *
  */
+@SuppressWarnings("deprecation")
 public final class ComponentEnabler implements PropertyChangeListener {
 	/**
 	 * Component to enable or disable.

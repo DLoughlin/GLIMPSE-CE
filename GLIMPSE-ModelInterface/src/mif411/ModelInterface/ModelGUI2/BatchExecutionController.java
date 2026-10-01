@@ -18,6 +18,7 @@ import ModelInterface.InterfaceMain;
 import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("deprecation")
 public class BatchExecutionController {
     private DbViewer dbViewer;
 

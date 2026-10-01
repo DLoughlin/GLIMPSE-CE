@@ -87,6 +87,7 @@ import ModelInterface.ModelGUI2.xmldb.QueryBinding;
 import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class ComboTableModel extends BaseTableModel {
 
 	/**
@@ -127,7 +128,7 @@ public class ComboTableModel extends BaseTableModel {
 		buildTable(treePathtoXPath(tp, doc.getDocumentElement(), 0));
 		activeRows = new Vector(leftSideVector.size() * indRow.size());
 		for (int i = 0; i < (leftSideVector.size() * indRow.size()); i++) {
-			activeRows.add(new Integer(i));
+			activeRows.add(Integer.valueOf(i));
 		}
 		indCol.add(0, ind1Name);
 		documentationRenderer = getDocumentationRenderer();
@@ -244,7 +245,7 @@ public class ComboTableModel extends BaseTableModel {
 				 * if(attr.equals("fillout=1")) { attr = getOneAttrVal(n, 1); }
 				 */
 				if (!tempFilter.containsKey(attr)) {
-					tempFilter.put(attr, new Boolean(true));
+					tempFilter.put(attr, Boolean.TRUE);
 					filterMaps.put(n.getNodeName(), tempFilter);
 				}
 			}
@@ -415,11 +416,11 @@ public class ComboTableModel extends BaseTableModel {
 				Object temp = ((Map) TreeMapVector.get(((Integer) activeRows.get(row)).intValue() / (indRow.size())))
 						.get(getKey((Integer) activeRows.get(row), col));
 				if (temp instanceof Node) {
-					return new Double(((Node) temp).getNodeValue());
+					return Double.valueOf(((Node) temp).getNodeValue());
 				} else if (temp instanceof Double) {
 					return temp;
 				} else if (temp == null && doc == null) {
-					return new Double(0.0);
+					return Double.valueOf(0.0);
 				} else {
 					return temp;
 				}
@@ -546,9 +547,9 @@ public class ComboTableModel extends BaseTableModel {
 		Vector oldActiveRows = activeRows;
 		activeRows = new Vector();
 		for (int i = 0; i < (leftSideVector.size() * indRow.size()); i++) {
-			activeRows.addElement(new Integer(i));
+			activeRows.addElement(Integer.valueOf(i));
 		}
-		Integer rowPos = new Integer(-1);
+		Integer rowPos = Integer.valueOf(-1);
 
 		// Should be able to make this more efficient, but just need it to work right
 		// now
@@ -910,7 +911,7 @@ public class ComboTableModel extends BaseTableModel {
 				}
 			}
 			if (!allNulls || (rewriteValues != null && rewriteValues.contains(indRow.get(i % indRow.size())))) {
-				activeRows.add(new Integer(i));
+				activeRows.add(Integer.valueOf(i));
 			}
 		}
 		setColNameIndex(qg.getChartLabelColumnName());

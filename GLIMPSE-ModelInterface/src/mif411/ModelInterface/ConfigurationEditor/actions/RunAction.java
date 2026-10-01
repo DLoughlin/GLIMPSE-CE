@@ -59,6 +59,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * Errors are displayed to the user in dialogs.
  * @author Josh Lurz
  */
+@SuppressWarnings("deprecation")
 public class RunAction extends AbstractAction {
     /**
      * Identifier used for serializing.
