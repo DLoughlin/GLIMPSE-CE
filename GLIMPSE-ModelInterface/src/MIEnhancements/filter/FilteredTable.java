@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -107,6 +107,14 @@ public class FilteredTable {
 	private static final int MAX_AUTO_CHARTS = 125; // Max number of charts to auto-generate before skipping auto-graphics
     private static final int MAX_AUTO_ROWS = 2000; // Do not auto-generate thumbnails if table has more rows than this
     private JButton graphButton;
+    /** Backing query table (unformatted numeric values) used to rebuild display values. */
+    private JTable sourceTable;
+    /** Current filter selection (if any) used to rebuild the filtered rows. */
+    private Map<String, String> currentSelection;
+    /** View columns currently shown in this filtered table. */
+    private Integer[] visibleColumnIndices;
+    /** Column names corresponding to visibleColumnIndices. */
+    private String[] visibleColumnNames;
 
     /**
      * Constructs a FilteredTable and sets up the UI and filtering logic.
@@ -136,6 +144,8 @@ public class FilteredTable {
         this.sp = sp;
         this.selectedYears = selectedYears;
         this.chartName = chartName;
+        this.sourceTable = jTable;
+        this.currentSelection = sel;
         JPanel jp = new JPanel(new BorderLayout());
         Component c = sp.getRightComponent();
         if (c != null) sp.remove(c);
@@ -169,7 +179,9 @@ public class FilteredTable {
             System.out.println("FilteredTable: col: " + Arrays.toString(tableColumnData));
             System.out.println("FilteredTable: colidx: " + Arrays.toString(alI.toArray(new Integer[0])));
         }
-        String[][] tData = getTableData(jTable, alI.toArray(new Integer[0]));
+        visibleColumnIndices = alI.toArray(new Integer[0]);
+        visibleColumnNames = al.toArray(new String[0]);
+        String[][] tData = getTableData(jTable, visibleColumnIndices);
         Comparator<String> columnDoubleComparator = (String v1, String v2) -> {
             Double val1 = null;
             try { val1 = Double.parseDouble(v1); } catch (NumberFormatException e) {}
@@ -185,7 +197,7 @@ public class FilteredTable {
         else
             newData = getfilterTableData(tData, getFilterData(qualifier, sel));
         try {
-            DefaultTableModel dtm = new DefaultTableModel(newData, al.toArray(new String[0])) {
+            DefaultTableModel dtm = new DefaultTableModel(newData, visibleColumnNames) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false;
@@ -197,16 +209,7 @@ public class FilteredTable {
             // Keep default drag behavior for the JTable and avoid per-table listeners that duplicate that logic.
             jtable.setRowHeight(jtable.getFont().getSize() + 5);
             tableModel = jtable.getModel();
-            sorter = new TableRowSorter<>(tableModel);
-            jtable.setRowSorter(sorter);
-            // Add custom sorters to columns that are numbers
-            for (int colC = 0; colC < jtable.getColumnCount(); colC++) {
-                String clsName = jtable.getColumnName(colC);
-                try {
-                    Double.parseDouble(clsName);
-                    sorter.setComparator(colC, columnDoubleComparator);
-                } catch (Exception e) {}
-            }
+            configureNumericSorters(columnDoubleComparator);
         } catch (Exception e) {
             System.out.println("FilteredTable Caught: ");
             e.printStackTrace();
@@ -228,7 +231,7 @@ public class FilteredTable {
                 // Prevent generating thumbnails if the table is too large.
                 int rowCountCheck = (jtable != null) ? jtable.getRowCount() : 0;
                 if (rowCountCheck >= MAX_AUTO_ROWS) {
-                    System.out.println("Graph suppressed: Result has " + rowCountCheck + " rows (limit is " + MAX_AUTO_ROWS + ") — auto graphics won't be generated.");
+                    System.out.println("Graph suppressed: Result has " + rowCountCheck + " rows (limit is " + MAX_AUTO_ROWS + ") - auto graphics won't be generated.");
                     return;
                 }
                  if (debug)
@@ -663,6 +666,60 @@ public class FilteredTable {
     }
 
     /**
+     * Rebuilds this table's displayed values using the latest significant-digits settings.
+     * Uses the original query table so users do not need to rerun queries.
+     */
+    public void refreshSignificantDigitsDisplay() {
+        if (sourceTable == null || jtable == null || visibleColumnIndices == null || visibleColumnNames == null) {
+            return;
+        }
+
+        String[][] tData = getTableData(sourceTable, visibleColumnIndices);
+        if (currentSelection == null || currentSelection.isEmpty()) {
+            newData = tData.clone();
+        } else {
+            String[] qualifier = ModelInterfaceUtil.getColumnFromTable(sourceTable, 5);
+            newData = getfilterTableData(tData, getFilterData(qualifier, currentSelection));
+        }
+
+        DefaultTableModel refreshedModel = new DefaultTableModel(newData, visibleColumnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jtable.setModel(refreshedModel);
+        tableModel = refreshedModel;
+        configureNumericSorters(buildDoubleStringComparator());
+        jtable.revalidate();
+        jtable.repaint();
+
+        // If a graph is currently shown, regenerate it so displayed numeric labels stay in sync.
+        Component currentRight = sp == null ? null : sp.getRightComponent();
+        if (currentRight instanceof JComponent) {
+            Object isGraph = ((JComponent) currentRight).getClientProperty("isGraph");
+            if (Boolean.TRUE.equals(isGraph) && graphButton != null) {
+                graphButton.doClick();
+            }
+        }
+    }
+
+    private void configureNumericSorters(Comparator<String> numericComparator) {
+        tableModel = jtable.getModel();
+        sorter = new TableRowSorter<>(tableModel);
+        jtable.setRowSorter(sorter);
+        for (int colC = 0; colC < jtable.getColumnCount(); colC++) {
+            String clsName = jtable.getColumnName(colC);
+            try {
+                Double.parseDouble(clsName);
+                sorter.setComparator(colC, numericComparator);
+            } catch (Exception e) {
+                // Ignore non-numeric headers.
+            }
+        }
+    }
+
+    /**
      * Filters table data based on filter criteria.
      * @param source Source data
      * @param filter Filter criteria
@@ -738,7 +795,7 @@ public class FilteredTable {
  		int rowCount = (jtable != null) ? jtable.getRowCount() : 0;
 		// If the number of rows has reached or exceeded the configured threshold, skip auto graphics.
 		if (rowCount >= MAX_AUTO_ROWS) {
-			System.out.println("Auto-graphics skipped: Result has " + rowCount + " rows (limit is " + MAX_AUTO_ROWS + ") — auto graphics won't be generated.");
+      System.out.println("Auto-graphics skipped: Result has " + rowCount + " rows (limit is " + MAX_AUTO_ROWS + ") - auto graphics won't be generated.");
 			return;
 		}
 
@@ -838,8 +895,8 @@ public class FilteredTable {
 
     /**
      * Attaches a right-click popup menu to the table column header.  When the
-     * user right-clicks a categorical (label) column – i.e. any column to the
-     * left of the first year/numeric column – a "Collapse" item is shown.
+     * user right-clicks a categorical (label) column - i.e. any column to the
+     * left of the first year/numeric column - a "Collapse" item is shown.
      * Selecting it removes that column and sums numeric values for rows that
      * now share the same remaining key, mirroring the (:collapse:) behaviour
      * available in GCAM XPath queries.

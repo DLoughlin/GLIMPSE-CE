@@ -37,9 +37,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ContainerAdapter;
@@ -176,6 +178,7 @@ import mapOptions.MapOptionsUtil;
  * @version 1.1
  * @since 2012
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private static final boolean DEBUG = false;
 	private JPanel loadingPanel;
@@ -276,11 +279,11 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 
 	private static final class StartupData {
 		private final Vector<ScenarioListItem> scenarios;
-		private final Vector regions;
+		private final Vector<String> regions;
 		private final QueryTreeModel queries;
 		private final File queryFile;
 
-		private StartupData(Vector<ScenarioListItem> scenarios, Vector regions, QueryTreeModel queries, File queryFile) {
+		private StartupData(Vector<ScenarioListItem> scenarios, Vector<String> regions, QueryTreeModel queries, File queryFile) {
 			this.scenarios = scenarios;
 			this.regions = regions;
 			this.queries = queries;
@@ -295,6 +298,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private static void logStartup(String stage, long startNanos) {
 		InterfaceMain.logStartupTiming("DbViewer:" + stage + " " + elapsedMillis(startNanos) + " ms");
 	}
+
 
 	private void scheduleMappingWarmupAfterStartupReady() {
 		if (!InterfaceMain.enableMapping) {
@@ -331,6 +335,9 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private static final int MAX_EXCEPTION_CHAIN_DEPTH = 5;
 
 	private void updateStartupMessage(final String message) {
+		if (!InterfaceMain.shouldShowStartupSteps()) {
+			return;
+		}
 		final InterfaceMain main = InterfaceMain.getInstance();
 		if (main != null) {
 			main.updateStartupLoadingMessage(message);
@@ -338,7 +345,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	private void logStartupPhase(String phase, File dbFile) {
-		if (!DEBUG) {
+		if (!DEBUG || !InterfaceMain.shouldShowStartupSteps()) {
 			return;
 		}
 		String context = dbFile == null ? "" : " [" + formatDatabaseStartupContext(dbFile) + "]";
@@ -515,7 +522,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		if (xmlFiles != null && xmlFiles.length > 0 && xmlFiles[0] != null) {
 			queryFile = xmlFiles[0];
 			queryFileName = queryFile.getAbsolutePath();
-			prop.setProperty("queryFile", queryFileName);
+			InterfaceMain.getInstance().setProperty("queryFile", queryFileName);
 			return queryFile;
 		}
 
@@ -555,6 +562,9 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		try {
 			// New database open: capture a fresh region ordering baseline.
 			initialRegionOrdering.clear();
+			// Load preset region definitions before querying regions so startup ordering
+			// can use the configured first preset entry (for example China provinces).
+			loadRegionListToDropdown();
 			File queryFile = prepareQueryDefinitionsForStartup();
 			XMLDB.openDatabase(dbFile.getAbsolutePath(), create);
 			logStartupPhase("Database opened", dbFile);
@@ -564,15 +574,15 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			logStartupPhase("Scenarios loaded", dbFile);
 			logStartupPhase(STARTUP_MESSAGE_LOADING_REGIONS, dbFile);
 			updateStartupMessage(STARTUP_MESSAGE_LOADING_REGIONS);
-			Vector loadedRegions = getRegions();
+			Vector<String> loadedRegions = getRegions();
 			logStartupPhase("Regions loaded", dbFile);
 			logStartupPhase(STARTUP_MESSAGE_LOADING_QUERIES, dbFile);
 			updateStartupMessage(STARTUP_MESSAGE_LOADING_QUERIES);
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: calling validateQueriesDocument()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: calling validateQueriesDocument()...");
 			validateQueriesDocument();
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: validateQueriesDocument() done, calling getQueries()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: validateQueriesDocument() done, calling getQueries()...");
 			QueryTreeModel loadedQueries = getQueries();
-			if (DEBUG) System.out.println("DbViewer.loadStartupData: getQueries() done, calling validateStartupData()...");
+			if (DEBUG && InterfaceMain.shouldShowStartupSteps()) System.out.println("DbViewer.loadStartupData: getQueries() done, calling validateStartupData()...");
 			logStartupPhase("Query definitions loaded", dbFile);
 			return validateStartupData(new StartupData(loadedScenarios, loadedRegions, loadedQueries, queryFile));
 		} catch (RuntimeException e) {
@@ -591,7 +601,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	protected Vector<ScenarioListItem> scns;
 	public JList scnList;
 	protected JList regionList;
-	protected Vector regions;
+	protected Vector<String> regions;
 	// Preserve first-loaded ordering so later region refreshes remain stable.
 	private final java.util.List<String> initialRegionOrdering = new ArrayList<String>();
 	private static final List<String> US_STATE_CODES = Arrays.asList(
@@ -599,6 +609,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			"ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS",
 			"MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA",
 			"RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
+	// Primary region subregions (e.g., states for USA, provinces for China) loaded from preset regions list
+	private java.util.List<String> primaryRegionSubregions = new ArrayList<String>();
+	// Name of the primary region grouping (e.g., "USA", "China") - used for sorting
+	private String primaryRegionName = "USA";
 	protected QueryTreeModel queries;
 	private JTabbedPane tablesTabs = new JTabbedPane();
 	private JSplitPane scenarioRegionSplit;
@@ -792,16 +806,23 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			// guaranteed-visible 1-px dark line on the three non-content edges so that
 			// every row of tabs has a clear top border regardless of L&F colors.
 			super.paintTabBorder(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
-			g.setColor(TAB_BORDER_COLOR);
-			// Top edge — always drawn; this is the line that separates tab rows.
-			g.drawLine(x, y, x + w - 1, y);
-			// Left edge
-			g.drawLine(x, y, x, y + h - 1);
-			// Right edge
-			g.drawLine(x + w - 1, y, x + w - 1, y + h - 1);
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.setColor(TAB_BORDER_COLOR);
+			
+			// Top edge — always drawn at full width; this is the line that separates tab rows.
+			g2d.setStroke(new java.awt.BasicStroke(1.0f));
+			g2d.drawLine(x, y, x + w - 1, y);
+			
+			// Right edge only — drawn at 0.5 width to create vertical dividers that are
+			// half as thick as the top border. Only the right border is drawn so adjacent
+			// tabs don't double up on thickness.
+			g2d.setStroke(new java.awt.BasicStroke(0.5f));
+			g2d.drawLine(x + w - 1, y, x + w - 1, y + h - 1);
+			
 			// Bottom edge only for unselected tabs (selected tab is visually open to the content pane).
 			if (!isSelected) {
-				g.drawLine(x, y + h - 1, x + w - 1, y + h - 1);
+				g2d.setStroke(new java.awt.BasicStroke(1.0f));
+				g2d.drawLine(x, y + h - 1, x + w - 1, y + h - 1);
 			}
 		}
 	}
@@ -958,57 +979,10 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 							return;
 						}
 						resetDbViewInitialized("control-transition-enter");
-						setStartupState(StartupLifecycleState.PREPARING);
-						Properties prop = main.getProperties();
-						File queryFile;
-						try {
-							queryFile = resolveStartupQueryFile(prop, parentFrame);
-						} catch (StartupQuerySelectionCancelledException startupCanceled) {
-							setStartupState(StartupLifecycleState.FAILED);
-							resetDbViewInitialized("control-transition-query-selection-canceled");
-							invalidateQueriesDocument("control-transition-query-selection-canceled");
-							InterfaceMain.getInstance().showMessageDialog(
-									startupCanceled.getMessage() + "\nUse Open DB to try again.",
-									"Startup Canceled", JOptionPane.INFORMATION_MESSAGE);
-							final String restoreControl = determineControlToRestore(evt.getOldValue());
-							SwingUtilities.invokeLater(() -> InterfaceMain.getInstance().fireControlChange(restoreControl));
-							return;
-						} catch (IllegalStateException startupQueryError) {
-							setStartupState(StartupLifecycleState.FAILED);
-							resetDbViewInitialized("control-transition-missing-query-file");
-							invalidateQueriesDocument("control-transition-missing-query-file");
-							InterfaceMain.getInstance().showMessageDialog(startupQueryError.getMessage(),
-									"Startup Query File Required", JOptionPane.ERROR_MESSAGE);
-							return;
-						}
-
-						// TODO: move to load preferences
-						scenarioRegionSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
-						scenarioRegionSplit.setResizeWeight(.5);
-						queriesSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
-						// queriesSplit.setLeftComponent(scenarioRegionSplit);
-						queriesSplit.setResizeWeight(.5);
-						tableCreatorSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false);
-						String tempInt;
-						try {
-							if ((tempInt = prop.getProperty("scenarioRegionSplit")) != null) {
-								scenarioRegionSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-							if ((tempInt = prop.getProperty("queriesSplit")) != null) {
-								queriesSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-							if ((tempInt = prop.getProperty("tableCreatorSplit")) != null) {
-								tableCreatorSplit.setDividerLocation(Integer.valueOf(tempInt));
-							}
-						} catch (NumberFormatException nfe) {
-							System.out.println("Invalid split location preference: " + nfe);
-						}
-						// Do not attach File menu Save/Save As here; they are managed under Tools > Queries
-						// Ensure File menu items remain disabled to avoid duplicates
-						main.getSaveMenu().setEnabled(false);
-						main.getSaveAsMenu().setEnabled(false);
-
-						ensureQueriesDocumentLoaded(queryFile);
+						// Interactive DB opens call fireControlChange(controlStr) before doOpenDB().
+						// Query-file selection and loading must happen only once, inside the
+						// doOpenDB/startup-loader path, otherwise startup can prompt for the
+						// same query file twice.
 
 					}
 				} else if (evt.getPropertyName().equals("SelectQuery")) {
@@ -1489,7 +1463,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			if (exportDir == null) {
 				return;
 			}
-		main.getProperties().setProperty("lastDirectory", exportDir.getAbsolutePath());
+		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
 		int exportedCount = 0;
 		int skippedCount = 0;
 		List<String> skippedNoModel = new ArrayList<String>();
@@ -1562,7 +1536,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					"Save As CSV", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		main.getProperties().setProperty("lastDirectory", exportDir.getAbsolutePath());
+		main.setProperty("lastDirectory", exportDir.getAbsolutePath());
 		File outFile = new File(exportDir, fileName);
 		PrintWriter pw = null;
 		try {
@@ -1644,9 +1618,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		betaMn.setText("Disable Beta Features");
 		InterfaceMain.enableMapping = true;
 		InterfaceMain.enableSankey = true;
-		Properties prop = InterfaceMain.getInstance().getProperties();
-		prop.setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
-		prop.setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
+		InterfaceMain.getInstance().setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
+		InterfaceMain.getInstance().setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
 	}
 
 	/**
@@ -1657,9 +1630,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		betaMn.setText("Enable Beta Features");
 		InterfaceMain.enableMapping = false;
 		InterfaceMain.enableSankey = false;
-		Properties prop = InterfaceMain.getInstance().getProperties();
-		prop.setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
-		prop.setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
+		InterfaceMain.getInstance().setProperty("enableMapping", String.valueOf(InterfaceMain.enableMapping));
+		InterfaceMain.getInstance().setProperty("enableSankey", String.valueOf(InterfaceMain.enableSankey));
 	}
 
 	/**
@@ -1676,7 +1648,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		if (batchFiles == null) {
 			return;
 		} else {
-			main.getProperties().setProperty("lastDirectory", batchFiles[0].getParent());
+			main.setProperty("lastDirectory", batchFiles[0].getParent());
 			final FileFilter xlsFilter = new javax.swing.filechooser.FileFilter() {
 				public boolean accept(File f) {
 					return f.getName().toLowerCase().endsWith(".xls") || f.getName().toLowerCase().endsWith(".csv")
@@ -1697,7 +1669,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 						xlsFiles[i] = new File(xlsFiles[i].getAbsolutePath() + ".xls");
 					}
 				}
-				main.getProperties().setProperty("lastDirectory", xlsFiles[0].getParent());
+				main.setProperty("lastDirectory", xlsFiles[0].getParent());
 				batchExecutionController.batchQuery(batchFiles[0], xlsFiles[0]);
 			}
 		}
@@ -1767,7 +1739,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			if (!file.exists() || InterfaceMain.getInstance().showConfirmDialog("Overwrite existing file?",
 					"Confirm Overwrite", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
 					JOptionPane.YES_OPTION) == JOptionPane.YES_OPTION) {
-				main.getProperties().setProperty("queryFile", file.getAbsolutePath());
+				main.setProperty("queryFile", file.getAbsolutePath());
 				writeQueries();
 			}
 		}
@@ -1923,7 +1895,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					if (DEBUG) System.out.println("DbViewer.done(): createTableSelector completed.");
 					logStartupPhase("Database viewer UI created", dbFile);
 					logStartup("doOpenDB:createTableSelector", openStart);
-					parentFrame.setTitle("GLIMPSE-CE ModelInterface");
+					parentFrame.setTitle("GLIMPSE-CE ModelInterface v2.3 Beta");
 					main.setProperty("paramPath", dbFile.getAbsolutePath());
 					main.updateActiveDatabaseStatus(dbFile.getAbsolutePath());
 					if (data.queryFile != null) {
@@ -2105,9 +2077,9 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	 *
 	 * @return Vector of region names.
 	 */
-	public Vector getRegions() {
+	public Vector<String> getRegions() {
 		// IMPORTANT: Do NOT use distinct-values(collection()/...) here.
-		// When distinct-values() wraps a large collection(), BaseX must exhaustively scan the
+		// When distinct-values() wraps a large collection, BaseX must exhaustively scan the
 		// entire remaining database before returning null from iter(), causing a hang on large
 		// GCAM-USA databases (hundreds of MB / many scenarios).
 		//
@@ -2117,7 +2089,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		// The correct approach: query only the FIRST document in the collection to get the region
 		// list. All GCAM scenarios share the same world-region structure, so one document suffices.
 		// We fall back to scanning more documents only if the first document has no regions.
-		Vector ret = new Vector();
+		Vector<String> ret = new Vector<String>();
 		long startNanos = System.nanoTime();
 		if (DEBUG) System.out.println("DbViewer.getRegions: querying regions from first document in collection...");
 		// StandardQueryBinding always prepends "collection()" to the base path, so we pass
@@ -2194,8 +2166,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		return ret;
 	}
 
-	private Vector applyInitialRegionOrdering(Vector currentRegions) {
-		Vector ordered = new Vector();
+	private Vector<String> applyInitialRegionOrdering(Vector<String> currentRegions) {
+		Vector<String> ordered = new Vector<String>();
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return ordered;
 		}
@@ -2229,68 +2201,138 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	/**
-	 * Sorts aggregate-region names and state abbreviations without moving entries
+	 * Sorts aggregate-region names and state/province abbreviations without moving entries
 	 * between their database-defined groups.
 	 */
-	private Vector sortRegionEntries(Vector currentRegions) {
+	private Vector<String> sortRegionEntries(Vector<String> currentRegions) {
 		if (currentRegions == null || currentRegions.isEmpty()) {
 			return currentRegions;
 		}
-		sortAggregateEntries(currentRegions);
-		ArrayList<String> states = new ArrayList<String>();
-		for (Object regionObj : currentRegions) {
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				states.add(regionObj.toString());
+		String effectivePrimaryRegionName = getEffectivePrimaryRegionName(currentRegions);
+		
+		// Use the configured subregions when available. Only fall back to US state codes for U.S. region sets.
+		List<String> subregionsToSort = primaryRegionSubregions;
+		if (subregionsToSort.isEmpty()) {
+			if (effectivePrimaryRegionName != null && "USA".equalsIgnoreCase(effectivePrimaryRegionName.trim())) {
+				subregionsToSort = US_STATE_CODES;
+			} else {
+				return currentRegions;
 			}
 		}
-		states.sort(String.CASE_INSENSITIVE_ORDER);
-		int stateIndex = 0;
+		if (subregionsToSort.isEmpty()) {
+			return currentRegions;
+		}
+
+		String effectivePrimaryRegionTrimmed = effectivePrimaryRegionName == null ? null : effectivePrimaryRegionName.trim();
+		java.util.HashSet<String> subregionLookup = new java.util.HashSet<String>();
+		for (String subregion : subregionsToSort) {
+			if (subregion != null) {
+				String trimmedSubregion = subregion.trim();
+				if (!trimmedSubregion.isEmpty()
+						&& (effectivePrimaryRegionTrimmed == null
+							|| !trimmedSubregion.equalsIgnoreCase(effectivePrimaryRegionTrimmed))) {
+					subregionLookup.add(trimmedSubregion);
+				}
+			}
+		}
+
+		ArrayList<String> primaryRegions = new ArrayList<String>();
+		ArrayList<String> subregions = new ArrayList<String>();
+		ArrayList<String> otherRegions = new ArrayList<String>();
+
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				currentRegions.set(i, states.get(stateIndex++));
+			if (regionObj == null) {
+				continue;
+			}
+			String regionName = regionObj.toString();
+			String trimmedRegion = regionName.trim();
+			if (trimmedRegion.isEmpty()) {
+				continue;
+			} else if (effectivePrimaryRegionName != null && effectivePrimaryRegionName.equalsIgnoreCase(trimmedRegion)) {
+				primaryRegions.add(regionName);
+			} else if (subregionLookup.contains(trimmedRegion)) {
+				subregions.add(regionName);
+			} else {
+				otherRegions.add(regionName);
 			}
 		}
-		return currentRegions;
+
+		subregions.sort(String.CASE_INSENSITIVE_ORDER);
+
+		Vector<String> ordered = new Vector<String>();
+		ordered.addAll(primaryRegions);
+		ordered.addAll(subregions);
+		ordered.addAll(otherRegions);
+		return ordered;
+	}
+
+	private String getEffectivePrimaryRegionName(Vector<String> currentRegions) {
+		if (containsRegionName(currentRegions, primaryRegionName)) {
+			return primaryRegionName;
+		}
+		if (containsRegionName(currentRegions, "China")) {
+			return "China";
+		}
+		// GCAM-USA commonly uses "USA" as the aggregate name even when the preset label is
+		// "United States".
+		if (containsRegionName(currentRegions, "USA")) {
+			return "USA";
+		}
+		return primaryRegionName;
+	}
+
+	private boolean containsRegionName(Vector<String> currentRegions, String targetRegionName) {
+		if (currentRegions == null || targetRegionName == null || targetRegionName.trim().isEmpty()) {
+			return false;
+		}
+		for (Object regionObj : currentRegions) {
+			if (regionObj != null && targetRegionName.equalsIgnoreCase(regionObj.toString().trim())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
-	 * Sorts the aggregate block before the first state, with USA always first.
-	 * Entries after the state block (for example PADD/grid groupings) are not
+	 * Sorts the aggregate block before the first state/province, with the primary region always first.
+	 * Entries after the subregion block (for example PADD/grid groupings) are not
 	 * affected.
 	 */
-	private void sortAggregateEntries(Vector currentRegions) {
-		int firstStateIndex = -1;
+	private void sortAggregateEntries(Vector<String> currentRegions, List<String> subregionsToSort, String primaryRegionName) {
+		int firstSubregionIndex = -1;
 		for (int i = 0; i < currentRegions.size(); ++i) {
 			Object regionObj = currentRegions.get(i);
-			if (regionObj != null && US_STATE_CODES.contains(regionObj.toString().trim())) {
-				firstStateIndex = i;
+			if (regionObj != null && subregionsToSort.contains(regionObj.toString().trim())) {
+				firstSubregionIndex = i;
 				break;
 			}
 		}
-		if (firstStateIndex <= 0) {
+		if (firstSubregionIndex <= 0) {
 			return;
 		}
 
 		ArrayList<String> aggregates = new ArrayList<String>();
-		for (int i = 0; i < firstStateIndex; ++i) {
+		for (int i = 0; i < firstSubregionIndex; ++i) {
 			Object regionObj = currentRegions.get(i);
 			if (regionObj != null && !"Global".equalsIgnoreCase(regionObj.toString().trim())) {
 				aggregates.add(regionObj.toString());
 			}
 		}
+		
+		// Sort aggregates, keeping the primary region (e.g., "USA" for US states, "China" for provinces) first
 		aggregates.sort((left, right) -> {
-			if ("USA".equalsIgnoreCase(left)) {
-				return "USA".equalsIgnoreCase(right) ? 0 : -1;
+			if (primaryRegionName.equalsIgnoreCase(left)) {
+				return primaryRegionName.equalsIgnoreCase(right) ? 0 : -1;
 			}
-			if ("USA".equalsIgnoreCase(right)) {
+			if (primaryRegionName.equalsIgnoreCase(right)) {
 				return 1;
 			}
 			return left.compareToIgnoreCase(right);
 		});
 
 		int aggregateIndex = 0;
-		for (int i = 0; i < firstStateIndex; ++i) {
+		for (int i = 0; i < firstSubregionIndex; ++i) {
 			Object regionObj = currentRegions.get(i);
 			if (regionObj != null && !"Global".equalsIgnoreCase(regionObj.toString().trim())) {
 				currentRegions.set(i, aggregates.get(aggregateIndex++));
@@ -2339,6 +2381,12 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	protected void createTableSelector() {
 		if (dbViewInitialized) {
 			return;
+		}
+		// Load preset region list first so that primaryRegionSubregions are available for sorting
+		try {
+			loadRegionListToDropdown();
+		} catch (Exception e) {
+			System.out.println("Could not load preset region list early: " + e.getMessage());
 		}
 		setupScenarioRegionLists();
 		createTableSelector(new StartupData(scns, regions, queries, null));
@@ -2883,9 +2931,19 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 				if (evt.getPropertyName().equals("Control")) {
 					if (evt.getOldValue().equals(controlStr) || evt.getOldValue().equals(controlStr + "Same")) {
 						manageDbButton.setEnabled(false);
+						JMenuItem batchMenu = InterfaceMain.getInstance().getBatchMenu();
+						if(batchMenu != null) {
+							batchMenu.removeActionListener(DbViewer.this);
+							batchMenu.addActionListener(InterfaceMain.getInstance());
+						}
 					}
 					if (evt.getNewValue().equals(controlStr)) {
 						manageDbButton.setEnabled(true);
+						JMenuItem batchMenu = InterfaceMain.getInstance().getBatchMenu();
+						if(batchMenu != null) {
+							batchMenu.removeActionListener(InterfaceMain.getInstance());
+							batchMenu.addActionListener(DbViewer.this);
+						}
 					}
 				}
 			}
@@ -3641,19 +3699,27 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 
 	private class TabDragListener implements MouseListener, MouseMotionListener {
 		MouseEvent firstMouseEvent = null;
-		Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+		private Point getTabPanePoint(final MouseEvent e) {
+			return SwingUtilities.convertPoint((Component) e.getSource(), e.getPoint(), tablesTabs);
+		}
+
+		private boolean isPointInSelectedTab(final Point pointInTabPane) {
+			if (tablesTabs.getTabCount() == 0 || tablesTabs.getSelectedIndex() < 0) {
+				return false;
+			}
+			final Rectangle selectedBounds = tablesTabs.getBoundsAt(tablesTabs.getSelectedIndex());
+			return selectedBounds != null && selectedBounds.contains(pointInTabPane);
+		}
 
 		public void mousePressed(MouseEvent e) {
-			JComponent c = (JComponent) e.getSource();
-			if (tablesTabs.getTabCount() > 0
-					&& tablesTabs.getBoundsAt(tablesTabs.getSelectedIndex()).contains(e.getPoint())) {
-				if (e.getButton() == 3) {
-					// Tell the transfer handler to initiate the copy.
-					c.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					tablesTabs.getTransferHandler().exportToClipboard(tablesTabs, clip, TransferHandler.COPY);
-					c.setCursor(Cursor.getDefaultCursor());
-				}
-				firstMouseEvent = e;
+			if (!SwingUtilities.isLeftMouseButton(e)) {
+				return;
+			}
+			final Point tabPanePoint = getTabPanePoint(e);
+			if (isPointInSelectedTab(tabPanePoint)) {
+				firstMouseEvent = new MouseEvent(tablesTabs, e.getID(), e.getWhen(), e.getModifiersEx(),
+						tabPanePoint.x, tabPanePoint.y, e.getClickCount(), e.isPopupTrigger(), e.getButton());
 				e.consume();
 			}
 
@@ -3662,14 +3728,14 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		public void mouseDragged(MouseEvent e) {
 			// make sure that there was a press first and that that tab has not
 			// since been closed
-			if (firstMouseEvent != null && tablesTabs.getTabCount() > 0
-					&& tablesTabs.getBoundsAt(tablesTabs.getSelectedIndex()).contains(e.getPoint())) {
+			final Point tabPanePoint = getTabPanePoint(e);
+			if (firstMouseEvent != null && isPointInSelectedTab(tabPanePoint)) {
 				e.consume();
 
 				int action = TransferHandler.COPY;
 
-				int dx = Math.abs(e.getX() - firstMouseEvent.getX());
-				int dy = Math.abs(e.getY() - firstMouseEvent.getY());
+				int dx = Math.abs(tabPanePoint.x - firstMouseEvent.getX());
+				int dy = Math.abs(tabPanePoint.y - firstMouseEvent.getY());
 				// Arbitrarily define a 5-pixel shift as the
 				// official beginning of a drag.
 				if (dx > 5 || dy > 5) {
@@ -4070,9 +4136,30 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	private void loadRegionListToDropdown() {
-		String region_list_file = "config/preset_region_list.txt";
+		// Get region list file from properties, with fallback to default location
+		String region_list_file = null;
+		InterfaceMain main = InterfaceMain.getInstance();
+		if (main != null) {
+			java.util.Properties props = main.getProperties();
+			if (props != null) {
+				region_list_file = props.getProperty("presetRegionList", null);
+			}
+		}
+		
+		// If not found in properties, try default location
+		if (region_list_file == null || region_list_file.trim().isEmpty()) {
+			java.io.File defaultFile = new java.io.File("config" + java.io.File.separator + "preset_region_list.txt");
+			if (defaultFile.exists()) {
+				region_list_file = defaultFile.getAbsolutePath();
+			} else {
+				region_list_file = "config/preset_region_list.txt";
+			}
+		}
+		
 		preset_region_list.clear();
 		subregion_list.clear();
+		primaryRegionSubregions.clear();
+		primaryRegionName = "USA"; // Reset to default
 		preset_choices = null;
 		try {
 			preset_region_list = getStringArrayFromFile(region_list_file, "#");
@@ -4088,9 +4175,18 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 							continue;
 						}
 						choiceList.add(name);
+						// Extract the first entry's name and subregions for use in region ordering
+						if (i == 0) {
+							primaryRegionName = name;
+						}
 						String[] subregions = splitString(line.substring(index + 1), ",");
 						for (int j = 0; j < subregions.length; j++) {
-							subregion_list.add(subregions[j]);
+							String subregion = subregions[j].trim();
+							subregion_list.add(subregion);
+							// Extract the first entry's subregions for use in region ordering
+							if (i == 0) {
+								primaryRegionSubregions.add(subregion);
+							}
 						}
 					}
 				}
@@ -4210,5 +4306,35 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 			}
 		}
 		return rowNumForLeaf;
+	}
+
+	/**
+	 * Reapplies significant-digit formatting to all open query result tabs without
+	 * rerunning queries.
+	 */
+	public void refreshOpenResultsSignificantDigits() {
+		Runnable refreshTask = () -> {
+			if (tablesTabs == null || tablesTabs.getTabCount() == 0) {
+				return;
+			}
+			for (int i = 0; i < tablesTabs.getTabCount(); ++i) {
+				Component tabComp = tablesTabs.getComponentAt(i);
+				if (tabComp instanceof QueryResultsPanel) {
+					((QueryResultsPanel) tabComp).refreshSignificantDigitsDisplay();
+				}
+				JTable table = getJTableFromComponent(tabComp);
+				if (table != null) {
+					table.revalidate();
+					table.repaint();
+				}
+			}
+			tablesTabs.revalidate();
+			tablesTabs.repaint();
+		};
+		if (SwingUtilities.isEventDispatchThread()) {
+			refreshTask.run();
+		} else {
+			SwingUtilities.invokeLater(refreshTask);
+		}
 	}
 }

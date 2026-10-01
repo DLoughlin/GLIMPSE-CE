@@ -80,6 +80,16 @@ public final class UtilsDialogs {
 	 */
 	public static void initDialogOwner(javafx.scene.control.Dialog<?> dialog) {
 		INSTANCE.applyDialogOwner(dialog);
+		INSTANCE.applyModernThemeToDialog(dialog);
+	}
+
+	/**
+	 * Applies the shared modern stylesheet and current application font size to a JavaFX dialog.
+	 *
+	 * @param dialog dialog to theme
+	 */
+	public static void applyDialogTheme(javafx.scene.control.Dialog<?> dialog) {
+		INSTANCE.applyModernThemeToDialog(dialog);
 	}
 
 	/**

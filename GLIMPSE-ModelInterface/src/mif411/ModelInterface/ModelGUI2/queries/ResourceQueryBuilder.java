@@ -45,6 +45,7 @@ import javax.swing.event.ListSelectionListener;
 
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class ResourceQueryBuilder extends QueryBuilder {
 	static Map varList;
 	protected Map resourceList;
@@ -54,8 +55,8 @@ public class ResourceQueryBuilder extends QueryBuilder {
 	public ResourceQueryBuilder(QueryGenerator qgIn) {
 		super(qgIn);
 		varList = new LinkedHashMap();
-		varList.put("available", new Boolean(false));
-		varList.put("cost", new Boolean(false));
+				varList.put("available", Boolean.FALSE);
+				varList.put("cost", Boolean.FALSE);
 		resourceList = null;
 		subresourceList = null;
 		gradeList = null;
@@ -173,7 +174,7 @@ public class ResourceQueryBuilder extends QueryBuilder {
 		// check the maps to see which ones are true and add it to the list of selected
 		for (int i = 0; i < currKeys.length; ++i) {
 			if (((Boolean)temp.get(currKeys[i])).booleanValue()) {
-				tempVector.addElement(new Integer(i));
+								tempVector.addElement(Integer.valueOf(i));
 			}
 		}
 		int[] selected = new int[tempVector.size()];
@@ -211,10 +212,10 @@ public class ResourceQueryBuilder extends QueryBuilder {
 			default: System.out.println("Error currSel: "+qg.currSel);
 		}
 		for(Iterator it = selected.entrySet().iterator(); it.hasNext(); ) {
-			((Map.Entry)it.next()).setValue(new Boolean(false));
+						((Map.Entry)it.next()).setValue(Boolean.FALSE);
 		}
 		for(int i = 0; i < selectedKeys.length; ++i) {
-			selected.put(selectedKeys[i], new Boolean(true));
+						selected.put(selectedKeys[i], Boolean.TRUE);
 		}
 	}
 	public String createListPath(int level) {
@@ -346,16 +347,16 @@ public class ResourceQueryBuilder extends QueryBuilder {
         /*
 		LinkedHashMap ret = new LinkedHashMap();
 		if(!isGroupNames && qg.isSumable) {
-			ret.put("Sum All", new Boolean(false));
-			ret.put("Group All", new Boolean(false));
+			ret.put("Sum All", Boolean.FALSE);
+			ret.put("Group All", Boolean.FALSE);
 		}
 		XmlResults res = XMLDB.getInstance().createQuery(queryFilter+path, queryFunctions, null, null);
 		try {
 			while(res.hasNext()) {
 				if(!isGroupNames) {
-					ret.put(res.next().asString(), new Boolean(false));
+					ret.put(res.next().asString(), Boolean.FALSE);
 				} else { 
-					ret.put("Group: "+res.next().asString(), new Boolean(false));
+					ret.put("Group: "+res.next().asString(), Boolean.FALSE);
 				}
 			}
 		} catch(XmlException e) {

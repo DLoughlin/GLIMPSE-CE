@@ -42,6 +42,7 @@ import org.w3c.dom.Document;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings("deprecation")
 final public class DOMDocumentSaveSetter implements PropertyChangeListener {
     /**
      * The source document.

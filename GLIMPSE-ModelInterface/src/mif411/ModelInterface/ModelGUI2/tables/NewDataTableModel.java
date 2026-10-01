@@ -67,6 +67,7 @@ import ModelInterface.ModelGUI2.DOMmodel;
 import ModelInterface.ModelGUI2.Documentation;
 import ModelInterface.ModelGUI2.undo.FlipUndoableEdit;
 
+@SuppressWarnings("unchecked")
 public class NewDataTableModel extends BaseTableModel{
 	/**
 	 * 
@@ -291,7 +292,7 @@ public class NewDataTableModel extends BaseTableModel{
 		if(doc == null) {
 			Object ret = data.get(getKey(row,col));
 			if(ret == null) {
-				return new Double(0.0);
+				return Double.valueOf(0.0);
 			}
 			return ret;
 		}

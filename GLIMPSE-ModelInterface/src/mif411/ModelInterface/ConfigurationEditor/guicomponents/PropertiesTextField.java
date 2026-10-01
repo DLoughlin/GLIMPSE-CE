@@ -56,6 +56,7 @@ import ModelInterface.ConfigurationEditor.utils.FileUtils;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings("deprecation")
 public class PropertiesTextField extends JPanel {
 
 	/**

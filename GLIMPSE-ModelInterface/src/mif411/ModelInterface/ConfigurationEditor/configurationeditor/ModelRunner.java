@@ -71,6 +71,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings("deprecation")
 public class ModelRunner implements Runnable {
     /**
      * Path to the executable.

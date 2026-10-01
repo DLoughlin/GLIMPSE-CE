@@ -75,6 +75,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class LogEditor extends JPanel implements DOMDocumentEditor {
     /**
      * A unique class identifier used for serializing.

@@ -71,9 +71,8 @@ final class PreferenceDialog {
 	private javax.swing.JCheckBox zipExportedScenariosCheckbox;
 	private javax.swing.JCheckBox copyIncludeQueryNameCheckbox;
 	private javax.swing.JCheckBox compressTreeCheckbox;
-	private javax.swing.JCheckBox autoGenerateGraphicsCheckbox;
-	private javax.swing.JCheckBox limitSigDigitsCheckbox;
 	private javax.swing.JCheckBox disableUnitConversionsCheckbox;
+	private javax.swing.JCheckBox nativeFileDialogCheckbox;
 	private javax.swing.JComboBox<String> selectYearsCombo;
 
 	// ---------------------------------------------------------------------------
@@ -142,14 +141,16 @@ final class PreferenceDialog {
 					p.setProperty("copyIncludeQueryName", Boolean.toString(copyIncludeQueryNameCheckbox.isSelected()));
 				if (compressTreeCheckbox != null)
 					p.setProperty("compress_tree", Boolean.toString(compressTreeCheckbox.isSelected()));
-				if (limitSigDigitsCheckbox != null)
-					p.setProperty("limitSigDigits", Boolean.toString(limitSigDigitsCheckbox.isSelected()));
 				if (disableUnitConversionsCheckbox != null)
 					p.setProperty("disableUnitConversions", Boolean.toString(disableUnitConversionsCheckbox.isSelected()));
 				if (selectYearsCombo != null && selectYearsCombo.getSelectedItem() != null)
 					p.setProperty("selectYearsToShow", selectYearsCombo.getSelectedItem().toString());
-				if (autoGenerateGraphicsCheckbox != null)
-					p.setProperty("autoGenerateGraphics", Boolean.toString(autoGenerateGraphicsCheckbox.isSelected()));
+				if (nativeFileDialogCheckbox != null) {
+					String useNativeChoosers = Boolean.toString(nativeFileDialogCheckbox.isSelected());
+					p.setProperty("nativeFileDialog", useNativeChoosers);
+					// Keep runtime chooser behavior in sync immediately without restart.
+					System.setProperty("modelinterface.nativeFileDialog", useNativeChoosers);
+				}
 				if (unitsFileField != null) p.setProperty("unitsFile", safeTrim(unitsFileField.getText()));
 				if (regionsFileField != null) p.setProperty("presetRegionList", safeTrim(regionsFileField.getText()));
 				if (mapResourceFolderField != null) p.setProperty("mapResourceFolder", safeTrim(mapResourceFolderField.getText()));
@@ -199,13 +200,6 @@ final class PreferenceDialog {
 		tableOptionsLbl.setFont(tableOptionsLbl.getFont().deriveFont(java.awt.Font.BOLD));
 		gc.gridwidth = 2; gc.weightx = 1.0;
 		panel.add(tableOptionsLbl, gc);
-		gc.gridwidth = 1;
-
-		// Limit Significant Digits checkbox
-		gc.gridy++; gc.gridx = 0; gc.gridwidth = 2; gc.weightx = 1.0;
-		limitSigDigitsCheckbox = new javax.swing.JCheckBox("Limit significant digits");
-		limitSigDigitsCheckbox.setSelected(parseBooleanProp(props, "limitSigDigits", false));
-		panel.add(limitSigDigitsCheckbox, gc);
 		gc.gridwidth = 1;
 
 		// Significant digits combo — compact width (no fill/expand)
@@ -311,6 +305,13 @@ final class PreferenceDialog {
 		compressTreeCheckbox.setSelected(parseBooleanProp(props, "compress_tree", true));
 		panel.add(compressTreeCheckbox, gc);
 
+		gc.gridy++; gc.gridx = 0;
+		nativeFileDialogCheckbox = new javax.swing.JCheckBox("Use native file and folder choosers");
+		nativeFileDialogCheckbox.setSelected(parseBooleanPropWithLegacy(props,
+				"nativeFileDialog", "modelinterface.nativeFileDialog", true));
+		nativeFileDialogCheckbox.setToolTipText("Uncheck to force Java chooser dialogs.");
+		panel.add(nativeFileDialogCheckbox, gc);
+
 		// Equalize combo widths (for sigDigitsCombo)
 		{
 			sigDigitsCombo.setPreferredSize(
@@ -343,17 +344,6 @@ final class PreferenceDialog {
 		});
 		panel.add(fontSizeCombo, gc);
 		gc.fill = java.awt.GridBagConstraints.HORIZONTAL; // restore for subsequent rows
-
-		// ---- Separator ----
-		gc.gridy++; gc.gridx = 0; gc.gridwidth = 2; gc.weightx = 1.0; gc.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		panel.add(new javax.swing.JSeparator(javax.swing.SwingConstants.HORIZONTAL), gc);
-		gc.gridwidth = 1; gc.weightx = 0.0;
-
-		// ---- Auto Graphics checkbox (at the top) ----
-		gc.gridy++; gc.gridwidth = 2; gc.weightx = 1.0;
-		autoGenerateGraphicsCheckbox = new javax.swing.JCheckBox("Enable auto graphics");
-		autoGenerateGraphicsCheckbox.setSelected(parseBooleanProp(props, "autoGenerateGraphics", false));
-		panel.add(autoGenerateGraphicsCheckbox, gc);
 
 		// ---- Separator ----
 		gc.gridy++; gc.gridx = 0; gc.gridwidth = 2; gc.weightx = 1.0; gc.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -692,6 +682,17 @@ final class PreferenceDialog {
 		return fallback;
 	}
 
+	private static boolean parseBooleanPropWithLegacy(Properties props, String key, String legacyKey,
+			boolean fallback) {
+		String v = props.getProperty(key);
+		if ((v == null || v.trim().isEmpty()) && legacyKey != null) {
+			v = props.getProperty(legacyKey);
+		}
+		if ("true".equalsIgnoreCase(v))  return true;
+		if ("false".equalsIgnoreCase(v)) return false;
+		return fallback;
+	}
+
 	private File promptForExecutable(String title) {
 		FileChooser chooser = FileChooserFactory.getFileChooser();
 		String lastDir = callbacks.getProperties().getProperty("lastDirectory", ".");
@@ -754,17 +755,8 @@ final class PreferenceDialog {
 	}
 
 	private static java.awt.Color resolvePreferencesTabSelectedForeground() {
-		java.awt.Color fg = javax.swing.UIManager.getColor("List.selectionForeground");
-		if (fg == null) {
-			fg = javax.swing.UIManager.getColor("Tree.selectionForeground");
-		}
-		if (fg == null) {
-			fg = javax.swing.UIManager.getColor("Table.selectionForeground");
-		}
-		if (fg == null) {
-			fg = java.awt.Color.WHITE;
-		}
-		return fg;
+		// Ensure high contrast against the selected (blue) tab background.
+		return java.awt.Color.WHITE;
 	}
 
 	private static final class PreferencesTabsBackgroundUI extends javax.swing.plaf.basic.BasicTabbedPaneUI {
@@ -808,8 +800,14 @@ final class PreferenceDialog {
 		}
 		for (int i = 0; i < tabCount; ++i) {
 			boolean isSelected = i == selectedIndex;
+			java.awt.Color foreground = isSelected ? selectedForeground : defaultForeground;
 			tabs.setBackgroundAt(i, isSelected ? selectedColor : unselectedColor);
-			tabs.setForegroundAt(i, isSelected ? selectedForeground : defaultForeground);
+			tabs.setForegroundAt(i, foreground);
+			// Tab titles use custom JLabel components, so update those directly too.
+			java.awt.Component tabComponent = tabs.getTabComponentAt(i);
+			if (tabComponent instanceof javax.swing.JLabel) {
+				((javax.swing.JLabel) tabComponent).setForeground(foreground);
+			}
 		}
 		tabs.repaint();
 	}

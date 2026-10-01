@@ -86,6 +86,7 @@ import ModelInterface.ModelGUI2.xmldb.QueryRow;
 import ModelInterface.ModelGUI2.xmldb.XMLDB;
 import ModelInterface.common.DataPair;
 
+@SuppressWarnings("unchecked")
 public class QueryGenerator implements java.io.Serializable{
 	String xPath;
 	String var;
@@ -278,25 +279,25 @@ public class QueryGenerator implements java.io.Serializable{
 		filterDialog.setResizable(false);
 
 		final Map typeMap = new LinkedHashMap();
-		typeMap.put("SupplyDemand", new Boolean(false));
-		typeMap.put("Market", new Boolean(false));
-		typeMap.put("Demographics", new Boolean(false));
-		typeMap.put("Resource", new Boolean(false));
-		typeMap.put("Emissions", new Boolean(false));
-		typeMap.put("Cost Curves", new Boolean(false));
-		typeMap.put("GDP", new Boolean(false));
-		typeMap.put("Climate", new Boolean(false));
-		typeMap.put("LandAllocator", new Boolean(false));
+				typeMap.put("SupplyDemand", Boolean.FALSE);
+				typeMap.put("Market", Boolean.FALSE);
+				typeMap.put("Demographics", Boolean.FALSE);
+				typeMap.put("Resource", Boolean.FALSE);
+				typeMap.put("Emissions", Boolean.FALSE);
+				typeMap.put("Cost Curves", Boolean.FALSE);
+				typeMap.put("GDP", Boolean.FALSE);
+				typeMap.put("Climate", Boolean.FALSE);
+				typeMap.put("LandAllocator", Boolean.FALSE);
 		// TODO: typeMap.put("SGM Queries", new Boolean(false));
 		/*
-		typeMap.put("Input", new Boolean(false));
-		typeMap.put("Demand Components Table", new Boolean(false));
-		typeMap.put("Social Accounting Matrix", new Boolean(false));
-		typeMap.put("Input Output Table", new Boolean(false));
-		typeMap.put("Sector Report Table", new Boolean(false));
-		typeMap.put("Government Results Table", new Boolean(false));
+				typeMap.put("Input", Boolean.FALSE);
+				typeMap.put("Demand Components Table", Boolean.FALSE);
+				typeMap.put("Social Accounting Matrix", Boolean.FALSE);
+				typeMap.put("Input Output Table", Boolean.FALSE);
+				typeMap.put("Sector Report Table", Boolean.FALSE);
+				typeMap.put("Government Results Table", Boolean.FALSE);
 		*/
-		typeMap.put("Query Group", new Boolean(false));
+				typeMap.put("Query Group", Boolean.FALSE);
 		final Vector types = new Vector(typeMap.keySet().size(), 0);
 		for(int i = 0; i < types.capacity(); ++i) {
 			types.add(null);
@@ -428,10 +429,10 @@ public class QueryGenerator implements java.io.Serializable{
 				} else if(currSel == 2) {
 					Object[] selectedKeys = list[0].getSelectedValues();
 					for(Iterator it = typeMap.entrySet().iterator(); it.hasNext(); ) {
-						((Map.Entry)it.next()).setValue(new Boolean(false));
+								((Map.Entry)it.next()).setValue(Boolean.FALSE);
 					}
 					for(int i = 0; i < selectedKeys.length; ++i) {
-						typeMap.put(selectedKeys[i], new Boolean(true));
+								typeMap.put(selectedKeys[i], Boolean.TRUE);
 					}
 					list[0].removeSelectionListener(typeListener);
 					int selInd = list[0].getSelectedRows()[0];
@@ -590,7 +591,7 @@ public class QueryGenerator implements java.io.Serializable{
 		// check the maps to see which ones are true and add it to the list of selected
 		for (int i = 0; i < currKeys.length; ++i) {
 			if (((Boolean)typeMap.get(currKeys[i])).booleanValue()) {
-				tempVector.addElement(new Integer(i));
+								tempVector.addElement(Integer.valueOf(i));
 			}
 		}
 		int[] selected = new int[tempVector.size()];

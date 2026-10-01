@@ -86,6 +86,7 @@ import ModelInterface.InterfaceMain;
 import ModelInterface.ModelGUI2.DOMmodel;
 import ModelInterface.ModelGUI2.Documentation;
 
+@SuppressWarnings("unchecked")
 public abstract class BaseTableModel extends AbstractTableModel {
 	protected Vector activeRows;
 	protected Document doc;
@@ -581,9 +582,9 @@ public abstract class BaseTableModel extends AbstractTableModel {
 		for (int i = 0; i < currKeys.length; i++) {
 			// clean this up... maybe
 			if (((Boolean)((Map)tempFilterMaps.get(key)).get(currKeys[i])).booleanValue() && (j >= selectedKeys.length || i != selectedKeys[j])) {
-				((Map)tempFilterMaps.get(key)).put(currKeys[i], new Boolean(false));
+				((Map)tempFilterMaps.get(key)).put(currKeys[i], Boolean.FALSE);
 			} else if (!((Boolean)((Map)tempFilterMaps.get(key)).get(currKeys[i])).booleanValue() && (j < selectedKeys.length && i == selectedKeys[j])) {
-				((Map)tempFilterMaps.get(key)).put(currKeys[i], new Boolean(true));
+				((Map)tempFilterMaps.get(key)).put(currKeys[i], Boolean.TRUE);
 			}
 			if (j < selectedKeys.length && i == selectedKeys[j]) {
 				j++;
@@ -607,7 +608,7 @@ public abstract class BaseTableModel extends AbstractTableModel {
 		// check the maps to see which ones are true and add it to the list of selected
 		for (int i = 0; i < currKeys.length; i++) {
 			if (((Boolean)tempMap.get(currKeys[i])).booleanValue()) {
-				tempVector.addElement(new Integer(i));
+								tempVector.addElement(Integer.valueOf(i));
 			}
 		}
 		int[] selected = new int[tempVector.size()];
@@ -814,7 +815,7 @@ public abstract class BaseTableModel extends AbstractTableModel {
 			    	   }
 			    	   
 			    	   if(InterfaceMain.getInstance() != null) {
-			    		   InterfaceMain.getInstance().getProperties().setProperty("selectedYearList", yearList);
+			    		   InterfaceMain.getInstance().setProperty("selectedYearList", yearList);
 			    	   }	
 			       }
 		       }
@@ -867,7 +868,7 @@ public abstract class BaseTableModel extends AbstractTableModel {
 			    	   }
 			    	   
 			    	   if(InterfaceMain.getInstance() != null) {
-			    		   InterfaceMain.getInstance().getProperties().setProperty("allYearList", yearList);
+			    		   InterfaceMain.getInstance().setProperty("allYearList", yearList);
 			    	   }	
 			       }
 		       }

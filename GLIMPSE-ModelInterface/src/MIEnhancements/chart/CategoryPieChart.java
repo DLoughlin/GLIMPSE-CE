@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -62,6 +62,7 @@ import conversionUtil.ArrayConversion;
  * Author: TWU
  * Date: 1/2/2016
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class CategoryPieChart extends CategoryChart {
     protected DefaultCategoryDataset dataset;
     protected PieDataset piedataset;

@@ -43,6 +43,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.controlsfx.control.CheckComboBox;
+import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -86,6 +87,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
     private final Label labelUnitsValue = createLabel(LABEL_UNITS_VALUE, 225.);
     // HBox grouping the auto-name and unique-name checkboxes
     private final HBox hBoxAutoUnique = new HBox(8);
+    private final PauseTransition filterUpdateDelay = createFilterUpdateDelay(this::updateFilteredFuelsList);
 
     /**
      * Cached list of fuel names (extracted from technology info) used to
@@ -301,7 +303,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
 
         // Update filtered fuel list when filter text changes
         textFieldFilter.textProperty().addListener((obs, oldVal, newVal) -> {
-            updateFilteredFuelsList();
+            filterUpdateDelay.playFromStart();
         });
     }
 
@@ -439,7 +441,7 @@ public class TabFuelPriceAdj extends PolicyTab implements Runnable {
                 if (!categoryMatch) {
                     continue;
                 }
-                if (filterText.isEmpty() || fuel.toLowerCase().contains(filterText)) {
+                if (filterText.isEmpty() || matchesAllFilterTerms(fuel, filterText)) {
                     fuelList.add(fuel);
                 }
             }

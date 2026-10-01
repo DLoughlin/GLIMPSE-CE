@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -57,6 +57,7 @@ import ModelInterface.InterfaceMain;
  *
  * @author TWU
  */
+@SuppressWarnings("unchecked")
 public class Thumbnail {
     private static final Logger LOGGER = Logger.getLogger(Thumbnail.class.getName());
     private static final int DEFAULT_CURSOR_TYPE = Cursor.DEFAULT_CURSOR;

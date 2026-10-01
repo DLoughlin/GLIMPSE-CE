@@ -84,6 +84,7 @@ import ModelInterface.InterfaceMain;
 import ModelInterface.common.FileChooser;
 import ModelInterface.common.FileChooserFactory;
 
+@SuppressWarnings({"unchecked", "deprecation"})
 public class Documentation {
 	private Vector<DocumentationElement> documentations;
 	private Document doc;
@@ -678,7 +679,7 @@ public class Documentation {
 					System.out.println("no doc selected");
 					return;
 				}
-				if(!docMaps.containsKey(new Integer(docSel))) {
+				if(!docMaps.containsKey(Integer.valueOf(docSel))) {
 					tempSet = new LinkedList<String>();
 					docMaps.put(docSel, tempSet);
 				} else {

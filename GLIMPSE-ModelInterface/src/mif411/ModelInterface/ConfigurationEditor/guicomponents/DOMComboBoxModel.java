@@ -53,6 +53,7 @@ import ModelInterface.ConfigurationEditor.utils.Messages;
  * @author Josh Lurz
  * 
  */
+@SuppressWarnings("deprecation")
 public class DOMComboBoxModel extends AbstractListModel implements MutableComboBoxModel {
 	/**
 	 * Unique identifier used for serialization.

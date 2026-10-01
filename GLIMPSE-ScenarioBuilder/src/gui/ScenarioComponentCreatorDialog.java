@@ -105,6 +105,8 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 	private static final String FILE_EXT_CSV = "csv";
 	private static final String XML_LIST_KEYWORD = "xmllist";
 	private static final String TEMP_POLICY_FILENAME = "temp_policy_file.txt";
+	private static final double MIN_DIALOG_WIDTH = 500.0;
+	private static final double MIN_DIALOG_HEIGHT = 400.0;
 
 	private static final String ERROR_CREATING_POLICY_FILE = "Error creating policy file: ";
 	private static final String WARNING_UNKNOWN_TAB = "Unknown tab selected: ";
@@ -162,6 +164,7 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 		stageWithTabs = new Stage();
 		double dialogWidth = lastDialogWidth;
 		double dialogHeight = lastDialogHeight;
+		final boolean[] restoredSavedLocation = { false };
 
 		// Tech-bound metadata is only needed by component-creator tabs, so load it lazily here.
 		files.ensureTechBoundFileContentLoaded();
@@ -235,8 +238,11 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 		} catch (Exception e) {
 			System.out.println("Error loading modern.css: " + e);
 		}
+		Client.registerSceneForRuntimeFontSize(scene);
 		stageWithTabs.setScene(scene);
 		stageWithTabs.setTitle(DIALOG_TITLE_NEW_COMPONENT);
+		stageWithTabs.setMinWidth(MIN_DIALOG_WIDTH);
+		stageWithTabs.setMinHeight(MIN_DIALOG_HEIGHT);
 
 		// Remember last size within this session.
 		stageWithTabs.widthProperty().addListener((obs, oldV, newV) -> {
@@ -256,10 +262,13 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 			} catch (Exception ignored) {}
 		});
 
-		// Restore last size (best-effort) when showing.
+		// Restore the persisted size/position when available; otherwise keep the
+		// session fallback size and center relative to the owner when shown.
 		try {
-			stageWithTabs.setWidth(dialogWidth);
-			stageWithTabs.setHeight(dialogHeight);
+			restoredSavedLocation[0] = Client.applyScenarioComponentCreatorStageBounds(stageWithTabs,
+					dialogWidth, dialogHeight);
+			lastDialogWidth = stageWithTabs.getWidth();
+			lastDialogHeight = stageWithTabs.getHeight();
 		} catch (Exception ignored) {}
 
 		stageWithTabs.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -354,6 +363,9 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 		stageWithTabs.setResizable(true);
 		stageWithTabs.setOnShown(e -> {
 			try {
+				if (restoredSavedLocation[0]) {
+					return;
+				}
 				Window owner = stageWithTabs.getOwner();
 				if (owner == null || !owner.isShowing()) {
 					owner = UtilsDialogs.getPrimaryOwnerWindow();
@@ -380,6 +392,7 @@ public class ScenarioComponentCreatorDialog extends gui.ScenarioBuilder {
 			saveThread.interrupt();
 		}
 		if (stageWithTabs != null) {
+			Client.persistScenarioComponentCreatorStageBounds(stageWithTabs);
 			stageWithTabs.hide();
 			stageWithTabs.setOnCloseRequest(null);
 			stageWithTabs = null;

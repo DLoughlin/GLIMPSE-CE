@@ -65,6 +65,7 @@ import ModelInterface.common.FileChooserFactory;
  * 
  * @author Josh Lurz
  */
+@SuppressWarnings({"unchecked", "deprecation"})
 public class DOMListPanel extends JPanel {
 	/**
 	 * Unique Identifier required for serialization.

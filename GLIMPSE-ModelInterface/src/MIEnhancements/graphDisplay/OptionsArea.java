@@ -26,7 +26,7 @@
 * Agreements 89-92423101 and 89-92549601. Contributors * from PNNL include 
 * Maridee Weber, Catherine Ledna, Gokul Iyer, Page Kyle, Marshall Wise, Matthew 
 * Binsted, and Pralit Patel. Coding contributions have also been made by Aaron 
-* Parks and Yadong Xu of ARA through the EPA�s Environmental Modeling and 
+* Parks and Yadong Xu of ARA through the EPA's Environmental Modeling and 
 * Visualization Laboratory contract. 
 * 
 */
@@ -105,7 +105,11 @@ public class OptionsArea {
 		this.sameScale = sameScale;
 		this.sp = sp;
 		this.hideOptions = hideOptions;
-		setOptionsArea();
+		if (this.hideOptions && this.chart != null) {
+			setChartPane();
+		} else {
+			setOptionsArea();
+		}
 	}
 
 	public JPanel getPanel() {
@@ -117,7 +121,6 @@ public class OptionsArea {
 		box.add(Box.createHorizontalStrut(5));
 		JButton jb = new JButton("Options");
 		jb.setBackground(LegendUtil.getRGB(-8205574));
-		jp.add(box);
 
 		jb.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -197,8 +200,10 @@ public class OptionsArea {
 	}
 
 	private void setChartPane() {
-		// Remove existing center component and replace it
-		ThumbnailUtilNew.validateChartPane(jp);
+		// Rebuild the panel from scratch so refreshes cannot leave an old chart pane
+		// visible underneath the new same-scale transpose thumbnails.
+		jp.removeAll();
+		setOptionsArea();
 
 		JPanel chartPane;
 		if (hideOptions) {
