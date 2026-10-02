@@ -632,6 +632,8 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	private java.util.List<String> primaryRegionSubregions = new ArrayList<String>();
 	// Name of the primary region grouping (e.g., "USA", "China") - used for sorting
 	private String primaryRegionName = "USA";
+	// Map of primary region names to their subregions for flexible region ordering
+	private Map<String, List<String>> regionSubregionMap = new HashMap<String, List<String>>();
 	protected QueryTreeModel queries;
 	private JTabbedPane tablesTabs = new JTabbedPane();
 	private JSplitPane scenarioRegionSplit;
@@ -2252,15 +2254,15 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		}
 		String effectivePrimaryRegionName = getEffectivePrimaryRegionName(currentRegions);
 		
-		// Use the configured subregions when available. Only fall back to US state codes for U.S. region sets.
-		List<String> subregionsToSort = primaryRegionSubregions;
-		if (subregionsToSort.isEmpty()) {
-			if (effectivePrimaryRegionName != null && "USA".equalsIgnoreCase(effectivePrimaryRegionName.trim())) {
-				subregionsToSort = US_STATE_CODES;
-			} else {
-				return currentRegions;
-			}
+		// Look up the correct subregions for the effective primary region
+		List<String> subregionsToSort = new ArrayList<String>();
+		if (regionSubregionMap.containsKey(effectivePrimaryRegionName)) {
+			subregionsToSort = regionSubregionMap.get(effectivePrimaryRegionName);
+		} else if (effectivePrimaryRegionName != null && "USA".equalsIgnoreCase(effectivePrimaryRegionName.trim())) {
+			// Fall back to US state codes if no preset mapping exists for USA
+			subregionsToSort = US_STATE_CODES;
 		}
+		
 		if (subregionsToSort.isEmpty()) {
 			return currentRegions;
 		}
@@ -2310,16 +2312,16 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 	}
 
 	private String getEffectivePrimaryRegionName(Vector<String> currentRegions) {
-		if (containsRegionName(currentRegions, primaryRegionName)) {
-			return primaryRegionName;
+		// Detect region type based on what's present in the database.
+		// Priority: USA (GCAM-USA) > China (GCAM-China) > configured primaryRegionName
+		if (containsRegionName(currentRegions, "USA")) {
+			return "USA";
 		}
 		if (containsRegionName(currentRegions, "China")) {
 			return "China";
 		}
-		// GCAM-USA commonly uses "USA" as the aggregate name even when the preset label is
-		// "United States".
-		if (containsRegionName(currentRegions, "USA")) {
-			return "USA";
+		if (containsRegionName(currentRegions, primaryRegionName)) {
+			return primaryRegionName;
 		}
 		return primaryRegionName;
 	}
@@ -4202,6 +4204,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		preset_region_list.clear();
 		subregion_list.clear();
 		primaryRegionSubregions.clear();
+		regionSubregionMap.clear();
 		primaryRegionName = "USA"; // Reset to default
 		preset_choices = null;
 		try {
@@ -4223,14 +4226,18 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 							primaryRegionName = name;
 						}
 						String[] subregions = splitString(line.substring(index + 1), ",");
+						List<String> subregionList = new ArrayList<String>();
 						for (int j = 0; j < subregions.length; j++) {
 							String subregion = subregions[j].trim();
 							subregion_list.add(subregion);
+							subregionList.add(subregion);
 							// Extract the first entry's subregions for use in region ordering
 							if (i == 0) {
 								primaryRegionSubregions.add(subregion);
 							}
 						}
+						// Store the mapping for this primary region to its subregions
+						regionSubregionMap.put(name, subregionList);
 					}
 				}
 				if (choiceList.size() > 1) {
