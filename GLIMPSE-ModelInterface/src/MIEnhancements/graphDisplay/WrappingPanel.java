@@ -33,7 +33,8 @@ public class WrappingPanel extends JPanel implements Scrollable {
 
     @Override
     public boolean getScrollableTracksViewportWidth() {
-        return false;
+        // Keep panel width bound to viewport width so WrappingLayout recalculates row breaks on resize.
+        return true;
     }
 
     @Override

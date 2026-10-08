@@ -798,6 +798,7 @@ public class ThumbnailUtilNew {
 			jb.setBorderPainted(true);
  			jb.setBackground(Color.lightGray);
 			jb.setName(String.valueOf(i));
+			jb.setPreferredSize(new Dimension(DEFAULT_THUMBNAIL_SIZE, DEFAULT_THUMBNAIL_SIZE));
 			chartPane.add(jb);
 		}
 		return chartPane;

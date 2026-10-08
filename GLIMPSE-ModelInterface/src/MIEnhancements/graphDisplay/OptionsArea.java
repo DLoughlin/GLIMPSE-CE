@@ -214,6 +214,9 @@ public class OptionsArea {
 		}
 
 		JScrollPane scrollPane = new JScrollPane(chartPane);
+		if (hideOptions) {
+			scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		}
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		jp.add(scrollPane, BorderLayout.CENTER);
 		jp.revalidate();

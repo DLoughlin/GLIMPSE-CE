@@ -52,6 +52,8 @@ public class UtilsStatus {
 	private static final Pattern RUNNING_PERIOD_WITH_YEAR_PATTERN = Pattern.compile(
 			"^period\\s+(\\d{1,3})\\s*:\\s*(\\d{4})\\s*$",
 			Pattern.CASE_INSENSITIVE);
+	private static final Pattern RUNNING_PERIOD_NUMBER_PREFIX_PATTERN = Pattern.compile(
+			"^(\\d{1,3})\\)\\s*.*$");
 	private static final String[] LOG_LINE_LEVEL_PREFIXES = {
 			"TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
 	};
@@ -154,7 +156,7 @@ public class UtilsStatus {
 	 * Finds the most recent model period mentioned in a GCAM main log.
 	 *
 	 * @param mainLogFile main log file to inspect
-	 * @return latest period or period/year pair, or an empty string when none is found
+	 * @return latest period or period/year pair (including low-verbosity `X)` lines), or an empty string when none is found
 	 */
 	public String getLatestRunningPeriod(File mainLogFile) {
 		if (files == null || mainLogFile == null || !mainLogFile.exists())
@@ -176,14 +178,34 @@ public class UtilsStatus {
 					String year = yearMatcher.group(2);
 					String trimmedPeriod = period == null ? "" : period.trim();
 					String trimmedYear = year == null ? "" : year.trim();
-					if (!trimmedPeriod.isEmpty() && !trimmedYear.isEmpty()) {
+					if (!trimmedPeriod.isEmpty() && !trimmedYear.isEmpty() && isValidPeriod(trimmedPeriod)) {
 						return trimmedPeriod + "," + trimmedYear;
+					}
+				}
+				Matcher periodOnlyMatcher = RUNNING_PERIOD_NUMBER_PREFIX_PATTERN.matcher(trimmed);
+				if (periodOnlyMatcher.find()) {
+					String period = periodOnlyMatcher.group(1);
+					String trimmedPeriod = period == null ? "" : period.trim();
+					if (!trimmedPeriod.isEmpty() && isValidPeriod(trimmedPeriod)) {
+						return trimmedPeriod;
 					}
 				}
 			}
 		} catch (Exception ignored) {
 		}
 		return "";
+	}
+
+	private boolean isValidPeriod(String period) {
+		if (period == null || period.isEmpty()) {
+			return false;
+		}
+		try {
+			int parsed = Integer.parseInt(period);
+			return parsed >= 0 && parsed <= 200;
+		} catch (NumberFormatException ex) {
+			return false;
+		}
 	}
 
 	/**

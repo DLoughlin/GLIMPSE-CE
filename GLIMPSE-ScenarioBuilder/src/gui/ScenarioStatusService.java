@@ -47,6 +47,8 @@ final class ScenarioStatusService {
     private static final java.util.regex.Pattern RUNNING_PERIOD_WITH_YEAR_PATTERN = java.util.regex.Pattern.compile(
             "^period\\s+(\\d{1,3})\\s*:\\s*(\\d{4})\\s*$",
             java.util.regex.Pattern.CASE_INSENSITIVE);
+    private static final java.util.regex.Pattern RUNNING_PERIOD_NUMBER_PREFIX_PATTERN = java.util.regex.Pattern.compile(
+            "^(\\d{1,3})\\)\\s*.*$");
     private static final java.util.regex.Pattern UNSOLVED_PERIOD_ERROR_PATTERN = java.util.regex.Pattern.compile(
             "did\\s+not\\s+solve\\s+periods?\\s*[:=]?\\s*([0-9]{1,3}(?:\\s*(?:,|and|&)\\s*[0-9]{1,3})*)",
             java.util.regex.Pattern.CASE_INSENSITIVE);
@@ -632,6 +634,14 @@ final class ScenarioStatusService {
                 if (isValidPeriodAndYear(trimmedPeriod, trimmedYear)) {
                     return trimmedPeriod + "," + trimmedYear;
                 }
+            }
+        }
+        java.util.regex.Matcher periodPrefixMatcher = RUNNING_PERIOD_NUMBER_PREFIX_PATTERN.matcher(line);
+        if (periodPrefixMatcher.find()) {
+            String period = periodPrefixMatcher.group(1);
+            String trimmedPeriod = period == null ? "" : period.trim();
+            if (!trimmedPeriod.isEmpty() && isValidPeriod(trimmedPeriod)) {
+                return trimmedPeriod;
             }
         }
         return "";
