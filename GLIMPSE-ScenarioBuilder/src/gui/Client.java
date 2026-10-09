@@ -178,8 +178,8 @@ public class Client extends Application {
 	
     // region Constants
     // Reduced by ~20% to allow a smaller usable minimum window size.
-    private static final double MIN_WINDOW_HEIGHT = 680;
-    private static final double MIN_WINDOW_WIDTH = 880;
+    private static final double MIN_WINDOW_HEIGHT = 480;
+    private static final double MIN_WINDOW_WIDTH = 620;
     private static final double MIN_COMPONENT_CREATOR_WINDOW_HEIGHT = 400;
     private static final double MIN_COMPONENT_CREATOR_WINDOW_WIDTH = 500;
     private static final double MIN_CONSOLE_WINDOW_HEIGHT = 300;
