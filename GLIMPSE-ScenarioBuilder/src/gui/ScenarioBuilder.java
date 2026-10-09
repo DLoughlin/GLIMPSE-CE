@@ -716,7 +716,7 @@ public class ScenarioBuilder {
 		logBuildStep("createScenarioLibraryPane: filter field start");
 		TextField filterScenarioTextField = utils.createTextField();
 		filterScenarioTextField.setPrefColumnCount(10);
-		filterScenarioTextField.setMinWidth(Region.USE_PREF_SIZE);
+		filterScenarioTextField.setMinWidth(filterScenarioTextField.prefWidth(-1) * 0.5);
 		filterScenarioTextField.setMaxWidth(Double.MAX_VALUE);
 		filterScenarioTextField.setTooltip(new Tooltip(TOOLTIP_FILTER));
 		filterScenarioTextField.setPromptText("Filter scenarios...");
