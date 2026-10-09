@@ -200,6 +200,9 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     private static final int PALETTE_PREVIEW_WIDTH = 76;
     private static final int PALETTE_PREVIEW_HEIGHT = 14;
     private static final int PALETTE_COMBO_WIDTH = 104;
+    private static final int CONTROL_ROW_GAP = 3;
+    private static final int CONTROL_SECTION_GAP = 4;
+    private static final int CONTROL_TEXT_WIDTH_PADDING = 18;
 
     public enum IntervalType {
         CUSTOM, AUTOMATIC
@@ -343,10 +346,10 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         fitToPreferredWidth(scenarioListMenu);
         scenarioListMenu.addActionListener(new UpdateMap());
         scenarioMenuPanel.add(scenarioListLabel);
-        scenarioMenuPanel.add(Box.createVerticalStrut(4));
+        scenarioMenuPanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         scenarioMenuPanel.add(scenarioListMenu);
         controlStack.add(scenarioMenuPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         yearMenuPanel = createControlSectionPanel();
         listLabel = new JLabel("Year:", SwingConstants.LEFT);
@@ -397,10 +400,10 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         yearControls.add(Box.createHorizontalStrut(6));
         yearControls.add(nextYearButton);
         yearMenuPanel.add(listLabel);
-        yearMenuPanel.add(Box.createVerticalStrut(4));
+        yearMenuPanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         yearMenuPanel.add(yearControls);
         controlStack.add(yearMenuPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         JLabel selectColorLabel = new JLabel("Palette type:", SwingConstants.LEFT);
         selectColorLabel.setFont(MAP_LABEL_FONT);
@@ -415,7 +418,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         fitToPreferredWidth(comboBoxPalette);
         comboBoxPalette.setSelectedIndex(1);
         colorSchemePanel.add(selectColorLabel);
-        colorSchemePanel.add(Box.createVerticalStrut(4));
+        colorSchemePanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         colorSchemePanel.add(comboBoxPalette);
         controlStack.add(colorSchemePanel);
         comboBoxPalette.addActionListener(e -> {
@@ -424,14 +427,14 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         });
         addDivergingColorChoices();
         controlStack.add(colorChoicePanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         JLabel changeNumberLabel = new JLabel("Number of color classes:", SwingConstants.LEFT);
         changeNumberLabel.setFont(MAP_LABEL_FONT);
         fitToPreferredWidth(changeNumberLabel);
         changeNumberPanel = createControlSectionPanel();
         changeNumberPanel.add(changeNumberLabel);
-        changeNumberPanel.add(Box.createVerticalStrut(4));
+        changeNumberPanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         comboBoxNumClasses = new JComboBox<>(numClasses);
         comboBoxNumClasses.setFont(MAP_FIELD_FONT);
         fitToPreferredWidth(comboBoxNumClasses);
@@ -439,7 +442,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         comboBoxNumClasses.addActionListener(e -> redrawMap());
         changeNumberPanel.add(comboBoxNumClasses);
         controlStack.add(changeNumberPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         reverseColorPanel = createControlSectionPanel();
         JButton reverseBtn = new JButton("Reverse Colors");
@@ -450,7 +453,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         });
         reverseColorPanel.add(reverseBtn);
         controlStack.add(reverseColorPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         colorConfigPanel = createControlSectionPanel();
         JButton configBtn = new JButton("Modify Color Scale");
@@ -458,7 +461,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         configBtn.addActionListener(e -> colorScaleOptions());
         colorConfigPanel.add(configBtn);
         controlStack.add(colorConfigPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         scaleStatusPanel = createControlSectionPanel();
         scaleStatusLabel = new JLabel();
@@ -468,20 +471,20 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         scaleModeLabel.setFont(MAP_LABEL_FONT);
         fitToPreferredWidth(scaleModeLabel);
         scaleStatusPanel.add(scaleModeLabel);
-        scaleStatusPanel.add(Box.createVerticalStrut(4));
+        scaleStatusPanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         scaleStatusPanel.add(scaleStatusLabel);
         controlStack.add(scaleStatusPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         navigationPanel = createControlSectionPanel();
         JLabel mapToolsLabel = new JLabel("Map tools:", SwingConstants.LEFT);
         mapToolsLabel.setFont(MAP_LABEL_FONT);
         fitToPreferredWidth(mapToolsLabel);
         navigationPanel.add(mapToolsLabel);
-        navigationPanel.add(Box.createVerticalStrut(4));
+        navigationPanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         navigationPanel.add(createNavigationButtons());
         controlStack.add(navigationPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         refreshMapPanel = createControlSectionPanel();
         JButton refreshBtn = new JButton("Refresh Map");
@@ -489,7 +492,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         refreshBtn.addActionListener(e -> redrawMap());
         refreshMapPanel.add(refreshBtn);
         controlStack.add(refreshMapPanel);
-        controlStack.add(Box.createVerticalStrut(8));
+        controlStack.add(Box.createVerticalStrut(CONTROL_SECTION_GAP));
 
         exportMapPanel = createControlSectionPanel();
         JPanel exportButtons = new JPanel();
@@ -959,7 +962,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         paletteChoiceLabel.setFont(MAP_LABEL_FONT);
         paletteChoiceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         colorChoicePanel.add(paletteChoiceLabel);
-        colorChoicePanel.add(Box.createVerticalStrut(4));
+        colorChoicePanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         comboBoxPaletteChoice = createPaletteChoiceComboBox(9, 4, DIVERGING_SWATCH_HEIGHT);
         colorChoicePanel.add(comboBoxPaletteChoice);
     }
@@ -971,7 +974,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         paletteChoiceLabel.setFont(MAP_LABEL_FONT);
         paletteChoiceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         colorChoicePanel.add(paletteChoiceLabel);
-        colorChoicePanel.add(Box.createVerticalStrut(4));
+        colorChoicePanel.add(Box.createVerticalStrut(CONTROL_ROW_GAP));
         comboBoxPaletteChoice = createPaletteChoiceComboBox(8, 1, SEQUENTIAL_SWATCH_HEIGHT);
         colorChoicePanel.add(comboBoxPaletteChoice);
     }
@@ -1433,7 +1436,7 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
     private JPanel createControlSectionPanel() {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
-        panel.setBorder(new EmptyBorder(6, 6, 6, 6));
+        panel.setBorder(new EmptyBorder(3, 6, 3, 6));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
@@ -1523,7 +1526,9 @@ public abstract class AbstractMapPanel extends JFrame implements ComponentListen
         Dimension preferredSize = component.getPreferredSize();
         component.setAlignmentX(Component.LEFT_ALIGNMENT);
         if (preferredSize != null) {
-            component.setMaximumSize(preferredSize);
+            int minWidth = preferredSize.width + CONTROL_TEXT_WIDTH_PADDING;
+            component.setMinimumSize(new Dimension(minWidth, preferredSize.height));
+            component.setMaximumSize(new Dimension(Integer.MAX_VALUE, preferredSize.height));
         }
     }
 
