@@ -494,6 +494,13 @@ public class DOMTreeBuilder {
 			int colPos = currHeader.getReadColumnPos(); 
 			String currColVal = null;
 			if(colPos != -1) {
+				if(colPos >= dataArr.size()) {
+					throw new IllegalArgumentException(String.format(
+						"CSV row is missing required column at index %d for header '%s'. Row has %d column(s).",
+						colPos,
+						currHeader,
+						dataArr.size()));
+				}
 				currColVal = dataArr.get(colPos);
 			} else {
 				if(currHeader.getChildEntity().doesSpecifyParamValue()) {

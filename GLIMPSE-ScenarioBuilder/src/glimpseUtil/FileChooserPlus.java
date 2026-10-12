@@ -707,10 +707,22 @@ public final class FileChooserPlus {
      * @return A configured FileChooser.ExtensionFilter instance.
      */
     public static FileChooser.ExtensionFilter createExtensionFilter(String description, String... extensions) {
-        // Prepend "*." to each extension to create the pattern.
+        String[] normalized = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
-            extensions[i] = "*." + extensions[i];
+          String ext = extensions[i] == null ? "" : extensions[i].trim();
+          if (ext.isEmpty()) {
+            normalized[i] = "*.*";
+            continue;
+          }
+          if (ext.contains("*") || ext.contains("?")) {
+            normalized[i] = ext;
+            continue;
+          }
+          if (ext.startsWith(".")) {
+            ext = ext.substring(1);
+          }
+          normalized[i] = "*." + ext;
         }
-        return new FileChooser.ExtensionFilter(description, extensions);
+        return new FileChooser.ExtensionFilter(description, normalized);
     }
 }

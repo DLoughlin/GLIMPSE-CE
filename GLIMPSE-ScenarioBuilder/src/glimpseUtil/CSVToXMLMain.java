@@ -95,6 +95,8 @@ public class CSVToXMLMain {
 
     // New: optional flag to use preset region list expansion.
     private static final String ARG_USE_PRESET_REGION_LIST = "--usePresetRegionList=";
+    private static String firstRowFailureSummary = null;
+    private static int rowErrorCount = 0;
 
     private static final List<String> US_STATES = Collections.unmodifiableList(Arrays.asList(
             "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID",
@@ -233,6 +235,7 @@ public class CSVToXMLMain {
      * @return Optional containing the resulting Document, or empty if error.
      */
     public static Optional<Document> runCSVConversion(File[] csvFiles, File headerFile, JFrame parentFrame, boolean usePresetRegionList) {
+        clearFailureSummaries();
         DOMTreeBuilder tree = new DOMTreeBuilder();
         try {
             Map<String, String> nickNameMap = new HashMap<>();
@@ -246,8 +249,16 @@ public class CSVToXMLMain {
             for (File csvFile : csvFiles) {
                 processCsvFile(csvFile.toPath(), tableIdMap, tree, parentFrame, usePresetRegionList, presetRegionExpansionMap);
             }
-            return Optional.of(tree.getDoc());
+            Document doc = tree.getDoc();
+            if (doc == null) {
+                throw new IllegalStateException("No XML document was generated. Check header definitions and CSV rows for parsing errors.");
+            }
+            return Optional.of(doc);
         } catch (Exception e) {
+            if (firstRowFailureSummary == null || firstRowFailureSummary.trim().isEmpty()) {
+                firstRowFailureSummary = "Processing stopped due to a critical error: " + e.getClass().getSimpleName()
+                        + (e.getMessage() == null ? "" : " - " + e.getMessage());
+            }
             System.err.println("========= Error in CSV2XML processing ==========");
             System.err.println(ERROR_MSG_PROCESSING);
             e.printStackTrace();
@@ -382,33 +393,44 @@ public class CSVToXMLMain {
     private static void processCsvFile(Path csvPath, Map<String, String> tableIdMap, DOMTreeBuilder tree, JFrame parentFrame,
                                       boolean usePresetRegionList, Map<String, List<String>> presetRegionExpansionMap) throws IOException {
         List<String> lines = Files.readAllLines(csvPath);
-        Iterator<String> iterator = lines.iterator();
-        while (iterator.hasNext()) {
-            String line = trimString(iterator.next());
+        int lineNumber = 0;
+        while (lineNumber < lines.size()) {
+            String line = trimString(lines.get(lineNumber));
+            lineNumber++;
             if (line.contains(INPUT_TABLE_KEYWORD)) {
                 // Skip lines until we find the Variable ID indicator
-                while (iterator.hasNext() && !line.contains(VARIABLE_ID_KEYWORD)) {
-                    line = trimString(iterator.next());
+                while (lineNumber < lines.size() && !line.contains(VARIABLE_ID_KEYWORD)) {
+                    line = trimString(lines.get(lineNumber));
+                    lineNumber++;
                 }
-                if (!iterator.hasNext()) break;
-                String headerId = trimString(iterator.next());
+                if (lineNumber >= lines.size()) break;
+                String headerId = trimString(lines.get(lineNumber));
+                lineNumber++;
                 if (tableIdMap.containsKey(headerId)) {
                     String resolvedHeader = tableIdMap.get(headerId);
                     try {
                         tree.setHeader(resolvedHeader);
                     } catch (Exception e) {
-                        System.err.println(String.format("Error setting header. headerId=%s, header=%s", headerId, resolvedHeader));
+                        String message = String.format(
+                                "Failed to parse header mapping for headerId '%s' in %s. Header text: %s",
+                                headerId,
+                                csvPath,
+                                resolvedHeader);
+                        System.err.println(message);
                         e.printStackTrace();
+                        throw new IllegalArgumentException(message, e);
                     }
                     System.out.println("Using header: " + headerId);
                     // Skip blank line and read column names (currently unused)
-                    if (iterator.hasNext()) iterator.next();
-                    if (iterator.hasNext()) iterator.next();
+                    if (lineNumber < lines.size()) lineNumber++;
+                    if (lineNumber < lines.size()) lineNumber++;
                     // Process data rows
-                    while (iterator.hasNext()) {
-                        line = trimString(iterator.next());
+                    while (lineNumber < lines.size()) {
+                        int rowLineNumber = lineNumber + 1;
+                        line = trimString(lines.get(lineNumber));
+                        lineNumber++;
                         if (line.isEmpty() || line.startsWith(",")) break;
-                        processCsvDataRow(line, tree, usePresetRegionList, presetRegionExpansionMap, headerId, resolvedHeader);
+                        processCsvDataRow(line, tree, usePresetRegionList, presetRegionExpansionMap, headerId, resolvedHeader, csvPath, rowLineNumber);
                     }
                 } else {
                     System.err.println(String.format(ERROR_MSG_HEADER_NOT_FOUND, headerId));
@@ -435,6 +457,12 @@ public class CSVToXMLMain {
     private static void processCsvDataRow(String line, DOMTreeBuilder tree,
                                          boolean usePresetRegionList, Map<String, List<String>> presetRegionExpansionMap,
                                          String headerId, String resolvedHeader) {
+        processCsvDataRow(line, tree, usePresetRegionList, presetRegionExpansionMap, headerId, resolvedHeader, null, -1);
+    }
+
+    private static void processCsvDataRow(String line, DOMTreeBuilder tree,
+                                         boolean usePresetRegionList, Map<String, List<String>> presetRegionExpansionMap,
+                                         String headerId, String resolvedHeader, Path csvPath, int rowLineNumber) {
         List<String> dataArr = Arrays.stream(line.split(CSV_DELIMITER, -1))
                 .map(String::trim)
                 .collect(Collectors.toList());
@@ -458,7 +486,7 @@ public class CSVToXMLMain {
                 try {
                     tree.addToTree(dataArr);
                 } catch (Exception e) {
-                    logCsvRowError(headerId, resolvedHeader, line);
+                    logCsvRowError(csvPath, rowLineNumber, headerId, resolvedHeader, line, dataArr, e);
                     e.printStackTrace();
                 }
             }
@@ -475,7 +503,7 @@ public class CSVToXMLMain {
                     try {
                         tree.addToTree(dataArr);
                     } catch (Exception e) {
-                        logCsvRowError(headerId, resolvedHeader, line);
+                        logCsvRowError(csvPath, rowLineNumber, headerId, resolvedHeader, line, dataArr, e);
                         e.printStackTrace();
                     }
                 }
@@ -491,7 +519,7 @@ public class CSVToXMLMain {
                 try {
                     tree.addToTree(dataArr);
                 } catch (Exception e) {
-                    logCsvRowError(headerId, resolvedHeader, line);
+                    logCsvRowError(csvPath, rowLineNumber, headerId, resolvedHeader, line, dataArr, e);
                     e.printStackTrace();
                 }
             }
@@ -502,14 +530,140 @@ public class CSVToXMLMain {
         try {
             tree.addToTree(dataArr);
         } catch (Exception e) {
-            logCsvRowError(headerId, resolvedHeader, line);
+            logCsvRowError(csvPath, rowLineNumber, headerId, resolvedHeader, line, dataArr, e);
             e.printStackTrace();
         }
     }
 
-    private static void logCsvRowError(String headerId, String resolvedHeader, String line) {
+    private static void logCsvRowError(Path csvPath, int rowLineNumber, String headerId, String resolvedHeader,
+                                       String line, List<String> dataArr, Exception ex) {
+        registerRowError();
+        List<String> headerArgs = splitCsvArgs(trimString(resolvedHeader));
+        List<String> lineArgs = splitCsvArgs(line);
+        int expectedCount = headerArgs.size();
+        int actualCount = lineArgs.size();
+
+        System.err.println("--------- CSV to XML row failure ---------");
+        if (csvPath != null && rowLineNumber > 0) {
+            System.err.println("Source: " + csvPath + " (line " + rowLineNumber + ")");
+        }
+        System.err.println("Header ID: " + headerId);
+        System.err.println("Exception: " + ex.getClass().getSimpleName() + (ex.getMessage() == null ? "" : ": " + ex.getMessage()));
+        System.err.println("CSV row column count: " + actualCount + " | Expected by header mapping: " + expectedCount);
+
+        int likelyFailingColumn = findLikelyFailingColumnIndex(headerArgs, dataArr, ex);
+        rememberFirstRowFailureSummary(csvPath, rowLineNumber, headerId, expectedCount, actualCount, likelyFailingColumn, headerArgs, dataArr, ex);
+        if (likelyFailingColumn >= 0) {
+            String expectedHeader = likelyFailingColumn < headerArgs.size() ? headerArgs.get(likelyFailingColumn) : "<unknown header>";
+            String actualValue = likelyFailingColumn < dataArr.size() ? dataArr.get(likelyFailingColumn) : "<missing value>";
+            System.err.println("Likely failing column index: " + likelyFailingColumn +
+                    " | expected: " + expectedHeader +
+                    " | actual: " + actualValue);
+        }
+
+        System.err.println("How to fix:");
+        for (String hint : buildRowFixHints(expectedCount, actualCount, likelyFailingColumn, headerArgs)) {
+            System.err.println("  - " + hint);
+        }
         System.err.println(String.format(ERROR_MSG_CSV_ROW_CONTEXT, headerId, resolvedHeader, line));
         System.err.println(String.format(ERROR_MSG_CSV_ROW_ARGS, formatHeaderLineArgMapping(resolvedHeader, line)));
+        System.err.println("------------------------------------------");
+    }
+
+    private static int findLikelyFailingColumnIndex(List<String> headerArgs, List<String> dataArr, Exception ex) {
+        if (headerArgs == null || dataArr == null) {
+            return -1;
+        }
+        if (dataArr.size() < headerArgs.size()) {
+            return dataArr.size();
+        }
+        String message = ex == null ? null : ex.getMessage();
+        if (message != null && message.contains("index")) {
+            java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("index\\s+(\\d+)").matcher(message);
+            if (matcher.find()) {
+                try {
+                    return Integer.parseInt(matcher.group(1));
+                } catch (NumberFormatException ignored) {
+                    return -1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static List<String> buildRowFixHints(int expectedCount, int actualCount, int likelyFailingColumn, List<String> headerArgs) {
+        List<String> hints = new ArrayList<>();
+        if (actualCount < expectedCount) {
+            hints.add("This row has fewer values than expected. Add missing comma-delimited fields at the end of the row.");
+            if (likelyFailingColumn >= 0 && likelyFailingColumn < headerArgs.size()) {
+                hints.add("Provide a value for required column index " + likelyFailingColumn + " mapped by header token: " + headerArgs.get(likelyFailingColumn));
+            }
+        } else if (actualCount > expectedCount) {
+            hints.add("This row has extra values. Remove unintended commas or ensure text containing commas is quoted consistently for this converter.");
+        } else {
+            hints.add("Column counts match, so validate value formats and header mapping for the listed failing column.");
+        }
+        hints.add("Confirm the selected header file matches the table format of this CSV section (Header ID shown above).");
+        return hints;
+    }
+
+    private static synchronized void clearFailureSummaries() {
+        firstRowFailureSummary = null;
+        rowErrorCount = 0;
+    }
+
+    private static synchronized void registerRowError() {
+        rowErrorCount++;
+    }
+
+    private static synchronized void rememberFirstRowFailureSummary(Path csvPath, int rowLineNumber, String headerId,
+                                                                    int expectedCount, int actualCount, int likelyFailingColumn,
+                                                                    List<String> headerArgs, List<String> dataArr, Exception ex) {
+        if (firstRowFailureSummary != null && !firstRowFailureSummary.trim().isEmpty()) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("First failing row");
+        if (csvPath != null) {
+            sb.append(" in ").append(csvPath);
+        }
+        if (rowLineNumber > 0) {
+            sb.append(" at line ").append(rowLineNumber);
+        }
+        sb.append(".");
+        if (headerId != null && !headerId.trim().isEmpty()) {
+            sb.append(" Header ID: ").append(headerId).append('.');
+        }
+        sb.append(" Columns found: ").append(actualCount).append(", expected: ").append(expectedCount).append('.');
+        if (likelyFailingColumn >= 0) {
+            sb.append(" Failing column index: ").append(likelyFailingColumn).append('.');
+            if (headerArgs != null && likelyFailingColumn < headerArgs.size()) {
+                sb.append(" Expected token: ").append(headerArgs.get(likelyFailingColumn)).append('.');
+            }
+            if (dataArr != null && likelyFailingColumn < dataArr.size()) {
+                sb.append(" Actual value: ").append(dataArr.get(likelyFailingColumn)).append('.');
+            }
+        }
+        if (ex != null) {
+            sb.append(" Error: ").append(ex.getClass().getSimpleName());
+            if (ex.getMessage() != null && !ex.getMessage().trim().isEmpty()) {
+                sb.append(" - ").append(ex.getMessage());
+            }
+            sb.append('.');
+        }
+        firstRowFailureSummary = sb.toString();
+    }
+
+    public static synchronized String getFirstRowFailureSummary() {
+        return firstRowFailureSummary;
+    }
+
+    public static synchronized int getRowErrorCount() {
+        return rowErrorCount;
+    }
+
+    public static synchronized boolean hadRowErrors() {
+        return rowErrorCount > 0;
     }
 
     private static String formatHeaderLineArgMapping(String resolvedHeader, String line) {

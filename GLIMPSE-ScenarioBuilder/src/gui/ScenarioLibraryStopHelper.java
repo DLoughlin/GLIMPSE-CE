@@ -59,6 +59,13 @@ final class ScenarioLibraryStopHelper {
         ButtonType closeBtn = ScenarioLibraryModelInterfaceMiniHelper.createCancelCloseButton("Close");
         alert.getButtonTypes().setAll(stopAllBtn, softStopBtn, stopBtn, closeBtn);
 
+        if (!isWindowsOs()) {
+            javafx.scene.Node softStopNode = alert.getDialogPane().lookupButton(softStopBtn);
+            if (softStopNode != null) {
+                softStopNode.setDisable(true);
+            }
+        }
+
         ScenarioLibraryModelInterfaceMiniHelper.setDefaultButton(alert.getDialogPane(), closeBtn);
         applyButtonSpacing(alert, stopAllBtn, softStopBtn, stopBtn, closeBtn);
 
@@ -110,6 +117,11 @@ final class ScenarioLibraryStopHelper {
             }
         } catch (Exception ignored) {
         }
+    }
+
+    private static boolean isWindowsOs() {
+        String osName = System.getProperty("os.name");
+        return osName != null && osName.toLowerCase().contains("win");
     }
 
     private static void applyButtonSpacing(Alert alert, ButtonType stopAllBtn, ButtonType softStopBtn, ButtonType stopBtn, ButtonType closeBtn) {

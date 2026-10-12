@@ -36,6 +36,7 @@
 package glimpseElement;
 
 import java.io.File;
+import java.util.Optional;
 
 import glimpseUtil.FileChooserPlus;
 import glimpseUtil.GLIMPSEFiles;
@@ -45,6 +46,7 @@ import glimpseUtil.GLIMPSEVariables;
 import glimpseUtil.UtilsDialogs;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.HPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -52,11 +54,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.w3c.dom.Document;
 
 public class CsvToXmlWidget {
 	protected GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
@@ -137,10 +143,24 @@ public class CsvToXmlWidget {
 		grid.setVgap(10);
 		// Use centralized horizontal padding for grids
 		grid.setPadding(styles.getHorizontalPadding10());
+		grid.setMaxWidth(Double.MAX_VALUE);
+
+		ColumnConstraints labelColumn = new ColumnConstraints();
+		ColumnConstraints fieldColumn = new ColumnConstraints();
+		fieldColumn.setHgrow(Priority.ALWAYS);
+		fieldColumn.setFillWidth(true);
+		ColumnConstraints buttonColumn = new ColumnConstraints();
+		buttonColumn.setHalignment(HPos.RIGHT);
+		grid.getColumnConstraints().setAll(labelColumn, fieldColumn, buttonColumn);
 		
 		grid.add(topLabel, 0, 0);
 		grid.add(csvFileLabel, 0, 1);
 		grid.add(headerFileLabel, 0, 2);
+
+		csvFileTextField.setMaxWidth(Double.MAX_VALUE);
+		headerFileTextField.setMaxWidth(Double.MAX_VALUE);
+		GridPane.setHgrow(csvFileTextField, Priority.ALWAYS);
+		GridPane.setHgrow(headerFileTextField, Priority.ALWAYS);
 
 		grid.add(csvFileTextField, 1, 1);
 		grid.add(headerFileTextField, 1, 2);
@@ -155,6 +175,12 @@ public class CsvToXmlWidget {
 		
 		Button convertButton = utils.createButton("Convert", styles.getBigButtonWidth(),"Converts CSV to XML using header",null);
 		Button closeButton = utils.createButton("Close", styles.getBigButtonWidth(),null);
+		convertButton.setPrefWidth(Region.USE_COMPUTED_SIZE);
+		convertButton.setMinWidth(Region.USE_PREF_SIZE);
+		convertButton.setMaxWidth(Region.USE_PREF_SIZE);
+		closeButton.setPrefWidth(Region.USE_COMPUTED_SIZE);
+		closeButton.setMinWidth(Region.USE_PREF_SIZE);
+		closeButton.setMaxWidth(Region.USE_PREF_SIZE);
 
 		closeButton.setOnAction(e -> {
 			stage.close();
@@ -163,6 +189,7 @@ public class CsvToXmlWidget {
 		convertButton.setOnAction(e -> {
 			converter();
 			});
+
 		
 		VBox root = new VBox();
 		// Use centralized tiny padding for compact roots
@@ -176,7 +203,7 @@ public class CsvToXmlWidget {
 
          buttonBox.setSpacing(5);
          buttonBox.setAlignment(Pos.CENTER);
-         buttonBox.getChildren().addAll(convertButton,closeButton);
+		 buttonBox.getChildren().addAll(convertButton,closeButton);
 
 
 		
@@ -187,6 +214,11 @@ public class CsvToXmlWidget {
 		stage.setScene(scene);
 		stage.setOnShown(e -> {
 			try {
+				double initialWidth = stage.getWidth();
+				if (initialWidth > 0) {
+					stage.setWidth(initialWidth * 1.5);
+				}
+
 				Window owner = stage.getOwner();
 				if (owner == null || !owner.isShowing()) {
 					owner = UtilsDialogs.getPrimaryOwnerWindow();
@@ -243,20 +275,96 @@ public class CsvToXmlWidget {
 			boolean usePresetRegionList = usePresetRegionListCheckBox.isSelected();
 			
 			File csvFile=new File(csvFilename);
-			xmlFilename=browseForFile("XML file (*.xml)","*.xml",csvFile.getParent(),"Save");
-			String[] s = { csvFilename, headersFilename, xmlFilename, "--usePresetRegionList=" + usePresetRegionList };
+			File outputFile = deriveXmlOutputFile(csvFile);
+			if (outputFile == null) {
+				showConversionErrorDialog();
+				return;
+			}
+			xmlFilename = outputFile.getPath();
 			System.out.println("csv to xml conversion commencing:");
 			System.out.println("    csv file: " + csvFilename);
 			System.out.println("    header file: " + headersFilename);
 			System.out.println("    xml file: " + xmlFilename);
 			System.out.println("    use preset region list: " + usePresetRegionList);
-			glimpseUtil.CSVToXMLMain.main(s);
+			Optional<Document> docOpt = glimpseUtil.CSVToXMLMain.runCSVConversion(
+					new File[] { csvFile },
+					new File(headersFilename),
+					null,
+					usePresetRegionList);
+			if (!docOpt.isPresent()) {
+				showConversionErrorDialog();
+				return;
+			}
 
-			files.showFileInTextEditor(xmlFilename);
+			boolean wroteOutput = glimpseUtil.CSVToXMLMain.writeFile(outputFile, docOpt.get());
+			boolean replacedDeleteTokens = wroteOutput
+					&& glimpseUtil.CSVToXMLMain.replaceTextInFile(outputFile.toPath(), "DELETE", "");
+			if (!wroteOutput || !replacedDeleteTokens) {
+				showConversionErrorDialog();
+				return;
+			}
+
+			boolean hadRowErrors = glimpseUtil.CSVToXMLMain.hadRowErrors();
+			String summary = glimpseUtil.CSVToXMLMain.getFirstRowFailureSummary();
+			int rowErrorCount = glimpseUtil.CSVToXMLMain.getRowErrorCount();
+
+			String dialogMessage;
+			if (hadRowErrors) {
+				StringBuilder warning = new StringBuilder();
+				warning.append("Warning: XML file was created, but conversion reported ")
+						.append(rowErrorCount)
+						.append(rowErrorCount == 1 ? " row-level issue." : " row-level issues.")
+						.append("\n\nGenerated file:\n")
+						.append(xmlFilename);
+				if (summary != null && !summary.trim().isEmpty()) {
+					warning.append("\n\nFirst issue:\n").append(summary);
+				}
+				warning.append("\n\nCheck the console for details. Open XML file now?");
+				dialogMessage = warning.toString();
+			} else {
+				dialogMessage = "Successfully created XML file:\n" + xmlFilename + "\n\nOpen XML file now?";
+			}
+
+			boolean openNow = utils.selectYesOrNoDialog(dialogMessage);
+			if (openNow) {
+				files.showFileInTextEditor(xmlFilename);
+			}
 		} catch (Exception e) {
 			System.out.println("Error saving or opening xml file "+xmlFilename);
 			System.out.println("  "+e);
+			showConversionErrorDialog();
 		}
+	}
+
+	private File deriveXmlOutputFile(File csvFile) {
+		if (csvFile == null) {
+			return null;
+		}
+		String name = csvFile.getName();
+		if (name == null || name.trim().isEmpty()) {
+			return null;
+		}
+		String xmlName;
+		if (name.toLowerCase().endsWith(".csv")) {
+			xmlName = name.substring(0, name.length() - 4) + ".xml";
+		} else {
+			xmlName = name + ".xml";
+		}
+		File parent = csvFile.getParentFile();
+		if (parent == null) {
+			parent = new File(".").getAbsoluteFile();
+		}
+		return new File(parent, xmlName);
+	}
+
+	private void showConversionErrorDialog() {
+		String summary = glimpseUtil.CSVToXMLMain.getFirstRowFailureSummary();
+		StringBuilder msg = new StringBuilder("CSV to XML conversion encountered errors.");
+		if (summary != null && !summary.trim().isEmpty()) {
+			msg.append("\n\n").append(summary);
+		}
+		msg.append("\n\nPlease check the console for additional information.");
+		utils.warningMessage(msg.toString());
 	}
 	
 }
