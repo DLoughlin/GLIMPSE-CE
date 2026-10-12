@@ -549,11 +549,8 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		boolean useNativeFileDialog = nativeDialogValue == null
 				|| !"false".equalsIgnoreCase(nativeDialogValue.trim());
 
+		// Debug logging is opt-in only via JVM property to avoid noisy defaults.
 		String nativeDialogDebugValue = System.getProperty(NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY);
-		if (nativeDialogDebugValue == null || nativeDialogDebugValue.trim().isEmpty()) {
-			nativeDialogDebugValue = getTrimmedProperty(props, NATIVE_FILE_DIALOG_DEBUG_PROPERTY,
-					NATIVE_FILE_DIALOG_DEBUG_LEGACY_PROPERTY);
-		}
 		boolean debugNativeFileDialog = "true".equalsIgnoreCase(
 				nativeDialogDebugValue == null ? "" : nativeDialogDebugValue.trim());
 
@@ -562,6 +559,7 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 
 		if (props != null) {
 			props.setProperty(NATIVE_FILE_DIALOG_PROPERTY, Boolean.toString(useNativeFileDialog));
+			// Persist explicit off by default; enable only with JVM -D flag.
 			props.setProperty(NATIVE_FILE_DIALOG_DEBUG_PROPERTY, Boolean.toString(debugNativeFileDialog));
 		}
 
