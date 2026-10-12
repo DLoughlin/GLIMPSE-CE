@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Wrapper which attempts a native chooser first and falls back to the
@@ -348,6 +349,33 @@ public class NativeFirstFileChooserWrapper implements FileChooser {
 		if (fileFilter == null) {
 			return "All files (*.*)|*.*";
 		}
+		if (fileFilter instanceof FileNameExtensionFilter) {
+			FileNameExtensionFilter extFilter = (FileNameExtensionFilter) fileFilter;
+			String[] exts = extFilter.getExtensions();
+			if (exts != null && exts.length > 0) {
+				StringBuilder pattern = new StringBuilder();
+				for (int i = 0; i < exts.length; i++) {
+					String ext = exts[i] == null ? "" : exts[i].trim();
+					if (ext.startsWith(".")) {
+						ext = ext.substring(1);
+					}
+					if (ext.isEmpty()) {
+						continue;
+					}
+					if (pattern.length() > 0) {
+						pattern.append(';');
+					}
+					pattern.append("*.").append(ext);
+				}
+				if (pattern.length() > 0) {
+					String description = extFilter.getDescription();
+					if (description == null || description.trim().isEmpty()) {
+						description = "Filtered files";
+					}
+					return description + "|" + pattern.toString();
+				}
+			}
+		}
 		String description = null;
 		try {
 			description = fileFilter.getDescription();
@@ -355,7 +383,7 @@ public class NativeFirstFileChooserWrapper implements FileChooser {
 			description = null;
 		}
 		if (description != null && description.toLowerCase().contains("xml")) {
-			return "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+			return "XML files (*.xml)|*.xml";
 		}
 		return "All files (*.*)|*.*";
 	}

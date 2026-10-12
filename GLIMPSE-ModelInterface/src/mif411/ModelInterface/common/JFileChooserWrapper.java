@@ -90,8 +90,14 @@ public class JFileChooserWrapper implements FileChooser {
 		} else {
 			toWrap.setSelectedFile(setFile);
 		}
-		// TODO: find out if this will this be ok with a null FileFilter
-		toWrap.setFileFilter(fileFilter);
+		toWrap.resetChoosableFileFilters();
+		if (fileFilter != null) {
+			toWrap.addChoosableFileFilter(fileFilter);
+			toWrap.setFileFilter(fileFilter);
+			toWrap.setAcceptAllFileFilterUsed(false);
+		} else {
+			toWrap.setAcceptAllFileFilterUsed(true);
+		}
 		
 		// TODO: find a better way as this is a hack
 		if(fileFilter != null && fileFilter.getDescription().startsWith("Directory")) {

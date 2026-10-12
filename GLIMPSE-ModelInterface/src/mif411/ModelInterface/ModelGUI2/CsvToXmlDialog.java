@@ -75,6 +75,7 @@ public class CsvToXmlDialog extends JDialog {
         super(owner, "CSV to XML Converter", true);
         buildUI();
         pack();
+        setSize((int) Math.round(getWidth() * 0.66), (int) Math.round(getHeight() * 1.12));
         setLocationRelativeTo(owner);
     }
 
@@ -91,8 +92,10 @@ public class CsvToXmlDialog extends JDialog {
         inputPanel.add(new JLabel("CSV file:"), c);
         c.gridx = 1; c.weightx = 1.0;
         csvFileField.setEditable(true);
+        csvFileField.setColumns(48);
         inputPanel.add(csvFileField, c);
         c.gridx = 2; c.weightx = 0;
+        c.anchor = GridBagConstraints.EAST;
         JButton browseCsv = new JButton("Browse…");
         browseCsv.addActionListener(e -> browseForFile(csvFileField,
                 "Open CSV File", "CSV Files (*.csv)", "csv"));
@@ -109,13 +112,15 @@ public class CsvToXmlDialog extends JDialog {
         headerFileField.setText(presetHeader);
         inputPanel.add(headerFileField, c);
         c.gridx = 2; c.weightx = 0;
+        c.anchor = GridBagConstraints.EAST;
         JButton browseHeader = new JButton("Browse…");
         browseHeader.addActionListener(e -> browseForFile(headerFileField,
                 "Open Header File", "Text Files (*.txt)", "txt"));
         inputPanel.add(browseHeader, c);
 
         // ---- button panel ----
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 6));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 6));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 6));
         JButton convertBtn = new JButton("Convert");
         convertBtn.setToolTipText("Convert the CSV file to XML using the selected header file");
         convertBtn.addActionListener(e -> runConversion());
@@ -166,7 +171,7 @@ public class CsvToXmlDialog extends JDialog {
         }
     }
 
-    /** Prompts for an output XML file, runs the conversion, and opens the result. */
+    /** Runs conversion to an auto-derived output XML file and optionally opens the result. */
     private void runConversion() {
         String csvPath    = csvFileField.getText().trim();
         String headerPath = headerFileField.getText().trim();
@@ -198,22 +203,12 @@ public class CsvToXmlDialog extends JDialog {
             return;
         }
 
-        // Ask user where to save the output XML
-        String defaultName = csvFile.getName().replaceAll("(?i)\\.csv$", ".xml");
-        File saveSeed = new File(csvFile.getParentFile(), defaultName);
-        FileChooser saveChooser = FileChooserFactory.getFileChooser();
-        javax.swing.filechooser.FileFilter xmlFilter = new FileNameExtensionFilter("XML Files (*.xml)", "xml");
-        File[] selected = saveChooser.doFilePrompt(this,
-                "Save Output XML File",
-                FileChooser.SAVE_DIALOG,
-                saveSeed,
-                xmlFilter);
-        if (selected == null || selected.length == 0 || selected[0] == null) {
+        File outputFile = deriveXmlOutputFile(csvFile);
+        if (outputFile == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Could not determine output XML file path from the selected CSV file.",
+                    "Output Path Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        File outputFile = selected[0];
-        if (!outputFile.getName().toLowerCase().endsWith(".xml")) {
-            outputFile = new File(outputFile.getAbsolutePath() + ".xml");
         }
 
         System.out.println("CSV to XML conversion starting:");
@@ -226,7 +221,7 @@ public class CsvToXmlDialog extends JDialog {
 
         if (doc == null) {
             JOptionPane.showMessageDialog(this,
-                    "Conversion failed. Check the console for details.",
+                    buildConversionFailureMessage(),
                     "Conversion Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -247,20 +242,90 @@ public class CsvToXmlDialog extends JDialog {
         }
 
         System.out.println("CSV to XML conversion complete: " + outputFile.getAbsolutePath());
+        ConversionPrompt prompt = buildConversionPrompt(outputFile);
         int open = JOptionPane.showConfirmDialog(this,
-                "Conversion complete.\nOutput: " + outputFile.getAbsolutePath()
-                        + "\n\nOpen the output file?",
-                "Conversion Complete", JOptionPane.YES_NO_OPTION,
-                JOptionPane.INFORMATION_MESSAGE);
+                prompt.message,
+                prompt.title,
+                JOptionPane.YES_NO_OPTION,
+                prompt.messageType);
         if (open == JOptionPane.YES_OPTION) {
-            try {
-                Desktop.getDesktop().open(outputFile);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this,
-                        "Could not open file automatically:\n" + ex.getMessage(),
-                        "Open Error", JOptionPane.WARNING_MESSAGE);
-            }
+            openOutputFile(outputFile);
         }
+    }
+
+    private String buildConversionFailureMessage() {
+        String summary = CSVToXMLMain.getFirstRowFailureSummary();
+        StringBuilder msg = new StringBuilder("Conversion failed.");
+        if (summary != null && !summary.trim().isEmpty()) {
+            msg.append("\n\n").append(summary);
+        }
+        msg.append("\n\nCheck the console for details.");
+        return msg.toString();
+    }
+
+    private ConversionPrompt buildConversionPrompt(File outputFile) {
+        boolean hadRowErrors = CSVToXMLMain.hadRowErrors();
+        int errorCount = CSVToXMLMain.getRowErrorCount();
+        String summary = CSVToXMLMain.getFirstRowFailureSummary();
+
+        String title = hadRowErrors ? "Conversion Completed with Warnings" : "Conversion Complete";
+        int messageType = hadRowErrors ? JOptionPane.WARNING_MESSAGE : JOptionPane.INFORMATION_MESSAGE;
+        StringBuilder msg = new StringBuilder();
+        if (hadRowErrors) {
+            msg.append("XML file was created, but conversion reported ")
+                    .append(errorCount)
+                    .append(errorCount == 1 ? " row-level issue." : " row-level issues.");
+            if (summary != null && !summary.trim().isEmpty()) {
+                msg.append("\n\nFirst issue:\n").append(summary);
+            }
+            msg.append("\n\nCheck the console for details.");
+        } else {
+            msg.append("Conversion complete.");
+        }
+        msg.append("\nOutput: ").append(outputFile.getAbsolutePath())
+                .append("\n\nOpen the output file?");
+        return new ConversionPrompt(title, msg.toString(), messageType);
+    }
+
+    private void openOutputFile(File outputFile) {
+        try {
+            Desktop.getDesktop().open(outputFile);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Could not open file automatically:\n" + ex.getMessage(),
+                    "Open Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private static final class ConversionPrompt {
+        private final String title;
+        private final String message;
+        private final int messageType;
+
+        private ConversionPrompt(String title, String message, int messageType) {
+            this.title = title;
+            this.message = message;
+            this.messageType = messageType;
+        }
+    }
+
+    private File deriveXmlOutputFile(File csvFile) {
+        if (csvFile == null) {
+            return null;
+        }
+        String name = csvFile.getName();
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+        String xmlName = name.replaceAll("(?i)\\.csv$", ".xml");
+        if (xmlName.equals(name)) {
+            xmlName = name + ".xml";
+        }
+        File parent = csvFile.getParentFile();
+        if (parent == null) {
+            parent = new File(System.getProperty("user.dir", "."));
+        }
+        return new File(parent, xmlName);
     }
 
     /**
