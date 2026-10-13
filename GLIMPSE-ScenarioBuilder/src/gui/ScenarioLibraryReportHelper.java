@@ -487,20 +487,24 @@ public final class ScenarioLibraryReportHelper {
     }
 
     private static String formatScenarioErrorDetailLine(String[] fields) {
-        String firstToken = safeCsvField(fields, ERROR_REPORT_FIRST_FIELD_COLUMN);
-        if (firstToken.isEmpty()) {
-            return "";
-        }
-        if ("No errors reported".equalsIgnoreCase(firstToken) || "Main log not found".equalsIgnoreCase(firstToken)) {
-            return firstToken;
-        }
         ArrayList<String> visibleTokens = new ArrayList<>();
+        String firstNonEmptyToken = "";
         int tokenLimit = Math.max(ERROR_REPORT_FIRST_FIELD_COLUMN, fields.length - ERROR_REPORT_CLASSIFICATION_OFFSET);
         for (int i = ERROR_REPORT_FIRST_FIELD_COLUMN; i < tokenLimit; i++) {
             String value = safeCsvField(fields, i);
             if (!value.isEmpty()) {
+                if (firstNonEmptyToken.isEmpty()) {
+                    firstNonEmptyToken = value;
+                }
                 visibleTokens.add(value);
             }
+        }
+        if (visibleTokens.isEmpty()) {
+            return "";
+        }
+        if ("No errors reported".equalsIgnoreCase(firstNonEmptyToken)
+                || "Main log not found".equalsIgnoreCase(firstNonEmptyToken)) {
+            return firstNonEmptyToken;
         }
         String classification = extractClassification(fields);
         if (!classification.isEmpty() && isDetailedMarketRow(visibleTokens)) {

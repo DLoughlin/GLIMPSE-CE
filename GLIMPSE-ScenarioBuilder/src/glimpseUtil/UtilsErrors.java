@@ -4,7 +4,12 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import gui.ScenarioBuilder;
@@ -609,6 +614,7 @@ public final class UtilsErrors {
 		String scenarioLabel = (scenario == null || scenario.trim().isEmpty()) ? "exe/main_log.txt" : scenario;
 		ArrayList<String> report = new ArrayList<>();
 		ArrayList<String[]> tokenRows = new ArrayList<>();
+		ArrayList<MarketSignal> marketSignals = new ArrayList<>();
 		ArrayList<String> classifications = new ArrayList<>();
 		ArrayList<String> smallMarkets = new ArrayList<>();
 		int maxTokenCount = 0;
@@ -616,12 +622,17 @@ public final class UtilsErrors {
 		if (mainlogfile.exists()) {
 			String[] prefixes = { "ERROR", "SEVERE", "Period" };
 			ArrayList<String> logLines = files.getStringArrayFromFile(mainlogfile.getPath(), "#");
+			Integer lastSeenPeriod = null;
 			for (String rawLine : logLines) {
 				String errorLine = stripKnownLogLinePrefixes(rawLine);
 				if (errorLine.isEmpty() || !startsWithAnyPrefix(errorLine, prefixes))
 					continue;
 				String normalized = errorLine.replace(":", ",");
 				String[] tokens = normalized.split(",");
+				Integer linePeriod = extractPeriodFromTokens(tokens);
+				if (linePeriod != null) {
+					lastSeenPeriod = linePeriod;
+				}
 				maxTokenCount = Math.max(maxTokenCount, tokens.length);
 				String classification = "";
 				String smallMarket = "";
@@ -629,7 +640,8 @@ public final class UtilsErrors {
 					if (tokens.length > 12) {
 						double red = Double.parseDouble(tokens[7].trim());
 						double dmd = Double.parseDouble(tokens[9].trim());
-						tokens[12].trim();
+						String marketName = tokens[12].trim();
+						String marketType = extractMarketType(tokens);
 						totalFails++;
 						if (red > minRed) {
 							if (red > minRed * 5.0) {
@@ -648,6 +660,8 @@ public final class UtilsErrors {
 								smallMarketFails++;
 						}
 						smallMarket = (dmd <= minDmd) ? "true" : "false";
+						marketSignals.add(new MarketSignal(marketName, red, dmd, classification,
+								"true".equals(smallMarket), lastSeenPeriod, marketType));
 					}
 				} catch (Exception e) {
 					// Ignore parse errors for robustness
@@ -685,6 +699,23 @@ public final class UtilsErrors {
 				tokenRows.add(new String[] { "Summary", summary });
 				classifications.add("");
 				smallMarkets.add("");
+
+				ArrayList<String> narrativeLines = buildExperimentalNarrative(marketSignals, totalFails, majorFails,
+						moderateFails, minorFails, smallMarketFails, minRed, formatter);
+				if (!narrativeLines.isEmpty()) {
+					tokenRows.add(new String[] { "Experimental new feature:", "" });
+					classifications.add("");
+					smallMarkets.add("");
+					for (String narrativeLine : narrativeLines) {
+						String displayLine = narrativeLine == null ? "" : narrativeLine.trim();
+						if (!displayLine.isEmpty() && !displayLine.startsWith("- ")) {
+							displayLine = "- " + displayLine;
+						}
+						tokenRows.add(new String[] { "", displayLine });
+						classifications.add("");
+						smallMarkets.add("");
+					}
+				}
 			}
 		} else {
 			maxTokenCount = Math.max(maxTokenCount, 1);
@@ -707,6 +738,306 @@ public final class UtilsErrors {
 			report.add(buildCsvRow(fields, columnCount));
 		}
 		return report;
+	}
+
+	private ArrayList<String> buildExperimentalNarrative(List<MarketSignal> marketSignals, int totalFails,
+			int majorFails, int moderateFails, int minorFails, int smallMarketFails, double minRed,
+			DecimalFormat formatter) {
+		ArrayList<String> lines = new ArrayList<>();
+		lines.add("Diagnostic narrative generated from unsolved-market patterns.");
+		if (marketSignals == null || marketSignals.isEmpty()) {
+			lines.add("No structured market rows were parsed; check main_log formatting and inspect raw ERROR lines.");
+			return lines;
+		}
+
+		MarketSignal worst = marketSignals.get(0);
+		for (MarketSignal signal : marketSignals) {
+			if (signal.red > worst.red) {
+				worst = signal;
+			}
+		}
+
+		Map<String, Integer> perMarketCount = new HashMap<>();
+		for (MarketSignal signal : marketSignals) {
+			String key = signal.marketName == null || signal.marketName.trim().isEmpty() ? "<unknown market>" : signal.marketName;
+			Integer prev = perMarketCount.get(key);
+			perMarketCount.put(key, prev == null ? 1 : prev + 1);
+		}
+
+		String worstName = (worst.marketName == null || worst.marketName.trim().isEmpty()) ? "<unknown market>"
+				: worst.marketName;
+		Integer firstFailingPeriod = null;
+		for (MarketSignal signal : marketSignals) {
+			if (signal.period == null) {
+				continue;
+			}
+			if (firstFailingPeriod == null || signal.period.intValue() < firstFailingPeriod.intValue()) {
+				firstFailingPeriod = signal.period;
+			}
+		}
+		if (firstFailingPeriod != null) {
+			lines.add("Likely first-failing period: " + firstFailingPeriod
+					+ " (start debugging there before later periods). ");
+		}
+		lines.add("Start with the worst market: " + worstName + " (RED=" + formatter.format(worst.red * 100.0)
+				+ "%, demand=" + formatter.format(worst.demand) + ").");
+
+		Map<Integer, ArrayList<MarketSignal>> byPeriod = new TreeMap<>();
+		for (MarketSignal signal : marketSignals) {
+			if (signal.period == null) {
+				continue;
+			}
+			ArrayList<MarketSignal> periodRows = byPeriod.get(signal.period);
+			if (periodRows == null) {
+				periodRows = new ArrayList<>();
+				byPeriod.put(signal.period, periodRows);
+			}
+			periodRows.add(signal);
+		}
+		if (!byPeriod.isEmpty()) {
+			lines.add("Period grouping (parseable):");
+			for (Map.Entry<Integer, ArrayList<MarketSignal>> entry : byPeriod.entrySet()) {
+				int period = entry.getKey();
+				ArrayList<MarketSignal> rows = entry.getValue();
+				MarketSignal periodWorst = rows.get(0);
+				for (MarketSignal row : rows) {
+					if (row.red > periodWorst.red) {
+						periodWorst = row;
+					}
+				}
+				String periodWorstName = periodWorst.marketName == null || periodWorst.marketName.trim().isEmpty()
+						? "<unknown market>"
+						: periodWorst.marketName;
+				lines.add("  - Period " + period + ": " + rows.size() + " unsolved market(s); worst is "
+						+ periodWorstName + " (RED=" + formatter.format(periodWorst.red * 100.0) + "%).");
+			}
+		}
+
+		String typeSummary = buildDetectedMarketTypeSummary(marketSignals);
+		if (!typeSummary.isEmpty()) {
+			lines.add("Detected market types: " + typeSummary + ".");
+		}
+
+		if (majorFails > 0) {
+			lines.add("Major failures exist (" + majorFails + "). This usually points to structural issues (missing supply/"
+					+ "demand links, infeasible policy settings, or bad inputs), not just solver tolerance.");
+		} else if (moderateFails > 0) {
+			lines.add("No major failures, but moderate failures exist (" + moderateFails
+					+ "). Check market setup before only adjusting solver settings.");
+		} else {
+			lines.add("All failures are minor. This often indicates near-solution behavior; consider relaxing tolerance or increasing iterations.");
+		}
+
+		if (smallMarketFails == totalFails && totalFails > 0) {
+			lines.add("All flagged failures are in very small markets (demand <= 1e-4). These may be low-impact numerical edge cases.");
+		} else if (smallMarketFails > 0) {
+			lines.add(smallMarketFails + " of " + totalFails
+					+ " failures are in small markets; prioritize non-small-market failures first.");
+		}
+
+		ArrayList<String> persistentMarkets = new ArrayList<>();
+		for (Map.Entry<String, Integer> e : perMarketCount.entrySet()) {
+			if (e.getValue() != null && e.getValue() > 1) {
+				persistentMarkets.add(e.getKey() + " (" + e.getValue() + " occurrences)");
+			}
+		}
+		if (!persistentMarkets.isEmpty()) {
+			Collections.sort(persistentMarkets);
+			String first = persistentMarkets.get(0);
+			lines.add("Persistent unsolved market pattern detected: " + first
+					+ ". Repeated failures usually indicate a structural cause rather than solver noise.");
+		}
+
+		ArrayList<String> typeHints = buildMarketTypeHints(marketSignals);
+		if (!typeHints.isEmpty()) {
+			lines.add("Market-type-specific hints:");
+			lines.addAll(typeHints);
+		}
+
+		double nearTolThreshold = minRed * 10.0;
+		if (worst.red <= nearTolThreshold) {
+			lines.add("Worst RED is within ~10x tolerance (" + formatter.format(nearTolThreshold * 100.0)
+					+ "%). Try solver iteration/tolerance adjustments before deeper input changes.");
+		}
+
+		lines.add("Recommended next steps: inspect supply-demand curve output for " + worstName
+				+ ", then compare its XML inputs against a known-good scenario.");
+		return lines;
+	}
+
+	private String buildDetectedMarketTypeSummary(List<MarketSignal> marketSignals) {
+		if (marketSignals == null || marketSignals.isEmpty()) {
+			return "";
+		}
+		Set<String> found = new HashSet<>();
+		for (MarketSignal signal : marketSignals) {
+			String type = signal.marketType == null ? "" : signal.marketType.trim();
+			if (!type.isEmpty() && !"NORMAL".equals(type)) {
+				found.add(type);
+			}
+		}
+		if (found.isEmpty()) {
+			return "NORMAL/UNSPECIFIED";
+		}
+		ArrayList<String> ordered = new ArrayList<>(found);
+		Collections.sort(ordered);
+		return String.join(", ", ordered);
+	}
+
+	private ArrayList<String> buildMarketTypeHints(List<MarketSignal> marketSignals) {
+		ArrayList<String> hints = new ArrayList<>();
+		if (marketSignals == null || marketSignals.isEmpty()) {
+			return hints;
+		}
+		boolean hasTax = false;
+		boolean hasCalibration = false;
+		boolean hasTrial = false;
+		boolean hasDemandLike = false;
+		boolean hasResSubsidy = false;
+		for (MarketSignal signal : marketSignals) {
+			String type = signal.marketType == null ? "" : signal.marketType.trim();
+			if ("TAX".equals(type)) {
+				hasTax = true;
+			}
+			if ("CALIBRATION".equals(type)) {
+				hasCalibration = true;
+			}
+			if ("TRIAL".equals(type)) {
+				hasTrial = true;
+			}
+			if ("DEMAND_PRICE".equals(type)) {
+				hasDemandLike = true;
+			}
+			if ("RES_SUBSIDY".equals(type)) {
+				hasResSubsidy = true;
+			}
+		}
+		if (hasTax) {
+			hints.add("  - Tax/emissions markets are failing: check policy trajectory feasibility and abatement availability.");
+		}
+		if (hasCalibration) {
+			hints.add("  - Calibration markets are failing: verify base-year calibration inputs and consistency across sectors.");
+		}
+		if (hasTrial) {
+			hints.add("  - Trial markets are failing: inspect simultaneity loops (e.g., land/biomass/water linkages).");
+		}
+		if (hasDemandLike) {
+			hints.add("  - Demand/price-linked markets are failing: ensure counterpart linked markets clear in the same period.");
+		}
+		if (hasResSubsidy) {
+			hints.add("  - RES/subsidy-style policy markets are failing: check target stringency versus achievable qualifying supply.");
+		}
+		return hints;
+	}
+
+	private Integer extractPeriodFromTokens(String[] tokens) {
+		if (tokens == null) {
+			return null;
+		}
+		for (String token : tokens) {
+			if (token == null) {
+				continue;
+			}
+			String normalized = token.trim();
+			if (normalized.isEmpty()) {
+				continue;
+			}
+			String lower = normalized.toLowerCase();
+			if (lower.startsWith("period")) {
+				String digits = normalized.replaceAll("[^0-9]", "");
+				if (!digits.isEmpty()) {
+					try {
+						return Integer.valueOf(digits);
+					} catch (NumberFormatException ignored) {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	private String extractMarketType(String[] tokens) {
+		if (tokens == null) {
+			return "";
+		}
+		int[] candidateIndices = { 11, 10, 12, 9, 8 };
+		for (int index : candidateIndices) {
+			if (index < 0 || index >= tokens.length || tokens[index] == null) {
+				continue;
+			}
+			String candidate = tokens[index].trim();
+			if (candidate.isEmpty()) {
+				continue;
+			}
+			String canonicalType = canonicalizeMarketType(candidate);
+			if (!canonicalType.isEmpty()) {
+				return canonicalType;
+			}
+		}
+		for (String token : tokens) {
+			if (token == null) {
+				continue;
+			}
+			String canonicalType = canonicalizeMarketType(token);
+			if (!canonicalType.isEmpty()) {
+				return canonicalType;
+			}
+		}
+		return "";
+	}
+
+	private String canonicalizeMarketType(String value) {
+		if (value == null) {
+			return "";
+		}
+		String lower = value.trim().toLowerCase();
+		if (lower.isEmpty()) {
+			return "";
+		}
+		if (lower.contains("tax") || lower.contains("emissioncap") || lower.contains("ghgpolicy")
+				|| lower.contains("co2") && lower.contains("policy")) {
+			return "TAX";
+		}
+		if (lower.contains("inverse-calibration") || lower.contains("inverse calibration")
+				|| lower.contains("calibration")) {
+			return "CALIBRATION";
+		}
+		if (lower.contains("trial") || lower.contains("use-trial-market")) {
+			return "TRIAL";
+		}
+		if (lower.contains("portfolio-standard") || lower.contains("portfolio standard")
+				|| lower.contains("res") || lower.contains("subsidy") || lower.contains("input-subsidy")) {
+			return "RES_SUBSIDY";
+		}
+		if (lower.contains("demand") || lower.contains("price")) {
+			return "DEMAND_PRICE";
+		}
+		if (lower.equals("normal") || lower.contains("normal market")) {
+			return "NORMAL";
+		}
+		return "";
+	}
+
+	private static final class MarketSignal {
+		private final String marketName;
+		private final double red;
+		private final double demand;
+		private final String classification;
+		private final boolean smallMarket;
+		private final Integer period;
+		private final String marketType;
+
+		private MarketSignal(String marketName, double red, double demand, String classification,
+				boolean smallMarket, Integer period, String marketType) {
+			this.marketName = marketName;
+			this.red = red;
+			this.demand = demand;
+			this.classification = classification;
+			this.smallMarket = smallMarket;
+			this.period = period;
+			this.marketType = marketType;
+		}
 	}
 
 	/**
@@ -849,4 +1180,3 @@ public final class UtilsErrors {
 		return value.regionMatches(true, 0, prefix, 0, prefix.length());
 	}
 }
-
