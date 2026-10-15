@@ -164,6 +164,17 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         setupUILayout(title);
     }
 
+    private void fitButtonToText(Button button) {
+        javafx.scene.text.Text measure = new javafx.scene.text.Text(button.getText());
+        measure.setFont(button.getFont());
+        double padding = 32; // button horizontal padding plus margin
+        double needed = Math.ceil(measure.getLayoutBounds().getWidth() + padding);
+        double width = Math.max(styles.getBigButtonWidth(), needed);
+        button.setMinWidth(width);
+        button.setPrefWidth(width);
+        button.setMaxWidth(javafx.scene.layout.Region.USE_PREF_SIZE);
+    }
+
     /**
      * Sets up UI controls and their event handlers. Creates the table columns with appropriate
      * cell factories for boolean checkboxes and editable year fields, binds TechBound properties,
@@ -179,6 +190,12 @@ public class TabTechAvailable extends PolicyTab implements Runnable {
         
         firstYrTextField.setText(DEFAULT_FIRST_YEAR);
         lastYrTextField.setText(DEFAULT_LAST_YEAR);
+
+        // Let the button grow when the full label doesn't fit in the default width
+        setFirstLastYrsButton.setTextOverrun(javafx.scene.control.OverrunStyle.CLIP);
+        setFirstLastYrsButton.textProperty().addListener((o, ov, nv) -> fitButtonToText(setFirstLastYrsButton));
+        setFirstLastYrsButton.fontProperty().addListener((o, ov, nv) -> fitButtonToText(setFirstLastYrsButton));
+        fitButtonToText(setFirstLastYrsButton);
 
         setOnAction(setFirstLastYrsButton, e -> updateFirstAndLastYears(firstYrTextField.getText(), lastYrTextField.getText()));
         setOnAction(selectAllButton, e -> selectAllVisibleItems());

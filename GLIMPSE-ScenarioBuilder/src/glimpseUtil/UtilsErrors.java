@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import gui.ScenarioBuilder;
@@ -53,6 +54,8 @@ public final class UtilsErrors {
 
 	private final Pattern intPattern = Pattern.compile("-?[0-9]+");
 	private final Pattern doublePattern = Pattern.compile("-?(([0-9]+)|([0-9]*\\.[0-9]+))");
+	/** Markets with both supply and demand at or below this value are treated as "small markets". */
+	private static final double SMALL_MARKET_DEMAND_CUTOFF = 1e-3;
 	private static final String[] LOG_LINE_LEVEL_PREFIXES = {
 			"TRACE", "DEBUG", "INFO", "NOTICE", "WARN", "WARNING"
 	};
@@ -604,12 +607,13 @@ public final class UtilsErrors {
 			return new ArrayList<>();
 		DecimalFormat formatter = new DecimalFormat("0.###");
 		formatter.setGroupingUsed(false);
-		double minDmd = 0.0001;
+		double minDmd = SMALL_MARKET_DEMAND_CUTOFF;
 		double minRed = 0.01;
 		int totalFails = 0;
 		int minorFails = 0;
 		int smallMarketFails = 0;
 		int majorFails = 0;
+		int majorNonSmallFails = 0;
 		int moderateFails = 0;
 		String scenarioLabel = (scenario == null || scenario.trim().isEmpty()) ? "exe/main_log.txt" : scenario;
 		ArrayList<String> report = new ArrayList<>();
@@ -642,24 +646,27 @@ public final class UtilsErrors {
 						double dmd = Double.parseDouble(tokens[9].trim());
 						String marketName = tokens[12].trim();
 						String marketType = extractMarketType(tokens);
+						// tokens[9] and tokens[10] are the supply/demand pair; small only if both are tiny
+						double other = Double.parseDouble(tokens[10].trim());
+						boolean isSmall = Math.abs(dmd) <= minDmd && Math.abs(other) <= minDmd;
 						totalFails++;
+						if (isSmall)
+							smallMarketFails++;
 						if (red > minRed) {
 							if (red > minRed * 5.0) {
 								classification = "MAJOR";
 								majorFails++;
+								if (!isSmall)
+									majorNonSmallFails++;
 							} else {
 								classification = "MODERATE";
 								moderateFails++;
-								if (dmd <= minDmd)
-									smallMarketFails++;
 							}
 						} else {
 							classification = "MINOR";
 							minorFails++;
-							if (dmd <= minDmd)
-								smallMarketFails++;
 						}
-						smallMarket = (dmd <= minDmd) ? "true" : "false";
+						smallMarket = isSmall ? "true" : "false";
 						marketSignals.add(new MarketSignal(marketName, red, dmd, classification,
 								"true".equals(smallMarket), lastSeenPeriod, marketType));
 					}
@@ -687,8 +694,8 @@ public final class UtilsErrors {
 					verdict = "Verdict: Pass? (all errors are minor or moderate)";
 				} else if (totalFails == smallMarketFails) {
 					verdict = "Verdict: Pass? (all fails are in small markets)";
-				} else if (totalFails == minorFails + smallMarketFails) {
-					verdict = "Verdict: Pass? (all fails are minor or in small markets)";
+				} else if (majorNonSmallFails == 0) {
+					verdict = "Verdict: Pass? (all major fails are in small markets)";
 				} else {
 					verdict = "Verdict: Fail? (major, non-small market failures)";
 				}
@@ -828,11 +835,31 @@ public final class UtilsErrors {
 			lines.add("All failures are minor. This often indicates near-solution behavior; consider relaxing tolerance or increasing iterations.");
 		}
 
+		TreeSet<String> smallMarketNames = new TreeSet<>();
+		for (MarketSignal signal : marketSignals) {
+			if (signal.smallMarket) {
+				smallMarketNames.add(signal.marketName == null || signal.marketName.trim().isEmpty()
+						? "<unknown market>"
+						: signal.marketName);
+			}
+		}
+		String cutoffText = formatter.format(SMALL_MARKET_DEMAND_CUTOFF);
 		if (smallMarketFails == totalFails && totalFails > 0) {
-			lines.add("All flagged failures are in very small markets (demand <= 1e-4). These may be low-impact numerical edge cases.");
+			lines.add("All failures are in very small markets (demand <= " + cutoffText + "): "
+					+ String.join(", ", smallMarketNames)
+					+ ". These markets may be running into solver tolerance or precision limits.");
 		} else if (smallMarketFails > 0) {
-			lines.add(smallMarketFails + " of " + totalFails
-					+ " failures are in small markets; prioritize non-small-market failures first.");
+			lines.add(smallMarketFails + " of " + totalFails + " failures are in very small markets (supply and demand <= "
+					+ cutoffText + "): " + String.join(", ", smallMarketNames)
+					+ ". Prioritize the non-small-market failures first.");
+		}
+		if (smallMarketFails > 0) {
+			lines.add("Tip: when demand is near zero, RED can be huge even for a tiny absolute imbalance. "
+					+ "Check the absolute excess demand and whether the market matters for your results.");
+			if (majorFails > 0 && smallMarketFails == totalFails) {
+				lines.add("Because all failures are in tiny markets, a structural cause is less likely; "
+						+ "try solver tolerance/iteration changes or a minimum market-size floor first.");
+			}
 		}
 
 		ArrayList<String> persistentMarkets = new ArrayList<>();
@@ -1096,7 +1123,7 @@ public final class UtilsErrors {
 	public String processErrors(ArrayList<String> errors, double minRed) {
 		if (errors == null)
 			return "";
-		double minDmd = 0.0001;
+		double minDmd = SMALL_MARKET_DEMAND_CUTOFF;
 		int total = 0;
 		int major = 0;
 		int moderate = 0;
@@ -1114,7 +1141,8 @@ public final class UtilsErrors {
 					double dmd = Double.parseDouble(tokens[9].trim());
 					String mkt = tokens[12].trim();
 					total++;
-					if (dmd <= minDmd)
+					double other = Double.parseDouble(tokens[10].trim());
+					if (Math.abs(dmd) <= minDmd && Math.abs(other) <= minDmd)
 						smallMarkets++;
 					if ((red > minRed) && (!mkt.contains("water consumption"))) {
 						if (red > minRed * 5.0) {
