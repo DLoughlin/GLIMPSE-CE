@@ -76,7 +76,7 @@ public class GLIMPSEVariables {
     private final boolean DEFAULT_USE_ALL_AVAILABLE_PROCESSORS = true;
     private final boolean DEFAULT_GCAM_VERSION_PRE8_5 = true;
     private final boolean DEFAULT_DEBUG_TRN_CONVERSION_SKIPS = false;
-    private final boolean DEFAULT_USE_NATIVE_FILE_CHOOSER = true;
+    private final boolean DEFAULT_USE_NATIVE_FILE_CHOOSER = false;
     private final int DEFAULT_VALUE_DISPLAY_SIG_FIGS = 4;
     private final int DEFAULT_PERIOD_INCREMENT = 5; // Default period increment for GCAM
     private final List<String> DEFAULT_REGION_LIST = new ArrayList<>(Arrays.asList("USA", "Canada", "EU-15", "Europe_Non_EU", "European Free Trade Association", "Japan", "Australia_NZ", "Central Asia", "Russia", "China", "Middle East", "Africa_Eastern", "Africa_Northern", "Africa_Southern", "Africa_Western", "South Africa", "Brazil", "Central America and Caribbean", "Mexico", "South America_Northern", "South America_Southern", "Argentina", "Colombia", "Indonesia", "Pakistan", "South Asia", "Southeast Asia", "Taiwan", "Europe_Eastern", "EU-12", "South Korea", "India", "Ukraine"));

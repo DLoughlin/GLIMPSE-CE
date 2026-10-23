@@ -52,6 +52,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
 import javafx.stage.FileChooser;
@@ -84,6 +85,7 @@ public final class FileChooserPlus {
             "true".equalsIgnoreCase(System.getProperty("glimpse.nativeFileDialog.debug", "false"));
     private static final boolean DEBUG_NATIVE_FLOW = DEBUG_NATIVE_FALLBACK;
     private static final String WINDOWS_CANCEL_TOKEN = "__GLIMPSE_CANCEL__";
+    private static final long WINDOWS_CHOOSER_TIMEOUT_MS = Long.getLong("glimpse.windowsChooserTimeoutMs", 30000L);
 
     /**
      * Private constructor to prevent instantiation of this utility class.
@@ -563,6 +565,16 @@ public final class FileChooserPlus {
         pb.redirectErrorStream(true);
         Process process = pb.start();
 
+        boolean finished = process.waitFor(WINDOWS_CHOOSER_TIMEOUT_MS, TimeUnit.MILLISECONDS);
+        if (!finished) {
+            process.destroy();
+            if (!process.waitFor(1500L, TimeUnit.MILLISECONDS)) {
+                process.destroyForcibly();
+            }
+            throw new IOException("PowerShell chooser timed out after " + WINDOWS_CHOOSER_TIMEOUT_MS
+                    + "ms (set -Dglimpse.windowsChooserTimeoutMs to adjust).");
+        }
+
         List<String> outputLines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
@@ -575,7 +587,7 @@ public final class FileChooserPlus {
             }
         }
 
-        int exitCode = process.waitFor();
+        int exitCode = process.exitValue();
         if (exitCode != 0) {
             throw new IOException("PowerShell chooser exited with code " + exitCode
                     + (outputLines.isEmpty() ? "" : ": " + outputLines.get(outputLines.size() - 1)));
