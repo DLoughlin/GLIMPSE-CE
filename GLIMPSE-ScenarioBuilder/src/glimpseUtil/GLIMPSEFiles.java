@@ -36,6 +36,7 @@
 package glimpseUtil;
 
 import gui.Client;
+import javafx.application.Platform;
 
 import java.awt.Desktop;
 import java.io.BufferedInputStream;
@@ -61,6 +62,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
 
@@ -841,13 +843,78 @@ public class GLIMPSEFiles {
      * @param filename File path
      */
     public void openFileExplorer(String filename) {
-        File file = new File(filename);
+        final File file = new File(filename);
+        final String absolutePath = file.getAbsolutePath();
+        if (!file.exists()) {
+            safeWarningMessage("Problem opening system file browser.");
+            System.out.println("System file browser target does not exist: " + absolutePath);
+            return;
+        }
+
+        // Do not block the JavaFX event thread. On some Linux cluster setups,
+        // desktop integration calls can block indefinitely.
+        Thread explorerThread = new Thread(() -> {
+            try {
+                if (isLinux() && tryLaunchLinuxExplorer(absolutePath)) {
+                    return;
+                }
+                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+                    Desktop.getDesktop().open(file);
+                    return;
+                }
+                safeWarningMessage("Problem opening system file browser.");
+                System.out.println("Desktop OPEN action is not supported for: " + absolutePath);
+            } catch (Throwable e1) {
+                safeWarningMessage("Problem opening system file browser.");
+                System.out.println("Error opening system file browser for: " + absolutePath);
+                e1.printStackTrace();
+            }
+        }, "glimpse-open-file-explorer");
+        explorerThread.setDaemon(true);
+        explorerThread.start();
+    }
+
+    private boolean tryLaunchLinuxExplorer(String absolutePath) {
+        String[][] commands = {
+                { "xdg-open", absolutePath },
+                { "gio", "open", absolutePath },
+                { "kde-open5", absolutePath },
+                { "gnome-open", absolutePath }
+        };
+        for (String[] command : commands) {
+            try {
+                Process process = new ProcessBuilder(command).start();
+                // If command exits quickly with success, we're done.
+                if (process.waitFor(1500L, TimeUnit.MILLISECONDS)) {
+                    if (process.exitValue() == 0) {
+                        System.out.println("Opened folder using: " + String.join(" ", command));
+                        return true;
+                    }
+                    continue;
+                }
+                // Still running after timeout usually means the desktop app was launched.
+                System.out.println("Launched folder browser command: " + String.join(" ", command));
+                return true;
+            } catch (IOException ignored) {
+                // Try next candidate command.
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private boolean isLinux() {
+        String osName = System.getProperty("os.name", "").toLowerCase();
+        return osName.contains("linux");
+    }
+
+    private void safeWarningMessage(String message) {
         try {
-            Desktop.getDesktop().open(file);
-        } catch (Exception e1) {
-            utils.warningMessage("Problem opening system file browser.");
-            System.out.println("Error opening system file browser.");
-            e1.printStackTrace();
+            Platform.runLater(() -> utils.warningMessage(message));
+        } catch (Throwable ignored) {
+            System.out.println(message);
         }
     }
 

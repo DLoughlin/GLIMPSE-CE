@@ -118,8 +118,10 @@ public final class FileChooserPlus {
         if (shouldPreferNativeFileDialog()) {
             try {
                 if (isWindows()) {
+                    logChooserBackend("save", title, "WindowsNative");
                     return showWindowsNativeSaveDialog(title, initialDirectory, initialFileName, filter);
                 }
+                logChooserBackend("save", title, "AwtNative");
                 File selected = showNativeDialog(ownerWindow, title, initialDirectory, initialFileName, filter, FileDialog.SAVE);
                 // null means the user cancelled — stop here, do NOT fall through to JavaFX.
                 return selected;
@@ -130,6 +132,7 @@ public final class FileChooserPlus {
         } else {
             logNativeDisabled("save", title);
         }
+        logChooserBackend("save", title, "JavaFX");
         FileChooser chooser = createAndConfigureChooser(title, initialDirectory, initialFileName, filter);
         return chooser.showSaveDialog(ownerWindow);
     }
@@ -148,8 +151,10 @@ public final class FileChooserPlus {
         if (shouldPreferNativeFileDialog()) {
             try {
                 if (isWindows()) {
+                    logChooserBackend("open", title, "WindowsNative");
                     return showWindowsNativeOpenDialog(title, initialDirectory, filter);
                 }
+                logChooserBackend("open", title, "AwtNative");
                 File selected = showNativeDialog(ownerWindow, title, initialDirectory, null, filter, FileDialog.LOAD);
                 // null means the user cancelled — stop here, do NOT fall through to JavaFX.
                 return selected;
@@ -160,6 +165,7 @@ public final class FileChooserPlus {
         } else {
             logNativeDisabled("open", title);
         }
+        logChooserBackend("open", title, "JavaFX");
         FileChooser chooser = createAndConfigureChooser(title, initialDirectory, null, filter);
         return chooser.showOpenDialog(ownerWindow);
     }
@@ -178,8 +184,10 @@ public final class FileChooserPlus {
         if (shouldPreferNativeFileDialog()) {
             try {
                 if (isWindows()) {
+                    logChooserBackend("open-multi", title, "WindowsNative");
                     return showWindowsNativeOpenMultipleDialog(title, initialDirectory, filter);
                 }
+                logChooserBackend("open-multi", title, "AwtNative");
                 List<File> selected = showNativeMultipleDialog(ownerWindow, title, initialDirectory, filter);
                 // null means the user cancelled — stop here, do NOT fall through to JavaFX.
                 return selected;
@@ -190,6 +198,7 @@ public final class FileChooserPlus {
         } else {
             logNativeDisabled("open-multi", title);
         }
+        logChooserBackend("open-multi", title, "JavaFX");
         FileChooser chooser = createAndConfigureChooser(title, initialDirectory, null, filter);
         return chooser.showOpenMultipleDialog(ownerWindow);
     }
@@ -599,6 +608,15 @@ public final class FileChooserPlus {
         String safeTitle = title == null ? "" : title;
         String message = "[FileChooserPlus] Native dialogs disabled for " + op
                 + " (title='" + safeTitle + "') via useNativeFileChooser=false; using JavaFX chooser.";
+        System.out.println(message);
+        debugLog(message);
+    }
+
+    private static void logChooserBackend(String op, String title, String backend) {
+        String safeTitle = title == null ? "" : title;
+        String message = "[FileChooserPlus] backend=" + backend + " op=" + op
+                + " useNativeFileChooser=" + shouldPreferNativeFileDialog()
+                + " title='" + safeTitle + "'";
         System.out.println(message);
         debugLog(message);
     }

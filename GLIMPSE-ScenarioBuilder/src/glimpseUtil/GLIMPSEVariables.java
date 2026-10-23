@@ -2765,6 +2765,11 @@ public class GLIMPSEVariables {
           } catch(Throwable e) {
             System.out.println("Problem checking computer attributes (e.g., RAM)");
         }
+
+        report.add(" ");
+        report.add("------ UI / File chooser configuration --------");
+        report.add("useNativeFileChooser = " + getUseNativeFileChooser()
+                + " (default=" + DEFAULT_USE_NATIVE_FILE_CHOOSER + ")");
         
         //utils.displayArrayList(report,"Result of Check Installation",true);
         

@@ -206,6 +206,8 @@ public class Client extends Application {
     private static final String STARTUP_PREWARM_BEFORE_SHOW_FLAG = "glimpse.startupPrewarmBeforeShow";
     private static final String STARTUP_SHOW_WATCHDOG_FLAG = "glimpse.debugShowWatchdog";
     private static final String STARTUP_DEFER_MAIN_UI_UNTIL_READY_FLAG = "glimpse.startupDeferMainUiUntilReady";
+    private static final String NO_CONSOLE_REDIRECT_FLAG = "glimpse.NoConsole";
+    private static final String NO_CONSOLE_REDIRECT_FLAG_ALT = "glimpse.noConsole";
     private static final String STARTUP_WATCHDOG_VERBOSE_STACK_FLAG = "glimpse.debugWatchdogVerboseStack";
     // Explicit opt-in for JavaFX system-scale mode on Windows.
     private static final String STARTUP_DISABLE_HIDPI_FLAG = "glimpse.disableHiDpi";
@@ -554,8 +556,13 @@ public class Client extends Application {
         final long t0 = System.nanoTime();
         initEntered = true;
         logBootstrapCheckpoint("init(): entered");
-        ConsoleOutputRedirect.install();
-        logBootstrapCheckpoint("init(): after ConsoleOutputRedirect.install");
+        if (isConsoleRedirectDisabledByProperty()) {
+            System.out.println("Console redirection disabled by JVM property (" + NO_CONSOLE_REDIRECT_FLAG + ").");
+            logBootstrapCheckpoint("init(): console redirection disabled");
+        } else {
+            ConsoleOutputRedirect.install();
+            logBootstrapCheckpoint("init(): after ConsoleOutputRedirect.install");
+        }
 
         updateEarlyStartupSplashMessage("Loading settings and options...");
         System.out.println("Loading settings and initializing.");
@@ -603,6 +610,20 @@ public class Client extends Application {
         // Wire event-driven database-size refresh: when the DB path changes,
         // request a fresh size calculation.
         vars.setOnGCamOutputDatabaseChanged(() -> Client.requestDatabaseSizeRefresh(true));
+    }
+
+    private static boolean isConsoleRedirectDisabledByProperty() {
+        return isTruthySystemProperty(NO_CONSOLE_REDIRECT_FLAG)
+                || isTruthySystemProperty(NO_CONSOLE_REDIRECT_FLAG_ALT);
+    }
+
+    private static boolean isTruthySystemProperty(String key) {
+        String value = System.getProperty(key, "");
+        if (value == null) {
+            return false;
+        }
+        String normalized = value.trim().toLowerCase();
+        return "true".equals(normalized) || "yes".equals(normalized) || "1".equals(normalized);
     }
 
     /**
@@ -2141,9 +2162,13 @@ public class Client extends Application {
             final long t0 = System.nanoTime();
             logStartupCheckpoint("Deferred setup analysis: begin", t0);
             try {
+                // Print this early so the active chooser setting is visible even if full setup text is skipped.
+                System.out.println("[startup-setup] useNativeFileChooser=" + vars.getUseNativeFileChooser());
                 final String setup = vars.examineGLIMPSESetup();
                 if (setup != null && !setup.trim().isEmpty()) {
                     System.out.println(setup);
+                } else {
+                    System.out.println("[startup-setup] Setup analysis produced no report text.");
                 }
                 logStartupCheckpoint("Deferred setup analysis: complete", t0);
             } catch (Throwable ex) {
