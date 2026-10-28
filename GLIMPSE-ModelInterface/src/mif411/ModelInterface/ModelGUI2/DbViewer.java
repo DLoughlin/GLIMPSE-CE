@@ -1939,7 +1939,7 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 					if (DEBUG) System.out.println("DbViewer.done(): createTableSelector completed.");
 					logStartupPhase("Database viewer UI created", dbFile);
 					logStartup("doOpenDB:createTableSelector", openStart);
-					parentFrame.setTitle("GLIMPSE-CE ModelInterface v2.3 Beta");
+					parentFrame.setTitle("GLIMPSE-CE ModelInterface v2.3");
 					main.setProperty("paramPath", dbFile.getAbsolutePath());
 					main.updateActiveDatabaseStatus(dbFile.getAbsolutePath());
 					if (data.queryFile != null) {

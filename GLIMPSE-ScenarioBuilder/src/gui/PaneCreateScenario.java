@@ -693,8 +693,8 @@ class PaneCreateScenario extends ScenarioBuilder {
         Path databasePath = databaseFolder.toPath();
         long databaseSize = files.getDirectorySize(databasePath) / 1000000000;
         String databaseSizeStr = " (" + databaseSize + " GB)";
-        String databaseNameShort = databaseName.substring(databaseName.lastIndexOf(File.separator) + 1);
-        Label databaseNameAndSize = new Label(databaseNameShort + databaseSizeStr);
+        String databaseDisplayPath = getDatabaseDisplayPath(databaseName);
+        Label databaseNameAndSize = new Label(databaseDisplayPath + databaseSizeStr);
 
         if (databaseSize >= vars.getMaxDatabaseSizeGB()) {
             boolean b = utils.confirmAction(DATABASE_SIZE_WARNING);
@@ -807,7 +807,7 @@ class PaneCreateScenario extends ScenarioBuilder {
         okButton.setOnAction(e -> {
             String metadata = buildScenarioDialogMetadata(
                     scenarioName.getText(),
-                    databaseNameShort,
+                    databaseDisplayPath,
                     debugRegionComboBox.getSelectionModel().getSelectedItem(),
                     stopYearComboBox.getSelectionModel().getSelectedItem(),
                     textArea.getText());
@@ -903,18 +903,68 @@ class PaneCreateScenario extends ScenarioBuilder {
      *
      * @return formatted metadata string, or {@code null} when dialog inputs are invalid
      */
-    private String buildScenarioDialogMetadata(String scenarioName, String databaseNameShort, String debugRegion, String stopYear, String comments) {
+    private String buildScenarioDialogMetadata(String scenarioName, String databaseDisplayPath, String debugRegion, String stopYear, String comments) {
         if (comments == null) {
             return null;
         }
         String text = META_DATA_HEADER + vars.getEol();
         text += "Scenario name: " + scenarioName + vars.getEol();
-        text += "Database: " + databaseNameShort + vars.getEol();
+        text += "Database: " + databaseDisplayPath + vars.getEol();
         text += "Debug region: " + debugRegion + vars.getEol();
         text += "Stop year:" + stopYear + vars.getEol();
         text += "Comments:" + vars.getEol();
         text += comments + vars.getEol();
         return text.replaceAll(vars.getEol() + "" + vars.getEol(), vars.getEol());
+    }
+
+    private String getDatabaseDisplayPath(String databaseName) {
+        if (databaseName == null || databaseName.trim().isEmpty()) {
+            return "";
+        }
+        try {
+            Path databasePath = Paths.get(databaseName).toAbsolutePath().normalize();
+
+            // Preferred: render relative to the `glimpseDif` folder when present in the path.
+            String relativeToGlimpseDif = relativizeFromPathSegment(databasePath, "glimpseDif");
+            if (!relativeToGlimpseDif.isEmpty()) {
+                return relativeToGlimpseDif;
+            }
+
+            // Fallback: render relative to the configured GLIMPSE root folder.
+            String glimpseRoot = vars.getGlimpseDir();
+            if (glimpseRoot != null && !glimpseRoot.trim().isEmpty()) {
+                Path basePath = Paths.get(glimpseRoot).toAbsolutePath().normalize();
+                if (databasePath.startsWith(basePath)) {
+                    return basePath.relativize(databasePath).toString();
+                }
+            }
+
+            return databasePath.toString();
+        } catch (Exception ignored) {
+            return databaseName;
+        }
+    }
+
+    private String relativizeFromPathSegment(Path fullPath, String segmentName) {
+        if (fullPath == null || segmentName == null || segmentName.trim().isEmpty()) {
+            return "";
+        }
+        Path normalized = fullPath.toAbsolutePath().normalize();
+        for (int i = 0; i < normalized.getNameCount(); i++) {
+            String pathSegment = normalized.getName(i).toString();
+            if (segmentName.equalsIgnoreCase(pathSegment)) {
+                Path base = normalized.getRoot();
+                if (base == null) {
+                    base = Paths.get("");
+                }
+                for (int j = 0; j <= i; j++) {
+                    base = base.resolve(normalized.getName(j));
+                }
+                String relative = base.relativize(normalized).toString();
+                return relative.isEmpty() ? normalized.getFileName().toString() : relative;
+            }
+        }
+        return "";
     }
 
     /**
