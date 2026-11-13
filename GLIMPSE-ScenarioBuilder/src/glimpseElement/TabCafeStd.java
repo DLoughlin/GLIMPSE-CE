@@ -209,6 +209,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		resetComboBoxItems(comboBoxApplicationMode, java.util.Arrays.asList(APPLICATION_MODE_OPTIONS));
 		setComboBoxPrompt(comboBoxApplicationMode, SELECT_ONE);
 		setModificationTypeOptions(MOD_TYPE_OPTIONS);
+		syncSubsectorDependentControlState();
 	}
 
 	/**
@@ -282,13 +283,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		});
 		// Enable/disable tech selection based on subsector
 		comboBoxSubsector.setOnAction(e -> {
-			if (!isSelectionMissing(comboBoxSubsector)) {
-				checkComboBoxTech.setDisable(false); // Enable tech selection
-				comboBoxWhichUnits.setDisable(false); // Enable units selection
-			} else {
-				checkComboBoxTech.setDisable(true); // Disable tech selection
-				comboBoxWhichUnits.setDisable(true); // Disable units selection
-			}
+			syncSubsectorDependentControlState();
 			setPolicyAndMarketNames(); // Update names when subsector changes
 		});
 		comboBoxApplicationMode.setOnAction(e -> setPolicyAndMarketNames());
@@ -297,6 +292,12 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 	private boolean isNewSalesMode() {
 		String mode = comboBoxApplicationMode.getSelectionModel().getSelectedItem();
 		return MODE_NEW_SALES.equals(mode);
+	}
+
+	private void syncSubsectorDependentControlState() {
+		boolean hasSubsectorSelection = !isSelectionMissing(comboBoxSubsector);
+		checkComboBoxTech.setDisable(!hasSubsectorSelection);
+		comboBoxWhichUnits.setDisable(!hasSubsectorSelection);
 	}
 
 	private String getPolicyKeyForTargetYear(String basePolicyName, String targetYear, boolean newSalesMode) {
@@ -447,7 +448,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		if (subsector.equals("Light Truck") || subsector.equals("Medium Truck") || subsector.equals("Heavy Truck")) {
 			sector = "trn_freight_road";
 		} else if (subsector.equals("Car") || subsector.equals("Large Car and Truck")) {
-			sector = "trn_pass_road_4W";
+			sector = "trn_pass_road_LDV_4W";
 		} else if (subsector.equals("Bus")) {
 			sector = "trn_pass_road";
 		} else if (subsector.equals("Freight Rail") || subsector.equals("Domestic Ship")) {
@@ -459,7 +460,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 		} else if (subsector.equals("International Ship")) {
 			sector = "trn_shipping_intl";
 		} else {
-			sector = "trn_pass_road_4W"; // default fallback
+			sector = "trn_pass_road_LDV_4W"; // default fallback
 		}
 
 		// --- Parse table rows up front ---
@@ -521,21 +522,8 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 				String policyKey = getPolicyKeyForTargetYear(policy_name, targetYearStr, newSalesMode);
 				String marketKey = getMarketKeyForTargetYear(market_name, policyKey, targetYearStr, newSalesMode);
 
-				// Part1: Policy-portfolio-standard activation row (one per region + target year)
-				// Specifies constraint type (RES for credit-generating), binding status, and price bounds
-				contentP1.append(region).append(",").append(policyKey).append(",")
-						.append(marketKey).append(",")
-						.append("RES").append(",") // type = RES: credit-generating constraint
-						.append("0").append(",") // isShareBased = 0: not a market-share constraint
-						.append(targetYearStr).append(",") // constraint activates in target year
-						.append("1").append(",") // constrained = 1: GCAM must satisfy constraint via credit system
-						.append(targetYearStr).append(",") // min-price year
-						.append("0").append(",") // min-price = 0: no penalty if target not met
-						.append(targetYearStr).append(",") // max-price year
-						.append("1000000").append(",") // max-price: very high upper bound on credit cost
-						.append("1975$/EJ-credit").append(",") // price unit for reporting
-						.append("EJ-credit") // output unit for credit constraint
-						.append(vars.getEol());
+				StringBuilder policyYearPart2Rows = new StringBuilder();
+				int policyYearPart2RowCount = 0;
 
 				// Part2: one row per region + tech + model year covered by this target
 				for (String tech : tech_list) {
@@ -551,7 +539,9 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 					String techLoadS = utils.getTrnVehInfo("load", region, sector, subsector, tech, targetYearStr,null);
 
 					if ((techEffS == null) || (techLoadS == null)) {
-						break;
+						System.out.println("Skipping missing transport info for " + region + ", " + sector + ", "
+								+ subsector + ", " + tech + " in year " + targetYearStr + ".");
+						continue;
 					}
 
 					try {
@@ -561,7 +551,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 					} catch (Exception e) {
 						System.out.println("Error parsing tech efficiency or load for " + region + ", " + sector + ", "
 								+ subsector + ", " + tech + " in year " + targetYearStr + " error: " + e.getMessage() + ":"+techEffS + ","+techLoadS+ ":");
-						break;
+						continue;
 					}
 					
 					// Calculate output_ratio: the efficiency gap (target minus tech baseline)
@@ -584,7 +574,7 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 							continue;
 						}
 
-						contentP2.append(region).append(",")
+						policyYearPart2Rows.append(region).append(",")
 								.append(sector).append(",")
 								.append(subsector).append(",")
 								.append(tech).append(",")
@@ -593,7 +583,31 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 								.append(formattedOutputRatio).append(",")
 								.append(formattedPMultiplier)
 								.append(vars.getEol());
+						policyYearPart2RowCount++;
 					}
+				}
+
+				// Only add activation rows when we have at least one matching secondary-output row.
+				if (policyYearPart2RowCount > 0) {
+					// Part1: Policy-portfolio-standard activation row (one per region + target year)
+					// Specifies constraint type (RES for credit-generating), binding status, and price bounds
+					contentP1.append(region).append(",").append(policyKey).append(",")
+							.append(marketKey).append(",")
+							.append("RES").append(",") // type = RES: credit-generating constraint
+							.append("0").append(",") // isShareBased = 0: not a market-share constraint
+							.append(targetYearStr).append(",") // constraint activates in target year
+							.append("1").append(",") // constrained = 1: GCAM must satisfy constraint via credit system
+							.append(targetYearStr).append(",") // min-price year
+							.append("0").append(",") // min-price = 0: no penalty if target not met
+							.append(targetYearStr).append(",") // max-price year
+							.append("1000000").append(",") // max-price: very high upper bound on credit cost
+							.append("1975$/EJ-credit").append(",") // price unit for reporting
+							.append("EJ-credit") // output unit for credit constraint
+							.append(vars.getEol());
+					contentP2.append(policyYearPart2Rows);
+				} else {
+					System.out.println("Skipping CAFE constraint row with no valid secondary-output rows for "
+							+ region + ", " + subsector + ", year " + targetYearStr + ".");
 				}
 			}
 		}
@@ -693,6 +707,8 @@ public class TabCafeStd extends PolicyTab implements Runnable {
 			}
 		}
 		paneForComponentDetails.updateTable();
+		comboBoxSubsector.setDisable(false);
+		syncSubsectorDependentControlState();
 		setPolicyAndMarketNames();
 		setUnitsLabel();
 	}
