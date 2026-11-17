@@ -102,6 +102,7 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 	private static final String PROMPT_FILTER_COMPONENTS = "Filter components...";
 	private static final String LOADING_COMPONENTS_MESSAGE = "Loading components...";
 	private static final String NO_COMPONENTS_MESSAGE = "No scenario components found.";
+	private static final String SCENARIO_COMPONENT_TYPE_PREFIX = "#Scenario component type:";
 
 	// === UI Components ===
 	private final VBox mainVBox = new VBox(1);
@@ -209,7 +210,13 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 		String componentFilePath = selectedComponentRows.get(0).getAddress();
 		System.out.println("Editing component " + componentFilePath);
 		if (componentFilePath.toLowerCase().endsWith(".xml")) {
-			files.showFileInXmlEditor(componentFilePath);
+			ArrayList<String> xmlMetadataLines = extractLeadingXmlMetadataLines(componentFilePath);
+			String tabType = findTabTypeFromMetadata(xmlMetadataLines);
+			if (tabType != null) {
+				creatorDialog.showEdit(Client.primaryStage, tabType, xmlMetadataLines);
+			} else {
+				files.showFileInXmlEditor(componentFilePath);
+			}
 		} else {
 			String tabType = null;
 			ArrayList<String> fileContents = files.getStringArrayFromFile(componentFilePath, null);
@@ -219,15 +226,60 @@ public class PaneComponentLibrary extends gui.ScenarioBuilder {
 					tabType = ScenarioComponentCreatorDialog.TAB_XML_LIST;
 				}
 			}
-			if (tabType == null && fileContents != null) {
-				for (String line : fileContents) {
-					if (line.startsWith("#Scenario component type:")) {
-						tabType = line.substring(line.indexOf(":") + 1).trim();
-					}
-				}
+			if (tabType == null) {
+				tabType = findTabTypeFromMetadata(fileContents);
 			}
 			creatorDialog.showEdit(Client.primaryStage, tabType, fileContents);
 		}
+	}
+
+	private String findTabTypeFromMetadata(List<String> lines) {
+		if (lines == null) {
+			return null;
+		}
+		for (String line : lines) {
+			if (line == null) {
+				continue;
+			}
+			String trimmed = line.trim();
+			if (trimmed.startsWith(SCENARIO_COMPONENT_TYPE_PREFIX)) {
+				return trimmed.substring(trimmed.indexOf(':') + 1).trim();
+			}
+		}
+		return null;
+	}
+
+	private ArrayList<String> extractLeadingXmlMetadataLines(String componentFilePath) {
+		ArrayList<String> fileContents = files.getStringArrayFromFile(componentFilePath, null);
+		ArrayList<String> metadataLines = new ArrayList<>();
+		if (fileContents == null) {
+			return metadataLines;
+		}
+
+		boolean insideCommentBlock = false;
+		for (String rawLine : fileContents) {
+			String line = rawLine == null ? "" : rawLine.trim();
+			if (line.isEmpty()) {
+				continue;
+			}
+			if (line.startsWith("<?xml")) {
+				continue;
+			}
+			if (line.contains("<!--")) {
+				insideCommentBlock = true;
+			}
+			if (insideCommentBlock && line.startsWith("#")) {
+				metadataLines.add(line);
+			}
+			if (line.contains("-->")) {
+				insideCommentBlock = false;
+				continue;
+			}
+			if (!insideCommentBlock && line.startsWith("<")) {
+				break;
+			}
+		}
+		return metadataLines;
 	}
 
 	private void handleBrowseComponentLibrary() {

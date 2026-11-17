@@ -246,13 +246,21 @@ public class CSVToXMLMain {
                 presetRegionExpansionMap = tryLoadPresetRegionExpansionMap(parentFrame);
             }
 
+            // Preserve optional metadata comments found at the top of each CSV file.
+            Map<Path, List<String>> csvMetadataComments = new LinkedHashMap<>();
             for (File csvFile : csvFiles) {
-                processCsvFile(csvFile.toPath(), tableIdMap, tree, parentFrame, usePresetRegionList, presetRegionExpansionMap);
+                Path csvPath = csvFile.toPath();
+                List<String> metadataLines = extractLeadingCsvComments(csvPath);
+                if (!metadataLines.isEmpty()) {
+                    csvMetadataComments.put(csvPath, metadataLines);
+                }
+                processCsvFile(csvPath, tableIdMap, tree, parentFrame, usePresetRegionList, presetRegionExpansionMap);
             }
             Document doc = tree.getDoc();
             if (doc == null) {
                 throw new IllegalStateException("No XML document was generated. Check header definitions and CSV rows for parsing errors.");
             }
+            prependCsvMetadataComments(doc, csvMetadataComments);
             return Optional.of(doc);
         } catch (Exception e) {
             if (firstRowFailureSummary == null || firstRowFailureSummary.trim().isEmpty()) {
@@ -273,6 +281,74 @@ public class CSVToXMLMain {
         }
     }
 
+    private static List<String> extractLeadingCsvComments(Path csvPath) throws IOException {
+        List<String> lines = Files.readAllLines(csvPath, StandardCharsets.UTF_8);
+        List<String> comments = new ArrayList<>();
+        for (String rawLine : lines) {
+            String trimmed = rawLine == null ? "" : rawLine.trim();
+            if (trimmed.isEmpty()) {
+                if (comments.isEmpty()) {
+                    continue;
+                }
+                comments.add("");
+                continue;
+            }
+            if (trimmed.startsWith("#")) {
+                comments.add(rawLine);
+                continue;
+            }
+            break;
+        }
+        while (!comments.isEmpty() && comments.get(comments.size() - 1).trim().isEmpty()) {
+            comments.remove(comments.size() - 1);
+        }
+        return comments;
+    }
+
+    private static void prependCsvMetadataComments(Document doc, Map<Path, List<String>> commentsByCsv) {
+        if (doc == null || commentsByCsv == null || commentsByCsv.isEmpty()) {
+            return;
+        }
+        Node root = doc.getDocumentElement();
+        if (root == null) {
+            return;
+        }
+
+        for (Map.Entry<Path, List<String>> entry : commentsByCsv.entrySet()) {
+            List<String> lines = entry.getValue();
+            if (lines == null || lines.isEmpty()) {
+                continue;
+            }
+
+            StringBuilder comment = new StringBuilder();
+            comment.append("CSV metadata from ").append(entry.getKey().getFileName()).append(System.lineSeparator());
+            for (String line : lines) {
+                comment.append(line == null ? "" : line).append(System.lineSeparator());
+            }
+
+            String safeComment = sanitizeXmlCommentText(comment.toString().trim());
+            if (!safeComment.isEmpty()) {
+                doc.insertBefore(doc.createComment(System.lineSeparator() + safeComment + System.lineSeparator()), root);
+            }
+        }
+    }
+
+    private static String sanitizeXmlCommentText(String text) {
+        if (text == null || text.isEmpty()) {
+            return "";
+        }
+        String sanitized = text.replace("--", "- -");
+        if (sanitized.endsWith("-")) {
+            sanitized = sanitized + " ";
+        }
+        return sanitized;
+    }
+
+    /**
+     * Try to load the preset region expansion map from the configured file.
+     * @param parentFrame Optional parent JFrame for error dialogs.
+     * @return Map of region group names to expanded region lists.
+     */
     private static Map<String, List<String>> tryLoadPresetRegionExpansionMap(JFrame parentFrame) {
         try {
             GLIMPSEVariables vars = GLIMPSEVariables.getInstance();
