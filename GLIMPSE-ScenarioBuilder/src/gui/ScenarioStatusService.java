@@ -237,12 +237,18 @@ final class ScenarioStatusService {
 
         String createdDateStr = createdDate != 0L ? format.format(createdDate) : "";
         String completedDateStr = completedDate != 0L ? format.format(completedDate) : "";
-        if ((!STATUS_SUCCESS.equals(status)) && (!STATUS_UNSOLVED.equals(status)) && (!STATUS_DNF.equals(status)) && (!STATUS_STOPPED.equals(status))) {
+        boolean terminalStatus = STATUS_SUCCESS.equals(status)
+                || STATUS_UNSOLVED.equals(status)
+                || STATUS_DNF.equals(status)
+                || STATUS_STOPPED.equals(status);
+        boolean activelyRunningScenario = request.isScenarioActivelyRunning(scenarioName);
+        if (activeScenario || !terminalStatus) {
             if (activeScenario) {
                 status = STATUS_RUNNING;
                 long lastDate = currentMainLogFile.lastModified();
                 boolean isQueued = queuedScenario;
-                if (!isQueued && (request.startupTime > 0) && (System.currentTimeMillis() - request.startupTime > LOST_HANDLE_GRACE_MS)
+                if (!activelyRunningScenario
+                        && !isQueued && (request.startupTime > 0) && (System.currentTimeMillis() - request.startupTime > LOST_HANDLE_GRACE_MS)
                         && lastDate < request.startupTime) {
                     status = STATUS_LOST_HANDLE;
                 } else {
@@ -444,6 +450,49 @@ final class ScenarioStatusService {
         }
     }
 
+    private int periodPrefixNumber(String status) {
+        String trimmed = safeTrim(status);
+        if (trimmed.isEmpty()) {
+            return -1;
+        }
+        int comma = trimmed.indexOf(',');
+        String periodPart = comma >= 0 ? trimmed.substring(0, comma) : trimmed;
+        try {
+            return Integer.parseInt(periodPart.trim());
+        } catch (NumberFormatException ignored) {
+            return -1;
+        }
+    }
+
+    private boolean statusHasYear(String status) {
+        String trimmed = safeTrim(status);
+        return !trimmed.isEmpty() && trimmed.contains(",");
+    }
+
+    private String mergeRunningPeriodCandidate(String existing, String candidate) {
+        String existingTrimmed = safeTrim(existing);
+        String candidateTrimmed = safeTrim(candidate);
+        if (candidateTrimmed.isEmpty()) {
+            return existingTrimmed;
+        }
+        if (existingTrimmed.isEmpty()) {
+            return candidateTrimmed;
+        }
+
+        int existingPeriod = periodPrefixNumber(existingTrimmed);
+        int candidatePeriod = periodPrefixNumber(candidateTrimmed);
+        if (candidatePeriod > existingPeriod) {
+            return candidateTrimmed;
+        }
+        if (candidatePeriod < existingPeriod) {
+            return existingTrimmed;
+        }
+        if (!statusHasYear(existingTrimmed) && statusHasYear(candidateTrimmed)) {
+            return candidateTrimmed;
+        }
+        return existingTrimmed;
+    }
+
     private LogAnalysis analyzeLogFile(File file) {
         if (file == null || !file.exists()) {
             return LogAnalysis.empty();
@@ -506,14 +555,15 @@ final class ScenarioStatusService {
             if (runningScenario.isEmpty() && line.contains(CONFIG_FILE_PREFIX)) {
                 runningScenario = scenarioNameFromConfigLine(line);
             }
-            if (runningPeriod.isEmpty() && extractUnsolvedPeriodsFromErrorLine(line).isEmpty()) {
+            if (extractUnsolvedPeriodsFromErrorLine(line).isEmpty()) {
                 String period = extractRunningPeriod(line);
                 if (!period.isEmpty()) {
-                    runningPeriod = period;
+                    runningPeriod = mergeRunningPeriodCandidate(runningPeriod, period);
                 }
             }
             if (!runtimeLine.isEmpty() && !unsolvedLine.isEmpty() && !errorLine.isEmpty()
-                    && !runningScenario.isEmpty() && !runningPeriod.isEmpty() && !successLine.isEmpty() && stoppedMarkerFound) {
+                    && !runningScenario.isEmpty() && !runningPeriod.isEmpty() && !successLine.isEmpty()
+                    && stoppedMarkerFound && statusHasYear(runningPeriod)) {
                 break;
             }
         }
@@ -547,14 +597,15 @@ final class ScenarioStatusService {
                     if (errorLine.isEmpty() && trimmed.contains(ERROR_PREFIX)) {
                         errorLine = trimmed;
                     }
-                    if (runningPeriod.isEmpty() && extractUnsolvedPeriodsFromErrorLine(trimmed).isEmpty()) {
+                    if (extractUnsolvedPeriodsFromErrorLine(trimmed).isEmpty()) {
                         String period = extractRunningPeriod(trimmed);
                         if (!period.isEmpty()) {
-                            runningPeriod = period;
+                            runningPeriod = mergeRunningPeriodCandidate(runningPeriod, period);
                         }
                     }
                     if (!runtimeLine.isEmpty() && !unsolvedLine.isEmpty() && !errorLine.isEmpty()
-                            && !runningScenario.isEmpty() && !runningPeriod.isEmpty() && !successLine.isEmpty() && stoppedMarkerFound) {
+                            && !runningScenario.isEmpty() && !runningPeriod.isEmpty() && !successLine.isEmpty()
+                            && stoppedMarkerFound && statusHasYear(runningPeriod)) {
                         break;
                     }
                 }
