@@ -222,7 +222,7 @@ public class FilteredTable {
         // Filter button
         JButton jb = new JButton("Filter");
         jb.setBackground(LegendUtil.getRGB(-8205574));
-        jb.addActionListener(e -> new FilterTreePane(chartName, unit, path, jTable, sel, sp));
+        jb.addActionListener(e -> FilterTreePane.showSingleInstance(chartName, unit, path, jTable, sel, sp));
         box.add(jb);
         // Graph button
         graphButton = new JButton("Graph");

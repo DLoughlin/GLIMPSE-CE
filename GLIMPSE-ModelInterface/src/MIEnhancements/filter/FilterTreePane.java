@@ -37,6 +37,8 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -85,6 +87,23 @@ public class FilterTreePane {
     public JDialog dialog;
     private boolean debug = false;
     private DefaultMutableTreeNode originalRootNode; // Store the original root node
+    private static JDialog activeFilterDialog;
+
+    /**
+     * Shows a single shared filter dialog instance. If one is already open,
+     * it is brought to the front instead of creating a duplicate.
+     */
+    public static void showSingleInstance(String chartName, String[] unit, String path, JTable jtable, Map<String, String> sel, JSplitPane sp) {
+        if (activeFilterDialog != null && activeFilterDialog.isDisplayable()) {
+            if (!activeFilterDialog.isVisible()) {
+                activeFilterDialog.setVisible(true);
+            }
+            activeFilterDialog.toFront();
+            activeFilterDialog.requestFocus();
+            return;
+        }
+        new FilterTreePane(chartName, unit, path, jtable, sel, sp);
+    }
 
     /**
      * Constructs a FilterTreePane and displays the filter dialog.
@@ -544,13 +563,38 @@ public class FilterTreePane {
      * Displays the filter dialog.
      */
     public void showFilter() {
-            dialog = new JDialog(InterfaceMain.getInstance().getFrame(), chartName + " Filter", false);
+        if (activeFilterDialog != null && activeFilterDialog.isDisplayable()) {
+            if (!activeFilterDialog.isVisible()) {
+                activeFilterDialog.setVisible(true);
+            }
+            activeFilterDialog.toFront();
+            activeFilterDialog.requestFocus();
+            return;
+        }
+
+        dialog = new JDialog(InterfaceMain.getInstance().getFrame(), chartName + " Filter", false);
         dialog.setTitle(chartName + " Filter");
         dialog.setSize(625, 750); // 25% wider (625) and 50% taller (750)
-            dialog.setLocationRelativeTo(InterfaceMain.getInstance().getFrame());
+        dialog.setLocationRelativeTo(InterfaceMain.getInstance().getFrame());
         dialog.getContentPane().setLayout(new BorderLayout());
         dialog.getContentPane().add(buildTree(buildTreeName(jtable)), BorderLayout.CENTER);
         dialog.getContentPane().add(crtBottomPanel(), BorderLayout.SOUTH);
+        activeFilterDialog = dialog;
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (activeFilterDialog == dialog) {
+                    activeFilterDialog = null;
+                }
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (activeFilterDialog == dialog) {
+                    activeFilterDialog = null;
+                }
+            }
+        });
         dialog.setVisible(true);
         DbViewer.openWindows.add(dialog);
     }
