@@ -78,6 +78,7 @@ final class ScenarioStatusService {
     private final GLIMPSEUtils utils;
     private final GcamPromptMonitor gcamPromptMonitor;
     private final Set<String> writingPhaseScenarios = new HashSet<>();
+    private final Map<String, String> terminalStatusLatch = new HashMap<>();
     private final Map<String, CachedConfigMetadata> configMetadataCache = new HashMap<>();
     private final Map<String, CachedLogAnalysis> logAnalysisCache = new HashMap<>();
 
@@ -242,8 +243,18 @@ final class ScenarioStatusService {
                 || STATUS_DNF.equals(status)
                 || STATUS_STOPPED.equals(status);
         boolean activelyRunningScenario = request.isScenarioActivelyRunning(scenarioName);
-        if (activeScenario || !terminalStatus) {
-            if (activeScenario) {
+
+        if (terminalStatus) {
+            terminalStatusLatch.put(scenarioName, status);
+        } else if (!activelyRunningScenario) {
+            String latchedTerminalStatus = terminalStatusLatch.get(scenarioName);
+            if (latchedTerminalStatus != null && !latchedTerminalStatus.trim().isEmpty()) {
+                status = latchedTerminalStatus;
+                terminalStatus = true;
+            }
+        }
+
+        if (activeScenario && !terminalStatus) {
                 status = STATUS_RUNNING;
                 long lastDate = currentMainLogFile.lastModified();
                 boolean isQueued = queuedScenario;
@@ -278,14 +289,14 @@ final class ScenarioStatusService {
                         }
                     }
                 }
-            } else if (queuedScenario) {
-                status = STATUS_IN_QUEUE;
-            }
         }
 
         if (!activeScenario || STATUS_SUCCESS.equals(status) || STATUS_UNSOLVED.equals(status)
                 || STATUS_DNF.equals(status) || STATUS_STOPPED.equals(status)) {
             writingPhaseScenarios.remove(scenarioName);
+        }
+        if (activelyRunningScenario && !terminalStatus) {
+            terminalStatusLatch.remove(scenarioName);
         }
         if (!queuedScenario && !activeScenario
                 && (STATUS_SUCCESS.equals(status) || STATUS_UNSOLVED.equals(status)
