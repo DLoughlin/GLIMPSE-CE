@@ -136,6 +136,35 @@ final class ScenarioStatusService {
         return new ScenarioStatusRefreshResult(snapshots, noScenarios, runningScenario, updatedQueue);
     }
 
+    /**
+     * Clears cached and latched status state for a scenario after overwrite/recreate actions.
+     */
+    void clearScenarioTransientState(String scenarioName) {
+        String normalizedScenarioName = safeTrim(scenarioName);
+        if (normalizedScenarioName.isEmpty()) {
+            return;
+        }
+        writingPhaseScenarios.remove(normalizedScenarioName);
+        terminalStatusLatch.remove(normalizedScenarioName);
+
+        // Remove cached analyses for scenario-local run artifacts so deleted/recreated logs do not
+        // repopulate stale table values on the next refresh.
+        String scenarioRoot = vars.getScenarioDir();
+        if (scenarioRoot == null || scenarioRoot.trim().isEmpty()) {
+            return;
+        }
+        clearCachedLogAnalysis(ScenarioLibraryPathHelper.scenarioMainLogFile(scenarioRoot, normalizedScenarioName));
+        clearCachedLogAnalysis(ScenarioLibraryPathHelper.scenarioStdoutFile(scenarioRoot, normalizedScenarioName));
+        clearCachedLogAnalysis(ScenarioLibraryPathHelper.scenarioErrorFile(scenarioRoot, normalizedScenarioName));
+    }
+
+    private void clearCachedLogAnalysis(String filePath) {
+        if (filePath == null || filePath.trim().isEmpty()) {
+            return;
+        }
+        logAnalysisCache.remove(new File(filePath).getAbsolutePath());
+    }
+
     private long getScenarioConfigCreatedTime(File scenarioFolder) {
         if (scenarioFolder == null) {
             return Long.MAX_VALUE;
