@@ -87,6 +87,10 @@ public final class FileChooserPlus {
     private static final String WINDOWS_CANCEL_TOKEN = "__GLIMPSE_CANCEL__";
     private static final long WINDOWS_CHOOSER_TIMEOUT_MS = Long.getLong("glimpse.windowsChooserTimeoutMs", 30000L);
 
+    // Temporary safety switch: force JavaFX chooser to avoid Windows native chooser timeout/flicker.
+    // To re-enable native chooser behavior later, set this back to false.
+    private static final boolean FORCE_DISABLE_NATIVE_CHOOSER = true;
+
     /**
      * Private constructor to prevent instantiation of this utility class.
      */
@@ -98,6 +102,9 @@ public final class FileChooserPlus {
      * Resolve chooser preference from options state. Defaults to native chooser.
      */
     private static boolean shouldPreferNativeFileDialog() {
+        if (FORCE_DISABLE_NATIVE_CHOOSER) {
+            return false;
+        }
         try {
             return GLIMPSEVariables.getInstance().getUseNativeFileChooser();
         } catch (Throwable ignored) {
@@ -618,8 +625,11 @@ public final class FileChooserPlus {
 
     private static void logNativeDisabled(String op, String title) {
         String safeTitle = title == null ? "" : title;
+        String disableReason = FORCE_DISABLE_NATIVE_CHOOSER
+                ? "FORCE_DISABLE_NATIVE_CHOOSER=true"
+                : "useNativeFileChooser=false";
         String message = "[FileChooserPlus] Native dialogs disabled for " + op
-                + " (title='" + safeTitle + "') via useNativeFileChooser=false; using JavaFX chooser.";
+                + " (title='" + safeTitle + "') via " + disableReason + "; using JavaFX chooser.";
         System.out.println(message);
         debugLog(message);
     }
