@@ -239,6 +239,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
     private ScenarioLibraryViewStateHelper.RefreshViewState pendingRefreshViewState = ScenarioLibraryViewStateHelper.RefreshViewState.empty();
     private final ConcurrentHashMap<String, Boolean> liveSuccessMarkedByScenario = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Boolean> windowsPolicyBlockPromptShownByScenario = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Boolean> missingArtifactWarningShownByScenario = new ConcurrentHashMap<>();
     /** Maps scenario name to the command submitted to the executor (for error reporting). */
     private final ConcurrentHashMap<String, String> submittedCommandByScenario = new ConcurrentHashMap<>();
     private final AtomicBoolean resetToDefaultCreatedSortAndScroll = new AtomicBoolean(true);
@@ -970,6 +971,7 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
             if (scenarioName.isEmpty()) {
                 continue;
             }
+            missingArtifactWarningShownByScenario.remove(scenarioName);
             List<String> command = new ArrayList<>();
             command.add(executable);
             command.add("-C");
@@ -2164,8 +2166,84 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
                     System.out.println("Problem copying run artifact " + artifactName + " for scenario " + scenarioName + ": " + copyEx);
                 }
             }
+
+            // Also copy user-configured GCAM outputs (for example debug.xml) tracked in options filesToSave.
+            List<String> missingConfiguredArtifacts = new ArrayList<>();
+            for (Path configuredArtifactPath : resolveConfiguredArtifactPaths()) {
+                if (!copyArtifactToScenarioFolderIfPresent(configuredArtifactPath, scenarioDirPath, scenarioName)) {
+                    missingConfiguredArtifacts.add(String.valueOf(configuredArtifactPath));
+                }
+            }
+            if (!missingConfiguredArtifacts.isEmpty()) {
+                String missingList = String.join(", ", missingConfiguredArtifacts);
+                System.out.println("Configured run artifacts not found for scenario " + scenarioName
+                        + ": " + missingList);
+                notifyMissingConfiguredArtifacts(scenarioName, missingList);
+            }
         } catch (Exception ex) {
             System.out.println("Problem finalizing run artifacts for scenario " + scenarioName + ": " + ex);
+        }
+    }
+
+    private void notifyMissingConfiguredArtifacts(String scenarioName, String missingList) {
+        if (missingList == null || missingList.trim().isEmpty()) {
+            return;
+        }
+        String scenarioKey = scenarioName == null ? "" : scenarioName.trim();
+        if (!scenarioKey.isEmpty()
+                && missingArtifactWarningShownByScenario.putIfAbsent(scenarioKey, Boolean.TRUE) != null) {
+            return;
+        }
+        Platform.runLater(() -> utils.warningMessage(
+                "Some configured run artifacts were not found for scenario '" + scenarioName + "':\n" + missingList));
+    }
+
+    private List<Path> resolveConfiguredArtifactPaths() {
+        LinkedHashSet<Path> uniquePaths = new LinkedHashSet<>();
+        try {
+            String filesToSave = vars.getFilesToSave();
+            if (filesToSave == null || filesToSave.trim().isEmpty()) {
+                return new ArrayList<>();
+            }
+            List<String> configuredEntries = utils.createArrayListFromString(filesToSave, ";");
+            for (String entry : configuredEntries) {
+                if (entry == null) {
+                    continue;
+                }
+                String trimmed = entry.trim();
+                if (trimmed.isEmpty()) {
+                    continue;
+                }
+                Path configuredPath = Paths.get(trimmed);
+                if (!configuredPath.isAbsolute()) {
+                    configuredPath = Paths.get(vars.getgCamExecutableDir(), trimmed);
+                }
+                uniquePaths.add(configuredPath.normalize());
+            }
+        } catch (Exception ex) {
+            System.out.println("Problem resolving configured filesToSave artifacts: " + ex);
+        }
+        return new ArrayList<>(uniquePaths);
+    }
+
+    private boolean copyArtifactToScenarioFolderIfPresent(Path sourcePath, Path scenarioDirPath, String scenarioName) {
+        if (sourcePath == null || scenarioDirPath == null) {
+            return false;
+        }
+        try {
+            if (!Files.exists(sourcePath) || Files.isDirectory(sourcePath)) {
+                return false;
+            }
+            Path fileName = sourcePath.getFileName();
+            if (fileName == null) {
+                return false;
+            }
+            Path targetPath = scenarioDirPath.resolve(fileName.toString());
+            Files.copy(sourcePath, targetPath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Problem copying configured run artifact " + sourcePath + " for scenario " + scenarioName + ": " + ex);
+            return false;
         }
     }
 
@@ -2356,24 +2434,29 @@ public class PaneScenarioLibrary extends ScenarioBuilder {
         if (scenarioName == null || scenarioName.trim().isEmpty()) {
             return;
         }
+        String normalizedScenarioName = scenarioName.trim();
         ScenarioRunStateClearMode effectiveMode = mode == null ? ScenarioRunStateClearMode.IMPORT_OVERWRITE : mode;
-        runController.clearStoppedScenario(scenarioName);
-        clearLiveStdoutError(scenarioName);
-        liveSuccessMarkedByScenario.remove(scenarioName.trim());
-        windowsPolicyBlockPromptShownByScenario.remove(scenarioName.trim());
+        runController.clearStoppedScenario(normalizedScenarioName);
+        clearLiveStdoutError(normalizedScenarioName);
+        liveSuccessMarkedByScenario.remove(normalizedScenarioName);
+        windowsPolicyBlockPromptShownByScenario.remove(normalizedScenarioName);
+        scenarioStatusService.clearScenarioTransientState(normalizedScenarioName);
         if (ScenarioRunStateClearMode.DELETE.equals(effectiveMode)) {
             return;
         }
         Platform.runLater(() -> {
             try {
                 for (ScenarioRow row : ScenarioTable.listOfScenarioRuns) {
-                    if (row == null || !scenarioName.equals(row.getScenarioName())) {
+                    if (row == null || !normalizedScenarioName.equals(ScenarioSelection.normalizeScenarioName(row))) {
                         continue;
                     }
                     row.setCompletedDate("");
                     row.setRuntime("");
                     row.setUnsolvedMarkets("");
                     row.setStatus(effectiveMode.statusText);
+                    if (ScenarioTable.tableScenariosLibrary != null) {
+                        ScenarioTable.tableScenariosLibrary.refresh();
+                    }
                     break;
                 }
             } catch (Exception ignored) {
