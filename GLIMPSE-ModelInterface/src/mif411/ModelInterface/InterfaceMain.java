@@ -1947,9 +1947,10 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 	public void updateActiveDatabaseStatus(final String dbPath) {
 		ensureStatusBarInstalled();
 		final String normalizedPath = dbPath == null ? null : dbPath.trim();
+		final String displayPath = formatDatabasePathForStatus(normalizedPath);
 		final String text = (normalizedPath == null || normalizedPath.isEmpty())
 				? "Database: (none)"
-				: "Database: " + normalizedPath;
+				: "Database: " + displayPath;
 		final int requestVersion = activeDbStatusVersion.incrementAndGet();
 		setActiveDatabaseStatusText(text);
 		if (normalizedPath == null || normalizedPath.isEmpty()) {
@@ -1971,6 +1972,25 @@ public class InterfaceMain implements ActionListener, PreferenceDialogCallbacks 
 		}, "ModelInterface-DbStatusSize");
 		sizeLookupThread.setDaemon(true);
 		sizeLookupThread.start();
+	}
+
+	private static String formatDatabasePathForStatus(String dbPath) {
+		if (dbPath == null) {
+			return "";
+		}
+		String trimmed = dbPath.trim();
+		if (trimmed.isEmpty()) {
+			return "";
+		}
+		try {
+			java.nio.file.Path targetPath = Paths.get(trimmed).toAbsolutePath().normalize();
+			java.nio.file.Path currentPath = Paths.get("").toAbsolutePath().normalize();
+			java.nio.file.Path relative = currentPath.relativize(targetPath);
+			String relativeText = relative.toString();
+			return relativeText.isEmpty() ? "." : relativeText;
+		} catch (Exception ex) {
+			return trimmed;
+		}
 	}
 
 	public void refreshActiveDatabaseStatus() {
