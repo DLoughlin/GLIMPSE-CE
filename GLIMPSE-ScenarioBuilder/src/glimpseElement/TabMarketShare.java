@@ -366,19 +366,21 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			return;
 		try {
 			List<String> techListSub = new ArrayList<>();
-			List<String> techListSup = new ArrayList<>();
-			List<String> prevCheckedSubset = new ArrayList<>(checkComboBoxSubset.getCheckModel().getCheckedItems());
-			List<String> prevCheckedSuperset = new ArrayList<>(checkComboBoxSuperset.getCheckModel().getCheckedItems());
+			List<String> techListSuper = new ArrayList<>();
+			// Preserve currently checked items so we can restore them after rebuilding filtered lists.
+			List<String> prevCheckedSub = new ArrayList<>(checkComboBoxSubset.getCheckModel().getCheckedItems());
+			List<String> prevCheckedSuper = new ArrayList<>(checkComboBoxSuperset.getCheckModel().getCheckedItems());
 			String filterTextSub = textFieldSubsetFilter.getText() != null ? textFieldSubsetFilter.getText().trim()
 					: "";
-			String filterTextSup = textFieldSupersetFilter.getText() != null ? textFieldSupersetFilter.getText().trim()
+			String filterTextSuper = textFieldSupersetFilter.getText() != null ? textFieldSupersetFilter.getText().trim()
 					: "";
 			String filterTextSubLc = filterTextSub.toLowerCase();
-			String filterTextSupLc = filterTextSup.toLowerCase();
-			boolean useFilterSub = !filterTextSub.isEmpty();
-			boolean useFilterSup = !filterTextSup.isEmpty();
+			String filterTextSuperLc = filterTextSuper.toLowerCase();
+			boolean useFilterSub = !filterTextSub.isEmpty(); // true if not empty
+			boolean useFilterSuper = !filterTextSuper.isEmpty(); // true if not empty
 			String lastLine = "";
 			for (String[] tech : techInfo) {
+				// Build the display string from metadata columns used by the selector UI.
 				String line = tech[0].trim() + " : " + tech[1] + " : " + tech[2];
 				if (line.equals(lastLine))
 					continue; // skip duplicate entries
@@ -392,12 +394,12 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				if (showSub)
 					techListSub.add(line.trim());
-				boolean showSup = !useFilterSup;
-				if (useFilterSup) {
-					showSup = matchesAllFilterTerms(tech, filterTextSupLc);
+				boolean showSuper = !useFilterSuper;
+				if (useFilterSuper) {
+					showSuper = matchesAllFilterTerms(tech, filterTextSuperLc);
 				}
-				if (showSup)
-					techListSup.add(line.trim());
+				if (showSuper)
+					techListSuper.add(line.trim());
 			}
 
 			// Rebuild both lists on each call so text filters actually limit options.
@@ -414,25 +416,27 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					checkComboBoxSubset.getItems().add(techLine);
 				}
 			}
-			for (String techLine : techListSup) {
+			for (String techLine : techListSuper) {
 				if (shouldShowTechLine(techLine, policyType)) {
 					checkComboBoxSuperset.getItems().add(techLine);
 				}
 			}
 
-			for (String item : prevCheckedSubset) {
+			// Restore prior checks where items still exist after filtering/policy narrowing.
+			for (String item : prevCheckedSub) {
 				if (checkComboBoxSubset.getItems().contains(item)) {
 					checkComboBoxSubset.getCheckModel().check(item);
 				}
 			}
-			for (String item : prevCheckedSuperset) {
+			for (String item : prevCheckedSuper) {
 				if (checkComboBoxSuperset.getItems().contains(item)) {
 					checkComboBoxSuperset.getCheckModel().check(item);
 				}
 			}
 
-			// Auto-check common technologies for some policy types (RPS/CES/EV/LED/HP/BioF)
+			// Policy-specific auto-selection defaults.
 			if ((policyType.contains("RPS")) || (policyType.contains("CES"))) {
+				// RPS/CES: pre-check common zero/low-carbon generation in numerator.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if ((itemText.indexOf("solar") >= 0) || (itemText.indexOf("csp") >= 0)
@@ -447,18 +451,29 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					if (itemText.indexOf("biomass") >= 0)
 						checkComboBoxSubset.getCheckModel().check(i);
 				}
+				// Denominator defaults to the full eligible tech universe.
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
 			if (policyType.contains("CES")) {
+				// CES adds CCS and nuclear to the pre-selected numerator technologies.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if (itemText.indexOf("ccs") >= 0)
 						checkComboBoxSubset.getCheckModel().check(i);
 					if (itemText.indexOf("nuclear") >= 0)
 						checkComboBoxSubset.getCheckModel().check(i);
+					if (itemText.indexOf("lwr") >= 0) //nuclear
+						checkComboBoxSubset.getCheckModel().check(i);
+					if (itemText.indexOf("smr") >= 0) //nuclear
+						checkComboBoxSubset.getCheckModel().check(i);
+					if (itemText.indexOf("uranium") >= 0) //nuclear
+						checkComboBoxSubset.getCheckModel().check(i);
+					if (itemText.indexOf("large reactor") >= 0) //nuclear
+						checkComboBoxSubset.getCheckModel().check(i);
 				}
 			}
 			if (policyType.contains("EV")) {
+				// EV: numerator defaults to BEVs; denominator defaults to all candidates.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if (itemText.indexOf("bev") >= 0)
@@ -466,23 +481,20 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				}
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
-//			if (policyType.startsWith("EV")) {
-//				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
-//					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
-//					if (itemText.indexOf("bev") >= 0)
-//						checkComboBoxSubset.getCheckModel().check(i);
-//				}
-//				checkComboBoxSuperset.getCheckModel().checkAll();
-//			}
+
 			if (policyType.contains("LED")) {
+				// LED: pre-select solid-state lighting technologies.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if (itemText.indexOf("solid state") >= 0)
+						checkComboBoxSubset.getCheckModel().check(i);
+					if (itemText.indexOf("led") >= 0)
 						checkComboBoxSubset.getCheckModel().check(i);
 				}
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
 			if (policyType.contains("Heat pumps")) {
+				// Heat pumps: pre-select heat-pump technologies.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if (itemText.indexOf("heat pump") >= 0)
@@ -491,6 +503,7 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 				checkComboBoxSuperset.getCheckModel().checkAll();
 			}
 			if (policyType.contains("Biofuels")) {
+				// Biofuels: pre-select biofuel-related technologies.
 				for (int i = 0; i < checkComboBoxSubset.getItems().size(); i++) {
 					String itemText = checkComboBoxSubset.getItems().get(i).toLowerCase();
 					if (itemText.indexOf("bio") >= 0)
@@ -522,19 +535,19 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		boolean showLdv4w = policyType.contains("LDV-EV");
 		boolean showLdvAll = policyType.contains("LDV-EV-All");
 		boolean showHdvAll = policyType.contains("HDV-EV");
-		boolean showHdvLight = policyType.contains("HDV-EV-Lt");
-		boolean showHdvMedium = policyType.contains("HDV-EV-Med");
-		boolean showHdvHeavy = policyType.contains("HDV-EV-Hvy");
+		boolean showHdvLight = policyType.contains("HDV-Lt");
+		boolean showHdvMedium = policyType.contains("HDV-Med");
+		boolean showHdvHeavy = policyType.contains("HDV-Hvy");
 		boolean showLighting = policyType.contains("LED lights");
 		boolean showHeating = policyType.contains("Heat pumps");
 		boolean showRefining = policyType.contains("Biofuels");
-		boolean showSectorEgu = policyType.contains("Sector:EGU");
-		boolean showSectorBuildings = policyType.contains("Sector:Buildings");
-		boolean showSectorIndustry = policyType.contains("Sector:Industry");
-		boolean showSectorIndustryFuels = policyType.contains("Sector:Industry-fuels");
-		boolean showSectorTrnOnroad = policyType.contains("Sector:Trn-Onroad");
-		boolean showSectorTrnAlm = policyType.contains("Sector:Trn-ALM");
-		boolean showSectorOther = policyType.contains("Sector:Other");
+		boolean showSectorEgu = policyType.contains("EGU (EGU)");
+		boolean showSectorBuildings = policyType.contains("Buildings (BLD)");
+		boolean showSectorIndustry = policyType.contains("Industry (IND)");
+		boolean showSectorIndustryFuels = policyType.contains("Industry-fuels (Fuels)");
+		boolean showSectorTrnOnroad = policyType.contains("Trn-Onroad (Onroad)");
+		boolean showSectorTrnAlm = policyType.contains("Trn-ALM (ALM)");
+		boolean showSectorOther = policyType.contains("Other (OTH)");
 
 		if (showEgu) {
 			// Do not require a space: the technology metadata uses more than one
@@ -573,10 +586,14 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			return techLineLc.endsWith("industry-fuels");
 		} else if (showSectorBuildings) {
 			return techLineLc.endsWith("buildings");
+		} else if (showSectorBuildings) {
+			return techLineLc.endsWith("buildings-comm");
+		} else if (showSectorBuildings) {
+			return techLineLc.endsWith("buildings-resid");
 		} else if (showSectorTrnOnroad) {
 			return techLineLc.endsWith("trn-onroad");
 		} else if (showSectorTrnAlm) {
-			return techLineLc.endsWith("trn-alm") || techLineLc.endsWith("trn-nonroad");
+			return techLineLc.endsWith("-alm") || techLineLc.endsWith("-nonroad");
 		} else if (showSectorOther) {
 			return true;
 		}
