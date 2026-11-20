@@ -37,6 +37,7 @@ package glimpseBuilder;
 
 import glimpseElement.CsvToXmlWidget;
 import glimpseElement.LogConfigEditorWidget;
+import glimpseElement.XmlHeaderInspectorWidget;
 import glimpseUtil.GLIMPSEFiles;
 import glimpseUtil.GLIMPSEUtils;
 import glimpseUtil.GLIMPSEVariables;
@@ -79,6 +80,7 @@ public final class SetupMenuTools {
                 Client.buttonRefreshScenarioStatus.fire();
             }),
             new SeparatorMenuItem(),
+            createMenuItem("XML Header Inspector", () -> new XmlHeaderInspectorWidget().createAndShow()),
             createMenuItem("Edit Log Configuration", () -> new LogConfigEditorWidget().createAndShow()),
             new SeparatorMenuItem(),
             createMenuItem("Browse Trash", () -> files.openFileExplorer(vars.getTrashDir())),

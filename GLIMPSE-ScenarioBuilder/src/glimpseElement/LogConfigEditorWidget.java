@@ -111,6 +111,9 @@ public class LogConfigEditorWidget {
 
     private static final double INITIAL_DIALOG_WIDTH = 1120;
     private static final double INITIAL_DIALOG_HEIGHT = 720;
+    private static final double MIN_DIALOG_WIDTH = 570;
+    private static final double MIN_DIALOG_HEIGHT = 480;
+    private static final String WINDOW_PREF_KEY_PREFIX = "log.config.editor.window";
     private static final double DIALOG_EXTRA_WIDTH_PADDING = 28;
     private static final double DIALOG_EXTRA_HEIGHT_PADDING = 20;
     private static final double DIALOG_MAX_SCREEN_WIDTH_FACTOR = 0.96;
@@ -216,8 +219,11 @@ public class LogConfigEditorWidget {
         gui.ScenarioBuilder.applyModernTheme(scene);
         stage.setScene(scene);
         Client.registerSceneForRuntimeFontSize(scene);
-        stage.setMinWidth(INITIAL_DIALOG_WIDTH);
-        stage.setMinHeight(INITIAL_DIALOG_HEIGHT);
+        stage.setMinWidth(MIN_DIALOG_WIDTH);
+        stage.setMinHeight(MIN_DIALOG_HEIGHT);
+        Client.applyPersistedDialogBounds(stage, WINDOW_PREF_KEY_PREFIX,
+                MIN_DIALOG_WIDTH, MIN_DIALOG_HEIGHT,
+                INITIAL_DIALOG_WIDTH, INITIAL_DIALOG_HEIGHT);
         installDialogAutoFitTriggers(root, scene);
         stage.setOnShown(e -> ensureDialogFitsContent(root, scene));
 
@@ -226,6 +232,8 @@ public class LogConfigEditorWidget {
                 e.consume();
             }
         });
+        stage.setOnHidden(e -> Client.persistDialogBounds(stage, WINDOW_PREF_KEY_PREFIX,
+                MIN_DIALOG_WIDTH, MIN_DIALOG_HEIGHT));
 
         File defaultFile = (initialFile != null && initialFile.isFile()) ? initialFile : resolveDefaultLogConfig();
         if (defaultFile != null) {
@@ -300,7 +308,7 @@ public class LogConfigEditorWidget {
         setDetailsButtonVisible(false);
 
         HBox buttonRow = new HBox(8, openButton, revertButton,
-                compareButton, editRawButton);
+                compareButton, editRawButton, saveButton, saveAsButton);
         buttonRow.setAlignment(Pos.CENTER_LEFT);
         HBox statusRow = new HBox(8, statusLabel, validationLabel, detailsButton);
         statusRow.setAlignment(Pos.CENTER_LEFT);
@@ -648,15 +656,10 @@ public class LogConfigEditorWidget {
             }
         });
 
-        Button saveButton = new Button("Save");
-        Button saveAsButton = new Button("Save As");
-        saveButton.setOnAction(e -> saveCurrentFile());
-        saveAsButton.setOnAction(e -> saveAsNewFile());
-
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox footer = new HBox(8, spacer, saveButton, saveAsButton, closeButton);
+        HBox footer = new HBox(8, spacer, closeButton);
         footer.setAlignment(Pos.CENTER_RIGHT);
         footer.setPadding(new Insets(10, 0, 0, 0));
         return footer;

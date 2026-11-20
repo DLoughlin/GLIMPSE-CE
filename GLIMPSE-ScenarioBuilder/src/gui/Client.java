@@ -675,6 +675,7 @@ public class Client extends Application {
             buildScenarioBuilderAndComposeMainWindow();
             logStartupCheckpoint("start(): before primaryStage.show", t0);
             primaryStage.show();
+            requestStartupForeground(primaryStage);
             logStartupCheckpoint("start(): after primaryStage.show", t0);
             closeEarlyStartupSplash();
             logStartupCheckpoint("start(): after closeEarlyStartupSplash", t0);
@@ -708,6 +709,7 @@ public class Client extends Application {
         }
         logStartupCheckpoint("start(): before primaryStage.show", t0);
         primaryStage.show();
+        requestStartupForeground(primaryStage);
         showWatchdogDone.set(true);
         if (showWatchdog != null) {
             showWatchdog.interrupt();
@@ -1309,8 +1311,36 @@ public class Client extends Application {
         preparedMainGridPane = null;
 
         applyMainScene(scene, root, mainGridPane, false);
+        requestStartupForeground(primaryStage);
         forceStartupRelayoutAfterSceneSwap();
         logStartupCheckpoint("Main window revealed after startup readiness gate", STARTUP_T0_NANOS);
+    }
+
+    private static void requestStartupForeground(Stage stage) {
+        if (stage == null) {
+            return;
+        }
+        Platform.runLater(() -> {
+            try {
+                if (!stage.isShowing()) {
+                    return;
+                }
+                stage.setIconified(false);
+                stage.toFront();
+                stage.requestFocus();
+                // A second pulse improves reliability on some Windows launch/focus races.
+                Platform.runLater(() -> {
+                    try {
+                        if (stage.isShowing()) {
+                            stage.toFront();
+                            stage.requestFocus();
+                        }
+                    } catch (Exception ignored) {
+                    }
+                });
+            } catch (Exception ignored) {
+            }
+        });
     }
 
     /**
@@ -1658,6 +1688,128 @@ public class Client extends Application {
       System.out.println("Could not save GLIMPSE Console window preferences: "
           + ex.getMessage());
     }
+  }
+
+  public static boolean applyPersistedDialogBounds(Stage stage, String dialogKeyPrefix,
+      double minWidth, double minHeight, double fallbackWidth, double fallbackHeight) {
+    if (stage == null || dialogKeyPrefix == null || dialogKeyPrefix.trim().isEmpty()) {
+      return false;
+    }
+
+    double resolvedMinWidth = Double.isFinite(minWidth) && minWidth > 0.0 ? minWidth : 0.0;
+    double resolvedMinHeight = Double.isFinite(minHeight) && minHeight > 0.0 ? minHeight : 0.0;
+    if (resolvedMinWidth > 0.0) {
+      stage.setMinWidth(resolvedMinWidth);
+    }
+    if (resolvedMinHeight > 0.0) {
+      stage.setMinHeight(resolvedMinHeight);
+    }
+
+    WindowPreferencesState state = null;
+    try {
+      File preferencesFile = resolveWindowPreferencesFile();
+      if (preferencesFile != null && preferencesFile.exists()) {
+        Properties properties = loadWindowPreferenceProperties(preferencesFile);
+        String base = dialogKeyPrefix.trim();
+        state = loadStoredWindowState(properties,
+            base + ".width",
+            base + ".height",
+            base + ".x",
+            base + ".y");
+      }
+    } catch (Exception ex) {
+      System.out.println("Could not read stored dialog bounds for '" + dialogKeyPrefix + "': "
+          + ex.getMessage());
+    }
+
+    double width = fallbackWidth;
+    if (!Double.isFinite(width) || width <= 0.0) {
+      width = Math.max(1.0, resolvedMinWidth);
+    }
+    if (state != null && state.width != null && Double.isFinite(state.width.doubleValue())) {
+      width = state.width.doubleValue();
+    }
+    width = Math.max(resolvedMinWidth, width);
+
+    double height = fallbackHeight;
+    if (!Double.isFinite(height) || height <= 0.0) {
+      height = Math.max(1.0, resolvedMinHeight);
+    }
+    if (state != null && state.height != null && Double.isFinite(state.height.doubleValue())) {
+      height = state.height.doubleValue();
+    }
+    height = Math.max(resolvedMinHeight, height);
+
+    stage.setWidth(width);
+    stage.setHeight(height);
+    if (hasUsableSavedWindowLocation(state, width, height)) {
+      stage.setX(state.x.doubleValue());
+      stage.setY(state.y.doubleValue());
+      return true;
+    }
+    stage.centerOnScreen();
+    return false;
+  }
+
+  public static void persistDialogBounds(Stage stage, String dialogKeyPrefix,
+      double minWidth, double minHeight) {
+    if (stage == null || dialogKeyPrefix == null || dialogKeyPrefix.trim().isEmpty()) {
+      return;
+    }
+    try {
+      persistDialogBoundsInternal(stage, dialogKeyPrefix.trim(), minWidth, minHeight);
+    } catch (Exception ex) {
+      System.out.println("Could not save dialog bounds for '" + dialogKeyPrefix + "': "
+          + ex.getMessage());
+    }
+  }
+
+  private static synchronized void persistDialogBoundsInternal(Stage stage, String dialogKeyPrefix,
+      double minWidth, double minHeight) throws Exception {
+    File preferencesFile = resolveWindowPreferencesFile();
+    if (preferencesFile == null) {
+      return;
+    }
+    File parentDir = preferencesFile.getParentFile();
+    if (parentDir != null && !parentDir.exists()) {
+      parentDir.mkdirs();
+    }
+
+    Properties properties = loadWindowPreferenceProperties(preferencesFile);
+    WindowPreferencesState state = snapshotDialogStagePreferences(stage, minWidth, minHeight);
+    writeStoredWindowState(properties,
+        dialogKeyPrefix + ".width",
+        dialogKeyPrefix + ".height",
+        dialogKeyPrefix + ".x",
+        dialogKeyPrefix + ".y",
+        state);
+    normalizePathPreferenceValues(properties);
+
+    try (FileOutputStream output = new FileOutputStream(preferencesFile)) {
+      properties.store(output, "GLIMPSE ScenarioBuilder window preferences");
+    }
+  }
+
+  private static WindowPreferencesState snapshotDialogStagePreferences(Stage stage,
+      double minWidth, double minHeight) {
+    WindowPreferencesState state = new WindowPreferencesState();
+    if (stage == null) {
+      return state;
+    }
+    double resolvedMinWidth = Double.isFinite(minWidth) && minWidth > 0.0 ? minWidth : 0.0;
+    double resolvedMinHeight = Double.isFinite(minHeight) && minHeight > 0.0 ? minHeight : 0.0;
+
+    if (Double.isFinite(stage.getWidth()) && stage.getWidth() > 0.0) {
+      state.width = Math.max(resolvedMinWidth, stage.getWidth());
+    }
+    if (Double.isFinite(stage.getHeight()) && stage.getHeight() > 0.0) {
+      state.height = Math.max(resolvedMinHeight, stage.getHeight());
+    }
+    if (Double.isFinite(stage.getX()) && Double.isFinite(stage.getY())) {
+      state.x = stage.getX();
+      state.y = stage.getY();
+    }
+    return state;
   }
 
   private static File resolveWindowPreferencesFile() {
