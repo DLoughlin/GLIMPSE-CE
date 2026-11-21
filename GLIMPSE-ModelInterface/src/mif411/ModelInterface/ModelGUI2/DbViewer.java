@@ -3067,28 +3067,40 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 				box.add(keyLabel);
 				box.add(field);
 
-				String[] buttons = { "Apply", "Clear", "Cancel" };
-				int returnValue = JOptionPane.showOptionDialog(parentFrame, box, "Query Filter",
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
-				queries = getQueries();
-				switch (returnValue) {
-				case 0:
-					// Process the filter results...
-					filteringText = field.getText();
-					if (filteringText != null && filteringText.length() > 0) {
-						queries = getFilteredQueries(queries, filteringText);
-
+				String[] buttons = { "Filter Name", "Filter Content", "Reset", "Close" };
+				while (true) {
+					int returnValue = JOptionPane.showOptionDialog(parentFrame, box, "Query Filter",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
+					queries = getQueries();
+					switch (returnValue) {
+					case 0:
+						filteringText = field.getText();
+						if (filteringText != null && filteringText.length() > 0) {
+							queries = getFilteredQueriesByName(queries, filteringText);
+						}
+						break;
+					case 1:
+						filteringText = field.getText();
+						if (filteringText != null && filteringText.length() > 0) {
+							queries = getFilteredQueriesByContent(queries, filteringText);
+						}
+						break;
+					case 2:
+						field.setText("");
+						filteringText = "";
+						queries = getQueries();
+						break;
+					case 3:
+					case -1:
+					default:
+						return;
 					}
 
-					break;
-				case 2:
-				case -1:
-					return;
+					queryList.setModel(queries);
+					queryList.setSelectionRow(0);
+					expandQueryTreeRows(queryList, STARTUP_QUERY_TREE_EXPANSION_ROW_LIMIT);
+					updateQueryActionButtonsEnabledState();
 				}
-				queryList.setModel(queries);
-				queryList.setSelectionRow(0);
-				expandQueryTreeRows(queryList, STARTUP_QUERY_TREE_EXPANSION_ROW_LIMIT);
-				updateQueryActionButtonsEnabledState();
 			}
 		});
 
@@ -4103,46 +4115,52 @@ public class DbViewer implements MenuAdder, BatchRunner, ActionListener {
 		return new ImageIcon(resource);
 	}
 
-	private QueryTreeModel getFilteredQueries(QueryTreeModel model, String query) {
+	private QueryTreeModel getFilteredQueriesByName(QueryTreeModel model, String query) {
+		return getFilteredQueries(model, query, false);
+	}
 
+	private QueryTreeModel getFilteredQueriesByContent(QueryTreeModel model, String query) {
+		return getFilteredQueries(model, query, true);
+	}
+
+	private QueryTreeModel getFilteredQueries(QueryTreeModel model, String query, boolean filterOnXPathText) {
 		QueryGroup root = (QueryGroup) model.getRoot();
-		ArrayList query_list = root.getQueryList();
+		ArrayList queryList = root.getQueryList();
 
-		ArrayList toRemove = new ArrayList<>();
-
-		for (int i = 0; i < query_list.size(); i++) {
-			if (query_list.get(i) instanceof QueryGroup) {
-				QueryGroup group = (QueryGroup) query_list.get(i);
-				toRemove.addAll(getMatchingNodes(group, query));
+		for (int i = queryList.size() - 1; i >= 0; i--) {
+			Object queryNode = queryList.get(i);
+			if (queryNode instanceof QueryGroup) {
+				if (!filterQueryGroupInPlace((QueryGroup) queryNode, query, filterOnXPathText)) {
+					queryList.remove(i);
+				}
+			} else if (queryNode instanceof QueryGenerator
+					&& !isQueryMatch((QueryGenerator) queryNode, query, filterOnXPathText)) {
+				queryList.remove(i);
 			}
-		}
-
-		for (int i = 0; i < toRemove.size(); i++) {
-			QueryGenerator qg = (QueryGenerator) toRemove.get(i);
-			Node myNode = qg.getMyNode();
-			qg.getMyNode().getParentNode().removeChild(myNode);
 		}
 
 		return model;
 	}
 
-	private ArrayList getMatchingNodes(QueryGroup groupTop, String query) {
-		ArrayList query_list = groupTop.getQueryList();
-		ArrayList toRemove = new ArrayList();
-		for (int i = 0; i < query_list.size(); i++) {
-			if (query_list.get(i) instanceof QueryGroup) {
-				QueryGroup group = (QueryGroup) query_list.get(i);
-				getMatchingNodes(group, query);
-			} else {
-				if (!query_list.get(i).toString().toLowerCase().contains(query.toLowerCase())) {
-					toRemove.add(query_list.get(i));
+	private boolean filterQueryGroupInPlace(QueryGroup groupTop, String query, boolean filterOnXPathText) {
+		ArrayList queryList = groupTop.getQueryList();
+		for (int i = queryList.size() - 1; i >= 0; i--) {
+			Object queryNode = queryList.get(i);
+			if (queryNode instanceof QueryGroup) {
+				if (!filterQueryGroupInPlace((QueryGroup) queryNode, query, filterOnXPathText)) {
+					queryList.remove(i);
 				}
+			} else if (queryNode instanceof QueryGenerator
+					&& !isQueryMatch((QueryGenerator) queryNode, query, filterOnXPathText)) {
+				queryList.remove(i);
 			}
 		}
-		for (int i = 0; i < toRemove.size(); i++) {
-			query_list.remove(toRemove.get(i));
-		}
-		return toRemove;
+		return !queryList.isEmpty();
+	}
+
+	private boolean isQueryMatch(QueryGenerator queryGenerator, String query, boolean filterOnXPathText) {
+		String targetText = filterOnXPathText ? queryGenerator.getXPath() : queryGenerator.toString();
+		return targetText != null && targetText.toLowerCase().contains(query.toLowerCase());
 	}
 
 	public void closeAllTabs() {
