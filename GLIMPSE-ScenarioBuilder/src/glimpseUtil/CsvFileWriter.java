@@ -33,15 +33,10 @@
 * Laboratory contract.  
 * 
 */
-package glimpseBuilder;
+package glimpseUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import glimpseUtil.GLIMPSEFiles;
-import glimpseUtil.GLIMPSEStyles;
-import glimpseUtil.GLIMPSEUtils;
-import glimpseUtil.GLIMPSEVariables;
 
 /**
  * CsvFileWriter is responsible for generating CSV file content based on provided column and data lists.

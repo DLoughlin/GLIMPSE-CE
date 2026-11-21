@@ -40,7 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.controlsfx.control.CheckComboBox;
-import glimpseBuilder.CsvFileWriter;
+
+import glimpseUtil.CsvFileWriter;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
