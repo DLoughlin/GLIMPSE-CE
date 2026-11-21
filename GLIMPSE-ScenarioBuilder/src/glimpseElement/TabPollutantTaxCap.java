@@ -186,13 +186,13 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		comboBoxConvertFrom.setVisible(false);
 
 		// Listener for category selection changes
+		// Keep category selection mutually exclusive (one category or All) while avoiding listener recursion.
 		checkComboBoxCategory.getCheckModel().getCheckedItems()
 				.addListener((javafx.collections.ListChangeListener<String>) change -> {
 					if (isAdjustingCategoryChecks)
 						return;
 					if (checkComboBoxCategory.isDisabled())
 						return;
-					// Only allow one category to be checked at a time, or 'All'
 					if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() > 1) {
 						isAdjustingCategoryChecks = true;
 						String lastChecked = null;
@@ -201,7 +201,6 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 								lastChecked = change.getAddedSubList().get(change.getAddedSubList().size() - 1);
 							}
 						}
-						// Uncheck all except lastChecked
 						if ((lastChecked != null) && (lastChecked.equals(ALL))) {
 							for (String item : new ArrayList<>(
 									checkComboBoxCategory.getCheckModel().getCheckedItems())) {
@@ -214,7 +213,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 						}
 						isAdjustingCategoryChecks = false;
 					}
-					// If no category is checked, default to 'All'
+					// Never leave the category list empty; fallback to All to keep behavior deterministic.
 					if (checkComboBoxCategory.getCheckModel().getCheckedItems().size() == 0) {
 						isAdjustingCategoryChecks = true;
 						checkComboBoxCategory.getCheckModel().check(ALL);
@@ -457,21 +456,8 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		// Generate metadata for file header
 		fileContent = getMetaDataContent(tree, market_name, policy_name);
 
-		// Route to appropriate file generation method based on pollutant and measure
-		// Cases:
-		// Caps:
-		// 1. CO2 cap in MTC on all categories
-		// 2. CO2 cap in MTCO2 on all categories
-		// 3. GHG cap in MTCO2E on all categories
-		// 4. CO2 cap in MTC on specific categories
-		// 5. CO2 cap in MTCO2 on specific categories
-		// 6. Non-GHG cap in Tg on all categories
-		// Taxes:
-		// 7. CO2 tax in $/MTC on all categories
-		// 8. CO2 tax in $/MTCO2 on all categories
-		// 9. GHG tax in $/MTCO2E on all categories
-		// 10. Non-GHG tax in $/Tg on all categories
-
+		// Route to the specialized generator for the selected pollutant/measure combination.
+		// The generator methods encapsulate all table layout differences.
 		if (measure.equals(CAP)) {
 			if (pol.startsWith("CO2")) {
 				if (cats.contains(ALL)) { // cases 1, 2
@@ -539,7 +525,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				}
 			}
 		}
-		// Determine demand adjustment factor based on units
+		// MT CO2 inputs are converted to MT C-equivalent linkage using 3.667.
 		String dmdAdj = "1";
 		if (pol_menu.contains("(MT CO2)"))
 			dmdAdj = "3.667";
@@ -591,7 +577,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		ArrayList<String> tempfiles = new ArrayList<String>();
 		ArrayList<String> data = paneForComponentDetails.getDataYrValsArrayList();
 
-		// If not all categories are selected, append unique ID to pollutant name for uniqueness
+		// If not all categories are selected, append a unique suffix to keep pollutant identifiers distinct.
 		if (!categories.contains(ALL)) pol = pol + "_" + ID;
 
 		// Write table headers based on measure type
@@ -613,7 +599,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 				data_str = data_str.replaceAll(" ", "").trim();
 				int data_yr = Integer.parseInt(data_str.split(",")[0].trim());
 				double data_val = Double.parseDouble(data_str.split(",")[1].trim());
-				// Convert units if necessary
+				// Convert MT CO2 values to MT C-equivalent units expected by downstream templates.
 				if (pol_menu.contains("(MT CO2)")) {
 					data_val = data_val / 3.667;
 					data_str = data_yr + "," + formatDisplayValue(data_val);
@@ -980,6 +966,7 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 		try {
 			error_count += validateRegionSelection(tree, message);
 			boolean hasRows = paneForComponentDetails != null && paneForComponentDetails.table.getItems().size() > 0;
+			// When no table rows exist, year matching is skipped and table-entry validation handles emptiness.
 			error_count += validateTableEntries(message, hasRows, hasRows && validateTableDataYears());
 			error_count += validateRequiredSelection(message, comboBoxMeasure, "Action", SELECT_ONE);
 			error_count += validateRequiredSelection(message, checkComboBoxCategory, "Sector");

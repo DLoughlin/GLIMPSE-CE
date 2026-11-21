@@ -284,35 +284,37 @@ public class TabTechBound extends PolicyTab implements Runnable {
 
  		super.setupEventHandlers();
 
+ 		// Refresh technology list when Enter is pressed in the filter box.
  		setOnAction(textFieldFilter, e -> {
  			updateCheckComboBoxTech();
  		});
+ 		// Also refresh after short typing pauses for smoother filtering.
 			textFieldFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
 
  		labelCheckComboBoxTech.setOnMouseClicked(e -> {
-			// Allow double-click to select/deselect all when control is enabled
-			if (!checkComboBoxTech.isDisabled()) {
-				boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
-				if (e.getClickCount() == 2) {
-					if (isFirstItemChecked) {
-						checkComboBoxTech.getCheckModel().clearChecks();
-					} else {
-						checkComboBoxTech.getCheckModel().checkAll();
-					}
-				}
-			}
-		});
+			// Double-click the label to toggle all currently visible technologies.
+ 			if (!checkComboBoxTech.isDisabled()) {
+ 				boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
+ 				if (e.getClickCount() == 2) {
+ 					if (isFirstItemChecked) {
+ 						checkComboBoxTech.getCheckModel().clearChecks();
+ 					} else {
+ 						checkComboBoxTech.getCheckModel().checkAll();
+ 					}
+ 				}
+ 			}
+ 		});
 		setOnAction(comboBoxCategory, e -> {
 			String selectedItem = comboBoxCategory.getSelectionModel().getSelectedItem();
 			if (isSelectionMissing(comboBoxCategory)) {
-				// Reset tech list and disable filtering controls
+				// Clear dependent tech UI when category is not selected.
 				resetCheckComboBoxItems(checkComboBoxTech, null);
 				checkComboBoxTech.setDisable(true);
 				labelUnits2.setText(UNITS_DEFAULT);
 				textFieldFilter.setText("");
 				textFieldFilter.setDisable(true);
 			} else {
-				// Populate techs for the selected category
+				// Rebuild and enable the tech list for the selected category.
 				updateCheckComboBoxTech();
 				checkComboBoxTech.setDisable(false);
 				textFieldFilter.setDisable(false);
@@ -519,7 +521,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 		System.out.println("isGCAMVersionPre8.5: " + vars.isGcamVersionPre8_5());
 		
 		if (!qaInputs()) {
-			// Abort save if validation fails
+			// Abort save when required UI inputs are incomplete/invalid.
 			return;
 		}
 
@@ -563,6 +565,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 		String header_part1 = "GLIMPSEPFStdTechUpBoundP1";
 		String header_part2 = "GLIMPSEPFStdTechUpBoundP2";
 
+		// Choose header IDs that map to lower/upper/fixed bound XML templates.
 		if (bound_type.equals("fixed bound")) {
 			header_part2 = "GLIMPSEPFStdTechFxBoundP2";
 		} else if (bound_type.equals("lower bound")) {
@@ -635,6 +638,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 			if (tech.contains("=>")||(subsector.contains("=>"))) {
 				is_nested = true;
 			}
+			// Nested paths are flattened with commas to match nested CSV columns.
 			if (is_nested) {
 				num_nested++;
 				tech = tech.replaceAll("=>", ",");
@@ -668,6 +672,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 						for (int y1 : vars.getAllYears()) {
 
 							if (y >= calib_year) {
+								// "All Stock" applies the policy to calibration..current year; otherwise only current year.
 								if ((y1 == y) || ((appliedTo.equals("all stock")) && (y1 <= y) && (y1 >= calib_year))) {
 
 									if (is_nested) {
@@ -749,8 +754,10 @@ public class TabTechBound extends PolicyTab implements Runnable {
 					}
 
 					if (vars.isGcamVersionPre8_5()) {
+						// Legacy GCAM expects conversion to policy units using both load factor and 1.055 scaler.
 						valf = valf / (1.0e9 * loadFactor / 1.055);
 					} else {
+						// Newer versions use direct load-factor normalization.
 						valf = valf / loadFactor;
 					}
 				}
@@ -796,6 +803,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 		}
 		tempfiles.add(temp_file3);
 
+		// Concatenate only the temp sections that were actually populated.
 		files.concatDestSources(temp_file, tempfiles);
 
 		System.out.println("Done");
@@ -990,6 +998,7 @@ public class TabTechBound extends PolicyTab implements Runnable {
 		try {
 			error_count += validateRegionSelection(tree, message);
 			boolean hasRows = paneForComponentDetails != null && !paneForComponentDetails.table.getItems().isEmpty();
+			// When no table rows exist, year-matching is not applicable; table-entry validation handles emptiness.
 			boolean yearsMatch = !hasRows || validateTableDataYears();
 			error_count += validateTableEntries(message, hasRows, yearsMatch);
 			error_count += validateRequiredSelection(message, comboBoxCategory, "Category");

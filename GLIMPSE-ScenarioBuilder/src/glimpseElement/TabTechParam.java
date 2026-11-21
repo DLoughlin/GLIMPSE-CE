@@ -37,7 +37,11 @@ package glimpseElement;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.controlsfx.control.CheckComboBox;
 
@@ -117,6 +121,16 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_UNITS = "Units: ";
     private static final String LABEL_MANUAL_YEAR_VALUE_PAIRS = "Year-Value Pairs:";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
+    private static final String PARAM_SHAREWEIGHT = "Shareweight";
+    private static final String INTERP_HEADER_ID = "GLIMPSETechSWInterpTo";
+    private static final String INTERP_HEADER_ID_NEST = "GLIMPSENestTechSWInterpTo-Nest";
+    private static final String INTERP_COLUMNS = "region,sector,subsector,technology,from-year,to-year,name,overwrite-policy,to-value,scenario,scenario/world";
+    private static final String INTERP_COLUMNS_NEST = "region,sector,subsector1,subsector2,technology,from-year,to-year,name,overwrite-policy,to-value,scenario,scenario/world";
+    private static final String INTERP_LINEAR = "linear";
+    private static final String INTERP_FIXED = "fixed";
+    private static final String INTERP_OVERWRITE_POLICY = "ALWAYS";
+    private static final int INTERP_EXPECTED_COLUMN_COUNT = 11;
+    private static final int FINAL_MODEL_YEAR = 2100;
 
  
      // === Layout and UI Components ===
@@ -161,17 +175,17 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * @param stageX The JavaFX Stage (passed to parent classes)
      */
     public TabTechParam(String title, Stage stageX) {
-        // sets tab title and style
+        // Set tab title and style.
         this.setText(title);
         this.setStyle(styles.getFontStyle());
 
-        setupUIControls(); // Initialize UI controls and default options
+        setupUIControls(); // Initialize control defaults and visibility.
         setComponentWidths();
         setupUIComponents();
-        setupUILayout();   // arrange the left/center/right panes
-        setupEventHandlers(); // register event handlers
-        techInfo = vars.getTechInfo(); // load technology metadata
-        setupComboBoxCategory(); // populate Category combo box
+        setupUILayout();   // Arrange left/center/right panes.
+        setupEventHandlers(); // Register UI event handlers.
+        techInfo = vars.getTechInfo(); // Load technology metadata.
+        setupComboBoxCategory(); // Populate Category combo box.
     }
 
     /**
@@ -304,11 +318,12 @@ public class TabTechParam extends PolicyTab implements Runnable {
 
         super.setupEventHandlers();
         
-        // Update tech list when filter text is changed (press Enter)
+        // Refresh the technology list when Enter is pressed in the filter box.
         setOnAction(textFieldFilter, e -> updateCheckComboTechs());
+        // Also refresh after short typing pauses for a smoother filtering experience.
         textFieldFilter.textProperty().addListener((obs, oldVal, newVal) -> filterUpdateDelay.playFromStart());
         
-        // Double-clicking the tech label toggles selection when enabled
+        // Double-clicking the tech label toggles all current selections.
         labelCheckComboBoxTech.setOnMouseClicked(e -> {
             if (!checkComboBoxTech.isDisabled()) {
                 boolean isFirstItemChecked = checkComboBoxTech.getCheckModel().isChecked(0);
@@ -322,7 +337,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
             }
 
         });
-        // Category selection controls enabling/disabling of tech selection and filter
+        // Category selection controls whether tech selection and filtering are enabled.
         setOnAction(comboBoxCategory, e -> {
             if (isSelectionMissing(comboBoxCategory)) {
                 // Reset tech selection UI when no category chosen
@@ -332,17 +347,17 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 textFieldFilter.setText("");
                 textFieldFilter.setDisable(true);
             } else {
-                // Populate and enable tech list when a category is selected
+                // Rebuild and enable tech list when a category is selected.
                 updateCheckComboTechs();
                 checkComboBoxTech.setDisable(false);
                 textFieldFilter.setDisable(false);
             }
             setUnitsLabel();
         });
-        // Parameter selection may reveal a secondary parameter (e.g., emissions)
+        // Parameter selection may reveal a secondary parameter (for example, emissions).
         setOnAction(comboBoxParam, e -> applyParameterSelection());
 
-        // When the set of checked technologies changes, update displayed IO units
+        // Keep displayed input/output units synchronized with checked technologies.
         checkComboBoxTech.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> Platform.runLater(() -> {
             updateInputOutputUnits();
             setUnitsLabel();
@@ -732,7 +747,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         String s2 = ""; 
         String label = "";
         String selectedParam = this.comboBoxParam.getSelectionModel().getSelectedItem();
-        // User can check techs before selecting a parameter; avoid null switch.
+        // Users can check technologies before selecting a parameter; avoid null switch input.
         if (selectedParam == null) {
             labelTextFieldUnits2.setText(label);
             return;
@@ -809,6 +824,10 @@ public class TabTechParam extends PolicyTab implements Runnable {
             ArrayList<String> dataList = loadDataFromGUI(tree);
             ArrayList<String> colList = files.getStringArrayFromFile(vars.getCsvColumnFilename(), "#");
             ArrayList<String> csvContent = cfw.createCsvContent(colList, dataList);
+            // Shareweight exports include a second INPUT_TABLE that defines interpolation behavior.
+            if (PARAM_SHAREWEIGHT.equals(comboBoxParam.getValue())) {
+                csvContent.addAll(buildShareweightInterpolationCsvContent(tree));
+            }
             fileContent = getMetaDataContent(tree);
             fileContent += utils.createStringFromArrayList(csvContent);
 
@@ -878,6 +897,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 year.append(data.get(i).getYear());
                 value.append(data.get(i).getValue());
             }
+            // Group controls which mapping rules are used by CsvFileWriter downstream.
             String group = "all";
             if (sector.indexOf("trn") >= 0) group = "trn";
             if (sector.indexOf("generation") >= 0) group = "egu";
@@ -889,6 +909,170 @@ public class TabTechParam extends PolicyTab implements Runnable {
         return dataList;
     }
 
+    /**
+     * Build a second INPUT_TABLE for Shareweight interpolation rules.
+     *
+     * Rules generated per technology/region:
+     * 1) calibrationYear -> first entered year (linear, to-value at first year)
+     * 2) each adjacent entered-year interval (linear, to-value at interval end)
+     * 3) last entered year -> 2100 (fixed, holding last entered value)
+     */
+    private ArrayList<String> buildShareweightInterpolationCsvContent(TreeView<String> tree) {
+        ArrayList<String> rows = new ArrayList<>();
+        ArrayList<String> flatRows = new ArrayList<>();
+        ArrayList<String> nestedRows = new ArrayList<>();
+        // Use a sorted map so interpolation segments are generated chronologically.
+        Map<Integer, String> yearToValueMap = getSortedYearToValueMap();
+        List<Integer> years = new ArrayList<>(yearToValueMap.keySet());
+        if (years.isEmpty()) {
+            return rows;
+        }
+
+        int calibrationYear = vars.getCalibrationYear() != null ? vars.getCalibrationYear() : years.get(0);
+        int firstYear = years.get(0);
+        int lastYear = years.get(years.size() - 1);
+        String[] regions = vars.normalizeSelectedRegionsForSubregions(utils.getAllSelectedRegions(tree));
+        ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
+
+        for (String line : checkedItems) {
+            String[] words = utils.splitString(line, ":");
+            if (words.length < 3) {
+                continue;
+            }
+            String sector = words[0].trim();
+            String subsectorText = words[1].trim();
+            String techText = words[2].trim();
+            String[] nestedSubsectors = utils.splitString(subsectorText, "=>");
+            String[] nestedTech = utils.splitString(techText, "=>");
+            // Nested rows can be encoded either in subsector text or technology text.
+            boolean isNested = nestedSubsectors.length > 1 || nestedTech.length > 1;
+
+            String subsector = subsectorText;
+            String subsector2 = "";
+            String tech = techText;
+            // Support both nested encodings: subsector path and technology path.
+            if (nestedSubsectors.length > 1) {
+                subsector = nestedSubsectors[0].trim();
+                subsector2 = nestedSubsectors[1].trim();
+            }
+            if (nestedTech.length > 1) {
+                subsector2 = nestedTech[0].trim();
+                tech = nestedTech[1].trim();
+                isNested = true;
+            }
+
+            for (String region : regions) {
+                if (region == null || region.trim().isEmpty()) {
+                    continue;
+                }
+                ArrayList<String> targetRows = isNested ? nestedRows : flatRows;
+                // First segment anchors interpolation from calibration to first explicit year.
+                addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, calibrationYear,
+                        firstYear, INTERP_LINEAR, yearToValueMap.get(firstYear), isNested);
+                // Internal segments transition toward the next entered value each step.
+                for (int i = 0; i < years.size() - 1; i++) {
+                    int toYear = years.get(i + 1);
+                    addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, years.get(i),
+                            toYear, INTERP_LINEAR, yearToValueMap.get(toYear), isNested);
+                }
+                // Final segment holds the last explicit value through the model horizon.
+                addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, lastYear,
+                        FINAL_MODEL_YEAR, INTERP_FIXED, yearToValueMap.get(lastYear), isNested);
+            }
+        }
+
+        appendInterpolationTable(rows, INTERP_HEADER_ID, INTERP_COLUMNS, flatRows);
+        appendInterpolationTable(rows, INTERP_HEADER_ID_NEST, INTERP_COLUMNS_NEST, nestedRows);
+        return rows;
+    }
+
+    private void appendInterpolationTable(ArrayList<String> rows, String variableId, String columns, ArrayList<String> dataRows) {
+        if (dataRows.isEmpty()) {
+            return;
+        }
+        // Fail early if the emitted table shape no longer matches the configured header mapping.
+        int definedColumnCount = countCsvColumns(columns);
+        if (definedColumnCount != INTERP_EXPECTED_COLUMN_COUNT) {
+            throw new IllegalStateException("Interpolation header column mismatch for " + variableId
+                    + ": expected " + INTERP_EXPECTED_COLUMN_COUNT + " but found " + definedColumnCount
+                    + " in column definition '" + columns + "'");
+        }
+        // Emit one complete INPUT_TABLE block per variable ID.
+        rows.add("");
+        rows.add("INPUT_TABLE");
+        rows.add("Variable ID");
+        rows.add(variableId);
+        rows.add("");
+        rows.add(columns);
+        rows.addAll(dataRows);
+        rows.add("");
+    }
+
+    private void addInterpolationRow(ArrayList<String> rows, String region, String sector, String subsector,
+            String subsector2, String tech, int fromYear, int toYear, String functionName, String toValue,
+            boolean isNested) {
+        String safeToValue = toValue == null ? "" : toValue;
+        // Flat and nested layouts differ by one subsector column.
+        String row;
+        if (isNested) {
+            row = region + "," + sector + "," + subsector + "," + subsector2 + "," + tech + "," + fromYear
+                    + "," + toYear + "," + functionName + "," + INTERP_OVERWRITE_POLICY + "," + safeToValue
+                    + ",,";
+        } else {
+            row = region + "," + sector + "," + subsector + "," + tech + "," + fromYear + "," + toYear
+                    + "," + functionName + "," + INTERP_OVERWRITE_POLICY + "," + safeToValue + ",,";
+        }
+        int rowColumnCount = countCsvColumns(row);
+        if (rowColumnCount != INTERP_EXPECTED_COLUMN_COUNT) {
+            throw new IllegalStateException("Interpolation row column mismatch: expected "
+                    + INTERP_EXPECTED_COLUMN_COUNT + " but found " + rowColumnCount + " for row '" + row + "'");
+        }
+        rows.add(row);
+    }
+
+    private int countCsvColumns(String csvLine) {
+        return csvLine == null ? 0 : csvLine.split(",", -1).length;
+    }
+
+    private Map<Integer, String> getSortedYearToValueMap() {
+        ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
+        TreeMap<Integer, String> yearToValue = new TreeMap<>();
+        if (data != null) {
+            for (DataPoint dp : data) {
+                try {
+                    int year = Integer.parseInt(dp.getYear().trim());
+                    // Later duplicates replace earlier ones, matching typical table-edit expectations.
+                    yearToValue.put(year, dp.getValue() == null ? "" : dp.getValue().trim());
+                } catch (Exception ignored) {
+                    // qaInputs already validates year syntax; this keeps save behavior resilient.
+                }
+            }
+        }
+        return yearToValue;
+    }
+
+    /**
+     * Return sorted unique year values currently present in the data table.
+     *
+     * @return ascending list of unique years, or an empty list when none are valid
+     */
+    private List<Integer> getSortedUniqueTableYears() {
+        ObservableList<DataPoint> data = this.paneForComponentDetails.table.getItems();
+        TreeSet<Integer> years = new TreeSet<>();
+        if (data != null) {
+            for (DataPoint dp : data) {
+                try {
+                    years.add(Integer.parseInt(dp.getYear().trim()));
+                } catch (Exception ignored) {
+                    // qaInputs already validates year syntax; this keeps save behavior resilient.
+                }
+            }
+        }
+        if (years.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return new ArrayList<>(years);
+    }
     /**
      * Return a comma-separated list of selected leaf regions, omitting any
      * configured parent region when its subregions are also selected.
@@ -935,6 +1119,7 @@ public class TabTechParam extends PolicyTab implements Runnable {
         try {
             errorCount += validateRegionSelection(tree, message);
             boolean hasRows = paneForComponentDetails != null && !paneForComponentDetails.table.getItems().isEmpty();
+            // When no rows exist, year matching is not applicable; table validation handles emptiness.
             boolean yearsMatch = !hasRows || validateTableDataYears();
             errorCount += validateTableEntries(message, hasRows, yearsMatch);
             if (checkComboBoxTech != null) {
