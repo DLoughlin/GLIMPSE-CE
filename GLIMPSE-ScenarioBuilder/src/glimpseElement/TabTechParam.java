@@ -122,7 +122,9 @@ public class TabTechParam extends PolicyTab implements Runnable {
     private static final String LABEL_MANUAL_YEAR_VALUE_PAIRS = "Year-Value Pairs:";
     private static final String SELECT_ONE_OR_MORE = "Select One or More";
     private static final String PARAM_SHAREWEIGHT = "Shareweight";
+    private static final String INTERP_HEADER_ID_DELETE = "GLIMPSETechSWInterpToDelete";
     private static final String INTERP_HEADER_ID = "GLIMPSETechSWInterpTo";
+    private static final String INTERP_HEADER_ID_NEST_DELETE = "GLIMPSENestTechSWInterpToDelete-Nest";
     private static final String INTERP_HEADER_ID_NEST = "GLIMPSENestTechSWInterpTo-Nest";
     private static final String INTERP_COLUMNS = "region,sector,subsector,technology,from-year,to-year,name,overwrite-policy,to-value,scenario,scenario/world";
     private static final String INTERP_COLUMNS_NEST = "region,sector,subsector1,subsector2,technology,from-year,to-year,name,overwrite-policy,to-value,scenario,scenario/world";
@@ -913,13 +915,15 @@ public class TabTechParam extends PolicyTab implements Runnable {
      * Build a second INPUT_TABLE for Shareweight interpolation rules.
      *
      * Rules generated per technology/region:
-     * 1) calibrationYear -> first entered year (linear, to-value at first year)
+     * 1) calibrationYear -> first post-calibration year (linear, first rule includes delete behavior)
      * 2) each adjacent entered-year interval (linear, to-value at interval end)
      * 3) last entered year -> 2100 (fixed, holding last entered value)
      */
     private ArrayList<String> buildShareweightInterpolationCsvContent(TreeView<String> tree) {
         ArrayList<String> rows = new ArrayList<>();
+        ArrayList<String> flatDeleteRows = new ArrayList<>();
         ArrayList<String> flatRows = new ArrayList<>();
+        ArrayList<String> nestedDeleteRows = new ArrayList<>();
         ArrayList<String> nestedRows = new ArrayList<>();
         // Use a sorted map so interpolation segments are generated chronologically.
         Map<Integer, String> yearToValueMap = getSortedYearToValueMap();
@@ -929,8 +933,11 @@ public class TabTechParam extends PolicyTab implements Runnable {
         }
 
         int calibrationYear = vars.getCalibrationYear() != null ? vars.getCalibrationYear() : years.get(0);
-        int firstYear = years.get(0);
-        int lastYear = years.get(years.size() - 1);
+        List<ShareweightInterpolationPlanner.InterpolationSegment> segments = ShareweightInterpolationPlanner
+                .buildSegments(years, calibrationYear, FINAL_MODEL_YEAR);
+        if (segments.isEmpty()) {
+            return rows;
+        }
         String[] regions = vars.normalizeSelectedRegionsForSubregions(utils.getAllSelectedRegions(tree));
         ObservableList<String> checkedItems = checkComboBoxTech.getCheckModel().getCheckedItems();
 
@@ -965,23 +972,20 @@ public class TabTechParam extends PolicyTab implements Runnable {
                 if (region == null || region.trim().isEmpty()) {
                     continue;
                 }
-                ArrayList<String> targetRows = isNested ? nestedRows : flatRows;
-                // First segment anchors interpolation from calibration to first explicit year.
-                addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, calibrationYear,
-                        firstYear, INTERP_LINEAR, yearToValueMap.get(firstYear), isNested);
-                // Internal segments transition toward the next entered value each step.
-                for (int i = 0; i < years.size() - 1; i++) {
-                    int toYear = years.get(i + 1);
-                    addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, years.get(i),
-                            toYear, INTERP_LINEAR, yearToValueMap.get(toYear), isNested);
+                for (ShareweightInterpolationPlanner.InterpolationSegment segment : segments) {
+                    ArrayList<String> targetRows = segment.isDeleteRule()
+                            ? (isNested ? nestedDeleteRows : flatDeleteRows)
+                            : (isNested ? nestedRows : flatRows);
+                    addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech,
+                            segment.getFromYear(), segment.getToYear(), segment.getFunctionName(),
+                            yearToValueMap.get(segment.getToValueYear()), isNested);
                 }
-                // Final segment holds the last explicit value through the model horizon.
-                addInterpolationRow(targetRows, region.trim(), sector, subsector, subsector2, tech, lastYear,
-                        FINAL_MODEL_YEAR, INTERP_FIXED, yearToValueMap.get(lastYear), isNested);
             }
         }
 
+        appendInterpolationTable(rows, INTERP_HEADER_ID_DELETE, INTERP_COLUMNS, flatDeleteRows);
         appendInterpolationTable(rows, INTERP_HEADER_ID, INTERP_COLUMNS, flatRows);
+        appendInterpolationTable(rows, INTERP_HEADER_ID_NEST_DELETE, INTERP_COLUMNS_NEST, nestedDeleteRows);
         appendInterpolationTable(rows, INTERP_HEADER_ID_NEST, INTERP_COLUMNS_NEST, nestedRows);
         return rows;
     }

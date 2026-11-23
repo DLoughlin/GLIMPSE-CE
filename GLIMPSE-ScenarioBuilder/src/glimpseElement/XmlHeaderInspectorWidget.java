@@ -48,11 +48,13 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,9 +66,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -122,13 +126,13 @@ public class XmlHeaderInspectorWidget {
 
     private final TextArea headerTextArea = new TextArea();
     private final TableView<ObservableList<String>> tableView = new TableView<ObservableList<String>>();
+    private final TextArea previewHeaderTextArea = new TextArea();
     private final TextArea previewArea = new TextArea();
 
     private final List<String> fileLines = new ArrayList<String>();
 
     private Stage stage;
     private File currentFile;
-    private boolean dirty;
     private boolean updatingUi;
     private int dragAnchorRow = -1;
     private int dragAnchorCol = -1;
@@ -162,7 +166,7 @@ public class XmlHeaderInspectorWidget {
                 MIN_DIALOG_WIDTH, MIN_DIALOG_HEIGHT,
                 INITIAL_DIALOG_WIDTH, INITIAL_DIALOG_HEIGHT);
         stage.setOnCloseRequest(e -> {
-            if (!confirmDiscardIfDirty("Close inspector and discard unsaved changes?")) {
+            if (!confirmDiscardIfDirty("Close inspector and discard unsaved header expression changes?")) {
                 e.consume();
             }
         });
@@ -202,7 +206,7 @@ public class XmlHeaderInspectorWidget {
         saveButton.setOnAction(e -> saveCurrentFile());
         saveAsButton.setOnAction(e -> saveAsNewFile());
         revertButton.setOnAction(e -> {
-            if (currentFile != null && confirmDiscardIfDirty("Revert to disk version and discard unsaved changes?")) {
+            if (currentFile != null && confirmDiscardIfDirty("Revert to disk version and discard unsaved header expression changes?")) {
                 loadFromFile(currentFile);
             }
         });
@@ -283,7 +287,7 @@ public class XmlHeaderInspectorWidget {
         headerTextArea.setWrapText(true);
         headerTextArea.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!updatingUi) {
-                markDirty("Header expression updated. Click 'Update Table' to rebuild expected columns.");
+                markHeaderExpressionChanged("Header expression updated. Click 'Update Table' to rebuild expected columns.");
             }
         });
 
@@ -304,11 +308,25 @@ public class XmlHeaderInspectorWidget {
                 if (copySelectionToClipboard()) {
                     e.consume();
                 }
+            } else if (e.getCode() == KeyCode.X && e.isControlDown()) {
+                if (cutSelectionToClipboard()) {
+                    e.consume();
+                }
+            } else if (e.getCode() == KeyCode.DELETE || e.getCode() == KeyCode.BACK_SPACE) {
+                if (deleteSelectedRows()) {
+                    e.consume();
+                }
+            } else if (e.getCode() == KeyCode.A && e.isControlDown()) {
+                tableView.getSelectionModel().selectAll();
+                e.consume();
             }
         });
+        tableView.setContextMenu(createTableContextMenu());
 
         previewArea.setEditable(false);
         previewArea.setWrapText(false);
+        previewHeaderTextArea.setEditable(false);
+        previewHeaderTextArea.setWrapText(true);
 
         Button updateTableButton = new Button("Update Table");
         updateTableButton.setOnAction(e -> applyHeaderTextAndRebuildTable());
@@ -322,16 +340,13 @@ public class XmlHeaderInspectorWidget {
         Button saveTableButton = new Button("Save Table");
         saveTableButton.setOnAction(e -> saveTableAsCsv());
 
-        Button removeRowButton = new Button("Delete Selected Row");
-        removeRowButton.setOnAction(e -> {
-            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-            if (selectedIndex >= 0 && selectedIndex < tableView.getItems().size()) {
-                tableView.getItems().remove(selectedIndex);
-                markDirty("Deleted selected table row.");
-            }
-        });
+        Button deleteRowsButton = new Button("Delete");
+        deleteRowsButton.setOnAction(e -> deleteSelectedRows());
 
-        HBox tableActionRow = new HBox(8, updateTableButton, addRowButton, saveTableButton, removeRowButton);
+        Button clearTableButton = new Button("Clear");
+        clearTableButton.setOnAction(e -> clearTable());
+
+        HBox tableActionRow = new HBox(8, updateTableButton, addRowButton, saveTableButton, deleteRowsButton, clearTableButton);
         tableActionRow.setAlignment(Pos.CENTER_LEFT);
         tableActionRow.getChildren().remove(saveTableButton);
         tableActionRow.getChildren().add(saveTableButton);
@@ -354,14 +369,18 @@ public class XmlHeaderInspectorWidget {
 
         HBox xmlActions = new HBox(8, updateXmlButton, saveXmlButton);
         xmlActions.setAlignment(Pos.CENTER_LEFT);
-        VBox previewTabContent = new VBox(8, xmlActions, previewArea);
+        VBox previewHeaderPanel = new VBox(6, new Label("Selected header expression"), previewHeaderTextArea);
+        VBox previewTabContent = new VBox(8, previewHeaderPanel, xmlActions, previewArea);
         previewTabContent.setPadding(new Insets(10));
+        // Match the Header + Table tab behavior: top expression pane grows with the tab.
+        VBox.setVgrow(previewHeaderPanel, Priority.ALWAYS);
+        VBox.setVgrow(previewHeaderTextArea, Priority.ALWAYS);
         VBox.setVgrow(previewArea, Priority.ALWAYS);
 
         Tab inspectTab = new Tab("Header + Table", inspectTabContent);
         inspectTab.setClosable(false);
 
-        Tab xmlTab = new Tab("Generated XML", previewTabContent);
+        Tab xmlTab = new Tab("Header + XML", previewTabContent);
         xmlTab.setClosable(false);
 
         TabPane tabs = new TabPane(inspectTab, xmlTab);
@@ -372,7 +391,7 @@ public class XmlHeaderInspectorWidget {
         Button closeButton = new Button("Close");
         closeButton.setCancelButton(true);
         closeButton.setOnAction(e -> {
-            if (confirmDiscardIfDirty("Close inspector and discard unsaved changes?")) {
+            if (confirmDiscardIfDirty("Close inspector and discard unsaved header expression changes?")) {
                 stage.close();
             }
         });
@@ -409,7 +428,7 @@ public class XmlHeaderInspectorWidget {
     }
 
     private void openHeaderFile() {
-        if (!confirmDiscardIfDirty("Open another file and discard unsaved changes?")) {
+        if (!confirmDiscardIfDirty("Open another file and discard unsaved header expression changes?")) {
             return;
         }
 
@@ -455,14 +474,14 @@ public class XmlHeaderInspectorWidget {
                     continue;
                 }
 
-                allHeaderEntries.add(new HeaderEntry(i, tableId, headerExpression));
+                String normalizedHeader = normalizeHeaderForReadColumns(headerExpression);
+                allHeaderEntries.add(new HeaderEntry(i, tableId, normalizedHeader));
             }
 
             headerFilterField.setText("");
             applyHeaderFilter();
 
             currentFile = file;
-            dirty = false;
             updateHeaderLabels();
 
             if (!allHeaderEntries.isEmpty()) {
@@ -520,7 +539,10 @@ public class XmlHeaderInspectorWidget {
             currentFile = outFile;
             fileLines.clear();
             fileLines.addAll(outputLines);
-            dirty = false;
+            for (HeaderEntry entry : allHeaderEntries) {
+                entry.originalHeaderExpression = normalizeHeaderForReadColumns(entry.headerExpression);
+                entry.headerExpression = entry.originalHeaderExpression;
+            }
             updateHeaderLabels();
             setStatus("Saved: " + outFile.getAbsolutePath(), false);
         } catch (Exception ex) {
@@ -539,6 +561,7 @@ public class XmlHeaderInspectorWidget {
             String normalizedHeader = normalizeHeaderForReadColumns(entry.headerExpression);
             entry.headerExpression = normalizedHeader;
             headerTextArea.setText(normalizedHeader);
+            previewHeaderTextArea.setText(normalizedHeader);
              rebuildTable(entry, false);
              refreshXmlPreview();
         } finally {
@@ -556,6 +579,7 @@ public class XmlHeaderInspectorWidget {
         updatingUi = true;
         try {
             headerTextArea.setText(normalizedHeader);
+            previewHeaderTextArea.setText(normalizedHeader);
         } finally {
             updatingUi = false;
         }
@@ -640,7 +664,7 @@ public class XmlHeaderInspectorWidget {
         applyEqualColumnWidths();
 
         if (markDirty) {
-            markDirty("Updated expected table columns from header.");
+            markHeaderExpressionChanged("Updated expected table columns from header.");
         }
     }
 
@@ -764,6 +788,7 @@ public class XmlHeaderInspectorWidget {
     private void refreshXmlPreview() {
         HeaderEntry selected = headerListView.getSelectionModel().getSelectedItem();
         if (selected == null) {
+            previewHeaderTextArea.setText("");
             previewArea.setText("");
             return;
         }
@@ -774,9 +799,12 @@ public class XmlHeaderInspectorWidget {
             updatingUi = true;
             try {
                 headerTextArea.setText(normalizedHeader);
+                previewHeaderTextArea.setText(normalizedHeader);
             } finally {
                 updatingUi = false;
             }
+        } else {
+            previewHeaderTextArea.setText(normalizedHeader);
         }
         String rootHeaderError = validateRequiredRootHeaders(normalizedHeader);
         if (rootHeaderError != null) {
@@ -1131,6 +1159,114 @@ public class XmlHeaderInspectorWidget {
         return true;
     }
 
+    private boolean cutSelectionToClipboard() {
+        if (!copySelectionToClipboard()) {
+            return false;
+        }
+        if (clearSelectedCells()) {
+            setStatus("Cut selected table cells to clipboard.", false);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean clearSelectedCells() {
+        List<TablePosition> selectedCells = tableView.getSelectionModel().getSelectedCells();
+        if (selectedCells == null || selectedCells.isEmpty()) {
+            return false;
+        }
+
+        ObservableList<ObservableList<String>> items = tableView.getItems();
+        int totalCols = tableView.getColumns().size();
+        boolean changed = false;
+        for (TablePosition<?, ?> pos : selectedCells) {
+            if (pos == null) {
+                continue;
+            }
+            int row = pos.getRow();
+            int col = pos.getColumn();
+            if (row < 0 || col < 0 || row >= items.size() || col >= totalCols) {
+                continue;
+            }
+            ObservableList<String> dataRow = items.get(row);
+            normalizeRowWidth(dataRow, totalCols);
+            if (!safe(dataRow.get(col)).isEmpty()) {
+                dataRow.set(col, "");
+                changed = true;
+            }
+        }
+
+        if (!changed) {
+            return false;
+        }
+        markDirty("Cleared selected table cells.");
+        refreshXmlPreview();
+        return true;
+    }
+
+    private boolean deleteSelectedRows() {
+        TreeSet<Integer> selectedRows = new TreeSet<Integer>(tableView.getSelectionModel().getSelectedIndices());
+        if (selectedRows.isEmpty()) {
+            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                selectedRows.add(selectedIndex);
+            }
+        }
+        if (selectedRows.isEmpty()) {
+            return false;
+        }
+
+        List<Integer> descending = new ArrayList<Integer>(selectedRows);
+        Collections.reverse(descending);
+        ObservableList<ObservableList<String>> items = tableView.getItems();
+        for (Integer rowIndex : descending) {
+            if (rowIndex != null && rowIndex >= 0 && rowIndex < items.size()) {
+                items.remove((int) rowIndex);
+            }
+        }
+
+        if (items.isEmpty()) {
+            items.add(createEmptyRow(tableView.getColumns().size()));
+        }
+        markDirty("Deleted selected table rows.");
+        refreshXmlPreview();
+        return true;
+    }
+
+    private void clearTable() {
+        ObservableList<ObservableList<String>> items = tableView.getItems();
+        items.clear();
+        items.add(createEmptyRow(tableView.getColumns().size()));
+        tableView.getSelectionModel().clearSelection();
+        markDirty("Cleared table rows.");
+        refreshXmlPreview();
+    }
+
+    private ContextMenu createTableContextMenu() {
+        MenuItem copyItem = new MenuItem("Copy");
+        copyItem.setOnAction(e -> copySelectionToClipboard());
+
+        MenuItem pasteItem = new MenuItem("Paste");
+        pasteItem.setOnAction(e -> pasteIntoTableFromClipboard());
+
+        MenuItem cutItem = new MenuItem("Cut");
+        cutItem.setOnAction(e -> cutSelectionToClipboard());
+
+        MenuItem clearItem = new MenuItem("Clear Table");
+        clearItem.setOnAction(e -> clearTable());
+
+        MenuItem addRowItem = new MenuItem("Add Row");
+        addRowItem.setOnAction(e -> {
+            addEmptyRow();
+            markDirty("Added a table row.");
+        });
+
+        MenuItem deleteRowsItem = new MenuItem("Delete Selected Rows");
+        deleteRowsItem.setOnAction(e -> deleteSelectedRows());
+
+        return new ContextMenu(copyItem, pasteItem, cutItem, clearItem, addRowItem, deleteRowsItem);
+    }
+
     private String toSingleLineCell(String value) {
         return safe(value).replace("\r\n", " ").replace('\r', ' ').replace('\n', ' ').replace('\t', ' ');
     }
@@ -1227,6 +1363,7 @@ public class XmlHeaderInspectorWidget {
         updatingUi = true;
         try {
             headerTextArea.setText("");
+            previewHeaderTextArea.setText("");
             tableView.getColumns().clear();
             tableView.getItems().clear();
             previewArea.setText("");
@@ -1240,8 +1377,30 @@ public class XmlHeaderInspectorWidget {
     }
 
     private void markDirty(String message) {
-        dirty = true;
         setStatus(message, false);
+    }
+
+    private void markHeaderExpressionChanged(String message) {
+        setStatus(message, false);
+    }
+
+    private String canonicalHeaderExpression(String value) {
+        return safe(normalizeHeaderForReadColumns(value)).trim();
+    }
+
+    private boolean hasUnsavedHeaderExpressionChanges() {
+        persistCurrentSelectionState(headerListView.getSelectionModel().getSelectedItem());
+        for (HeaderEntry entry : allHeaderEntries) {
+            if (entry == null) {
+                continue;
+            }
+            String current = canonicalHeaderExpression(entry.headerExpression);
+            String original = canonicalHeaderExpression(entry.originalHeaderExpression);
+            if (!current.equals(original)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setStatus(String message, boolean isError) {
@@ -1260,7 +1419,7 @@ public class XmlHeaderInspectorWidget {
     }
 
     private boolean confirmDiscardIfDirty(String message) {
-        if (!dirty) {
+        if (!hasUnsavedHeaderExpressionChanges()) {
             return true;
         }
         ButtonType discardButton = new ButtonType("Discard", ButtonBar.ButtonData.OK_DONE);
@@ -1269,7 +1428,7 @@ public class XmlHeaderInspectorWidget {
         UtilsDialogs.applyDialogTheme(alert);
         applyAppFontStyle(alert.getDialogPane());
         alert.setTitle("Unsaved Changes");
-        alert.setHeaderText("You have unsaved changes");
+        alert.setHeaderText("You have unsaved header expression changes");
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == discardButton;
     }
@@ -1308,12 +1467,14 @@ public class XmlHeaderInspectorWidget {
         private final int lineIndex;
         private final String tableId;
         private String headerExpression;
+        private String originalHeaderExpression;
         private List<List<String>> rows;
 
         private HeaderEntry(int lineIndex, String tableId, String headerExpression) {
             this.lineIndex = lineIndex;
             this.tableId = tableId;
             this.headerExpression = headerExpression;
+            this.originalHeaderExpression = headerExpression;
             this.rows = new ArrayList<List<String>>();
         }
     }
