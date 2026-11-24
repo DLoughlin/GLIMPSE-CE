@@ -1347,21 +1347,36 @@ public class GLIMPSEUtils {
 		return useMMBTUConversions;
 	}
 
+	/**
+	 * Transport market-share scaling should be applied to transportation sectors
+	 * so the policy market residuals stay away from very small solver floors.
+	 */
+	public boolean shouldApplyTrnMarketShareScaling(String sector) {
+		return sector != null && sector.startsWith("trn");
+	}
+
+	/**
+	 * Returns the K factor used to scale transportation market-share constraints.
+	 */
+	public double getTrnMarketShareScalingFactor() {
+		return 1000.0;
+	}
+
 
 	/**
 	 * Builds transport subsector conversion metadata using an explicit flag that
 	 * indicates whether part-1 unit-price-conv scaling was applied.
 	 */
-	public String getSubsectorConversions(String region, String sector, String subsector, int year) {
+	public String getSubsectorConversions(String region, String sector, String subsector, String tech, int year) {
 		
 		double output_ratio = 1.0; // default to a 1:1 ratio when no conversion is needed
 		double pMultiplier = 1.0; // default to a 1:1 ratio when no conversion is needed
 
 		if (sector != null && sector.startsWith("trn")) {
-
-			boolean useTrnMMBTUUnitConversions = shouldApplyTrnUnitPriceConversion(sector);
-			
-			String load_str = getLoadFactor(region, sector, subsector, "any", Integer.toString(year));
+			String load_str = getLoadFactor(region, sector, subsector, tech, Integer.toString(year));
+			if ((load_str == null || load_str.trim().isEmpty()) && tech != null) {
+				load_str = getLoadFactor(region, sector, subsector, "any", Integer.toString(year));
+			}
 			if (load_str == null) {
 				return null;
 			}
@@ -1373,13 +1388,15 @@ public class GLIMPSEUtils {
 				return null;
 			}
 
-			if (useTrnMMBTUUnitConversions) {
-				// Pre-8.5 GCAM transport policy path.
-				// The older workflow includes service in million pass-km or million ton-km and energy in MMBTU,
-				// requiring these conversions.
-				// output_ratio units: [MMBTU per million service-km] / [load/veh]
-				output_ratio = (1.0e-6 / loadFactor) * 1.055;
-				pMultiplier = 1.0e6;
+			if (shouldApplyTrnMarketShareScaling(sector)) {
+				double scalingFactor = getTrnMarketShareScalingFactor();
+				if (scalingFactor == 0.0) {
+					return null;
+				}
+				// Match the denominator scaling (K*s with price-unit-conv=1/K):
+				// numerator res-secondary-output uses output-ratio=K/L and pMultiplier=L/K.
+				output_ratio = scalingFactor / loadFactor;
+				pMultiplier = loadFactor / scalingFactor;
 			} else {
 				// GCAM v8.5+ style path:
 				// output divided by loadFactor to make constraint veh-km-based;

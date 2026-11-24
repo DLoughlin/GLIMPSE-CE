@@ -819,15 +819,15 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								} else {
 									num_non_nested++;
 								}
-											if (is_subsector_in_region) {
-												Double val = valuef_list[i];
-												String conv = "1.0";
-												//adjusts scaling for transportation fuels when user has selected to use MMBTU conversions
-												//done to make small region transportation marketshare targets easier to work   
-												if (utils.shouldApplyTrnUnitPriceConversion(sector_name)) {
-													conv = "1e-3";
-													val *= 1000.;
-												}
+																	if (is_subsector_in_region) {
+																		Double val = valuef_list[i];
+																		String conv = "1.0";
+																		// Scale transport market-share coefficients to keep market residuals numerically stable.
+																		if (utils.shouldApplyTrnMarketShareScaling(sector_name)) {
+																			double scalingFactor = utils.getTrnMarketShareScalingFactor();
+																			conv = formatDisplayValue(1.0 / scalingFactor);
+																			val *= scalingFactor;
+																		}
 																String formattedVal = formatDisplayValue(val);
 												String line = state + "," + sector_name + "," + subsector_name.replace("=>", ",") + "," + tech_name.replace("=>", ",")
 																	+ "," + t + "," + use_this_policy_name + "," + year_list[i] + "," + formattedVal
@@ -894,9 +894,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								num_non_nested++;
 							}
 							
-							//boolean useTrnUnitPriceConversion = utils.shouldApplyTrnUnitPriceConversion(sector_name);
 							String conversions = utils.getSubsectorConversions(state, sector_name, subsector_name,
-									t);
+									tech_name, t);
 							
 							if (conversions != null) {
 								if (conversions.startsWith(","))

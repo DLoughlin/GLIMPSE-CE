@@ -203,7 +203,9 @@ public final class UtilsTransport {
 						String dataSubsector = data[j][subsectorCol].trim();
 						String dataTech = data[j][techCol].trim();
 						if ((region.equals(dataRegion)) && (subsector.equals(dataSubsector))) {
-							if (("load".equals(param)) || ((!"load".equals(param)) && (tech.equals(dataTech)))) {
+							boolean useAnyTechForLoad = "load".equals(param)
+									&& (tech == null || tech.trim().isEmpty() || "any".equalsIgnoreCase(tech.trim()));
+							if (useAnyTechForLoad || tech.equals(dataTech)) {
 								matchRow = j;
 								break;
 							}
