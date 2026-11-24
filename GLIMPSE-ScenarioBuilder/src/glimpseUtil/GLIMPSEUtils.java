@@ -1347,6 +1347,14 @@ public class GLIMPSEUtils {
 		return useMMBTUConversions;
 	}
 
+	public static final double DEFAULT_TRN_MARKET_SHARE_SCALING_FACTOR = 1000.0;
+	public static final double TARGET_SCALED_TRN_MARKET_PRODUCT = 10.0;
+	public static final int MIN_TRN_MARKET_SHARE_SCALING_EXPONENT = 0;
+	public static final int MAX_TRN_MARKET_SHARE_SCALING_EXPONENT = 6;
+	public static final double PRE_8_5_TRN_PART1_UNIT_SCALE = 1000.0;
+	public static final double PRE_8_5_TRN_OUTPUT_RATIO_UNIT_SCALE = 1.0e-6 * 1.055;
+	public static final double PRE_8_5_TRN_PMULTIPLIER_UNIT_SCALE = 1.0e6;
+
 	/**
 	 * Transport market-share scaling should be applied to transportation sectors
 	 * so the policy market residuals stay away from very small solver floors.
@@ -1356,58 +1364,192 @@ public class GLIMPSEUtils {
 	}
 
 	/**
-	 * Returns the K factor used to scale transportation market-share constraints.
+	 * Returns the effective Part-1 denominator coefficient multiplier for a transportation
+	 * market-share policy row, combining any pre-GCAM 8.5 unit conversion (1000x / 1e-3)
+	 * with the dynamic per-market solver scaling factor {@code K}.
 	 */
-	public double getTrnMarketShareScalingFactor() {
-		return 1000.0;
+	public double getEffectiveTrnPart1Multiplier(String sector, double scalingFactor) {
+		if (sector == null || !sector.startsWith("trn")) {
+			return 1.0;
+		}
+		double sanitizedScale = (Double.isNaN(scalingFactor) || Double.isInfinite(scalingFactor) || scalingFactor <= 0.0)
+				? 1.0
+				: scalingFactor;
+		double unitScale = shouldApplyTrnUnitPriceConversion(sector) ? PRE_8_5_TRN_PART1_UNIT_SCALE : 1.0;
+		return unitScale * sanitizedScale;
 	}
 
+	/**
+	 * Returns the default fallback K factor used to scale transportation market-share constraints.
+	 */
+	public double getTrnMarketShareScalingFactor() {
+		return DEFAULT_TRN_MARKET_SHARE_SCALING_FACTOR;
+	}
 
 	/**
-	 * Builds transport subsector conversion metadata using an explicit flag that
-	 * indicates whether part-1 unit-price-conv scaling was applied.
+	 * Determines an order-of-magnitude scaling factor K (10^n) for a transportation
+	 * market-share constraint from the target share coefficient {@code s} and the
+	 * unscaled secondary-output ratio {@code 1 / loadFactor}.
+	 * <p>
+	 * Choosing {@code K} so {@code K * |s| * (1 / L)} is on the order of
+	 * {@link #TARGET_SCALED_TRN_MARKET_PRODUCT} keeps small-region market supply/demand
+	 * and solver residuals well above GCAM's solution floor while avoiding unnecessary
+	 * scaling when shares or unscaled output-ratios are already large. Using an exact
+	 * power of 10 avoids rounding mismatch between {@code K * s} and {@code 1 / K}.
+	 * </p>
+	 *
+	 * @param coefficient         target share fraction (for example, 0.03 or 0.3)
+	 * @param unscaledOutputRatio unscaled numerator output-ratio ({@code 1 / loadFactor})
+	 * @return power-of-10 scaling factor clamped to {@code [1, 1e6]}
+	 */
+	public double getTrnMarketShareScalingFactor(double coefficient, double unscaledOutputRatio) {
+		return calculateTrnMarketShareScalingFactor(coefficient, unscaledOutputRatio);
+	}
+
+	/**
+	 * Pure helper for computing the order-of-magnitude transport market-share scaling factor K.
+	 */
+	public static double calculateTrnMarketShareScalingFactor(double coefficient, double unscaledOutputRatio) {
+		boolean hasPositiveCoef = !Double.isNaN(coefficient) && !Double.isInfinite(coefficient)
+				&& Math.abs(coefficient) > 0.0;
+		boolean hasPositiveOutRatio = !Double.isNaN(unscaledOutputRatio) && !Double.isInfinite(unscaledOutputRatio)
+				&& Math.abs(unscaledOutputRatio) > 0.0;
+
+		if (!hasPositiveCoef && !hasPositiveOutRatio) {
+			if (!Double.isNaN(coefficient) && coefficient == 0.0) {
+				return 1.0;
+			}
+			return DEFAULT_TRN_MARKET_SHARE_SCALING_FACTOR;
+		}
+
+		double coefMag = hasPositiveCoef ? Math.abs(coefficient) : 1.0;
+		double outRatioMag = hasPositiveOutRatio ? Math.abs(unscaledOutputRatio) : 1.0;
+		double unscaledProduct = coefMag * outRatioMag;
+		if (unscaledProduct <= 0.0 || Double.isNaN(unscaledProduct) || Double.isInfinite(unscaledProduct)) {
+			return DEFAULT_TRN_MARKET_SHARE_SCALING_FACTOR;
+		}
+
+		double rawScale = TARGET_SCALED_TRN_MARKET_PRODUCT / unscaledProduct;
+		if (rawScale <= 1.0) {
+			return 1.0;
+		}
+
+		long exponent = Math.round(Math.log10(rawScale));
+		if (exponent < MIN_TRN_MARKET_SHARE_SCALING_EXPONENT) {
+			exponent = MIN_TRN_MARKET_SHARE_SCALING_EXPONENT;
+		} else if (exponent > MAX_TRN_MARKET_SHARE_SCALING_EXPONENT) {
+			exponent = MAX_TRN_MARKET_SHARE_SCALING_EXPONENT;
+		}
+		return Math.pow(10.0, exponent);
+	}
+
+	/**
+	 * Formats {@code 1 / scalingFactor} cleanly without scientific-notation artifacts
+	 * for standard power-of-10 transport scaling factors.
+	 */
+	public String formatTrnPriceUnitConversion(double scalingFactor) {
+		if (Double.isNaN(scalingFactor) || Double.isInfinite(scalingFactor) || scalingFactor <= 0.0
+				|| scalingFactor == 1.0) {
+			return "1.0";
+		}
+		return formatToSignificantDigits(1.0 / scalingFactor, 6);
+	}
+
+	/**
+	 * Looks up the positive numeric load factor for a transportation technology,
+	 * falling back to {@code "any"} technology when needed.
+	 */
+	public Double getTrnLoadFactorValue(String region, String sector, String subsector, String tech, int year) {
+		if (sector == null || !sector.startsWith("trn")) {
+			return null;
+		}
+		String loadStr = getLoadFactor(region, sector, subsector, tech, Integer.toString(year));
+		if ((loadStr == null || loadStr.trim().isEmpty()) && tech != null) {
+			loadStr = getLoadFactor(region, sector, subsector, "any", Integer.toString(year));
+		}
+		if (loadStr == null || loadStr.trim().isEmpty()) {
+			return null;
+		}
+		try {
+			double loadFactor = Double.parseDouble(loadStr.trim());
+			return (loadFactor > 0.0 && !Double.isNaN(loadFactor) && !Double.isInfinite(loadFactor))
+					? Double.valueOf(loadFactor)
+					: null;
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns the unscaled numerator secondary-output ratio ({@code 1 / loadFactor})
+	 * for a transportation technology, or {@code null} when unavailable.
+	 */
+	public Double getUnscaledTrnOutputRatio(String region, String sector, String subsector, String tech, int year) {
+		Double loadFactor = getTrnLoadFactorValue(region, sector, subsector, tech, year);
+		if (loadFactor == null || loadFactor.doubleValue() <= 0.0) {
+			return null;
+		}
+		return Double.valueOf(1.0 / loadFactor.doubleValue());
+	}
+
+	/**
+	 * Builds transport subsector conversion metadata using default magnitude-based scaling
+	 * when no explicit market scaling factor is supplied.
 	 */
 	public String getSubsectorConversions(String region, String sector, String subsector, String tech, int year) {
-		
+		double scalingFactor = DEFAULT_TRN_MARKET_SHARE_SCALING_FACTOR;
+		if (shouldApplyTrnMarketShareScaling(sector)) {
+			Double unscaledOutRatio = getUnscaledTrnOutputRatio(region, sector, subsector, tech, year);
+			if (unscaledOutRatio != null) {
+				scalingFactor = calculateTrnMarketShareScalingFactor(Double.NaN, unscaledOutRatio.doubleValue());
+			}
+		}
+		return getSubsectorConversions(region, sector, subsector, tech, year, scalingFactor);
+	}
+
+	/**
+	 * Builds transport subsector conversion metadata ({@code output-ratio,pMultiplier})
+	 * using the supplied market-level scaling factor {@code K} so numerator and denominator
+	 * entries in the same policy market remain consistent.
+	 */
+	public String getSubsectorConversions(String region, String sector, String subsector, String tech, int year,
+			double scalingFactor) {
+
 		double output_ratio = 1.0; // default to a 1:1 ratio when no conversion is needed
 		double pMultiplier = 1.0; // default to a 1:1 ratio when no conversion is needed
 
 		if (sector != null && sector.startsWith("trn")) {
-			String load_str = getLoadFactor(region, sector, subsector, tech, Integer.toString(year));
-			if ((load_str == null || load_str.trim().isEmpty()) && tech != null) {
-				load_str = getLoadFactor(region, sector, subsector, "any", Integer.toString(year));
+			Double loadFactorObj = getTrnLoadFactorValue(region, sector, subsector, tech, year);
+			if (loadFactorObj == null) {
+				return null;
 			}
-			if (load_str == null) {
+			double loadFactor = loadFactorObj.doubleValue();
+			if (scalingFactor <= 0.0 || Double.isNaN(scalingFactor) || Double.isInfinite(scalingFactor)) {
 				return null;
 			}
 
-			double loadFactor;
-			try {
-				loadFactor = Double.parseDouble(load_str);
-			} catch (NumberFormatException e) {
-				return null;
-			}
-
-			if (shouldApplyTrnMarketShareScaling(sector)) {
-				double scalingFactor = getTrnMarketShareScalingFactor();
-				if (scalingFactor == 0.0) {
-					return null;
-				}
-				// Match the denominator scaling (K*s with price-unit-conv=1/K):
-				// numerator res-secondary-output uses output-ratio=K/L and pMultiplier=L/K.
+			if (shouldApplyTrnUnitPriceConversion(sector)) {
+				// Pre-8.5 GCAM transport policy path (million service-km and MMBTU/BTU-per-vkt internal units):
+				// Base (K = 1): output_ratio = (1.0e-6 / loadFactor) * 1.055, pMultiplier = 1.0e6
+				// (paired with Part-1 base multiplier 1000 and unit-price-conv 1e-3), then scaled by K.
+				output_ratio = scalingFactor * (PRE_8_5_TRN_OUTPUT_RATIO_UNIT_SCALE / loadFactor);
+				pMultiplier = PRE_8_5_TRN_PMULTIPLIER_UNIT_SCALE / scalingFactor;
+			} else if (shouldApplyTrnMarketShareScaling(sector)) {
+				// GCAM v8.5+ path: match denominator scaling (K*s with price-unit-conv=1/K)
+				// using numerator res-secondary-output output-ratio=K/L and pMultiplier=L/K.
 				output_ratio = scalingFactor / loadFactor;
 				pMultiplier = loadFactor / scalingFactor;
 			} else {
-				// GCAM v8.5+ style path:
-				// output divided by loadFactor to make constraint veh-km-based;
-				// additional output-ratio and pMultiplier conversions are not necessary.
 				output_ratio = 1.0 / loadFactor;
 				pMultiplier = 1.0;
 			}
 		}
 
 		String outputRatioFormatted = formatToSignificantDigits(output_ratio, 6);
-		return outputRatioFormatted + "," + pMultiplier;
+		String pMultiplierFormatted = (sector != null && sector.startsWith("trn"))
+				? formatToSignificantDigits(pMultiplier, 6)
+				: Double.toString(pMultiplier);
+		return outputRatioFormatted + "," + pMultiplierFormatted;
 	}
 
 	private String formatToSignificantDigits(double value, int significantDigits) {
@@ -1420,6 +1562,10 @@ public class GLIMPSEUtils {
 		BigDecimal rounded = BigDecimal.valueOf(value)
 				.round(new MathContext(significantDigits, RoundingMode.HALF_UP))
 				.stripTrailingZeros();
+		double absVal = Math.abs(value);
+		if (absVal >= 1.0e-6 && absVal < 1.0e7) {
+			return rounded.toPlainString();
+		}
 		return rounded.toString();
 	}
 

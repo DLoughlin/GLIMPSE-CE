@@ -40,6 +40,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.controlsfx.control.CheckComboBox;
 import javafx.animation.PauseTransition;
@@ -756,6 +757,22 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		List<Integer> years=vars.getAllYears();
 		
 		ArrayList<String> list_of_policy_sector_combos = new ArrayList<>();
+		Map<String, Double> trnScalingByPolicy = TrnMarketShareScalingPlanner.resolveScalingByPolicy(
+				policy_name,
+				treatment,
+				applied_to,
+				listOfSelectedLeaves,
+				years,
+				start_year,
+				year_list,
+				valuef_list,
+				subset_list,
+				superset_list,
+				utils::getUnscaledTrnOutputRatio);
+		boolean applyTrnMarketScaling = !trnScalingByPolicy.isEmpty();
+		if (debug && applyTrnMarketScaling) {
+			System.out.println("Resolved transport market-share scaling factors K by policy: " + trnScalingByPolicy);
+		}
 
 		// 3. Write part 1: constraint fraction targets
 		files.writeToBufferedFile(bw1, vars.getEol());
@@ -777,14 +794,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 					+ (listOfSelectedLeaves.length - 1));
 
 			for (int t : years) {
-				String use_this_policy_name = policy_name;
-
-				if (treatment.equals("each selected region") && listOfSelectedLeaves.length >= 2) {
-					use_this_policy_name = state + "_" + policy_name;
-				}
-				if (applied_to.equals("sales")) {
-					use_this_policy_name += "-" + t;
-				}
+				String use_this_policy_name = TrnMarketShareScalingPlanner.buildPolicyInstanceName(
+						policy_name, treatment, listOfSelectedLeaves.length, state, applied_to, t);
 
 				String last_subsector = "";
 				boolean is_subsector_in_region = true;
@@ -812,7 +823,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								list_of_policy_sector_combos = utils
 										.addToArrayListIfUnique(list_of_policy_sector_combos, ss);
 								BufferedWriter bw = bw1;
-								if ((subsector_name.indexOf("=>")>-1)||(tech_name.indexOf("=>")> -1)) {
+								boolean isNestedRow = (subsector_name.indexOf("=>")>-1)||(tech_name.indexOf("=>")> -1);
+								if (isNestedRow) {
 									bw = bw2;
 									//subsector_name = subsector_name.replace("=>", ",");
 									num_nested++;
@@ -822,11 +834,17 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 																	if (is_subsector_in_region) {
 																		Double val = valuef_list[i];
 																		String conv = "1.0";
-																		// Scale transport market-share coefficients to keep market residuals numerically stable.
-																		if (utils.shouldApplyTrnMarketShareScaling(sector_name)) {
-																			double scalingFactor = utils.getTrnMarketShareScalingFactor();
-																			conv = formatDisplayValue(1.0 / scalingFactor);
-																			val *= scalingFactor;
+																		// Combine any pre-GCAM 8.5 unit conversion (1000x / 1e-3) with the dynamic per-market
+																		// scaling factor K so market residuals stay well above the solver floor without extreme prices.
+																		if (!isNestedRow && sector_name.startsWith("trn")) {
+																			double scalingFactor = (applyTrnMarketScaling && utils.shouldApplyTrnMarketShareScaling(sector_name))
+																					? TrnMarketShareScalingPlanner.getScalingFactorForPolicy(trnScalingByPolicy, use_this_policy_name)
+																					: 1.0;
+																			double effectiveMultiplier = utils.getEffectiveTrnPart1Multiplier(sector_name, scalingFactor);
+																			if (effectiveMultiplier != 1.0) {
+																				conv = utils.formatTrnPriceUnitConversion(effectiveMultiplier);
+																				val *= effectiveMultiplier;
+																			}
 																		}
 																String formattedVal = formatDisplayValue(val);
 												String line = state + "," + sector_name + "," + subsector_name.replace("=>", ",") + "," + tech_name.replace("=>", ",")
@@ -865,14 +883,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 			if (debug) System.out.println("Creating part 2 of 3 of csv file for " + state + " : " + s + " of "
 					+ (listOfSelectedLeaves.length - 1));
 			for (int t : years) {
-				String use_this_policy_name = policy_name;
-				
-				if (treatment.equals("each selected region") && listOfSelectedLeaves.length >= 2) {
-					use_this_policy_name = state + "_" + policy_name;
-				}
-				if (applied_to.equals("sales")) {
-					use_this_policy_name += "-" + t;
-				}
+				String use_this_policy_name = TrnMarketShareScalingPlanner.buildPolicyInstanceName(
+						policy_name, treatment, listOfSelectedLeaves.length, state, applied_to, t);
 
 				if (((t <= max_year) && (applied_to.equals("all stock")) && ( t >= start_year))
 						|| ((t <= max_year) && (t >= min_year) && (applied_to.equals("sales")))) {
@@ -894,8 +906,17 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 								num_non_nested++;
 							}
 							
-							String conversions = utils.getSubsectorConversions(state, sector_name, subsector_name,
-									tech_name, t);
+							String conversions;
+							if (sector_name.startsWith("trn")) {
+								double scalingFactor = (applyTrnMarketScaling && utils.shouldApplyTrnMarketShareScaling(sector_name))
+										? TrnMarketShareScalingPlanner.getScalingFactorForPolicy(trnScalingByPolicy, use_this_policy_name)
+										: 1.0;
+								conversions = utils.getSubsectorConversions(state, sector_name, subsector_name,
+										tech_name, t, scalingFactor);
+							} else {
+								conversions = utils.getSubsectorConversions(state, sector_name, subsector_name,
+										tech_name, t);
+							}
 							
 							if (conversions != null) {
 								if (conversions.startsWith(","))
@@ -1053,6 +1074,9 @@ public class TabMarketShare extends PolicyTab implements Runnable {
             return;
         }
 
+        // Editing a loaded component should preserve names on save.
+        disableAutoAndUniqueNamingForLoadedComponent();
+
 		ArrayList<String> transportWarnings = new ArrayList<>();
 
         // Process "Type" first to ensure dependent controls are set up correctly
@@ -1084,12 +1108,8 @@ public class TabMarketShare extends PolicyTab implements Runnable {
                 comboBoxConstraint.getSelectionModel().select(line.substring(METADATA_CONSTRAINT.length()).trim());
             } else if (line.startsWith(METADATA_POLICY_NAME)) {
                 textFieldPolicyName.setText(line.substring(METADATA_POLICY_NAME.length()).trim());
-                checkBoxUseAutoNames.setSelected(false);
-                textFieldPolicyName.setDisable(false);
             } else if (line.startsWith(METADATA_MARKET_NAME)) {
 				textFieldMarketName.setText(stripUniqueSuffixFromLoadedMarketName(line.substring(METADATA_MARKET_NAME.length()).trim()));
-                checkBoxUseAutoNames.setSelected(false);
-                textFieldMarketName.setDisable(false);
             } else if (line.startsWith(METADATA_REGIONS)) {
                 String regions = line.substring(METADATA_REGIONS.length()).trim();
                 this.paneForCountryStateTree.setSelectedNodes(regions);
@@ -1100,6 +1120,13 @@ public class TabMarketShare extends PolicyTab implements Runnable {
         }
 
 		showTransportConversionMetadataWarnings(transportWarnings);
+    }
+
+    private void disableAutoAndUniqueNamingForLoadedComponent() {
+        checkBoxUseAutoNames.setSelected(false);
+        checkBoxUseUniqueNames.setSelected(false);
+        textFieldPolicyName.setDisable(false);
+        textFieldMarketName.setDisable(false);
     }
 
     /**

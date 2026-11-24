@@ -205,7 +205,7 @@ public final class UtilsTransport {
 						if ((region.equals(dataRegion)) && (subsector.equals(dataSubsector))) {
 							boolean useAnyTechForLoad = "load".equals(param)
 									&& (tech == null || tech.trim().isEmpty() || "any".equalsIgnoreCase(tech.trim()));
-							if (useAnyTechForLoad || tech.equals(dataTech)) {
+							if (useAnyTechForLoad || (tech != null && tech.trim().equalsIgnoreCase(dataTech))) {
 								matchRow = j;
 								break;
 							}
