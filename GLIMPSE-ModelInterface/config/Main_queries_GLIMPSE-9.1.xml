@@ -4043,25 +4043,25 @@
 				<supplyDemandQuery title="4.2.3 Transport service output by tech">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
-					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/*[@type='subsector']/*[@type='technology']/output-primary[@type='output']/physical-output/node()</xPath>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/*[@type='subsector']/*[@type='technology']/output-primary[@type='output'(:collapse:)]/physical-output/node()</xPath>
 					<comments>Primary transportation service outputs met by various technologies and fuels; excludes secondary/credit outputs.</comments>
 				</supplyDemandQuery>
 				<supplyDemandQuery title="4.2.4 Transport service output by tech (sales)">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
-					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/*[@type='subsector']/*[@type='technology']/output-primary[@type='output']/physical-output[@vintage=parent::*/parent::*/@year]/node()</xPath>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' (:collapse:) and (@name='transportation' or (exists(child::keyword[@final-energy='transportation'])))]/*[@type='subsector']/*[@type='technology']/output-primary[@type='output'(:collapse:)]/physical-output[@vintage=parent::*/parent::*/@year]/node()</xPath>
 					<comments>Vintage-specific primary transportation service outputs met by new sales; excludes secondary/credit outputs.</comments>
 				</supplyDemandQuery>
 				<supplyDemandQuery title="4.2.5 Passenger car and truck service output by tech ">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
-					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_pass_road_LDV_4W')]//	*[@type='technology']/*[@type='output' (:collapse:) and not (@name='CAFEcredit')]/	physical-output/node()</xPath>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_pass_road_LDV_4W')]//*[@type='technology']/output-primary[@type='output'(:collapse:)]/physical-output/node()</xPath>
 					<comments>Onroad light-duty passenger travel demands (pass-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
 				<supplyDemandQuery title="4.2.6 Freight truck service output by tech (no bus) ">
 					<axis1 name="technology">technology</axis1>
 					<axis2 name="Year">physical-output[@vintage]</axis2>
-					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_freight_road')]//	*[@type='technology']/*[@type='output' (:collapse:) and not (@name='CAFEcredit')]/	physical-output/node()</xPath>
+					<xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector' and (@name='trn_freight_road')]//*[@type='technology']/output-primary[@type='output'(:collapse:)]/physical-output/node()</xPath>
 					<comments>Onroad freight travel demand (tonne-km) met by various technologies across vehicle sizes.</comments>
 				</supplyDemandQuery>
 			</queryGroup>
@@ -17854,43 +17854,5 @@ local:run((:scenarios:), (:regions:), (:collection:))
 				<comments>Non-USA+states liquids net trade with region preserved in row label (2-axis compatible).</comments>
 			</supplyDemandQuery>
 		</queryGroup>
-	</queryGroup>
-	<queryGroup name="experimental 2">
-<supplysectorQuery title="calculated output-based emission factors by sector">
-      <axis1 name="technology">technology</axis1>
-      <axis2 name="Year">emissions-factor</axis2>
-         <xPath buildList="true" dataName="input" group="false" sumAll="false"><![CDATA[
-            declare function local:run-emissions-factor($scenarios as xs:string*, $regions as xs:string*, $collection as xs:string) as node()* {
-               let $regionsG := if (not($regions[1] = 'Global'))
-                                then $regions
-                                else distinct-values(collection($collection)/scenario/world/*[@type='region']/@name)
-               return
-               for $scenario in $scenarios
-                   let $scenario_split := tokenize($scenario, ' '),
-                       $scenario_name := string-join($scenario_split[position() < last()], ' '),
-                       $scenario_date := $scenario_split[last()]
-                   return
-                   for $region in $regionsG
-                       let $region_node := collection($collection)/scenario[@name = $scenario_name and @date = $scenario_date]/world/*[@type='region' and @name = $region]
-                       return
-                       for $sector in distinct-values($region_node//supplysector/@name)
-                           return
-                           for $vintage in distinct-values($region_node//supplysector[@name=$sector]//physical-output/@vintage)
-                               let $emissions := sum($region_node//supplysector[@name=$sector]//GHG-emissions/emissions[@vintage = $vintage]),
-                                   $output := sum($region_node//supplysector[@name=$sector]//physical-output[@vintage = $vintage]),
-                                   $ef := if ($output > 0) then ($emissions div $output) else 0
-                               return
-                                   element emissions-factor {
-                                       attribute region { $region },
-                                       attribute supplysector { $sector },
-                                       attribute vintage { $vintage },
-                                       text { $ef }
-                                   }
-            };
-            
-            local:run-emissions-factor((:scenarios:), (:regions:), (:collection:))
-         ]]>
-		 </xPath>
-   </supplysectorQuery>		
 	</queryGroup>
 </queries>
