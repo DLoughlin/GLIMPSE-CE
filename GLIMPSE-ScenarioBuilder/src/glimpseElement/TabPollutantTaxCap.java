@@ -987,4 +987,27 @@ public class TabPollutantTaxCap extends PolicyTab implements Runnable {
 	private void updateProgressBar(double progress) {
 		Platform.runLater(() -> progressBar.setProgress(progress));
 	}
+
+	/**
+	 * Pollutant tax/cap populate values are defined in 1990$s for this tab.
+	 *
+	 * This override avoids relying on labelUnits2 text (not shown in this tab's UI)
+	 * when choosing the target dollar year for GDP deflator conversion.
+	 */
+	@Override
+	protected double[][] calculateValues() {
+		String calcType = comboBoxModificationType.getSelectionModel().getSelectedItem();
+		int startYear = Integer.parseInt(textFieldStartYear.getText());
+		int endYear = Integer.parseInt(textFieldEndYear.getText());
+		double initialValue = Double.parseDouble(textFieldInitialAmount.getText());
+		double growth = Double.parseDouble(textFieldGrowth.getText());
+		int periodLength = vars.getPeriodIncrement();
+		double factor = 1.0;
+		String convertYear = comboBoxConvertFrom.getValue();
+
+		if (!NONE.equals(convertYear)) {
+			factor = utils.getConversionFactor(convertYear, "1990$s");
+		}
+		return utils.calculateValues(calcType, startYear, endYear, initialValue, growth, periodLength, factor);
+	}
 }

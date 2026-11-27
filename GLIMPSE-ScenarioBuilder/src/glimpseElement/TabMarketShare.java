@@ -74,6 +74,8 @@ import javafx.stage.Stage;
  */
 public class TabMarketShare extends PolicyTab implements Runnable {
     // === Constants for UI text and options ===
+	// Quick global switch for transport market-share scaling experiments.
+	private static final boolean ENABLE_TRN_MARKET_SHARE_SCALING = true;
     private static final double MIN_WIDTH = 175;
     private static final String SELECT_ONE = "Select One";
     private static final String[] POLICY_TYPE_OPTIONS = { "All","Renewable Portfolio Standard (RPS)",
@@ -757,19 +759,21 @@ public class TabMarketShare extends PolicyTab implements Runnable {
 		List<Integer> years=vars.getAllYears();
 		
 		ArrayList<String> list_of_policy_sector_combos = new ArrayList<>();
-		Map<String, Double> trnScalingByPolicy = TrnMarketShareScalingPlanner.resolveScalingByPolicy(
-				policy_name,
-				treatment,
-				applied_to,
-				listOfSelectedLeaves,
-				years,
-				start_year,
-				year_list,
-				valuef_list,
-				subset_list,
-				superset_list,
-				utils::getUnscaledTrnOutputRatio);
-		boolean applyTrnMarketScaling = !trnScalingByPolicy.isEmpty();
+		Map<String, Double> trnScalingByPolicy = ENABLE_TRN_MARKET_SHARE_SCALING
+				? TrnMarketShareScalingPlanner.resolveScalingByPolicy(
+						policy_name,
+						treatment,
+						applied_to,
+						listOfSelectedLeaves,
+						years,
+						start_year,
+						year_list,
+						valuef_list,
+						subset_list,
+						superset_list,
+						utils::getUnscaledTrnOutputRatio)
+				: java.util.Collections.emptyMap();
+		boolean applyTrnMarketScaling = ENABLE_TRN_MARKET_SHARE_SCALING && !trnScalingByPolicy.isEmpty();
 		if (debug && applyTrnMarketScaling) {
 			System.out.println("Resolved transport market-share scaling factors K by policy: " + trnScalingByPolicy);
 		}
